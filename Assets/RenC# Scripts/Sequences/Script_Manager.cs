@@ -20,7 +20,6 @@ namespace RenCSharp
         [Header("Actors")]
         [SerializeField] private Transform[] actorPositions;
         [SerializeField] private AnimationCurve actorScalingKurve;
-        [SerializeField] private GameObject actorPrefab;
         private Actor curActor;
 
         [Header("Settings")]
@@ -29,7 +28,6 @@ namespace RenCSharp
         private bool jumpToEndDialog = false;
 
         public static Script_Manager SM;
-        public GameObject ActorPrefab => actorPrefab;
         public Transform[] ActorPositions => actorPositions;
         //certified singleton moment
         private void Awake()
