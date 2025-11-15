@@ -65,11 +65,12 @@ namespace RenCSharp
             }
         }
 
-        private IEnumerator RunThroughScreen(RenCSharp.Sequences.Screen screen)
+        private IEnumerator RunThroughScreen(Sequences.Screen screen)
         {
             if(curActor != null) yield return ScaleActor(false);
             curActor = screen.Speaker;
             jumpToEndDialog = false;
+
             if (curActor != null)
             {
                 speakerNameBox.gameObject.SetActive(true);
@@ -80,10 +81,10 @@ namespace RenCSharp
             {
                 speakerNameBox.gameObject.SetActive(false);
             }
+
             dialogField.text = "";
             float t = 0;
             int i = 0;
-            //do screen events first when I figure that shit out
 
             foreach(Screen_Event se in screen.ScreenActions)
             {
