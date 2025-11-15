@@ -6,18 +6,18 @@ namespace RenCSharp.Sequences
     [Serializable]
     public class Remove_Actor: Screen_Event
     {
-        [SerializeField] private Actor bitchToRemove;
+        [SerializeField] private Actor actorToRemove;
 
         public override void DoShit()
         {
-            GameObject fellaToRemove = GameObject.Find(bitchToRemove.ActorName);
+            GameObject fellaToRemove = GameObject.Find(actorToRemove.ActorName);
             if (fellaToRemove != null)
             {
                 GameObject.Destroy(fellaToRemove);
             }
             else
             {
-                Debug.LogWarning("Did not find actor: " + bitchToRemove.ActorName);
+                Debug.LogWarning("Did not find actor: " + actorToRemove.ActorName);
             }
         }
 

@@ -7,16 +7,16 @@ namespace RenCSharp.Sequences
     [Serializable]
     public class Spawn_Actor : Screen_Event
     {
-        [SerializeField] private Actor bitchToSpawn;
+        [SerializeField] private Actor actorToSpawn;
         [SerializeField] private int transformIndex, poseIndex, expressionIndex;
         public override void DoShit()
         {
-            GameObject spawnt = GameObject.Instantiate(bitchToSpawn.ActorPrefab, Script_Manager.SM.ActorPositions[transformIndex].position, Quaternion.identity);
-            spawnt.name = bitchToSpawn.ActorName;
+            GameObject spawnt = GameObject.Instantiate(actorToSpawn.ActorPrefab, Script_Manager.SM.ActorPositions[transformIndex].position, Quaternion.identity);
+            spawnt.name = actorToSpawn.ActorName;
             Image pose = spawnt.transform.GetChild(0).GetComponent<Image>();
             Image expression = pose.transform.GetChild(0).GetComponent<Image>();
-            pose.sprite = bitchToSpawn.Poses[poseIndex];
-            expression.sprite = bitchToSpawn.Expressions[expressionIndex];
+            pose.sprite = actorToSpawn.Poses[poseIndex];
+            expression.sprite = actorToSpawn.Expressions[expressionIndex];
         }
 
         public override string ToString()

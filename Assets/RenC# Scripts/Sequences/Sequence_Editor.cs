@@ -8,9 +8,12 @@ namespace RenCSharp.Sequences
     [CustomEditor(typeof(Sequence))]
     public class Sequence_Editor : Editor
     {
+        //insano bullshit here
         private Assembly childrenOfSE = Assembly.GetAssembly(typeof(Screen_Event));
         private Type[] allSubs => childrenOfSE.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(Screen_Event))).ToArray();
         string screenIndex = "0";
+
+        //reasonable stuff here
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
@@ -18,12 +21,13 @@ namespace RenCSharp.Sequences
             Sequence selected = target as Sequence;
             Screen[] myTarget = selected.Screens;
             GUILayout.Label("Screen Index");
-            screenIndex = GUILayout.TextField(screenIndex, 3);
+            screenIndex = GUILayout.TextField(screenIndex, 3); //set the index of the screen you want to add actions to
             GUILayout.Label("Possible Screen Actions");
             foreach (Type stupid in allSubs) //nested AF! HORRID!
             {
-                Screen_Event sumba = Activator.CreateInstance(stupid) as Screen_Event;
-                if (GUILayout.Button(sumba.ToString()))
+                Screen_Event sumba = Activator.CreateInstance(stupid) as Screen_Event; //get a class instance out of the type chicanery
+
+                if (GUILayout.Button(sumba.ToString())) //create a button for each type that'll add that class to the screen actions[]
                 {
                     if (int.TryParse(screenIndex, out int result) && result >= 0)
                     {
