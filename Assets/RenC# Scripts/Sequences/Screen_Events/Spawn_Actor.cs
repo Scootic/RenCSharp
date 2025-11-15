@@ -18,5 +18,10 @@ namespace RenCSharp.Sequences
             pose.sprite = bitchToSpawn.Poses[poseIndex];
             expression.sprite = bitchToSpawn.Expressions[expressionIndex];
         }
+
+        public override string ToString()
+        {
+            return "Spawn Actor";
+        }
     }
 }
