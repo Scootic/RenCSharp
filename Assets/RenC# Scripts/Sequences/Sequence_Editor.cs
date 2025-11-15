@@ -22,13 +22,14 @@ namespace RenCSharp.Sequences
             GUILayout.Label("Possible Screen Actions");
             foreach (Type stupid in allSubs) //nested AF! HORRID!
             {
-                if (GUILayout.Button(stupid.ToString()))
+                Screen_Event sumba = Activator.CreateInstance(stupid) as Screen_Event;
+                if (GUILayout.Button(sumba.ToString()))
                 {
                     if (int.TryParse(screenIndex, out int result) && result >= 0)
                     {
                         if (result < myTarget.Length)
                         {
-                            myTarget[result].ScreenActions.Add(Activator.CreateInstance(stupid) as Screen_Event);
+                            myTarget[result].ScreenActions.Add(sumba);
                         }
                         else
                         {
