@@ -1,8 +1,10 @@
 using UnityEngine;
 using RenCSharp.Actors;
 using UnityEngine.UI;
+using System;
 namespace RenCSharp.Sequences
 {
+    [Serializable]
     public class Spawn_Actor : Screen_Event
     {
         [SerializeField] private Actor bitchToSpawn;

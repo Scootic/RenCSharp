@@ -39,6 +39,8 @@ namespace RenCSharp
             {
                 Destroy(this);
             }
+
+            DontDestroyOnLoad(gameObject); //might be upset when loading scenes and losing references to dialog boxes, etc.
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
