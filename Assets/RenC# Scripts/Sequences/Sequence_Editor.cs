@@ -1,11 +1,15 @@
 using UnityEditor;
 using UnityEngine;
+using System.Reflection;
+using System.Linq;
+using System;
 namespace RenCSharp.Sequences
 {
     [CustomEditor(typeof(Sequence))]
     public class Sequence_Editor : Editor
     {
-        public readonly Screen_Event[] allSubs = { new Spawn_Actor(), new Remove_Actor() };
+        private Assembly childrenOfSE = Assembly.GetAssembly(typeof(Screen_Event));
+        private Type[] allSubs => childrenOfSE.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(Screen_Event))).ToArray();
         string screenIndex = "0";
         public override void OnInspectorGUI()
         {
@@ -16,7 +20,7 @@ namespace RenCSharp.Sequences
             GUILayout.Label("Screen Index");
             screenIndex = GUILayout.TextField(screenIndex, 3);
             GUILayout.Label("Possible Screen Actions");
-            foreach (Screen_Event stupid in allSubs) //nested AF! HORRID!
+            foreach (Type stupid in allSubs) //nested AF! HORRID!
             {
                 if (GUILayout.Button(stupid.ToString()))
                 {
@@ -24,7 +28,7 @@ namespace RenCSharp.Sequences
                     {
                         if (result < myTarget.Length)
                         {
-                            myTarget[result].ScreenActions.Add(stupid);
+                            myTarget[result].ScreenActions.Add(Activator.CreateInstance(stupid) as Screen_Event);
                         }
                         else
                         {
