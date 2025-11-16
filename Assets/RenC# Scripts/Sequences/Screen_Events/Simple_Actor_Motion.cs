@@ -1,5 +1,6 @@
 using UnityEngine;
 using RenCSharp.Actors;
+using System.Collections;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -13,7 +14,7 @@ namespace RenCSharp.Sequences
         [SerializeField] private AnimationCurve motionPathX, motionPathY, motionPathZ;
         [SerializeField] private Actor target;
         [SerializeField] private bool loopOnScreen = false;
-        private float t;
+        private float t, eval, dir = 1;
         private GameObject actorObj;
         private Vector3 ogPos, desPos;
         public override void DoShit()
@@ -23,11 +24,52 @@ namespace RenCSharp.Sequences
             ogPos = actorObj.transform.position;
             desPos = ogPos + localMotionOffset;
             t = 0;
+            Script_Manager.SM.StartCoroutine(Animate());
+        }
+
+        private IEnumerator Animate()
+        {
+            if (!loopOnScreen)
+            {
+                while (t <= motionDuration) 
+                {
+                    t += Time.deltaTime;
+                    eval = t / motionDuration;
+                    SetPosition(eval);
+                    yield return null;
+                }
+            }
+            else
+            {
+                while (true)
+                {
+                    t += Time.deltaTime * dir;
+                    eval = t / motionDuration;
+                    if (t > motionDuration) dir = -1;
+                    else if (t < 0) dir = 1;
+                    SetPosition(eval);
+                    yield return null;
+                }
+            }
+        }
+
+        void SetPosition(float eval)
+        {
+            float x = Mathf.Lerp(ogPos.x, desPos.x, motionPathX.Evaluate(eval));
+            float y = Mathf.Lerp(ogPos.y, desPos.y, motionPathY.Evaluate(eval));
+            float z = Mathf.Lerp(ogPos.z, desPos.z, motionPathZ.Evaluate(eval));
+            actorObj.transform.position = new Vector3(x, y, z);
         }
 
         private void ResetToOG()
         {
+            Script_Manager.SM.StopCoroutine(Animate());
             actorObj.transform.position = ogPos;
+        }
+
+        public override string ToString()
+        {
+            return "Simple Actor Motion";
         }
     }
 }

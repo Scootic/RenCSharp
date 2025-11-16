@@ -147,7 +147,6 @@ namespace RenCSharp
             dialogField.text = screen.Dialog;
         }
    
-
         private IEnumerator ScaleActor(bool up)
         {
             float t;

@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Reflection;
 using System.Linq;
 using System;
+using UnityEngine.UIElements;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -14,6 +15,7 @@ namespace RenCSharp.Sequences
     {
         //insano bullshit here
         private Assembly childrenOfSE = Assembly.GetAssembly(typeof(Screen_Event));
+        //probably don't want this being grabbed every single OnInspectorGUI
         private Type[] allSubs => childrenOfSE.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(Screen_Event))).ToArray();
         string screenIndex = "0";
 
@@ -50,6 +52,33 @@ namespace RenCSharp.Sequences
                     }
                 }
             }
+        }
+    }
+    /// <summary>
+    /// I hate this so much. try to give screen events their name, so you actually know what the hell they are.
+    /// </summary>
+    [CustomPropertyDrawer(typeof(Screen_Event))]
+    public class Screen_Event_Drawer : PropertyDrawer
+    {
+
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            EditorGUI.BeginProperty(position, label, property);
+            EditorGUI.PropertyField(position, property, new GUIContent(property.type), true);
+            EditorGUI.EndProperty();
+        }
+
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            float returner = EditorGUIUtility.singleLineHeight;
+            SerializedProperty copy = property.Copy();
+            if (copy.isExpanded)
+            {
+                int childc = copy.CountInProperty();
+                returner *= childc;
+            }
+            returner += EditorGUIUtility.singleLineHeight;
+            return returner;
         }
     }
 }

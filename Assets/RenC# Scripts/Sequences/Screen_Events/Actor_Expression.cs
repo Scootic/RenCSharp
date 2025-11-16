@@ -19,7 +19,7 @@ namespace RenCSharp.Sequences
             for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
             {
                 image.sprite = actorToAlter.Visuals[i].layer[visualSpriteIndexes[i]];
-                image = image.transform.GetChild(0).GetComponent<Image>();
+                if(i < visualSpriteIndexes.Length - 1) image = image.transform.GetChild(0).GetComponent<Image>(); //grab child for next step
             }
         }
 
