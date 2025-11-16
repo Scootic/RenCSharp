@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using RenCSharp.Actors;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -9,18 +9,25 @@ namespace RenCSharp.Sequences
     public class Simple_Actor_Motion : Screen_Event
     {
         [SerializeField] private Vector3 localMotionOffset;
-        [SerializeField] private float motionDuration;
-        [SerializeField] private AnimationCurve motionPath;
+        [SerializeField, Min(0)] private float motionDuration;
+        [SerializeField] private AnimationCurve motionPathX, motionPathY, motionPathZ;
         [SerializeField] private Actor target;
+        [SerializeField] private bool loopOnScreen = false;
         private float t;
         private GameObject actorObj;
         private Vector3 ogPos, desPos;
         public override void DoShit()
         {
+            Script_Manager.ProgressScreenEvent += ResetToOG;
             actorObj = GameObject.Find(target.ActorName);
             ogPos = actorObj.transform.position;
             desPos = ogPos + localMotionOffset;
             t = 0;
+        }
+
+        private void ResetToOG()
+        {
+            actorObj.transform.position = ogPos;
         }
     }
 }

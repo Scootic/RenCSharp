@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System.Text.RegularExpressions;
+using System;
 namespace RenCSharp
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace RenCSharp
         private bool jumpToEndDialog = false;
 
         public static Script_Manager SM;
+        public static Action ProgressScreenEvent;
         public Transform[] ActorPositions => actorPositions;
         //certified singleton moment
         private void Awake()
@@ -65,6 +67,8 @@ namespace RenCSharp
             if (!jumpToEndDialog) jumpToEndDialog = true;
             else
             {
+                ProgressScreenEvent?.Invoke();
+                ProgressScreenEvent = null; //wipe all delegates from the action before continuing
                 curScreenIndex++;
                 if (curScreenIndex < currentSequence.Screens.Length - 1) StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
                 else //final screen of the sequence
