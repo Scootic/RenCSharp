@@ -30,7 +30,8 @@ namespace RenCSharp
         private Actor curActor;
 
         [Header("Settings")]
-        [SerializeField, Tooltip("In seconds, 0 for character every frame?")] private float textSpeed = 0;
+        [SerializeField, Tooltip("In seconds, 0 for character every frame?"), Min(0)] private float textSpeed = 0;
+        [SerializeField, Tooltip("In seconds."), Min(0)] private float autoFocusScaleDuration = 0.25f;
         [SerializeField] private string playerName = "Guy";
 
         private bool jumpToEndDialog = false;
@@ -105,7 +106,7 @@ namespace RenCSharp
 
         private IEnumerator RunThroughScreen(Sequences.Screen screen)
         { 
-            if (curActor != null) yield return ScaleActor(false); //scale down in case our previous actor was scaled up
+            if (curActor != null) yield return ScaleActor(false, autoFocusScaleDuration); //scale down in case our previous actor was scaled up
             foreach (Screen_Event se in screen.ScreenActions) //do all screen events BEFORE processing any dialog
             {
                 se.DoShit();
@@ -118,7 +119,7 @@ namespace RenCSharp
             {
                 speakerNameBox.gameObject.SetActive(true);
                 speakerNameField.text = curActor.ActorName;
-                if (currentSequence.AutoFocusSpeaker) StartCoroutine(ScaleActor(true)); //zoom in on speaker if the bool says so, may be a layering moment
+                if (currentSequence.AutoFocusSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so, may be a layering moment
             }
             else //if no actor assigned, assume it's narration, so no name to our dialog box
             {
@@ -147,7 +148,7 @@ namespace RenCSharp
             dialogField.text = screen.Dialog;
         }
    
-        private IEnumerator ScaleActor(bool up)
+        private IEnumerator ScaleActor(bool up, float scaleTime)
         {
             float t;
             float eval;
@@ -157,21 +158,21 @@ namespace RenCSharp
             if (up)
             {
                 t = 0;
-                while (t < 1)
+                while (t < scaleTime)
                 {
                     t += Time.deltaTime;
-                    eval = actorScalingKurve.Evaluate(t);
+                    eval = actorScalingKurve.Evaluate(t / scaleTime);
                     fella.transform.localScale = new Vector3(eval, eval, eval);
                     yield return null;
                 }
             }
             else
             {
-                t = 1;
+                t = scaleTime;
                 while (t > 0)
                 {
                     t -= Time.deltaTime;
-                    eval = actorScalingKurve.Evaluate(t);
+                    eval = actorScalingKurve.Evaluate(t / scaleTime);
                     fella.transform.localScale = new Vector3(eval, eval, eval);
                     yield return null;
                 }

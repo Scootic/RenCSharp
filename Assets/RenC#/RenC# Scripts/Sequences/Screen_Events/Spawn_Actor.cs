@@ -13,7 +13,7 @@ namespace RenCSharp.Sequences
     {
         [SerializeField] private Actor actorToSpawn;
         [SerializeField] private int transformIndex;
-        [SerializeField] private int[] visualSpriteIndexes;
+        [SerializeField] private int[] visualSpriteIndexes = new int[1];
         public override void DoShit()
         {
             GameObject spawnt = GameObject.Instantiate(actorToSpawn.ActorPrefab, Script_Manager.SM.ActorPositions[transformIndex].position, Quaternion.identity);

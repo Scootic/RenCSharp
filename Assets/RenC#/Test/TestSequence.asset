@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Hey, {MC} you are stupid!
     ScreenActions:
-    - rid: 8612954324618182804
+    - rid: 8612954348509724864
   - speaker: {fileID: 0}
     dialog: No, they're not! What do you think, {MC}?
     ScreenActions:
@@ -30,15 +30,15 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 8612954324618182804
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 0}
-        transformIndex: 0
-        visualSpriteIndexes: 0000000000000000
     - rid: 8612954324618182805
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToSpawn: {fileID: 0}
         transformIndex: 0
-        visualSpriteIndexes: 0000000000000000
+        visualSpriteIndexes: 00000000
+    - rid: 8612954348509724864
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 7487abcf4a0053a4f813c3724c2a2ed5, type: 2}
+        transformIndex: 0
+        visualSpriteIndexes: 00000000

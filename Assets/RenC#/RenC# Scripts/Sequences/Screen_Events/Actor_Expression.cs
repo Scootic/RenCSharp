@@ -11,7 +11,7 @@ namespace RenCSharp.Sequences
     public class Actor_Expression : Screen_Event
     {
         [SerializeField] private Actor actorToAlter;
-        [SerializeField] private int[] visualSpriteIndexes;
+        [SerializeField] private int[] visualSpriteIndexes = new int[1];
         public override void DoShit()
         {
             GameObject spawnt = GameObject.Find(actorToAlter.ActorName);
