@@ -12,15 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
   m_Name: TestSequence
   m_EditorClassIdentifier: 
-  autoFocusSpeaker: 0
+  autoFocusSpeaker: 1
   screens:
   - speaker: {fileID: 0}
-    dialog: 
-    ScreenActions: []
+    dialog: Hey, {MC} you are stupid!
+    ScreenActions:
+    - rid: 8612954324618182804
   - speaker: {fileID: 0}
-    dialog: 
-    ScreenActions: []
-  playerChoices: []
+    dialog: No, they're not! What do you think, {MC}?
+    ScreenActions:
+    - rid: 8612954324618182805
+  playerChoices:
+  - choiceText: 1a; Yes
+    resultingSequence: {fileID: 0}
+  - choiceText: 1b; No
+    resultingSequence: {fileID: 0}
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 8612954324618182804
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 0}
+        transformIndex: 0
+        visualSpriteIndexes: 0000000000000000
+    - rid: 8612954324618182805
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 0}
+        transformIndex: 0
+        visualSpriteIndexes: 0000000000000000

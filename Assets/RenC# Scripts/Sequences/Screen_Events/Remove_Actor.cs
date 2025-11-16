@@ -3,6 +3,9 @@ using RenCSharp.Actors;
 using System;
 namespace RenCSharp.Sequences
 {
+    /// <summary>
+    /// Removes an actor from the scene based on a passed in Actor SO.
+    /// </summary>
     [Serializable]
     public class Remove_Actor: Screen_Event
     {

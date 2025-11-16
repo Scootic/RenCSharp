@@ -5,6 +5,10 @@ using System.Linq;
 using System;
 namespace RenCSharp.Sequences
 {
+    /// <summary>
+    /// I have no idea how the first three lines work, that stuff's above my paygrade. That said, this script makes sure that you
+    /// can add the Screen Events you want to a screen using buttons. Polymorphism is wilin'
+    /// </summary>
     [CustomEditor(typeof(Sequence))]
     public class Sequence_Editor : Editor
     {
