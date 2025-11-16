@@ -16,13 +16,16 @@ namespace RenCSharp.Sequences
         [SerializeField] private int[] visualSpriteIndexes = new int[1];
         public override void DoShit()
         {
-            GameObject spawnt = GameObject.Instantiate(actorToSpawn.ActorPrefab, Script_Manager.SM.ActorPositions[transformIndex].position, Quaternion.identity);
+            Transform placeWeWant = Script_Manager.SM.ActorPositions[transformIndex];
+            GameObject spawnt = GameObject.Instantiate(actorToSpawn.ActorPrefab, placeWeWant);
+            spawnt.transform.SetParent(placeWeWant.parent); //set the parent to be the canvas, rather than the transform obj
+            spawnt.transform.localPosition = placeWeWant.position;
             spawnt.name = actorToSpawn.ActorName;
             Image image = spawnt.transform.GetChild(0).GetComponent<Image>(); 
             for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
             {
                 image.sprite = actorToSpawn.Visuals[i].layer[visualSpriteIndexes[i]];
-                image = image.transform.GetChild(0).GetComponent<Image>();
+                if(i < visualSpriteIndexes.Length - 1)image = image.transform.GetChild(0).GetComponent<Image>();
             }
         }
 

@@ -68,11 +68,12 @@ namespace RenCSharp
             if (!jumpToEndDialog) jumpToEndDialog = true;
             else
             {
+                Debug.Log("Moving to next screen!");
                 ProgressScreenEvent?.Invoke();
                 ProgressScreenEvent = null; //wipe all delegates from the action before continuing
                 curScreenIndex++;
-                if (curScreenIndex < currentSequence.Screens.Length - 1) StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
-                else //final screen of the sequence
+                if(curScreenIndex < currentSequence.Screens.Length) StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
+                if(curScreenIndex == currentSequence.Screens.Length - 1)//final screen of the sequence
                 {
                     if (currentSequence.PlayerChoices.Length == 0) { Debug.Log("No next sequence, game over?"); return; }
 
@@ -82,6 +83,7 @@ namespace RenCSharp
                         foreach (Player_Choice pc in currentSequence.PlayerChoices)
                         {
                             Button b = Instantiate(playerchoicePrefab, playerchoiceHolder);
+                            b.GetComponentInChildren<TextMeshProUGUI>().text = pc.ChoiceText;
                             b.onClick.AddListener(delegate { LoadASequence(pc.ResultingSequence); });
                         }
                     }
@@ -145,7 +147,8 @@ namespace RenCSharp
                 yield return null;
             }
             //safety measure
-            dialogField.text = screen.Dialog;
+            jumpToEndDialog = true;
+            dialogField.text = amended;
         }
    
         private IEnumerator ScaleActor(bool up, float scaleTime)

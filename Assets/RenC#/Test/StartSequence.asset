@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: StartSequence
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 11400000, guid: 7487abcf4a0053a4f813c3724c2a2ed5, type: 2}
+    dialog: Hey, {MC} you are stupid!
+    ScreenActions:
+    - rid: 8612954348509724864
+  - speaker: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
+    dialog: No, they're not! What do you think, {MC}?
+    ScreenActions:
+    - rid: 8612954324618182805
+    - rid: 8612954348509724877
+  playerChoices:
+  - choiceText: 1a; Yes
+    resultingSequence: {fileID: 11400000, guid: 53305b8d8a3ec194d8e9c3ad40d3e34d, type: 2}
+  - choiceText: 1b; No
+    resultingSequence: {fileID: 11400000, guid: ee0cb1d75ce5eba41990b3a2781757d3, type: 2}
+  references:
+    version: 2
+    RefIds:
+    - rid: 8612954324618182805
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
+        transformIndex: 1
+        visualSpriteIndexes: 0000000000000000
+    - rid: 8612954348509724864
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 7487abcf4a0053a4f813c3724c2a2ed5, type: 2}
+        transformIndex: 2
+        visualSpriteIndexes: 0000000000000000
+    - rid: 8612954348509724877
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 400, y: 0, z: 0}
+        motionDuration: 0.5
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: 7487abcf4a0053a4f813c3724c2a2ed5, type: 2}
+        loopOnScreen: 0
