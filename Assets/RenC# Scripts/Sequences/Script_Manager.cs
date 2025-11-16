@@ -13,7 +13,7 @@ namespace RenCSharp
     /// </summary>
     public class Script_Manager : MonoBehaviour
     {
-        [SerializeField] private Sequence currentSequence; //set before runtime for first sequence of scene
+        [SerializeField] private Sequence currentSequence; //set before runtime for first sequence of unity scene
         private int curScreenIndex = 0;
 
         [Header("Dialog Fields")]
