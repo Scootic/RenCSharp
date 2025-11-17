@@ -30,6 +30,11 @@ namespace RenCSharp.Sequences
             GetWindow(typeof(Sequence_Editor));
         }
 
+        private void OnEnable()
+        {
+            titleContent = new GUIContent("Sequence Editor");
+        }
+
         private void OnGUI()
         {
             GUILayout.Label("Sequence Data");
@@ -38,7 +43,7 @@ namespace RenCSharp.Sequences
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
             //freak the hell out
             if (allSubs == null) allSubs = childrenOfSE.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(Screen_Event))).ToArray();
-
+            GUILayout.Label("Screen Actions");
             foreach (Type stupid in allSubs)
             {
                 Screen_Event sumba = Activator.CreateInstance(stupid) as Screen_Event;

@@ -21,5 +21,10 @@ namespace RenCSharp.Sequences
         public bool AutoFocusSpeaker => autoFocusSpeaker;
         public Screen[] Screens => screens;
         public Player_Choice[] PlayerChoices => playerChoices;
+
+        public override string ToString()
+        {
+            return "Sequence";
+        }
     }
 }
