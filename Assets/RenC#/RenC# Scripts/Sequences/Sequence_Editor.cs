@@ -56,6 +56,9 @@ namespace RenCSharp.Sequences
             }
             EditorGUILayout.EndScrollView();
         }
+
+        //old method below where buttons were spawned directly in sequence inspectorGUI, rather than in their own window
+
         /*
         //reasonable stuff here
         public override void OnInspectorGUI()
