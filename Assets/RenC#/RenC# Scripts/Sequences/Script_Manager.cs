@@ -34,13 +34,15 @@ namespace RenCSharp
         [Header("Settings")]
         [SerializeField, Tooltip("In seconds, 0 for character every frame."), Min(0)] private float textSpeed = 0;
         [SerializeField, Tooltip("In seconds."), Min(0)] private float autoFocusScaleDuration = 0.25f;
-        [SerializeField] private string playerName = "Guy";
+        [SerializeField] private string playerName = "Guy"; //probably should be handled by an save data
         [SerializeField, Tooltip("This will be string that is replaced by inputted player name.")] private string playerTag = "{MC}";
 
         private bool jumpToEndDialog = false;
+        private bool paused = false;
 
         public static Script_Manager SM;
         public static Action ProgressScreenEvent;
+        public static Action<bool> SequencePausedEvent;
         public Transform ActorHolder => actorHolder;
         //certified singleton moment
         private void Awake()
@@ -68,8 +70,21 @@ namespace RenCSharp
             StartCoroutine(RunThroughScreen(currentSequence.Screens[0]));
         }
 
+        public void PauseSequence()
+        {
+            paused = true;
+            SequencePausedEvent?.Invoke(paused); //for cool mfs to do game stuff whenever the sequence is paused. minigame mayhaps?
+        }
+
+        public void UnpauseSequence()
+        {
+            paused = false;
+            SequencePausedEvent?.Invoke(paused);
+        }
+
         public void ProgressToNextScreen() //for an UI button to use
         {
+            if (paused) return;
             if (!jumpToEndDialog) jumpToEndDialog = true;
             else
             {
@@ -146,13 +161,16 @@ namespace RenCSharp
 
             while (dialogchars.Length > dialogField.text.Length && !jumpToEndDialog)
             {
-                t += Time.deltaTime;
-                //add one character at a time, depending on text speed
-                if (t >= textSpeed)
+                if (!paused)
                 {
-                    t = 0;
-                    dialogField.text += dialogchars[i];
-                    i++;
+                    t += Time.deltaTime;
+                    //add one character at a time, depending on text speed
+                    if (t >= textSpeed)
+                    {
+                        t = 0;
+                        dialogField.text += dialogchars[i];
+                        i++;
+                    }
                 }
                 yield return null;
             }

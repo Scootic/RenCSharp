@@ -9,10 +9,8 @@ using UnityEngine.UIElements;
 namespace RenCSharp.Sequences
 {
     /// <summary>
-    /// I have no idea how the first three lines work, that stuff's above my paygrade. That said, this script makes sure that you
-    /// can add the Screen Events you want to a screen using buttons. Polymorphism is wilin'
+    /// Unique EditorWindow just to add specific screen events to a screen. Why? The Unity inspector was not built for polymorphism. FML.
     /// </summary>
-    //[CustomEditor(typeof(Sequence))]
     public class Sequence_Editor : EditorWindow
     {
         //insano bullshit here
@@ -62,7 +60,7 @@ namespace RenCSharp.Sequences
             EditorGUILayout.EndScrollView();
         }
 
-        //old method below where buttons were spawned directly in sequence inspectorGUI, rather than in their own window
+        ///old method below where buttons were spawned directly in sequence inspectorGUI, rather than in their own window
 
         /*
         //reasonable stuff here
@@ -101,20 +99,21 @@ namespace RenCSharp.Sequences
         }*/
     }
     /// <summary>
-    /// I hate this so much. try to give screen events their name, so you actually know what the hell they are.
+    /// I hate this so much. Try to give screen events their name, so you actually know what the hell they are.
     /// </summary>
     [CustomPropertyDrawer(typeof(Screen_Event))]
     public class Screen_Event_Drawer : PropertyDrawer
     {
         readonly Color deepGreen = new Color(0.09f, 0.235f, 0.243f);
         readonly Color sexyGreen = new Color(0.149f, 0.361f, 0.259f);
+        //literally just default GUI but you can tell what the name of the screen event it is
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             EditorGUI.BeginProperty(position, label, property);
             EditorGUI.PropertyField(position, property, new GUIContent(property.type), true);
             EditorGUI.EndProperty();
         }
-
+        //no idea why it looks buns, but it do
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             VisualElement ve = new VisualElement();
@@ -128,7 +127,7 @@ namespace RenCSharp.Sequences
             ve.Add(pf);
             return ve;
         }
-
+        // >:(
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             float returner = EditorGUIUtility.singleLineHeight;

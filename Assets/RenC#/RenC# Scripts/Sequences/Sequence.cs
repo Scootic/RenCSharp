@@ -2,7 +2,7 @@ using UnityEngine;
 namespace RenCSharp.Sequences
 {
     /// <summary>
-    /// The primary assets that will make up a visual novel. They contain screens, which are the serious of dialog boxes and events that happen
+    /// The primary assets that will make up a visual novel. They contain screens, which are the series of dialog boxes and events that happen
     /// in the game, and player choices. Player choices are simple, only having a string that will appear on the button that spawns, and a sequence that
     /// gets loaded when you pick it.
     /// 
