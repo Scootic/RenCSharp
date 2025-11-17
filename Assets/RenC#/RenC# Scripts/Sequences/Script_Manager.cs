@@ -32,9 +32,10 @@ namespace RenCSharp
         private Actor curActor;
 
         [Header("Settings")]
-        [SerializeField, Tooltip("In seconds, 0 for character every frame?"), Min(0)] private float textSpeed = 0;
+        [SerializeField, Tooltip("In seconds, 0 for character every frame."), Min(0)] private float textSpeed = 0;
         [SerializeField, Tooltip("In seconds."), Min(0)] private float autoFocusScaleDuration = 0.25f;
         [SerializeField] private string playerName = "Guy";
+        [SerializeField, Tooltip("This will be string that is replaced by inputted player name.")] private string playerTag = "{MC}";
 
         private bool jumpToEndDialog = false;
 
@@ -116,7 +117,8 @@ namespace RenCSharp
 
         private IEnumerator RunThroughScreen(Sequences.Screen screen)
         { 
-            if (curActor != null) yield return ScaleActor(false, autoFocusScaleDuration); //scale down in case our previous actor was scaled up
+            if (curActor != null && curActor != screen.Speaker) yield return ScaleActor(false, autoFocusScaleDuration);
+            //scale down in case our previous actor was scaled up, if we don't have the same actor
             foreach (Screen_Event se in screen.ScreenActions) //do all screen events BEFORE processing any dialog
             {
                 se.DoShit();
@@ -139,7 +141,7 @@ namespace RenCSharp
             dialogField.text = ""; //wipe before putting in new wordses
             float t = 0;
             int i = 0;
-            string amended = Regex.Replace(screen.Dialog, "{MC}", playerName); //insert the player's custom name into dialog
+            string amended = Regex.Replace(screen.Dialog, playerTag, playerName); //insert the player's custom name into dialog
             char[] dialogchars = amended.ToCharArray();
 
             while (dialogchars.Length > dialogField.text.Length && !jumpToEndDialog)
@@ -164,10 +166,15 @@ namespace RenCSharp
             float t;
             float eval;
             GameObject fella = GameObject.Find(curActor.ActorName);
-            if (fella == null) yield break; //break out of routine if we can't find the gameobject we want
+            if (fella == null)
+            {
+                Debug.Log("could find gameobject for: " + curActor.ActorName); 
+                yield break; //break out of routine if we can't find the gameobject we want
+            }
 
             if (up)
             {
+                fella.transform.SetAsLastSibling(); //move to the front of the bus
                 t = 0;
                 while (t < scaleTime)
                 {
@@ -179,6 +186,7 @@ namespace RenCSharp
             }
             else
             {
+                fella.transform.SetAsFirstSibling(); //move to the back of the bus
                 t = scaleTime;
                 while (t > 0)
                 {
