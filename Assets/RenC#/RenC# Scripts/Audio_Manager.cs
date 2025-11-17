@@ -5,7 +5,6 @@ namespace RenCSharp
 {
     public class Audio_Manager : MonoBehaviour
     {
-
         public static Audio_Manager AM; //global variable, every object can see and send messages to the audio manager
 
         [SerializeField, Range(1, 20)] private int sfxAmount = 20; //dictates how many sound effects we can have at once
@@ -74,12 +73,7 @@ namespace RenCSharp
         #region 3DSFX
         public void Play3DSFX(AudioSource ThingToPlay, Vector3 position, bool environmental)
         {
-            if (audioObject == null) 
-            { 
-                audioObject = new GameObject(); 
-                audioObject.name = "DefaultAudioObj"; 
-                audioObject.AddComponent<AudioSource>(); 
-            }
+            AudioObjectCheck();
             
             GameObject gaming = Instantiate(audioObject, position, Quaternion.identity); //Quaternion.identity is basically default for Quaternions
             gaming.transform.SetParent(null); //prevent dumbass going away with despawning objects?
@@ -98,7 +92,39 @@ namespace RenCSharp
             temp.Play();
 
             StartCoroutine(BleanUp(gaming, ThingToPlay.clip.length));
-            
+        }
+
+        public void Play3DSFX(AudioClip clipToPlay, Vector3 position, bool environmental)
+        {
+            AudioObjectCheck();
+
+            GameObject gaming = Instantiate(audioObject, position, Quaternion.identity);
+            gaming.transform.SetParent(null);
+            sfxList.Add(gaming);
+
+            if(gaming.GetComponent<AudioSource>() == null)
+            {
+                gaming.AddComponent<AudioSource>();
+            }
+
+            AudioSource temp = gaming.GetComponent<AudioSource>();
+            temp.clip = clipToPlay;
+            temp.spatialBlend = 1;
+            temp.volume = 1;
+            temp.volume *= environmental ? esfxVolMult : sfxVolMult;
+            temp.Play();
+
+            StartCoroutine(BleanUp(gaming, temp.clip.length));
+        }
+
+        void AudioObjectCheck()
+        {
+            if(audioObject == null)
+            {
+                audioObject = new GameObject();
+                audioObject.name = "DefaultAudioObj";
+                audioObject.AddComponent<AudioSource>();
+            }
         }
 
         public void Stop3DSFX(AudioClip clipToRemove, bool removeOnlyOne = true)
