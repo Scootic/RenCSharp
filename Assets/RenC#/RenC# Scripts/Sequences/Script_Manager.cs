@@ -9,7 +9,9 @@ using System;
 namespace RenCSharp
 {
     /// <summary>
-    /// The guy who handles the game logic. Runs through the screens of a sequence, and does all the stuff.
+    /// The guy who handles the game logic. Runs through the screens of a sequence, and does all the stuff. For some god awful reason, does not
+    /// like sequences that only have 1 screen in them. If you really desparetely need a 1 screen sequence, just include a completely empty screen
+    /// as the second screen.
     /// </summary>
     public class Script_Manager : MonoBehaviour
     {
@@ -25,7 +27,7 @@ namespace RenCSharp
         [SerializeField] private Transform playerchoiceHolder;
 
         [Header("Actors")]
-        [SerializeField] private Transform[] actorPositions;
+        [SerializeField] private Transform actorHolder;
         [SerializeField] private AnimationCurve actorScalingKurve;
         private Actor curActor;
 
@@ -38,7 +40,7 @@ namespace RenCSharp
 
         public static Script_Manager SM;
         public static Action ProgressScreenEvent;
-        public Transform[] ActorPositions => actorPositions;
+        public Transform ActorHolder => actorHolder;
         //certified singleton moment
         private void Awake()
         {
@@ -60,6 +62,8 @@ namespace RenCSharp
 
         public void StartSequence()
         {
+            Debug.Log("Started Sequence: " + currentSequence.name);
+            curScreenIndex = 0;
             StartCoroutine(RunThroughScreen(currentSequence.Screens[0]));
         }
 
@@ -75,7 +79,11 @@ namespace RenCSharp
                 if(curScreenIndex < currentSequence.Screens.Length) StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
                 if(curScreenIndex == currentSequence.Screens.Length - 1)//final screen of the sequence
                 {
-                    if (currentSequence.PlayerChoices.Length == 0) { Debug.Log("No next sequence, game over?"); return; }
+                    if (currentSequence.PlayerChoices.Length == 0)//if there are no valid next sequences, sum shit gone wrong
+                    { 
+                        Debug.Log("No next sequence, game over?"); 
+                        return; 
+                    }
 
                     if (currentSequence.PlayerChoices[0].ChoiceText != string.Empty)
                     {
@@ -113,8 +121,8 @@ namespace RenCSharp
             {
                 se.DoShit();
             }
-
-            curActor = screen.Speaker; //set the current actor for reasons
+            if (screen.Speaker != null) curActor = screen.Speaker; //set the current actor for reasons
+            else curActor = null;
             jumpToEndDialog = false; //set up to make sure we can skip properly and not just constantly move on before reaching end of text
 
             if (curActor != null) //if we have an actor, we can put a name to our dialog box

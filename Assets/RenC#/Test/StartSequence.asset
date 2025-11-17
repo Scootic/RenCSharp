@@ -21,7 +21,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
     dialog: No, they're not! What do you think, {MC}?
     ScreenActions:
-    - rid: 8612954324618182805
+    - rid: 8612954348509725095
     - rid: 8612954348509724877
   playerChoices:
   - choiceText: 1a; Yes
@@ -31,17 +31,11 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 8612954324618182805
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
-        transformIndex: 1
-        visualSpriteIndexes: 0000000000000000
     - rid: 8612954348509724864
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToSpawn: {fileID: 11400000, guid: 7487abcf4a0053a4f813c3724c2a2ed5, type: 2}
-        transformIndex: 2
+        spawnOffset: {x: 0, y: 0, z: 0}
         visualSpriteIndexes: 0000000000000000
     - rid: 8612954348509724877
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
@@ -86,3 +80,9 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: 7487abcf4a0053a4f813c3724c2a2ed5, type: 2}
         loopOnScreen: 0
+    - rid: 8612954348509725095
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes: 0000000000000000

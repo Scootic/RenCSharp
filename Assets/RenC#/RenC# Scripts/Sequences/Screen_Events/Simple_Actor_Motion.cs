@@ -64,7 +64,7 @@ namespace RenCSharp.Sequences
         private void ResetToOG()
         {
             Script_Manager.SM.StopCoroutine(Animate());
-            actorObj.transform.position = ogPos;
+            actorObj.transform.position = loopOnScreen ? ogPos : desPos;
         }
 
         public override string ToString()
