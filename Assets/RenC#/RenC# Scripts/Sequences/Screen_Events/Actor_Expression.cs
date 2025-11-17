@@ -15,11 +15,18 @@ namespace RenCSharp.Sequences
         public override void DoShit()
         {
             GameObject spawnt = GameObject.Find(actorToAlter.ActorName);
-            Image image = spawnt.transform.GetChild(0).GetComponent<Image>(); 
-            for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
+            if (spawnt != null)
             {
-                image.sprite = actorToAlter.Visuals[i].layer[visualSpriteIndexes[i]];
-                if(i < visualSpriteIndexes.Length - 1) image = image.transform.GetChild(0).GetComponent<Image>(); //grab child for next step
+                Image image = spawnt.transform.GetChild(0).GetComponent<Image>();
+                for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
+                {
+                    image.sprite = actorToAlter.Visuals[i].layer[visualSpriteIndexes[i]];
+                    if (i < visualSpriteIndexes.Length - 1) image = image.transform.GetChild(0).GetComponent<Image>(); //grab child for next step
+                }
+            }
+            else
+            {
+                Debug.LogWarning("couldn't find actor: " + actorToAlter.ActorName);
             }
         }
 

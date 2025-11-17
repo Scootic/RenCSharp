@@ -10,13 +10,14 @@ namespace RenCSharp.Sequences
     public class Simple_Actor_Motion : Screen_Event
     {
         [SerializeField] private Vector3 localMotionOffset;
-        [SerializeField, Min(0)] private float motionDuration;
+        [SerializeField, Min(0.01f)] private float motionDuration = 1;
         [SerializeField] private AnimationCurve motionPathX, motionPathY, motionPathZ;
         [SerializeField] private Actor target;
         [SerializeField] private bool loopOnScreen = false;
         private float t, eval, dir = 1;
         private GameObject actorObj;
         private Vector3 ogPos, desPos;
+        private Coroutine motion;
         public override void DoShit()
         {
             Script_Manager.ProgressScreenEvent += ResetToOG;
@@ -24,7 +25,7 @@ namespace RenCSharp.Sequences
             ogPos = actorObj.transform.position;
             desPos = ogPos + localMotionOffset;
             t = 0;
-            Script_Manager.SM.StartCoroutine(Animate());
+            motion = Script_Manager.SM.StartCoroutine(Animate());
         }
 
         private IEnumerator Animate()
@@ -63,7 +64,7 @@ namespace RenCSharp.Sequences
 
         private void ResetToOG()
         {
-            Script_Manager.SM.StopCoroutine(Animate());
+            Script_Manager.SM.StopCoroutine(motion);
             actorObj.transform.position = loopOnScreen ? ogPos : desPos;
         }
 
