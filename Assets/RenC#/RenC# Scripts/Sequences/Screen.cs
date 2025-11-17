@@ -13,7 +13,7 @@ namespace RenCSharp.Sequences
     public class Screen 
     {
         [SerializeField] private Actor speaker;
-        [SerializeField, TextArea] private string dialog;
+        [SerializeField, TextArea(3,7)] private string dialog;
         [SerializeReference] public List<Screen_Event> ScreenActions;
         public Actor Speaker => speaker;
         public string Dialog => dialog;
