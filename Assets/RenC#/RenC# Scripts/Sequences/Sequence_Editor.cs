@@ -20,7 +20,7 @@ namespace RenCSharp.Sequences
         //probably don't want this being grabbed every single OnInspectorGUI
         private static Type[] allSubs;
         private Vector2 scrollPos;
-        [Min(0)]private int screenIndex = 0;
+        [Min(0), Tooltip("The screen that will receive the new screen action.")]private int screenIndex = 0;
         Sequence manToEdit = null;
 
         [MenuItem("Window/Sequence Editor")]
