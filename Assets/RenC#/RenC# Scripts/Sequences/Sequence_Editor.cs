@@ -3,7 +3,6 @@ using UnityEngine;
 using System.Reflection;
 using System.Linq;
 using System;
-using UnityEngine.UIElements;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -60,7 +59,6 @@ namespace RenCSharp.Sequences
     [CustomPropertyDrawer(typeof(Screen_Event))]
     public class Screen_Event_Drawer : PropertyDrawer
     {
-
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             EditorGUI.BeginProperty(position, label, property);
