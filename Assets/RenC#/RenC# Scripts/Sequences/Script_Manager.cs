@@ -154,6 +154,7 @@ namespace RenCSharp
                 speakerNameBox.color = curActor.TextboxColor;
                 dialogBox.color = curActor.TextboxColor;
                 speakerNameField.text = curActor.ActorName;
+                if(curActor.ActorName == playerTag) speakerNameField.text = playerName; 
                 if (currentSequence.AutoFocusSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so
             }
             else //if no actor assigned, assume it's narration, so no name to our dialog box
