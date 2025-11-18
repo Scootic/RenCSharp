@@ -164,6 +164,15 @@ namespace RenCSharp
             }
 
             dialogField.text = ""; //wipe before putting in the new text
+
+            if (screen.Dialog == "")
+            {
+                Debug.Log("No dialog on this screen, moving to next!");
+                jumpToEndDialog = true;
+                ProgressToNextScreen();
+                yield break;
+            }
+
             float t = 0;
             int i = 0;
             string amended = Regex.Replace(screen.Dialog, playerTag, playerName); //insert the player's custom name into dialog
