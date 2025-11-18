@@ -4,8 +4,8 @@ using UnityEngine;
 using System.Reflection;
 using System.Linq;
 using System;
-using UnityEditor.UIElements;
-using UnityEngine.UIElements;
+//using UnityEditor.UIElements;
+//using UnityEngine.UIElements;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -104,8 +104,6 @@ namespace RenCSharp.Sequences
     [CustomPropertyDrawer(typeof(Screen_Event))]
     public class Screen_Event_Drawer : PropertyDrawer
     {
-        readonly Color deepGreen = new Color(0.09f, 0.235f, 0.243f);
-        readonly Color sexyGreen = new Color(0.149f, 0.361f, 0.259f);
         //literally just default GUI but you can tell what the name of the screen event it is
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -113,20 +111,7 @@ namespace RenCSharp.Sequences
             EditorGUI.PropertyField(position, property, new GUIContent(property.type), true);
             EditorGUI.EndProperty();
         }
-        //no idea why it looks buns, but it do
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            VisualElement ve = new VisualElement();
-            PropertyField pf = new PropertyField(property);
-            pf.style.backgroundColor = sexyGreen;
-            //pf.style.unityBackgroundImageTintColor = deepGreen;
-            //pf.style.borderBottomColor = deepGreen;
-            //pf.style.borderRightColor = deepGreen;
-            //pf.style.borderLeftColor = deepGreen;
-            //pf.style.borderTopColor = deepGreen;
-            ve.Add(pf);
-            return ve;
-        }
+
         // >:(
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {

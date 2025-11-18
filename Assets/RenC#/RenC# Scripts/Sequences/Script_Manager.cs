@@ -41,7 +41,7 @@ namespace RenCSharp
         private bool paused = false;
 
         public static Script_Manager SM;
-        public static Action ProgressScreenEvent;
+        public static Action ProgressScreenEvent, EndOfAllSequencesEvent;
         public static Action<bool> SequencePausedEvent;
         public Transform ActorHolder => actorHolder;
         //certified singleton moment
@@ -72,12 +72,14 @@ namespace RenCSharp
 
         public void PauseSequence()
         {
+            Debug.Log("SM PAUSED");
             paused = true;
             SequencePausedEvent?.Invoke(paused); //for cool mfs to do game stuff whenever the sequence is paused. minigame mayhaps?
         }
 
         public void UnpauseSequence()
         {
+            Debug.Log("SM UNPAUSED");
             paused = false;
             SequencePausedEvent?.Invoke(paused);
         }
@@ -98,6 +100,7 @@ namespace RenCSharp
                     if (currentSequence.PlayerChoices.Length == 0)//if there are no valid next sequences, sum shit gone wrong
                     { 
                         Debug.Log("No next sequence, game over?"); 
+                        EndOfAllSequencesEvent?.Invoke();
                         return; 
                     }
 
@@ -111,7 +114,7 @@ namespace RenCSharp
                             b.onClick.AddListener(delegate { LoadASequence(pc.ResultingSequence); });
                         }
                     }
-                    else //if your first choice contains no text for the button, assume that there's no choice and load next sequence
+                    else //if your first choice contains no text for the button, assume that there's no choice and automatically load next sequence
                     {
                         LoadASequence(currentSequence.PlayerChoices[0].ResultingSequence);
                     }
@@ -134,12 +137,14 @@ namespace RenCSharp
         { 
             if (curActor != null && curActor != screen.Speaker) yield return ScaleActor(false, autoFocusScaleDuration);
             //scale down in case our previous actor was scaled up, if we don't have the same actor
-            foreach (Screen_Event se in screen.ScreenActions) //do all screen events BEFORE processing any dialog
+            foreach (Screen_Event se in screen.ScreenActions) //do all screen events BEFORE processing any dialog. does not care if SM is paused or not.
             {
                 se.DoShit();
             }
             if (screen.Speaker != null) curActor = screen.Speaker; //set the current actor for reasons
             else curActor = null;
+
+            ///if(screen.Dialog == string.Empty) { jumpToEndDialog = true; ProgressToNextScreen(); yield break; }
             jumpToEndDialog = false; //set up to make sure we can skip properly and not just constantly move on before reaching end of text
 
             if (curActor != null) //if we have an actor, we can put a name to our dialog box
@@ -153,7 +158,7 @@ namespace RenCSharp
                 speakerNameBox.gameObject.SetActive(false);
             }
 
-            dialogField.text = ""; //wipe before putting in new wordses
+            dialogField.text = ""; //wipe before putting in the new text
             float t = 0;
             int i = 0;
             string amended = Regex.Replace(screen.Dialog, playerTag, playerName); //insert the player's custom name into dialog
@@ -161,6 +166,7 @@ namespace RenCSharp
 
             while (dialogchars.Length > dialogField.text.Length && !jumpToEndDialog)
             {
+                //only run through text if the SM is unpaused
                 if (!paused)
                 {
                     t += Time.deltaTime;

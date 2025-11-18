@@ -1,45 +1,49 @@
-using Codice.Client.BaseCommands.CheckIn;
+
 using UnityEngine;
 using UnityEngine.UI;
 namespace RenCSharp.Sequences
 {
     /// <summary>
     /// Screen Event to change the background to something else, with a fade to hide it goodly better.
+    /// Technically problematic; remember to assign your index 0 anim events as the middle of a fade and your index 1 anim events as
+    /// the end of a fade.
     /// </summary>
     public class Fade_Transition : Screen_Event
     {
         [SerializeField] private Sprite newBG;
         [SerializeField, Tooltip("Decide which type of transition to tell animator to use.")] private int fadeTransition = 0;
         [SerializeField, Tooltip("How long should the fade be in seconds?")] private float fadeDuration = 1f;
+        private Animation_Event_Delegates aed;
         public override void DoShit()
         {
-            Image bg = GameObject.Find("BG").GetComponent<Image>(); //probably shouldn't be this
-
             if (GameObject.FindGameObjectWithTag("Fader").TryGetComponent(out Animator fader)) //find the fader
             {
-                Script_Manager.SM.PauseSequence();
                 fader.SetInteger("FadeType", fadeTransition);
                 fader.SetTrigger("Fade");
                 fader.SetFloat("SpeedMult", 1f / fadeDuration);
-                AnimationClip transition = fader.GetCurrentAnimatorClipInfo(0)[fadeTransition + 1].clip;
-                Debug.Log(transition.name); //hopefully, should be right one!
+                fader.Update(0.01f); //make sure the animator is actually in the state we want, and not just the empty idle state.
 
-                AnimationEvent swapBG = new AnimationEvent();
-                swapBG.functionName = "SwapBG";
-                AnimationEvent unpauseSM = new AnimationEvent();
-                unpauseSM.functionName = "UnpauseSM";
+                if (fader.TryGetComponent(out aed)) //if we can't find an aed, don't perma stun the sequence forever
+                {
+                    Script_Manager.SM.PauseSequence(); //pause to prevent things happening during fade transition
+                    aed.AnimationDelegates[0] += SwapBG;
+                    aed.AnimationDelegates[1] += UnpauseSM;
 
-                transition.events[0] = swapBG;
-                transition.events[1] = unpauseSM;
+                    Script_Manager.ProgressScreenEvent += delegate { aed.WipeDelegates(); };
+                }
+            }
+            else
+            {
+                Debug.LogWarning("couldn't find a fader gameobject. Did you set it to be tag: 'Fader'?");
             }
         }
-
-        public void SwapBG()
+        //?
+        private void SwapBG()
         {
             GameObject.Find("BG").GetComponent<Image>().sprite = newBG;
         }
 
-        public void UnpauseSM()
+        private void UnpauseSM()
         {
             Script_Manager.SM.UnpauseSequence();
         }

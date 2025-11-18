@@ -5,7 +5,8 @@ namespace RenCSharp.Sequences
 {
     /// <summary>
     /// A simple action that moves an actor toward a position based on the local transform position, over the duration of an IEnumerator using
-    /// an animation curve. The animation curve can end at where it starts, meaning simple hop animations are possible.
+    /// an animation curve. The animation curve can end at where it starts, meaning simple hop animations are possible. Additionally, the lerping is
+    /// unclamped, meaning you can have negative values in your animation curve.
     /// </summary>
     public class Simple_Actor_Motion : Screen_Event
     {
@@ -56,15 +57,16 @@ namespace RenCSharp.Sequences
 
         void SetPosition(float eval)
         {
-            float x = Mathf.Lerp(ogPos.x, desPos.x, motionPathX.Evaluate(eval));
-            float y = Mathf.Lerp(ogPos.y, desPos.y, motionPathY.Evaluate(eval));
-            float z = Mathf.Lerp(ogPos.z, desPos.z, motionPathZ.Evaluate(eval));
+            float x = Mathf.LerpUnclamped(ogPos.x, desPos.x, motionPathX.Evaluate(eval));
+            float y = Mathf.LerpUnclamped(ogPos.y, desPos.y, motionPathY.Evaluate(eval));
+            float z = Mathf.LerpUnclamped(ogPos.z, desPos.z, motionPathZ.Evaluate(eval));
             actorObj.transform.position = new Vector3(x, y, z);
         }
 
         private void ResetToOG()
         {
             Script_Manager.SM.StopCoroutine(motion);
+            //if it's a loop motion, the implication is that the actor should end in the place they started whenever the next screen happens
             actorObj.transform.position = loopOnScreen ? ogPos : desPos;
         }
 

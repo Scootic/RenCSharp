@@ -17,24 +17,18 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
     dialog: You see? Dummy.
     ScreenActions:
-    - rid: 8612954348509724878
     - rid: 8612954348509724881
     - rid: 8612954348509725123
   - speaker: {fileID: 0}
     dialog: 
-    ScreenActions: []
+    ScreenActions:
+    - rid: 8612954368440270939
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 8747cf3008a6b5b499ac9acabec6bec5, type: 2}
   references:
     version: 2
     RefIds:
-    - rid: 8612954348509724878
-      type: {class: Change_BG, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-        fadeTransition: 0
-        fadeDuration: 1
     - rid: 8612954348509724881
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -92,3 +86,9 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
         loopOnScreen: 1
+    - rid: 8612954368440270939
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: 99a6132652ac424438484748116a7f01, type: 3}
+        fadeTransition: 1
+        fadeDuration: 1
