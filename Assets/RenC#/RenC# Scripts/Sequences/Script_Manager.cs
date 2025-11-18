@@ -24,6 +24,7 @@ namespace RenCSharp
         [SerializeField] private Image speakerNameBox;
         [SerializeField] private Image dialogBox;
         [SerializeField] private Button playerchoicePrefab;
+        [SerializeField] private Button progressDialogButton;
         [SerializeField] private Transform playerchoiceHolder;
         [SerializeField, Tooltip("Decides the color of the textboxes if there's no actor in a screen.")] private Color defaultTextBoxColor = Color.white;
 
@@ -57,6 +58,7 @@ namespace RenCSharp
             }
 
             DontDestroyOnLoad(gameObject); //might be upset when loading scenes and losing references to dialog boxes, etc.
+            SequencePausedEvent += SetButtonInteractable;
         }
 
         void Start()
@@ -235,5 +237,10 @@ namespace RenCSharp
                 }
             }
         } 
+
+        void SetButtonInteractable(bool b)
+        {
+            progressDialogButton.interactable = !b;
+        }
     }
 }
