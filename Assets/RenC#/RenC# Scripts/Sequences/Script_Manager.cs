@@ -25,6 +25,7 @@ namespace RenCSharp
         [SerializeField] private Image dialogBox;
         [SerializeField] private Button playerchoicePrefab;
         [SerializeField] private Transform playerchoiceHolder;
+        [SerializeField, Tooltip("Decides the color of the textboxes if there's no actor in a screen.")] private Color defaultTextBoxColor = Color.white;
 
         [Header("Actors")]
         [SerializeField] private Transform actorHolder;
@@ -95,7 +96,7 @@ namespace RenCSharp
                 ProgressScreenEvent = null; //wipe all delegates from the action before continuing
                 curScreenIndex++;
                 if(curScreenIndex < currentSequence.Screens.Length) StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
-                if(curScreenIndex == currentSequence.Screens.Length - 1)//final screen of the sequence
+                if(curScreenIndex >= currentSequence.Screens.Length - 1)//final screen of the sequence
                 {
                     if (currentSequence.PlayerChoices.Length == 0)//if there are no valid next sequences, sum shit gone wrong
                     { 
@@ -141,21 +142,25 @@ namespace RenCSharp
             {
                 se.DoShit();
             }
-            if (screen.Speaker != null) curActor = screen.Speaker; //set the current actor for reasons
+            if (screen.Speaker != null) curActor = screen.Speaker; //set the current actor for reasons. why is this an if?
             else curActor = null;
 
             ///if(screen.Dialog == string.Empty) { jumpToEndDialog = true; ProgressToNextScreen(); yield break; }
             jumpToEndDialog = false; //set up to make sure we can skip properly and not just constantly move on before reaching end of text
 
-            if (curActor != null) //if we have an actor, we can put a name to our dialog box
+            if (curActor != null) //if we have an actor, we can put a name to our dialog box, and set the appropriate colors
             {
                 speakerNameBox.gameObject.SetActive(true);
+                speakerNameBox.color = curActor.TextboxColor;
+                dialogBox.color = curActor.TextboxColor;
                 speakerNameField.text = curActor.ActorName;
-                if (currentSequence.AutoFocusSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so, may be a layering moment
+                if (currentSequence.AutoFocusSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so
             }
             else //if no actor assigned, assume it's narration, so no name to our dialog box
             {
+                speakerNameBox.color = defaultTextBoxColor;
                 speakerNameBox.gameObject.SetActive(false);
+                dialogBox.color = defaultTextBoxColor;
             }
 
             dialogField.text = ""; //wipe before putting in the new text
