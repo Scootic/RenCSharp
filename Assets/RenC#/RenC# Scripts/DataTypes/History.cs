@@ -6,7 +6,7 @@ namespace RenCSharp
     /// Data type for handling histories. Should be saveable.
     /// </summary>
     [Serializable]
-    public class History 
+    public struct History 
     {
         public string[] SpeakerNames;
         public string[] DialogBoxes;
