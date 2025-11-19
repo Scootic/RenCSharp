@@ -41,6 +41,7 @@ namespace RenCSharp
 
         private bool jumpToEndDialog = false;
         private bool paused = false;
+        private History curHist;
 
         public static Script_Manager SM;
         public static Action ProgressScreenEvent, EndOfAllSequencesEvent;
@@ -65,7 +66,7 @@ namespace RenCSharp
         {
             StartSequence();
         }
-
+        #region SequenceHandling
         public void StartSequence()
         {
             Debug.Log("Started Sequence: " + currentSequence.name);
@@ -86,7 +87,18 @@ namespace RenCSharp
             paused = false;
             SequencePausedEvent?.Invoke(paused);
         }
-
+        private void LoadASequence(Sequence s)
+        {
+            //remove all player choice buttons after picking an option
+            for (int i = playerchoiceHolder.childCount - 1; i >= 0; i--)
+            {
+                Destroy(playerchoiceHolder.GetChild(i).gameObject);
+            }
+            currentSequence = s;
+            StartSequence();
+        }
+        #endregion
+        #region ScreenHandling
         public void ProgressToNextScreen() //for an UI button to use
         {
             if (paused) return;
@@ -123,17 +135,6 @@ namespace RenCSharp
                     }
                 }
             }
-        }
-
-        private void LoadASequence(Sequence s)
-        {
-            //remove all player choice buttons after picking an option
-            for (int i = playerchoiceHolder.childCount - 1; i >= 0; i--) 
-            {
-                Destroy(playerchoiceHolder.GetChild(i).gameObject);
-            }
-            currentSequence = s;
-            StartSequence();
         }
 
         private IEnumerator RunThroughScreen(Sequences.Screen screen)
@@ -201,8 +202,8 @@ namespace RenCSharp
             jumpToEndDialog = true;
             dialogField.text = amended;
         }
-   
-        private IEnumerator ScaleActor(bool up, float scaleTime)
+        #endregion
+        private IEnumerator ScaleActor(bool up, float scaleTime) //used if autoSpeakerFocus is true in a sequence
         {
             float t;
             float eval;
@@ -239,9 +240,14 @@ namespace RenCSharp
             }
         } 
 
-        void SetButtonInteractable(bool b)
+        private void SetButtonInteractable(bool b)
         {
             progressDialogButton.interactable = !b;
+        }
+
+        private void UpdateHistory()
+        {
+            //not implemented
         }
     }
 }
