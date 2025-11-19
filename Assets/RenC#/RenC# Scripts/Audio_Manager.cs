@@ -71,7 +71,7 @@ namespace RenCSharp
         #endregion
 
         #region 3DSFX
-        public void Play3DSFX(AudioSource ThingToPlay, Vector3 position, bool environmental)
+        public void Play3DSFX(AudioSource ThingToPlay, Vector3 position, bool environmental, bool loop)
         {
             AudioObjectCheck();
             
@@ -88,13 +88,14 @@ namespace RenCSharp
             temp = ThingToPlay; //works or nah???
             temp.spatialBlend = 1f;
             temp.volume = 1; //reset volume because object pooling
+            temp.loop = loop;
             temp.volume *= environmental ? esfxVolMult : sfxVolMult;
             temp.Play();
 
-            StartCoroutine(BleanUp(gaming, ThingToPlay.clip.length));
+            if(!loop) StartCoroutine(BleanUp(gaming, ThingToPlay.clip.length));
         }
 
-        public void Play3DSFX(AudioClip clipToPlay, Vector3 position, bool environmental)
+        public void Play3DSFX(AudioClip clipToPlay, Vector3 position, bool environmental, bool loop)
         {
             AudioObjectCheck();
 
@@ -112,9 +113,10 @@ namespace RenCSharp
             temp.spatialBlend = 1;
             temp.volume = 1;
             temp.volume *= environmental ? esfxVolMult : sfxVolMult;
+            temp.loop = loop;
             temp.Play();
 
-            StartCoroutine(BleanUp(gaming, temp.clip.length));
+            if(!loop) StartCoroutine(BleanUp(gaming, temp.clip.length));
         }
 
         void AudioObjectCheck()
