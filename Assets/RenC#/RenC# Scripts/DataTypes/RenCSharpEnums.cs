@@ -1,6 +1,9 @@
 
+using System;
+
 namespace RenCSharp
 {
+    [Serializable]
     public enum ConditionalOperator
     {
         Equals,

@@ -103,9 +103,9 @@ namespace RenCSharp
         }
         #endregion
         #region ScreenHandling
-        public void ProgressToNextScreen() //for an UI button to use
+        public void ProgressToNextScreen() //for an UI button to use, hopefully
         {
-            if (paused) return;
+            if (paused) return; //don't go nowhere if the SM is paused
             if (!jumpToEndDialog) jumpToEndDialog = true;
             else
             {
@@ -123,17 +123,22 @@ namespace RenCSharp
                         return; 
                     }
 
-                    if (currentSequence.PlayerChoices[0].ChoiceText != string.Empty)
+                    Player_Choice firstPc = currentSequence.PlayerChoices[0];
+
+                    if (firstPc.ChoiceText != string.Empty)
                     {
                         //spawn player choice buttons, and assign accordingly
                         foreach (Player_Choice pc in currentSequence.PlayerChoices)
                         {
+                            if (pc.RequireCondition && !pc.MetAllConditions()) continue; //don't display a choice if it hasn't met its conditions
+
                             Button b = Instantiate(playerchoicePrefab, playerchoiceHolder);
                             b.GetComponentInChildren<TextMeshProUGUI>().text = pc.ChoiceText;
                             b.onClick.AddListener(delegate { LoadASequence(pc.ResultingSequence); });
                         }
                     }
-                    else //if your first choice contains no text for the button, assume that there's no choice and automatically load next sequence
+                    //if the first choice has no choice text, and conditionallity is good, do that shit.
+                    else if (!firstPc.RequireCondition || firstPc.MetAllConditions()) 
                     {
                         LoadASequence(currentSequence.PlayerChoices[0].ResultingSequence);
                     }
