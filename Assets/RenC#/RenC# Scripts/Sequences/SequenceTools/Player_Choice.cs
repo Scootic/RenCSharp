@@ -14,6 +14,16 @@ namespace RenCSharp.Sequences
         public Sequence ResultingSequence => resultingSequence;
         public string ChoiceText => choiceText;
         public bool RequireCondition => requireCondition;
-        public FlagCondition[] Conditions => conditions;
+        public bool MetAllConditions()
+        {
+            bool met = true;
+
+            foreach(FlagCondition cond in conditions)
+            {
+                if (!cond.ConditionMet()) { met = false; break; } 
+            }
+
+            return met;
+        }
     }
 }

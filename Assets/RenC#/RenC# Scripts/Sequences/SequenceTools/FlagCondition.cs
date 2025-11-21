@@ -1,11 +1,16 @@
+using System;
 using UnityEngine;
 
 namespace RenCSharp
 {
+    /// <summary>
+    /// Conditions that check if the flag is the kind of value you want.
+    /// </summary>
+    [Serializable]
     public struct FlagCondition
     {
         [SerializeField] private string flagToCheck;
-        [SerializeField] private ConditionalOperator operation;
+        [SerializeField, Tooltip("The found value is the left side of the operation.")] private ConditionalOperator operation;
         [SerializeField] private int desiredValue;
 
         public bool ConditionMet()
