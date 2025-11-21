@@ -115,13 +115,7 @@ namespace RenCSharp.Sequences
         // >:(
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            float returner = EditorGUIUtility.singleLineHeight;
-            SerializedProperty copy = property.Copy();
-            if (copy.isExpanded)
-            {
-                int childc = copy.CountInProperty();
-                returner *= childc;
-            }
+            float returner = Drawer_Helper.PropertyHeight(property);
             returner += EditorGUIUtility.singleLineHeight * 2;
             return returner;
         }
