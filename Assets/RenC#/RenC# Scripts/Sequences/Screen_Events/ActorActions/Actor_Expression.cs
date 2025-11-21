@@ -20,7 +20,7 @@ namespace RenCSharp.Sequences
                 Image image = spawnt.transform.GetChild(0).GetComponent<Image>();
                 for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
                 {
-                    if (visualSpriteIndexes[i] == string.Empty) continue; //means you can put -1 as a visalspriteindex if you want no change
+                    if (visualSpriteIndexes[i] == string.Empty) continue; //if you want no change, leave a layer empty
                     image.sprite = actorToAlter.Visuals[i].ReturnSprite(visualSpriteIndexes[i]);
                     if (i < visualSpriteIndexes.Length - 1) image = image.transform.GetChild(0).GetComponent<Image>(); //grab child for next step
                 }

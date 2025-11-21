@@ -23,8 +23,9 @@ namespace RenCSharp.Sequences
             Image image = spawnt.transform.GetChild(0).GetComponent<Image>(); 
             for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
             {
-                image.sprite = actorToSpawn.Visuals[i].ReturnSprite(visualSpriteIndexes[i]);
-                if(i < visualSpriteIndexes.Length - 1)image = image.transform.GetChild(0).GetComponent<Image>();
+                if (visualSpriteIndexes[i] != string.Empty) image.sprite = actorToSpawn.Visuals[i].ReturnSprite(visualSpriteIndexes[i]);
+                else image.sprite = actorToSpawn.Visuals[i].layer[0]; //grab default sprite if there's nothing assigned
+                if (i < visualSpriteIndexes.Length - 1) image = image.transform.GetChild(0).GetComponent<Image>();
             }
         }
 
