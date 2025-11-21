@@ -60,7 +60,7 @@ namespace RenCSharp
                 Destroy(this);
             }
 
-            curFlags = new Dictionary<string, int>();
+            curFlags = new Dictionary<string, int>(); //load save data if we found it?
 
             DontDestroyOnLoad(gameObject); //might be upset when loading scenes and losing references to dialog boxes, etc.
             SequencePausedEvent += SetButtonInteractable;
@@ -210,6 +210,7 @@ namespace RenCSharp
         #region FlagHandling
         public void SetFlag(string id, int val)
         {
+            Debug.Log("Setting flag: " + id + ", to: " + val);
             if (curFlags.ContainsKey(id)) curFlags[id] = val;
             else curFlags.Add(id, val);
         }
