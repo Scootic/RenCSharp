@@ -12,6 +12,7 @@ namespace RenCSharp
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
+
             EditorGUI.BeginProperty(position, label, property);
 
             SerializedProperty spritesArray = property.FindPropertyRelative("layer");
@@ -41,7 +42,7 @@ namespace RenCSharp
             int stArrayLength = stringsArray.arraySize;
 
             float returner = Drawer_Helper.PropertyHeight((spArrayLength > stArrayLength) ? spritesArray : stringsArray);
-            returner += EditorGUIUtility.singleLineHeight * 3;
+            returner += EditorGUIUtility.singleLineHeight * 3 + (Mathf.Max(spArrayLength, stArrayLength) * 2);
             return returner;
         }
     }
