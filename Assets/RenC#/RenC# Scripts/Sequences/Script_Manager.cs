@@ -4,6 +4,7 @@ using RenCSharp.Actors;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System;
 namespace RenCSharp
@@ -42,6 +43,7 @@ namespace RenCSharp
         private bool jumpToEndDialog = false;
         private bool paused = false;
         private History curHist;
+        private Dictionary<string, int> curFlags;
 
         public static Script_Manager SM;
         public static Action ProgressScreenEvent, EndOfAllSequencesEvent;
@@ -57,6 +59,8 @@ namespace RenCSharp
             {
                 Destroy(this);
             }
+
+            curFlags = new Dictionary<string, int>();
 
             DontDestroyOnLoad(gameObject); //might be upset when loading scenes and losing references to dialog boxes, etc.
             SequencePausedEvent += SetButtonInteractable;
@@ -201,6 +205,22 @@ namespace RenCSharp
             //safety measure
             jumpToEndDialog = true;
             dialogField.text = amended;
+        }
+        #endregion
+        #region FlagHandling
+        public void SetFlag(string id, int val)
+        {
+            if (curFlags.ContainsKey(id)) curFlags[id] = val;
+            else curFlags.Add(id, val);
+        }
+        //defaults to negative one if there's no id in the dictionary, please be careful of manually setting and checking negative values.
+        public int GetFlag(string id)
+        {
+            int val = -1;
+
+            if (curFlags.ContainsKey(id)) val = curFlags[id];
+
+            return val;
         }
         #endregion
         private IEnumerator ScaleActor(bool up, float scaleTime) //used if autoSpeakerFocus is true in a sequence

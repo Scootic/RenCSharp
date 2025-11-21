@@ -1,19 +1,21 @@
+#if UNITY_EDITOR
 using UnityEngine;
-
+using UnityEditor;
 namespace RenCSharp
 {
-    public class Drawer_Helper : MonoBehaviour
+    public class Drawer_Helper
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        public static float PropertyHeight(SerializedProperty property)
         {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+            float returner = EditorGUIUtility.singleLineHeight;
+            SerializedProperty copy = property.Copy();
+            if (copy.isExpanded)
+            {
+                int childc = copy.CountInProperty();
+                returner *= childc;
+            }
+            return returner;
         }
     }
 }
+#endif
