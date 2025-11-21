@@ -10,13 +10,17 @@ namespace RenCSharp
     [Serializable]
     public struct SpriteArray 
     {
-        public Sprite[] layer;
-        public string[] visualIDs;
+        public List<Sprite> layer;
+        public List<string> visualIDs;
 
         public Sprite ReturnSprite(string id)
         {
             Sprite fellow = null;
             int i = 0;
+
+            if (visualIDs.Contains(id)) { i = visualIDs.IndexOf(id); fellow = layer[i]; }
+            else Debug.LogWarning("No sprite found at index: " + id); 
+
             return fellow;
         }
     }
