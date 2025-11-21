@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace RenCSharp
 {
+    /// <summary>
+    /// MAY OR MAY NOT BE GROSS IF YOUR INSPEcTOR WINDOW IS ScALED SLIGHTLY INcONVENIENTLY!
+    /// </summary>
     [CustomPropertyDrawer(typeof(SpriteArray))]
     public class SpriteArray_Drawer : PropertyDrawer
     {
@@ -14,24 +17,30 @@ namespace RenCSharp
             SerializedProperty spritesArray = property.FindPropertyRelative("layer");
             SerializedProperty stringsArray = property.FindPropertyRelative("visualIDs");
 
-            //Debug.Log("Sparray: " + spritesArray.arraySize);
-            //Debug.Log("Strarray: " + stringsArray.arraySize);
+            int spASize = spritesArray.arraySize;
+            int stASize = stringsArray.arraySize;
 
-            Rect leftR = new Rect(position.x, position.y, position.width / 2, position.height);
-            Rect rightR = new Rect(position.x + (position.width / 2), position.y, position.width / 2, position.height);
-            GUIContent leftLab = new GUIContent("Layer");
+            Rect leftR = new Rect(position.x, position.y, position.width / 2.25f, position.height);
+            Rect rightR = new Rect(position.x + (position.width / 2), position.y, position.width / 2.25f, position.height);
+            GUIContent leftLab = new GUIContent("Sprites");
             GUIContent rightLab = new GUIContent("IDs");
 
             EditorGUI.PropertyField(leftR, spritesArray, leftLab, true);
             EditorGUI.PropertyField(rightR, stringsArray, rightLab, true);
 
-            //EditorGUI.PropertyField(position, property, label, true);
+            //EditorGUI.PropertyField(position, property, label, true); <- default behavior
             EditorGUI.EndProperty();
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            float returner = Drawer_Helper.PropertyHeight(property);
+            SerializedProperty spritesArray = property.FindPropertyRelative("layer");
+            SerializedProperty stringsArray = property.FindPropertyRelative("visualIDs");
+
+            int spArrayLength = spritesArray.arraySize;
+            int stArrayLength = stringsArray.arraySize;
+
+            float returner = Drawer_Helper.PropertyHeight((spArrayLength > stArrayLength) ? spritesArray : stringsArray);
             returner += EditorGUIUtility.singleLineHeight * 3;
             return returner;
         }
