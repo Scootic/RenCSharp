@@ -20,7 +20,8 @@ MonoBehaviour:
     - rid: 8612954368440271007
   - speaker: {fileID: 0}
     dialog: I'm smokin' crack in this bitch.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 8612954445132333162
   playerChoices: []
   references:
     version: 2
@@ -30,4 +31,10 @@ MonoBehaviour:
       data:
         newBG: {fileID: 21300000, guid: 24af825c7bc8f8d42a8ce85328e1f9d0, type: 3}
         fadeTransition: 2
+        fadeDuration: 1
+    - rid: 8612954445132333162
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 0}
+        fadeTransition: 0
         fadeDuration: 1

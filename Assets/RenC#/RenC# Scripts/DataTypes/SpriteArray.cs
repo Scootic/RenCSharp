@@ -15,11 +15,10 @@ namespace RenCSharp
 
         public Sprite ReturnSprite(string id)
         {
-            Sprite fellow = null;
-            int i = 0;
+            Sprite fellow = layer[0];
 
-            if (visualIDs.Contains(id)) { i = visualIDs.IndexOf(id); fellow = layer[i]; }
-            else Debug.LogWarning("No sprite found at index: " + id); 
+            if (visualIDs.Contains(id)) { int i = visualIDs.IndexOf(id); fellow = layer[i]; }
+            else Debug.LogWarning("No sprite found at index: " + id + ", displaying default sprite."); 
 
             return fellow;
         }
