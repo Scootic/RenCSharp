@@ -61,6 +61,7 @@ namespace RenCSharp
             }
 
             curFlags = new Dictionary<string, int>(); //load save data if we found it?
+            curHist = new History();
 
             DontDestroyOnLoad(gameObject); //might be upset when loading scenes and losing references to dialog boxes, etc.
             SequencePausedEvent += SetButtonInteractable;
