@@ -10,7 +10,7 @@ namespace RenCSharp.Sequences
         [SerializeField, Tooltip("Title card type stuff.")] private string overlayText = string.Empty;
         [Header("Animate Overlay")]
         [SerializeField] private bool animate = false;
-        [SerializeField] private bool endWithScreen = true;
+        [SerializeField, Tooltip("Be careful if you set this to false. Animations will loop until you override them.")] private bool endWithScreen = true;
         [SerializeField, Min(0), Tooltip("0 for every frame.")] private float secondsPerFrame = 0.1f;
         private Coroutine animation;
         private bool bloop;
