@@ -26,8 +26,12 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 1a; Yes
     resultingSequence: {fileID: 11400000, guid: 53305b8d8a3ec194d8e9c3ad40d3e34d, type: 2}
+    requireCondition: 0
+    conditions: []
   - choiceText: 1b; No
     resultingSequence: {fileID: 11400000, guid: ee0cb1d75ce5eba41990b3a2781757d3, type: 2}
+    requireCondition: 0
+    conditions: []
   references:
     version: 2
     RefIds:
@@ -36,7 +40,7 @@ MonoBehaviour:
       data:
         actorToSpawn: {fileID: 11400000, guid: 7487abcf4a0053a4f813c3724c2a2ed5, type: 2}
         spawnOffset: {x: 0, y: 0, z: 0}
-        visualSpriteIndexes: 0000000000000000
+        visualSpriteIndexes: []
     - rid: 8612954348509724877
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -85,4 +89,4 @@ MonoBehaviour:
       data:
         actorToSpawn: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
         spawnOffset: {x: 0, y: 0, z: 0}
-        visualSpriteIndexes: 0000000000000000
+        visualSpriteIndexes: []
