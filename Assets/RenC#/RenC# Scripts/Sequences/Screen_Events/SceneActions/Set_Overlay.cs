@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ namespace RenCSharp.Sequences
 {
     public class Set_Overlay : Screen_Event
     {
-        [SerializeField, Tooltip("If not animated, just uses index 0.")] private Sprite[] imagesToSet;
+        [SerializeField, Tooltip("If not animated, just uses index 0.")] private List<Sprite> imagesToSet;
         [SerializeField, Tooltip("Title card type stuff.")] private string overlayText = string.Empty;
         [Header("Animate Overlay")]
         [SerializeField] private bool animate = false;
@@ -34,27 +35,19 @@ namespace RenCSharp.Sequences
             Script_Manager.SM.StopCoroutine(animation);
         }
 
-        private IEnumerator AnimateOverlay(Image overlay, Sprite[] sprites)
+        private IEnumerator AnimateOverlay(Image overlay, List<Sprite> sprites)
         {
             float t = 0;
             int i = 0;
             while (bloop)
             {
-                foreach (Sprite s in sprites)
-                {
-                    if (overlay.sprite != s) //stop the animation if a separate set_overlay call has changed the overlay image. may get expensive
-                    //if you're animating a whole movie in your overlay
-                    {
-                        Script_Manager.SM.StopCoroutine(animation);
-                        yield break;
-                    }
-                }
+                if (!sprites.Contains(overlay.sprite)) { PanicStop(); yield break; }
                 t += Time.deltaTime;
                 if(t >= secondsPerFrame)
                 {
                     t = 0;
                     i++;
-                    if (i == sprites.Length) i = 0;
+                    if (i == sprites.Count) i = 0;
                     overlay.sprite = sprites[i];
                 }
                 yield return null;
