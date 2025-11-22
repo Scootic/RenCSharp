@@ -10,6 +10,7 @@ namespace RenCSharp
         GreaterThan,
         LessThan,
         GreaterThanEquals,
-        LessThanEquals
+        LessThanEquals,
+        NotEqual
     }
 }
