@@ -19,9 +19,10 @@ MonoBehaviour:
     ScreenActions:
     - rid: 8612954368440271007
   - speaker: {fileID: 0}
-    dialog: I'm smokin' crack in this bitch.
+    dialog: Explatives.
     ScreenActions:
     - rid: 8612954445132333162
+    - rid: 8612954459114045504
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 0}
@@ -45,3 +46,11 @@ MonoBehaviour:
         newBG: {fileID: 0}
         fadeTransition: 0
         fadeDuration: 1
+    - rid: 8612954459114045504
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - 
+        - 
