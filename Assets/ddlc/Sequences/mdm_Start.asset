@@ -14,15 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoFocusSpeaker: 1
   screens:
-  - speaker: {fileID: 0}
-    dialog: 
+  - speaker: {fileID: 11400000, guid: d7d90acd337545242978d965e5b6e6f5, type: 2}
+    dialog: Heeeeey!
     ScreenActions:
     - rid: 8612954368440271007
-  - speaker: {fileID: 0}
-    dialog: Explatives.
-    ScreenActions:
-    - rid: 8612954445132333162
-    - rid: 8612954459114045504
+    - rid: 8612954466327199745
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 0}
@@ -40,17 +36,9 @@ MonoBehaviour:
         newBG: {fileID: 21300000, guid: 24af825c7bc8f8d42a8ce85328e1f9d0, type: 3}
         fadeTransition: 2
         fadeDuration: 1
-    - rid: 8612954445132333162
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 8612954466327199745
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 0}
-        fadeTransition: 0
-        fadeDuration: 1
-    - rid: 8612954459114045504
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        spawnOffset: {x: 0, y: 0, z: 0}
-        visualSpriteIndexes:
-        - 
-        - 
+        musicTrack: {fileID: 8300000, guid: ba13accb8b1fe3b47bb3401b0a6229b8, type: 3}
+        fadeTime: 2
+        setToSameTime: 0
