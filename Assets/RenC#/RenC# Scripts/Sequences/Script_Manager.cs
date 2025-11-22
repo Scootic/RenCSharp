@@ -230,6 +230,12 @@ namespace RenCSharp
 
             return val;
         }
+        public void IncrementFlag(string id, int valToIncreaseBy)
+        {
+            Debug.Log("Incrementing flag: " + id + ", increasing by: " + valToIncreaseBy);
+            if (curFlags.ContainsKey(id)) curFlags[id] += valToIncreaseBy;
+            else curFlags.Add(id, valToIncreaseBy);
+        }
         #endregion
         private IEnumerator ScaleActor(bool up, float scaleTime) //used if autoSpeakerFocus is true in a sequence
         {
