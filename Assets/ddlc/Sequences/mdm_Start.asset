@@ -19,14 +19,34 @@ MonoBehaviour:
     ScreenActions:
     - rid: 8612954368440271007
     - rid: 8612954466327199745
-  - speaker: {fileID: 11400000, guid: d7d90acd337545242978d965e5b6e6f5, type: 2}
-    dialog: Heeeeey!
+  - speaker: {fileID: 0}
+    dialog: I see an annoying girl running toward me from the distance, waving her
+      arms in the air like she's totally oblivious to any attention she might draw
+      to herself.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Wow.
     ScreenActions:
-    - rid: 8612954368440271007
-    - rid: 8612954466327199745
+    - rid: 8612954481186308159
+    - rid: 8612954481186308160
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: That's the first impression we're going to give our player?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: I can already tell that this vessel is hopeless.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Welp, back to the drawing board...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Oh! I've still got the other one lying around here somewhere.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Let me just-
+    ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: b5e5d95b529f10f43ba9f69cb89a2890, type: 2}
     requireCondition: 0
     conditions:
     - flagToCheck: 
@@ -47,3 +67,21 @@ MonoBehaviour:
         musicTrack: {fileID: 8300000, guid: ba13accb8b1fe3b47bb3401b0a6229b8, type: 3}
         fadeTime: 2
         setToSameTime: 0
+    - rid: 8612954481186308159
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 9d18ee034d9bea149886efe3a7a02057, type: 3}
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 8612954481186308160
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: -1528548662, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
+        - {fileID: -1433182800, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
+        - {fileID: 141569737, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
+        - {fileID: 774781490, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
+        overlayText: 
+        animate: 1
+        endWithScreen: 0
+        secondsPerFrame: 0.1
