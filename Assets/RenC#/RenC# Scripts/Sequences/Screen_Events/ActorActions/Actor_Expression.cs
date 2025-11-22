@@ -11,7 +11,8 @@ namespace RenCSharp.Sequences
     public class Actor_Expression : Screen_Event
     {
         [SerializeField] private Actor actorToAlter;
-        [SerializeField,Tooltip("Reference the strings you put in the actor SO. Empty to skip layer.")] private string[] visualSpriteIndexes = new string[1];
+        [SerializeField,Tooltip("Reference the strings you put in the actor SO. Empty to skip layer." +
+            "Type in the light gray boxes.")] private string[] visualSpriteIndexes = new string[1];
         public override void DoShit()
         {
             GameObject spawnt = GameObject.Find(actorToAlter.ActorName);
