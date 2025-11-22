@@ -5,7 +5,7 @@ namespace RenCSharp
     /// <summary>
     /// Used so that non-monobehavior scripts can reference an animation event. (Like screen fades.)
     /// </summary>
-    public class Animation_Event_Delegates : MonoBehaviour
+    public sealed class Animation_Event_Delegates : MonoBehaviour
     {
         [SerializeField, Tooltip("Sets how many actions the script will have. Don't set to 0. Pretty please.")] private byte animationDelegateLength = 2;
         public Action[] AnimationDelegates;

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 namespace RenCSharp
 {
-    public class Drawer_Helper
+    public static class Drawer_Helper
     {
         public static float PropertyHeight(SerializedProperty property)
         {

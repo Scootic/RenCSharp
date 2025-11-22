@@ -8,7 +8,7 @@ namespace RenCSharp
     /// MAY OR MAY NOT BE GROSS IF YOUR INSPEcTOR WINDOW IS ScALED SLIGHTLY INcONVENIENTLY!
     /// </summary>
     [CustomPropertyDrawer(typeof(SpriteArray))]
-    public class SpriteArray_Drawer : PropertyDrawer
+    public sealed class SpriteArray_Drawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {

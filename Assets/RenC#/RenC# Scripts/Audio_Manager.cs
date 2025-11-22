@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace RenCSharp
 {
-    public class Audio_Manager : MonoBehaviour
+    public sealed class Audio_Manager : MonoBehaviour
     {
         public static Audio_Manager AM; //global variable, every object can see and send messages to the audio manager
 
