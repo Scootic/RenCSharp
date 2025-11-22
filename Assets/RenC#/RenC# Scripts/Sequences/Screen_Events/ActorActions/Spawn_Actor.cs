@@ -13,7 +13,7 @@ namespace RenCSharp.Sequences
     {
         [SerializeField] private Actor actorToSpawn;
         [SerializeField] private Vector3 spawnOffset = Vector3.zero;
-        [SerializeField] private string[] visualSpriteIndexes = new string[1];
+        [SerializeField, Tooltip("Type in the light gray boxes.")] private string[] visualSpriteIndexes = new string[1];
         public override void DoShit()
         {
             Transform placeWeWant = Script_Manager.SM.ActorHolder;
