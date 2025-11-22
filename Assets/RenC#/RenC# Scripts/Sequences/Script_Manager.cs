@@ -14,7 +14,7 @@ namespace RenCSharp
     /// like sequences that only have 1 screen in them. If you really desparetely need a 1 screen sequence, just include a completely empty screen
     /// as the second screen.
     /// </summary>
-    public class Script_Manager : MonoBehaviour
+    public sealed class Script_Manager : MonoBehaviour
     {
         [SerializeField] private Sequence currentSequence; //set before runtime for first sequence of unity scene
         private int curScreenIndex = 0;
@@ -114,6 +114,7 @@ namespace RenCSharp
                 ProgressScreenEvent?.Invoke();
                 ProgressScreenEvent = null; //wipe all delegates from the action before continuing
                 curScreenIndex++;
+                Debug.Log("current Scrindex: " + curScreenIndex + ", Final Screen? " + (curScreenIndex >= currentSequence.Screens.Length - 1));
                 if(curScreenIndex < currentSequence.Screens.Length) StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
                 if(curScreenIndex >= currentSequence.Screens.Length - 1)//final screen of the sequence
                 {
