@@ -185,8 +185,8 @@ namespace RenCSharp
                 //calc percent of time that has passed, based on fadeTime
                 float perc = t / fadeTime;
                 //fade the musics out/in
-                leMusic.volume = Mathf.Lerp(bgmVolMult, 0, t / perc);
-                newBGM.volume = Mathf.Lerp(0, bgmVolMult, t / perc);
+                leMusic.volume = Mathf.Lerp(bgmVolMult, 0, perc);
+                newBGM.volume = Mathf.Lerp(0, bgmVolMult, perc);
                 //yield the frame, then continue
                 yield return null;
             }

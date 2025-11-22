@@ -116,7 +116,7 @@ namespace RenCSharp
                 curScreenIndex++;
                 Debug.Log("current Scrindex: " + curScreenIndex + ", Final Screen? " + (curScreenIndex >= currentSequence.Screens.Length - 1));
                 if(curScreenIndex < currentSequence.Screens.Length) StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
-                if(curScreenIndex >= currentSequence.Screens.Length - 1)//final screen of the sequence
+                if(curScreenIndex > currentSequence.Screens.Length - 1)//final screen of the sequence
                 {
                     if (currentSequence.PlayerChoices.Length == 0)//if there are no valid next sequences, sum shit gone wrong
                     { 
