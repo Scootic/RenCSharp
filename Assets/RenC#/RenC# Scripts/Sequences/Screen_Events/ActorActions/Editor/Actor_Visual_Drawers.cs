@@ -13,16 +13,19 @@ namespace RenCSharp.Sequences
             EditorGUI.PropertyField(position, property, new GUIContent(property.type + " DON'T OPEN ME"), true);
             
             SerializedProperty spawnOffset = property.FindPropertyRelative("spawnOffset");
+            SerializedProperty fadeInTime = property.FindPropertyRelative("fadeInTime");
             SerializedProperty sprindexArray = property.FindPropertyRelative("visualSpriteIndexes");
             SerializedProperty actorProperty = property.FindPropertyRelative("actorToSpawn");
             Actor assignedActor = actorProperty.objectReferenceValue as Actor;
 
             Rect actRect = new Rect(position.x, position.y + (EditorGUIUtility.singleLineHeight * 1), position.width, EditorGUIUtility.singleLineHeight * 2);
             Rect spawnRect = new Rect(position.x, position.y + (EditorGUIUtility.singleLineHeight * 2.5f), position.width, EditorGUIUtility.singleLineHeight * 2);
-            Rect sprinRect = new Rect(position.x, position.y + (EditorGUIUtility.singleLineHeight * 4), position.width, EditorGUIUtility.singleLineHeight * 2);
+            Rect fadeInRect = new Rect(position.x, position.y + (EditorGUIUtility.singleLineHeight * 4), position.width, EditorGUIUtility.singleLineHeight * 2);
+            Rect sprinRect = new Rect(position.x, position.y + (EditorGUIUtility.singleLineHeight * 5.5f), position.width, EditorGUIUtility.singleLineHeight * 2);
 
             EditorGUI.PropertyField(actRect, actorProperty, new GUIContent("Actor to Spawn"), true);
             EditorGUI.PropertyField(spawnRect, spawnOffset, new GUIContent("SpawnOffset"), true);
+            EditorGUI.PropertyField(fadeInRect, fadeInTime, new GUIContent("FadeInTime"), true);
             EditorGUI.PropertyField(sprinRect, sprindexArray, new GUIContent("Visual Sprite Indexes"), true);
              //Debug.Log("Assigned actor: " + assignedActor.ActorName);
             if (assignedActor != null)
