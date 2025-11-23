@@ -20,9 +20,9 @@ namespace RenCSharp.Sequences
         {
             List<Image> imgPo = new();
             fellaToRemove = GameObject.Find(actorToRemove.ActorName);
-            Image img = fellaToRemove.GetComponent<Image>();
+            Image img = fellaToRemove.transform.GetChild(0).GetComponent<Image>();
             imgPo.Add(img);
-            while (img.transform.GetChild(0) != null)
+            for (int i = 1; i < actorToRemove.Visuals.Length; i++)
             {
                 img = img.transform.GetChild(0).GetComponent<Image>();
                 imgPo.Add(img);
