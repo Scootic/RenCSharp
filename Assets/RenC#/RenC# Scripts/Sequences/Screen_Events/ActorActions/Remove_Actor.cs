@@ -59,7 +59,7 @@ namespace RenCSharp.Sequences
 
         private void PanicStop()
         {
-            Script_Manager.SM.StopCoroutine(fadeOut);
+            if(fadeOut != null) Script_Manager.SM.StopCoroutine(fadeOut);
             if (fellaToRemove != null) GameObject.Destroy(fellaToRemove);
         }
 
