@@ -64,7 +64,7 @@ namespace RenCSharp
             curHist = new History();
 
             DontDestroyOnLoad(gameObject); //might be upset when loading scenes and losing references to dialog boxes, etc.
-            SequencePausedEvent += SetButtonInteractable;
+            SequencePausedEvent += ToggleDialogUI;
         }
 
         void Start()
@@ -276,9 +276,13 @@ namespace RenCSharp
             }
         } 
 
-        private void SetButtonInteractable(bool b)
+        private void ToggleDialogUI(bool b)
         {
-            progressDialogButton.interactable = !b;
+            progressDialogButton.gameObject.SetActive(!b);
+            speakerNameBox.enabled = !b;
+            speakerNameField.enabled = !b;
+            dialogBox.enabled = !b;
+            dialogField.enabled = !b;
         }
 
         private void UpdateHistory()
