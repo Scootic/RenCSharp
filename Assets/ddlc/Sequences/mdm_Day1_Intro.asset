@@ -127,7 +127,7 @@ MonoBehaviour:
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 3304bcf5952c99c4db68e21abc947a54, type: 2}
     requireCondition: 0
     conditions: []
   references:
@@ -167,6 +167,7 @@ MonoBehaviour:
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeInTime: 0.5
         spawnOffset: {x: 0, y: 0, z: 0}
         visualSpriteIndexes:
         - uniUp
@@ -194,10 +195,12 @@ MonoBehaviour:
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeTime: 0.5
     - rid: 8612954484556955733
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeInTime: 0.5
         spawnOffset: {x: 0, y: 0, z: 0}
         visualSpriteIndexes:
         - uniUp

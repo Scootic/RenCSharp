@@ -12,9 +12,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
   m_Name: mdm_Day1_School
   m_EditorClassIdentifier: 
-  autoFocusSpeaker: 0
-  screens: []
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: I've managed to survive another school day.
+    ScreenActions:
+    - rid: 8612954484556955754
+    - rid: 8612954484556955755
+  - speaker: {fileID: 0}
+    dialog: Thank goodness our teacher decided to spare us after Monday's debacle.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: As I usually do, I gather my things and head straight for the door after
+      class ends.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: However, just before I could go through the doorway-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Hey! Where do you think you're going?
+    ScreenActions:
+    - rid: 8612954484556955756
   playerChoices: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 8612954484556955754
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: 6b2e3845519432f44ba0454776fa3e1d, type: 3}
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 8612954484556955755
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeTime: 0.5
+    - rid: 8612954484556955756
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - angrySpeak
+        - EMPTY
