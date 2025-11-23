@@ -64,7 +64,7 @@ namespace RenCSharp.Sequences
             SerializedProperty actorProperty = property.FindPropertyRelative("actorToAlter");
             SerializedProperty sprindexArray = property.FindPropertyRelative("visualSpriteIndexes");
             Actor actorToAlter = actorProperty.objectReferenceValue as Actor;
-            if(actorToAlter != null) Debug.Log(actorToAlter.ActorName);
+            //if(actorToAlter != null) Debug.Log(actorToAlter.ActorName);
             Rect actRect = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight * 2);
             Rect sprinRect = new Rect(position.x, position.y + (EditorGUIUtility.singleLineHeight * 2.5f), position.width, EditorGUIUtility.singleLineHeight * 2);
 
