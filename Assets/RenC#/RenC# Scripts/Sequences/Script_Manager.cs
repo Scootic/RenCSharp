@@ -149,8 +149,9 @@ namespace RenCSharp
         }
 
         private IEnumerator RunThroughScreen(Sequences.Screen screen)
-        { 
-            if (curActor != null && curActor != screen.Speaker) yield return ScaleActor(false, autoFocusScaleDuration);
+        {
+            bool prevActorIscurSpeaker = (curActor == screen.Speaker);
+            if (curActor != null && !prevActorIscurSpeaker) yield return ScaleActor(false, autoFocusScaleDuration);
             //scale down in case our previous actor was scaled up, if we don't have the same actor
             foreach (Screen_Event se in screen.ScreenActions) //do all screen events BEFORE processing any dialog. does not care if SM is paused or not.
             {
@@ -169,7 +170,7 @@ namespace RenCSharp
                 dialogBox.color = curActor.TextboxColor;
                 speakerNameField.text = curActor.ActorName;
                 if(curActor.ActorName == playerTag) speakerNameField.text = playerName; 
-                if (currentSequence.AutoFocusSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so
+                if (currentSequence.AutoFocusSpeaker && !prevActorIscurSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so
             }
             else //if no actor assigned, assume it's narration, so no name to our dialog box
             {
