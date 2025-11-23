@@ -20,7 +20,8 @@ MonoBehaviour:
     - rid: 8612954484556955754
     - rid: 8612954484556955755
   - speaker: {fileID: 0}
-    dialog: Thank goodness our teacher decided to spare us after Monday's debacle.
+    dialog: Thank goodness our teacher decided to spare us after Monday's whole-chapter-for-homework
+      debacle.
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: As I usually do, I gather my things and head straight for the door after
@@ -33,7 +34,96 @@ MonoBehaviour:
     dialog: Hey! Where do you think you're going?
     ScreenActions:
     - rid: 8612954484556955756
-  playerChoices: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Jesus! You scared me!
+    ScreenActions:
+    - rid: 8612954489503350849
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I'm going home, where else-
+    ScreenActions:
+    - rid: 8612954489503350850
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Oh. Right. A club.
+    ScreenActions:
+    - rid: 8612954489503350851
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: To be honest, that completely slipped my mind.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: No worries, I've got it all taken care of for you!
+    ScreenActions:
+    - rid: 8612954489503350852
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: You... what?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: I've already told my club that you'd be joining, isn't that great~!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Sayori, you... WHAT?!?!
+    ScreenActions:
+    - rid: 8612954489503350853
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Eh? Why'd you yell at me?
+    ScreenActions:
+    - rid: 8612954489503350854
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Sayori, if there wasn't a rule about club membership requiring consent
+      from both parties, there should be.
+    ScreenActions:
+    - rid: 8612954489503350855
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: You can't just tell people that I'm joining a club without asking me
+      first! I don't even know what your club is!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: It's the Literature Club!
+    ScreenActions:
+    - rid: 8612954489503350856
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Oh, well that makes it okay then-
+    ScreenActions:
+    - rid: 8612954489503350857
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I lied. That doesn't make it okay.
+    ScreenActions:
+    - rid: 8612954489503350858
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: There'll be free cupcakes...?
+    ScreenActions:
+    - rid: 8612954489503350859
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Eh. I'm more of a brownie guy. I thought you knew that already?
+    ScreenActions:
+    - rid: 8612954489503350860
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Oh...
+    ScreenActions:
+    - rid: 8612954489503350862
+  - speaker: {fileID: 0}
+    dialog: Don't give into the puppy dog eyes. Don't give into the puppy dog eyes.
+      Don't give into the puppy dog eyes.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Look, you've put me in a tough spot.
+    ScreenActions:
+    - rid: 8612954489503350863
+  - speaker: {fileID: 0}
+    dialog: Which I'm, like, 80% sure was intentional.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I'll check out your club for today and see how it goes, but you owe me.
+    ScreenActions:
+    - rid: 8612954489503350864
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Hooray! Let's go~!
+    ScreenActions:
+    - rid: 8612954489503350865
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: 993c959d6380590458c69d4002df6a99, type: 2}
+    requireCondition: 0
+    conditions: []
   references:
     version: 2
     RefIds:
@@ -59,3 +149,134 @@ MonoBehaviour:
         - uniDown
         - angrySpeak
         - EMPTY
+    - rid: 8612954489503350849
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - contentGrin
+    - rid: 8612954489503350850
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - angry
+    - rid: 8612954489503350851
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - smile
+    - rid: 8612954489503350852
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniDown
+        - contentGrin
+    - rid: 8612954489503350853
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - surprise
+    - rid: 8612954489503350854
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - EMPTY
+        - EMPTY
+        - EMPTY
+        - pout
+    - rid: 8612954489503350855
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - EMPTY
+        - EMPTY
+        - EMPTY
+        - lookAwayPout
+    - rid: 8612954489503350856
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniDown
+        - smileSpeak
+        - EMPTY
+    - rid: 8612954489503350857
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - smile
+    - rid: 8612954489503350858
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - concern2
+    - rid: 8612954489503350859
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - concernSpeak
+    - rid: 8612954489503350860
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - angry
+    - rid: 8612954489503350862
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniDown
+        - lookAwaySad
+    - rid: 8612954489503350863
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - concern2
+    - rid: 8612954489503350864
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniDown
+        - shock
+    - rid: 8612954489503350865
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - contentGrin
