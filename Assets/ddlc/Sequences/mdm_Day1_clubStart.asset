@@ -589,6 +589,51 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Are we not going to talk about Monika's disassociative episode???
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Hey! Give that back!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Ehehe~ sure.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Natsuki snatches the poem from Monika's hand.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Was it really that embarrassing? I feel like this club should be the
+      kind of place to share that kind of thing.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I understand how Natsuki feels. The truest form of writing is writing
+      for oneself.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Sharing that level of writing takes more than just confidence.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: You must be willing to open up to your readers, exposing your vulnerabilities
+      and showing even the deepest reaches of your heart.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Do you have writing experience too, Yuri?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Maybe if you share some of your work, you can set an example and help
+      Natsuki feel comfortable enough to share hers.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Yeah, I could see that coming from a mile away. I'm surprised Monika
+      even asked.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Aww... I wanted to read everyone's poems...
+    ScreenActions:
+    - rid: 1529833554564874310
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: daff6a8c44dc89c41925dd353bc26227, type: 2}
@@ -597,6 +642,14 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1529833554564874310
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniUp
+        - concernSpeak
     - rid: 8612954489503350866
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
