@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: END_DEMO
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 0
+  screens:
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 8612954507180769449
+  playerChoices: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8612954507180769449
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
+        overlayText: END DEMO
+        fadeTime: 0.5
+        animate: 0
+        endWithScreen: 0
+        secondsPerFrame: 0.1
