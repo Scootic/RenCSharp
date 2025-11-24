@@ -21,10 +21,8 @@ namespace RenCSharp.Sequences
         public override void DoShit()
         {
             List<Image> imagePonents = new();
-            Transform placeWeWant = Script_Manager.SM.ActorHolder;
-            GameObject spawnt = GameObject.Instantiate(actorToSpawn.ActorPrefab, placeWeWant);
+            GameObject spawnt = Object_Factory.SpawnObject(actorToSpawn.ActorPrefab, actorToSpawn.ActorName, Script_Manager.SM.ActorHolder);
             spawnt.transform.position += spawnOffset;
-            spawnt.name = actorToSpawn.ActorName;
             Image image = spawnt.transform.GetChild(0).GetComponent<Image>();
             imagePonents.Add(image);
             for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
