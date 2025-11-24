@@ -25,14 +25,14 @@ MonoBehaviour:
       to herself.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: That's the first impression we're going to give our player?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
     dialog: Wow.
     ScreenActions:
     - rid: 8612954481186308159
     - rid: 8612954481186308160
     - rid: 8612954484556955709
-  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
-    dialog: That's the first impression we're going to give our player?
-    ScreenActions: []
   - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
     dialog: I can already tell that this vessel is hopeless.
     ScreenActions: []
@@ -85,6 +85,7 @@ MonoBehaviour:
         - {fileID: 141569737, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
         - {fileID: 774781490, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
         overlayText: 
+        fadeTime: 0.5
         animate: 1
         endWithScreen: 0
         secondsPerFrame: 0.1
