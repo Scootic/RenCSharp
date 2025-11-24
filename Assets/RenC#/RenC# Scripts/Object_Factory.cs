@@ -23,6 +23,7 @@ namespace RenCSharp
         public static GameObject SpawnObject(GameObject prefab, string name, Transform parent = null) 
         {
             GameObject t = GameObject.Instantiate(prefab, parent);
+            t.name = name;
             activeGameObjects.Add(name, t);
             return t;
         }
