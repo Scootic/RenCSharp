@@ -40,7 +40,7 @@ namespace RenCSharp.Sequences
         private IEnumerator FadeIn(List<Image> images)
         {
             float t = 0;
-            Color transGender = new Color(0, 0, 0, 0);
+            Color transGender = new Color(1, 1, 1, 0);
             foreach (Image image in images) { image.color = transGender; }
             while(t <= fadeInTime)
             {
