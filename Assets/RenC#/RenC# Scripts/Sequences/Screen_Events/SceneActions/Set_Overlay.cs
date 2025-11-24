@@ -9,39 +9,75 @@ namespace RenCSharp.Sequences
     {
         [SerializeField, Tooltip("If not animated, just uses index 0.")] private List<Sprite> imagesToSet;
         [SerializeField, Tooltip("Title card type stuff.")] private string overlayText = string.Empty;
+        [SerializeField] private float fadeTime = 0.5f;
         [Header("Animate Overlay")]
         [SerializeField] private bool animate = false;
         [SerializeField, Tooltip("Be careful if you set this to false. Animations will loop until you override them.")] private bool endWithScreen = true;
         [SerializeField, Min(0), Tooltip("0 for every frame.")] private float secondsPerFrame = 0.1f;
         private Coroutine animation;
+        private Coroutine fadeImage;
         private bool bloop;
 
         public override void DoShit()
         {
             Image overlay = GameObject.Find("Overlay").GetComponent<Image>();
-            overlay.sprite = imagesToSet[0];
-            if(animate)
-            {
-                bloop = true;
-                animation = Script_Manager.SM.StartCoroutine(AnimateOverlay(overlay, imagesToSet));
-                if (endWithScreen) Script_Manager.ProgressScreenEvent += PanicStop;
-            }
-            GameObject.Find("OverlayText").GetComponent<TextMeshProUGUI>().text = overlayText;
+            bloop = true;
+            fadeImage = Script_Manager.SM.StartCoroutine(FadeIn(overlay, imagesToSet));
+            if (endWithScreen && animate) Script_Manager.ProgressScreenEvent += PanicStop;
+
+           
         }
 
         private void PanicStop()
         {
+            Debug.LogWarning("Set overlay panic stopped!");
             bloop = false;
-            Script_Manager.SM.StopCoroutine(animation);
+            GameObject.Find("Overlay").GetComponent<Image>().color = Color.white;
+            if (fadeImage != null)Script_Manager.SM.StopCoroutine(fadeImage);
+            if(animation != null)Script_Manager.SM.StopCoroutine(animation);
+        }
+
+        private IEnumerator FadeIn(Image overlay, List<Sprite> sprites)
+        {
+            float t = 0;
+            Color transGender = new Color(1, 1, 1, 0);
+            float perc;
+            bool flick = false;
+            while (t <= fadeTime)
+            {
+                t += Time.deltaTime;
+                perc = t / fadeTime;
+
+                if(perc < 0.5f)
+                {
+                    overlay.color = Color.Lerp(Color.white, transGender, perc * 2);
+                }
+                else
+                {
+                    if (!flick) 
+                    {
+                        if (!animate) overlay.sprite = sprites[0];
+                        else animation = Script_Manager.SM.StartCoroutine(AnimateOverlay(overlay, sprites));
+                        flick = true;
+                        GameObject.Find("OverlayText").GetComponent<TextMeshProUGUI>().text = overlayText;
+                    }
+
+                    overlay.color = Color.Lerp(transGender, Color.white, perc * 2 - 1);
+                }
+
+                yield return null;
+            }
+            overlay.color = Color.white;
         }
 
         private IEnumerator AnimateOverlay(Image overlay, List<Sprite> sprites)
         {
             float t = 0;
             int i = 0;
+            Sprite ogSp = overlay.sprite;
             while (bloop)
             {
-                if (!sprites.Contains(overlay.sprite)) { PanicStop(); yield break; }
+                if (!sprites.Contains(overlay.sprite) && ogSp != overlay.sprite) { PanicStop(); yield break; }
                 t += Time.deltaTime;
                 if(t >= secondsPerFrame)
                 {

@@ -42,7 +42,7 @@ namespace RenCSharp.Sequences
         private IEnumerator FadeOut(List<Image> imgPo)
         {
             float t = 0;
-            Color transGender = new Color(0, 0, 0, 0);
+            Color transGender = new Color(1, 1, 1, 0);
 
             while(t < fadeTime)
             {

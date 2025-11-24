@@ -107,7 +107,7 @@ namespace RenCSharp
         #region ScreenHandling
         public void ProgressToNextScreen() //for an UI button to use, hopefully
         {
-            if (paused) return; //don't go nowhere if the SM is paused
+            if (paused) return; //the ui button's interactivity should be able to handle this automatically
             if (!jumpToEndDialog) jumpToEndDialog = true;
             else
             {
@@ -184,9 +184,8 @@ namespace RenCSharp
 
             if (screen.Dialog == "")
             {
-                Debug.Log("No dialog on this screen, moving to next!");
                 jumpToEndDialog = true;
-                ProgressToNextScreen();
+                StartCoroutine(FlashButton(curScreenIndex));
                 yield break;
             }
 
@@ -212,6 +211,7 @@ namespace RenCSharp
                 yield return null;
             }
             //safety measure
+            StartCoroutine(FlashButton(curScreenIndex));
             jumpToEndDialog = true;
             dialogField.text = amended;
         }
@@ -274,7 +274,29 @@ namespace RenCSharp
                     yield return null;
                 }
             }
-        } 
+        }
+
+        private IEnumerator FlashButton(int scrindex)
+        {
+            Color slightlyTrans = new Color(1, 1, 1, 0.4f);
+            float t = 0;
+            bool dir = true;
+            Image pd = progressDialogButton.GetComponent<Image>();
+
+            while (scrindex == curScreenIndex) 
+            {
+                t += dir ? Time.deltaTime : Time.deltaTime * -1;
+
+                if (t >= 1) dir = false;
+                else if (t <= 0) dir = true;
+
+                pd.color = Color.Lerp(Color.white, slightlyTrans, t);
+
+                yield return null;
+            }
+
+            pd.color = Color.white;
+        }
 
         private void ToggleDialogUI(bool b)
         {
