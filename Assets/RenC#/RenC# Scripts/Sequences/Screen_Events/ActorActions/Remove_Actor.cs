@@ -19,7 +19,7 @@ namespace RenCSharp.Sequences
         public override void DoShit()
         {
             List<Image> imgPo = new();
-            fellaToRemove = GameObject.Find(actorToRemove.ActorName);
+            fellaToRemove = Object_Factory.GetObject(actorToRemove.ActorName);
             Image img = fellaToRemove.transform.GetChild(0).GetComponent<Image>();
             imgPo.Add(img);
             for (int i = 1; i < actorToRemove.Visuals.Length; i++)
@@ -54,13 +54,13 @@ namespace RenCSharp.Sequences
                 }
                 yield return null;
             }
-            GameObject.Destroy(fellaToRemove);
+            Object_Factory.RemoveObject(actorToRemove.ActorName);
         }
 
         private void PanicStop()
         {
             if(fadeOut != null) Script_Manager.SM.StopCoroutine(fadeOut);
-            if (fellaToRemove != null) GameObject.Destroy(fellaToRemove);
+            if (fellaToRemove != null) Object_Factory.RemoveObject(actorToRemove.ActorName);
         }
 
         public override string ToString()

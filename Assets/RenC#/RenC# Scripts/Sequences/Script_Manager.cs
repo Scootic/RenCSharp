@@ -34,11 +34,16 @@ namespace RenCSharp
         [SerializeField] private AnimationCurve actorScalingKurve;
         private Actor curActor;
 
+        [Header("Overlay")]
+        [SerializeField] private GameObject overlayPrefab; //should have a TMPro child
+        [SerializeField] private Transform overlayHolder;
+
         [Header("Settings")]
         [SerializeField, Tooltip("In seconds, 0 for character every frame."), Min(0)] private float textSpeed = 0;
         [SerializeField, Tooltip("In seconds."), Min(0)] private float autoFocusScaleDuration = 0.25f;
         [SerializeField] private string playerName = "Guy"; //probably should be handled by an save data
         [SerializeField, Tooltip("This will be string that is replaced by inputted player name.")] private string playerTag = "{MC}";
+        
 
         private bool jumpToEndDialog = false;
         private bool paused = false;
@@ -69,8 +74,15 @@ namespace RenCSharp
 
         void Start()
         {
+            Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder);
+
             StartSequence();
             EndOfAllSequencesEvent += Application.Quit;
+        }
+
+        private void OnDisable()
+        {
+            Object_Factory.ScrubDictionary(); //the dictionary is static, so we don't want to keep storing garbage forever.
         }
         #region SequenceHandling
         public void StartSequence()
@@ -243,10 +255,9 @@ namespace RenCSharp
         {
             float t;
             float eval;
-            GameObject fella = GameObject.Find(curActor.ActorName);
+            GameObject fella = Object_Factory.GetObject(curActor.ActorName);
             if (fella == null)
             {
-                Debug.Log("could find gameobject for: " + curActor.ActorName); 
                 yield break; //break out of routine if we can't find the gameobject we want
             }
 
