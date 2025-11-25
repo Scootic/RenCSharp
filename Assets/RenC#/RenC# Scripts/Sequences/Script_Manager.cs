@@ -26,6 +26,8 @@ namespace RenCSharp
         [SerializeField] private Image dialogBox;
         [SerializeField] private Button playerchoicePrefab;
         [SerializeField] private Button progressDialogButton;
+        [SerializeField] private Image toggleImage;
+        [SerializeField] private Color togglePressedColor;
         [SerializeField] private Transform playerchoiceHolder;
         [SerializeField, Tooltip("Decides the color of the textboxes if there's no actor in a screen.")] private Color defaultTextBoxColor = Color.white;
 
@@ -196,17 +198,22 @@ namespace RenCSharp
 
             dialogField.text = ""; //wipe before putting in the new text
 
-            if (screen.Dialog == "")
-            {
-                jumpToEndDialog = true;
-                StartCoroutine(FlashButton(curScreenIndex));
-                yield break;
-            }
-
             float t = 0;
             int i = 0;
             string amended = Regex.Replace(screen.Dialog, playerTag, playerName); //insert the player's custom name into dialog
             char[] dialogchars = amended.ToCharArray();
+
+            if(dialogchars.Length == 0) //hover on empty screens until the transition or whatever is finished
+            {
+                while (paused)
+                {
+                    yield return null;
+                }
+                //manually move on, we don't want to show off a true empty if we can't help it.
+                jumpToEndDialog = true;
+                ProgressToNextScreen();
+                yield break;
+            }
 
             while (dialogchars.Length > dialogField.text.Length && !jumpToEndDialog)
             {
@@ -327,16 +334,15 @@ namespace RenCSharp
 
         private void ToggleDialogUI(bool b)
         {
-            progressDialogButton.gameObject.SetActive(!b);
-            speakerNameBox.enabled = !b;
-            speakerNameField.enabled = !b;
-            dialogBox.enabled = !b;
-            dialogField.enabled = !b;
+            dialogBox.transform.parent.gameObject.SetActive(!b);
         }
 
         public void FlipAuto(bool b)
         {
             auto = b;
+            toggleImage.color = b ? togglePressedColor : Color.white;
+
+            if (b && jumpToEndDialog) ProgressToNextScreen();
             //return b;
         }
 
