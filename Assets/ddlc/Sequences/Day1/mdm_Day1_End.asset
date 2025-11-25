@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: mdm_Day1_End
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: With that, the two of use depart from the clubroom and make our way home.
+    ScreenActions:
+    - rid: 8612954527079858318
+    - rid: 8612954527079858319
+  - speaker: {fileID: 0}
+    dialog: The whole way, my mind wanders back and forth between the four girls.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Will I be happy spending my afternoons with them?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: What if I get cooties?!?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Heh.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I've spent the last hour taking care of the little bit of homework we
+      were assigned today.
+    ScreenActions:
+    - rid: 8612954527079858320
+    - rid: 8612954527079858321
+  - speaker: {fileID: 0}
+    dialog: I used to procrastinate more in middle school, but my post-homework gaming
+      sessions feel WAY better.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: That, and I felt a lot more anxiety back then, which was the main reason
+      Sayori was my one and only at the time.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: But now, I'm free to game as I wish! Let's open up Allen's DMs and-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I have to write a poem.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Ah... poo.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Well, I guess I'll do that first. Then the gaming!
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: daff6a8c44dc89c41925dd353bc26227, type: 2}
+    requireCondition: 0
+    conditions: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8612954527079858318
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: 24af825c7bc8f8d42a8ce85328e1f9d0, type: 3}
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 8612954527079858319
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeTime: 0.5
+    - rid: 8612954527079858320
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 35cba3ca908d70d48a8a042cf6323f5c, type: 3}
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 8612954527079858321
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: bcbebd327007e494eb1bd451f29d4045, type: 3}
+        fadeTransition: 0
+        fadeDuration: 1
