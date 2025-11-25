@@ -43,6 +43,8 @@ namespace RenCSharp
         [SerializeField, Tooltip("In seconds."), Min(0)] private float autoFocusScaleDuration = 0.25f;
         [SerializeField] private string playerName = "Guy"; //probably should be handled by an save data
         [SerializeField, Tooltip("This will be string that is replaced by inputted player name.")] private string playerTag = "{MC}";
+        [SerializeField] private bool auto = false;
+        [SerializeField, Tooltip("How long the SM will linger on a screen while on auto.")] private float lingerTime = 0.5f;
         
 
         private bool jumpToEndDialog = false;
@@ -226,6 +228,20 @@ namespace RenCSharp
             StartCoroutine(FlashButton(curScreenIndex));
             jumpToEndDialog = true;
             dialogField.text = amended;
+
+            if (auto) yield return AutoProgress(curScreenIndex);
+        }
+
+        private IEnumerator AutoProgress(int index)
+        {
+            float t = 0;
+            while(t < lingerTime)
+            {
+                if (index != curScreenIndex) yield break;
+                t += Time.deltaTime;
+                yield return null;
+            }
+            ProgressToNextScreen();
         }
         #endregion
         #region FlagHandling
@@ -316,6 +332,12 @@ namespace RenCSharp
             speakerNameField.enabled = !b;
             dialogBox.enabled = !b;
             dialogField.enabled = !b;
+        }
+
+        public void FlipAuto(bool b)
+        {
+            auto = b;
+            //return b;
         }
 
         private void UpdateHistory()
