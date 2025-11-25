@@ -43,6 +43,8 @@ namespace RenCSharp.Sequences
             Color transGender = new Color(1, 1, 1, 0);
             float perc;
             bool flick = false;
+            TextMeshProUGUI text = overlay.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            text.text = "";
             while (t <= fadeTime)
             {
                 t += Time.deltaTime;
@@ -59,7 +61,6 @@ namespace RenCSharp.Sequences
                         if (!animate) overlay.sprite = sprites[0];
                         else animation = Script_Manager.SM.StartCoroutine(AnimateOverlay(overlay, sprites));
                         flick = true;
-                        overlay.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = overlayText;
                     }
 
                     overlay.color = Color.Lerp(transGender, Color.white, perc * 2 - 1);
@@ -67,6 +68,7 @@ namespace RenCSharp.Sequences
 
                 yield return null;
             }
+            text.text = overlayText;
             overlay.color = Color.white;
         }
 
@@ -75,6 +77,7 @@ namespace RenCSharp.Sequences
             float t = 0;
             int i = 0;
             Sprite ogSp = overlay.sprite;
+
             while (bloop)
             {
                 if (!sprites.Contains(overlay.sprite) && ogSp != overlay.sprite) { PanicStop(); yield break; }
