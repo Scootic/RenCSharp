@@ -288,8 +288,8 @@ namespace RenCSharp
         {
             menuOpen = !menuOpen;
 
-            if (menuOpen) PauseSequence();
-            else 
+            if (menuOpen) { PauseSequence(); FlipAuto(false); }
+            else
             {
                 menuOpen = true;
                 UnpauseSequence();
