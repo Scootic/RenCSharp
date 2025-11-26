@@ -57,9 +57,8 @@ namespace RenCSharp
         [SerializeField, Tooltip("How long the SM will linger on a screen while on auto.")] private float lingerTime = 0.5f;
         [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero.")] private byte historyLength = 10;
 
-        private bool jumpToEndDialog = false, paused = false, historyOpen = false;
-        [SerializeField] private bool menuOpen = false;
-
+        private bool jumpToEndDialog = false, paused = false, historyOpen = false, menuOpen = false;
+        private float curSpeed;
         private History curHist;
         private Dictionary<string, int> curFlags;
 
@@ -87,7 +86,7 @@ namespace RenCSharp
         void Start()
         {
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder);
-
+            curSpeed = textSpeed;
             StartSequence();
             EndOfAllSequencesEvent += Application.Quit; //TEMPORARY THING
         }
@@ -231,11 +230,34 @@ namespace RenCSharp
                 {
                     t += Time.deltaTime;
                     //add one character at a time, depending on text speed
-                    if (t >= textSpeed)
+                    if (t >= curSpeed)
                     {
                         t = 0;
-                        dialogField.text += dialogchars[i];
-                        i++;
+
+                        if (dialogchars[i] == '<') //we've found a rich text tag
+                        {
+                            string tag = "" + dialogchars[i];
+                            while (dialogchars[i] != '>')
+                            {
+                                i++;
+                                tag += dialogchars[i];
+                            }
+                            i++;
+                            
+                            if (!TagParser.Parse(tag)) //if it's not a tagparser tag, it's probably unity valid. add that boy back in.
+                            {
+                                dialogField.text += tag;
+                            }
+                            else //remove tags from the final display if it's being handled by tag parser
+                            {
+                                amended = Regex.Replace(amended, tag, "");
+                            }
+                        }
+                        else 
+                        {
+                            dialogField.text += dialogchars[i];
+                            i++; 
+                        }
                     }
                 }
                 yield return null;
@@ -291,7 +313,6 @@ namespace RenCSharp
             if (menuOpen) PauseSequence();
             else 
             {
-                menuOpen = true;
                 UnpauseSequence();
                 historyOpen = true;
                 FlipHistory();
@@ -422,6 +443,12 @@ namespace RenCSharp
             toggleImage.color = b ? togglePressedColor : Color.white;
 
             if (b && jumpToEndDialog) ProgressToNextScreen();
+        }
+
+        public void SetSpeed(float value, bool reset = false)
+        {
+            if (reset) curSpeed = textSpeed;
+            else curSpeed = value;
         }
     }
 }
