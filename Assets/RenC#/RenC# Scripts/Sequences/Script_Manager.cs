@@ -24,13 +24,15 @@ namespace RenCSharp
         [SerializeField] private TextMeshProUGUI dialogField;
         [SerializeField] private Image speakerNameBox;
         [SerializeField] private Image dialogBox;
+        [SerializeField, Tooltip("Decides the color of the textboxes if there's no actor in a screen.")] private Color defaultTextBoxColor = Color.white;
+
+        [Header("Buttons")]
         [SerializeField] private Button playerchoicePrefab;
         [SerializeField] private Button progressDialogButton;
         [SerializeField] private Image toggleImage;
         [SerializeField] private Color togglePressedColor;
         [SerializeField] private Transform playerchoiceHolder;
-        [SerializeField, Tooltip("Decides the color of the textboxes if there's no actor in a screen.")] private Color defaultTextBoxColor = Color.white;
-
+        
         [Header("Actors")]
         [SerializeField] private Transform actorHolder;
         [SerializeField] private AnimationCurve actorScalingKurve;
@@ -40,6 +42,12 @@ namespace RenCSharp
         [SerializeField] private GameObject overlayPrefab; //should have a TMPro child
         [SerializeField] private Transform overlayHolder;
 
+        [Header("Menus")]
+        [SerializeField] private GameObject baseMenu;
+        [SerializeField] private GameObject historyFab;
+        [SerializeField] private GameObject historyMenu;
+        [SerializeField] private Transform historyHolder;
+
         [Header("Settings")]
         [SerializeField, Tooltip("In seconds, 0 for character every frame."), Min(0)] private float textSpeed = 0;
         [SerializeField, Tooltip("In seconds."), Min(0)] private float autoFocusScaleDuration = 0.25f;
@@ -47,10 +55,11 @@ namespace RenCSharp
         [SerializeField, Tooltip("This will be string that is replaced by inputted player name.")] private string playerTag = "{MC}";
         [SerializeField] private bool auto = false;
         [SerializeField, Tooltip("How long the SM will linger on a screen while on auto.")] private float lingerTime = 0.5f;
-        
+        [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero.")] private byte historyLength = 10;
 
-        private bool jumpToEndDialog = false;
-        private bool paused = false;
+        private bool jumpToEndDialog = false, paused = false, historyOpen = false;
+        [SerializeField] private bool menuOpen = false;
+
         private History curHist;
         private Dictionary<string, int> curFlags;
 
@@ -70,9 +79,8 @@ namespace RenCSharp
             }
 
             curFlags = new Dictionary<string, int>(); //load save data if we found it?
-            curHist = new History();
+            curHist = new History(historyLength);
 
-            DontDestroyOnLoad(gameObject); //might be upset when loading scenes and losing references to dialog boxes, etc.
             SequencePausedEvent += ToggleDialogUI;
         }
 
@@ -81,7 +89,7 @@ namespace RenCSharp
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder);
 
             StartSequence();
-            EndOfAllSequencesEvent += Application.Quit;
+            EndOfAllSequencesEvent += Application.Quit; //TEMPORARY THING
         }
 
         private void OnDisable()
@@ -133,7 +141,7 @@ namespace RenCSharp
                 curScreenIndex++;
                 Debug.Log("current Scrindex: " + curScreenIndex + ", Final Screen? " + (curScreenIndex >= currentSequence.Screens.Length - 1));
                 if(curScreenIndex < currentSequence.Screens.Length) StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
-                if(curScreenIndex > currentSequence.Screens.Length - 1)//final screen of the sequence
+                else if(curScreenIndex > currentSequence.Screens.Length - 1)//final screen of the sequence
                 {
                     if (currentSequence.PlayerChoices.Length == 0)//if there are no valid next sequences, sum shit gone wrong
                     { 
@@ -214,6 +222,7 @@ namespace RenCSharp
                 ProgressToNextScreen();
                 yield break;
             }
+            else UpdateHistory(curActor != null ? curActor.ActorName == playerTag ? playerName : curActor.ActorName : "Internal Narration", amended);
 
             while (dialogchars.Length > dialogField.text.Length && !jumpToEndDialog)
             {
@@ -272,6 +281,76 @@ namespace RenCSharp
             Debug.Log("Incrementing flag: " + id + ", increasing by: " + valToIncreaseBy);
             if (curFlags.ContainsKey(id)) curFlags[id] += valToIncreaseBy;
             else curFlags.Add(id, valToIncreaseBy);
+        }
+        #endregion
+        #region MenuHandling
+        public void FlipMenu()
+        {
+            menuOpen = !menuOpen;
+
+            if (menuOpen) PauseSequence();
+            else 
+            {
+                menuOpen = true;
+                UnpauseSequence();
+                historyOpen = true;
+                FlipHistory();
+                menuOpen = false;
+            }
+
+            baseMenu.SetActive(menuOpen);
+        }
+        public void FlipHistory()
+        {
+            if (!menuOpen) FlipMenu();
+
+            historyOpen = !historyOpen;
+            historyMenu.SetActive(historyOpen);
+
+            if (historyOpen) //spawn history objs
+            {
+                for (int i = 0; i < curHist.HistoryLength; i++)
+                {
+                    if (curHist.SpeakerNames[i] == null) break;
+                    Transform t = Object_Factory.SpawnObject(historyFab, "History" + i, historyHolder).transform;
+                    t.GetChild(0).GetComponent<TextMeshProUGUI>().text = curHist.SpeakerNames[i];
+                    t.GetChild(1).GetComponent<TextMeshProUGUI>().text = curHist.DialogBoxes[i];
+                }
+            }
+            else //remove all history objs
+            {
+                for(int i = historyHolder.childCount - 1; i >= 0; i--)
+                {
+                    Object_Factory.RemoveObject("History" + i);
+                }
+            }
+        }
+        private void UpdateHistory(string speaker, string text)
+        {
+            //first, see if there's any space in the arrays
+            for (int i = 0; i < curHist.HistoryLength; i++)
+            {
+                if (curHist.SpeakerNames[i] == null)
+                {
+                    curHist.SpeakerNames[i] = speaker;
+                    curHist.DialogBoxes[i] = text;
+                    return;
+                }
+            }
+            //if we found no room, replace everything going down.
+            for (int i = curHist.HistoryLength - 1; i >= 0; i--)
+            {
+                string tSpeaker = curHist.SpeakerNames[i];
+                string tDialog = curHist.DialogBoxes[i];
+
+                curHist.SpeakerNames[i] = speaker;
+                curHist.DialogBoxes[i] = text;
+
+                if (i == 0) return; //don't bother spending cpu if we are at the final operation.
+
+                speaker = tSpeaker;
+                text = tDialog;
+            }
         }
         #endregion
         private IEnumerator ScaleActor(bool up, float scaleTime) //used if autoSpeakerFocus is true in a sequence
@@ -343,12 +422,6 @@ namespace RenCSharp
             toggleImage.color = b ? togglePressedColor : Color.white;
 
             if (b && jumpToEndDialog) ProgressToNextScreen();
-            //return b;
-        }
-
-        private void UpdateHistory()
-        {
-            //not implemented
         }
     }
 }

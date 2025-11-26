@@ -10,11 +10,13 @@ namespace RenCSharp
     {
         public string[] SpeakerNames;
         public string[] DialogBoxes;
+        public byte HistoryLength;
 
-        public History(string[] speaker, string[] db) 
+        public History(byte length) 
         {
-            SpeakerNames = speaker;
-            DialogBoxes = db;
+            HistoryLength = length;
+            SpeakerNames = new string[length];
+            DialogBoxes = new string[length];
         }
     }
 }
