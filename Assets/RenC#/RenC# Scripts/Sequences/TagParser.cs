@@ -25,7 +25,6 @@ namespace RenCSharp.Sequences
                 splitNoFirst[i] = Regex.Replace(splitNoFirst[i], "[<>]", "");
             }
             
-
             Debug.Log("The split tag: " + split[0]);
             MethodInfo method = tp.GetMethod(split[0], BindingFlags.NonPublic | BindingFlags.Static);
             Debug.Log(method);
