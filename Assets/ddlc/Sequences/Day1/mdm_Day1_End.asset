@@ -57,6 +57,43 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Well, I guess I'll do that first. Then the gaming!
     ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Alright, let's see what I got so far.
+    ScreenActions:
+    - rid: 8612954549043593216
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions:
+    - rid: 8612954549043593217
+    - rid: 8612954549043593285
+  - speaker: {fileID: 0}
+    dialog: Dang it.
+    ScreenActions:
+    - rid: 8612954549043593218
+  - speaker: {fileID: 0}
+    dialog: Thirty minutes gone, with nothing to show for them.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: What should I do...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Oh, I know.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I pick up my phone and head to my contacts.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions:
+    - rid: 8612954549043593286
+    - rid: 8612954549043593287
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: '{mc}?'
+    ScreenActions:
+    - rid: 8612954549043593288
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: daff6a8c44dc89c41925dd353bc26227, type: 2}
@@ -80,11 +117,73 @@ MonoBehaviour:
       type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         musicTrack: {fileID: 8300000, guid: 35cba3ca908d70d48a8a042cf6323f5c, type: 3}
-        fadeTime: 1
+        fadeTime: 2
         setToSameTime: 0
     - rid: 8612954527079858321
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG: {fileID: 21300000, guid: bcbebd327007e494eb1bd451f29d4045, type: 3}
         fadeTransition: 0
+        fadeDuration: 2
+    - rid: 8612954549043593216
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: bcbebd327007e494eb1bd451f29d4045, type: 3}
+        fadeTransition: 0
         fadeDuration: 1
+    - rid: 8612954549043593217
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: d23401e2665085e4a8bfc5ac62057f88, type: 3}
+        overlayText: 
+        fadeTime: 0.5
+        animate: 0
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 8612954549043593218
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+        overlayText: 
+        fadeTime: 0.5
+        animate: 0
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 8612954549043593285
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: ef0d753d1e95959469a74f817b54bda3, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        loopDuration: 1
+    - rid: 8612954549043593286
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: a5290ff00fef7c5418d13c69bef4bff3, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 1
+        loopDuration: 1e+11
+    - rid: 8612954549043593287
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: bc74d7d986010e44580c22fc14109972, type: 3}
+        overlayText: 
+        fadeTime: 0.5
+        animate: 0
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 8612954549043593288
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: -1004377850, guid: 42ce10bdc187b694bb4bf18f72716081, type: 3}
+        overlayText: 
+        fadeTime: 0.5
+        animate: 0
+        endWithScreen: 1
+        secondsPerFrame: 0.1
