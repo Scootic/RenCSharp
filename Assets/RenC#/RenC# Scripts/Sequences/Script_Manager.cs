@@ -313,6 +313,7 @@ namespace RenCSharp
             if (menuOpen) PauseSequence();
             else 
             {
+                menuOpen = true;
                 UnpauseSequence();
                 historyOpen = true;
                 FlipHistory();

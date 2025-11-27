@@ -929,7 +929,11 @@ MonoBehaviour:
   dialogField: {fileID: 1087768674}
   speakerNameBox: {fileID: 696893494}
   dialogBox: {fileID: 1423157132}
+  defaultTextBoxColor: {r: 1, g: 1, b: 1, a: 1}
   playerchoicePrefab: {fileID: 895609340302167952, guid: eae3be99d04bab645ab00571c4484d1f, type: 3}
+  progressDialogButton: {fileID: 1207802444}
+  toggleImage: {fileID: 0}
+  togglePressedColor: {r: 0, g: 0, b: 0, a: 0}
   playerchoiceHolder: {fileID: 445627345}
   actorHolder: {fileID: 962664652}
   actorScalingKurve:
@@ -956,10 +960,19 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  textSpeed: 0
+  overlayPrefab: {fileID: 8272749526018004140, guid: 17b16a5955dfee04da0d83ba64fbacac, type: 3}
+  overlayHolder: {fileID: 1824803559}
+  baseMenu: {fileID: 0}
+  historyFab: {fileID: 0}
+  historyMenu: {fileID: 0}
+  historyHolder: {fileID: 0}
+  textSpeed: 0.01
   autoFocusScaleDuration: 0.25
   playerName: Guy
   playerTag: '{MC}'
+  auto: 0
+  lingerTime: 0.5
+  historyLength: 10
 --- !u!4 &1038785424
 Transform:
   m_ObjectHideFlags: 0
