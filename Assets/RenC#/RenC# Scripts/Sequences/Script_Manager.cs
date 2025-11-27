@@ -223,14 +223,14 @@ namespace RenCSharp
             }
             else UpdateHistory(curActor != null ? curActor.ActorName == playerTag ? playerName : curActor.ActorName : "Internal Narration", amended);
 
-            while (dialogchars.Length > dialogField.text.Length && !jumpToEndDialog)
+            while (dialogchars.Length > dialogField.text.Length && amended.Length > dialogField.text.Length && !jumpToEndDialog)
             {
                 //only run through text if the SM is unpaused
                 if (!paused)
                 {
                     t += Time.deltaTime;
                     //add one character at a time, depending on text speed
-                    if (t >= curSpeed)
+                    if (t >= curSpeed && i < dialogchars.Length)
                     {
                         t = 0;
 
