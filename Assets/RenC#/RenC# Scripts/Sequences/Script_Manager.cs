@@ -253,7 +253,7 @@ namespace RenCSharp
                                 amended = Regex.Replace(amended, tag, "");
                             }
                         }
-                        else 
+                        else //just add the char and move on if it's a regular ah character
                         {
                             dialogField.text += dialogchars[i];
                             i++; 

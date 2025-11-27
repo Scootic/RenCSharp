@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ee0be36e267e01745bebe9b1b3a18ca4
+guid: 773ac7b88a1001f4e91b797923a93925
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,9 +123,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: sayoright
+  - name: sayofullbody
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.45192304, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -133,9 +133,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 86
-      height: 143
-    spriteID: fed8fed1f1d4b51459a32b7c2ab78616
+      width: 104
+      height: 210
+    spriteID: 6add140043cd2584fb6aa6bf780d2534
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -146,17 +146,17 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: Frame_1
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.45192304, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 98
-      y: 4
-      width: 51
-      height: 143
-    spriteID: 70c41a4a5d88aba438bdf58fcaf867c9
+      x: 4
+      y: 222
+      width: 104
+      height: 210
+    spriteID: d3eef5b58f34e7045ba630a2881b7a84
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -164,17 +164,59 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 98, y: 4}
+    uvTransform: {x: 4, y: 222}
+  - name: Frame_2
+    originalName: 
+    pivot: {x: 0.45192304, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 116
+      y: 4
+      width: 104
+      height: 210
+    spriteID: 767ff0698a8eb374b9db427c82d182b7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 116, y: 4}
+  - name: Frame_3
+    originalName: 
+    pivot: {x: 0.45192304, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 116
+      y: 222
+      width: 104
+      height: 210
+    spriteID: 735b6603bf6bb824fb2db398fee13fcb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 116, y: 222}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 756344896
+      value0: 2633139927
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: sayoright
+    name: sayofullbody
     layerFlags: 0
     layerType: 0
     blendMode: 0
@@ -183,20 +225,38 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 120
+        x: 73
         y: 0
-        width: 86
-        height: 143
-      spriteId: fed8fed1f1d4b51459a32b7c2ab78616
+        width: 104
+        height: 210
+      spriteId: 6add140043cd2584fb6aa6bf780d2534
     - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
-        x: 120
+        x: 73
         y: 0
-        width: 51
-        height: 143
-      spriteId: 70c41a4a5d88aba438bdf58fcaf867c9
+        width: 104
+        height: 210
+      spriteId: d3eef5b58f34e7045ba630a2881b7a84
+    - name: Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 73
+        y: 0
+        width: 104
+        height: 210
+      spriteId: 767ff0698a8eb374b9db427c82d182b7
+    - name: Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 73
+        y: 0
+        width: 104
+        height: 210
+      spriteId: 735b6603bf6bb824fb2db398fee13fcb
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -216,4 +276,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 240, y: 240}
-  previousTextureSize: {x: 256, y: 256}
+  previousTextureSize: {x: 256, y: 512}
