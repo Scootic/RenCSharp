@@ -71,7 +71,8 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: After a nice warm shower, I'm ready to face tomorrow.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 8612954621401628741
   - speaker: {fileID: 0}
     dialog: Hopefully tomorrow's homework isn't as garbage as today's...
     ScreenActions: []
@@ -135,3 +136,9 @@ MonoBehaviour:
         animate: 0
         endWithScreen: 1
         secondsPerFrame: 0.1
+    - rid: 8612954621401628741
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: bcbebd327007e494eb1bd451f29d4045, type: 3}
+        fadeTransition: 0
+        fadeDuration: 2
