@@ -1,6 +1,5 @@
 using UnityEngine;
 using RenCSharp.Actors;
-using UnityEngine.UI;
 using System;
 namespace RenCSharp.Sequences
 {
@@ -18,12 +17,11 @@ namespace RenCSharp.Sequences
             GameObject spawnt = Object_Factory.GetObject(actorToAlter.ActorName);
             if (spawnt != null)
             {
-                Image image = spawnt.transform.GetChild(0).GetComponent<Image>();
+                UI_Element uie = spawnt.GetComponent<UI_Element>();
                 for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
                 {
-                    if (visualSpriteIndexes[i] == string.Empty) continue; //means you can put -1 as a visalspriteindex if you want no change
-                    image.sprite = actorToAlter.Visuals[i].ReturnSprite(visualSpriteIndexes[i]);
-                    if (i < visualSpriteIndexes.Length - 1) image = image.transform.GetChild(0).GetComponent<Image>(); //grab child for next step
+                    if (visualSpriteIndexes[i] == string.Empty) continue; //if you want no change, leave a layer empty
+                    uie.Images[i].sprite = actorToAlter.Visuals[i].ReturnSprite(visualSpriteIndexes[i]);
                 }
             }
             else
