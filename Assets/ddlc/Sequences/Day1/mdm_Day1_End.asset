@@ -21,16 +21,25 @@ MonoBehaviour:
     - rid: 8612954527079858319
   - speaker: {fileID: 0}
     dialog: The whole way, my mind wanders back and forth between the four girls.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 8612954643173736698
+    - rid: 8612954643173736699
+    - rid: 8612954643173736700
+    - rid: 8612954643173736701
   - speaker: {fileID: 0}
     dialog: Will I be happy spending my afternoons with them?
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: What if I get cooties?!?
-    ScreenActions: []
+    ScreenActions:
+    - rid: 8612954643173736702
   - speaker: {fileID: 0}
     dialog: Heh.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 8612954643173736703
+    - rid: 8612954643173736704
+    - rid: 8612954643173736705
+    - rid: 8612954643173736706
   - speaker: {fileID: 0}
     dialog: I've spent the last hour taking care of the little bit of homework we
       were assigned today.
@@ -174,7 +183,7 @@ MonoBehaviour:
     dialog: I slowly spin around in my swivel seat, taking in my room.
     ScreenActions: []
   - speaker: {fileID: 0}
-    dialog: Why do I have a random hangar on my bookshelf?
+    dialog: Why do I have a projector just lying on my shelf?
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: I guess that'll be what my poem's about.
@@ -193,7 +202,7 @@ MonoBehaviour:
     - rid: 8612954527079858318
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 24af825c7bc8f8d42a8ce85328e1f9d0, type: 3}
+        newBG: {fileID: 21300000, guid: 81bda4138dcd08548a14480d81972ff9, type: 3}
         fadeTransition: 0
         fadeDuration: 1
     - rid: 8612954527079858319
@@ -210,7 +219,7 @@ MonoBehaviour:
     - rid: 8612954527079858321
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: bcbebd327007e494eb1bd451f29d4045, type: 3}
+        newBG: {fileID: 21300000, guid: 51aa5cf7e5d98d940b920b780d5f7d1d, type: 3}
         fadeTransition: 0
         fadeDuration: 2
     - rid: 8612954549043593216
@@ -355,3 +364,75 @@ MonoBehaviour:
         animate: 0
         endWithScreen: 1
         secondsPerFrame: 0.1
+    - rid: 8612954643173736698
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -600, y: 0, z: 0}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - smile
+        - EMPTY
+    - rid: 8612954643173736699
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -200, y: 0, z: 0}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - smile
+        - EMPTY
+    - rid: 8612954643173736700
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 200, y: 0, z: 0}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - smile2
+        - EMPTY
+    - rid: 8612954643173736701
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 600, y: 0, z: 0}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - smile
+        - EMPTY
+    - rid: 8612954643173736702
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - blank
+    - rid: 8612954643173736703
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeTime: 0.5
+    - rid: 8612954643173736704
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeTime: 0.5
+    - rid: 8612954643173736705
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        fadeTime: 0.5
+    - rid: 8612954643173736706
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeTime: 0.5

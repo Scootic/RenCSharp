@@ -57,6 +57,7 @@ MonoBehaviour:
       students as we get closer and closer.
     ScreenActions:
     - rid: 8612954484556955732
+    - rid: 8612954643173736517
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: By the way, {mc}...
     ScreenActions:
@@ -136,7 +137,7 @@ MonoBehaviour:
     - rid: 8612954368440271007
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 24af825c7bc8f8d42a8ce85328e1f9d0, type: 3}
+        newBG: {fileID: 21300000, guid: 36f7c6032a374db4a968c0e1236322e1, type: 3}
         fadeTransition: 0
         fadeDuration: 4
     - rid: 8612954466327199745
@@ -297,3 +298,9 @@ MonoBehaviour:
         - uniUp
         - uniUp
         - contentGrin
+    - rid: 8612954643173736517
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: 81bda4138dcd08548a14480d81972ff9, type: 3}
+        fadeTransition: 0
+        fadeDuration: 2
