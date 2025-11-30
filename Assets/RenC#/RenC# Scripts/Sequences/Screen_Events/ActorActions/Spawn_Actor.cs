@@ -20,41 +20,39 @@ namespace RenCSharp.Sequences
         private Coroutine fadeIn;
         public override void DoShit()
         {
-            List<Image> imagePonents = new();
             GameObject spawnt = Object_Factory.SpawnObject(actorToSpawn.ActorPrefab, actorToSpawn.ActorName, Script_Manager.SM.ActorHolder);
             spawnt.transform.position += spawnOffset;
-            Image image = spawnt.transform.GetChild(0).GetComponent<Image>();
-            imagePonents.Add(image);
+            UI_Element uie = spawnt.GetComponent<UI_Element>();
+
             for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
             {
-                if (visualSpriteIndexes[i] != string.Empty) image.sprite = actorToSpawn.Visuals[i].ReturnSprite(visualSpriteIndexes[i]);
-                else image.sprite = actorToSpawn.Visuals[i].layer[0]; //grab default sprite if there's nothing assigned
-                if (i < visualSpriteIndexes.Length - 1) { image = image.transform.GetChild(0).GetComponent<Image>(); imagePonents.Add(image); }
+                if (visualSpriteIndexes[i] != string.Empty) uie.Images[i].sprite = actorToSpawn.Visuals[i].ReturnSprite(visualSpriteIndexes[i]);
+                else uie.Images[i].sprite = actorToSpawn.Visuals[i].layer[0]; //grab default sprite if there's nothing assigned
             }
-            fadeIn = Script_Manager.SM.StartCoroutine(FadeIn(imagePonents));
-            Script_Manager.ProgressScreenEvent += delegate { PanicStop(imagePonents); };
+            fadeIn = Script_Manager.SM.StartCoroutine(FadeIn(uie));
+            Script_Manager.ProgressScreenEvent += delegate { PanicStop(uie); };
         }
 
-        private IEnumerator FadeIn(List<Image> images)
+        private IEnumerator FadeIn(UI_Element uie)
         {
             float t = 0;
             Color transGender = new Color(1, 1, 1, 0);
-            foreach (Image image in images) { image.color = transGender; }
+            foreach (Image image in uie.Images) { image.color = transGender; }
             while(t <= fadeInTime)
             {
                 t += Time.deltaTime;
                 float perc = t / fadeInTime;
                 Color tcol = Color.Lerp(transGender, Color.white, perc);
 
-                foreach(Image image in images) { image.color = tcol; }
+                foreach(Image image in uie.Images) { image.color = tcol; }
                 yield return null;
             }
         }
 
-        private void PanicStop(List<Image> images)
+        private void PanicStop(UI_Element uie)
         {
             Script_Manager.SM.StopCoroutine(fadeIn);
-            foreach(Image image in images) { image.color = Color.white; }
+            foreach(Image image in uie.Images) { image.color = Color.white; }
         }
 
         public override string ToString()
