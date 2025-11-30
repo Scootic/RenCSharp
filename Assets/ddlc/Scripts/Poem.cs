@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 namespace RenCSharp.Sequences
 {
     [CreateAssetMenu(menuName = "New Poem")]
@@ -9,6 +9,6 @@ namespace RenCSharp.Sequences
         [SerializeField, TextArea(4, 9)] private string poemText;
 
         public string PoemText;
-        public Font PoemFont;
+        public TMP_FontAsset PoemFont;
     }
 }
