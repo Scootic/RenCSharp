@@ -226,40 +226,43 @@ namespace RenCSharp
             while (dialogchars.Length > dialogField.text.Length && amended.Length > dialogField.text.Length && !jumpToEndDialog)
             {
                 //only run through text if the SM is unpaused
-                if (!paused)
+                while (paused) 
                 {
-                    t += Time.deltaTime;
-                    //add one character at a time, depending on text speed
-                    if (t >= curSpeed && i < dialogchars.Length)
-                    {
-                        t = 0;
+                    yield return null;
+                }
 
-                        if (dialogchars[i] == '<') //we've found a rich text tag
+                t += Time.deltaTime;
+                //add one character at a time, depending on text speed
+                if (t >= curSpeed && i < dialogchars.Length)
+                {
+                    t = 0;
+
+                    if (dialogchars[i] == '<') //we've found a rich text tag
+                    {
+                        string tag = "" + dialogchars[i];
+                        while (dialogchars[i] != '>')
                         {
-                            string tag = "" + dialogchars[i];
-                            while (dialogchars[i] != '>')
-                            {
-                                i++;
-                                tag += dialogchars[i];
-                            }
                             i++;
-                            
-                            if (!TagParser.Parse(tag)) //if it's not a tagparser tag, it's probably unity valid. add that boy back in.
-                            {
-                                dialogField.text += tag;
-                            }
-                            else //remove tags from the final display if it's being handled by tag parser
-                            {
-                                amended = Regex.Replace(amended, tag, "");
-                            }
+                            tag += dialogchars[i];
                         }
-                        else //just add the char and move on if it's a regular ah character
+                        i++;
+
+                        if (!TagParser.Parse(tag)) //if it's not a tagparser tag, it's probably unity valid. add that boy back in.
                         {
-                            dialogField.text += dialogchars[i];
-                            i++; 
+                            dialogField.text += tag;
+                        }
+                        else //remove tags from the final display if it's being handled by tag parser
+                        {
+                            amended = Regex.Replace(amended, tag, "");
                         }
                     }
+                    else //just add the char and move on if it's a regular ah character
+                    {
+                            dialogField.text += dialogchars[i];
+                            i++;
+                    }
                 }
+
                 yield return null;
             }
             //safety measure
