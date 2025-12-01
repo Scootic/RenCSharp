@@ -16,6 +16,10 @@ namespace RenCSharp
         private int sfxIndex = 0; //Store the current sfx index
 
         [Range(0, 1)] private float bgmVolMult = 0.5f, sfxVolMult = 0.5f, esfxVolMult = 0.5f; //volume multipliers
+        public float BGMVol => bgmVolMult;
+        public float SFXVol => sfxVolMult;
+        public float ESFXVol => esfxVolMult;
+        public AudioClip CurrentBGM => leMusic.clip;
 
         private void InitSFX()
         {
@@ -203,5 +207,11 @@ namespace RenCSharp
         }
         #endregion
 
+        public void ReceiveAudioSettings(SettingsToken st)
+        {
+            bgmVolMult = st.BGMVolume;
+            sfxVolMult = st.SFXVolume;
+            esfxVolMult = st.ESFXVolume;
+        }
     }
 }

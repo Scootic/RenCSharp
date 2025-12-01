@@ -26,6 +26,7 @@ namespace RenCSharp.Sequences
             go = Object_Factory.SpawnObject(actorToSpawn.ActorPrefab, actorToSpawn.ActorName, Script_Manager.SM.ActorHolder);
             go.transform.position += spawnOffset;
             UI_Element uie = go.GetComponent<UI_Element>();
+            Script_Manager.SM.activeActors.Add(actorToSpawn);
 
             for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
             {

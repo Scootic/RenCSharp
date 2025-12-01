@@ -7,12 +7,15 @@ namespace RenCSharp
     public struct ActorToken 
     {
         public float XPos, YPos, ZPos;
-
-        public ActorToken(Vector3 pos)
+        public string ActorAsset;
+        public int[] VisualIndexes;
+        public ActorToken(Vector3 pos, string ActorSO, int[] visualIndexes)
         {
             XPos = pos.x;
             YPos = pos.y;
             ZPos = pos.z;
+            ActorAsset = ActorSO;
+            VisualIndexes = visualIndexes;
         }
     }
 }

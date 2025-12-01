@@ -40,7 +40,8 @@ namespace RenCSharp.Sequences
         //?
         private void SwapBG()
         {
-            GameObject.Find("BG").GetComponent<Image>().sprite = newBG;
+            if (!Object_Factory.TryGetObject("Background", out GameObject go)) return;
+            go.GetComponent<Image>().sprite = newBG;
         }
 
         private void UnpauseSM()
