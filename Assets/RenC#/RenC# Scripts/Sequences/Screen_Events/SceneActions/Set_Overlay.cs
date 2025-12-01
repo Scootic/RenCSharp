@@ -22,7 +22,8 @@ namespace RenCSharp.Sequences
 
         public override void DoShit()
         {
-            overlay = Object_Factory.GetObject("Overlay").GetComponent<Image>();
+            if (!Object_Factory.TryGetObject("Overlay", out GameObject go)) return;
+            overlay = go.GetComponent<Image>();
             bloop = true;
             fadeImage = Script_Manager.SM.StartCoroutine(FadeIn(overlay, imagesToSet));
             if (endWithScreen && animate) Script_Manager.ProgressScreenEvent += PanicStop;

@@ -382,8 +382,7 @@ namespace RenCSharp
         {
             float t;
             float eval;
-            GameObject fella = Object_Factory.GetObject(curActor.ActorName);
-            if (fella == null)
+            if (!Object_Factory.TryGetObject(curActor.ActorName, out GameObject fella))
             {
                 yield break; //break out of routine if we can't find the gameobject we want
             }
