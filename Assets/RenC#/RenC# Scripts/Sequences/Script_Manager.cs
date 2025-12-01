@@ -426,7 +426,7 @@ namespace RenCSharp
 
             if(Object_Factory.TryGetObject("Overlay", out GameObject ov))
             {
-                Sprite leOV = ov.GetComponent<Image>().sprite;
+                Texture2D leOV = ov.GetComponent<Image>().sprite.texture;
                 AsyncOperationHandle curOV = Addressables.LoadResourceLocationsAsync(leOV.name);
                 curOV.WaitForCompletion();
                 if(curOV.Status == AsyncOperationStatus.Succeeded) st.OverlayAsset = (string)curOV.Result;
