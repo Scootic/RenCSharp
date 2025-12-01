@@ -820,6 +820,12 @@ MonoBehaviour:
     resultingSequence: {fileID: 11400000, guid: de6c4c10be8439e4fba72a0551eebac4, type: 2}
     requireCondition: 0
     conditions: []
+  myself:
+    m_AssetGUID: 993c959d6380590458c69d4002df6a99
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
   references:
     version: 2
     RefIds:
@@ -942,8 +948,8 @@ MonoBehaviour:
         actorToAlter: {fileID: 11400000, guid: 414f93f19d58bf04abb3de23b3a44ed7, type: 2}
         visualSpriteIndexes:
         - uniUp
-        - uniUp
-        - yanJoy
+        - uniDown
+        - smile
     - rid: 8612954489503350880
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1070,9 +1076,9 @@ MonoBehaviour:
       data:
         actorToAlter: {fileID: 11400000, guid: cd908b1d4341a3a499ce3d9070013ac2, type: 2}
         visualSpriteIndexes:
+        - uniUp
         - uniDown
-        - uniDown
-        - smile
+        - concernSpeak
     - rid: 8612954489503350900
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1080,7 +1086,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - uniDown
         - uniDown
-        - pitySmile
+        - concern
     - rid: 8612954489503350901
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1094,9 +1100,9 @@ MonoBehaviour:
       data:
         actorToAlter: {fileID: 11400000, guid: cd908b1d4341a3a499ce3d9070013ac2, type: 2}
         visualSpriteIndexes:
-        - uniUp
-        - uniUp
-        - grin
+        - uniDown
+        - uniDown
+        - concern2
     - rid: 8612954489503350904
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

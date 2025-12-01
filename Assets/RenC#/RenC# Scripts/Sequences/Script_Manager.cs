@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
-using static Codice.CM.Common.CmCallContext;
+using UnityEngine.ResourceManagement.ResourceLocations;
 namespace RenCSharp
 {
     /// <summary>
@@ -409,33 +409,31 @@ namespace RenCSharp
             manToSave.CurrentHistory = curHist;
 
             //grab the cursequence. horrid! USES THE ASSET REFERENcE WE DONE STORED. MAYBE IT WORK? MAYBE IT NO :)
-            AsyncOperationHandle curSequence = Addressables.LoadResourceLocationsAsync(currentSequence.Myself);
-            curSequence.WaitForCompletion();
-            if (curSequence.Status == AsyncOperationStatus.Succeeded)
-            {
-                manToSave.CurrentSequenceAsset = (string)curSequence.Result;
-            }
-            curSequence.Release();
+            manToSave.CurrentSequenceAsset = currentSequence.Myself.AssetGUID;
             //just uses an jackass asset thingie, good luck!
             if (Object_Factory.TryGetObject("Background", out GameObject bg)) 
             {
-                Sprite leBG = bg.GetComponent<Image>().sprite;
-                AsyncOperationHandle curBG = Addressables.LoadResourceLocationsAsync(leBG); //just uses the fucking guy as a thing.
+                Texture2D leBG = bg.GetComponent<Image>().sprite.texture;
+                AsyncOperationHandle curBG = Addressables.LoadResourceLocationsAsync(leBG.name); //just uses the fucking guy as a thing.
                 curBG.WaitForCompletion();
-                if (curBG.Status == AsyncOperationStatus.Succeeded) st.BackgroundAsset = (string)curBG.Result;
+                if (curBG.Status == AsyncOperationStatus.Succeeded) 
+                {
+                    IResourceLocation irl = curBG.Result as IResourceLocation;
+                    st.BackgroundAsset = irl.PrimaryKey; 
+                }
                 curBG.Release();
             }
 
             if(Object_Factory.TryGetObject("Overlay", out GameObject ov))
             {
                 Sprite leOV = ov.GetComponent<Image>().sprite;
-                AsyncOperationHandle curOV = Addressables.LoadResourceLocationsAsync(leOV);
+                AsyncOperationHandle curOV = Addressables.LoadResourceLocationsAsync(leOV.name);
                 curOV.WaitForCompletion();
                 if(curOV.Status == AsyncOperationStatus.Succeeded) st.OverlayAsset = (string)curOV.Result;
                 curOV.Release();
             }
 
-            AsyncOperationHandle curMus = Addressables.LoadResourceLocationsAsync(Audio_Manager.AM.CurrentBGM);
+            AsyncOperationHandle curMus = Addressables.LoadResourceLocationsAsync(Audio_Manager.AM.CurrentBGM.name);
             curMus.WaitForCompletion();
             if(curMus.Status == AsyncOperationStatus.Succeeded) st.MusicAsset = (string)curMus.Result;
             curMus.Release();
@@ -457,10 +455,7 @@ namespace RenCSharp
                         visualIndexes.Add(actor.Visuals[i].layer.IndexOf(uie.Images[i].sprite)); //HIDEOUS
                     }
                     newt.VisualIndexes = visualIndexes.ToArray();
-                    AsyncOperationHandle avtor = Addressables.LoadResourceLocationsAsync(actor.Myself);
-                    avtor.WaitForCompletion();
-                    if (avtor.Status == AsyncOperationStatus.Succeeded) newt.ActorAsset = (string)avtor.Result;
-                    avtor.Release();
+                    newt.ActorAsset = actor.Myself.AssetGUID;
 
                     actorTokens.Add(newt);
                 }
