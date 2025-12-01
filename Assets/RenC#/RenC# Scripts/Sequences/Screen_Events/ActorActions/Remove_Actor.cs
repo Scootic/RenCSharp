@@ -18,8 +18,9 @@ namespace RenCSharp.Sequences
         private GameObject fellaToRemove;
         public override void DoShit()
         {
+            if (!Object_Factory.TryGetObject(actorToRemove.ActorName, out fellaToRemove)) return;
+
             List<Image> imgPo = new();
-            fellaToRemove = Object_Factory.GetObject(actorToRemove.ActorName);
             Image img = fellaToRemove.transform.GetChild(0).GetComponent<Image>();
             imgPo.Add(img);
             for (int i = 1; i < actorToRemove.Visuals.Length; i++)

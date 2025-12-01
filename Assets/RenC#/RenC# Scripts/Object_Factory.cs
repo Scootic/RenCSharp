@@ -10,13 +10,14 @@ namespace RenCSharp
     {
         private static Dictionary<string, GameObject> activeGameObjects = new Dictionary<string, GameObject>();
 
-        public static GameObject GetObject(string name)
+        public static bool TryGetObject(string name, out GameObject GO)
         {
-            if (activeGameObjects.ContainsKey(name)) return activeGameObjects[name];
+            GO = null;
+            if (!activeGameObjects.ContainsKey(name)) return false; 
             else
             {
-                Debug.LogWarning("No active object of name: " + name);
-                return null;
+                GO = activeGameObjects[name];
+                return true;
             }
         }
 

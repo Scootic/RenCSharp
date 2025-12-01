@@ -20,9 +20,12 @@ namespace RenCSharp.Sequences
         private Coroutine fadeIn;
         public override void DoShit()
         {
-            GameObject spawnt = Object_Factory.SpawnObject(actorToSpawn.ActorPrefab, actorToSpawn.ActorName, Script_Manager.SM.ActorHolder);
-            spawnt.transform.position += spawnOffset;
-            UI_Element uie = spawnt.GetComponent<UI_Element>();
+            //don't spawn another of an actor that already exists. save/load moment?
+            if (Object_Factory.TryGetObject(actorToSpawn.ActorName, out GameObject go)) return;
+
+            go = Object_Factory.SpawnObject(actorToSpawn.ActorPrefab, actorToSpawn.ActorName, Script_Manager.SM.ActorHolder);
+            go.transform.position += spawnOffset;
+            UI_Element uie = go.GetComponent<UI_Element>();
 
             for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
             {
