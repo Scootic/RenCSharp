@@ -9,7 +9,6 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
-using UnityEngine.ResourceManagement.ResourceLocations;
 namespace RenCSharp
 {
     /// <summary>
@@ -104,7 +103,7 @@ namespace RenCSharp
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.L))
+            if (Input.GetKeyDown(KeyCode.L)) //temporary AF
             {
                 if (SaveLoad.TryLoad(saveFileName, out SaveData sd)) LoadShit(sd);
             }

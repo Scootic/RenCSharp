@@ -1,0 +1,188 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: Day2_ToSchool
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: 'Since she seemed so excited to walk with me yesterday, I decide to wait
+      for Sayori at her house like I used to. '
+    ScreenActions:
+    - rid: 9142197338057736278
+    - rid: 9142197338057736279
+  - speaker: {fileID: 0}
+    dialog: Hopefully, she won't be too much longer now...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Oh, there she is!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: '{mc}? Did you wait for me?'
+    ScreenActions:
+    - rid: 9142197338057736280
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Took you long enough. Let's get going.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Okay~!
+    ScreenActions:
+    - rid: 9142197338057736281
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Did you remember to bring your poem?
+    ScreenActions:
+    - rid: 9142197338057736282
+    - rid: 9142197338057736283
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Yeah? What kind of guy do you take me for?
+    ScreenActions:
+    - rid: 9142197338057736284
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I called you yesterday for help and everything, no way I'm forgetting
+      the poem.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Besides, aren't you the forgetful one out of the two of us?
+    ScreenActions:
+    - rid: 9142197338057736285
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Eh~? What's that supposed to mean, meanie!
+    ScreenActions:
+    - rid: 9142197338057736286
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Do I need to bring up the boiling water incident?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Hmph!
+    ScreenActions:
+    - rid: 9142197338057736287
+  - speaker: {fileID: 0}
+    dialog: Heh. That one never gets old!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: It really was a good thing I was there, or else her house might've actually
+      caught on fire.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 'Her parents made me dinner for a week as thanks for: "saving their precious
+      daughter."'
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: It's not like I wouldn't have died in that house fire too or anything.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Although, I'm not one to turn down free food.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: We arrive at the school and head our separate ways, only meeting back
+      up when it's club time.
+    ScreenActions:
+    - rid: 9142197338057736288
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: bf1d2d53700b47a43aea786b5101a6b0, type: 2}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: 7914ffa16480d2d4f955b7837bded96b
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 9142197338057736278
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: 36f7c6032a374db4a968c0e1236322e1, type: 3}
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9142197338057736279
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: ba13accb8b1fe3b47bb3401b0a6229b8, type: 3}
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9142197338057736280
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - uniUp
+        - uniDown
+        - surpriseSpeak
+        - EMPTY
+    - rid: 9142197338057736281
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - content
+    - rid: 9142197338057736282
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: 81bda4138dcd08548a14480d81972ff9, type: 3}
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9142197338057736283
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - smileSpeak
+    - rid: 9142197338057736284
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - content
+    - rid: 9142197338057736285
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - EMPTY
+        - EMPTY
+        - EMPTY
+        - lookAwayPout
+    - rid: 9142197338057736286
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - EMPTY
+        - EMPTY
+        - EMPTY
+        - pout
+    - rid: 9142197338057736287
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - EMPTY
+        - EMPTY
+        - EMPTY
+        - lookAwayPout
+    - rid: 9142197338057736288
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeTime: 0.5

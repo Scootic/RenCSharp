@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: Day2_clubStart
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9142197338057736289
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Hi again, {mc}!
+    ScreenActions:
+    - rid: 9142197338057736290
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Glad to see you didn't run away on us. Hahaha!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: You say that like there's something dangerous about this over-glorified
+      book club.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Oh crap- is there?!?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 0}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: bf1d2d53700b47a43aea786b5101a6b0
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 9142197338057736289
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9142197338057736290
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - EMPTY
+        - EMPTY
+        - EMPTY
+        - leanSmile
