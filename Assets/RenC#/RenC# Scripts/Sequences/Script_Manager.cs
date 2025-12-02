@@ -1,12 +1,15 @@
-using UnityEngine;
-using RenCSharp.Sequences;
 using RenCSharp.Actors;
-using UnityEngine.UI;
-using TMPro;
+using RenCSharp.Sequences;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System;
+using TMPro;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.UI;
+using UnityEngine.ResourceManagement.ResourceLocations;
 namespace RenCSharp
 {
     /// <summary>
@@ -37,6 +40,7 @@ namespace RenCSharp
         [SerializeField] private Transform actorHolder;
         [SerializeField] private AnimationCurve actorScalingKurve;
         private Actor curActor;
+        [HideInInspector] public List<Actor> activeActors = new();
 
         [Header("Overlay")]
         [SerializeField] private GameObject overlayPrefab; //should have a TMPro child
@@ -56,8 +60,14 @@ namespace RenCSharp
         [SerializeField] private bool auto = false;
         [SerializeField, Tooltip("How long the SM will linger on a screen while on auto.")] private float lingerTime = 0.5f;
         [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero.")] private byte historyLength = 10;
+        [SerializeField] private string saveFileName = "StupidFile";
 
-        private bool jumpToEndDialog = false, paused = false, historyOpen = false, menuOpen = false;
+        [Header("Databases")]
+        [SerializeField] private Sprite_Database overlayDatabase;
+        [SerializeField] private Sprite_Database backgroundDatabase;
+        [SerializeField] private Audio_Database audioDatabase;
+
+        private bool jumpToEndDialog = false, paused = false, historyOpen = false, menuOpen = false, loaded = false;
         private float curSpeed;
         private History curHist;
         private Dictionary<string, int> curFlags;
@@ -77,18 +87,27 @@ namespace RenCSharp
                 Destroy(this);
             }
 
-            curFlags = new Dictionary<string, int>(); //load save data if we found it?
-            curHist = new History(historyLength);
+            Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Image>();
+            Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform).GetComponent<Image>();//horrid
 
+            curFlags = new Dictionary<string, int>();
+            curHist = new History(historyLength);
+            curSpeed = textSpeed;
+
+            EndOfAllSequencesEvent += Application.Quit; //TEMPORARY THING
             SequencePausedEvent += ToggleDialogUI;
         }
-
-        void Start()
+        private void Start()
         {
-            Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder);
-            curSpeed = textSpeed;
             StartSequence();
-            EndOfAllSequencesEvent += Application.Quit; //TEMPORARY THING
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                if (SaveLoad.TryLoad(saveFileName, out SaveData sd)) LoadShit(sd);
+            }
         }
 
         private void OnDisable()
@@ -258,8 +277,8 @@ namespace RenCSharp
                     }
                     else //just add the char and move on if it's a regular ah character
                     {
-                            dialogField.text += dialogchars[i];
-                            i++;
+                        dialogField.text += dialogchars[i];
+                        i++;
                     }
                 }
 
@@ -376,6 +395,141 @@ namespace RenCSharp
                 speaker = tSpeaker;
                 text = tDialog;
             }
+        }
+        #endregion
+        #region SaveLoadHandling
+        public void SaveShit(int fileIndex)
+        {
+            if(overlayDatabase == null || backgroundDatabase == null || audioDatabase == null)
+            {
+                Debug.LogWarning("You're a missing a database, you damned fool! I refuse to save under these working conditions!");
+                return;
+            }
+
+            SaveData manToSave = new SaveData();
+            ScreenToken st = new ScreenToken();
+            SettingsToken std = new SettingsToken(); //grab settings
+            std.TextSpeed = textSpeed;
+            std.SFXVolume = Audio_Manager.AM.SFXVol;
+            std.BGMVolume = Audio_Manager.AM.BGMVol;
+            std.ESFXVolume = Audio_Manager.AM.ESFXVol;
+
+            manToSave.CurrentSettings = std;
+            manToSave.CurrentScreenIndex = curScreenIndex; //:)
+            manToSave.PlayerName = playerName;
+            manToSave.CurrentFlags = new FlagToken(curFlags);
+            manToSave.CurrentHistory = curHist;
+
+            //grab the cursequence. horrid! USES THE ASSET REFERENcE WE DONE STORED. MAYBE IT WORK? MAYBE IT NO :)
+            manToSave.CurrentSequenceAsset = currentSequence.Myself.AssetGUID;
+
+            if (Object_Factory.TryGetObject("Background", out GameObject bg)) 
+            {
+                Image image = bg.GetComponent<Image>();
+                st.BackgroundAssetIndex = backgroundDatabase.Sprites.IndexOf(image.sprite);
+            }
+
+            if(Object_Factory.TryGetObject("Overlay", out GameObject ov))
+            {
+                Image image = ov.GetComponent<Image>();
+                st.OverlayAssetIndex = overlayDatabase.Sprites.IndexOf(image.sprite);
+            }
+
+            st.MusicAssetIndex = audioDatabase.Sounds.IndexOf(Audio_Manager.AM.CurrentBGM);
+
+            List<ActorToken> actorTokens = new();
+
+            foreach (Actor actor in activeActors)
+            {
+                if (Object_Factory.TryGetObject(actor.ActorName, out GameObject go))
+                {
+                    ActorToken newt = new();
+                    UI_Element uie = go.GetComponent<UI_Element>();
+                    newt.XPos = go.transform.position.x;
+                    newt.YPos = go.transform.position.y;
+                    newt.ZPos = go.transform.position.z;
+                    List<int> visualIndexes = new();
+                    for (int i = 0; i < uie.Images.Length; i++)
+                    {
+                        visualIndexes.Add(actor.Visuals[i].layer.IndexOf(uie.Images[i].sprite)); //HIDEOUS
+                    }
+                    newt.VisualIndexes = visualIndexes.ToArray();
+                    newt.ActorAsset = actor.Myself.AssetGUID;
+                    Debug.Log("ActorToken I'm adding to list: \n" + newt.ToString());
+                    actorTokens.Add(newt);
+                }
+            }
+
+            st.ActiveActors = actorTokens;
+            manToSave.ScreenInformation = st;
+
+            SaveLoad.Save(saveFileName, manToSave);
+        }
+
+        public void LoadShit(SaveData sd)
+        {
+            //wipe the brown poops
+            StopAllCoroutines();
+            Object_Factory.ScrubDictionary();
+
+            Image ov = Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Image>();
+            Image bg = Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform).GetComponent<Image>();
+
+            loaded = true; //???
+            //apply settings
+            SettingsToken st = sd.CurrentSettings;
+            textSpeed = st.TextSpeed;
+            Audio_Manager.AM.ReceiveAudioSettings(st);
+
+            //grab flags
+            FlagToken ft = sd.CurrentFlags;
+            for (int i = 0; i < ft.FlagIDs.Count; i++)
+            {
+                curFlags.Add(ft.FlagIDs[i], ft.FlagValues[i]);
+            }
+
+            //grab history
+            curHist = sd.CurrentHistory;
+
+            //grab playername from file
+            playerName = sd.PlayerName;
+
+            //grab assets
+            curScreenIndex = sd.CurrentScreenIndex;
+            ScreenToken std = sd.ScreenInformation;
+            AsyncOperationHandle SequenceAsset;
+
+            ov.sprite = overlayDatabase.Sprites[std.OverlayAssetIndex];
+            bg.sprite = backgroundDatabase.Sprites[std.BackgroundAssetIndex];
+            Audio_Manager.AM.PlayBGM(audioDatabase.Sounds[std.MusicAssetIndex], 1f, true, true);
+
+            SequenceAsset = Addressables.LoadAssetAsync<Sequence>(sd.CurrentSequenceAsset);
+
+            foreach (ActorToken at in std.ActiveActors) //spawn in all of the actors that were chillin' like villain before
+            {
+                AsyncOperationHandle ActorSO = Addressables.LoadAssetAsync<Actor>(at.ActorAsset);
+                ActorSO.WaitForCompletion();
+                if (ActorSO.Status == AsyncOperationStatus.Succeeded)
+                {
+                    Actor guy = (Actor)ActorSO.Result;
+                    UI_Element uie = Object_Factory.SpawnObject(guy.ActorPrefab, guy.ActorName, actorHolder).GetComponent<UI_Element>();
+                    for (int i = 0; i < at.VisualIndexes.Length; i++)
+                    {
+                        uie.Images[i].sprite = guy.Visuals[i].layer[at.VisualIndexes[i]];
+                    }
+                    uie.transform.position = new Vector3(at.XPos, at.YPos, at.ZPos);
+                }
+                else
+                {
+                    ActorSO.Release();
+                }
+            }
+
+            SequenceAsset.WaitForCompletion();
+            if (SequenceAsset.Status == AsyncOperationStatus.Succeeded) currentSequence = (Sequence)SequenceAsset.Result;
+            else SequenceAsset.Release();
+
+            StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
         }
         #endregion
         private IEnumerator ScaleActor(bool up, float scaleTime) //used if autoSpeakerFocus is true in a sequence
