@@ -62,6 +62,11 @@ namespace RenCSharp
         [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero.")] private byte historyLength = 10;
         [SerializeField] private string saveFileName = "StupidFile";
 
+        [Header("Databases")]
+        [SerializeField] private Sprite_Database overlayDatabase;
+        [SerializeField] private Sprite_Database backgroundDatabase;
+        [SerializeField] private Audio_Database audioDatabase;
+
         private bool jumpToEndDialog = false, paused = false, historyOpen = false, menuOpen = false, loaded = false;
         private float curSpeed;
         private History curHist;
@@ -84,24 +89,25 @@ namespace RenCSharp
 
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Image>();
             Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform).GetComponent<Image>();//horrid
-            curFlags = new Dictionary<string, int>();
 
-            if (SaveLoad.TryLoad(saveFileName, out SaveData sd)) //if we found ourselves some valid save data, probably stoid to have here
-            {
-                LoadShit(sd);
-            }
-            else
-            {
-                curHist = new History(historyLength);
-            }
+            curFlags = new Dictionary<string, int>();
+            curHist = new History(historyLength);
             curSpeed = textSpeed;
+
             EndOfAllSequencesEvent += Application.Quit; //TEMPORARY THING
             SequencePausedEvent += ToggleDialogUI;
         }
         private void Start()
         {
-            if (!loaded) StartSequence();
-            else StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
+            StartSequence();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                if (SaveLoad.TryLoad(saveFileName, out SaveData sd)) LoadShit(sd);
+            }
         }
 
         private void OnDisable()
@@ -394,6 +400,12 @@ namespace RenCSharp
         #region SaveLoadHandling
         public void SaveShit(int fileIndex)
         {
+            if(overlayDatabase == null || backgroundDatabase == null || audioDatabase == null)
+            {
+                Debug.LogWarning("You're a missing a database, you damned fool! I refuse to save under these working conditions!");
+                return;
+            }
+
             SaveData manToSave = new SaveData();
             ScreenToken st = new ScreenToken();
             SettingsToken std = new SettingsToken(); //grab settings
@@ -410,33 +422,20 @@ namespace RenCSharp
 
             //grab the cursequence. horrid! USES THE ASSET REFERENcE WE DONE STORED. MAYBE IT WORK? MAYBE IT NO :)
             manToSave.CurrentSequenceAsset = currentSequence.Myself.AssetGUID;
-            //just uses an jackass asset thingie, good luck!
+
             if (Object_Factory.TryGetObject("Background", out GameObject bg)) 
             {
-                Texture2D leBG = bg.GetComponent<Image>().sprite.texture;
-                AsyncOperationHandle curBG = Addressables.LoadResourceLocationsAsync(leBG.name); //just uses the fucking guy as a thing.
-                curBG.WaitForCompletion();
-                if (curBG.Status == AsyncOperationStatus.Succeeded) 
-                {
-                    IResourceLocation irl = curBG.Result as IResourceLocation;
-                    st.BackgroundAsset = irl.PrimaryKey; 
-                }
-                curBG.Release();
+                Image image = bg.GetComponent<Image>();
+                st.BackgroundAssetIndex = backgroundDatabase.Sprites.IndexOf(image.sprite);
             }
 
             if(Object_Factory.TryGetObject("Overlay", out GameObject ov))
             {
-                Texture2D leOV = ov.GetComponent<Image>().sprite.texture;
-                AsyncOperationHandle curOV = Addressables.LoadResourceLocationsAsync(leOV.name);
-                curOV.WaitForCompletion();
-                if(curOV.Status == AsyncOperationStatus.Succeeded) st.OverlayAsset = (string)curOV.Result;
-                curOV.Release();
+                Image image = ov.GetComponent<Image>();
+                st.OverlayAssetIndex = overlayDatabase.Sprites.IndexOf(image.sprite);
             }
 
-            AsyncOperationHandle curMus = Addressables.LoadResourceLocationsAsync(Audio_Manager.AM.CurrentBGM.name);
-            curMus.WaitForCompletion();
-            if(curMus.Status == AsyncOperationStatus.Succeeded) st.MusicAsset = (string)curMus.Result;
-            curMus.Release();
+            st.MusicAssetIndex = audioDatabase.Sounds.IndexOf(Audio_Manager.AM.CurrentBGM);
 
             List<ActorToken> actorTokens = new();
 
@@ -456,24 +455,27 @@ namespace RenCSharp
                     }
                     newt.VisualIndexes = visualIndexes.ToArray();
                     newt.ActorAsset = actor.Myself.AssetGUID;
-
+                    Debug.Log("ActorToken I'm adding to list: \n" + newt.ToString());
                     actorTokens.Add(newt);
                 }
             }
 
             st.ActiveActors = actorTokens;
+            manToSave.ScreenInformation = st;
 
             SaveLoad.Save(saveFileName, manToSave);
         }
 
         public void LoadShit(SaveData sd)
         {
-            Object_Factory.TryGetObject("Overlay", out GameObject over);
-            Object_Factory.TryGetObject("Background", out GameObject bground);
-            Image ov = over.GetComponent<Image>();
-            Image bg = bground.GetComponent<Image>();
+            //wipe the brown poops
+            StopAllCoroutines();
+            Object_Factory.ScrubDictionary();
 
-            loaded = true;
+            Image ov = Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Image>();
+            Image bg = Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform).GetComponent<Image>();
+
+            loaded = true; //???
             //apply settings
             SettingsToken st = sd.CurrentSettings;
             textSpeed = st.TextSpeed;
@@ -495,16 +497,13 @@ namespace RenCSharp
             //grab assets
             curScreenIndex = sd.CurrentScreenIndex;
             ScreenToken std = sd.ScreenInformation;
-            AsyncOperationHandle OverlayAsset, SequenceAsset, BGAsset, BGMAsset;
+            AsyncOperationHandle SequenceAsset;
 
-            OverlayAsset = Addressables.LoadAssetAsync<Sprite>(std.OverlayAsset);
-            BGAsset = Addressables.LoadAssetAsync<Sprite>(std.BackgroundAsset);
+            ov.sprite = overlayDatabase.Sprites[std.OverlayAssetIndex];
+            bg.sprite = backgroundDatabase.Sprites[std.BackgroundAssetIndex];
+            Audio_Manager.AM.PlayBGM(audioDatabase.Sounds[std.MusicAssetIndex], 1f, true, true);
+
             SequenceAsset = Addressables.LoadAssetAsync<Sequence>(sd.CurrentSequenceAsset);
-            BGMAsset = Addressables.LoadAssetAsync<AudioClip>(std.MusicAsset);
-
-            OverlayAsset.Completed += h => { ov.sprite = (Sprite)h.Result; };
-            BGAsset.Completed += h => { bg.sprite = (Sprite)h.Result; };
-            BGMAsset.Completed += h => { Audio_Manager.AM.PlayBGM((AudioClip)h.Result, 2f, true, false); };
 
             foreach (ActorToken at in std.ActiveActors) //spawn in all of the actors that were chillin' like villain before
             {
@@ -529,6 +528,8 @@ namespace RenCSharp
             SequenceAsset.WaitForCompletion();
             if (SequenceAsset.Status == AsyncOperationStatus.Succeeded) currentSequence = (Sequence)SequenceAsset.Result;
             else SequenceAsset.Release();
+
+            StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
         }
         #endregion
         private IEnumerator ScaleActor(bool up, float scaleTime) //used if autoSpeakerFocus is true in a sequence

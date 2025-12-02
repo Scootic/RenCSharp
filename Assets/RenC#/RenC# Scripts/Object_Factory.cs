@@ -43,6 +43,10 @@ namespace RenCSharp
         /// </summary>
         public static void ScrubDictionary()
         {
+            foreach(KeyValuePair<string,GameObject> kvp in activeGameObjects)
+            {
+                GameObject.Destroy(kvp.Value);
+            }
             activeGameObjects = new Dictionary<string, GameObject>();
         }
     }
