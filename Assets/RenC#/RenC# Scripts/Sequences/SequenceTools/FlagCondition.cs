@@ -14,7 +14,6 @@ namespace RenCSharp
         [SerializeField] private int desiredValue;
         [Header("BITWISE")]
         [SerializeField, Tooltip("Decides if you're comparing bits. Only cares about equalling, since it's just 0 and 1.")] private bool bitWise;
-        [SerializeField, Tooltip("Does a left shift operation. 0 would be the 1 bit, 1 would be 2 bit, 2 would be 4 bit, etc.")] private byte bitToCheck;
 
         public bool ConditionMet()
         {
@@ -46,15 +45,14 @@ namespace RenCSharp
             }
             else
             {
-                int mask = 1 << bitToCheck;
-                Debug.Log("Bitwise mask & foundvalue: " + (foundVal & mask));
+                Debug.Log("Bitwise flag & desiredValue: " + (foundVal & desiredValue));
                 switch (operation)
                 {
                     case ConditionalOperator.Equals:
-                        if ((foundVal & mask) == 1) met = true;
+                        if ((foundVal & desiredValue) == desiredValue) met = true;
                         break;
                     case ConditionalOperator.NotEqual:
-                        if ((foundVal & mask) == 0) met = true;
+                        if ((foundVal & desiredValue) != desiredValue) met = true;
                         break;
                     default:
                         Debug.LogWarning("Only Equals and NotEqual operations are supported for bitwise flag conditions");
