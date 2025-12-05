@@ -67,7 +67,7 @@ namespace RenCSharp.Sequences
         {
             if(motion != null) Script_Manager.SM.StopCoroutine(motion);
             //if it's a loop motion, the implication is that the actor should end in the place they started whenever the next screen happens
-            actorObj.transform.position = loopOnScreen ? ogPos : desPos;
+            if(actorObj != null) actorObj.transform.position = loopOnScreen ? ogPos : desPos;
         }
 
         public override string ToString()
