@@ -66,7 +66,7 @@ namespace RenCSharp
         [SerializeField] private Sprite_Database backgroundDatabase;
         [SerializeField] private Audio_Database audioDatabase;
 
-        private bool jumpToEndDialog = false, paused = false, historyOpen = false, menuOpen = false, loaded = false;
+        private bool jumpToEndDialog = false, paused = false, historyOpen = false, menuOpen = false;
         private float curSpeed;
         private History curHist;
         private Dictionary<string, int> curFlags;
@@ -474,7 +474,6 @@ namespace RenCSharp
             Image ov = Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Image>();
             Image bg = Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform).GetComponent<Image>();
 
-            loaded = true; //???
             //apply settings
             SettingsToken st = sd.CurrentSettings;
             textSpeed = st.TextSpeed;
