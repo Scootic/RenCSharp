@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: Day2_clubMid
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: I decide to pass the time reading the book Yuri just gave me.
+    ScreenActions:
+    - rid: 9142197513939845223
+    - rid: 9142197513939845224
+  - speaker: {fileID: 0}
+    dialog: '"The Portrait of Markov"...'
+    ScreenActions:
+    - rid: 9142197513939845226
+  - speaker: {fileID: 0}
+    dialog: The cover alone is pretty spooky.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 0}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: 1a46831f712f170428e6b5b23533ed5b
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 9142197513939845223
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9142197513939845224
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 07169a44e565b2e46a97c1e0d18c4997, type: 3}
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9142197513939845226
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: 98d1320cc1454004689c3193fdd4e372, type: 3}
+        overlayText: 
+        fadeTime: 0.5
+        animate: 0
+        endWithScreen: 1
+        secondsPerFrame: 0.1
