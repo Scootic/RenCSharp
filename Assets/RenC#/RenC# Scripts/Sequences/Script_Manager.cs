@@ -483,6 +483,7 @@ namespace RenCSharp
 
             //grab flags
             FlagToken ft = sd.CurrentFlags;
+            curFlags = new Dictionary<string, int>();
             for (int i = 0; i < ft.FlagIDs.Count; i++)
             {
                 curFlags.Add(ft.FlagIDs[i], ft.FlagValues[i]);
