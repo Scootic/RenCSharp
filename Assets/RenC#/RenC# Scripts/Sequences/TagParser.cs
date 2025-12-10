@@ -8,6 +8,35 @@ namespace RenCSharp.Sequences
     {
         private static Type tp = typeof(TagParser);
         private static TagParser instance = new TagParser();
+        /// <summary>
+        /// Removes any tag parser tags from a string. Ideally also fires those tag's affects, so that any expected behavior still occurs.
+        /// </summary>
+        /// <param name="sToClean">String you want scrubbed.</param>
+        /// <returns>The string minus any TagParser valid tags.</returns>
+        public static string CleanOutTags(string sToClean) 
+        {
+            string sToReturn = "";
+
+            char[] chars = sToClean.ToCharArray();
+            for(int i = 0; i < chars.Length; i++)
+            {
+                if (chars[i] != '<') sToReturn += chars[i];
+                else
+                {
+                    string possibleTag = "";
+                    while (chars[i] != '>') //probably dangerous if you just include a random ass '<'. careful!
+                    {
+                        possibleTag += chars[i];
+                        i++;
+                    }
+                    possibleTag += chars[i];
+                    if (!Parse(possibleTag)) sToReturn += possibleTag;
+                }
+            }
+
+            return sToReturn;
+        }
+
         public static bool Parse(string tag)
         {
             string[] split = Regex.Split(tag, "[=,]"); //0 should be function name, 1+ is arguments

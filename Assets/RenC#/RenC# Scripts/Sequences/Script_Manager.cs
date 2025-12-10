@@ -287,7 +287,7 @@ namespace RenCSharp
             //safety measure
             StartCoroutine(FlashButton(curScreenIndex));
             jumpToEndDialog = true;
-            dialogField.text = amended;
+            dialogField.text = TagParser.CleanOutTags(amended);
 
             if (auto) yield return AutoProgress(curScreenIndex);
         }
@@ -512,7 +512,9 @@ namespace RenCSharp
                 if (ActorSO.Status == AsyncOperationStatus.Succeeded)
                 {
                     Actor guy = (Actor)ActorSO.Result;
-                    UI_Element uie = Object_Factory.SpawnObject(guy.ActorPrefab, guy.ActorName, actorHolder).GetComponent<UI_Element>();
+                    GameObject go = Object_Factory.SpawnObject(guy.ActorPrefab, guy.ActorName, actorHolder);
+                    if (go == null) continue;
+                    UI_Element uie = go.GetComponent<UI_Element>();
                     for (int i = 0; i < at.VisualIndexes.Length; i++)
                     {
                         uie.Images[i].sprite = guy.Visuals[i].layer[at.VisualIndexes[i]];
