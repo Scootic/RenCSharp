@@ -172,6 +172,7 @@ namespace RenCSharp
 
                     if (firstPc.ChoiceText != string.Empty)
                     {
+                        PauseSequence();
                         //spawn player choice buttons, and assign accordingly
                         foreach (Player_Choice pc in currentSequence.PlayerChoices)
                         {
@@ -179,7 +180,7 @@ namespace RenCSharp
 
                             Button b = Instantiate(playerchoicePrefab, playerchoiceHolder);
                             b.GetComponentInChildren<TextMeshProUGUI>().text = pc.ChoiceText;
-                            b.onClick.AddListener(delegate { LoadASequence(pc.ResultingSequence); });
+                            b.onClick.AddListener(delegate { LoadASequence(pc.ResultingSequence); UnpauseSequence(); });
                         }
                     }
                     //if the first choice has no choice text, and conditionallity is good, do that shit.
