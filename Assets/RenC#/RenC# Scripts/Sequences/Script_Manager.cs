@@ -310,10 +310,10 @@ namespace RenCSharp
             if (curFlags.ContainsKey(id)) curFlags[id] = val;
             else curFlags.Add(id, val);
         }
-        //defaults to negative one if there's no id in the dictionary, please be careful of manually setting and checking negative values.
+        //defaults to zero if there's no flag in flag data.
         public int GetFlag(string id)
         {
-            int val = -1;
+            int val = 0;
 
             if (curFlags.ContainsKey(id)) val = curFlags[id];
 
