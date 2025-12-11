@@ -1,0 +1,185 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: Day2_clubEnd
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Phew...
+    ScreenActions:
+    - rid: 9142197538487533779
+  - speaker: {fileID: 0}
+    dialog: All club members have been accounted for.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Since I've got no one left to share a poem with, I look around the room.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Sayori and Monika are happily chatting at one end of the room.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: On the other end, I spot Yuri and Natsuki.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: They gingerly exchange sheets of paper, which I assume are their poems.
+    ScreenActions:
+    - rid: 9142197538487533780
+    - rid: 9142197538487533781
+  - speaker: {fileID: 0}
+    dialog: As they read in tandem, I can watch their expressions change in real
+      time.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Natsuki's eyebrows furrow in frustration.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Meanwhile, Yuri smiles sadly.
+    ScreenActions:
+    - rid: 9142197538487533782
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: <i>(What's with this language...?)</i>
+    ScreenActions:
+    - rid: 9142197538487533783
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Eh?
+    ScreenActions:
+    - rid: 9142197538487533784
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Um... did you say something?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Oh, it's nothing.
+    ScreenActions:
+    - rid: 9142197538487533785
+  - speaker: {fileID: 0}
+    dialog: Natsuki dismissively returns the poem to the desk with one hand.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: I guess you could say it's fancy.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Ah- thanks.
+    ScreenActions:
+    - rid: 9142197538487533786
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Yours is... cute...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I gasp! She said the "c" word!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Cute?
+    ScreenActions:
+    - rid: 9142197538487533787
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Did you completely miss the symbolism or something?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: It's clearly about the feeling of giving up.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: How can that be cute?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 0}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: b66f1b6f8b828c44683b87e949d18d61
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 9142197538487533779
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 51f2b1be4fb05b142acbbe506e86b1d2, type: 3}
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9142197538487533780
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - scowl
+        - EMPTY
+    - rid: 9142197538487533781
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - uniDown
+        - uniUp
+        - pondering
+        - EMPTY
+    - rid: 9142197538487533782
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniUp
+        - lookAwayPity
+    - rid: 9142197538487533783
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - uniSmug
+        - uniSmug
+        - lookAwaySpeak
+    - rid: 9142197538487533784
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - inquisitiveSpeak
+    - rid: 9142197538487533785
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniSmug
+        - grumpySpeak2
+    - rid: 9142197538487533786
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - lookAwaySmile
+    - rid: 9142197538487533787
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - uniSmug
+        - uniSmug
+        - grumpySpeak

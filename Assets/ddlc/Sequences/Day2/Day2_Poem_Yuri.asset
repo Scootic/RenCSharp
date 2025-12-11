@@ -12,15 +12,526 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
   m_Name: Day2_Poem_Yuri
   m_EditorClassIdentifier: 
-  autoFocusSpeaker: 0
-  screens: []
-  playerChoices: []
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: I guess I'll show Yuri my poem.
+    ScreenActions:
+    - rid: 9142197538487533568
+  - speaker: {fileID: 0}
+    dialog: 'If her spiel about: "true writing being from the heart" is anything
+      to go by, she should probably have good advice.'
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Hey, Yuri. Wanna check out my poem?
+    ScreenActions:
+    - rid: 9142197538487533638
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Sure, was this your first time writing a poem?
+    ScreenActions:
+    - rid: 9142197538487533644
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: That's right. Go easy on me, please.
+    ScreenActions:
+    - rid: 9142197538487533645
+  - speaker: {fileID: 0}
+    dialog: Yuri's reading my poem...
+    ScreenActions:
+    - rid: 9142197538487533646
+    - rid: 9142197538487533647
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 9142197538487533648
+    - rid: 9142197538487533650
+    - rid: 9142197538487533651
+  - speaker: {fileID: 0}
+    dialog: Yuri's been reading my poem for a while now.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I kind of thought she'd be a faster reader than this, considering that's
+      her major hobby.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Uh, Yuri? Are you done?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Hmm? Oh, sorry.
+    ScreenActions:
+    - rid: 9142197538487533658
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I was just thinking how I should approach this.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Was it really that bad?
+    ScreenActions:
+    - rid: 9142197538487533659
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Not for a first poem, no...
+    ScreenActions:
+    - rid: 9142197538487533660
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Dang. Alright, just lay it on me.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Well...
+    ScreenActions:
+    - rid: 9142197538487533661
+  - speaker: {fileID: 0}
+    dialog: Oh no.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: There was certainly an attempt made at imagery.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Is it safe to say that you meant to compare projectors to people in this
+      poem?
+    ScreenActions:
+    - rid: 9142197538487533663
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Yeah. The last line kind of makes that obvious.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: See, I was having trouble getting ideas for my poem, so Sayori told me
+      to find something in my room.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I'm sure you can guess what happened from there.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Anyway, I wrote out some prose about the projector, but I didn't really
+      know where to go with it, if that makes sense.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: So I sort of just made it about people at the end.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Hmm... it isn't bad to have a poem's meaning change over time, but you
+      should probably edit it so that the meaning is cohesive when you're done.
+    ScreenActions:
+    - rid: 9142197538487533664
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Yeah, probably.
+    ScreenActions:
+    - rid: 9142197538487533665
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Anyway, new writers usually try to make their style very deliberate.
+    ScreenActions:
+    - rid: 9142197538487533666
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Which can clash with the subject matter of the poem.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I don't think you suffer from this per se, but it's something to watch
+      out for.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Just keep practicing, {mc}. Hopefully the other club members can give
+      you good perspectives too.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Natsuki can be a little biased, though...
+    ScreenActions:
+    - rid: 9142197538487533667
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Biased? Isn't everybody at least a little biased, though?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Hmm... well... nevermind.
+    ScreenActions:
+    - rid: 9142197538487533668
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: You're right, I shouldn't be talking about people like that... Sorry.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Hrm. Do you mind if I read your poem now?
+    ScreenActions:
+    - rid: 9142197538487533669
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Please do!
+    ScreenActions:
+    - rid: 9142197538487533670
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I'd love to share my thought process behind it...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: The thought of that seems to bring Yuri great joy. Good for her.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: We do a lil' reading...
+    ScreenActions:
+    - rid: 9142197538487533671
+    - rid: 9142197538487533672
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 9142197538487533673
+    - rid: 9142197538487533674
+    - rid: 9142197538487533675
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I-I-I'm sorry I have such terrible handwriting!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: What?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: You really don't, but apology accepted, I guess?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Anyway, I liked your poem.
+    ScreenActions:
+    - rid: 9142197538487533676
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: There seems to be a theme of dwindling nostalgia in there, is that right?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Huhu! Something like that.
+    ScreenActions:
+    - rid: 9142197538487533677
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: It's about the subject lingering in her last remaining place of comfort,
+      unable to let go of the past.
+    ScreenActions:
+    - rid: 9142197538487533678
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: And soon to be left with nothing...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... the truest form of writing is writing for oneself...?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Does... does that come from the heart, Yuri?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: E-eh?!?
+    ScreenActions:
+    - rid: 9142197538487533679
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I-I-I... uuhhh...
+    ScreenActions:
+    - rid: 9142197538487533680
+  - speaker: {fileID: 0}
+    dialog: ... I'll take that as a yes...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Hey, we're all going through something, yeah? I didn't mean any harm
+      by it.
+    ScreenActions:
+    - rid: 9142197538487533681
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 9142197538487533682
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: It really was a good poem. I could see those street lights in my mind's
+      eye.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: You've got a talent for imagery, Yuri.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 9142197538487533683
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Thanks, {mc}.
+    ScreenActions:
+    - rid: 9142197538487533684
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I was honestly nervous about this, but in the end it wasn't so bad.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I'm going to keep doing my best for you, {mc}.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... for me?!?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Sure. Maybe tomorrow I'll have something good for you to look at!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9142197538487533685
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: 5a134f5da8e13f142bd92c848e63bfde, type: 2}
+    requireCondition: 0
+    conditions: []
   myself:
-    m_AssetGUID: 
+    m_AssetGUID: 494763f7336d38540b2e5d7f2168a0ba
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 9142197538487533568
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: Day2Poem
+        flagValue: 4
+        increment: 1
+    - rid: 9142197538487533638
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - smile
+        - EMPTY
+    - rid: 9142197538487533644
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - smileSpeak
+    - rid: 9142197538487533645
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - pitySmile
+    - rid: 9142197538487533646
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: bc23e4f3ce7edb94d8ba1d16f34f47d2, type: 3}
+        fadeTime: 1
+        setToSameTime: 1
+    - rid: 9142197538487533647
+      type: {class: Spawn_Poem, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        poemToSpawn: {fileID: 11400000, guid: 098107c5e04a9a84ea7a5d99eca92968, type: 2}
+        poemGOFab: {fileID: 5290200269201261796, guid: 6d6393fac9e8d974d9c9e622079f890f, type: 3}
+    - rid: 9142197538487533648
+      type: {class: Remove_Poem, ns: RenCSharp.Sequences, asm: Sequences}
+      data: 
+    - rid: 9142197538487533650
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: f69b9b9960adff94fb7e37dcda38ce7a, type: 3}
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9142197538487533651
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - pondering
+    - rid: 9142197538487533658
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - ponderingSpeak
+    - rid: 9142197538487533659
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - lookAwayPity
+    - rid: 9142197538487533660
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - pitySmile
+    - rid: 9142197538487533661
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - sighSpeak
+    - rid: 9142197538487533663
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - pitySmile
+    - rid: 9142197538487533664
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - pitySpeak
+    - rid: 9142197538487533665
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - pitySmile
+    - rid: 9142197538487533666
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - smileSpeak
+    - rid: 9142197538487533667
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - sighSpeak
+    - rid: 9142197538487533668
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - lookAwaySmileSpeak
+    - rid: 9142197538487533669
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - smile
+    - rid: 9142197538487533670
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - eyesClosedContent
+    - rid: 9142197538487533671
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 4a71d7d4761d8ff4b9ba30acd9483c03, type: 3}
+        fadeTime: 1
+        setToSameTime: 1
+    - rid: 9142197538487533672
+      type: {class: Spawn_Poem, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        poemToSpawn: {fileID: 11400000, guid: 6d6520326ee4f694090350bb51d70093, type: 2}
+        poemGOFab: {fileID: 5290200269201261796, guid: 6d6393fac9e8d974d9c9e622079f890f, type: 3}
+    - rid: 9142197538487533673
+      type: {class: Remove_Poem, ns: RenCSharp.Sequences, asm: Sequences}
+      data: 
+    - rid: 9142197538487533674
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: f69b9b9960adff94fb7e37dcda38ce7a, type: 3}
+        fadeTime: 1
+        setToSameTime: 1
+    - rid: 9142197538487533675
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - pitySpeak
+    - rid: 9142197538487533676
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - smile
+    - rid: 9142197538487533677
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - smileSpeak
+    - rid: 9142197538487533678
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - sighSpeak
+    - rid: 9142197538487533679
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - shock
+    - rid: 9142197538487533680
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - EMPTY
+        - EMPTY
+        - shyRegret
+        - uniHairPlay
+    - rid: 9142197538487533681
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - EMPTY
+        - EMPTY
+        - shySurprise
+        - uniHairPlay
+    - rid: 9142197538487533682
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - pitySpeak
+        - EMPTY
+    - rid: 9142197538487533683
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - sighSpeak
+    - rid: 9142197538487533684
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - pitySmile
+    - rid: 9142197538487533685
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeTime: 0.5

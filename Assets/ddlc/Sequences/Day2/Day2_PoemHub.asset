@@ -24,7 +24,7 @@ MonoBehaviour:
     ScreenActions: []
   playerChoices:
   - choiceText: Sayori
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 55cb6761e41e7254f8985af348243895, type: 2}
     requireCondition: 1
     conditions:
     - flagToCheck: Day2Poem
@@ -32,7 +32,7 @@ MonoBehaviour:
       desiredValue: 1
       bitWise: 1
   - choiceText: Natsuki
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 387bcb72e7fcaf6419602b5917f4ab2d, type: 2}
     requireCondition: 1
     conditions:
     - flagToCheck: Day2Poem
@@ -40,7 +40,7 @@ MonoBehaviour:
       desiredValue: 2
       bitWise: 1
   - choiceText: Yuri
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 494763f7336d38540b2e5d7f2168a0ba, type: 2}
     requireCondition: 1
     conditions:
     - flagToCheck: Day2Poem
@@ -48,7 +48,7 @@ MonoBehaviour:
       desiredValue: 4
       bitWise: 1
   - choiceText: Monika
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 7f2935f4b5a331c46bc047cf6d666fba, type: 2}
     requireCondition: 1
     conditions:
     - flagToCheck: Day2Poem
@@ -56,7 +56,7 @@ MonoBehaviour:
       desiredValue: 8
       bitWise: 1
   - choiceText: Done!
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: b66f1b6f8b828c44683b87e949d18d61, type: 2}
     requireCondition: 1
     conditions:
     - flagToCheck: Day2Poem
@@ -81,6 +81,6 @@ MonoBehaviour:
     - rid: 9142197513939845246
       type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        musicTrack: {fileID: 0}
+        musicTrack: {fileID: 8300000, guid: f69b9b9960adff94fb7e37dcda38ce7a, type: 3}
         fadeTime: 2
-        setToSameTime: 0
+        setToSameTime: 1

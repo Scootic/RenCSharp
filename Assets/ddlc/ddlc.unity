@@ -1330,12 +1330,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 445627344}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1578040159}
+  m_Father: {fileID: 1824803559}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1732,7 +1732,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 192bf2bd3cc1d704eb420dbc100486ee, type: 3}
+  m_Sprite: {fileID: 1507067927, guid: 192bf2bd3cc1d704eb420dbc100486ee, type: 3}
   m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2201,7 +2201,7 @@ MonoBehaviour:
   speakerNameBox: {fileID: 696893494}
   dialogBox: {fileID: 1423157132}
   defaultTextBoxColor: {r: 0.11372549, g: 0.36862746, b: 0.20784314, a: 1}
-  playerchoicePrefab: {fileID: 895609340302167952, guid: eae3be99d04bab645ab00571c4484d1f, type: 3}
+  playerchoicePrefab: {fileID: 8153918950037617235, guid: 6b97e95c9a928bf48b80becf6d54c837, type: 3}
   progressDialogButton: {fileID: 1207802444}
   toggleImage: {fileID: 110200285}
   togglePressedColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
@@ -2953,7 +2953,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 192bf2bd3cc1d704eb420dbc100486ee, type: 3}
+  m_Sprite: {fileID: 1507067927, guid: 192bf2bd3cc1d704eb420dbc100486ee, type: 3}
   m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3232,7 +3232,6 @@ RectTransform:
   m_Children:
   - {fileID: 1423157131}
   - {fileID: 696893493}
-  - {fileID: 445627345}
   m_Father: {fileID: 673683159}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3527,7 +3526,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 445627345}
   m_Father: {fileID: 673683159}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
