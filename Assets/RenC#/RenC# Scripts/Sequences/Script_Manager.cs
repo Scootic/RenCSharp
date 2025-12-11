@@ -103,7 +103,7 @@ namespace RenCSharp
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.L)) //temporary AF
+            if (Input.GetKeyDown(KeyCode.L) && !paused) //temporary AF
             {
                 if (SaveLoad.TryLoad(saveFileName, out SaveData sd)) LoadShit(sd);
             }
