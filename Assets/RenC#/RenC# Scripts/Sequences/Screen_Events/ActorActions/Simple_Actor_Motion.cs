@@ -37,7 +37,7 @@ namespace RenCSharp.Sequences
                 {
                     t += Time.deltaTime;
                     eval = t / motionDuration;
-                    SetPosition(eval);
+                    actorObj.transform.position = SetPosition(eval);
                     yield return null;
                 }
             }
@@ -49,25 +49,27 @@ namespace RenCSharp.Sequences
                     eval = t / motionDuration;
                     if (t > motionDuration) dir = -1;
                     else if (t < 0) dir = 1;
-                    SetPosition(eval);
+                    actorObj.transform.position = SetPosition(eval);
                     yield return null;
                 }
             }
         }
 
-        void SetPosition(float eval)
+        Vector3 SetPosition(float eval)
         {
+            Vector3 pos;
             float x = Mathf.LerpUnclamped(ogPos.x, desPos.x, motionPathX.Evaluate(eval));
             float y = Mathf.LerpUnclamped(ogPos.y, desPos.y, motionPathY.Evaluate(eval));
             float z = Mathf.LerpUnclamped(ogPos.z, desPos.z, motionPathZ.Evaluate(eval));
-            actorObj.transform.position = new Vector3(x, y, z);
+            pos = new Vector3(x, y, z);
+            return pos;
         }
 
         private void ResetToOG()
         {
             if(motion != null) Script_Manager.SM.StopCoroutine(motion);
             //if it's a loop motion, the implication is that the actor should end in the place they started whenever the next screen happens
-            if(actorObj != null) actorObj.transform.position = loopOnScreen ? ogPos : desPos;
+            if(actorObj != null) actorObj.transform.position = loopOnScreen ? SetPosition(0) : SetPosition(1);
         }
 
         public override string ToString()
