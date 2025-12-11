@@ -36,7 +36,11 @@ namespace RenCSharp.Sequences
 
             return sToReturn;
         }
-
+        /// <summary>
+        /// Find if we have ourselves a valid tag parser tag. Fire that mf's functionality if we do.
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns>True if we found a valid tag, false otherwise.</returns>
         public static bool Parse(string tag)
         {
             string[] split = Regex.Split(tag, "[=,]"); //0 should be function name, 1+ is arguments

@@ -10,10 +10,10 @@ namespace RenCSharp
     public struct FlagCondition
     {
         [SerializeField] private string flagToCheck;
-        [SerializeField, Tooltip("The found value is the left side of the operation.")] private ConditionalOperator operation;
+        [SerializeField, Tooltip("The found flag value is the left side of the operation.")] private ConditionalOperator operation;
         [SerializeField] private int desiredValue;
         [Header("BITWISE")]
-        [SerializeField, Tooltip("Decides if you're comparing bits. Only cares about equalling, since it's just 0 and 1.")] private bool bitWise;
+        [SerializeField, Tooltip("Decides if you're comparing bits. Only cares about equalling.")] private bool bitWise;
 
         public bool ConditionMet()
         {
@@ -45,7 +45,7 @@ namespace RenCSharp
             }
             else
             {
-                Debug.Log("Bitwise flag & desiredValue: " + (foundVal & desiredValue));
+                //Debug.Log("Bitwise flag & desiredValue: " + (foundVal & desiredValue));
                 switch (operation)
                 {
                     case ConditionalOperator.Equals:
