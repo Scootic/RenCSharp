@@ -501,12 +501,17 @@ namespace RenCSharp
 
             ov.sprite = overlayDatabase.Sprites[std.OverlayAssetIndex];
             bg.sprite = backgroundDatabase.Sprites[std.BackgroundAssetIndex];
-            Audio_Manager.AM.PlayBGM(audioDatabase.Sounds[std.MusicAssetIndex], 1f, true, true);
+
+            Audio_Manager.AM.PlayBGM(audioDatabase.Sounds[std.MusicAssetIndex], 1f, true, 
+               Audio_Manager.AM.CurrentBGM == audioDatabase.Sounds[std.MusicAssetIndex] ? true : false);
 
             SequenceAsset = Addressables.LoadAssetAsync<Sequence>(sd.CurrentSequenceAsset);
 
+            Debug.Log("Amount of actors we should be loading: " + std.ActiveActors.Count);
+
             foreach (ActorToken at in std.ActiveActors) //spawn in all of the actors that were chillin' like villain before
             {
+                Debug.Log("Loading an actor:\n" + at.ToString());
                 AsyncOperationHandle ActorSO = Addressables.LoadAssetAsync<Actor>(at.ActorAsset);
                 ActorSO.WaitForCompletion();
                 if (ActorSO.Status == AsyncOperationStatus.Succeeded)
@@ -523,6 +528,7 @@ namespace RenCSharp
                 }
                 else
                 {
+                    Debug.LogWarning("Failed to load actor: " + at.ActorAsset);
                     ActorSO.Release();
                 }
             }
@@ -549,6 +555,7 @@ namespace RenCSharp
                 t = 0;
                 while (t < scaleTime)
                 {
+                    if (fella == null) yield break;
                     t += Time.deltaTime;
                     eval = actorScalingKurve.Evaluate(t / scaleTime);
                     fella.transform.localScale = new Vector3(eval, eval, eval);
@@ -561,6 +568,7 @@ namespace RenCSharp
                 t = scaleTime;
                 while (t > 0)
                 {
+                    if (fella == null) yield break;
                     t -= Time.deltaTime;
                     eval = actorScalingKurve.Evaluate(t / scaleTime);
                     fella.transform.localScale = new Vector3(eval, eval, eval);
