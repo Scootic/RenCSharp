@@ -179,11 +179,7 @@ namespace RenCSharp
             newBGM.loop = isLooping;
             newBGM.Play();
 
-            if (setSameTime) 
-            {
-                if (newBGM.clip.length <= leMusic.clip.length) newBGM.time = leMusic.time;
-                else newBGM.time = (leMusic.time % newBGM.clip.length); //return remainder which should be the relative right length?
-            }
+            if (setSameTime) newBGM.time = leMusic.time;
             float t = 0; //shorthand for time, starting at 0
 
             while (t < fadeTime)

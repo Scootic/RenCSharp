@@ -37,7 +37,7 @@ namespace RenCSharp
                 GameObject t = activeGameObjects[name];
                 activeGameObjects.Remove(name);
                 GameObject.Destroy(t);
-            } Debug.LogWarning("No active gameobject of name: " + name);
+            } else Debug.LogWarning("No active gameobject of name: " + name);
         }
         /// <summary>
         /// Very dangerous. Only should be used OnDisable for SM or sum shit;
