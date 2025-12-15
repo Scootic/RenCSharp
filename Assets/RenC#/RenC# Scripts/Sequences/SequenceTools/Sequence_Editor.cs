@@ -50,12 +50,9 @@ namespace RenCSharp.Sequences
 
         public void SetSEType(object obj) //override the cur SE with the newly invented SE that's actually a type.
         {
-            Debug.Log("Should be swappening the SEs");
             Screen_Event se = obj as Screen_Event;
             m_SE.managedReferenceValue = se;
             m_SE.serializedObject.ApplyModifiedProperties();
-            Debug.Log(m_SE.type + "type1");
-            Debug.Log(m_SE.managedReferenceValue.ToString() + "Type");
         }
 
         // >:(
