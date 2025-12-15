@@ -7,7 +7,7 @@ namespace RenCSharp
     {
         public static float PropertyHeight(SerializedProperty property)
         {
-            float returner = EditorGUIUtility.singleLineHeight;
+            float returner = EditorGUIUtility.singleLineHeight + (EditorGUIUtility.standardVerticalSpacing * 2);
             SerializedProperty copy = property.Copy();
             if (copy.isExpanded)
             {
