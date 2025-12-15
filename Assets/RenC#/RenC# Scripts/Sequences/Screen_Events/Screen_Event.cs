@@ -15,5 +15,10 @@ namespace RenCSharp.Sequences
     public abstract class Screen_Event
     {
         public abstract void DoShit();
+
+        public override string ToString()
+        {
+            return "Null Event";
+        }
     }
 }
