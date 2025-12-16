@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: Day3_YuriMoment
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: Uuhh...
+    ScreenActions:
+    - rid: 9142197651443286253
+  - speaker: {fileID: 0}
+    dialog: I'm still full from dinner at Sayori's...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: We made way too many burritos!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Luckily, or maybe unluckily, Sayori was slightly more in-character at
+      dinner than she was at breakfast, the club, or the grocery store.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I didn't tell her about what's going on with Yuri or Monika, though.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Speaking of Yuri...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions:
+    - rid: 9142197651443286254
+    - rid: 9142197651443286255
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Ah, {mc}, can you hear me?
+    ScreenActions:
+    - rid: 9142197651443286256
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 0}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: 6278996368ca862489c89434eb641423
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 9142197651443286253
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: 51aa5cf7e5d98d940b920b780d5f7d1d, type: 3}
+        fadeTransition: 0
+        fadeDuration: 4
+    - rid: 9142197651443286254
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: ef74d49700ef31547b8590288d507fd0, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        loopDuration: 1
+    - rid: 9142197651443286255
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: bc74d7d986010e44580c22fc14109972, type: 3}
+        overlayText: 
+        fadeTime: 0.5
+        animate: 0
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9142197651443286256
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: -5789129640331636987, guid: 018ed1d3427df7e498ae80a1954de289, type: 3}
+        overlayText: 
+        fadeTime: 0
+        animate: 0
+        endWithScreen: 1
+        secondsPerFrame: 0.1
