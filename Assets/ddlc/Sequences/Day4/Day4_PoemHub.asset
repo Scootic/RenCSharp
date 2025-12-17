@@ -12,15 +12,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
   m_Name: Day4_PoemHub
   m_EditorClassIdentifier: 
-  autoFocusSpeaker: 0
-  screens: []
-  playerChoices: []
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions:
+    - rid: 9142197673170043115
+    - rid: 9142197673170043116
+  - speaker: {fileID: 0}
+    dialog: Who should I share my poem with?
+    ScreenActions: []
+  playerChoices:
+  - choiceText: Sayori
+    resultingSequence: {fileID: 0}
+    requireCondition: 1
+    conditions:
+    - flagToCheck: Day4Poem
+      operation: 5
+      desiredValue: 1
+      bitWise: 1
+  - choiceText: Natsuki
+    resultingSequence: {fileID: 0}
+    requireCondition: 1
+    conditions:
+    - flagToCheck: Day4Poem
+      operation: 5
+      desiredValue: 2
+      bitWise: 1
+  - choiceText: Yuri
+    resultingSequence: {fileID: 0}
+    requireCondition: 1
+    conditions:
+    - flagToCheck: Day4Poem
+      operation: 5
+      desiredValue: 4
+      bitWise: 1
+  - choiceText: Monika
+    resultingSequence: {fileID: 0}
+    requireCondition: 1
+    conditions:
+    - flagToCheck: Day4Poem
+      operation: 5
+      desiredValue: 8
+      bitWise: 1
+  - choiceText: Done!
+    resultingSequence: {fileID: 0}
+    requireCondition: 1
+    conditions:
+    - flagToCheck: Day4Poem
+      operation: 0
+      desiredValue: 15
+      bitWise: 0
   myself:
-    m_AssetGUID: 
+    m_AssetGUID: cd3af4819240eae419edf805d2e6ff82
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 9142197673170043115
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9142197673170043116
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: f69b9b9960adff94fb7e37dcda38ce7a, type: 3}
+        fadeTime: 1
+        setToSameTime: 1
