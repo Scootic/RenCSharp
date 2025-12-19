@@ -1,0 +1,1252 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: Day5_Start
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9142197715491881033
+    - rid: 9142197715491881034
+    - rid: 9142197715491881035
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Guh-?
+    ScreenActions:
+    - rid: 9142197715491881036
+    - rid: 9142197715491881037
+  - speaker: {fileID: 0}
+    dialog: My sleep was interrupted by a knock on the door-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Oh God, Yuri!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I stayed up too late!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I shoot her a quick DM through Chaos to tell her that I'll be down to
+      let her in in a minute.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: After that, I throw on some loungewear and get my hair in a state resembling
+      presentable.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Once dressed, I head to the front door where Yuri is waiting.
+    ScreenActions:
+    - rid: 9142197715491881040
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Um, did I come too early, {mc}?
+    ScreenActions:
+    - rid: 9142197715491881041
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Not at all! You're right on time.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I'm the one who wasn't ready, heh...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Anyway, would you like some help taking in the supplies?
+    ScreenActions:
+    - rid: 9142197715491881042
+  - speaker: {fileID: 0}
+    dialog: Yuri's got the banners, some candles, essential oils, a diffuser, various
+      different paints, some brushes, and little squares of cardstock.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Sure, thank you {mc}.
+    ScreenActions:
+    - rid: 9142197715491881043
+  - speaker: {fileID: 0}
+    dialog: The both of us make it into my house, without any casualties.
+    ScreenActions:
+    - rid: 9142197715491881044
+  - speaker: {fileID: 0}
+    dialog: I decide it would be best for us to work in the living room, so we can
+      have as much space as possible.
+    ScreenActions:
+    - rid: 9142197715491881045
+    - rid: 9142197715491881046
+  - speaker: {fileID: 0}
+    dialog: Yuri glances around the room for a bit, which is fair. It's the first
+      time she's been in my house, after all.
+    ScreenActions:
+    - rid: 9142197715491881047
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Your place is pretty clean, {mc}.
+    ScreenActions:
+    - rid: 9142197715491881048
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Oh yeah?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Well, my mom's a bit of a neat-freak...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: So wiping things down and picking up loose garbage is kind of baked into
+      my nature now.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: That's wonderful, {mc}.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Where are your parents, if I may ask?
+    ScreenActions:
+    - rid: 9142197715491881049
+  - speaker: {fileID: 0}
+    dialog: Did I not tell her already? I could've sworn I did...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Or was it just Sayori and Natsuki...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... huh.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: They're both on business trips right now, and I don't know when they'll
+      be back.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Oh, I see-
+    ScreenActions:
+    - rid: 9142197715491881050
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ...!
+    ScreenActions:
+    - rid: 9142197715491881051
+  - speaker: {fileID: 0}
+    dialog: What?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Oh. A boy and a girl.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: At home.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Alone.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I see what's she worried about now.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Especially if she thinks of me like <i>that</i>.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Ah, it'll be fine, I don't bite.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Besides, Sayori's next door if we need something.
+    ScreenActions:
+    - rid: 9142197715491881052
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: R-right...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: So! What's the first step in your master plan?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Well, I have a few things you could help with...
+    ScreenActions:
+    - rid: 9142197715491881053
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Decorations and atmospheric enhancements.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: You mean the candles and essential oils you brought?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: How am I supposed to help with those?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Well, I'm planning on covering up the windows and having the room be
+      lit by the candles.
+    ScreenActions:
+    - rid: 9142197715491881054
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Yeah?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: And I'll have a diffuser running- how familiar are you with aromatherapy?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: 'I haven''t really done it before, but I know the basic premise:'
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: You diffuse oils and herbs into the air to make it smell good.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ... that's certainly one way of putting it...
+    ScreenActions:
+    - rid: 9142197715491881055
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: So do you already know what sort of atmosphere you're going for?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Ah, I'm going to be using Jasmine oil.
+    ScreenActions:
+    - rid: 9142197715491881056
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: It should help the audience's emotions flow through their body.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Which is perfect for a poetry performance, don't you think?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: That seems about right, yeah.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Yuri rummages through her bag, and pulls out some spools of ribbon.
+    ScreenActions:
+    - rid: 9142197715491881057
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: What're those for?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Well, we're going to right individual words on the squares of cardstock...
+    ScreenActions:
+    - rid: 9142197715491881058
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: About one hundred of them, or so...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: And then hang them from the doorway of the club room using pieces of
+      ribbon.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Which will make a doorway curtain.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Fancy!
+    ScreenActions:
+    - rid: 9142197715491881059
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: And it sounds like something I can help with too!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I may not be able to do much, but I do know how to operate scissors.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Fufufu...
+    ScreenActions:
+    - rid: 9142197715491881060
+  - speaker: {fileID: 0}
+    dialog: ... I didn't know she could "fufufu" like that.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: So are we going to get started with that?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Right, I'll start writing characters, while you start cutting the ribbon.
+    ScreenActions:
+    - rid: 9142197715491881061
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: About how long should the cuts be?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Uhh...
+    ScreenActions:
+    - rid: 9142197715491881062
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: No more than two inches, I suppose.
+    ScreenActions:
+    - rid: 9142197715491881063
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Alright, gotcha.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: With that, we both take a seat at the dining table and get to work.
+    ScreenActions:
+    - rid: 9142197715491881064
+  - speaker: {fileID: 0}
+    dialog: Yuri starts writing down characters, in her lovely handwriting, while
+      I...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Oh right, I'll grab some scissors from the kitchen.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Hmm? Oh, I have a knife you could use.
+    ScreenActions:
+    - rid: 9142197715491881065
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Oh sure, thanks Yuri-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... wait, what?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: You brought a knife?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ...!
+    ScreenActions:
+    - rid: 9142197715491881066
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: P-p-please don't think I'm weird!
+    ScreenActions:
+    - rid: 9142197715491881067
+  - speaker: {fileID: 0}
+    dialog: ... gosh dang it.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: No, it's fine, I was just surprised.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Of course you'd bring a knife when you're planning on cutting something.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: O-o-oh... right... uuhh...
+    ScreenActions:
+    - rid: 9142197715491881068
+  - speaker: {fileID: 0}
+    dialog: I extend my hand, as a sign that I want to take Yuri's knife.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Yuri places her knife in my hands, and-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Wow.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: It has a fancy light blue design; it ain't your momma's kitchen knife.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Yuri, where did you even get this bad boy?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I-I...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Please don't think I'm weird for this...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Okay...?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: But, I collect knives.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: There's just something about them, the beauty... the danger...
+    ScreenActions:
+    - rid: 9142197715491881069
+  - speaker: {fileID: 0}
+    dialog: '... you know, I was willing to just log this one under: "just collector
+      things."'
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: But when you bring up the danger as part of the reason you collect them...?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: As much as she doesn't want me to think so, that's kind of weird.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Which, of course, is a thought I'll keep safely stored in my noggin.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I mean, that's pretty hardcore, but to each their own as long as no one
+      gets hurt.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Uuhh...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Hey, don't worry about it.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Let's get back to work, yeah?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ... yeah.
+    ScreenActions:
+    - rid: 9142197715491881070
+  - speaker: {fileID: 0}
+    dialog: Using Yuri's knife, I make short work of the ribbon slicing.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: It doesn't just look good, Yuri's knife is a serious piece of hardware.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: You'd probably need a license to use it...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Once I've finished with the ribbons, and Yuri's done with the cardstock,
+      we attach them one by one.
+    ScreenActions:
+    - rid: 9142197715491881071
+    - rid: 9142197715491881072
+  - speaker: {fileID: 0}
+    dialog: We lay them all out once we're finished, and from the looks of it we
+      did a pretty good job.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Alright, so what's next, Yuri?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I'd like to create at least one banner.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: We'll need about six cups of water for the waterpaint tablets I brought.
+    ScreenActions:
+    - rid: 9142197715491881073
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: The kitchen's just right over there, so this shouldn't take too long.
+    ScreenActions:
+    - rid: 9142197715491881076
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Just a little bit of water is okay for each cup, we don't want the paint
+      to get too diluted.
+    ScreenActions:
+    - rid: 9142197715491881077
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I gotcha.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: After heading over to the kitchen, I pour a little bit of water into
+      our smaller plastic cups, which I bring back to Yuri.
+    ScreenActions:
+    - rid: 9142197715491881074
+    - rid: 9142197715491881075
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Alright, this should be enough water, thanks {mc}.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Yuri begins opening the tablets and dropping them into the cups, one
+      by one.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: So...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I thought we'd do a simple design that would look nice.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I'd like to paint a gradient across the banner...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Going through the colors of sunrise, daytime, sunset, and then ending
+      with night.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Then, once it's dry, I'll write an inspiration quote across the top.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: We'll hang the banner behind the podium at the front of the room.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Everything you've just said checks out...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: What's the quote gonna be?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Ah...
+    ScreenActions:
+    - rid: 9142197715491881078
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ... It will be more fun to surprise you.
+    ScreenActions:
+    - rid: 9142197715491881079
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Party pooper.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: We try rolling out the banner on top of the dining table, but there just
+      barely isn't enough room.
+    ScreenActions:
+    - rid: 9142197715491881080
+  - speaker: {fileID: 0}
+    dialog: We move down to the floor, which luckily does have enough room.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Yuri makes some initial dots of paint on the banner, so that way we would
+      have a color guide while we work.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: The painting process is pretty relaxing...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Back and forth... back and forth...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Yuri suddenly speaks up.
+    ScreenActions:
+    - rid: 9142197715491881082
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: You know, {mc}...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I don't really like going out and doing crazy things for fun...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: But I like doing simple things shared with someone else; like this.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: It doesn't matter if we talk much at all...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Just having a friend with me makes it feel nicer.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I think that's all I need to be happy.
+    ScreenActions:
+    - rid: 9142197715491881083
+  - speaker: {fileID: 0}
+    dialog: Don't give me that look when you say that!!!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Well, I know where you're coming from.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I mean, without the club, I'd probably just be in my room playing video
+      games with a few close friends.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I knew you would understand...
+    ScreenActions:
+    - rid: 9142197715491881084
+  - speaker: {fileID: 0}
+    dialog: Yuri leans over to grab one of my unused brushes.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: That punk...!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: As if by karmic retribution, Yuri leans back a little too fast, causing
+      a little bit of paint to fly it's way up to her face.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Yuri, you got a little bit of paint on your face, want me to get you
+      a towel?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Huh? Oh- please, {mc}.
+    ScreenActions:
+    - rid: 9142197715491881085
+  - speaker: {fileID: 0}
+    dialog: I make my way back into the kitchen, grabbing one of our softer washcloths,
+      and getting it nice and wet with some warm water.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Alright Yuri, I think the water should be not too warm...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Without asking her if it was okay, which I probably should've done in
+      retrospect, I start wiping down Yuri's cheek (which is the painted part).
+    ScreenActions:
+    - rid: 9142197715491881086
+  - speaker: {fileID: 0}
+    dialog: After around ten seconds of wiping, I take my hand and the cloth away
+      from her face to see if there's any paint I missed.
+    ScreenActions:
+    - rid: 9142197715491881087
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Alright, it seems like I got the paint-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Yuri grabs onto my wrist.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: '{mc}, wait-'
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Please do that some more...
+    ScreenActions:
+    - rid: 9142197715491881088
+  - speaker: {fileID: 0}
+    dialog: ... uh oh.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Please tell me I didn't awaken a need for physical touch in her...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: It would be really hard to maintain emotional distance if she tries to
+      close it physically...!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I- uh...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Please let go of my wrist, Yuri...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ...?
+    ScreenActions:
+    - rid: 9142197715491881089
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ...!
+    ScreenActions:
+    - rid: 9142197715491881090
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I-I'm sorry! I d-don't know what came over me I-!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Uuhh... (He must hate me now...)
+    ScreenActions:
+    - rid: 9142197715491881091
+  - speaker: {fileID: 0}
+    dialog: ... crap.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: ... hey, let's just get back to painting, yeah?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Water under the bridge.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ... o-okay...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: We resume painting, but Yuri seems to be having a tough time concentrating.
+    ScreenActions:
+    - rid: 9142197715491881092
+  - speaker: {fileID: 0}
+    dialog: Which makes sense.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I choose to let Yuri stew in her thoughts.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: If I said anything else, it'd probably get more awkward.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: And that should do it...
+    ScreenActions:
+    - rid: 9142197715491881093
+  - speaker: {fileID: 0}
+    dialog: The night sky is now done, filled with little twinkly stars.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Now that we can see it in its completion, I think we did a pretty good
+      job.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: We did a good job, Yuri.
+    ScreenActions:
+    - rid: 9142197715491881094
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I think it came out better than I expected...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I'm really happy with the results, too.
+    ScreenActions:
+    - rid: 9142197715491881095
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I guess we're going to let it dry now?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: That's right, {mc}.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: So, do you want to come over on Sunday to put the quote on? Or-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I think I'll be able to finish it in class on Monday.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Alright.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Didn't you say you wanted to make another banner?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Aren't you helping someone else after me?
+    ScreenActions:
+    - rid: 9142197715491881096
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Ah, right. I'm helping Monika out after this.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Well, it's about lunch time, do you want to eat with me before you head
+      out?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... I shouldn't have said that...
+    ScreenActions:
+    - rid: 9142197715491881097
+  - speaker: {fileID: 0}
+    dialog: Stupid good-host brain!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ... no, I should probably have lunch at home.
+    ScreenActions:
+    - rid: 9142197715491881098
+  - speaker: {fileID: 0}
+    dialog: Phew!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Thanks for offer, though.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Ah, no worries.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I help Yuri gather her belongings.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Alright Yuri, have a safe trip home!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Thank you, {mc}.
+    ScreenActions:
+    - rid: 9142197715491881099
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Have a good rest of your day.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I escort Yuri out of my front door, closing the door behind her as she
+      leaves.
+    ScreenActions:
+    - rid: 9142197715491881102
+    - rid: 9142197715491881103
+  - speaker: {fileID: 0}
+    dialog: One down, three to go...
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: 1cc4885d20ac69548ab97815ba4e94ae, type: 2}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: 5c31a7cbb000ab54ea9fef4642f60632
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 9142197715491881033
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 35cba3ca908d70d48a8a042cf6323f5c, type: 3}
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9142197715491881034
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: 3e4d032d6ea4d414097ebda42d13f2fd, type: 3}
+        fadeTransition: 0
+        fadeDuration: 4
+    - rid: 9142197715491881035
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
+        overlayText: Day 5
+        fadeTime: 2
+        animate: 0
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9142197715491881036
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+        overlayText: 
+        fadeTime: 0.5
+        animate: 0
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9142197715491881037
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 392c46e2c3a289a448a6125b36451762, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        loopDuration: 1
+    - rid: 9142197715491881040
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: 36f7c6032a374db4a968c0e1236322e1, type: 3}
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9142197715491881041
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - lookAwayPity
+        - EMPTY
+    - rid: 9142197715491881042
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - smile
+    - rid: 9142197715491881043
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casUp
+        - casUp
+        - eyesClosedSmile
+    - rid: 9142197715491881044
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeTime: 0.5
+    - rid: 9142197715491881045
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 07169a44e565b2e46a97c1e0d18c4997, type: 3}
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9142197715491881046
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: 03c0213668613e8409b2e140cb2cb9bd, type: 3}
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9142197715491881047
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - inquisitive
+        - EMPTY
+    - rid: 9142197715491881048
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - smile
+    - rid: 9142197715491881049
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - inquisitiveSpeak
+    - rid: 9142197715491881050
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - pondering
+    - rid: 9142197715491881051
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - shock
+    - rid: 9142197715491881052
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - eyesClosedSigh
+    - rid: 9142197715491881053
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casUp
+        - inquisitiveSpeak
+    - rid: 9142197715491881054
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - smile
+    - rid: 9142197715491881055
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - lookAwayPity
+    - rid: 9142197715491881056
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - smileSpeak
+    - rid: 9142197715491881057
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - smile
+    - rid: 9142197715491881058
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - inquisitiveSpeak
+    - rid: 9142197715491881059
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - smile
+    - rid: 9142197715491881060
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casUp
+        - casUp
+        - eyesClosedSmile
+    - rid: 9142197715491881061
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - smile
+    - rid: 9142197715491881062
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - pondering
+    - rid: 9142197715491881063
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - inquisitiveSpeak
+    - rid: 9142197715491881064
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - smile
+    - rid: 9142197715491881065
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - inquisitiveSpeak
+    - rid: 9142197715491881066
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - shock
+    - rid: 9142197715491881067
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - EMPTY
+        - EMPTY
+        - shyRegret
+        - casHairPlay
+    - rid: 9142197715491881068
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - lookAwayPitySpeak
+        - EMPTY
+    - rid: 9142197715491881069
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - sighSpeak
+    - rid: 9142197715491881070
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - pitySmile
+    - rid: 9142197715491881071
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: 03c0213668613e8409b2e140cb2cb9bd, type: 3}
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9142197715491881072
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - smile
+    - rid: 9142197715491881073
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - inquisitiveSpeak
+    - rid: 9142197715491881074
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: 03c0213668613e8409b2e140cb2cb9bd, type: 3}
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9142197715491881075
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - smile
+    - rid: 9142197715491881076
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - lookAwayShock
+    - rid: 9142197715491881077
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - inquisitiveSpeak
+    - rid: 9142197715491881078
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - lookAwayPity
+    - rid: 9142197715491881079
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casUp
+        - eyesClosedContent
+    - rid: 9142197715491881080
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeTime: 0.5
+    - rid: 9142197715491881082
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - eyesClosedContent
+        - EMPTY
+    - rid: 9142197715491881083
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - pitySmile
+    - rid: 9142197715491881084
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - eyesClosedContent
+    - rid: 9142197715491881085
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - inquisitiveSpeak
+    - rid: 9142197715491881086
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - eyesClosedContent
+    - rid: 9142197715491881087
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - sighSpeak
+    - rid: 9142197715491881088
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - eyesClosedContent
+    - rid: 9142197715491881089
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - eyesClosedSigh
+    - rid: 9142197715491881090
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casUp
+        - casUp
+        - fear
+    - rid: 9142197715491881091
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - EMPTY
+        - EMPTY
+        - shyRegret
+        - casHairPlay
+    - rid: 9142197715491881092
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeTime: 0.5
+    - rid: 9142197715491881093
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: 03c0213668613e8409b2e140cb2cb9bd, type: 3}
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9142197715491881094
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - lookAwayPity
+        - EMPTY
+    - rid: 9142197715491881095
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - smile
+    - rid: 9142197715491881096
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - lookAwayPity
+    - rid: 9142197715491881097
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casUp
+        - pondering
+    - rid: 9142197715491881098
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - pitySmile
+    - rid: 9142197715491881099
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - eyesClosedSmile
+    - rid: 9142197715491881102
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9142197715491881103
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeTime: 0.5
