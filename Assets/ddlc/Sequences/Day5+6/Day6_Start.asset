@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: Day6_Start
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9142197738211377306
+    - rid: 9142197738211377307
+  - speaker: {fileID: 0}
+    dialog: Ah...
+    ScreenActions:
+    - rid: 9142197738211377308
+  - speaker: {fileID: 0}
+    dialog: I managed to game straight from 1:30, when Monika left, all the way 'til
+      bed time.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Now, it's just before lunchtime on Sunday.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Natsuki texted me that she'd be coming over sooner than we thought, and
+      that I should wait outside for her.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Allegedly, the ingredients and supplies she's bringing are <i>heavy</i>.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 0}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: 1b9233e1431ff77439c022ec3f2ecb26
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 9142197738211377306
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: {fileID: 21300000, guid: 36f7c6032a374db4a968c0e1236322e1, type: 3}
+        fadeTransition: 0
+        fadeDuration: 4
+    - rid: 9142197738211377307
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
+        overlayText: Day 6
+        fadeTime: 2
+        animate: 0
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9142197738211377308
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+        overlayText: 
+        fadeTime: 2
+        animate: 0
+        endWithScreen: 1
+        secondsPerFrame: 0.1

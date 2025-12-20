@@ -23,8 +23,7 @@ MonoBehaviour:
     dialog: I see an annoying girl running toward me from the distance, waving her
       arms in the air like she's totally oblivious to any attention she might draw
       to herself.
-    ScreenActions:
-    - rid: 9142197651443286134
+    ScreenActions: []
   - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
     dialog: <font="glitchfont">Wow.
     ScreenActions:
@@ -105,28 +104,3 @@ MonoBehaviour:
         environmental: 0
         loop: 0
         loopDuration: 1
-    - rid: 9142197651443286134
-      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        localMotionOffset: {x: 0, y: 0, z: 0}
-        motionDuration: 1
-        motionPathX:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        motionPathY:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        motionPathZ:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        target: {fileID: 0}
-        loopOnScreen: 0

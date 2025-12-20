@@ -241,12 +241,30 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Ahaha...
     ScreenActions: []
-  - speaker: {fileID: 0}
-    dialog: 
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Anyway, I'd like to test something out.
+    ScreenActions:
+    - rid: 9142197738211377221
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Just want to make sure this works...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Go ahead and pick the option that you agree with the most.
     ScreenActions: []
   playerChoices:
-  - choiceText: 
-    resultingSequence: {fileID: 0}
+  - choiceText: Monika is Hot
+    resultingSequence: {fileID: 11400000, guid: f373fb2ae803e1243805ebc325e9d25a, type: 2}
+    requireCondition: 0
+    conditions: []
+  - choiceText: Monika is Pretty
+    resultingSequence: {fileID: 11400000, guid: f373fb2ae803e1243805ebc325e9d25a, type: 2}
+    requireCondition: 0
+    conditions: []
+  - choiceText: I love you <3
+    resultingSequence: {fileID: 11400000, guid: 916c9767fca9d6145a477a1937640774, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -439,3 +457,11 @@ MonoBehaviour:
         - casDown
         - casUp
         - closeEyeGrinSweat
+    - rid: 9142197738211377221
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - casDown
+        - casDown
+        - smile
