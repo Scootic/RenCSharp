@@ -421,6 +421,7 @@ namespace RenCSharp
 
             st.ActiveActors = actorTokens;
             manToSave.ScreenInformation = st;
+            manToSave.SaveScreenshot = ScreenCapture.CaptureScreenshotAsTexture().EncodeToPNG();
 
             SaveLoad.Save(saveFileName, manToSave);
         }
