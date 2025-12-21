@@ -53,7 +53,6 @@ namespace RenCSharp
         [SerializeField] private bool auto = false;
         [SerializeField, Tooltip("How long the SM will linger on a screen while on auto.")] private float lingerTime = 0.5f;
         [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero.")] private byte historyLength = 10;
-        [SerializeField] private string saveFileName = "StupidFile";
 
         [Header("Databases")]
         [SerializeField] private Sprite_Database overlayDatabase;
@@ -98,10 +97,10 @@ namespace RenCSharp
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.L) && !paused) //temporary AF
-            {
-                if (SaveLoad.TryLoad(saveFileName, out SaveData sd)) LoadShit(sd);
-            }
+            //if (Input.GetKeyDown(KeyCode.L) && !paused) //temporary AF
+            //{
+            //    if (SaveLoad.TryLoad(saveFileName, out SaveData sd)) LoadShit(sd);
+            //}
         }
 
         private void OnDisable()
@@ -357,7 +356,7 @@ namespace RenCSharp
 
 
         #region SaveLoadHandling
-        public void SaveShit(int fileIndex)
+        public void SaveShit(string saveFileName)
         {
             if(overlayDatabase == null || backgroundDatabase == null || audioDatabase == null)
             {
