@@ -8,6 +8,7 @@ namespace RenCSharp.Menus
         [SerializeField] private GameObject saveMenu;
         [SerializeField] private GameObject loadGamePrefab;
         [SerializeField] private Transform loadGameHolder;
+        [SerializeField] private Sprite defaultImage;
         private int activeDatas = 0;
         private string fileName = "SaveData";
         public override void OnMenuOpen()
@@ -17,16 +18,23 @@ namespace RenCSharp.Menus
 
             for (int i = 0; i < allSDs.Length; i++)
             {
-                UI_Element loadElement = Object_Factory.SpawnObject(loadGamePrefab, "Save"+i, loadGameHolder).GetComponent<UI_Element>();
+                int ind = i;
+                UI_Element loadElement = Object_Factory.SpawnObject(loadGamePrefab, "Save"+ind, loadGameHolder).GetComponent<UI_Element>();
 
-                loadElement.Texts[0].text = allSDs[i].FileName;
+                loadElement.Texts[0].text = allSDs[ind].FileName != null ? allSDs[ind].FileName : fileName;
+                if (allSDs[i].SaveScreenshot != null)
+                {
+                    Texture2D screenShotTexture = new Texture2D(2, 2);
+                    screenShotTexture.LoadImage(allSDs[ind].SaveScreenshot);
+                    Sprite spr = Sprite.Create(screenShotTexture, new Rect(0, 0, screenShotTexture.width, screenShotTexture.height), new Vector2(0.5f, 0.5f));
+                    loadElement.Images[0].sprite = spr;
+                }
+                else
+                {
+                    loadElement.Images[0].sprite = defaultImage;
+                }
 
-                Texture2D screenShotTexture = new Texture2D(2,2);
-                screenShotTexture.LoadImage(allSDs[i].SaveScreenshot);
-                Sprite spr = Sprite.Create(screenShotTexture, new Rect(0,0,screenShotTexture.width, screenShotTexture.height), new Vector2(0.5f,0.5f));
-                loadElement.Images[0].sprite = spr;
-
-                loadElement.Buttons[0].onClick.AddListener(delegate { Load(allSDs[i]); });
+                loadElement.Buttons[0].onClick.AddListener(delegate { Load(allSDs[ind]); });
 
                 activeDatas++;
             }

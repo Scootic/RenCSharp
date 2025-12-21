@@ -39,7 +39,7 @@ namespace RenCSharp
         /// <returns>True if there's a file at the filepath AND there's valid save data in that file.</returns>
         public static bool TryLoadFromPath(string filePath, out SaveData? sd)
         {
-            if(!File.Exists(filePath)) { Debug.LogWarning("No file at: " + filePath); sd = null; return false; }
+            if(!File.Exists(filePath) || !filePath.Contains(".sav")) { Debug.LogWarning("No/Bad file at: " + filePath); sd = null; return false; }
             BinaryFormatter bf = new BinaryFormatter();
             FileStream fs = new FileStream(filePath, FileMode.Open);
             sd = (SaveData) bf.Deserialize(fs);
