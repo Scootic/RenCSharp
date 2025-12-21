@@ -45,12 +45,6 @@ namespace RenCSharp
         [SerializeField] private GameObject overlayPrefab; //should have a TMPro child
         [SerializeField] private Transform overlayHolder;
 
-        [Header("Menus")]
-        [SerializeField] private GameObject baseMenu;
-        [SerializeField] private GameObject historyFab;
-        [SerializeField] private GameObject historyMenu;
-        [SerializeField] private Transform historyHolder;
-
         [Header("Settings")]
         [SerializeField, Tooltip("In seconds, 0 for character every frame."), Min(0)] private float textSpeed = 0;
         [SerializeField, Tooltip("In seconds."), Min(0)] private float autoFocusScaleDuration = 0.25f;
@@ -66,7 +60,7 @@ namespace RenCSharp
         [SerializeField] private Sprite_Database backgroundDatabase;
         [SerializeField] private Audio_Database audioDatabase;
 
-        private bool jumpToEndDialog = false, paused = false, historyOpen = false, menuOpen = false;
+        private bool jumpToEndDialog = false, paused = false;
         private float curSpeed;
         private History curHist;
         private Dictionary<string, int> curFlags;
@@ -309,72 +303,6 @@ namespace RenCSharp
             }
             ProgressToNextScreen();
         }
-        #endregion
-        #region FlagHandling
-        public void SetFlag(string id, int val)
-        {
-            Debug.Log("Setting flag: " + id + ", to: " + val);
-            if (curFlags.ContainsKey(id)) curFlags[id] = val;
-            else curFlags.Add(id, val);
-        }
-        //defaults to zero if there's no flag in flag data.
-        public int GetFlag(string id)
-        {
-            int val = 0;
-
-            if (curFlags.ContainsKey(id)) val = curFlags[id];
-
-            return val;
-        }
-        public void IncrementFlag(string id, int valToIncreaseBy)
-        {
-            Debug.Log("Incrementing flag: " + id + ", increasing by: " + valToIncreaseBy);
-            if (curFlags.ContainsKey(id)) curFlags[id] += valToIncreaseBy;
-            else curFlags.Add(id, valToIncreaseBy);
-        }
-        #endregion
-        #region MenuHandling
-        public void FlipMenu()
-        {
-            menuOpen = !menuOpen;
-
-            if (menuOpen) PauseSequence();
-            else 
-            {
-                menuOpen = true;
-                UnpauseSequence();
-                historyOpen = true;
-                FlipHistory();
-                menuOpen = false;
-            }
-
-            baseMenu.SetActive(menuOpen);
-        }
-        public void FlipHistory()
-        {
-            if (!menuOpen) FlipMenu();
-
-            historyOpen = !historyOpen;
-            historyMenu.SetActive(historyOpen);
-
-            if (historyOpen) //spawn history objs
-            {
-                for (int i = 0; i < curHist.HistoryLength; i++)
-                {
-                    if (curHist.SpeakerNames[i] == null) break;
-                    Transform t = Object_Factory.SpawnObject(historyFab, "History" + i, historyHolder).transform;
-                    t.GetChild(0).GetComponent<TextMeshProUGUI>().text = curHist.SpeakerNames[i];
-                    t.GetChild(1).GetComponent<TextMeshProUGUI>().text = curHist.DialogBoxes[i];
-                }
-            }
-            else //remove all history objs
-            {
-                for(int i = historyHolder.childCount - 1; i >= 0; i--)
-                {
-                    Object_Factory.RemoveObject("History" + i);
-                }
-            }
-        }
         private void UpdateHistory(string speaker, string text)
         {
             //first, see if there's any space in the arrays
@@ -403,6 +331,31 @@ namespace RenCSharp
             }
         }
         #endregion
+        #region FlagHandling
+        public void SetFlag(string id, int val)
+        {
+            Debug.Log("Setting flag: " + id + ", to: " + val);
+            if (curFlags.ContainsKey(id)) curFlags[id] = val;
+            else curFlags.Add(id, val);
+        }
+        //defaults to zero if there's no flag in flag data.
+        public int GetFlag(string id)
+        {
+            int val = 0;
+
+            if (curFlags.ContainsKey(id)) val = curFlags[id];
+
+            return val;
+        }
+        public void IncrementFlag(string id, int valToIncreaseBy)
+        {
+            Debug.Log("Incrementing flag: " + id + ", increasing by: " + valToIncreaseBy);
+            if (curFlags.ContainsKey(id)) curFlags[id] += valToIncreaseBy;
+            else curFlags.Add(id, valToIncreaseBy);
+        }
+        #endregion
+
+
         #region SaveLoadHandling
         public void SaveShit(int fileIndex)
         {
