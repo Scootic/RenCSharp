@@ -59,7 +59,7 @@ namespace RenCSharp
         [SerializeField] private Sprite_Database backgroundDatabase;
         [SerializeField] private Audio_Database audioDatabase;
 
-        private bool jumpToEndDialog = false, paused = false;
+        private bool jumpToEndDialog = false, paused = false, saving = false;
         private float curSpeed;
         private History curHist;
         private Dictionary<string, int> curFlags;
@@ -358,11 +358,14 @@ namespace RenCSharp
         #region SaveLoadHandling
         public void SaveShit(string saveFileName)
         {
+            if (saving) return;
+
             if(overlayDatabase == null || backgroundDatabase == null || audioDatabase == null)
             {
                 Debug.LogWarning("You're a missing a database, you damned fool! I refuse to save under these working conditions!");
                 return;
             }
+            saving = true;
 
             SaveData manToSave = new SaveData();
             ScreenToken st = new ScreenToken();
@@ -420,9 +423,17 @@ namespace RenCSharp
 
             st.ActiveActors = actorTokens;
             manToSave.ScreenInformation = st;
-            manToSave.SaveScreenshot = ScreenCapture.CaptureScreenshotAsTexture().EncodeToPNG();
 
+            StartCoroutine(WaitForScreenShot(manToSave, saveFileName));
             SaveLoad.Save(saveFileName, manToSave);
+        }
+
+        private IEnumerator WaitForScreenShot(SaveData sd, string fileName)
+        {
+            yield return new WaitForEndOfFrame();
+            sd.SaveScreenshot = ScreenCapture.CaptureScreenshotAsTexture().EncodeToPNG();
+            SaveLoad.Save(fileName, sd);
+            saving = false;
         }
 
         public void LoadShit(SaveData sd)
