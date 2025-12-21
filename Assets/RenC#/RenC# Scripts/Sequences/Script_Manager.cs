@@ -182,10 +182,15 @@ namespace RenCSharp
                             b.onClick.AddListener(delegate { LoadASequence(pc.ResultingSequence); UnpauseSequence(); });
                         }
                     }
-                    //if the first choice has no choice text, and conditionallity is good, do that shit.
-                    else if (!firstPc.RequireCondition || firstPc.MetAllConditions()) 
+                    //if the string is empty for first choice, don't give buttons, and instead load first valid sequence
+                    else
                     {
-                        LoadASequence(currentSequence.PlayerChoices[0].ResultingSequence);
+                        foreach(Player_Choice pc in currentSequence.PlayerChoices)
+                        {
+                            if(pc.RequireCondition && !pc.MetAllConditions()) continue;
+                            LoadASequence(pc.ResultingSequence);
+                            break;
+                        }
                     }
                 }
             }

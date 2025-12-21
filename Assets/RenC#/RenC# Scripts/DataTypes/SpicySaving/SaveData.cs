@@ -12,5 +12,6 @@ namespace RenCSharp
         public SettingsToken CurrentSettings;
         public History CurrentHistory;
         public FlagToken CurrentFlags;
+        public byte[] SaveScreenshot;
     }
 }
