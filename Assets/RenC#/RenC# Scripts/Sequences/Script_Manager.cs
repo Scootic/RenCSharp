@@ -75,6 +75,7 @@ namespace RenCSharp
         public static Action ProgressScreenEvent, EndOfAllSequencesEvent;
         public static Action<bool> SequencePausedEvent;
         public Transform ActorHolder => actorHolder;
+        public History CurrentHistory => curHist;
         //certified singleton moment
         private void Awake()
         {
@@ -86,8 +87,8 @@ namespace RenCSharp
                 Destroy(this);
             }
 
-            Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Image>();
-            Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform).GetComponent<Image>();//horrid
+            Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder);
+            Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform);//horrid
 
             curFlags = new Dictionary<string, int>();
             curHist = new History(historyLength);
