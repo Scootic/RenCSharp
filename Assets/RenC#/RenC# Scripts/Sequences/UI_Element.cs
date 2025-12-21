@@ -10,8 +10,10 @@ namespace RenCSharp.Sequences
     {
         [SerializeField] private TextMeshProUGUI[] texts;
         [SerializeField] private Image[] images;
+        [SerializeField] private Button[] buttons;
 
         public TextMeshProUGUI[] Texts => texts;
         public Image[] Images => images;
+        public Button[] Buttons => buttons;
     }
 }
