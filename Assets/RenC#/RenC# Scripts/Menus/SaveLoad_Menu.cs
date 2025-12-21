@@ -48,6 +48,7 @@ namespace RenCSharp.Menus
             {
                 //we're on main menu doin' stuff
             }
+            Menu_Manager.MM.CloseMenus(); //close after a save is probably the most sensible.
         }
 
         public void SetFileName(string s)

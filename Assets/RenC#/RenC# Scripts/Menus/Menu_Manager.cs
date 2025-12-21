@@ -4,9 +4,16 @@ namespace RenCSharp.Menus
 {
     public class Menu_Manager : MonoBehaviour
     {
+        public static Menu_Manager MM;
         private Menu_Base curMenu;
         [SerializeField] private Menu_Base[] allMenus;
         [SerializeField] private GameObject menusParent;
+
+        private void Awake()
+        {
+            if (MM == null) MM = this; 
+            else if (MM != null) Destroy(this);
+        }
 
         void Start()
         {
