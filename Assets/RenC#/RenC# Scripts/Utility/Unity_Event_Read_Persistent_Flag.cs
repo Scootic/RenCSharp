@@ -17,7 +17,7 @@ namespace RenCSharp
         public void CheckPersistentFlag()
         {
             bool met = false;
-            int flagFoundValue = Flag_Manager.GetFlag(flagToCheck);
+            int flagFoundValue = Flag_Manager.GetFlag(flagToCheck, true);
 
             switch (operation)
             {
@@ -40,6 +40,8 @@ namespace RenCSharp
                     if(desiredValue <= flagFoundValue) met = true;
                     break;
             }
+
+            Debug.Log("FoundVal met conditions? " + met + ", FoundVal: " + flagFoundValue);
 
             if (met) eventToFire?.Invoke();
         }
