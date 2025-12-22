@@ -579,6 +579,7 @@ namespace RenCSharp
         private void TextSpeed(float f)
         {
             textSpeed = f;
+            curSpeed = textSpeed;
         }
         private void TextAutoHang(float f)
         {
