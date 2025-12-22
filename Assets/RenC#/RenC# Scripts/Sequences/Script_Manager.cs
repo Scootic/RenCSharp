@@ -93,6 +93,7 @@ namespace RenCSharp
 
             Event_Bus.AddFloatEvent("TextSpeed", TextSpeed);
             Event_Bus.AddFloatEvent("LingerTime", TextAutoHang);
+            Event_Bus.AddStringEvent("PlayerName", SetPlayerName);
 
             EndOfAllSequencesEvent += Application.Quit; //TEMPORARY THING
             SequencePausedEvent += ToggleDialogUI;
