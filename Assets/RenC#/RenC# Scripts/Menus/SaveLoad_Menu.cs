@@ -9,6 +9,9 @@ namespace RenCSharp.Menus
         [SerializeField] private GameObject loadGamePrefab;
         [SerializeField] private Transform loadGameHolder;
         [SerializeField] private Sprite defaultImage;
+        [Header("Scene Loading")]
+        [SerializeField] private Simple_Scene_Loader ssl;
+        [SerializeField] private byte sceneToLoadIndex = 2;
         private int activeDatas = 0;
         private string fileName = "SaveData";
         public override void OnMenuOpen()
@@ -51,15 +54,25 @@ namespace RenCSharp.Menus
 
         private void Load(SaveData sd)
         {
-            if (Script_Manager.SM != null) Script_Manager.SM.LoadShit(sd);
+            if (Script_Manager.SM != null)
+            {
+                Script_Manager.SM.LoadShit(sd);
+                Menu_Manager.MM.CloseMenus(); //close after a save being loaded is probably the most sensible.
+            }
             else
             {
+                if(ssl == null)
+                {
+                    Debug.LogWarning("No Scene Loader Assigned to SaveLoad Menu");
+                    return;
+                }
                 //we're on main menu doin' stuff
                 SaveData_From_Main_Menu sdfmm = Object_Factory.SpawnObject(new GameObject(), "SL").AddComponent<SaveData_From_Main_Menu>();
                 sdfmm.SD = sd;
                 DontDestroyOnLoad(sdfmm.gameObject);
+                ssl.LoadAnScene(sceneToLoadIndex);
             }
-            Menu_Manager.MM.CloseMenus(); //close after a save being loaded is probably the most sensible.
+            
         }
 
         public void SetFileName(string s)
