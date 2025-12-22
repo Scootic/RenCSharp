@@ -15,6 +15,7 @@ namespace RenCSharp
         private AudioSource leMusic; //stores the background music
 
         private int sfxIndex = 0; //Store the current sfx index
+        private bool enteringBGM = false;
 
         [Range(0, 1)] private float bgmVolMult = 0.5f, sfxVolMult = 0.5f, esfxVolMult = 0.5f; //volume multipliers
         public float BGMVol => bgmVolMult;
@@ -183,6 +184,7 @@ namespace RenCSharp
 
         private IEnumerator PlayBGMPog(AudioClip musicToPlay, float fadeTime = 3f, bool isLooping = true, bool setSameTime = false)
         {
+            enteringBGM = true;
             AudioSource newBGM = gameObject.AddComponent<AudioSource>(); //make a new Audio sauce
             newBGM.clip = musicToPlay; //Init the new sauce, based on passed in values
             newBGM.volume = 0;
@@ -208,6 +210,7 @@ namespace RenCSharp
             Destroy(leMusic);
             //set new sauce where the old sauce was
             leMusic = newBGM;
+            enteringBGM = false;
         }
 
         public bool SameBGM(AudioClip musicToKompare)
@@ -220,6 +223,7 @@ namespace RenCSharp
         private void ReceiveBGM(float f)
         {
             bgmVolMult = f;
+            if (!enteringBGM) leMusic.volume = f;
         }
 
         void ReceiveSFX(float f)
