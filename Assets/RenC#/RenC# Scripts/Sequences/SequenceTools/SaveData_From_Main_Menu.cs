@@ -15,6 +15,12 @@ namespace RenCSharp.Sequences
         {
             SceneManager.sceneLoaded -= StopSM;
         }
+        /// <summary>
+        /// Stop the sequence manager from just going from the default sequence, actually
+        /// load the guy we want.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="lsm"></param>
         void StopSM(Scene s, LoadSceneMode lsm)
         {
             if (Script_Manager.SM != null)
