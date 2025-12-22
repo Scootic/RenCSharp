@@ -11,8 +11,8 @@ namespace RenCSharp.Sequences
 
         public override void DoShit()
         {
-            if(!increment) Script_Manager.SM.SetFlag(flagID, flagValue);
-            else Script_Manager.SM.IncrementFlag(flagID, flagValue);
+            if(!increment) Flag_Manager.SetFlag(flagID, flagValue);
+            else Flag_Manager.IncrementFlag(flagID, flagValue);
         }
 
         public override string ToString()
