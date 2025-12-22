@@ -64,7 +64,6 @@ namespace RenCSharp
         private bool jumpToEndDialog = false, paused = false, saving = false, loaded = false;
         private float curSpeed;
         private History curHist;
-        private Dictionary<string, int> curFlags;
 
         public static Script_Manager SM;
         public static Action ProgressScreenEvent, EndOfAllSequencesEvent;
@@ -85,7 +84,8 @@ namespace RenCSharp
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder);
             Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform);//horrid
 
-            curFlags = new Dictionary<string, int>();
+            Flag_Manager.ReceiveFlagToken(SaveLoad.LoadPersistentFlags(), true);
+
             curHist = new History(historyLength);
             textSpeed = PlayerPrefs.GetFloat("TextSpeed");
             lingerTime = PlayerPrefs.GetFloat("LingerTime");
@@ -105,6 +105,8 @@ namespace RenCSharp
         private void OnDisable()
         {
             Object_Factory.ScrubDictionary(); //the dictionary is static, so we don't want to keep storing garbage forever.
+            FlagToken ft = new FlagToken(Flag_Manager.GetPersistentDataFlags);
+            SaveLoad.SavePersistentFlags(ft);
         }
         #region SequenceHandling
         public void StartSequence()
@@ -329,30 +331,6 @@ namespace RenCSharp
             }
         }
         #endregion
-        #region FlagHandling
-        public void SetFlag(string id, int val)
-        {
-            Debug.Log("Setting flag: " + id + ", to: " + val);
-            if (curFlags.ContainsKey(id)) curFlags[id] = val;
-            else curFlags.Add(id, val);
-        }
-        //defaults to zero if there's no flag in flag data.
-        public int GetFlag(string id)
-        {
-            int val = 0;
-
-            if (curFlags.ContainsKey(id)) val = curFlags[id];
-
-            return val;
-        }
-        public void IncrementFlag(string id, int valToIncreaseBy)
-        {
-            Debug.Log("Incrementing flag: " + id + ", increasing by: " + valToIncreaseBy);
-            if (curFlags.ContainsKey(id)) curFlags[id] += valToIncreaseBy;
-            else curFlags.Add(id, valToIncreaseBy);
-        }
-        #endregion
-
         #region SaveLoadHandling
         public void SaveShit(string saveFileName)
         {
@@ -370,7 +348,7 @@ namespace RenCSharp
 
             manToSave.CurrentScreenIndex = curScreenIndex; //:)
             manToSave.PlayerName = playerName;
-            manToSave.CurrentFlags = new FlagToken(curFlags);
+            manToSave.CurrentFlags = new FlagToken(Flag_Manager.GetSaveDataFlags);
             manToSave.CurrentHistory = curHist;
 
             //grab the cursequence. horrid! USES THE ASSET REFERENcE WE DONE STORED. MAYBE IT WORK? MAYBE IT NO :)
@@ -440,11 +418,7 @@ namespace RenCSharp
 
             //grab flags
             FlagToken ft = sd.CurrentFlags;
-            curFlags = new Dictionary<string, int>();
-            for (int i = 0; i < ft.FlagIDs.Count; i++)
-            {
-                curFlags.Add(ft.FlagIDs[i], ft.FlagValues[i]);
-            }
+            Flag_Manager.ReceiveFlagToken(ft, false);
 
             //grab history
             curHist = sd.CurrentHistory;

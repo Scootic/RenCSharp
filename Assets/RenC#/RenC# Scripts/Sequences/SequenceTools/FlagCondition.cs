@@ -18,7 +18,7 @@ namespace RenCSharp
         public bool ConditionMet()
         {
             bool met = false;
-            int foundVal = Script_Manager.SM.GetFlag(flagToCheck);
+            int foundVal = Flag_Manager.GetFlag(flagToCheck);
             if (!bitWise)
             {
                 switch (operation)

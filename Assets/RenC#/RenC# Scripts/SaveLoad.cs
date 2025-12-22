@@ -17,6 +17,16 @@ namespace RenCSharp
             fs.Close();
         }
 
+        public static void SavePersistentFlags(FlagToken ft)
+        {
+            string filePath = Application.persistentDataPath + "/persistentFlags.fla";
+            Debug.Log("Saving Persistent Flags!");
+            FileStream fs = new FileStream(filePath, FileMode.Create);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(fs, ft);
+            fs.Close();
+        }
+
         public static bool TryLoad(string fileName, out SaveData sd)
         {
             string filePath = Application.persistentDataPath + "/" + fileName + ".sav";
@@ -46,6 +56,17 @@ namespace RenCSharp
             fs.Close();
             if (sd == null) return false;
             return true;
+        }
+
+        public static FlagToken LoadPersistentFlags()
+        {
+            FlagToken ft = new();
+            if (!File.Exists(Application.persistentDataPath + "/persistentFlags.fla")) return ft;
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream(Application.persistentDataPath + "/persistentFlags.fla", FileMode.Open);
+            ft = (FlagToken)bf.Deserialize(fs);
+            fs.Close();
+            return ft;
         }
 
         public static SaveData[] FindAllSaves()
