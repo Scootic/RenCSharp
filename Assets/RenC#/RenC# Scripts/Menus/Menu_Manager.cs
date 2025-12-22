@@ -11,8 +11,8 @@ namespace RenCSharp.Menus
 
         private void Awake()
         {
-            if (MM == null) MM = this; 
-            else if (MM != null) Destroy(this);
+            if (MM == null) MM = this;
+            else if (MM != null) { Destroy(MM); MM = this; }
         }
 
         void Start()
