@@ -60,7 +60,7 @@ namespace RenCSharp
         [SerializeField] private Sprite_Database backgroundDatabase;
         [SerializeField] private Audio_Database audioDatabase;
 
-        private bool jumpToEndDialog = false, paused = false, saving = false;
+        private bool jumpToEndDialog = false, paused = false, saving = false, loaded = false;
         private float curSpeed;
         private History curHist;
         private Dictionary<string, int> curFlags;
@@ -93,15 +93,7 @@ namespace RenCSharp
         }
         private void Start()
         {
-            StartSequence();
-        }
-
-        private void Update()
-        {
-            //if (Input.GetKeyDown(KeyCode.L) && !paused) //temporary AF
-            //{
-            //    if (SaveLoad.TryLoad(saveFileName, out SaveData sd)) LoadShit(sd);
-            //}
+            if(!loaded)StartSequence();
         }
 
         private void OnDisable()
@@ -355,7 +347,6 @@ namespace RenCSharp
         }
         #endregion
 
-
         #region SaveLoadHandling
         public void SaveShit(string saveFileName)
         {
@@ -508,7 +499,7 @@ namespace RenCSharp
             SequenceAsset.WaitForCompletion();
             if (SequenceAsset.Status == AsyncOperationStatus.Succeeded) currentSequence = (Sequence)SequenceAsset.Result;
             else SequenceAsset.Release();
-
+            loaded = true;
             StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
         }
         #endregion

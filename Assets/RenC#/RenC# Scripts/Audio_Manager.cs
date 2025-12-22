@@ -37,7 +37,7 @@ namespace RenCSharp
             }
             else if (AM != this) // if it does exist but not me
             {
-                Destroy(this); // game end me
+                Destroy(gameObject); // game end me
             }
 
             InitSFX(); // now that the manager is up, initialize all needed audio sources

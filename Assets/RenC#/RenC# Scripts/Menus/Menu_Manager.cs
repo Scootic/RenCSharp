@@ -23,7 +23,7 @@ namespace RenCSharp.Menus
         public void OpenAMenu(int index)
         {
             menusParent.SetActive(true);
-            Script_Manager.SM.PauseSequence();
+            Script_Manager.SM?.PauseSequence();
             if (curMenu != null) curMenu.OnMenuClose();
             curMenu = allMenus[index];
             curMenu.OnMenuOpen();
@@ -31,7 +31,7 @@ namespace RenCSharp.Menus
 
         public void CloseMenus()
         {
-            Script_Manager.SM.UnpauseSequence();
+            Script_Manager.SM?.UnpauseSequence();
             menusParent.SetActive(false);
         }
     }
