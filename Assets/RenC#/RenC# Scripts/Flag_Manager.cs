@@ -63,15 +63,25 @@ namespace RenCSharp
 
         public static void ReceiveFlagToken(FlagToken ft, bool persistent = false)
         {
-            if (ft.FlagValues.Count == 0){ curFlags = new(); return; }
             Dictionary<string, int> t = new();
-            for (int i = 0; i < ft.FlagValues.Count; i++) 
+            if (!persistent)
             {
-                t.Add(ft.FlagIDs[i], ft.FlagValues[i]);
+                if (ft.FlagValues.Count == 0) { curFlags = new(); return; }
+                for (int i = 0; i < ft.FlagValues.Count; i++)
+                {
+                    t.Add(ft.FlagIDs[i], ft.FlagValues[i]);
+                }
+                curFlags = t;
             }
-
-            if (persistent) persistentFlags = t;
-            else curFlags = t;
+            else
+            {
+                if(ft.FlagValues.Count == 0) { persistentFlags = new(); return; }
+                for (int i = 0; i < ft.FlagValues.Count; i++)
+                {
+                    t.Add(ft.FlagIDs[i], ft.FlagValues[i]);
+                }
+                persistentFlags = t;
+            }
         }
     }
 }
