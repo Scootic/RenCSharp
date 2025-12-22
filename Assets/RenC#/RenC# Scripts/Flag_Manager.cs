@@ -63,6 +63,7 @@ namespace RenCSharp
 
         public static void ReceiveFlagToken(FlagToken ft, bool persistent = false)
         {
+            if (ft.FlagValues.Count == 0){ curFlags = new(); return; }
             Dictionary<string, int> t = new();
             for (int i = 0; i < ft.FlagValues.Count; i++) 
             {
