@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
+using EXPERIMENTAL;
 namespace RenCSharp
 {
     /// <summary>
@@ -86,14 +87,19 @@ namespace RenCSharp
 
             curFlags = new Dictionary<string, int>();
             curHist = new History(historyLength);
+            textSpeed = PlayerPrefs.GetFloat("TextSpeed");
+            lingerTime = PlayerPrefs.GetFloat("LingerTime");
             curSpeed = textSpeed;
+
+            Event_Bus.AddFloatEvent("TextSpeed", TextSpeed);
+            Event_Bus.AddFloatEvent("LingerTime", TextAutoHang);
 
             EndOfAllSequencesEvent += Application.Quit; //TEMPORARY THING
             SequencePausedEvent += ToggleDialogUI;
         }
         private void Start()
         {
-            if(!loaded)StartSequence();
+            if (!loaded) { StartSequence(); }
         }
 
         private void OnDisable()
@@ -361,13 +367,7 @@ namespace RenCSharp
 
             SaveData manToSave = new SaveData();
             ScreenToken st = new ScreenToken();
-            SettingsToken std = new SettingsToken(); //grab settings
-            std.TextSpeed = textSpeed;
-            std.SFXVolume = Audio_Manager.AM.SFXVol;
-            std.BGMVolume = Audio_Manager.AM.BGMVol;
-            std.ESFXVolume = Audio_Manager.AM.ESFXVol;
 
-            manToSave.CurrentSettings = std;
             manToSave.CurrentScreenIndex = curScreenIndex; //:)
             manToSave.PlayerName = playerName;
             manToSave.CurrentFlags = new FlagToken(curFlags);
@@ -437,11 +437,6 @@ namespace RenCSharp
 
             Image ov = Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Image>();
             Image bg = Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform).GetComponent<Image>();
-
-            //apply settings
-            SettingsToken st = sd.CurrentSettings;
-            textSpeed = st.TextSpeed;
-            Audio_Manager.AM.ReceiveAudioSettings(st);
 
             //grab flags
             FlagToken ft = sd.CurrentFlags;
@@ -580,5 +575,19 @@ namespace RenCSharp
             if (reset) curSpeed = textSpeed;
             else curSpeed = value;
         }
+        #region Settings
+        private void TextSpeed(float f)
+        {
+            textSpeed = f;
+        }
+        private void TextAutoHang(float f)
+        {
+            lingerTime = f;
+        }
+        private void SetPlayerName(string s)
+        {
+            playerName = s;
+        }
+        #endregion
     }
 }
