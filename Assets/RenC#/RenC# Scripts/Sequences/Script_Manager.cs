@@ -563,7 +563,7 @@ namespace RenCSharp
         }
         private void SetPlayerName(string s)
         {
-            playerName = s;
+            if(s!= string.Empty) playerName = s;
         }
         #endregion
     }
