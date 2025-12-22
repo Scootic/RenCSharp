@@ -408,13 +408,14 @@ GameObject:
   - component: {fileID: 366309901}
   - component: {fileID: 366309900}
   - component: {fileID: 366309899}
+  - component: {fileID: 366309902}
   m_Layer: 5
   m_Name: Fader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &366309898
 RectTransform:
   m_ObjectHideFlags: 0
@@ -494,6 +495,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 366309897}
   m_CullTransparentMesh: 1
+--- !u!114 &366309902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366309897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7536cc4d9a4feb84a90bcad05bd6e25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &646083537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -515,20 +528,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1465653891900374499, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465653891900374499, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1872194912}
+      objectReference: {fileID: 366309899}
     - target: {fileID: 1465653891900374499, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadAnScene
+      value: SetTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 1465653891900374499, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RenCSharp.Simple_Scene_Loader, RenCSharp
+      value: UnityEngine.Animator, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1465653891900374499, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465653891900374499, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: LoadGame
       objectReference: {fileID: 0}
     - target: {fileID: 2111152004751873505, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
       propertyPath: m_AnchorMax.y
@@ -585,7 +606,7 @@ PrefabInstance:
     - target: {fileID: 3719124640821454711, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1872194912}
+      objectReference: {fileID: 0}
     - target: {fileID: 3719124640821454711, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitGame
@@ -597,7 +618,7 @@ PrefabInstance:
     - target: {fileID: 3992884764103510655, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
       propertyPath: ssl
       value: 
-      objectReference: {fileID: 1872194912}
+      objectReference: {fileID: 0}
     - target: {fileID: 4549257927520568539, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1191,7 +1212,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1872194913}
-  - component: {fileID: 1872194912}
   - component: {fileID: 1872194914}
   m_Layer: 0
   m_Name: ShrimpleSceneLoader
@@ -1200,18 +1220,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1872194912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872194911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7536cc4d9a4feb84a90bcad05bd6e25b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1872194913
 Transform:
   m_ObjectHideFlags: 0
