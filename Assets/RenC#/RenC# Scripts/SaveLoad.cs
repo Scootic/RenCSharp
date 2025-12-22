@@ -61,5 +61,12 @@ namespace RenCSharp
 
             return allSD.ToArray();
         }
+
+        public static void DeleteFile(string fileName)
+        {
+            string filePath = Application.persistentDataPath + "/" + fileName + ".sav";
+            if (!File.Exists(filePath)) { Debug.LogWarning("Trying to delete a save that doesn't exist at: " + filePath); return; }
+            File.Delete(filePath);
+        }
     }
 }
