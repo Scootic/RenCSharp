@@ -44,6 +44,7 @@ namespace RenCSharp
         [Header("Overlay")]
         [SerializeField] private GameObject overlayPrefab; //should have a TMPro child
         [SerializeField] private Transform overlayHolder;
+        [SerializeField] private GameObject menuBase;
 
         [Header("Settings")]
         [SerializeField, Tooltip("In seconds, 0 for character every frame."), Min(0)] private float textSpeed = 0;
@@ -423,7 +424,7 @@ namespace RenCSharp
 
             st.ActiveActors = actorTokens;
             manToSave.ScreenInformation = st;
-
+            menuBase.SetActive(false);
             StartCoroutine(WaitForScreenShot(manToSave, saveFileName));
             SaveLoad.Save(saveFileName, manToSave);
         }
@@ -432,6 +433,7 @@ namespace RenCSharp
         {
             yield return new WaitForEndOfFrame();
             sd.SaveScreenshot = ScreenCapture.CaptureScreenshotAsTexture().EncodeToPNG();
+            menuBase.SetActive(true);
             SaveLoad.Save(fileName, sd);
             saving = false;
         }

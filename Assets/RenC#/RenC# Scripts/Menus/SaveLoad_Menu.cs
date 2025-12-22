@@ -55,6 +55,9 @@ namespace RenCSharp.Menus
             else
             {
                 //we're on main menu doin' stuff
+                SaveData_From_Main_Menu sdfmm = Object_Factory.SpawnObject(new GameObject(), "SL").AddComponent<SaveData_From_Main_Menu>();
+                sdfmm.SD = sd;
+                DontDestroyOnLoad(sdfmm.gameObject);
             }
             Menu_Manager.MM.CloseMenus(); //close after a save being loaded is probably the most sensible.
         }
