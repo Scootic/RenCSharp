@@ -41,6 +41,7 @@ namespace RenCSharp
             }
 
             InitSFX(); // now that the manager is up, initialize all needed audio sources
+            DontDestroyOnLoad(gameObject);
         }
         #region 2DSFX
         public void Play2DSFX(AudioClip clipToPlay, float volume = 1, bool environmental = false)
