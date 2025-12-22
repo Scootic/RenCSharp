@@ -7,10 +7,11 @@ namespace EXPERIMENTAL
     {
         [SerializeField] private string playerPrefRef;
         [SerializeField] private string UpdateReferenceActionName;
+        [SerializeField] private float defaultValue;
 
         private void OnEnable()
         {
-            GetComponent<Slider>().value = PlayerPrefs.GetFloat(playerPrefRef);
+            GetComponent<Slider>().value = PlayerPrefs.GetFloat(playerPrefRef, defaultValue);
         }
 
         public void UpdatePref(float f)
