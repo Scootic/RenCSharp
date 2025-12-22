@@ -6,7 +6,7 @@ namespace RenCSharp.Menus
     public class SaveLoad_Menu : Menu_Base
     {
         [SerializeField] private GameObject saveMenu;
-        [SerializeField] private GameObject loadGamePrefab;
+        [SerializeField,Tooltip("Requires a UIE with 2 buttons, 1 image, and 1 TMPText")] private GameObject loadGamePrefab;
         [SerializeField] private Transform loadGameHolder;
         [SerializeField] private Sprite defaultImage;
         [Header("Main Menu Scene Loading")]
@@ -38,6 +38,7 @@ namespace RenCSharp.Menus
                 }
 
                 loadElement.Buttons[0].onClick.AddListener(delegate { Load(allSDs[ind]); });
+                loadElement.Buttons[1].onClick.AddListener(delegate { Delete(allSDs[ind].FileName); });
 
                 activeDatas++;
             }
@@ -72,6 +73,13 @@ namespace RenCSharp.Menus
                 DontDestroyOnLoad(sdfmm.gameObject);
                 ssl.LoadAnScene(sceneToLoadIndex);
             }
+        }
+
+        private void Delete(string saveFileName)
+        {
+            SaveLoad.DeleteFile(saveFileName);
+            OnMenuClose();
+            OnMenuOpen();
         }
 
         public void SetFileName(string s)
