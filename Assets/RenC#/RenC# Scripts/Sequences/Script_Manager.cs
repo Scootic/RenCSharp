@@ -107,6 +107,7 @@ namespace RenCSharp
             Object_Factory.ScrubDictionary(); //the dictionary is static, so we don't want to keep storing garbage forever.
             FlagToken ft = new FlagToken(Flag_Manager.GetPersistentDataFlags);
             SaveLoad.SavePersistentFlags(ft);
+            SM = null;
         }
         #region SequenceHandling
         public void StartSequence()
