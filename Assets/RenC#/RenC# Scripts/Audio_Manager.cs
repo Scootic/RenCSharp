@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EXPERIMENTAL;
 namespace RenCSharp
 {
     public sealed class Audio_Manager : MonoBehaviour
@@ -43,6 +44,14 @@ namespace RenCSharp
             {
                 Destroy(gameObject); // game end me
             }
+
+            Event_Bus.AddFloatEvent("BGMVol", ReceiveBGM);
+            Event_Bus.AddFloatEvent("SFXVol", ReceiveSFX);
+            Event_Bus.AddFloatEvent("ESFXVol", ReceiveESFX);
+
+            bgmVolMult = PlayerPrefs.GetFloat("BGMVol");
+            sfxVolMult = PlayerPrefs.GetFloat("SFXVol");
+            esfxVolMult = PlayerPrefs.GetFloat("ESFXVol");
 
             InitSFX(); // now that the manager is up, initialize all needed audio sources
             DontDestroyOnLoad(gameObject);
@@ -207,12 +216,21 @@ namespace RenCSharp
             else return false;
         }
         #endregion
-
-        public void ReceiveAudioSettings(SettingsToken st)
+        #region Settings
+        private void ReceiveBGM(float f)
         {
-            bgmVolMult = st.BGMVolume;
-            sfxVolMult = st.SFXVolume;
-            esfxVolMult = st.ESFXVolume;
+            bgmVolMult = f;
         }
+
+        void ReceiveSFX(float f)
+        {
+            sfxVolMult = f;
+        }
+
+        void ReceiveESFX(float f)
+        {
+            esfxVolMult = f;
+        }
+        #endregion
     }
 }
