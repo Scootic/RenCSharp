@@ -10,11 +10,11 @@ namespace EXPERIMENTAL
     /// </summary>
     public static class Event_Bus 
     {
-        private static Dictionary<string, Action> voidEvents;
-        private static Dictionary<string, Action<bool>> boolEvents;
-        private static Dictionary<string, Action<int>> intEvents;
-        private static Dictionary<string, Action<float>> floatEvents;
-        private static Dictionary<string, Action<string>> stringEvents;
+        private static Dictionary<string, Action> voidEvents = new();
+        private static Dictionary<string, Action<bool>> boolEvents = new();
+        private static Dictionary<string, Action<int>> intEvents = new();
+        private static Dictionary<string, Action<float>> floatEvents = new();
+        private static Dictionary<string, Action<string>> stringEvents = new();
 
         /// <summary>
         /// Dangerous as shit. Removes ALL actions from ALL dictionaries. Important because these bastards are static. Gc moment.
