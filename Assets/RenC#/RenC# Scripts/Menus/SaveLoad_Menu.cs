@@ -9,7 +9,7 @@ namespace RenCSharp.Menus
         [SerializeField] private GameObject loadGamePrefab;
         [SerializeField] private Transform loadGameHolder;
         [SerializeField] private Sprite defaultImage;
-        [Header("Scene Loading")]
+        [Header("Main Menu Scene Loading")]
         [SerializeField] private Simple_Scene_Loader ssl;
         [SerializeField] private byte sceneToLoadIndex = 2;
         private int activeDatas = 0;
@@ -24,7 +24,7 @@ namespace RenCSharp.Menus
                 int ind = i;
                 UI_Element loadElement = Object_Factory.SpawnObject(loadGamePrefab, "Save"+ind, loadGameHolder).GetComponent<UI_Element>();
 
-                loadElement.Texts[0].text = allSDs[ind].FileName != null ? allSDs[ind].FileName : fileName;
+                loadElement.Texts[0].text = allSDs[ind].FileName != null ? allSDs[ind].FileName : "SaveData";
                 if (allSDs[i].SaveScreenshot != null)
                 {
                     Texture2D screenShotTexture = new Texture2D(2, 2);
@@ -72,7 +72,6 @@ namespace RenCSharp.Menus
                 DontDestroyOnLoad(sdfmm.gameObject);
                 ssl.LoadAnScene(sceneToLoadIndex);
             }
-            
         }
 
         public void SetFileName(string s)
