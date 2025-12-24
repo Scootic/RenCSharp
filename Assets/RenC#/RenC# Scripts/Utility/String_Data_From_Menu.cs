@@ -23,10 +23,7 @@ namespace RenCSharp
         // Update is called once per frame
         void Update()
         {
-            if(Event_Bus.TryFireStringEvent(eventName, passValue))
-            {
-                Destroy(gameObject);
-            }
+            if(Event_Bus.TryFireStringEvent(eventName, passValue)) Destroy(gameObject);
         }
     }
 }

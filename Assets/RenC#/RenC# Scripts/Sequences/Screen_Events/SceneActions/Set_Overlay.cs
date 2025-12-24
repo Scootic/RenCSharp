@@ -11,40 +11,35 @@ namespace RenCSharp.Sequences
         [SerializeField, Tooltip("Title card type stuff.")] private string overlayText = string.Empty;
         [SerializeField] private float fadeTime = 0.5f;
         [Header("Animate Overlay")]
-        [SerializeField] private bool animate = false;
         [SerializeField, Tooltip("Be careful if you set this to false. Animations will loop until you override them.")] private bool endWithScreen = true;
         [SerializeField, Min(0), Tooltip("0 for every frame.")] private float secondsPerFrame = 0.1f;
 
-        private Coroutine animation;
         private Coroutine fadeImage;
-        private bool bloop;
-        private Image overlay;
+        private Animated_Image_Handler overlay;
 
         public override void DoShit()
         {
             if (!Object_Factory.TryGetObject("Overlay", out GameObject go)) return;
-            overlay = go.GetComponent<Image>();
-            bloop = true;
-            fadeImage = Script_Manager.SM.StartCoroutine(FadeIn(overlay, imagesToSet));
-            if (endWithScreen && animate) Script_Manager.ProgressScreenEvent += PanicStop;
+            overlay = go.GetComponent<Animated_Image_Handler>();
+            fadeImage = Script_Manager.SM.StartCoroutine(FadeIn(overlay.Image, imagesToSet));
+            if (endWithScreen) Script_Manager.ProgressScreenEvent += PanicStop;
         }
 
         private void PanicStop()
         {
             Debug.LogWarning("Set overlay panic stopped!");
-            bloop = false;
-            overlay.color = Color.white;
+            overlay.Image.color = Color.white;
+            overlay.ReceiveAnimationInformation(imagesToSet.ToArray(), secondsPerFrame);
             if (fadeImage != null)Script_Manager.SM.StopCoroutine(fadeImage);
-            if(animation != null)Script_Manager.SM.StopCoroutine(animation);
         }
 
-        private IEnumerator FadeIn(Image overlay, List<Sprite> sprites)
+        private IEnumerator FadeIn(Image overlayImg, List<Sprite> sprites)
         {
             float t = 0;
             Color transGender = new Color(1, 1, 1, 0);
             float perc;
             bool flick = false;
-            TextMeshProUGUI text = overlay.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI text = overlay.GetComponent<UI_Element>().Texts[0];
             text.text = "";
             while (t <= fadeTime)
             {
@@ -53,45 +48,23 @@ namespace RenCSharp.Sequences
 
                 if(perc < 0.5f)
                 {
-                    overlay.color = Color.Lerp(Color.white, transGender, perc * 2);
+                    overlayImg.color = Color.Lerp(Color.white, transGender, perc * 2);
                 }
                 else
                 {
                     if (!flick) 
                     {
-                        if (!animate) overlay.sprite = sprites[0];
-                        else animation = Script_Manager.SM.StartCoroutine(AnimateOverlay(overlay, sprites));
+                        overlay.ReceiveAnimationInformation(sprites.ToArray(), secondsPerFrame);
                         flick = true;
                     }
 
-                    overlay.color = Color.Lerp(transGender, Color.white, perc * 2 - 1);
+                    overlayImg.color = Color.Lerp(transGender, Color.white, perc * 2 - 1);
                 }
 
                 yield return null;
             }
             text.text = overlayText;
-            overlay.color = Color.white;
-        }
-
-        private IEnumerator AnimateOverlay(Image overlay, List<Sprite> sprites)
-        {
-            float t = 0;
-            int i = 0;
-            Sprite ogSp = overlay.sprite;
-
-            while (bloop)
-            {
-                if (!sprites.Contains(overlay.sprite) && ogSp != overlay.sprite) { PanicStop(); yield break; }
-                t += Time.deltaTime;
-                if(t >= secondsPerFrame)
-                {
-                    t = 0;
-                    i++;
-                    if (i == sprites.Count) i = 0;
-                    overlay.sprite = sprites[i];
-                }
-                yield return null;
-            }
+            overlayImg.color = Color.white;
         }
 
         public override string ToString()

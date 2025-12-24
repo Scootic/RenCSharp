@@ -10,7 +10,8 @@ namespace RenCSharp.Sequences
     /// </summary>
     public class Fade_Transition : Screen_Event
     {
-        [SerializeField] private Sprite newBG;
+        [SerializeField] private Sprite[] newBG;
+        [SerializeField] private float secondsPerFrame = 0.1f;
         [SerializeField, Tooltip("Decide which type of transition to tell animator to use.")] private int fadeTransition = 0;
         [SerializeField, Tooltip("How long should the fade be in seconds?")] private float fadeDuration = 1f;
         private Animation_Event_Delegates aed;
@@ -41,7 +42,7 @@ namespace RenCSharp.Sequences
         private void SwapBG()
         {
             if (!Object_Factory.TryGetObject("Background", out GameObject go)) return;
-            go.GetComponent<Image>().sprite = newBG;
+            go.GetComponent<Animated_Image_Handler>().ReceiveAnimationInformation(newBG, secondsPerFrame);
         }
 
         private void UnpauseSM()
