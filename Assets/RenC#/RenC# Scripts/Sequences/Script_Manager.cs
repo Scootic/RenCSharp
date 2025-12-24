@@ -78,7 +78,8 @@ namespace RenCSharp
                 SM = this;
             } else if (SM != this)
             {
-                Destroy(this);
+                Destroy(SM);
+                SM = this;
             }
 
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder);
@@ -107,7 +108,8 @@ namespace RenCSharp
             Object_Factory.ScrubDictionary(); //the dictionary is static, so we don't want to keep storing garbage forever.
             FlagToken ft = new FlagToken(Flag_Manager.GetPersistentDataFlags);
             SaveLoad.SavePersistentFlags(ft);
-            SM = null;
+            SequencePausedEvent -= ToggleDialogUI;
+            Event_Bus.TryRemoveStringEvent("PlayerName");
         }
         #region SequenceHandling
         public void StartSequence()
@@ -357,14 +359,26 @@ namespace RenCSharp
 
             if (Object_Factory.TryGetObject("Background", out GameObject bg)) 
             {
-                Image image = bg.GetComponent<Image>();
-                st.BackgroundAssetIndex = backgroundDatabase.Sprites.IndexOf(image.sprite);
+                Animated_Image_Handler aih = bg.GetComponent<Animated_Image_Handler>();
+                List<int> t = new();
+                foreach(Sprite s in aih.AnimationFrames)
+                {
+                    t.Add(backgroundDatabase.Sprites.IndexOf(s));
+                }
+                st.BackgroundAssetIndexes = t.ToArray();
+                st.BackgroundSPF = aih.SecondsPerFrame;
             }
 
             if(Object_Factory.TryGetObject("Overlay", out GameObject ov))
             {
-                Image image = ov.GetComponent<Image>();
-                st.OverlayAssetIndex = overlayDatabase.Sprites.IndexOf(image.sprite);
+                Animated_Image_Handler aih = ov.GetComponent<Animated_Image_Handler>();
+                List<int> t = new();
+                foreach(Sprite s in aih.AnimationFrames)
+                {
+                    t.Add(overlayDatabase.Sprites.IndexOf(s));
+                }
+                st.OverlayAssetIndexes = t.ToArray();
+                st.OverlaySPF = aih.SecondsPerFrame;
             }
 
             st.MusicAssetIndex = audioDatabase.Sounds.IndexOf(Audio_Manager.AM.CurrentBGM);
@@ -414,8 +428,8 @@ namespace RenCSharp
             StopAllCoroutines();
             Object_Factory.ScrubDictionary();
 
-            Image ov = Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Image>();
-            Image bg = Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform).GetComponent<Image>();
+            Animated_Image_Handler ov = Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Animated_Image_Handler>();
+            Animated_Image_Handler bg = Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform).GetComponent<Animated_Image_Handler>();
 
             //grab flags
             FlagToken ft = sd.CurrentFlags;
@@ -432,8 +446,21 @@ namespace RenCSharp
             ScreenToken std = sd.ScreenInformation;
             AsyncOperationHandle SequenceAsset;
 
-            ov.sprite = overlayDatabase.Sprites[std.OverlayAssetIndex];
-            bg.sprite = backgroundDatabase.Sprites[std.BackgroundAssetIndex];
+            List<Sprite> ovFrames = new();
+            List<Sprite> bgFrames = new();
+
+            foreach(int i in std.OverlayAssetIndexes)
+            {
+                ovFrames.Add(overlayDatabase.Sprites[i]);
+            }
+
+            foreach (int i in std.BackgroundAssetIndexes)
+            {
+                bgFrames.Add(backgroundDatabase.Sprites[i]);
+            }
+
+            ov.ReceiveAnimationInformation(ovFrames.ToArray(),std.OverlaySPF);
+            bg.ReceiveAnimationInformation(bgFrames.ToArray(),std.BackgroundSPF);
 
             Audio_Manager.AM.PlayBGM(audioDatabase.Sounds[std.MusicAssetIndex], 1f, true, 
                Audio_Manager.AM.CurrentBGM == audioDatabase.Sounds[std.MusicAssetIndex] ? true : false);

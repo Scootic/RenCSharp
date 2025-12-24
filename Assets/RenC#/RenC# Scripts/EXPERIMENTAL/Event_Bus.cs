@@ -21,26 +21,11 @@ namespace EXPERIMENTAL
         /// </summary>
         public static void PurgeEvents()
         {
-            foreach(KeyValuePair<string, Action> kvp in voidEvents)
-            {
-                voidEvents.Remove(kvp.Key);
-            }
-            foreach(KeyValuePair<string, Action<bool>> kvp in boolEvents)
-            {
-                boolEvents.Remove(kvp.Key);
-            }
-            foreach(KeyValuePair<string, Action<int>> kvp in intEvents)
-            {
-                intEvents.Remove(kvp.Key);
-            }
-            foreach(KeyValuePair<string, Action<float>> kvp in floatEvents)
-            {
-                floatEvents.Remove(kvp.Key);
-            }
-            foreach(KeyValuePair<string, Action<string>> kvp in stringEvents)
-            {
-                stringEvents.Remove(kvp.Key);
-            }
+            voidEvents.Clear();
+            boolEvents.Clear();
+            intEvents.Clear();
+            floatEvents.Clear();
+            stringEvents.Clear();
         }
 
         #region VoidEvents
@@ -65,6 +50,16 @@ namespace EXPERIMENTAL
             if (voidEvents.ContainsKey(name))
             {
                 Event = voidEvents[name];
+                return true;
+            }
+            else return false;
+        }
+
+        public static bool TryRemoveVoidEvent(string name)
+        {
+            if (voidEvents.ContainsKey(name))
+            {
+                voidEvents.Remove(name);
                 return true;
             }
             else return false;
@@ -96,6 +91,16 @@ namespace EXPERIMENTAL
             }
             else return false;
         }
+
+        public static bool TryRemoveBoolEvent(string name)
+        {
+            if (boolEvents.ContainsKey(name))
+            {
+                boolEvents.Remove(name);
+                return true;
+            }
+            else return false;
+        }
         #endregion
         #region IntEvents
         public static void AddIntEvent(string name, Action<int> Event)
@@ -119,6 +124,16 @@ namespace EXPERIMENTAL
             if (intEvents.ContainsKey(name))
             {
                 Event = intEvents[name];
+                return true;
+            }
+            else return false;
+        }
+
+        public static bool TryRemoveIntEvent(string name)
+        {
+            if (intEvents.ContainsKey(name))
+            {
+                intEvents.Remove(name);
                 return true;
             }
             else return false;
@@ -150,6 +165,16 @@ namespace EXPERIMENTAL
             }
             else return false;
         }
+
+        public static bool TryRemoveFloatEvent(string name)
+        {
+            if (floatEvents.ContainsKey(name))
+            {
+                floatEvents.Remove(name);
+                return true;
+            }
+            else return false;
+        }
         #endregion
         #region StringEvents
         public static void AddStringEvent(string name, Action<string> Event)
@@ -173,6 +198,16 @@ namespace EXPERIMENTAL
             if (stringEvents.ContainsKey(name))
             {
                 Event = stringEvents[name];
+                return true;
+            }
+            else return false;
+        }
+
+        public static bool TryRemoveStringEvent(string name)
+        {
+            if (stringEvents.ContainsKey(name))
+            {
+                stringEvents.Remove(name);
                 return true;
             }
             else return false;
