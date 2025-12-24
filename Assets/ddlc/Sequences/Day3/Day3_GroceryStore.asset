@@ -346,7 +346,9 @@ MonoBehaviour:
     - rid: 9142197651443286218
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 81bda4138dcd08548a14480d81972ff9, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: 81bda4138dcd08548a14480d81972ff9, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
     - rid: 9142197651443286219
@@ -497,7 +499,9 @@ MonoBehaviour:
     - rid: 9142197651443286237
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 0cd45414efb80de49bf80ebb5310e706, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: 0cd45414efb80de49bf80ebb5310e706, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
     - rid: 9142197651443286238

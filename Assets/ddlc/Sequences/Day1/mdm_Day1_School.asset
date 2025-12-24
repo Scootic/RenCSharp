@@ -136,7 +136,9 @@ MonoBehaviour:
     - rid: 8612954484556955754
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 67dd5da0ba57ebc48906bc83e29c54c8, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: 67dd5da0ba57ebc48906bc83e29c54c8, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
     - rid: 8612954484556955755

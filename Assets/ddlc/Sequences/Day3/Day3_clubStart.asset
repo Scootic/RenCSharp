@@ -748,7 +748,9 @@ MonoBehaviour:
     - rid: 9142197581518209128
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
     - rid: 9142197581518209130
@@ -1088,7 +1090,9 @@ MonoBehaviour:
     - rid: 9142197581518209167
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 67dd5da0ba57ebc48906bc83e29c54c8, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: 67dd5da0ba57ebc48906bc83e29c54c8, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 1
         fadeDuration: 4
     - rid: 9142197581518209168
@@ -1130,7 +1134,9 @@ MonoBehaviour:
     - rid: 9142197581518209178
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 1
         fadeDuration: 4
     - rid: 9142197581518209179
@@ -1167,7 +1173,6 @@ MonoBehaviour:
         - {fileID: 21300000, guid: 7ae89b6f8c3126d4fa85dd1e398805c6, type: 3}
         overlayText: 
         fadeTime: 0.5
-        animate: 0
         endWithScreen: 1
         secondsPerFrame: 0.1
     - rid: 9142197581518209183
@@ -1242,7 +1247,6 @@ MonoBehaviour:
         - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
         overlayText: 
         fadeTime: 1
-        animate: 0
         endWithScreen: 1
         secondsPerFrame: 0.1
     - rid: 9142197581518209188
@@ -1527,7 +1531,6 @@ MonoBehaviour:
         - {fileID: 774781490, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
         overlayText: 
         fadeTime: 0.5
-        animate: 1
         endWithScreen: 1
         secondsPerFrame: 0.1
     - rid: 9142197581518209224
@@ -1537,7 +1540,6 @@ MonoBehaviour:
         - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
         overlayText: 
         fadeTime: 0.5
-        animate: 0
         endWithScreen: 1
         secondsPerFrame: 0.1
     - rid: 9142197581518209225

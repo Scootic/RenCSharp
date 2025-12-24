@@ -608,7 +608,6 @@ MonoBehaviour:
         - {fileID: 774781490, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
         overlayText: 
         fadeTime: 0.5
-        animate: 1
         endWithScreen: 0
         secondsPerFrame: 0.1
     - rid: 9142197738211377239
@@ -638,7 +637,9 @@ MonoBehaviour:
     - rid: 9142197738211377242
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 1
         fadeDuration: 0.1
     - rid: 9142197738211377244
@@ -648,13 +649,14 @@ MonoBehaviour:
         - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
         overlayText: 
         fadeTime: 0.5
-        animate: 0
         endWithScreen: 1
         secondsPerFrame: 0.1
     - rid: 9142197738211377245
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 03c0213668613e8409b2e140cb2cb9bd, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: 03c0213668613e8409b2e140cb2cb9bd, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 1
         fadeDuration: 1
     - rid: 9142197738211377246
@@ -670,7 +672,6 @@ MonoBehaviour:
         - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
         overlayText: 
         fadeTime: 0.5
-        animate: 0
         endWithScreen: 1
         secondsPerFrame: 0.1
     - rid: 9142197738211377248
@@ -826,7 +827,11 @@ MonoBehaviour:
     - rid: 9142197738211377282
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 03c0213668613e8409b2e140cb2cb9bd, type: 3}
+        newBG:
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
     - rid: 9142197738211377283

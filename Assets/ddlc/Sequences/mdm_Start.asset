@@ -68,7 +68,9 @@ MonoBehaviour:
     - rid: 8612954368440271007
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 36f7c6032a374db4a968c0e1236322e1, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: 36f7c6032a374db4a968c0e1236322e1, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 2
         fadeDuration: 4
     - rid: 8612954466327199745
@@ -93,7 +95,6 @@ MonoBehaviour:
         - {fileID: 774781490, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
         overlayText: 
         fadeTime: 0.5
-        animate: 1
         endWithScreen: 0
         secondsPerFrame: 0.1
     - rid: 8612954484556955709

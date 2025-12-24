@@ -97,7 +97,6 @@ MonoBehaviour:
         - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
         overlayText: Day 0 - Act 1
         fadeTime: 2
-        animate: 0
         endWithScreen: 1
         secondsPerFrame: 0.1
     - rid: 8612954481186308162
@@ -109,7 +108,9 @@ MonoBehaviour:
     - rid: 8612954481186308164
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 51aa5cf7e5d98d940b920b780d5f7d1d, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: 51aa5cf7e5d98d940b920b780d5f7d1d, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 4
     - rid: 8612954484556955711
@@ -119,7 +120,6 @@ MonoBehaviour:
         - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
         overlayText: 
         fadeTime: 2
-        animate: 0
         endWithScreen: 1
         secondsPerFrame: 0.1
     - rid: 8612954484556955719
@@ -129,7 +129,6 @@ MonoBehaviour:
         - {fileID: 21300000, guid: 5eeaa0a169f3b294b8dd71cb0291e026, type: 3}
         overlayText: 
         fadeTime: 0.5
-        animate: 0
         endWithScreen: 1
         secondsPerFrame: 0.1
     - rid: 8612954484556955720
@@ -139,12 +138,13 @@ MonoBehaviour:
         - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
         overlayText: 
         fadeTime: 0.5
-        animate: 0
         endWithScreen: 1
         secondsPerFrame: 0.1
     - rid: 8612954621401628741
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 21e4c3850e9fe4140ab31bf60a1b8643, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: 21e4c3850e9fe4140ab31bf60a1b8643, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5085005776320752997}
   - component: {fileID: 8505064189253050325}
   - component: {fileID: 5334296027059283609}
+  - component: {fileID: 5636255164201376333}
+  - component: {fileID: 442404910980293353}
   m_Layer: 5
   m_Name: Overlay
   m_TagString: Untagged
@@ -76,6 +78,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5636255164201376333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5236450459068519206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5533260669cd63043b561dd236cde35b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &442404910980293353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5236450459068519206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bcf145c6226374088a64b56c2cc4cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texts:
+  - {fileID: 7164789360475122773}
+  images: []
+  buttons: []
 --- !u!1 &6732199448481846197
 GameObject:
   m_ObjectHideFlags: 0

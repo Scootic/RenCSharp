@@ -487,7 +487,9 @@ MonoBehaviour:
     - rid: 9142197673170043066
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 67dd5da0ba57ebc48906bc83e29c54c8, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: 67dd5da0ba57ebc48906bc83e29c54c8, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
     - rid: 9142197673170043067
@@ -663,13 +665,17 @@ MonoBehaviour:
     - rid: 9142197673170043084
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: dd6c8e5b87af36a418069980751df3b4, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: dd6c8e5b87af36a418069980751df3b4, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 1
     - rid: 9142197673170043085
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 67dd5da0ba57ebc48906bc83e29c54c8, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: 67dd5da0ba57ebc48906bc83e29c54c8, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 1
     - rid: 9142197673170043086
@@ -758,7 +764,9 @@ MonoBehaviour:
     - rid: 9142197673170043097
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 1
     - rid: 9142197673170043098
@@ -869,7 +877,11 @@ MonoBehaviour:
     - rid: 9142197673170043107
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
+        newBG:
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
     - rid: 9142197673170043108
