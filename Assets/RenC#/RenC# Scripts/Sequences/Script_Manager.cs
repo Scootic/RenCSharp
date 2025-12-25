@@ -363,7 +363,14 @@ namespace RenCSharp
                 List<int> t = new();
                 foreach(Sprite s in aih.AnimationFrames)
                 {
-                    t.Add(backgroundDatabase.Sprites.IndexOf(s));
+                    if (backgroundDatabase.Sprites.Contains(s))
+                    {
+                        t.Add(backgroundDatabase.Sprites.IndexOf(s));
+                    }
+                    else
+                    {
+                        Debug.LogWarning(s.name + " isn't in the bg database, allegedly.");
+                    }
                 }
                 st.BackgroundAssetIndexes = t.ToArray();
                 st.BackgroundSPF = aih.SecondsPerFrame;
@@ -375,7 +382,14 @@ namespace RenCSharp
                 List<int> t = new();
                 foreach(Sprite s in aih.AnimationFrames)
                 {
-                    t.Add(overlayDatabase.Sprites.IndexOf(s));
+                    if (overlayDatabase.Sprites.Contains(s))
+                    {
+                        t.Add(overlayDatabase.Sprites.IndexOf(s));
+                    }
+                    else
+                    {
+                        Debug.LogWarning(s.name + " isn't in the ov database, allegedly.");
+                    }
                 }
                 st.OverlayAssetIndexes = t.ToArray();
                 st.OverlaySPF = aih.SecondsPerFrame;
@@ -451,11 +465,21 @@ namespace RenCSharp
 
             foreach(int i in std.OverlayAssetIndexes)
             {
+                if(i < 0 || i >= overlayDatabase.Sprites.Count)
+                {
+                    Debug.LogWarning("Found an evil overlay index, somehow.");
+                    continue;
+                }
                 ovFrames.Add(overlayDatabase.Sprites[i]);
             }
 
             foreach (int i in std.BackgroundAssetIndexes)
             {
+                if(i < 0 || i >= backgroundDatabase.Sprites.Count)
+                {
+                    Debug.LogWarning("Found an evil background index, somehow.");
+                    continue;
+                }
                 bgFrames.Add(backgroundDatabase.Sprites[i]);
             }
 
@@ -491,6 +515,7 @@ namespace RenCSharp
                     Debug.LogWarning("Failed to load actor: " + at.ActorAsset);
                     ActorSO.Release();
                 }
+                
             }
 
             SequenceAsset.WaitForCompletion();
@@ -589,7 +614,7 @@ namespace RenCSharp
         }
         private void SetPlayerName(string s)
         {
-            playerName = s;
+            if(s!= string.Empty) playerName = s;
         }
         #endregion
     }
