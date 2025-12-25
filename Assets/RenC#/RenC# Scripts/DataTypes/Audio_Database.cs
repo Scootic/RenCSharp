@@ -6,21 +6,25 @@ namespace RenCSharp
     public class Audio_Database : ScriptableObject
     {
         [SerializeField] private List<AudioClip> sounds;
+        [SerializeField] private bool debugValidation = false;
         private Dictionary<string, AudioClip> soundDictionary;
         private void OnValidate()
         {
-            Debug.Log("Validating Audio DB!");
+            if(debugValidation) Debug.Log("Validating Audio DB!");
             soundDictionary = new();
             foreach (AudioClip a in sounds)
             {
                 soundDictionary.Add(a.name, a);
             }
-            string result = "All Sounds in Dict: + \n";
-            foreach (KeyValuePair<string, AudioClip> kvp in soundDictionary)
+            if (debugValidation)
             {
-                result += kvp.Key + "\n";
+                string result = "All Sounds in Dict: + \n";
+                foreach (KeyValuePair<string, AudioClip> kvp in soundDictionary)
+                {
+                    result += kvp.Key + "\n";
+                }
+                Debug.Log(result);
             }
-            Debug.Log(result);
         }
 
         private void OnEnable()
