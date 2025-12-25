@@ -42,7 +42,7 @@ namespace RenCSharp.Sequences
                     actorObj.transform.position = SetPosition(eval);
                     yield return null;
                 }
-                actorObj.transform.position = SetPosition(1f);
+                if (actorObj != null) actorObj.transform.position = SetPosition(1f);
             }
             else //if we DO loop, end at start of curve
             {
@@ -55,7 +55,7 @@ namespace RenCSharp.Sequences
                     actorObj.transform.position = SetPosition(eval);
                     yield return null;
                 }
-                actorObj.transform.position = SetPosition(0f);
+                if(actorObj != null) actorObj.transform.position = SetPosition(0f);
             }
         }
 
