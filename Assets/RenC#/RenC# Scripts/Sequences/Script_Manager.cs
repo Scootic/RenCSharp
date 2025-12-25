@@ -338,7 +338,7 @@ namespace RenCSharp
         public void SaveShit(string saveFileName)
         {
             if (saving) return;
-
+            if (saveFileName == null) saveFileName = "SaveData";
             if(overlayDatabase == null || backgroundDatabase == null || audioDatabase == null)
             {
                 Debug.LogWarning("You're a missing a database, you damned fool! I refuse to save under these working conditions!");
@@ -380,6 +380,10 @@ namespace RenCSharp
             {
                 Animated_Image_Handler aih = ov.GetComponent<Animated_Image_Handler>();
                 List<int> t = new();
+                foreach(Sprite s in overlayDatabase.Sprites)
+                {
+                    Debug.Log("I've got a sprite: " + s.name);
+                }
                 foreach(Sprite s in aih.AnimationFrames)
                 {
                     if (overlayDatabase.Sprites.Contains(s))
@@ -394,8 +398,14 @@ namespace RenCSharp
                 st.OverlayAssetIndexes = t.ToArray();
                 st.OverlaySPF = aih.SecondsPerFrame;
             }
-
-            st.MusicAssetIndex = audioDatabase.Sounds.IndexOf(Audio_Manager.AM.CurrentBGM);
+            if (audioDatabase.Sounds.Contains(Audio_Manager.AM.CurrentBGM))
+            {
+                st.MusicAssetIndex = audioDatabase.Sounds.IndexOf(Audio_Manager.AM.CurrentBGM);
+            }
+            else
+            {
+                Debug.LogWarning(Audio_Manager.AM.CurrentBGM.name + " isn't in the audio database, allegedly.");
+            }
 
             List<ActorToken> actorTokens = new();
 
@@ -424,7 +434,6 @@ namespace RenCSharp
             manToSave.ScreenInformation = st;
             menuBase.SetActive(false);
             StartCoroutine(WaitForScreenShot(manToSave, saveFileName));
-            SaveLoad.Save(saveFileName, manToSave);
         }
 
         private IEnumerator WaitForScreenShot(SaveData sd, string fileName)
@@ -467,7 +476,7 @@ namespace RenCSharp
             {
                 if(i < 0 || i >= overlayDatabase.Sprites.Count)
                 {
-                    Debug.LogWarning("Found an evil overlay index, somehow.");
+                    Debug.LogWarning("Found an evil overlay index, somehow. - " + i);
                     continue;
                 }
                 ovFrames.Add(overlayDatabase.Sprites[i]);
@@ -477,7 +486,7 @@ namespace RenCSharp
             {
                 if(i < 0 || i >= backgroundDatabase.Sprites.Count)
                 {
-                    Debug.LogWarning("Found an evil background index, somehow.");
+                    Debug.LogWarning("Found an evil background index, somehow. - " + i);
                     continue;
                 }
                 bgFrames.Add(backgroundDatabase.Sprites[i]);
@@ -486,10 +495,17 @@ namespace RenCSharp
             ov.ReceiveAnimationInformation(ovFrames.ToArray(),std.OverlaySPF);
             bg.ReceiveAnimationInformation(bgFrames.ToArray(),std.BackgroundSPF);
 
-            Audio_Manager.AM.PlayBGM(audioDatabase.Sounds[std.MusicAssetIndex], 1f, true, 
-               Audio_Manager.AM.CurrentBGM == audioDatabase.Sounds[std.MusicAssetIndex] ? true : false);
+            if (std.MusicAssetIndex > -1 && std.MusicAssetIndex < audioDatabase.Sounds.Count)
+            {
+                Audio_Manager.AM.PlayBGM(audioDatabase.Sounds[std.MusicAssetIndex], 1f, true,
+                   Audio_Manager.AM.CurrentBGM == audioDatabase.Sounds[std.MusicAssetIndex] ? true : false);
+            }
+            else
+            {
+                Debug.LogWarning("Music Asset Index is evil! - " + std.MusicAssetIndex);
+            }
 
-            SequenceAsset = Addressables.LoadAssetAsync<Sequence>(sd.CurrentSequenceAsset);
+                SequenceAsset = Addressables.LoadAssetAsync<Sequence>(sd.CurrentSequenceAsset);
 
             Debug.Log("Amount of actors we should be loading: " + std.ActiveActors.Count);
 
