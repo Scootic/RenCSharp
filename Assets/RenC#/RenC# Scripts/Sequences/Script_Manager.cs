@@ -360,47 +360,45 @@ namespace RenCSharp
             if (Object_Factory.TryGetObject("Background", out GameObject bg)) 
             {
                 Animated_Image_Handler aih = bg.GetComponent<Animated_Image_Handler>();
-                List<int> t = new();
+                List<string> t = new();
+
                 foreach(Sprite s in aih.AnimationFrames)
                 {
-                    if (backgroundDatabase.Sprites.Contains(s))
+                    if (backgroundDatabase.Sprites.ContainsKey(s.name))
                     {
-                        t.Add(backgroundDatabase.Sprites.IndexOf(s));
+                        t.Add(s.name);
                     }
                     else
                     {
                         Debug.LogWarning(s.name + " isn't in the bg database, allegedly.");
                     }
                 }
-                st.BackgroundAssetIndexes = t.ToArray();
+                st.BackgroundAssetKeys = t.ToArray();
                 st.BackgroundSPF = aih.SecondsPerFrame;
             }
 
             if(Object_Factory.TryGetObject("Overlay", out GameObject ov))
             {
                 Animated_Image_Handler aih = ov.GetComponent<Animated_Image_Handler>();
-                List<int> t = new();
-                foreach(Sprite s in overlayDatabase.Sprites)
-                {
-                    Debug.Log("I've got a sprite: " + s.name);
-                }
+                List<string> t = new();
                 foreach(Sprite s in aih.AnimationFrames)
                 {
-                    if (overlayDatabase.Sprites.Contains(s))
+                    if (overlayDatabase.Sprites.ContainsKey(s.name))
                     {
-                        t.Add(overlayDatabase.Sprites.IndexOf(s));
+                        t.Add(s.name);
                     }
                     else
                     {
                         Debug.LogWarning(s.name + " isn't in the ov database, allegedly.");
                     }
                 }
-                st.OverlayAssetIndexes = t.ToArray();
+                st.OverlayAssetKeys = t.ToArray();
                 st.OverlaySPF = aih.SecondsPerFrame;
             }
-            if (audioDatabase.Sounds.Contains(Audio_Manager.AM.CurrentBGM))
+
+            if (audioDatabase.Sounds.ContainsKey(Audio_Manager.AM.CurrentBGM.name))
             {
-                st.MusicAssetIndex = audioDatabase.Sounds.IndexOf(Audio_Manager.AM.CurrentBGM);
+                st.MusicAssetKey = Audio_Manager.AM.CurrentBGM.name;
             }
             else
             {
@@ -472,37 +470,37 @@ namespace RenCSharp
             List<Sprite> ovFrames = new();
             List<Sprite> bgFrames = new();
 
-            foreach(int i in std.OverlayAssetIndexes)
+            foreach(string s in std.OverlayAssetKeys)
             {
-                if(i < 0 || i >= overlayDatabase.Sprites.Count)
+                if(!overlayDatabase.Sprites.ContainsKey(s))
                 {
-                    Debug.LogWarning("Found an evil overlay index, somehow. - " + i);
+                    Debug.LogWarning("Found an evil overlay key, somehow. - " + s);
                     continue;
                 }
-                ovFrames.Add(overlayDatabase.Sprites[i]);
+                ovFrames.Add(overlayDatabase.Sprites[s]);
             }
 
-            foreach (int i in std.BackgroundAssetIndexes)
+            foreach (string s in std.BackgroundAssetKeys)
             {
-                if(i < 0 || i >= backgroundDatabase.Sprites.Count)
+                if(!backgroundDatabase.Sprites.ContainsKey(s))
                 {
-                    Debug.LogWarning("Found an evil background index, somehow. - " + i);
+                    Debug.LogWarning("Found an evil background key, somehow. - " + s);
                     continue;
                 }
-                bgFrames.Add(backgroundDatabase.Sprites[i]);
+                bgFrames.Add(backgroundDatabase.Sprites[s]);
             }
 
             ov.ReceiveAnimationInformation(ovFrames.ToArray(),std.OverlaySPF);
             bg.ReceiveAnimationInformation(bgFrames.ToArray(),std.BackgroundSPF);
 
-            if (std.MusicAssetIndex > -1 && std.MusicAssetIndex < audioDatabase.Sounds.Count)
+            if (audioDatabase.Sounds.ContainsKey(std.MusicAssetKey))
             {
-                Audio_Manager.AM.PlayBGM(audioDatabase.Sounds[std.MusicAssetIndex], 1f, true,
-                   Audio_Manager.AM.CurrentBGM == audioDatabase.Sounds[std.MusicAssetIndex] ? true : false);
+                Audio_Manager.AM.PlayBGM(audioDatabase.Sounds[std.MusicAssetKey], 1f, true,
+                   Audio_Manager.AM.CurrentBGM == audioDatabase.Sounds[std.MusicAssetKey] ? true : false);
             }
             else
             {
-                Debug.LogWarning("Music Asset Index is evil! - " + std.MusicAssetIndex);
+                Debug.LogWarning("Music Asset Key is evil! - " + std.MusicAssetKey);
             }
 
                 SequenceAsset = Addressables.LoadAssetAsync<Sequence>(sd.CurrentSequenceAsset);

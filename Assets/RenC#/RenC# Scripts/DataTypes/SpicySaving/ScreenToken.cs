@@ -7,8 +7,8 @@ namespace RenCSharp
     public struct ScreenToken 
     {
         public List<ActorToken> ActiveActors;
-        public int MusicAssetIndex;
-        public int[] BackgroundAssetIndexes, OverlayAssetIndexes;
+        public string MusicAssetKey;
+        public string[] BackgroundAssetKeys, OverlayAssetKeys;
         public float BackgroundSPF, OverlaySPF;
     }
 }
