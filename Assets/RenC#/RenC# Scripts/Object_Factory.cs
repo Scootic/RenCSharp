@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 namespace RenCSharp
 {
     /// <summary>
@@ -37,6 +36,7 @@ namespace RenCSharp
                 GameObject t = activeGameObjects[name];
                 activeGameObjects.Remove(name);
                 GameObject.Destroy(t);
+                Debug.Log("Removed object of name: " + name);
             } else Debug.LogWarning("No active gameobject of name: " + name);
         }
         /// <summary>

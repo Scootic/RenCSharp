@@ -1,3 +1,4 @@
+using EXPERIMENTAL;
 using RenCSharp.Actors;
 using RenCSharp.Sequences;
 using System;
@@ -9,7 +10,6 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
-using EXPERIMENTAL;
 namespace RenCSharp
 {
     /// <summary>
@@ -64,6 +64,7 @@ namespace RenCSharp
         private bool jumpToEndDialog = false, paused = false, saving = false, loaded = false;
         private float curSpeed;
         private History curHist;
+        private Coroutine textRoutine;
 
         public static Script_Manager SM;
         public static Action ProgressScreenEvent, EndOfAllSequencesEvent;
@@ -120,7 +121,12 @@ namespace RenCSharp
         {
             Debug.Log("Started Sequence: " + currentSequence.name);
             curScreenIndex = 0;
-            StartCoroutine(RunThroughScreen(currentSequence.Screens[0]));
+            Sequences.Screen screen = currentSequence.Screens[0];
+            foreach (Screen_Event se in screen.ScreenActions)
+            {
+                se.DoShit();
+            }
+            textRoutine = StartCoroutine(RunThroughScreen(screen));
         }
 
         public void PauseSequence()
@@ -159,14 +165,23 @@ namespace RenCSharp
                 ProgressScreenEvent = null; //wipe all delegates from the action before continuing
                 curScreenIndex++;
                 Debug.Log("current Scrindex: " + curScreenIndex + ", Final Screen? " + (curScreenIndex >= currentSequence.Screens.Length - 1));
-                if(curScreenIndex < currentSequence.Screens.Length) StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
-                else if(curScreenIndex > currentSequence.Screens.Length - 1)//final screen of the sequence
+                if (curScreenIndex < currentSequence.Screens.Length) 
+                {
+                    Sequences.Screen screen = currentSequence.Screens[curScreenIndex];
+                    foreach (Screen_Event se in screen.ScreenActions) //do all screen events BEFORE processing any dialog. does not care if SM is paused or not.
+                    {
+                        se.DoShit();
+                    }
+                    //if (textRoutine != null) StopCoroutine(textRoutine);
+                    textRoutine = StartCoroutine(RunThroughScreen(screen)); 
+                }
+                else if (curScreenIndex > currentSequence.Screens.Length - 1)//final screen of the sequence
                 {
                     if (currentSequence.PlayerChoices.Length == 0)//if there are no valid next sequences, sum shit gone wrong
-                    { 
-                        Debug.Log("No next sequence, game over?"); 
+                    {
+                        Debug.Log("No next sequence, game over?");
                         EndOfAllSequencesEvent?.Invoke();
-                        return; 
+                        return;
                     }
 
                     Player_Choice firstPc = currentSequence.PlayerChoices[0];
@@ -187,9 +202,9 @@ namespace RenCSharp
                     //if the string is empty for first choice, don't give buttons, and instead load first valid sequence
                     else
                     {
-                        foreach(Player_Choice pc in currentSequence.PlayerChoices)
+                        foreach (Player_Choice pc in currentSequence.PlayerChoices)
                         {
-                            if(pc.RequireCondition && !pc.MetAllConditions()) continue;
+                            if (pc.RequireCondition && !pc.MetAllConditions()) continue;
                             LoadASequence(pc.ResultingSequence);
                             break;
                         }
@@ -203,11 +218,7 @@ namespace RenCSharp
             bool prevActorIscurSpeaker = (curActor == screen.Speaker);
             if (curActor != null && !prevActorIscurSpeaker && currentSequence.AutoFocusSpeaker) yield return ScaleActor(false, autoFocusScaleDuration);
             //scale down in case our previous actor was scaled up, if we don't have the same actor
-            foreach (Screen_Event se in screen.ScreenActions) //do all screen events BEFORE processing any dialog. does not care if SM is paused or not.
-            {
-                se.DoShit();
-            }
-
+         
             curActor = screen.Speaker != null ? screen.Speaker : null; //set the current actor for reasons. why is this an if?
             ///if(screen.Dialog == string.Empty) { jumpToEndDialog = true; ProgressToNextScreen(); yield break; }
             jumpToEndDialog = false; //set up to make sure we can skip properly and not just constantly move on before reaching end of text
@@ -541,7 +552,7 @@ namespace RenCSharp
             if (SequenceAsset.Status == AsyncOperationStatus.Succeeded) currentSequence = (Sequence)SequenceAsset.Result;
             else SequenceAsset.Release();
             loaded = true;
-            StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
+            textRoutine = StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
         }
         #endregion
         private IEnumerator ScaleActor(bool up, float scaleTime) //used if autoSpeakerFocus is true in a sequence
