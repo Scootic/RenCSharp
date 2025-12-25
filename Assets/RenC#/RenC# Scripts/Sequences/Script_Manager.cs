@@ -203,9 +203,8 @@ namespace RenCSharp
             {
                 se.DoShit();
             }
-            if (screen.Speaker != null) curActor = screen.Speaker; //set the current actor for reasons. why is this an if?
-            else curActor = null;
 
+            curActor = screen.Speaker != null ? screen.Speaker : null; //set the current actor for reasons. why is this an if?
             ///if(screen.Dialog == string.Empty) { jumpToEndDialog = true; ProgressToNextScreen(); yield break; }
             jumpToEndDialog = false; //set up to make sure we can skip properly and not just constantly move on before reaching end of text
 
@@ -243,8 +242,9 @@ namespace RenCSharp
                 ProgressToNextScreen();
                 yield break;
             }
+            //if we have actual text, log that in the history
             else UpdateHistory(curActor != null ? curActor.ActorName == playerTag ? playerName : curActor.ActorName : "Internal Narration", amended);
-
+            //start adding text to the box, character by character
             while (dialogchars.Length > dialogField.text.Length && amended.Length > dialogField.text.Length && !jumpToEndDialog)
             {
                 //only run through text if the SM is unpaused
@@ -287,7 +287,8 @@ namespace RenCSharp
 
                 yield return null;
             }
-            //safety measure
+
+            //safety measure once all chars have been put in their place
             StartCoroutine(FlashButton(curScreenIndex));
             jumpToEndDialog = true;
             dialogField.text = TagParser.CleanOutTags(amended);

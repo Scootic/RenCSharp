@@ -19,31 +19,34 @@ namespace RenCSharp.Sequences
         private GameObject actorObj;
         private Vector3 ogPos, desPos;
         private Coroutine motion;
+        private bool valid;
         public override void DoShit()
         {
-            Script_Manager.ProgressScreenEvent += ResetToOG;
             actorObj = GameObject.Find(target.ActorName);
             ogPos = actorObj.transform.position;
             desPos = ogPos + localMotionOffset;
             t = 0;
+            valid = true;
             motion = Script_Manager.SM.StartCoroutine(Animate());
+            Script_Manager.ProgressScreenEvent += ResetToOG;
         }
 
         private IEnumerator Animate()
         {
-            if (!loopOnScreen)
+            if (!loopOnScreen) //if no loop, end at the end of the curve
             {
-                while (t <= motionDuration) 
+                while (t <= motionDuration && valid) 
                 {
                     t += Time.deltaTime;
                     eval = t / motionDuration;
                     actorObj.transform.position = SetPosition(eval);
                     yield return null;
                 }
+                actorObj.transform.position = desPos;
             }
-            else
+            else //if we DO loop, end at start of curve
             {
-                while (true)
+                while (valid)
                 {
                     t += Time.deltaTime * dir;
                     eval = t / motionDuration;
@@ -52,6 +55,7 @@ namespace RenCSharp.Sequences
                     actorObj.transform.position = SetPosition(eval);
                     yield return null;
                 }
+                actorObj.transform.position = ogPos;
             }
         }
 
@@ -67,14 +71,13 @@ namespace RenCSharp.Sequences
 
         private void ResetToOG()
         {
-            if(motion != null) Script_Manager.SM.StopCoroutine(motion);
+            Debug.Log("ActorPos pre-reset: " + actorObj.transform.position);
+            valid = false;
+            //if (motion != null) Script_Manager.SM.StopCoroutine(motion);
+            //else Debug.LogWarning("There's no motion coroutine here! Very frightening.");
             //if it's a loop motion, the implication is that the actor should end in the place they started whenever the next screen happens
-            if (actorObj != null) 
-            { 
-                actorObj.transform.position = loopOnScreen ? SetPosition(0) : SetPosition(1); 
-                ogPos = actorObj.transform.position;
-            }
-            Script_Manager.ProgressScreenEvent -= ResetToOG; //clean up after done?
+            Debug.Log("ActorPos post-reset: " + actorObj.transform.position);
+            
         }
 
         public override string ToString()

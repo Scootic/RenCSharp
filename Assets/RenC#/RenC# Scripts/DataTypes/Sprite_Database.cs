@@ -6,21 +6,25 @@ namespace RenCSharp
     public class Sprite_Database : ScriptableObject
     {
         [SerializeField] private List<Sprite> sprites;
+        [SerializeField] private bool debugValidation = false;
         private Dictionary<string, Sprite> spriteDictionary;
         private void OnValidate()
         {
-            Debug.Log("Validating Sprite DB!");
+            if(debugValidation) Debug.Log("Validating Sprite DB!");
             spriteDictionary = new(); //wipe
             foreach(Sprite s in sprites)
             {
                 spriteDictionary.Add(s.name, s);
             }
-            string result = "All Sprites in Dict: + \n";
-            foreach (KeyValuePair<string, Sprite> kvp in spriteDictionary)
+            if (debugValidation)
             {
-                result += kvp.Key + "\n";
+                string result = "All Sprites in Dict: + \n";
+                foreach (KeyValuePair<string, Sprite> kvp in spriteDictionary)
+                {
+                    result += kvp.Key + "\n";
+                }
+                Debug.Log(result);
             }
-            Debug.Log(result);
         }
 
         private void OnEnable()
