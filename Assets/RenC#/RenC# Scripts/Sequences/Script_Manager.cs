@@ -107,6 +107,10 @@ namespace RenCSharp
         {
             Object_Factory.ScrubDictionary(); //the dictionary is static, so we don't want to keep storing garbage forever.
             FlagToken ft = new FlagToken(Flag_Manager.GetPersistentDataFlags);
+            for (int i = 0; i < ft.FlagIDs.Count; i++)
+            {
+                Debug.Log("Saved PFlag: " + ft.FlagIDs[i] + ", Value: " + ft.FlagValues[i]);
+            }
             SaveLoad.SavePersistentFlags(ft);
             SequencePausedEvent -= ToggleDialogUI;
             Event_Bus.TryRemoveStringEvent("PlayerName");
