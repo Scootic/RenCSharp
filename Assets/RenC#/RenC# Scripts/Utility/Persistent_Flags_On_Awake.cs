@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using EXPERIMENTAL;
 namespace RenCSharp
 {
     /// <summary>
@@ -17,6 +17,7 @@ namespace RenCSharp
             {
                 Debug.Log("PERSISTENTFLAG: " + kvp.Key + ", Value: " + kvp.Value);
             }
+            Application.quitting += Event_Bus.PurgeEvents;
         }
 
         private void OnDisable()
