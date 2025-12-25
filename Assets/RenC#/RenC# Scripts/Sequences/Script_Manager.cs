@@ -513,14 +513,14 @@ namespace RenCSharp
                 else
                 {
                     Debug.LogWarning("Failed to load actor: " + at.ActorAsset);
-                    
+                    ActorSO.Release();
                 }
-                ActorSO.Release();
+                
             }
 
             SequenceAsset.WaitForCompletion();
             if (SequenceAsset.Status == AsyncOperationStatus.Succeeded) currentSequence = (Sequence)SequenceAsset.Result;
-            SequenceAsset.Release();
+            else SequenceAsset.Release();
             loaded = true;
             StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
         }
