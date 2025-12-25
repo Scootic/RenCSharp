@@ -12,10 +12,11 @@ namespace RenCSharp
         [SerializeField] private GameObject audioObject; //prefab for 3D sfx
         private AudioSource[] sfxSources; //stores 2D sfx
         [SerializeField] private List<GameObject> sfxList = new List<GameObject>(); //stores 3D sfx
-        private AudioSource leMusic; //stores the background music
+        private AudioSource leMusic, newBGM; //stores the background music
 
         private int sfxIndex = 0; //Store the current sfx index
         private bool enteringBGM = false;
+        private Coroutine bgmRoutine;
 
         [Range(0, 1)] private float bgmVolMult = 0.5f, sfxVolMult = 0.5f, esfxVolMult = 0.5f; //volume multipliers
         public float BGMVol => bgmVolMult;
@@ -178,14 +179,22 @@ namespace RenCSharp
         //only exists so a coroutine can be called by another script
         public void PlayBGM(AudioClip musicToPlay, float fadeTime = 5f, bool isLooping = true, bool setSameTime = false)
         {
-            if (musicToPlay != null) StartCoroutine(PlayBGMPog(musicToPlay, fadeTime, isLooping, setSameTime));
+            if (musicToPlay != null) 
+            {
+                if (enteringBGM) //bail out of a fade IF we're already doing one, and probaby just do the new one instaed
+                {
+                    if (newBGM != null) Destroy(newBGM);
+                    StopCoroutine(bgmRoutine);
+                }
+                bgmRoutine = StartCoroutine(PlayBGMPog(musicToPlay, fadeTime, isLooping, setSameTime)); 
+            }
             else Debug.Log("You didn't give AM a clip to play bgm! Dumbass!");
         }
 
         private IEnumerator PlayBGMPog(AudioClip musicToPlay, float fadeTime = 3f, bool isLooping = true, bool setSameTime = false)
         {
             enteringBGM = true;
-            AudioSource newBGM = gameObject.AddComponent<AudioSource>(); //make a new Audio sauce
+            newBGM = gameObject.AddComponent<AudioSource>(); //make a new Audio sauce
             newBGM.clip = musicToPlay; //Init the new sauce, based on passed in values
             newBGM.volume = 0;
             newBGM.loop = isLooping;

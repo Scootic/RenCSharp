@@ -156,7 +156,7 @@ namespace RenCSharp
         #region ScreenHandling
         public void ProgressToNextScreen() //for an UI button to use, hopefully
         {
-            if (paused) return; //the ui button's interactivity should be able to handle this automatically
+            if (paused) return; //the ui button's interactivity SHOULD be able to handle this automatically
             if (!jumpToEndDialog) jumpToEndDialog = true;
             else
             {
@@ -172,7 +172,7 @@ namespace RenCSharp
                     {
                         se.DoShit();
                     }
-                    //if (textRoutine != null) StopCoroutine(textRoutine);
+                    ///if (textRoutine != null) StopCoroutine(textRoutine);
                     textRoutine = StartCoroutine(RunThroughScreen(screen)); 
                 }
                 else if (curScreenIndex > currentSequence.Screens.Length - 1)//final screen of the sequence
@@ -215,12 +215,12 @@ namespace RenCSharp
 
         private IEnumerator RunThroughScreen(Sequences.Screen screen)
         {
-            bool prevActorIscurSpeaker = (curActor == screen.Speaker);
+            bool prevActorIscurSpeaker = curActor == screen.Speaker;
             if (curActor != null && !prevActorIscurSpeaker && currentSequence.AutoFocusSpeaker) yield return ScaleActor(false, autoFocusScaleDuration);
             //scale down in case our previous actor was scaled up, if we don't have the same actor
          
             curActor = screen.Speaker != null ? screen.Speaker : null; //set the current actor for reasons. why is this an if?
-            ///if(screen.Dialog == string.Empty) { jumpToEndDialog = true; ProgressToNextScreen(); yield break; }
+
             jumpToEndDialog = false; //set up to make sure we can skip properly and not just constantly move on before reaching end of text
 
             if (curActor != null) //if we have an actor, we can put a name to our dialog box, and set the appropriate colors

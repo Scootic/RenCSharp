@@ -12,6 +12,7 @@ namespace RenCSharp.Sequences
         [SerializeField, Tooltip("Leave as Vec3.zero to be a 2D sfx")] private Vector3 position = Vector3.zero;
         [SerializeField, Tooltip("Used for audio balancing")] private bool environmental = false;
         [SerializeField, Tooltip("Decides if the sound effect should loop")] private bool loop = false;
+        [SerializeField] private bool stopOnScreenProgress = true;
         [SerializeField, Min(0), Tooltip("Decides how long a sfx should loop for, unused if loop is false. " +
             "Leave at 0 if you want it to be stopped manually." +
             "SFX will be automatically stopped by screen changing if duration is not 0.")] private float loopDuration = 1f;
@@ -25,8 +26,8 @@ namespace RenCSharp.Sequences
             if (loop && loopDuration > 0)
             {
                 stopLoopRoutine = Script_Manager.SM.StartCoroutine(HandleLoopDuration());
-                Script_Manager.ProgressScreenEvent += PanicStopSFX;
             }
+            if(stopOnScreenProgress) Script_Manager.ProgressScreenEvent += PanicStopSFX;
         }
 
         private IEnumerator HandleLoopDuration()
@@ -43,7 +44,7 @@ namespace RenCSharp.Sequences
 
         private void PanicStopSFX()
         {
-            Script_Manager.SM.StopCoroutine(stopLoopRoutine);
+            if(stopLoopRoutine != null) Script_Manager.SM.StopCoroutine(stopLoopRoutine);
             if (is3D) Audio_Manager.AM.Stop3DSFX(sfxToPlay);
             else Audio_Manager.AM.Stop2DSFX(sfxToPlay);
         }
