@@ -19,11 +19,12 @@ namespace RenCSharp
             t = 0;
             curI = 0;
             image = GetComponent<Image>();
+            animationFrames = new Sprite[0];
         }
 
         void Update()
         {
-            if (animationFrames == null) return;
+            if (animationFrames.Length == 0) return;
             t += Time.deltaTime;
             if(t >= secondsPerFrame)
             {
@@ -40,7 +41,7 @@ namespace RenCSharp
             t = 0;
             animationFrames = frames;
             secondsPerFrame = SPF;
-            image.sprite = frames[0];
+            if(frames.Length > 0) image.sprite = frames[0];
         }
     }
 }
