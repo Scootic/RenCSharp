@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System;
 using UnityEngine;
 
@@ -7,12 +8,16 @@ namespace RenCSharp
     public struct ActorToken 
     {
         public float XPos, YPos, ZPos;
+        public string ActorAsset;
+        public int[] VisualIndexes;
 
-        public ActorToken(Vector3 pos)
+        public ActorToken(Vector3 pos, string asset, int[] vId)
         {
             XPos = pos.x;
             YPos = pos.y;
             ZPos = pos.z;
+            ActorAsset = asset;
+            VisualIndexes = vId;
         }
 
         public override string ToString()
