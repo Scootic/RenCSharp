@@ -19,6 +19,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 8612954348509724882
     - rid: 8612954348509724883
+    - rid: 9142197901655015509
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -28,6 +29,14 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 8747cf3008a6b5b499ac9acabec6bec5, type: 2}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: ee0cb1d75ce5eba41990b3a2781757d3
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   references:
     version: 2
     RefIds:
@@ -35,23 +44,37 @@ MonoBehaviour:
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToRemove: {fileID: 11400000, guid: 7487abcf4a0053a4f813c3724c2a2ed5, type: 2}
+        fadeTime: 0
     - rid: 8612954348509724880
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToRemove: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
+        fadeTime: 0
     - rid: 8612954348509724882
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToAlter: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
-        visualSpriteIndexes: 0000000002000000
+        visualSpriteIndexes:
+        - default
+        - doom
     - rid: 8612954348509724883
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToAlter: {fileID: 11400000, guid: 7487abcf4a0053a4f813c3724c2a2ed5, type: 2}
-        visualSpriteIndexes: 0000000001000000
+        visualSpriteIndexes:
+        - default
+        - doom
     - rid: 8612954368440270943
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: {fileID: 21300000, guid: 99a6132652ac424438484748116a7f01, type: 3}
+        newBG:
+        - {fileID: 21300000, guid: 99a6132652ac424438484748116a7f01, type: 3}
+        secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 1
+    - rid: 9142197901655015509
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 74fdc0d30ae248245afd0081776e380d, type: 3}
+        fadeTime: 1
+        setToSameTime: 0
