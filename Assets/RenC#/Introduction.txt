@@ -1,0 +1,36 @@
+------------------------------------------------------------------------------------------------------------------
+Introduction:
+
+Welcome to RenC#!
+
+If, for some reason, you don't know what you've installed, RenC# is a visual novel system for Unity
+that has been designed with the goal of not needing to open an IDE a single time to make a VN.
+
+I've included an example project with some generic prefabs to help you get started, if you don't want to deal with
+the hassle of setting up your own scenes.
+------------------------------------------------------------------------------------------------------------------
+Actors and Sequences:
+
+Actors and sequences make up the bulk of the bulk of your projects. They are both scriptable objects, with actors
+containing information relating to the speakers (having names and visual information), while sequences contain
+all of the dialog boxes that will be said along with player choices. They are both created in the context menu
+in the inspector.
+
+I've included more READMEs in every scripts subfolder and tried to make as many useful comments I could. If
+you want to learn more about how these systems work, start with the READMEs and then check the comments. The
+included example project should make it easy to troubleshoot if you're missing a specific component.
+------------------------------------------------------------------------------------------------------------------
+Bugs and Reporting:
+
+I make no guarantees that the systems I've developed are perfect or bug-free, I'm not stupid. That said, if you
+encounter a bug or other issue, please make sure to check if it wasn't the result of a custom implementation that
+you developed. The included example project SHOULD make onboarding as painless as possible.
+
+If you find a bug in my system, that you can definitively prove is a result of the system's failed logic, you
+can either make a comment on the Unity Package page, or email me directly at "bobsywoo@gmail.com." If you do
+email me, please make sure your header makes it clear that you're emailing about a bug in RenC#.
+
+Of course, since the code is all in your project, you have my permission to edit whatever you see fit. Naturally,
+you are not able to distribute this altered code and claim it as your own. You can create merge requests directly
+on my GitHub repo here: https://github.com/Scootic/RenCSharp. Whether or not they go through? IDK man.
+------------------------------------------------------------------------------------------------------------------

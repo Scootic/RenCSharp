@@ -3,7 +3,11 @@ using UnityEngine.UI;
 
 namespace EXPERIMENTAL
 {
-    public class PlayerPref_Slider : MonoBehaviour
+    /// <summary>
+    /// Used to set a player prefence using a slider component. Useful for a settings menu where you can
+    /// change how loud BGM can play, or how fast text should scroll.
+    /// </summary>
+    public sealed class PlayerPref_Slider : MonoBehaviour
     {
         [SerializeField] private string playerPrefRef;
         [SerializeField] private string UpdateReferenceActionName;
