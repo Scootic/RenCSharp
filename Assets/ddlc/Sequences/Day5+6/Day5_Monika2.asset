@@ -591,6 +591,7 @@ MonoBehaviour:
         position: {x: 0, y: 0, z: 0}
         environmental: 0
         loop: 0
+        stopOnScreenProgress: 1
         loopDuration: 1
     - rid: 9142197738211377237
       type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
@@ -633,6 +634,7 @@ MonoBehaviour:
         position: {x: 0, y: 0, z: 0}
         environmental: 0
         loop: 0
+        stopOnScreenProgress: 1
         loopDuration: 1
     - rid: 9142197738211377242
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
@@ -828,9 +830,7 @@ MonoBehaviour:
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 0}
-        - {fileID: 0}
-        - {fileID: 0}
+        - {fileID: 21300000, guid: 03c0213668613e8409b2e140cb2cb9bd, type: 3}
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2

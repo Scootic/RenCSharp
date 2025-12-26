@@ -564,6 +564,7 @@ MonoBehaviour:
         position: {x: 0, y: 0, z: 0}
         environmental: 0
         loop: 0
+        stopOnScreenProgress: 1
         loopDuration: 1
     - rid: 9142197673170043076
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
@@ -878,9 +879,7 @@ MonoBehaviour:
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 0}
-        - {fileID: 0}
-        - {fileID: 0}
+        - {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
