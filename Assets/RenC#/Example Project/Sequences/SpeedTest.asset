@@ -13,8 +13,34 @@ MonoBehaviour:
   m_Name: SpeedTest
   m_EditorClassIdentifier: 
   autoFocusSpeaker: 0
-  screens: []
+  screens:
+  - speaker: {fileID: 0}
+    dialog: This a sequence for testing speed tags.
+    ScreenActions:
+    - rid: 9142197901655015510
+  - speaker: {fileID: 0}
+    dialog: <Speed=0.5>This text is quite slow.</Speed>
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: <Speed=10>This text is quite fast.</Speed>
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: This text will <Speed=0.5>start slow, </Speed><Speed=1>then get faster,
+      </Speed><Speed=2>then get faster, </Speed><Speed=10>then get fastest.</Speed>
+    ScreenActions: []
   playerChoices: []
+  myself:
+    m_AssetGUID: 0f2d4ffc549cb6f41b72294405d0c215
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 9142197901655015510
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 6f62dea8410ec9a47b47031cc70de34e, type: 3}
+        fadeTime: 1
+        setToSameTime: 0

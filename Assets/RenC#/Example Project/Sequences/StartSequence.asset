@@ -17,7 +17,9 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 7487abcf4a0053a4f813c3724c2a2ed5, type: 2}
     dialog: 'Hey, {MC} you are stupid! '
     ScreenActions:
-    - rid: 8612954348509724864
+    - rid: 9142197901655015506
+    - rid: 9142197901655015507
+    - rid: 9142197901655015508
   - speaker: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
     dialog: No, they're not! What do you think, {MC}?
     ScreenActions:
@@ -32,15 +34,15 @@ MonoBehaviour:
     resultingSequence: {fileID: 11400000, guid: ee0cb1d75ce5eba41990b3a2781757d3, type: 2}
     requireCondition: 0
     conditions: []
+  myself:
+    m_AssetGUID: fa3e7b3ed42c23146807f55634f6997b
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   references:
     version: 2
     RefIds:
-    - rid: 8612954348509724864
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: 7487abcf4a0053a4f813c3724c2a2ed5, type: 2}
-        spawnOffset: {x: 0, y: 0, z: 0}
-        visualSpriteIndexes: []
     - rid: 8612954348509724877
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -88,5 +90,31 @@ MonoBehaviour:
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToSpawn: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
+        fadeInTime: 0.5
         spawnOffset: {x: 0, y: 0, z: 0}
-        visualSpriteIndexes: []
+        visualSpriteIndexes:
+        - default
+        - smirk
+    - rid: 9142197901655015506
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9142197901655015507
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 7487abcf4a0053a4f813c3724c2a2ed5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+        - angery
+    - rid: 9142197901655015508
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: bc338100d2d4a094caab299739191f3e, type: 3}
+        fadeTime: 1
+        setToSameTime: 0
