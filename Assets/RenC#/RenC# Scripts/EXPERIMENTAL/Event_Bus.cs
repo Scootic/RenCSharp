@@ -27,7 +27,7 @@ namespace EXPERIMENTAL
             floatEvents.Clear();
             stringEvents.Clear();
         }
-
+        //every region basically has the same contents: a method for adding, firing, removing, and getting actions.
         #region VoidEvents
         public static void AddVoidEvent(string name, Action Event)
         {

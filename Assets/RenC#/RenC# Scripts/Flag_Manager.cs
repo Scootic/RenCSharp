@@ -2,6 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace RenCSharp
 {
+    /// <summary>
+    /// A static class for referencing and comparing flags. Stores flags in a dictionary (based on whether or not you want it to be persistent)
+    /// that has a string key, and an integer value. If a flag is not in the dictionary, it's value will default to 0 when grabbed. If you
+    /// want to do bitwise comparisons when using flags, I strongly recommend incrementing your flags, rather than manually setting them.
+    /// </summary>
     public static class Flag_Manager
     {
         private static Dictionary<string, int> curFlags = new();
@@ -60,7 +65,11 @@ namespace RenCSharp
                 else persistentFlags.Add(id, valToIncreaseBy);
             }
         }
-
+        /// <summary>
+        /// Takes a flag token, and fills in one of the dictionaries based on the flag token's data. 
+        /// </summary>
+        /// <param name="ft">The flag token being parsed.</param>
+        /// <param name="persistent">Whether or not we should be loading into the curFlags dict, or the persistentFlags dict.</param>
         public static void ReceiveFlagToken(FlagToken ft, bool persistent = false)
         {
             Dictionary<string, int> t = new();

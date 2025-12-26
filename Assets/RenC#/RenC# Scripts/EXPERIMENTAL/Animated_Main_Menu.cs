@@ -2,16 +2,19 @@ using UnityEngine;
 
 namespace EXPERIMENTAL
 {
+    /// <summary>
+    /// Does funny random animations on a main menu. Feel free to not use.
+    /// </summary>
     [RequireComponent(typeof(Animator))]
-    public class Animated_Main_Menu : MonoBehaviour
+    public sealed class Animated_Main_Menu : MonoBehaviour
     {
-        [SerializeField] private float minTime = 5, maxTime = 10;
-        [SerializeField,Min(1)] private int animatorIntRange;
+        [SerializeField, Tooltip("In seconds.")] private float minTime = 5, maxTime = 10;
+        [SerializeField,Min(1), Tooltip("Set to be the same as how many possible states you have, probably.")] private int animatorIntRange;
         [SerializeField] private string animatorIntParameterName, animatorTriggerParameterName;
         private float desTime, t;
         private int prevRoll;
         private Animator me;
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        
         void Start()
         {
             me = GetComponent<Animator>();
@@ -20,7 +23,7 @@ namespace EXPERIMENTAL
             prevRoll = animatorIntRange;
         }
 
-        // Update is called once per frame
+        
         void Update()
         {
             t += Time.deltaTime;

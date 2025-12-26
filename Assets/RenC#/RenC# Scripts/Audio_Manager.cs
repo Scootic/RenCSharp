@@ -4,6 +4,9 @@ using UnityEngine;
 using EXPERIMENTAL;
 namespace RenCSharp
 {
+    /// <summary>
+    /// This mf handles audio, 2D, 3D, and BGM.
+    /// </summary>
     public sealed class Audio_Manager : MonoBehaviour
     {
         public static Audio_Manager AM; //global variable, every object can see and send messages to the audio manager
@@ -15,7 +18,7 @@ namespace RenCSharp
         private AudioSource leMusic, newBGM; //stores the background music
 
         private int sfxIndex = 0; //Store the current sfx index
-        private bool enteringBGM = false;
+        private bool enteringBGM = false; //used to see if we are currently doing a BGM fade transition.
         private Coroutine bgmRoutine;
 
         [Range(0, 1)] private float bgmVolMult = 0.5f, sfxVolMult = 0.5f, esfxVolMult = 0.5f; //volume multipliers
@@ -47,7 +50,7 @@ namespace RenCSharp
                 Destroy(gameObject); // game end me
             }
 
-            Event_Bus.AddFloatEvent("BGMVol", ReceiveBGM);
+            Event_Bus.AddFloatEvent("BGMVol", ReceiveBGM); //the accursed event_bus!
             Event_Bus.AddFloatEvent("SFXVol", ReceiveSFX);
             Event_Bus.AddFloatEvent("ESFXVol", ReceiveESFX);
 
@@ -181,7 +184,7 @@ namespace RenCSharp
         {
             if (musicToPlay != null) 
             {
-                if (enteringBGM) //bail out of a fade IF we're already doing one, and probaby just do the new one instaed
+                if (enteringBGM) //bail out of a fade IF we're already doing one, and just do the new one instaed
                 {
                     if (newBGM != null) Destroy(newBGM);
                     StopCoroutine(bgmRoutine);
@@ -229,6 +232,7 @@ namespace RenCSharp
         }
         #endregion
         #region Settings
+      
         private void ReceiveBGM(float f)
         {
             bgmVolMult = f;
