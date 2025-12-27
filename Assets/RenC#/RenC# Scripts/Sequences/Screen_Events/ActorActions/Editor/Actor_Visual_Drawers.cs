@@ -32,23 +32,6 @@ namespace RenCSharp.Sequences
             EditorGUI.PropertyField(fadeInRect, fadeInTime, new GUIContent("FadeInTime"), true);
             EditorGUI.PropertyField(sprinRect, sprindexArray, new GUIContent("Visual Sprite Indexes"), true);
             //Debug.Log("Assigned actor: " + assignedActor.ActorName);
-            if (assignedActor != null)
-            {
-                for (int i = 0; i < sprindexArray.arraySize; i++)
-                {
-                    if (i >= assignedActor.Visuals.Length) break;
-                    string[] src = assignedActor.Visuals[i].visualIDs.ToArray();
-                    //string log = "Exising IDs: ";
-                    //foreach(string s in src)
-                    //{
-                    //    log += s + ", ";
-                    //}
-                    //Debug.Log(log);
-                    Rect autoSelectRect = Drawer_Helper.AutoFillTextBox(sprinRect, i);
-                    sprindexArray.GetArrayElementAtIndex(i).stringValue = 
-                        Auto_Fill_String.TextFieldAutoComplete(sprindexArray.GetArrayElementAtIndex(i).stringValue, src, 10);
-                }
-            } 
             
             EditorGUI.EndProperty();
         }
@@ -79,24 +62,6 @@ namespace RenCSharp.Sequences
 
             EditorGUI.PropertyField(actRect, actorProperty, new GUIContent("Actor to Alter"), true);
             EditorGUI.PropertyField(sprinRect, sprindexArray, new GUIContent("Visual Sprite Indexes"), true);
-
-            if (actorToAlter != null)
-            {
-                for (int i = 0; i < sprindexArray.arraySize; i++)
-                {
-                    if (i >= actorToAlter.Visuals.Length) break; //don't do shit if there's no visual there
-                    string[] src = actorToAlter.Visuals[i].visualIDs.ToArray();
-                    Rect autoSelectRect = Drawer_Helper.AutoFillTextBox(sprinRect, i);
-                    //string log = "Existing IDs: ";
-                    //foreach (string s in src) 
-                    //{
-                    //    log += s + ", ";
-                    //}
-                    //Debug.Log(log);
-                    sprindexArray.GetArrayElementAtIndex(i).stringValue =
-                        Auto_Fill_String.TextFieldAutoComplete(sprindexArray.GetArrayElementAtIndex(i).stringValue, src, 10);
-                }
-            }
 
             EditorGUI.EndProperty();
         }
