@@ -5,13 +5,19 @@ using System.Linq;
 using System.Reflection;
 namespace RenCSharp
 {
+    ///Author: Scootic Rowlann
     /// <summary>
-    /// Abstract solution to make any abstract parent class work with the [SerializeReference] property in Unity.
+    /// Abstract solution to make any abstract parent class work with the [SerializeReference] property in Unity. Spawns a dropdown menu
+    /// at the top of the drawer to let the user select which child they want. Only able to check
+    /// within T's assembly.
     /// </summary>
-    /// <typeparam name="T">PropertyDrawer class</typeparam>
-    /// <typeparam name="L">Abstract parent type class</typeparam>
+    /// <typeparam name="T">The class being displayed by PropertyDrawer</typeparam>
     public abstract class PolymorphicPropertyDrawer<T> : PropertyDrawer where T : class
     {
+        /// <summary>
+        /// Noted problem with this solution, it can only check the assembly of the parent class. Any other assembly that references
+        /// the T assembly won't be included in the dropdown menu's search of valid types.
+        /// </summary>
         protected static Assembly typeAssembly = Assembly.GetAssembly(typeof(T));
         protected static Type[] allTChildren;
         protected abstract string DropDownMenuName();
