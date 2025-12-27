@@ -12,7 +12,7 @@ namespace RenCSharp.Sequences
             EditorGUI.BeginProperty(position, label, property);
             m_SE = property;
             Rect dDownRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
-            DropDown(dDownRect, property);
+            DropDownMenu(dDownRect, property);
             Rect newR = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, position.height);
             EditorGUI.PropertyField(newR, property, new GUIContent(property.type + " DON'T OPEN ME"), true);
             
@@ -49,7 +49,7 @@ namespace RenCSharp.Sequences
             EditorGUI.BeginProperty(position, label, property);
             m_SE = property;
             Rect dDownRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
-            DropDown(dDownRect, property);
+            DropDownMenu(dDownRect, property);
             Rect newR = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, position.height);
             EditorGUI.PropertyField(newR, property, new GUIContent(property.type + "DONT OPEN ME"), true);
 
