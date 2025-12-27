@@ -1,8 +1,8 @@
 using UnityEngine;
-
 namespace RenCSharp.Combat
 {
-    public class Projectile : MonoBehaviour
+    [RequireComponent(typeof(UI_Element))]
+    public class EnemyObject : MonoBehaviour
     {
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -14,6 +14,11 @@ namespace RenCSharp.Combat
         void Update()
         {
         
+        }
+
+        public void ReceiveEnemySO(EnemySO so)
+        {
+
         }
     }
 }

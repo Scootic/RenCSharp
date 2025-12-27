@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 namespace RenCSharp.Combat
 {
     [RequireComponent(typeof(Player_Input))]
@@ -7,25 +7,35 @@ namespace RenCSharp.Combat
     {
         [SerializeField, Min(1)] private int maxHealth = 20;
         private float curHealth;
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        [SerializeField] private float invincibilitySeconds = 0.25f;
+        private bool invincible = false;
+  
         void Start()
         {
+            invincible = false;
             curHealth = maxHealth;
         }
 
-        // Update is called once per frame
-        //void Update()
-        //{
-        
-        //}
-
-        public void TakeDamage(float f)
+        private IEnumerator IFrames()
         {
+            yield return new WaitForSeconds(invincibilitySeconds);
+            invincible = false;
+        }
+        public void TakeDamage(float f, bool dot)
+        {
+            if (invincible) return; //don't take damage if invincible. go figure!
+
             curHealth -= f - (f * Resistance());
 
             if(curHealth <= 0)
             {
                 //Game Over stuff here!
+            }
+
+            if (!dot) //only worry about IFrames if the damage is bulk, not over time
+            {
+                invincible = true;
+                StartCoroutine(IFrames());
             }
         }
 
@@ -33,5 +43,7 @@ namespace RenCSharp.Combat
         {
             return 0;
         }
+
+        public Vector3 GetPosition => transform.position;
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-namespace RenCSharp.Sequences
+namespace RenCSharp
 {
     /// <summary>
     /// So you don't have to crawl through gameobject transforms to set information to be what you want.
