@@ -8,6 +8,8 @@ For every single step of the way, it should be drag and drop; whether that be dr
 or changing the graphics of the prefabs.
 
 It is advisable that you set up your AssetReferences to group assets in specific ways. Or not, you do you.
+
+If you want to create custom scripts to extend this system, check with the READMEs in the relevant folder first.
 ------------------------------------------------------------------------------------------------------------------
 Placeholder Assets:
 
