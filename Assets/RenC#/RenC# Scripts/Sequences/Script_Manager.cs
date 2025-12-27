@@ -422,6 +422,7 @@ namespace RenCSharp
             }
 
             List<ActorToken> actorTokens = new();
+            Debug.Log("Actor count I should be saving: " + activeActors.Count);
 
             foreach (Actor actor in activeActors)
             {

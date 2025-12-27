@@ -55,13 +55,18 @@ namespace RenCSharp.Sequences
                 }
                 yield return null;
             }
+            Script_Manager.SM.activeActors.Remove(actorToRemove);
             Object_Factory.RemoveObject(actorToRemove.ActorName);
         }
 
         private void PanicStop()
         {
             if(fadeOut != null) Script_Manager.SM.StopCoroutine(fadeOut);
-            if (fellaToRemove != null) Object_Factory.RemoveObject(actorToRemove.ActorName);
+            if (fellaToRemove != null) 
+            {
+                Script_Manager.SM.activeActors.Remove(actorToRemove);
+                Object_Factory.RemoveObject(actorToRemove.ActorName); 
+            }
         }
 
         public override string ToString()
