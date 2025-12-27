@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEngine;
 namespace RenCSharp
 {
     /// <summary>
@@ -22,6 +23,19 @@ namespace RenCSharp
                 returner *= childc;
             }
             return returner;
+        }
+        /// <summary>
+        /// Get a rect to place your auto-fill string box in. 
+        /// </summary>
+        /// <param name="startingRect">The starting rect you want to alter.</param>
+        /// <param name="iteration">Which iteration you are on.</param>
+        /// <returns>The new Rect.</returns>
+        public static Rect AutoFillTextBox(Rect startingRect, int iteration)
+        {
+            float yPos = startingRect.y + EditorGUIUtility.standardVerticalSpacing + 
+                (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing * 2) * (iteration + 1);
+            Rect toReturn = new Rect(startingRect.x, yPos, startingRect.width, startingRect.height);
+            return toReturn;
         }
     }
 }

@@ -3,9 +3,10 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 //Stolen from: https://www.clonefactor.com/wordpress/program/c/1809
+//If you feel upset about legal chicanery, remove any references to auto_fill_string from actor_visual_drawers
 namespace RenCSharp
 {
-    public sealed class EditorExtend
+    public sealed class Auto_Fill_String
     {
         #region Text AutoComplete
         /// <summary>The internal struct used for AutoComplete (Editor)</summary>
@@ -62,7 +63,7 @@ namespace RenCSharp
         public static string TextFieldAutoComplete(Rect position, string input, string[] source, int maxShownCount = 5, float levenshteinDistance = 0.5f)
         {
             // Text field
-            int controlId = GUIUtility.GetControlID(FocusType.Passive);
+            int controlId = GUIUtility.GetControlID(FocusType.Keyboard);
             string tag = EditorAutoCompleteParams.FieldTag + controlId;
             GUI.SetNextControlName(tag);
             string rst = EditorGUI.TextField(position, input, EditorStyles.popup);
