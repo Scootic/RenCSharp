@@ -62,6 +62,7 @@ namespace RenCSharp.Combat
             {
                 //become killed af!
                 //tell somebody about what happened.
+                Fight_Manager.FM.EndAFight();
             }
             else
             {
