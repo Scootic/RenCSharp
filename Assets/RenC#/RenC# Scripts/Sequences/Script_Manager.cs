@@ -454,7 +454,7 @@ namespace RenCSharp
         {
             yield return new WaitForEndOfFrame();
             sd.SaveScreenshot = ScreenCapture.CaptureScreenshotAsTexture().EncodeToPNG();
-            menuBase.SetActive(true);
+            //menuBase.SetActive(true);
             SaveLoad.Save(fileName, sd);
             saving = false;
         }
