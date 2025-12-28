@@ -9,7 +9,8 @@ namespace RenCSharp.Combat
     {
         public static Fight_Manager FM;
         [SerializeField] private EnemyObject enemyPrefab;
-        [SerializeField] private Transform enemyHolder;
+        [SerializeField] private Player_Object playerPrefab;
+        [SerializeField] private Transform enemyHolder, playerHolder;
         [SerializeField] private TextMeshProUGUI combatTextbox;
 
         private int curAttackIndex;
@@ -28,6 +29,7 @@ namespace RenCSharp.Combat
             fighting = true;
             curAttackIndex = 0;
             Event_Bus.TryFireVoidEvent("PauseSequence");
+            Object_Factory.SpawnObject(playerPrefab.gameObject, "PlayerObject", playerHolder);
             curEnemy = Object_Factory.SpawnObject(enemyPrefab.gameObject, "EnemyObject", enemyHolder).GetComponent<EnemyObject>();
             curEnemy.ReceiveEnemySO(eso);
             StartCoroutine(RunThroughEnemy());
@@ -67,6 +69,7 @@ namespace RenCSharp.Combat
             Textbox_String.PauseTextbox(true);
             while (t <= ea.AttackDuration)
             {
+                t += Time.deltaTime;
                 yield return null;
             }
             ea.ControlType.ExitControl();
