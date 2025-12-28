@@ -584,7 +584,11 @@ namespace RenCSharp
 
             if (b && Textbox_String.JumpToEndOfTextbox) ProgressToNextScreen();
         }
-
+        /// <summary>
+        /// Used for textboxes
+        /// </summary>
+        /// <param name="value">FLOAT seconds per char</param>
+        /// <param name="reset">BOOL whether or not we're resetting to prev speed from an altered speed</param>
         private void SetSpeed(object value, object reset)
         {
             bool r = (bool)reset;
