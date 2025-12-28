@@ -15,7 +15,7 @@ namespace EXPERIMENTAL
         private static Dictionary<string, Action<int>> intEvents = new();
         private static Dictionary<string, Action<float>> floatEvents = new();
         private static Dictionary<string, Action<string>> stringEvents = new();
-
+        private static Dictionary<string, Action<object, object>> doubleObjEvents = new();
         /// <summary>
         /// Dangerous as shit. Removes ALL actions from ALL dictionaries. Important because these bastards are static. Gc moment.
         /// </summary>
@@ -208,6 +208,43 @@ namespace EXPERIMENTAL
             if (stringEvents.ContainsKey(name))
             {
                 stringEvents.Remove(name);
+                return true;
+            }
+            else return false;
+        }
+        #endregion
+        #region DoubleObjEvents
+        public static void AddDoubleObjEvent(string name, Action<object,object> Event)
+        {
+            if(!doubleObjEvents.ContainsKey(name))doubleObjEvents.Add(name, Event);
+        }
+
+        public static bool TryFireDoubleObjEvent(string name, object arg1, object arg2)
+        {
+            if (doubleObjEvents.ContainsKey(name))
+            {
+                doubleObjEvents[name]?.Invoke(arg1,arg2);
+                return true;
+            }
+            else return false;
+        }
+
+        public static bool TryGetDoubleObjEvent(string name, out Action<object,object> Event)
+        {
+            Event = null;
+            if (doubleObjEvents.ContainsKey(name))
+            {
+                Event = doubleObjEvents[name];
+                return true;
+            }
+            else return false;
+        }
+
+        public static bool TryRemoveDoubleObjEvent(string name)
+        {
+            if (doubleObjEvents.ContainsKey(name))
+            {
+                doubleObjEvents.Remove(name);
                 return true;
             }
             else return false;

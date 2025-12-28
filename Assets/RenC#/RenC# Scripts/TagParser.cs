@@ -1,8 +1,9 @@
-using System.Text.RegularExpressions;
-using System.Reflection;
+using EXPERIMENTAL;
 using System;
+using System.Reflection;
+using System.Text.RegularExpressions;
 using UnityEngine;
-namespace RenCSharp.Sequences
+namespace RenCSharp
 {
     public class TagParser
     {
@@ -66,13 +67,13 @@ namespace RenCSharp.Sequences
             if (float.TryParse(value, out float valley))
             {
                 valley = 1 / (valley * 10);
-                Script_Manager.SM.SetSpeed(valley);
+                Event_Bus.TryFireDoubleObjEvent("SMSpeed", (object)valley, (object)false);
             }
         }
 
         protected static void EndSpeed()
         {
-            Script_Manager.SM.SetSpeed(0, true);
+            Event_Bus.TryFireDoubleObjEvent("SMSpeed", (object)0f, (object)true);
         }
     }
 }
