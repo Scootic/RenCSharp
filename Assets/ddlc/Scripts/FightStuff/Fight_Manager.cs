@@ -2,6 +2,7 @@
 using UnityEngine;
 using EXPERIMENTAL;
 using System.Collections;
+using TMPro;
 namespace RenCSharp.Combat
 {
     public class Fight_Manager : MonoBehaviour
@@ -9,10 +10,12 @@ namespace RenCSharp.Combat
         public static Fight_Manager FM;
         [SerializeField] private EnemyObject enemyPrefab;
         [SerializeField] private Transform enemyHolder;
+        [SerializeField] private TextMeshProUGUI combatTextbox;
 
         private int curAttackIndex;
         private EnemyObject curEnemy;
         private bool fighting;
+        private Coroutine flavorTextRoutine;
 
         private void Awake()
         {
@@ -40,15 +43,35 @@ namespace RenCSharp.Combat
         {
             while (fighting)
             {
-                yield return null;
+                if (curAttackIndex < curEnemy.MySO.ScriptedAttacks.Length)
+                {
+                    yield return RunThroughAttack(curEnemy.MySO.ScriptedAttacks[curAttackIndex]);
+                }
+                else
+                {
+                    int randy = Random.Range(0, curEnemy.MySO.RandomAttacks.Length);
+                    yield return RunThroughAttack(curEnemy.MySO.RandomAttacks[randy]);
+                }
             }
-
+            if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
+            Object_Factory.RemoveObject("EnemyObject"); //despawn anemone
+            yield return Textbox_String.RunThroughText(combatTextbox, curEnemy.MySO.DefeatText);
+            Event_Bus.TryFireVoidEvent("UnpauseSequence");
             //do an end of battle animation thing
         }
 
         private IEnumerator RunThroughAttack(EnemyAttack ea)
         {
-            yield return null;
+            float t = 0;
+            ea.ControlType.EnterControl();
+            Textbox_String.PauseTextbox(true);
+            while (t <= ea.AttackDuration)
+            {
+                yield return null;
+            }
+            ea.ControlType.ExitControl();
+            Textbox_String.PauseTextbox(false);
+            flavorTextRoutine = StartCoroutine(Textbox_String.RunThroughText(combatTextbox, ea.PostAttackDescription));
         }
 
         void Start()

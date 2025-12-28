@@ -15,6 +15,8 @@ namespace RenCSharp.Combat
         [SerializeField, Min(0.01f)] private float damageAnimationTime = 0.5f, maxDistFromOG = 50f;
         [SerializeField] private AnimationCurve[] possibleCurves;
         private float t;
+        private EnemySO meSo;
+        public EnemySO MySO => meSo;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
         {
@@ -79,6 +81,7 @@ namespace RenCSharp.Combat
         public void ReceiveEnemySO(EnemySO so)
         {
             ogColors = new();
+            meSo = so;
             for(int i = 0; i < so.VisualInformation.Length; i++)
             {
                 uie.Images[i].sprite = so.VisualInformation[i];
