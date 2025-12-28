@@ -27,6 +27,7 @@ namespace RenCSharp.Sequences
                 if (fader.TryGetComponent(out aed)) //if we can't find an aed, don't perma stun the sequence forever
                 {
                     Script_Manager.SM.PauseSequence(); //pause to prevent things happening during fade transition
+                    Textbox_String.PauseTextbox(true);
                     aed.AnimationDelegates[0] += SwapBG;
                     aed.AnimationDelegates[1] += UnpauseSM;
 
@@ -47,6 +48,7 @@ namespace RenCSharp.Sequences
 
         private void UnpauseSM()
         {
+            Textbox_String.PauseTextbox(false);
             Script_Manager.SM.UnpauseSequence();
         }
 

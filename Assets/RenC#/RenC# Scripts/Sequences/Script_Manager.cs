@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -61,8 +62,7 @@ namespace RenCSharp
         [SerializeField] private Sprite_Database backgroundDatabase;
         [SerializeField] private Audio_Database audioDatabase;
 
-        private bool jumpToEndDialog = false, paused = false, saving = false, loaded = false;
-        private float curSpeed;
+        private bool paused = false, saving = false, loaded = false;
         private History curHist;
         private Coroutine textRoutine;
 
@@ -91,10 +91,13 @@ namespace RenCSharp
             curHist = new History(historyLength);
             textSpeed = PlayerPrefs.GetFloat("TextSpeed");
             lingerTime = PlayerPrefs.GetFloat("LingerTime");
-            curSpeed = textSpeed;
+            Textbox_String.TextSpeed = textSpeed;
 
             Event_Bus.AddFloatEvent("TextSpeed", TextSpeed);
             Event_Bus.AddFloatEvent("LingerTime", TextAutoHang);
+            Event_Bus.AddVoidEvent("PauseSequence", PauseSequence);
+            Event_Bus.AddVoidEvent("UnpauseSequence", UnpauseSequence);
+            Event_Bus.AddDoubleObjEvent("SMSpeed", SetSpeed);
 
             EndOfAllSequencesEvent += Application.Quit; //TEMPORARY THING
             SequencePausedEvent += ToggleDialogUI;
@@ -157,7 +160,7 @@ namespace RenCSharp
         public void ProgressToNextScreen() //for an UI button to use, hopefully
         {
             if (paused) return; //the ui button's interactivity SHOULD be able to handle this automatically
-            if (!jumpToEndDialog) jumpToEndDialog = true;
+            if (!Textbox_String.JumpToEndOfTextbox) Textbox_String.JumpToEndOfTextbox = true;
             else
             {
                 Debug.Log("Moving to next screen!");
@@ -221,7 +224,7 @@ namespace RenCSharp
          
             curActor = screen.Speaker != null ? screen.Speaker : null; //set the current actor for reasons. why is this an if?
 
-            jumpToEndDialog = false; //set up to make sure we can skip properly and not just constantly move on before reaching end of text
+            Textbox_String.JumpToEndOfTextbox = false; //set up to make sure we can skip properly and not just constantly move on before reaching end of text
 
             if (curActor != null) //if we have an actor, we can put a name to our dialog box, and set the appropriate colors
             {
@@ -241,8 +244,6 @@ namespace RenCSharp
 
             dialogField.text = ""; //wipe before putting in the new text
 
-            float t = 0;
-            int i = 0;
             string amended = Regex.Replace(screen.Dialog, playerTag, playerName); //insert the player's custom name into dialog
             char[] dialogchars = amended.ToCharArray();
 
@@ -253,60 +254,17 @@ namespace RenCSharp
                     yield return null;
                 }
                 //manually move on, we don't want to show off a true empty if we can't help it.
-                jumpToEndDialog = true;
+                Textbox_String.JumpToEndOfTextbox = true;
                 ProgressToNextScreen();
                 yield break;
             }
             //if we have actual text, log that in the history
             else UpdateHistory(curActor != null ? curActor.ActorName == playerTag ? playerName : curActor.ActorName : "Internal Narration", amended);
             //start adding text to the box, character by character
-            while (dialogchars.Length > dialogField.text.Length && amended.Length > dialogField.text.Length && !jumpToEndDialog)
-            {
-                //only run through text if the SM is unpaused
-                while (paused) 
-                {
-                    yield return null;
-                }
-
-                t += Time.deltaTime;
-                //add one character at a time, depending on text speed
-                if (t >= curSpeed && i < dialogchars.Length)
-                {
-                    t = 0;
-
-                    if (dialogchars[i] == '<') //we've found a rich text tag
-                    {
-                        string tag = "" + dialogchars[i];
-                        while (dialogchars[i] != '>')
-                        {
-                            i++;
-                            tag += dialogchars[i];
-                        }
-                        i++;
-
-                        if (!TagParser.Parse(tag)) //if it's not a tagparser tag, it's probably unity valid. add that boy back in.
-                        {
-                            dialogField.text += tag;
-                        }
-                        else //remove tags from the final display if it's being handled by tag parser
-                        {
-                            amended = Regex.Replace(amended, tag, "");
-                        }
-                    }
-                    else //just add the char and move on if it's a regular ah character
-                    {
-                        dialogField.text += dialogchars[i];
-                        i++;
-                    }
-                }
-
-                yield return null;
-            }
+            yield return Textbox_String.RunThroughText(dialogField, amended);
 
             //safety measure once all chars have been put in their place
             StartCoroutine(FlashButton(curScreenIndex));
-            jumpToEndDialog = true;
-            dialogField.text = TagParser.CleanOutTags(amended);
 
             if (auto) yield return AutoProgress(curScreenIndex);
         }
@@ -624,19 +582,21 @@ namespace RenCSharp
             auto = b;
             toggleImage.color = b ? togglePressedColor : Color.white;
 
-            if (b && jumpToEndDialog) ProgressToNextScreen();
+            if (b && Textbox_String.JumpToEndOfTextbox) ProgressToNextScreen();
         }
 
-        public void SetSpeed(float value, bool reset = false)
+        private void SetSpeed(object value, object reset)
         {
-            if (reset) curSpeed = textSpeed;
-            else curSpeed = value;
+            bool r = (bool)reset;
+            float f = (float)value;
+
+            Textbox_String.TextSpeed = r ? textSpeed : f; 
         }
         #region Settings
         private void TextSpeed(float f)
         {
             textSpeed = f;
-            curSpeed = textSpeed;
+            Textbox_String.TextSpeed = textSpeed;
         }
         private void TextAutoHang(float f)
         {
