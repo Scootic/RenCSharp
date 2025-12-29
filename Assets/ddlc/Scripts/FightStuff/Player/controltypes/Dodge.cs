@@ -57,5 +57,14 @@ namespace RenCSharp.Combat
             playerObj.transform.position = originPosition;
             midDodge = false;
         }
+
+        protected override Color PlayerColor()
+        {
+            return Color.magenta;
+        }
+        public override string ToString()
+        {
+            return "Dodge";
+        }
     }
 }

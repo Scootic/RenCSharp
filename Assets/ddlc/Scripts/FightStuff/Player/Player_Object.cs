@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using EXPERIMENTAL;
+using System;
 namespace RenCSharp.Combat
 {
-    [RequireComponent(typeof(Player_Input))]
+    [Serializable]
     public class Player_Object : MonoBehaviour, IDamage
     {
         [SerializeField, Min(1)] private int maxHealth = 20;
@@ -14,6 +16,9 @@ namespace RenCSharp.Combat
         {
             invincible = false;
             curHealth = maxHealth;
+
+            Event_Bus.TryFireFloatEvent("PlayerHealth", curHealth);
+            Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
         }
 
         private IEnumerator IFrames()
@@ -26,10 +31,15 @@ namespace RenCSharp.Combat
             if (invincible) return; //don't take damage if invincible. go figure!
 
             curHealth -= f - (f * Resistance());
+            curHealth = Mathf.Max(curHealth, 0);
 
-            if(curHealth <= 0)
+            Event_Bus.TryFireFloatEvent("PlayerHealth", curHealth);
+            Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
+
+            if (curHealth == 0)
             {
                 //Game Over stuff here!
+                Fight_Manager.FM.EndAFight(true);
             }
 
             if (!dot) //only worry about IFrames if the damage is bulk, not over time

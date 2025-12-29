@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: FR_SwordsFromAbove
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 960, y: 440}
+  controlType:
+    rid: 9142197945214697573
+  attackDuration: 10
+  secondsPerProjectileSpawn: 1
+  postAttackDescription: Why is this jerk throwing swords?
+  projectilesThatSpawn:
+  - {fileID: 8204135625514222407, guid: 08a6e4ee4a206684b8b74b5389fc3b65, type: 3}
+  spawnPoints:
+  - {x: -450, y: 800, z: 0}
+  - {x: -150, y: 800, z: 0}
+  - {x: 150, y: 800, z: 0}
+  - {x: 450, y: 800, z: 0}
+  initialDirections:
+  - {x: 0, y: -1, z: 0}
+  - {x: 0.1, y: -1, z: 0}
+  - {x: -0.1, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 9142197945214697573
+      type: {class: FreeRoam, ns: RenCSharp.Combat, asm: Battle}
+      data:
+        speed: 500

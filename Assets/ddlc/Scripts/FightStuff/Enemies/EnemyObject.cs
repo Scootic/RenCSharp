@@ -60,11 +60,15 @@ namespace RenCSharp.Combat
         {
             float damageToTake = f - (f * resistance);
             curHealth -= damageToTake;
-            if(curHealth <= 0)
+            curHealth = Mathf.Max(curHealth, 0);
+
+            Event_Bus.TryFireFloatEvent("EnemyHealthPerc", (curHealth / meSo.MaxHealth));
+
+            if (curHealth == 0)
             {
                 //become killed af!
                 //tell somebody about what happened.
-                Fight_Manager.FM.EndAFight();
+                Fight_Manager.FM.EndAFight(false);
             }
             else
             {

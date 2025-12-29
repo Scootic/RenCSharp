@@ -6,9 +6,12 @@ namespace RenCSharp.Combat
     {
         [SerializeField] protected bool damageOverTime = false, destroyOnHit = false;
         [SerializeField, Min(0.1f)] protected float baseDamage = 1;
-        [SerializeField, Min(0.1f)] protected float moveSpeed = 1;
+        [SerializeField, Min(0.1f)] protected float moveSpeed = 500;
+        [SerializeField, Min(0.1f)] protected float lifetime = 10;
         protected IDamage receiver;
         protected Vector3 moveDir;
+
+        public float Lifetime => lifetime;
         /// <summary>
         /// Sets the move direction that's used in update to change the projectile's position.
         /// </summary>
@@ -29,7 +32,7 @@ namespace RenCSharp.Combat
             receiver = other.GetComponent<IDamage>();
             if (receiver == null) return;
             if (!damageOverTime) receiver.TakeDamage(baseDamage, false);
-            if (destroyOnHit) Destroy(gameObject);
+            if (destroyOnHit) Object_Pooling.Despawn(gameObject);
         }
         //scale base damage down based on time.deltaTime since DoT is a per frame kind of thing.
         //basically turns baseDamage into baseDPS
