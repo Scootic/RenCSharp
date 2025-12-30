@@ -6,14 +6,20 @@ namespace RenCSharp.Combat
     [RequireComponent(typeof(Collider))]
     public class Base_Projectile : MonoBehaviour, IDespawn
     {
-        [SerializeField] protected bool damageOverTime = false, destroyOnHit = false;
+        [Header("Base Projectile")]
+        [SerializeField] protected bool damageOverTime = false;
+        [SerializeField] protected bool destroyOnHit = true;
         [SerializeField, Min(0.1f)] protected float baseDamage = 1;
         [SerializeField, Min(0.1f)] protected float moveSpeed = 500;
         [SerializeField, Min(0.15f)] protected float lifetime = 10;
+        [SerializeField, Range(0, 1)] protected float spawnSoundVol = 1;
+        [SerializeField] protected AudioClip spawnSound;
         protected IDamage receiver;
         protected Vector3 moveDir;
         protected Collider myCol;
         public float Lifetime => lifetime;
+        public float SpawnSoundVol => spawnSoundVol;
+        public AudioClip SpawnSound => spawnSound;
         /// <summary>
         /// Sets the move direction that's used in update to change the projectile's position.
         /// </summary>

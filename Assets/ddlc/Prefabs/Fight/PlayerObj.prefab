@@ -94,6 +94,57 @@ MonoBehaviour:
   maxHealth: 20
   invincibilitySeconds: 0.25
   hurtedSound: {fileID: 7763832080885476569}
+  invincibleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 12.860519
+      outSlope: 12.860519
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.09273663
+    - serializedVersion: 3
+      time: 0.23895444
+      value: 0.9972838
+      inSlope: 0.027255792
+      outSlope: 0.027255792
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.48331636
+      value: 0.3978706
+      inSlope: -0.4350526
+      outSlope: -0.4350526
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.66125166
+      value: 0.9249294
+      inSlope: 2.6204166
+      outSlope: 2.6204166
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9916687
+      value: 0.007095337
+      inSlope: -6.153557
+      outSlope: -6.153557
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.1639404
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!65 &903713231779176815
 BoxCollider:
   m_ObjectHideFlags: 0

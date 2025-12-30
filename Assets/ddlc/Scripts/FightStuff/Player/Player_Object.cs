@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using EXPERIMENTAL;
+using UnityEngine.UI;
 using System;
 namespace RenCSharp.Combat
 {
@@ -11,9 +12,10 @@ namespace RenCSharp.Combat
         private float curHealth;
         [SerializeField] private float invincibilitySeconds = 0.25f;
         [SerializeField] private AudioSource hurtedSound;
+        [SerializeField] private AnimationCurve invincibleCurve;
         private bool invincible = false;
   
-        void Start()
+        public void StartOfFight()
         {
             invincible = false;
             curHealth = maxHealth;
@@ -22,9 +24,23 @@ namespace RenCSharp.Combat
             Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
         }
 
+        void OnDisable()
+        {
+            invincible = false;
+        }
         private IEnumerator IFrames()
         {
-            yield return new WaitForSeconds(invincibilitySeconds);
+            float t = 0;
+            float eval;
+            Image img = GetComponent<Image>();
+            Color ogC = img.color;
+            while(t <= invincibilitySeconds)
+            {
+                t += Time.deltaTime;
+                eval = t / invincibilitySeconds;
+                img.color = Color.Lerp(ogC, Color.white, invincibleCurve.Evaluate(eval));
+                yield return null;
+            }
             invincible = false;
         }
         public void TakeDamage(float f, bool dot)
@@ -44,7 +60,7 @@ namespace RenCSharp.Combat
             }
             else
             {
-                Audio_Manager.AM.Play2DSFX(hurtedSound.clip);
+                Audio_Manager.AM.Play2DSFX(hurtedSound.clip, 0.99f, 1.01f);
             }
 
             if (!dot && !invincible) //only worry about IFrames if the damage is bulk, not over time

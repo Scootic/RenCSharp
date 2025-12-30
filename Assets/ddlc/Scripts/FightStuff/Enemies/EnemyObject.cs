@@ -73,7 +73,7 @@ namespace RenCSharp.Combat
             }
             else
             {
-                Audio_Manager.AM.Play2DSFX(hurtedSound.clip);
+                Audio_Manager.AM.Play2DSFX(hurtedSound.clip , 0.99f, 1.01f);
                 Event_Bus.TryFireFloatEvent("EnemyDamageNumber", damageToTake);
                 StartCoroutine(TakeDamageVisual());
             }

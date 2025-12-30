@@ -119,6 +119,10 @@ namespace RenCSharp
             RandomHelper.ClearPrevRolls();
             SequencePausedEvent -= ToggleDialogUI;
             Event_Bus.TryRemoveStringEvent("PlayerName");
+            Event_Bus.TryRemoveVoidEvent("PauseSequence");
+            Event_Bus.TryRemoveVoidEvent("UnpauseSequence");
+            Event_Bus.TryRemoveFloatEvent("TextSpeed");
+            Event_Bus.TryRemoveDoubleObjEvent("SMSpeed");
         }
         #region SequenceHandling
         public void StartSequence()
@@ -242,8 +246,6 @@ namespace RenCSharp
                 speakerNameBox.gameObject.SetActive(false);
                 dialogBox.color = defaultTextBoxColor;
             }
-
-            dialogField.text = ""; //wipe before putting in the new text
 
             string amended = Regex.Replace(screen.Dialog, playerTag, playerName); //insert the player's custom name into dialog
             char[] dialogchars = amended.ToCharArray();
@@ -413,7 +415,7 @@ namespace RenCSharp
         {
             yield return new WaitForEndOfFrame();
             sd.SaveScreenshot = ScreenCapture.CaptureScreenshotAsTexture().EncodeToPNG();
-            //menuBase.SetActive(true);
+            menuBase.SetActive(true);
             SaveLoad.Save(fileName, sd);
             saving = false;
         }

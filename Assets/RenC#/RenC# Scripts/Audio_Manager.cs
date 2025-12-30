@@ -62,10 +62,19 @@ namespace RenCSharp
             DontDestroyOnLoad(gameObject);
         }
         #region 2DSFX
-        public void Play2DSFX(AudioClip clipToPlay, float volume = 1, bool environmental = false)
+        /// <summary>
+        /// Play a 2D sound effect.
+        /// </summary>
+        /// <param name="clipToPlay">The clip that will be played by AM</param>
+        /// <param name="minRand">the lowest pitch it can randomly be</param>
+        /// <param name="maxRand">the highest pitch it can randomly be</param>
+        /// <param name="volume">volume multiplier based on settings</param>
+        /// <param name="environmental">whether or not to use environmental or regular sound settings</param>
+        public void Play2DSFX(AudioClip clipToPlay, float minRand = 1, float maxRand = 1, float volume = 1, bool environmental = false)
         {
             sfxSources[sfxIndex].clip = clipToPlay; //tell the current audio source to load x clip
             sfxSources[sfxIndex].volume = volume * (environmental ? esfxVolMult : sfxVolMult);
+            sfxSources[sfxIndex].pitch = Random.Range(minRand, maxRand);
             sfxSources[sfxIndex].Play(); //tell the current audio source to play
 
             sfxIndex++; //increment to next current clip
@@ -74,6 +83,20 @@ namespace RenCSharp
             {
                 sfxIndex = 0; //reset index if true
             }
+        }
+        /// <summary>
+        /// Plays a random 2D sfx from an array of sounds, without repeating the previous one.
+        /// </summary>
+        /// <param name="clips">Array of sound clips that the desired sound will be found from</param>
+        /// <param name="randomID">name of integer id, to remember what the prev roll was</param>
+        /// <param name="minRand">the lowest pitch it can randomly be</param>
+        /// <param name="maxRand">the highest pitch it can randomly be</param>
+        /// <param name="volume">volume multiplier based on settings</param>
+        /// <param name="environmental">whether or not to use environmental or regular sound settings.</param>
+        public void PlayRandom2DSFX(AudioClip[] clips, string randomID, float minRand = 1, float maxRand = 1, float volume = 1, bool environmental = false)
+        {
+            int randI = RandomHelper.NoRepeatRoll(randomID, clips.Length);
+            Play2DSFX(clips[randI], minRand, maxRand, volume, environmental);
         }
 
         public void Stop2DSFX(AudioClip clipToStop, bool onlyStopOne = true)
@@ -90,7 +113,7 @@ namespace RenCSharp
         #endregion
 
         #region 3DSFX
-        public void Play3DSFX(AudioSource ThingToPlay, Vector3 position, bool environmental, bool loop)
+        public void Play3DSFX(AudioSource ThingToPlay, Vector3 position, bool environmental = false, bool loop = false, float vol = 1, float minRand = 1, float maxRand = 1)
         {
             AudioObjectCheck();
             
@@ -106,15 +129,16 @@ namespace RenCSharp
             AudioSource temp = gaming.GetComponent<AudioSource>();
             temp = ThingToPlay; //works or nah???
             temp.spatialBlend = 1f;
-            temp.volume = 1; //reset volume because object pooling
+            temp.volume = vol; //reset volume because object pooling
             temp.loop = loop;
+            temp.pitch = Random.Range(minRand, maxRand);
             temp.volume *= environmental ? esfxVolMult : sfxVolMult;
             temp.Play();
 
             if(!loop) StartCoroutine(BleanUp(gaming, ThingToPlay.clip.length));
         }
 
-        public void Play3DSFX(AudioClip clipToPlay, Vector3 position, bool environmental, bool loop)
+        public void Play3DSFX(AudioClip clipToPlay, Vector3 position, bool environmental = false, bool loop = false, float vol = 1, float minRand = 1, float maxRand = 1)
         {
             AudioObjectCheck();
 
@@ -130,7 +154,8 @@ namespace RenCSharp
             AudioSource temp = gaming.GetComponent<AudioSource>();
             temp.clip = clipToPlay;
             temp.spatialBlend = 1;
-            temp.volume = 1;
+            temp.volume = vol;
+            temp.pitch = Random.Range(minRand, maxRand);
             temp.volume *= environmental ? esfxVolMult : sfxVolMult;
             temp.loop = loop;
             temp.Play();
@@ -147,7 +172,11 @@ namespace RenCSharp
                 audioObject.AddComponent<AudioSource>();
             }
         }
-
+        /// <summary>
+        /// Removes a 3DSFX from scene
+        /// </summary>
+        /// <param name="clipToRemove">The type of sound that will be removed</param>
+        /// <param name="removeOnlyOne">Remove every instance of this sound, or just the first we find</param>
         public void Stop3DSFX(AudioClip clipToRemove, bool removeOnlyOne = true)
         {
             foreach (GameObject go in sfxList)
@@ -160,13 +189,21 @@ namespace RenCSharp
                 }
             }
         }
-
+        /// <summary>
+        /// Removes a 3DSFX from scene
+        /// </summary>
+        /// <param name="goToRemove">The gameobject reference of the specific sound you want gone</param>
         public void Stop3DSFX(GameObject goToRemove)
         {
             sfxList.Remove(goToRemove);
             Destroy(goToRemove);
         }
-
+        /// <summary>
+        /// cleans up a 3d sfx from the sfxList
+        /// </summary>
+        /// <param name="gaming">The gameobject that's playing the sound that we wish to be gone</param>
+        /// <param name="duration">how long it takes to despawn sound obj</param>
+        /// <returns>Jack</returns>
         private IEnumerator BleanUp(GameObject gaming, float duration)
         {
             yield return new WaitForSeconds(duration);
@@ -231,6 +268,7 @@ namespace RenCSharp
             else return false;
         }
         #endregion
+
         #region Settings
       
         private void ReceiveBGM(float f)

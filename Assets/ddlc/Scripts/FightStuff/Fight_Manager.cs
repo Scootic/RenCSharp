@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 namespace RenCSharp.Combat
 {
-    public class Fight_Manager : MonoBehaviour
+    public sealed class Fight_Manager : MonoBehaviour
     {
         public static Fight_Manager FM;
         [SerializeField] private GameObject combatCanvas;
@@ -18,39 +19,57 @@ namespace RenCSharp.Combat
         [SerializeField] private Transform playerHolder;
         [SerializeField] private TextMeshProUGUI combatTextbox;
         [Header("Arena")]
-        [SerializeField, Min(0.1f)] private float arenaSetUpTime = 1f;
+        [SerializeField, Min(0.1f)] private float arenaSetUpTime = 1f, enemyDamageNumberForce = 5f;
+        [SerializeField] private UI_Element enemyDamageNumber;
         [Header("PlayerAttack")]
         [SerializeField] private float playerAttackAnimationDuration;
+        [SerializeField, Range(0, 1)] private float playerAttackVolMult = 0.5f;
         [SerializeField] private Sprite[] playerAttackAnimFrames;
         [SerializeField] private UI_Element playerAttackFab;
         [SerializeField] private AudioSource attackSound;
 
         private int curAttackIndex;
         private int prevAttackRoll, dir;
-        private EnemyObject curEnemy;
+        [SerializeField] private EnemyObject curEnemy;
         private UI_Element curPAttack;
         private bool fighting, lostFight, playerTurn, playerAttack;
         private Coroutine flavorTextRoutine;
         private GameObject playerObj;
         private List<GameObject> activeProj = new();
 
+        public bool PlayerTurn => playerTurn;
+
         private void Awake()
         {
             if (FM == null) FM = this;
-            else if (FM != this) Destroy(this);
+            else if (FM != this) { Destroy(FM); FM = this; }
+           
+        }
+
+        private void OnEnable()
+        {
+            Event_Bus.AddFloatEvent("EnemyDamageNumber", SpawnEnemyDamageNumber);
+        }
+
+        private void OnDisable()
+        {
+            Event_Bus.TryRemoveFloatEvent("EnemyDamageNumber");
         }
 
         public void StartAFight(EnemySO eso)
         {
+            Debug.Log("Starting a fight!");
+            Event_Bus.TryFireVoidEvent("PauseSequence");
             combatCanvas.SetActive(true);
             fighting = true;
             lostFight = false;
             playerTurn = true;
             playerAttack = false;
             prevAttackRoll = 0;
+            Textbox_String.JumpToEndOfTextbox = false;
             curAttackIndex = 0;
             dir = 1;
-            Event_Bus.TryFireVoidEvent("PauseSequence");
+            Textbox_String.PauseTextbox(true);
             playerObj = Object_Factory.SpawnObject(playerPrefab.gameObject, "PlayerObject", playerHolder);
             curEnemy = Object_Factory.SpawnObject(enemyPrefab.gameObject, "EnemyObject", enemyHolder).GetComponent<EnemyObject>();
             curEnemy.ReceiveEnemySO(eso);
@@ -60,14 +79,16 @@ namespace RenCSharp.Combat
 
         public void EndAFight(bool loss)
         {
+            Debug.Log("Ending a fight!");
             fighting = false;
             lostFight = loss;
         }
 
         private IEnumerator RunThroughEnemy()
         {
+            Textbox_String.PauseTextbox(false);
             flavorTextRoutine = StartCoroutine(Textbox_String.RunThroughText(combatTextbox, "Hit this fool!"));
-            yield return PlayerTurn();
+            yield return PlayerTurnRoutine();
             while (fighting)
             {
                 //Debug.Log("curAttackIndex: " + curAttackIndex + ", SA Length: " + curEnemy.MySO.ScriptedAttacks.Length);
@@ -88,11 +109,14 @@ namespace RenCSharp.Combat
             {
                 Object_Factory.RemoveObject("EnemyObject"); //despawn anemone
                 yield return Textbox_String.RunThroughText(combatTextbox, curEnemy.MySO.DefeatText);
+                yield return new WaitForSeconds(2);
+                Object_Factory.RemoveObject("PlayerObject");
                 Event_Bus.TryFireVoidEvent("UnpauseSequence"); //allow sequence to resume
                 combatCanvas.SetActive(false);
             }
             else
             {
+                Player_Input.Movement = null; //reset?
                 yield return LostTheFight();
             }
         }
@@ -101,8 +125,7 @@ namespace RenCSharp.Combat
         {
             float t = 0;
             float f = 0;
-            Textbox_String.PauseTextbox(true);
-
+            Textbox_String.JumpToEndOfTextbox = true;
             yield return SetUpArena(ea);
 
             while (t <= ea.AttackDuration && fighting)
@@ -135,26 +158,28 @@ namespace RenCSharp.Combat
                     cur.transform.SetParent(playerHolder);
                     cur.transform.localPosition = spawnPosition;
                     cur.UpdateMoveDir(ogProjDir);
+                    Vector3 soundSpawnPos = Camera.main.transform.position + cur.transform.localPosition.normalized;
+                    Audio_Manager.AM.Play3DSFX(cur.SpawnSound, soundSpawnPos, false, false, cur.SpawnSoundVol, 0.9f, 1.1f);
                     AddProjectileToList(cur.gameObject);
                     StartCoroutine(Object_Pooling.DespawnOverTime(cur.gameObject, cur.Lifetime));
                 }
 
                 yield return null;
             }
+            playerTurn = true;
             for (int i = activeProj.Count - 1; i >= 0; i--)
             {
                 if (activeProj[i].activeInHierarchy) Object_Pooling.Despawn(activeProj[i]);
                 activeProj.RemoveAt(i);
             }
             ea.ControlType.ExitControl();
-            Textbox_String.PauseTextbox(false);
             playerObj.SetActive(false);
             curAttackIndex++;
             if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
             flavorTextRoutine = StartCoroutine(Textbox_String.RunThroughText(combatTextbox, ea.PostAttackDescription));
-            playerTurn = true;
+            
             playerAttack = false;
-            yield return PlayerTurn();
+            yield return PlayerTurnRoutine();
         }
 
         private IEnumerator SetUpArena(EnemyAttack ea)
@@ -172,22 +197,28 @@ namespace RenCSharp.Combat
             }
             playerObj.SetActive(true);
             playerObj.transform.localPosition = Vector3.zero; //reset to origin of holder?
+            if (curAttackIndex == 0) playerObj.GetComponent<Player_Object>().StartOfFight();
             ea.ControlType.EnterControl();
             
         }
 
-        private IEnumerator PlayerTurn()
+        private IEnumerator PlayerTurnRoutine()
         {
             playerHolder.gameObject.SetActive(false);
             float t = 0;
             int i = 0;
             float perc = playerAttackAnimationDuration / (float)playerAttackAnimFrames.Length;
+            
             while (playerTurn && fighting)
             {
                 if(!playerAttack) yield return null;
                 else
                 {
-                    if (t == 0) Audio_Manager.AM.Play2DSFX(attackSound.clip); //only at start of routine
+                    if(t == 0) //only play sounds after player input, but only one time please
+                    {
+                        Audio_Manager.AM.Play2DSFX(attackSound.clip, 1, 1, playerAttackVolMult, false);
+                        Textbox_String.JumpToEndOfTextbox = true;
+                    }
                     t += Time.deltaTime;
                     //do the animation
                     if(t >= perc)
@@ -237,6 +268,9 @@ namespace RenCSharp.Combat
             playerHolder.gameObject.SetActive(false);
             yield return Textbox_String.RunThroughText(combatTextbox, "Good going idiot, you died! You're going back to the main menu now.");
             yield return new WaitForSeconds(2);
+            //Event_Bus.TryFireVoidEvent("UnpauseSequence");
+            Object_Factory.RemoveObject("EnemyObject");
+            Object_Factory.RemoveObject("PlayerObject");
             ssl.LoadAnScene(1);
         }
 
@@ -253,6 +287,17 @@ namespace RenCSharp.Combat
             {
                 Debug.LogWarning("Player's trying to attack when they shouldn't!");
             }
+        }
+
+        void SpawnEnemyDamageNumber(float damageTaken)
+        {
+            UI_Element fella = Object_Pooling.Spawn(enemyDamageNumber.gameObject, curEnemy.transform.position, Quaternion.identity).GetComponent<UI_Element>();
+            fella.transform.SetParent(curEnemy.transform);
+            StartCoroutine(Object_Pooling.DespawnOverTime(fella.gameObject, 2f));
+            fella.Texts[0].text = "-" + damageTaken.ToString("n1");
+            Vector3 lauchDir = Noise_Helper.SineNoiseVector(0, Mathf.PI);
+            lauchDir.Set(lauchDir.x, lauchDir.y - 0.5f, 0);
+            fella.GetComponent<Rigidbody>().AddForce(lauchDir * enemyDamageNumberForce, ForceMode.VelocityChange);
         }
     }
 }

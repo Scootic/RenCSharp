@@ -10,6 +10,9 @@ namespace RenCSharp
         /// Since there's only one textbox open at a time, I hope, doing things with static parameters SHOULD work.
         /// </summary>
         public static float TextSpeed = 0.1f;
+        /// <summary>
+        /// Makes the coroutine skip past the filling in char by char and just displays final text
+        /// </summary>
         public static bool JumpToEndOfTextbox = false;
         private static bool pausedTextbox = false;
         /// <summary>
@@ -24,7 +27,8 @@ namespace RenCSharp
             float t = 0;
             int i = 0;
             char[] dialogchars = endText.ToCharArray();
-            textBox.text = "";
+            textBox.text = ""; //empty box before repopulating below
+            JumpToEndOfTextbox = false;
 
             while (dialogchars.Length > textBox.text.Length && endText.Length > textBox.text.Length && !JumpToEndOfTextbox)
             {
@@ -42,7 +46,7 @@ namespace RenCSharp
 
                     if (dialogchars[i] == '<') //we've found a rich text tag
                     {
-                        string tag = "" + dialogchars[i];
+                        string tag = "" + dialogchars[i]; //collect all the chars that make up our tag
                         while (dialogchars[i] != '>')
                         {
                             i++;
@@ -72,10 +76,13 @@ namespace RenCSharp
             JumpToEndOfTextbox = true;
             textBox.text = TagParser.CleanOutTags(endText);
         }
-
-        public static void PauseTextbox(bool t)
+        /// <summary>
+        /// Stops any textbox from displaying new chars, hover on current string instead.
+        /// </summary>
+        /// <param name="t">What we set the paused value to. True to stop, False to go.</param>
+        public static void PauseTextbox(bool stop)
         {
-            pausedTextbox = t;
+            pausedTextbox = stop;
         }
     }
 }
