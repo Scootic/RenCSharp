@@ -79,10 +79,7 @@ namespace RenCSharp.Combat
                 else
                 {
                     int randI = Random.Range(0, curEnemy.MySO.RandomAttacks.Length);
-                    bool l = curEnemy.MySO.RandomAttacks.Length > 1;
-                    //Debug.Log("RANDY: " + randI + ", L: " + l);
-                    //Debug.Log("curEnemyRA LENGTHER: " + curEnemy.MySO.RandomAttacks.Length);
-                    yield return RunThroughAttack(curEnemy.MySO.RandomAttacks[l ? randI : 0]);
+                    yield return RunThroughAttack(curEnemy.MySO.RandomAttacks[randI]);
                 }
             }
             if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
@@ -115,7 +112,6 @@ namespace RenCSharp.Combat
                 if (f >= ea.SecondsPerProjectileSpawn)
                 {
                     f = 0;
-                    Debug.Log("Should be spawning an proj");
                     //roll which position/direction we have when first spawning a projectile
                     if (prevAttackRoll == 0) dir = 1;
                     else if (prevAttackRoll >= ea.SpawnPoints.Length - 1) dir = -1;
@@ -128,7 +124,6 @@ namespace RenCSharp.Combat
                         _ => 0 //default scenario of garbage null enum, just return 0 and probably complain too
                     };
                     prevAttackRoll = randI;
-                    Debug.Log("prevatatlrp;;:" + prevAttackRoll);
                     //roll which projectile we shall spawn from array. (probably not as important as randspawn/dir)
                     int randI2 = Random.Range(0, ea.ProjectilesThatSpawn.Length);
 
@@ -206,7 +201,7 @@ namespace RenCSharp.Combat
                             //do midway logic
                             if (playerAttackAnimFrames.Length % 2 == 0) //if we have an even amount of anim frames
                             {
-                                if (i == playerAttackAnimFrames.Length / 2)
+                                if (i == playerAttackAnimFrames.Length * 0.5f)
                                 {
                                     curEnemy.TakeDamage(Flag_Manager.GetFlag("PlayerDamage", false), false);
                                 }
@@ -214,7 +209,7 @@ namespace RenCSharp.Combat
                             else //do bs
                             {
                                 float approxI = i + 0.5f;
-                                if (Mathf.Approximately(approxI, playerAttackAnimFrames.Length / 2))
+                                if (Mathf.Approximately(approxI, playerAttackAnimFrames.Length * 0.5f))
                                 {
                                     curEnemy.TakeDamage(Flag_Manager.GetFlag("PlayerDamage", false), false);
                                 }

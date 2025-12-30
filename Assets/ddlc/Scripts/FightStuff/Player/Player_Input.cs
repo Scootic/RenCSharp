@@ -43,6 +43,8 @@ namespace RenCSharp.Combat
 
         private void OnDisable()
         {
+            Movement = null;
+            Attack = null;
             movement.action.started -= ctx => StartCoroutine(ReadMovement());
             movement.action.canceled -= ctx => move = false;
             attack.action.performed -= ctx => Attack?.Invoke();
