@@ -11,6 +11,7 @@ namespace RenCSharp.Combat
         private UI_Element uie;
         private float curHealth;
         private List<Color> ogColors;
+        [SerializeField] private AudioSource hurtedSound;
         [SerializeField, Range(0,1)] private float resistance = 0;
         [SerializeField, Min(0.01f)] private float damageAnimationTime = 0.5f, maxDistFromOG = 50f;
         [SerializeField] private AnimationCurve[] possibleCurves;
@@ -72,6 +73,7 @@ namespace RenCSharp.Combat
             }
             else
             {
+                Audio_Manager.AM.Play2DSFX(hurtedSound.clip);
                 Event_Bus.TryFireFloatEvent("EnemyDamageNumber", damageToTake);
                 StartCoroutine(TakeDamageVisual());
             }
@@ -91,6 +93,7 @@ namespace RenCSharp.Combat
                 uie.Images[i].sprite = so.VisualInformation[i];
                 ogColors.Add(uie.Images[i].color);
             }
+            hurtedSound.clip = meSo.HurtedSound;
             curHealth = so.MaxHealth;
         }
     }

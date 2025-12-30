@@ -116,6 +116,7 @@ namespace RenCSharp
                 Debug.Log("Saved PFlag: " + ft.FlagIDs[i] + ", Value: " + ft.FlagValues[i]);
             }
             SaveLoad.SavePersistentFlags(ft);
+            RandomHelper.ClearPrevRolls();
             SequencePausedEvent -= ToggleDialogUI;
             Event_Bus.TryRemoveStringEvent("PlayerName");
         }

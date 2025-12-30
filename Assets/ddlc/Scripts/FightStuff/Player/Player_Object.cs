@@ -10,6 +10,7 @@ namespace RenCSharp.Combat
         [SerializeField, Min(1)] private int maxHealth = 20;
         private float curHealth;
         [SerializeField] private float invincibilitySeconds = 0.25f;
+        [SerializeField] private AudioSource hurtedSound;
         private bool invincible = false;
   
         void Start()
@@ -41,8 +42,12 @@ namespace RenCSharp.Combat
                 //Game Over stuff here!
                 Fight_Manager.FM.EndAFight(true);
             }
+            else
+            {
+                Audio_Manager.AM.Play2DSFX(hurtedSound.clip);
+            }
 
-            if (!dot) //only worry about IFrames if the damage is bulk, not over time
+            if (!dot && !invincible) //only worry about IFrames if the damage is bulk, not over time
             {
                 invincible = true;
                 StartCoroutine(IFrames());

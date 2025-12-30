@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 2711639654553654952}
   - component: {fileID: 512394676569696241}
   - component: {fileID: 8204080492186913528}
-  - component: {fileID: 8204135625514222407}
   - component: {fileID: 8266305171280315681}
   - component: {fileID: 1534405015989188444}
+  - component: {fileID: 4247805767152981636}
   m_Layer: 6
-  m_Name: FireProj
+  m_Name: BigFireProj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,23 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8204135625514222407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7609347526362195393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 006f482684a4f2b4daf69f8001b5dbb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageOverTime: 0
-  destroyOnHit: 1
-  baseDamage: 5
-  moveSpeed: 400
-  lifetime: 15
 --- !u!54 &8266305171280315681
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -141,5 +124,28 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 214, y: 250, z: 1}
+  m_Size: {x: 200, y: 250, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4247805767152981636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7609347526362195393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da129c2f52b210439ed0f8520f3c215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageOverTime: 0
+  destroyOnHit: 1
+  baseDamage: 3
+  moveSpeed: 500
+  lifetime: 15
+  explosionDirs:
+  - {x: -1, y: 1, z: 0}
+  - {x: 1, y: 1, z: 0}
+  - {x: -1, y: -1, z: 0}
+  - {x: 1, y: -1, z: 0}
+  subProjectile: {fileID: 8204135625514222407, guid: ebe715091a91c51458dd95fc43dda76b, type: 3}

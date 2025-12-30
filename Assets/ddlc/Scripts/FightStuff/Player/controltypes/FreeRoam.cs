@@ -4,7 +4,7 @@ namespace RenCSharp.Combat
 {
     public class FreeRoam : ControlType
     {
-        [SerializeField, Min(0.1f)] private float speed = 2000;
+        [SerializeField, Min(0.1f)] private float speed = 500;
         private Rigidbody rb;
         protected override void MovementEffect(Vector2 dir)
         {

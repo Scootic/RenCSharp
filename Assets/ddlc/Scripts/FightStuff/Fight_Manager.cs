@@ -13,8 +13,9 @@ namespace RenCSharp.Combat
         [SerializeField] private EnemyObject enemyPrefab;
         [SerializeField] private Player_Object playerPrefab;
         [SerializeField] private Simple_Scene_Loader ssl;
-
-        [SerializeField] private Transform enemyHolder, playerHolder;
+        [Header("Holders")]
+        [SerializeField] private Transform enemyHolder;
+        [SerializeField] private Transform playerHolder;
         [SerializeField] private TextMeshProUGUI combatTextbox;
         [Header("Arena")]
         [SerializeField, Min(0.1f)] private float arenaSetUpTime = 1f;
@@ -22,8 +23,10 @@ namespace RenCSharp.Combat
         [SerializeField] private float playerAttackAnimationDuration;
         [SerializeField] private Sprite[] playerAttackAnimFrames;
         [SerializeField] private UI_Element playerAttackFab;
+        [SerializeField] private AudioSource attackSound;
 
         private int curAttackIndex;
+        private int prevAttackRoll, dir;
         private EnemyObject curEnemy;
         private UI_Element curPAttack;
         private bool fighting, lostFight, playerTurn, playerAttack;
@@ -44,7 +47,9 @@ namespace RenCSharp.Combat
             lostFight = false;
             playerTurn = true;
             playerAttack = false;
+            prevAttackRoll = 0;
             curAttackIndex = 0;
+            dir = 1;
             Event_Bus.TryFireVoidEvent("PauseSequence");
             playerObj = Object_Factory.SpawnObject(playerPrefab.gameObject, "PlayerObject", playerHolder);
             curEnemy = Object_Factory.SpawnObject(enemyPrefab.gameObject, "EnemyObject", enemyHolder).GetComponent<EnemyObject>();
@@ -103,7 +108,7 @@ namespace RenCSharp.Combat
 
             yield return SetUpArena(ea);
 
-            while (t <= ea.AttackDuration)
+            while (t <= ea.AttackDuration && fighting)
             {
                 t += Time.deltaTime;
                 f += Time.deltaTime; //screw it, second timer for spawning projectiles
@@ -112,7 +117,18 @@ namespace RenCSharp.Combat
                     f = 0;
                     Debug.Log("Should be spawning an proj");
                     //roll which position/direction we have when first spawning a projectile
-                    int randI = Random.Range(0, ea.SpawnPoints.Length);
+                    if (prevAttackRoll == 0) dir = 1;
+                    else if (prevAttackRoll >= ea.SpawnPoints.Length - 1) dir = -1;
+                    int randI = ea.ProjectileSpawnMethod switch
+                    {
+                        AttackSpawnSelectionMethod.TrueRandom => Random.Range(0, ea.SpawnPoints.Length),
+                        AttackSpawnSelectionMethod.NoRepeatRandom => RandomHelper.NoRepeatRoll("attackRoll", ea.SpawnPoints.Length),
+                        AttackSpawnSelectionMethod.LoopThrough => (prevAttackRoll >= ea.SpawnPoints.Length - 1) ? 0 : prevAttackRoll + 1,
+                        AttackSpawnSelectionMethod.PingPong => prevAttackRoll += dir,
+                        _ => 0 //default scenario of garbage null enum, just return 0 and probably complain too
+                    };
+                    prevAttackRoll = randI;
+                    Debug.Log("prevatatlrp;;:" + prevAttackRoll);
                     //roll which projectile we shall spawn from array. (probably not as important as randspawn/dir)
                     int randI2 = Random.Range(0, ea.ProjectilesThatSpawn.Length);
 
@@ -124,7 +140,7 @@ namespace RenCSharp.Combat
                     cur.transform.SetParent(playerHolder);
                     cur.transform.localPosition = spawnPosition;
                     cur.UpdateMoveDir(ogProjDir);
-                    activeProj.Add(cur.gameObject);
+                    AddProjectileToList(cur.gameObject);
                     StartCoroutine(Object_Pooling.DespawnOverTime(cur.gameObject, cur.Lifetime));
                 }
 
@@ -156,15 +172,13 @@ namespace RenCSharp.Combat
             {
                 t += Time.deltaTime;
                 eval = t / arenaSetUpTime;
-
                 rt.sizeDelta = Vector2.Lerp(Vector2.zero, ea.ArenaDimensions, eval);
-                
-
                 yield return null;
             }
             playerObj.SetActive(true);
-            ea.ControlType.EnterControl();
             playerObj.transform.localPosition = Vector3.zero; //reset to origin of holder?
+            ea.ControlType.EnterControl();
+            
         }
 
         private IEnumerator PlayerTurn()
@@ -173,11 +187,12 @@ namespace RenCSharp.Combat
             float t = 0;
             int i = 0;
             float perc = playerAttackAnimationDuration / (float)playerAttackAnimFrames.Length;
-            while (playerTurn)
+            while (playerTurn && fighting)
             {
                 if(!playerAttack) yield return null;
                 else
                 {
+                    if (t == 0) Audio_Manager.AM.Play2DSFX(attackSound.clip); //only at start of routine
                     t += Time.deltaTime;
                     //do the animation
                     if(t >= perc)
@@ -212,14 +227,21 @@ namespace RenCSharp.Combat
                         }
                     }
                     yield return null;
-                    
                 }
             }
         }
 
+        public void AddProjectileToList(GameObject go)
+        {
+            activeProj.Add(go);
+        }
+
         private IEnumerator LostTheFight()
         {
+            Textbox_String.PauseTextbox(false);
+            playerHolder.gameObject.SetActive(false);
             yield return Textbox_String.RunThroughText(combatTextbox, "Good going idiot, you died! You're going back to the main menu now.");
+            yield return new WaitForSeconds(2);
             ssl.LoadAnScene(1);
         }
 

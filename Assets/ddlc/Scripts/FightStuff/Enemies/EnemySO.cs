@@ -10,6 +10,7 @@ namespace RenCSharp.Combat
         [SerializeField, Min(1)] private int maxHealth = 10;
         [SerializeField] private Sprite[] visualInformation;
         [SerializeField, TextArea(3, 5)] private string defeatText, nameText;
+        [SerializeField] private AudioClip hurtedSound;
 
         public EnemyAttack[] ScriptedAttacks => scriptedAttacks;
         public EnemyAttack[] RandomAttacks => randomAttacks;
@@ -17,5 +18,6 @@ namespace RenCSharp.Combat
         public Sprite[] VisualInformation => visualInformation;
         public string NameText => nameText;
         public string DefeatText => defeatText;
+        public AudioClip HurtedSound => hurtedSound;
     }
 }

@@ -1,3 +1,4 @@
+using RenCSharp.Combat;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +36,12 @@ public static class Object_Pooling
 
     public static void Despawn(GameObject obj)
     {
+        IDespawn id = obj.GetComponent<IDespawn>();
+        if(id != null)
+        {
+            id.OnDespawn();
+        }
+
         if(obj.GetComponent<PoolMember>() == null)
         {
             GameObject.Destroy(obj);

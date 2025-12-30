@@ -24,6 +24,7 @@ namespace RenCSharp
             float t = 0;
             int i = 0;
             char[] dialogchars = endText.ToCharArray();
+            textBox.text = "";
 
             while (dialogchars.Length > textBox.text.Length && endText.Length > textBox.text.Length && !JumpToEndOfTextbox)
             {

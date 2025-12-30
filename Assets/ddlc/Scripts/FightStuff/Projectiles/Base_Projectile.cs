@@ -1,16 +1,18 @@
+using System.Collections;
 using UnityEngine;
 
 namespace RenCSharp.Combat
 {
-    public class Base_Projectile : MonoBehaviour
+    [RequireComponent(typeof(Collider))]
+    public class Base_Projectile : MonoBehaviour, IDespawn
     {
         [SerializeField] protected bool damageOverTime = false, destroyOnHit = false;
         [SerializeField, Min(0.1f)] protected float baseDamage = 1;
         [SerializeField, Min(0.1f)] protected float moveSpeed = 500;
-        [SerializeField, Min(0.1f)] protected float lifetime = 10;
+        [SerializeField, Min(0.15f)] protected float lifetime = 10;
         protected IDamage receiver;
         protected Vector3 moveDir;
-
+        protected Collider myCol;
         public float Lifetime => lifetime;
         /// <summary>
         /// Sets the move direction that's used in update to change the projectile's position.
@@ -19,6 +21,20 @@ namespace RenCSharp.Combat
         public virtual void UpdateMoveDir(Vector3 v3)
         {
             moveDir = v3;
+            transform.rotation = VecToQuaternion.GetQuaternion(v3);
+        }
+
+        protected virtual void OnEnable()
+        {
+            myCol = GetComponent<Collider>();
+            StartCoroutine(EnableTriggerOverTime());
+        }
+
+        protected IEnumerator EnableTriggerOverTime()
+        {
+            myCol.enabled = false;
+            yield return new WaitForSeconds(0.1f);
+            myCol.enabled = true;
         }
 
         //Handle movements
@@ -30,9 +46,11 @@ namespace RenCSharp.Combat
         protected virtual void OnTriggerEnter(Collider other)
         {
             receiver = other.GetComponent<IDamage>();
-            if (receiver == null) return;
-            if (!damageOverTime) receiver.TakeDamage(baseDamage, false);
-            if (destroyOnHit) Object_Pooling.Despawn(gameObject);
+            if (!damageOverTime && receiver != null) receiver.TakeDamage(baseDamage, false);
+            if (destroyOnHit) 
+            {
+                Object_Pooling.Despawn(gameObject);
+            }
         }
         //scale base damage down based on time.deltaTime since DoT is a per frame kind of thing.
         //basically turns baseDamage into baseDPS
@@ -47,6 +65,11 @@ namespace RenCSharp.Combat
         {
             if (!other.CompareTag("Player")) return;
             if (receiver != null) receiver = null;
+        }
+
+        public virtual void OnDespawn()
+        {
+
         }
     }
 }

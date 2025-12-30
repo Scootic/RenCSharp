@@ -10,37 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
-  m_Name: FR_SwordsFromAbove
+  m_Name: FR_FirefromAbove
   m_EditorClassIdentifier: 
   arenaDimensions: {x: 960, y: 440}
   controlType:
     rid: 9142197945214697573
   attackDuration: 8
-  secondsPerProjectileSpawn: 0.3
-  postAttackDescription: Why is this jerk throwing swords?
+  secondsPerProjectileSpawn: 0.8
+  postAttackDescription: Why is brodie doing magic???
   projectilesThatSpawn:
-  - {fileID: 8204135625514222407, guid: 08a6e4ee4a206684b8b74b5389fc3b65, type: 3}
+  - {fileID: 4247805767152981636, guid: d57feeca9d568294d8662ccea0a89a68, type: 3}
   spawnPoints:
   - {x: -450, y: 550, z: 0}
   - {x: -150, y: 550, z: 0}
   - {x: 150, y: 550, z: 0}
   - {x: 450, y: 550, z: 0}
-  - {x: 300, y: 550, z: 0}
-  - {x: -300, y: 550, z: 0}
-  - {x: -800, y: 0, z: 0}
-  - {x: 800, y: 100, z: 0}
-  - {x: -800, y: -100, z: 0}
   initialDirections:
   - {x: 0, y: -1, z: 0}
   - {x: 0.1, y: -1, z: 0}
   - {x: -0.1, y: -1, z: 0}
-  - {x: 0, y: -1, z: 0}
   - {x: -0.05, y: -1, z: 0}
-  - {x: 0.05, y: -1, z: 0}
-  - {x: 1, y: 0, z: 0}
-  - {x: -1, y: 0, z: 0}
-  - {x: 1, y: 0, z: 0}
-  projectileSpawnMethod: 3
+  projectileSpawnMethod: 2
   references:
     version: 2
     RefIds:

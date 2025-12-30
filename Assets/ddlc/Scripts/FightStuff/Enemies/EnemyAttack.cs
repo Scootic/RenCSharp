@@ -15,7 +15,9 @@ namespace RenCSharp.Combat
         [SerializeField] private Base_Projectile[] projectilesThatSpawn;
         [SerializeField, Tooltip("Offset from arena center point")] private Vector3[] spawnPoints;
         [SerializeField, Tooltip("corresponds to spawn points. Please be normalized!")] private Vector3[] initialDirections;
+        [SerializeField] private AttackSpawnSelectionMethod projectileSpawnMethod = AttackSpawnSelectionMethod.NoRepeatRandom;
 
+        public AttackSpawnSelectionMethod ProjectileSpawnMethod => projectileSpawnMethod;
         public Vector2 ArenaDimensions => arenaDimensions;
         public ControlType ControlType => controlType;
         public Base_Projectile[] ProjectilesThatSpawn => projectilesThatSpawn;

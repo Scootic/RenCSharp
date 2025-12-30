@@ -27,7 +27,8 @@ MonoBehaviour:
     - rid: 9142197945214697602
   - speaker: {fileID: 0}
     dialog: The fight should now be finished.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 9142197968636215362
   playerChoices: []
   myself:
     m_AssetGUID: 2be5878bd9417b643b127cf8c12983c0
@@ -59,7 +60,7 @@ MonoBehaviour:
     - rid: 9142197945214697604
       type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        musicTrack: {fileID: 8300000, guid: e82cf2abd98ac45439666764a84213a5, type: 3}
+        musicTrack: {fileID: 8300000, guid: 35cba3ca908d70d48a8a042cf6323f5c, type: 3}
         fadeTime: 1
         setToSameTime: 0
     - rid: 9142197945214697623
@@ -68,3 +69,9 @@ MonoBehaviour:
         flagID: PlayerDamage
         flagValue: 5
         increment: 0
+    - rid: 9142197968636215362
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: e82cf2abd98ac45439666764a84213a5, type: 3}
+        fadeTime: 1
+        setToSameTime: 0

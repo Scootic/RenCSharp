@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
   m_Name: TestEnemy
   m_EditorClassIdentifier: 
-  scriptedAttacks: []
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 27124878a6df7b448b6637fcc3c56a2c, type: 2}
+  - {fileID: 11400000, guid: 5f90375df0f28c042bc93a924550e369, type: 2}
+  - {fileID: 11400000, guid: 925c70fdaa26d464b8f0ab97620eb9ee, type: 2}
   randomAttacks:
   - {fileID: 11400000, guid: 27124878a6df7b448b6637fcc3c56a2c, type: 2}
+  - {fileID: 11400000, guid: 5f90375df0f28c042bc93a924550e369, type: 2}
+  - {fileID: 11400000, guid: 925c70fdaa26d464b8f0ab97620eb9ee, type: 2}
   maxHealth: 30
   visualInformation:
   - {fileID: -5789129640331636987, guid: 018ed1d3427df7e498ae80a1954de289, type: 3}
   defeatText: You have slain the Test Enemy!
   nameText: Test Enemy
+  hurtedSound: {fileID: 8300000, guid: ef1e06ea32d0712459c07b5a50bf3ff7, type: 3}
