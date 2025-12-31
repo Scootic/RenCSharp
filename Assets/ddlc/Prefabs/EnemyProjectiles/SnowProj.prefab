@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2711639654553654952}
   - component: {fileID: 512394676569696241}
   - component: {fileID: 8204080492186913528}
-  - component: {fileID: 8204135625514222407}
+  - component: {fileID: 6106508995416417585}
   - component: {fileID: -2506182205116807624}
   - component: {fileID: -1317450562956184785}
   m_Layer: 6
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8204135625514222407
+--- !u!114 &6106508995416417585
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7609347526362195393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 006f482684a4f2b4daf69f8001b5dbb7, type: 3}
+  m_Script: {fileID: 11500000, guid: ef8b6993a01924a4da278f637c08014b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageOverTime: 1
@@ -98,6 +98,7 @@ MonoBehaviour:
   spawnSoundVol: 0.5
   colliderEnableTime: 0.1
   spawnSound: {fileID: 8300000, guid: 17af76ff76a7d1c419725ef1ffbcf27c, type: 3}
+  rotationSpeed: 45
 --- !u!54 &-2506182205116807624
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -144,5 +145,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 300, y: 300, z: 1}
+  m_Size: {x: 285, y: 285, z: 50}
   m_Center: {x: 0, y: 0, z: 0}

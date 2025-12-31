@@ -5,7 +5,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -516,6 +515,7 @@ namespace RenCSharp
             textRoutine = StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
         }
         #endregion
+        #region JuiceStuff
         private IEnumerator ScaleActor(bool up, float scaleTime) //used if autoSpeakerFocus is true in a sequence
         {
             float t;
@@ -574,7 +574,7 @@ namespace RenCSharp
 
             pd.color = Color.white;
         }
-
+        #endregion
         private void ToggleDialogUI(bool b)
         {
             dialogBox.transform.parent.gameObject.SetActive(!b);

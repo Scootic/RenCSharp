@@ -124,8 +124,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 200, y: 250, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 200, y: 200, z: 50}
+  m_Center: {x: 0, y: -25, z: 0}
 --- !u!114 &4247805767152981636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +144,7 @@ MonoBehaviour:
   moveSpeed: 500
   lifetime: 15
   spawnSoundVol: 0.4
+  colliderEnableTime: 0.1
   spawnSound: {fileID: 8300000, guid: 7938deb51c5114f40a13688a269a0017, type: 3}
   explosionDirs:
   - {x: -1, y: 1, z: 0}

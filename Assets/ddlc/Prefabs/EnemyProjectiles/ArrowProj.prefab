@@ -96,6 +96,7 @@ MonoBehaviour:
   moveSpeed: 700
   lifetime: 8
   spawnSoundVol: 0.5
+  colliderEnableTime: 0.1
   spawnSound: {fileID: 8300000, guid: b40532dff090cf84b8986386702391a1, type: 3}
 --- !u!54 &8094239482754136957
 Rigidbody:
@@ -143,5 +144,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 58, y: 350, z: 1}
+  m_Size: {x: 58, y: 350, z: 50}
   m_Center: {x: 0, y: 0, z: 0}

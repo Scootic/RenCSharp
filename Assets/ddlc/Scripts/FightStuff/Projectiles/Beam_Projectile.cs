@@ -38,7 +38,7 @@ namespace RenCSharp.Combat
 
             myCol.enabled = true;
             Audio_Manager.AM.Play2DSFX(beamFullSound, 0.9f, 1.01f, beamSoundVol, false);
-            beamElements.Images[0].enabled = true;
+            beamElements.Images[0].enabled = true; //main image
             beamElements.Images[1].enabled = false; //underlay
             beamElements.Images[2].enabled = false; //filler 1
             beamElements.Images[3].enabled = false; //filler 2
