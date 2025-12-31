@@ -20,6 +20,9 @@ MonoBehaviour:
     - rid: 9142197945214697603
     - rid: 9142197945214697604
     - rid: 9142197945214697623
+    - rid: 9142197987744153790
+    - rid: 9142197987744153791
+    - rid: 9142197987744153825
   - speaker: {fileID: 0}
     dialog: It will go crazy, I swear.
     ScreenActions: []
@@ -32,6 +35,20 @@ MonoBehaviour:
     dialog: The fight should now be finished.
     ScreenActions:
     - rid: 9142197968636215362
+  - speaker: {fileID: 0}
+    dialog: 'Up next is a single attack:'
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9142197987744153805
+  - speaker: {fileID: 0}
+    dialog: How frightening!
+    ScreenActions:
+    - rid: 9142197987744153823
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
   playerChoices: []
   myself:
     m_AssetGUID: 2be5878bd9417b643b127cf8c12983c0
@@ -78,3 +95,31 @@ MonoBehaviour:
         musicTrack: {fileID: 8300000, guid: e82cf2abd98ac45439666764a84213a5, type: 3}
         fadeTime: 1
         setToSameTime: 0
+    - rid: 9142197987744153790
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerMaxHealth
+        flagValue: 20
+        increment: 0
+    - rid: 9142197987744153791
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 20
+        increment: 0
+    - rid: 9142197987744153805
+      type: {class: Start_Single_Attack, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        attackToRunThrough: {fileID: 11400000, guid: 27124878a6df7b448b6637fcc3c56a2c, type: 2}
+    - rid: 9142197987744153823
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 20
+        increment: 0
+    - rid: 9142197987744153825
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerResistance
+        flagValue: 0
+        increment: 0

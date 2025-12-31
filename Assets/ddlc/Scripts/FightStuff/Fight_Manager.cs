@@ -30,9 +30,10 @@ namespace RenCSharp.Combat
 
         private int curAttackIndex;
         private int prevAttackRoll, dir;
-        [SerializeField] private EnemyObject curEnemy;
+        private EnemyObject curEnemy;
+        private Player_Object curPlayer;
         private UI_Element curPAttack;
-        private bool fighting, lostFight, playerTurn, playerAttack;
+        private bool fighting, lostFight, playerTurn, playerAttack, singleAttack;
         private Coroutine flavorTextRoutine;
         private GameObject playerObj;
         private List<GameObject> activeProj = new();
@@ -43,7 +44,6 @@ namespace RenCSharp.Combat
         {
             if (FM == null) FM = this;
             else if (FM != this) { Destroy(FM); FM = this; }
-           
         }
 
         private void OnEnable()
@@ -59,22 +59,40 @@ namespace RenCSharp.Combat
         public void StartAFight(EnemySO eso)
         {
             Debug.Log("Starting a fight!");
+            BulkSetUp();
+            playerTurn = true;
+            singleAttack = false;
+            Textbox_String.PauseTextbox(true);
+            curEnemy = Object_Factory.SpawnObject(enemyPrefab.gameObject, "EnemyObject", enemyHolder).GetComponent<EnemyObject>();
+            curEnemy.ReceiveEnemySO(eso);
+            Player_Input.Attack += PlayerAttack;
+            StartCoroutine(RunThroughEnemy());
+        }
+
+        public void StartASingleAttack(EnemyAttack ea)
+        {
+            singleAttack = true;
+            playerTurn = false;
+            BulkSetUp();
+            combatTextbox.text = "";
+            StartCoroutine(RunThroughAttack(ea));
+        }
+
+        private void BulkSetUp()
+        {
             Event_Bus.TryFireVoidEvent("PauseSequence");
             combatCanvas.SetActive(true);
+            playerHolder.gameObject.SetActive(false);
             fighting = true;
             lostFight = false;
-            playerTurn = true;
             playerAttack = false;
             prevAttackRoll = 0;
             Textbox_String.JumpToEndOfTextbox = false;
             curAttackIndex = 0;
             dir = 1;
-            Textbox_String.PauseTextbox(true);
             playerObj = Object_Factory.SpawnObject(playerPrefab.gameObject, "PlayerObject", playerHolder);
-            curEnemy = Object_Factory.SpawnObject(enemyPrefab.gameObject, "EnemyObject", enemyHolder).GetComponent<EnemyObject>();
-            curEnemy.ReceiveEnemySO(eso);
-            Player_Input.Attack += PlayerAttack;
-            StartCoroutine(RunThroughEnemy());
+            curPlayer = playerObj.GetComponent<Player_Object>();
+            playerObj.SetActive(false);
         }
 
         public void EndAFight(bool loss)
@@ -105,8 +123,10 @@ namespace RenCSharp.Combat
             }
             if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
             Player_Input.Attack -= PlayerAttack;
-            if (!lostFight)
+            if (!lostFight) //if we won that there battle
             {
+                Flag_Manager.SetFlag("PlayerCurHealth", Mathf.CeilToInt(curPlayer.CurrentHealth)); //we remember damage taken, for immersion
+                //sequence transition can optionally undo tf out of this shit.
                 Object_Factory.RemoveObject("EnemyObject"); //despawn anemone
                 yield return Textbox_String.RunThroughText(combatTextbox, curEnemy.MySO.DefeatText);
                 yield return new WaitForSeconds(2);
@@ -116,7 +136,6 @@ namespace RenCSharp.Combat
             }
             else
             {
-                Player_Input.Movement = null; //reset?
                 yield return LostTheFight();
             }
         }
@@ -174,12 +193,27 @@ namespace RenCSharp.Combat
             }
             ea.ControlType.ExitControl();
             playerObj.SetActive(false);
-            curAttackIndex++;
-            if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
-            flavorTextRoutine = StartCoroutine(Textbox_String.RunThroughText(combatTextbox, ea.PostAttackDescription));
+            if (!singleAttack)
+            {
+                curAttackIndex++;
+                if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
+                flavorTextRoutine = StartCoroutine(Textbox_String.RunThroughText(combatTextbox, ea.PostAttackDescription));
+            }
             
             playerAttack = false;
-            yield return PlayerTurnRoutine();
+            yield return CloseArena();
+            if(!singleAttack) yield return PlayerTurnRoutine();
+            else if(!lostFight)
+            {
+                Flag_Manager.SetFlag("PlayerCurHealth", Mathf.CeilToInt(curPlayer.CurrentHealth));
+                Event_Bus.TryFireVoidEvent("UnpauseSequence");
+                combatCanvas.SetActive(false);
+                Object_Factory.RemoveObject("PlayerObject");
+            }
+            else
+            {
+                yield return LostTheFight();
+            }
         }
 
         private IEnumerator SetUpArena(EnemyAttack ea)
@@ -199,12 +233,26 @@ namespace RenCSharp.Combat
             playerObj.transform.localPosition = Vector3.zero; //reset to origin of holder?
             if (curAttackIndex == 0) playerObj.GetComponent<Player_Object>().StartOfFight();
             ea.ControlType.EnterControl();
-            
+        }
+
+        private IEnumerator CloseArena()
+        {
+            float t = arenaSetUpTime;
+            float eval;
+            RectTransform rt = playerHolder.GetComponent<RectTransform>();
+            Vector2 startDim = rt.sizeDelta;
+            while (t >= 0)
+            {
+                t -= Time.deltaTime;
+                eval = t / arenaSetUpTime;
+                rt.sizeDelta = Vector2.Lerp(Vector2.zero, startDim, eval);
+                yield return null;
+            }
+            playerHolder.gameObject.SetActive(false);
         }
 
         private IEnumerator PlayerTurnRoutine()
         {
-            playerHolder.gameObject.SetActive(false);
             float t = 0;
             int i = 0;
             float perc = playerAttackAnimationDuration / (float)playerAttackAnimFrames.Length;

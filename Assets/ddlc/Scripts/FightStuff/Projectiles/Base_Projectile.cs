@@ -13,6 +13,7 @@ namespace RenCSharp.Combat
         [SerializeField, Min(0.1f)] protected float moveSpeed = 500;
         [SerializeField, Min(0.15f)] protected float lifetime = 10;
         [SerializeField, Range(0, 1)] protected float spawnSoundVol = 1;
+        [SerializeField, Min(0.1f)] protected float colliderEnableTime = 0.1f;
         [SerializeField] protected AudioClip spawnSound;
         protected IDamage receiver;
         protected Vector3 moveDir;
@@ -36,10 +37,10 @@ namespace RenCSharp.Combat
             StartCoroutine(EnableTriggerOverTime());
         }
 
-        protected IEnumerator EnableTriggerOverTime()
+        protected virtual IEnumerator EnableTriggerOverTime()
         {
             myCol.enabled = false;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(colliderEnableTime);
             myCol.enabled = true;
         }
 
@@ -53,7 +54,7 @@ namespace RenCSharp.Combat
         {
             receiver = other.GetComponent<IDamage>();
             if (!damageOverTime && receiver != null) receiver.TakeDamage(baseDamage, false);
-            if (destroyOnHit) 
+            if (destroyOnHit)
             {
                 Object_Pooling.Despawn(gameObject);
             }

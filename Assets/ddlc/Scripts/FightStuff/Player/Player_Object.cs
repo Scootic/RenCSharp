@@ -10,15 +10,19 @@ namespace RenCSharp.Combat
     {
         [SerializeField, Min(1)] private int maxHealth = 20;
         private float curHealth;
+        private float preResistance = 0;
         [SerializeField] private float invincibilitySeconds = 0.25f;
         [SerializeField] private AudioSource hurtedSound;
         [SerializeField] private AnimationCurve invincibleCurve;
-        private bool invincible = false;
-  
+        private bool invincible = false, hurtSoundGood = true;
+
+        public float CurrentHealth => curHealth;
         public void StartOfFight()
         {
+            maxHealth = Flag_Manager.GetFlag("PlayerMaxHealth");
             invincible = false;
-            curHealth = maxHealth;
+            curHealth = Flag_Manager.GetFlag("PlayerCurHealth");
+            preResistance = (float)Flag_Manager.GetFlag("PlayerResistance") / 100f;
 
             Event_Bus.TryFireFloatEvent("PlayerHealth", curHealth);
             Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
@@ -58,10 +62,13 @@ namespace RenCSharp.Combat
                 //Game Over stuff here!
                 Fight_Manager.FM.EndAFight(true);
             }
-            else
+            else if(hurtSoundGood)
             {
                 Audio_Manager.AM.Play2DSFX(hurtedSound.clip, 0.99f, 1.01f);
+                hurtSoundGood = false;
+                StartCoroutine(HurtSoundHandle());
             }
+
 
             if (!dot && !invincible) //only worry about IFrames if the damage is bulk, not over time
             {
@@ -70,9 +77,15 @@ namespace RenCSharp.Combat
             }
         }
 
+        private IEnumerator HurtSoundHandle()
+        {
+            yield return new WaitForSeconds(invincibilitySeconds - 0.01f);
+            hurtSoundGood = true;
+        }
+
         public float Resistance()
         {
-            return 0;
+            return preResistance;
         }
 
         public Vector3 GetPosition => transform.position;

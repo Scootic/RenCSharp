@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 47dc52bc9aa17184aa147913102bd6ea
+guid: 5824fb4b64c0c014484a3d72f8161764
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,9 +123,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: projectiles
+  - name: beam
     originalName: 
-    pivot: {x: 0.44827586, y: 0}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -133,9 +133,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 116
+      width: 30
       height: 32
-    spriteID: f181fe3ff3e393740b4bbd96bff039b6
+    spriteID: add147e56dcf843418b8c67d4a1aa2a0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,25 +148,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 2138669422
+      value0: 1051108103
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: projectiles
+    name: beam
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: projectiles
+    - name: beam
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 12
+        x: 1
         y: 0
-        width: 116
+        width: 30
         height: 32
-      spriteId: f181fe3ff3e393740b4bbd96bff039b6
+      spriteId: add147e56dcf843418b8c67d4a1aa2a0
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -185,5 +185,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 128, y: 32}
-  previousTextureSize: {x: 128, y: 64}
+  canvasSize: {x: 32, y: 32}
+  previousTextureSize: {x: 64, y: 64}

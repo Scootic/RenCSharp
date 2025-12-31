@@ -110,6 +110,15 @@ namespace RenCSharp
                 }
             }
         }
+
+        public bool AlreadyPlaying2DSFX(AudioClip clipToCheck)
+        {
+            foreach(AudioSource sauce in sfxSources)
+            {
+                if (sauce.clip == clipToCheck && sauce.isPlaying) return true;
+            }
+            return false;
+        }
         #endregion
 
         #region 3DSFX
