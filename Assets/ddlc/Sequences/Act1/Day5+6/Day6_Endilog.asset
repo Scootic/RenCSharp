@@ -113,11 +113,12 @@ MonoBehaviour:
     dialog: ... What?
     ScreenActions: []
   - speaker: {fileID: 0}
-    dialog: 
-    ScreenActions: []
+    dialog: Alright... stay calm...
+    ScreenActions:
+    - rid: 9142198014508531831
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 11400000, guid: daff6a8c44dc89c41925dd353bc26227, type: 2}
+    resultingSequence: {fileID: 11400000, guid: f20bdb98c10a6564c942ebba1bd47748, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -215,3 +216,8 @@ MonoBehaviour:
         fadeTime: 3
         endWithScreen: 1
         secondsPerFrame: 0.1
+    - rid: 9142198014508531831
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
+        fadeTime: 0.5

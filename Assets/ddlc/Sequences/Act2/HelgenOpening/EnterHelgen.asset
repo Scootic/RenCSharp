@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: EnterHelgen
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9142198014508531834
+    - rid: 9142198014508531835
+  - speaker: {fileID: 0}
+    dialog: I am in a video game...
+    ScreenActions:
+    - rid: 9142198014508531837
+  - speaker: {fileID: 0}
+    dialog: On the plus side, I'm pretty familiar with Skyrim, so I won't be completely
+      lost.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: On the bad side, I'm about to be executed for crossing the border from
+      Cyrodiil.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: <i>Allegedly</i>.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Does that make me the Last Dragonborn?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Or maybe I replaced them and this world is now doomed...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Either way, I guess I'm going to find out soon.
+    ScreenActions:
+    - rid: 9142198014508531838
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 0}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: f20bdb98c10a6564c942ebba1bd47748
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 9142198014508531834
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - {fileID: 21300000, guid: 0ea8227f372d23a4c8ae707cf59374ff, type: 3}
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 8
+    - rid: 9142198014508531835
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
+        overlayText: 'Act 2 - Episode 1: New World'
+        fadeTime: 4
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9142198014508531837
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+        overlayText: 
+        fadeTime: 2
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9142198014508531838
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - {fileID: 21300000, guid: 66427a8310d9d2b478665dab1cd515b9, type: 3}
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
