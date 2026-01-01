@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Text.RegularExpressions;
 using RenCSharp.Sequences;
+using System.Collections;
 namespace RenCSharp.Menus
 {
     public class SaveLoad_Menu : Menu_Base
@@ -14,21 +15,28 @@ namespace RenCSharp.Menus
         [SerializeField] private byte sceneToLoadIndex = 2;
         private int activeDatas = 0;
         private string fileName = "SaveData";
+        private Coroutine openMenu;
         public override void OnMenuOpen()
         {
             saveMenu.SetActive(true);
-            SaveData[] allSDs = SaveLoad.FindAllSaves();
+            openMenu = StartCoroutine(MenuOpenRoutine());
+        }
 
-            for (int i = 0; i < allSDs.Length; i++)
+        private IEnumerator MenuOpenRoutine()
+        {
+            activeDatas = 0;
+            int length = SaveLoad.AllSavesLength();
+            string[] paths = SaveLoad.AllSavesPaths();
+            while (activeDatas < length) 
             {
-                int ind = i;
-                UI_Element loadElement = Object_Factory.SpawnObject(loadGamePrefab, "Save"+ind, loadGameHolder).GetComponent<UI_Element>();
-
-                loadElement.Texts[0].text = allSDs[ind].FileName != null ? allSDs[ind].FileName : "SaveData";
-                if (allSDs[i].SaveScreenshot != null)
+                SaveLoad.TryLoadFromPath(paths[activeDatas], out SaveData? s);
+                SaveData sd = (SaveData)s;
+                UI_Element loadElement = Object_Factory.SpawnObject(loadGamePrefab, "Save" + activeDatas, loadGameHolder).GetComponent<UI_Element>();
+                loadElement.Texts[0].text = sd.FileName != null ? sd.FileName : "SaveData";
+                if (sd.SaveScreenshot != null)
                 {
                     Texture2D screenShotTexture = new Texture2D(2, 2);
-                    screenShotTexture.LoadImage(allSDs[ind].SaveScreenshot);
+                    screenShotTexture.LoadImage(sd.SaveScreenshot);
                     Sprite spr = Sprite.Create(screenShotTexture, new Rect(0, 0, screenShotTexture.width, screenShotTexture.height), new Vector2(0.5f, 0.5f));
                     loadElement.Images[0].sprite = spr;
                 }
@@ -37,14 +45,16 @@ namespace RenCSharp.Menus
                     loadElement.Images[0].sprite = defaultImage;
                 }
 
-                loadElement.Buttons[0].onClick.AddListener(delegate { Load(allSDs[ind]); });
-                loadElement.Buttons[1].onClick.AddListener(delegate { Delete(allSDs[ind].FileName); });
-
+                loadElement.Buttons[0].onClick.AddListener(delegate { Load(sd); });
+                loadElement.Buttons[1].onClick.AddListener(delegate { Delete(sd.FileName); });
                 activeDatas++;
+                yield return null; //yield frame before next save
             }
         }
+
         public override void OnMenuClose()
         {
+            if(openMenu != null) StopCoroutine(openMenu);
             for (int i = activeDatas - 1; i >= 0; i--) 
             {
                 Object_Factory.RemoveObject("Save" + i);
@@ -55,6 +65,7 @@ namespace RenCSharp.Menus
 
         private void Load(SaveData sd)
         {
+            if (openMenu != null) StopCoroutine(openMenu);
             if (Script_Manager.SM != null)
             {
                 Script_Manager.SM.LoadShit(sd);
@@ -93,7 +104,7 @@ namespace RenCSharp.Menus
         {
             Script_Manager.SM.SaveShit(fileName);
             OnMenuClose();
-            OnMenuOpen();
+            //OnMenuOpen();
         }
     }
 }

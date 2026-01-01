@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using System.Linq;
 namespace RenCSharp
 {
     /// <summary>
@@ -106,6 +108,28 @@ namespace RenCSharp
 
             return allSD.ToArray();
         }
+
+        public static int AllSavesLength()
+        {
+            int returner = 0;
+            List<string> allFilePaths = Directory.GetFiles(Application.persistentDataPath).ToList();
+            foreach(string s in allFilePaths)
+            {
+                if (s.Contains(".sav")) returner++;
+            }
+            return returner;
+        }
+
+        public static string[] AllSavesPaths()
+        {
+            List<string> allFilePaths = Directory.GetFiles(Application.persistentDataPath).ToList();
+            for(int i = allFilePaths.Count - 1; i >= 0; i--)
+            {
+                if (!allFilePaths[i].Contains(".sav")) allFilePaths.RemoveAt(i);
+            }
+            return allFilePaths.ToArray();
+        }
+
         /// <summary>
         /// Specifically used to delete certain save data files, not any file at all.
         /// </summary>
