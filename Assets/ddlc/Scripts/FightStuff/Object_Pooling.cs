@@ -1,8 +1,7 @@
-using RenCSharp.Combat;
+using RenCSharp.Combat.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public static class Object_Pooling
 {
     private static Dictionary<GameObject, Pool> _thePools = new Dictionary<GameObject, Pool>();

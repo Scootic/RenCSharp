@@ -1,5 +1,5 @@
 
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Interfaces
 {
     public interface IDamage 
     {

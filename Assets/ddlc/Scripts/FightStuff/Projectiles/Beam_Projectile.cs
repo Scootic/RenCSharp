@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using RenCSharp.Combat.Interfaces;
 namespace RenCSharp.Combat
 {
     [RequireComponent(typeof(UI_Element))]

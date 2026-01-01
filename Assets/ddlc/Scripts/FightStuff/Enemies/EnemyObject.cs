@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using EXPERIMENTAL;
 using UnityEngine.UI;
+using RenCSharp.Combat.Interfaces;
 namespace RenCSharp.Combat
 {
     [RequireComponent(typeof(UI_Element))]

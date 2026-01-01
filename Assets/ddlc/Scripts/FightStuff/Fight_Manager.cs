@@ -19,7 +19,10 @@ namespace RenCSharp.Combat
         [SerializeField] private Transform playerHolder;
         [SerializeField] private TextMeshProUGUI combatTextbox;
         [Header("Arena")]
-        [SerializeField, Min(0.1f)] private float arenaSetUpTime = 1f, enemyDamageNumberForce = 5f;
+        [SerializeField, Min(0.1f)] private float arenaSetUpTime = 1f;
+        [SerializeField, Min(0.1f)] private float enemyDamageNumberForce = 5f;
+        [SerializeField, Tooltip("For handling direction text is launched in."), Range(-360,360)] private float minDeg = 0;
+        [SerializeField, Tooltip("For handling direction text is launched in."), Range(-360,360)] private float maxDeg = 180;
         [SerializeField] private UI_Element enemyDamageNumber;
         [Header("PlayerAttack")]
         [SerializeField] private float playerAttackAnimationDuration;
@@ -316,7 +319,6 @@ namespace RenCSharp.Combat
             playerHolder.gameObject.SetActive(false);
             yield return Textbox_String.RunThroughText(combatTextbox, "Good going idiot, you died! You're going back to the main menu now.");
             yield return new WaitForSeconds(2);
-            //Event_Bus.TryFireVoidEvent("UnpauseSequence");
             Object_Factory.RemoveObject("EnemyObject");
             Object_Factory.RemoveObject("PlayerObject");
             ssl.LoadAnScene(1);
@@ -343,9 +345,11 @@ namespace RenCSharp.Combat
             fella.transform.SetParent(curEnemy.transform);
             StartCoroutine(Object_Pooling.DespawnOverTime(fella.gameObject, 2f));
             fella.Texts[0].text = "-" + damageTaken.ToString("n1");
-            Vector3 lauchDir = Noise_Helper.SineNoiseVector(0, Mathf.PI);
-            lauchDir.Set(lauchDir.x, lauchDir.y - 0.5f, 0);
-            fella.GetComponent<Rigidbody>().AddForce(lauchDir * enemyDamageNumberForce, ForceMode.VelocityChange);
+            Vector3 lauchDir = Noise_Helper.SineNoiseVector(Mathf.Deg2Rad * minDeg, Mathf.Deg2Rad * maxDeg);
+            lauchDir.Set(lauchDir.x, lauchDir.y, 0);
+            Rigidbody rb = fella.GetComponent<Rigidbody>();
+            rb.linearVelocity = Vector3.zero;
+            rb.AddForce(lauchDir * enemyDamageNumberForce, ForceMode.VelocityChange);
         }
     }
 }

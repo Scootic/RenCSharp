@@ -3,6 +3,7 @@ using System.Collections;
 using EXPERIMENTAL;
 using UnityEngine.UI;
 using System;
+using RenCSharp.Combat.Interfaces;
 namespace RenCSharp.Combat
 {
     [Serializable]

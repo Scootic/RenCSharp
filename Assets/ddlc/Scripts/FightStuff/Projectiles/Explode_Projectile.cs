@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using RenCSharp.Combat.Interfaces;
 namespace RenCSharp.Combat
 {
     public class Explode_Projectile : Base_Projectile, IDespawn
@@ -12,8 +12,7 @@ namespace RenCSharp.Combat
             if (Fight_Manager.FM.PlayerTurn) return; //don't do nonsense if turn is done
             foreach(Vector3 v in explosionDirs)
             {
-                Vector3 spawnPos = v + transform.position;
-                Base_Projectile bp = Object_Pooling.Spawn(subProjectile.gameObject, spawnPos, Quaternion.identity).GetComponent<Base_Projectile>();
+                Base_Projectile bp = Object_Pooling.Spawn(subProjectile.gameObject, transform.position, Quaternion.identity).GetComponent<Base_Projectile>();
                 bp.transform.SetParent(transform.parent);
                 Fight_Manager.FM.AddProjectileToList(bp.gameObject);
                 Vector3 soundSpawnPos = Camera.main.transform.position + bp.transform.localPosition.normalized;

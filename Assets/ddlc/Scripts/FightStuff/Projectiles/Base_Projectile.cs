@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using RenCSharp.Combat.Interfaces;
 namespace RenCSharp.Combat
 {
     [RequireComponent(typeof(Collider))]
@@ -28,7 +28,7 @@ namespace RenCSharp.Combat
         public virtual void UpdateMoveDir(Vector3 v3)
         {
             moveDir = v3;
-            transform.rotation = VecToQuaternion.GetQuaternion(v3);
+            transform.rotation = TrigHelper.GetQuaternion(v3);
         }
 
         protected virtual void OnEnable()
