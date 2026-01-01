@@ -44,6 +44,22 @@ MonoBehaviour:
     dialog: Either way, I guess I'm going to find out soon.
     ScreenActions:
     - rid: 9142198014508531838
+  - speaker: {fileID: 11400000, guid: cc2df41360429a84496bc5d6151fc651, type: 2}
+    dialog: Next!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I guess it's my turn.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: Who... are you?
+    ScreenActions:
+    - rid: 9142198014508531841
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: My name's {mc}, and I highly doubt I'm on that list.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Hadvar checks his list, I assume looking for my name.
+    ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -95,3 +111,11 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 1
+    - rid: 9142198014508531841
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 600, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
