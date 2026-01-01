@@ -8,7 +8,7 @@ namespace RenCSharp.Combat
         [SerializeField] private Vector2 arenaDimensions = new Vector2(600, 350);
         [SerializeReference] private ControlType controlType = new FreeRoam(); //default to freeroam, cause screw it
         [SerializeField, Min(1)] private float attackDuration = 5f;
-        [SerializeField, Min(0)] private float secondsPerProjectileSpawn = 0.5f;
+        [SerializeField, Min(0.01f)] private float secondsPerProjectileSpawn = 0.5f;
         [Header("flavor")]
         [SerializeField, TextArea(3, 20)] private string postAttackDescription;
         [Header("projectiles")]
