@@ -15,6 +15,7 @@ namespace EXPERIMENTAL
         private static Dictionary<string, Action<int>> intEvents = new();
         private static Dictionary<string, Action<float>> floatEvents = new();
         private static Dictionary<string, Action<string>> stringEvents = new();
+        private static Dictionary<string, Action<object>> singleObjEvents = new();
         private static Dictionary<string, Action<object, object>> doubleObjEvents = new();
         /// <summary>
         /// Dangerous as shit. Removes ALL actions from ALL dictionaries. Important because these bastards are static. Gc moment.
@@ -26,6 +27,8 @@ namespace EXPERIMENTAL
             intEvents.Clear();
             floatEvents.Clear();
             stringEvents.Clear();
+            singleObjEvents.Clear();
+            doubleObjEvents.Clear();
         }
         //every region basically has the same contents: a method for adding, firing, removing, and getting actions.
         #region VoidEvents
@@ -245,6 +248,43 @@ namespace EXPERIMENTAL
             if (doubleObjEvents.ContainsKey(name))
             {
                 doubleObjEvents.Remove(name);
+                return true;
+            }
+            else return false;
+        }
+        #endregion
+        #region SingleObjEvents
+        public static void AddSingleObjEvent(string name, Action<object> Event)
+        {
+            if(!singleObjEvents.ContainsKey(name))singleObjEvents.Add(name, Event);
+        }
+
+        public static bool TryFireSingleObjEvent(string name, object arg)
+        {
+            if (singleObjEvents.ContainsKey(name))
+            {
+                singleObjEvents[name]?.Invoke(arg);
+                return true;
+            }
+            else return false;
+        }
+
+        public static bool TryGetSingleObjEvent(string name, out Action<object> Event)
+        {
+            Event = null;
+            if (singleObjEvents.ContainsKey(name))
+            {
+                Event = singleObjEvents[name];
+                return true;
+            }
+            else return false;
+        }
+
+        public static bool TryRemoveSingleObjEvent(string name)
+        {
+            if (singleObjEvents.ContainsKey(name))
+            {
+                singleObjEvents.Remove(name);
                 return true;
             }
             else return false;

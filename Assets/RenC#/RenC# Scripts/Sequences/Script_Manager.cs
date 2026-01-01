@@ -5,7 +5,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -41,7 +40,7 @@ namespace RenCSharp
         [SerializeField] private Transform actorHolder;
         [SerializeField] private AnimationCurve actorScalingKurve;
         private Actor curActor;
-        [HideInInspector] public List<Actor> activeActors = new();
+        [HideInInspector] public List<Actor> activeActors = new(); //nasty!
 
         [Header("Overlay")]
         [SerializeField] private GameObject overlayPrefab; //should have a TMPro child
@@ -65,6 +64,7 @@ namespace RenCSharp
         private bool paused = false, saving = false, loaded = false;
         private History curHist;
         private Coroutine textRoutine;
+        private Sequences.Screen curScreen;
 
         public static Script_Manager SM;
         public static Action ProgressScreenEvent, EndOfAllSequencesEvent;
@@ -86,7 +86,7 @@ namespace RenCSharp
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder);
             Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform);//horrid
 
-            Flag_Manager.ReceiveFlagToken(SaveLoad.LoadPersistentFlags(), true); //safety thing
+            Flag_Manager.ReceiveFlagToken(SaveLoad.LoadPersistentFlags(), true); //safety thing, make sure we have persistent flags
 
             curHist = new History(historyLength);
             textSpeed = PlayerPrefs.GetFloat("TextSpeed");
@@ -98,6 +98,7 @@ namespace RenCSharp
             Event_Bus.AddVoidEvent("PauseSequence", PauseSequence);
             Event_Bus.AddVoidEvent("UnpauseSequence", UnpauseSequence);
             Event_Bus.AddDoubleObjEvent("SMSpeed", SetSpeed);
+            Event_Bus.AddSingleObjEvent("OverrideScreen", OverrideScreen);
 
             EndOfAllSequencesEvent += Application.Quit; //TEMPORARY THING
             SequencePausedEvent += ToggleDialogUI;
@@ -110,14 +111,20 @@ namespace RenCSharp
         private void OnDisable()
         {
             Object_Factory.ScrubDictionary(); //the dictionary is static, so we don't want to keep storing garbage forever.
-            FlagToken ft = new FlagToken(Flag_Manager.GetPersistentDataFlags);
+            FlagToken ft = new FlagToken(Flag_Manager.GetPersistentDataFlags); //save the persistent flags
             for (int i = 0; i < ft.FlagIDs.Count; i++)
             {
                 Debug.Log("Saved PFlag: " + ft.FlagIDs[i] + ", Value: " + ft.FlagValues[i]);
             }
             SaveLoad.SavePersistentFlags(ft);
+            RandomHelper.ClearPrevRolls(); //wipe previous rng, cause screw it
             SequencePausedEvent -= ToggleDialogUI;
             Event_Bus.TryRemoveStringEvent("PlayerName");
+            Event_Bus.TryRemoveVoidEvent("PauseSequence");
+            Event_Bus.TryRemoveVoidEvent("UnpauseSequence");
+            Event_Bus.TryRemoveFloatEvent("TextSpeed");
+            Event_Bus.TryRemoveDoubleObjEvent("SMSpeed");
+            Event_Bus.TryRemoveSingleObjEvent("OverrideScreen");
         }
         #region SequenceHandling
         public void StartSequence()
@@ -170,19 +177,19 @@ namespace RenCSharp
                 Debug.Log("current Scrindex: " + curScreenIndex + ", Final Screen? " + (curScreenIndex >= currentSequence.Screens.Length - 1));
                 if (curScreenIndex < currentSequence.Screens.Length) 
                 {
-                    Sequences.Screen screen = currentSequence.Screens[curScreenIndex];
-                    foreach (Screen_Event se in screen.ScreenActions) //do all screen events BEFORE processing any dialog. does not care if SM is paused or not.
+                    curScreen = currentSequence.Screens[curScreenIndex];
+                    foreach (Screen_Event se in curScreen.ScreenActions) //do all screen events BEFORE processing any dialog. does not care if SM is paused or not.
                     {
                         se.DoShit();
                     }
                     ///if (textRoutine != null) StopCoroutine(textRoutine);
-                    textRoutine = StartCoroutine(RunThroughScreen(screen)); 
+                    textRoutine = StartCoroutine(RunThroughScreen(curScreen)); 
                 }
                 else if (curScreenIndex > currentSequence.Screens.Length - 1)//final screen of the sequence
                 {
                     if (currentSequence.PlayerChoices.Length == 0)//if there are no valid next sequences, sum shit gone wrong
                     {
-                        Debug.Log("No next sequence, game over?");
+                        Debug.LogWarning("No next sequence, game over?");
                         EndOfAllSequencesEvent?.Invoke();
                         return;
                     }
@@ -242,8 +249,6 @@ namespace RenCSharp
                 dialogBox.color = defaultTextBoxColor;
             }
 
-            dialogField.text = ""; //wipe before putting in the new text
-
             string amended = Regex.Replace(screen.Dialog, playerTag, playerName); //insert the player's custom name into dialog
             char[] dialogchars = amended.ToCharArray();
 
@@ -268,7 +273,11 @@ namespace RenCSharp
 
             if (auto) yield return AutoProgress(curScreenIndex);
         }
-
+        /// <summary>
+        /// If auto is true, linger on a textbox for lingerTime, then move on without the player pressing the button.
+        /// </summary>
+        /// <param name="index">the current Screen Index when firing, used to break out of routine if player exits before linger time is up.</param>
+        /// <returns></returns>
         private IEnumerator AutoProgress(int index)
         {
             float t = 0;
@@ -306,6 +315,15 @@ namespace RenCSharp
                 speaker = tSpeaker;
                 text = tDialog;
             }
+        }
+        /// <summary>
+        /// Please don't use this willy-nilly.
+        /// </summary>
+        /// <param name="obj">The screen to be replaced, passed as an object</param>
+        private void OverrideScreen(object obj)
+        {
+            Sequences.Screen s = (Sequences.Screen)obj;
+            curScreen = s;
         }
         #endregion
         #region SaveLoadHandling
@@ -380,7 +398,6 @@ namespace RenCSharp
             }
 
             List<ActorToken> actorTokens = new();
-            Debug.Log("Actor count I should be saving: " + activeActors.Count);
 
             foreach (Actor actor in activeActors)
             {
@@ -514,6 +531,7 @@ namespace RenCSharp
             textRoutine = StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
         }
         #endregion
+        #region JuiceStuff
         private IEnumerator ScaleActor(bool up, float scaleTime) //used if autoSpeakerFocus is true in a sequence
         {
             float t;
@@ -538,7 +556,7 @@ namespace RenCSharp
             }
             else
             {
-                fella.transform.SetAsFirstSibling(); //move to the back of the bus
+                //fella.transform.SetAsFirstSibling(); //move to the back of the bus
                 t = scaleTime;
                 while (t > 0)
                 {
@@ -572,7 +590,7 @@ namespace RenCSharp
 
             pd.color = Color.white;
         }
-
+        #endregion
         private void ToggleDialogUI(bool b)
         {
             dialogBox.transform.parent.gameObject.SetActive(!b);
