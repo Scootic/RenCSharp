@@ -324,6 +324,10 @@ namespace RenCSharp
         {
             Sequences.Screen s = (Sequences.Screen)obj;
             curScreen = s;
+            foreach(Screen_Event se in curScreen.ScreenActions) //fire the events of our newly acquired screen
+            {
+                se.DoShit();
+            }
         }
         #endregion
         #region SaveLoadHandling
