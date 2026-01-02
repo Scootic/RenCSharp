@@ -217,6 +217,8 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
+    - rid: 9079474599036452915
+    - rid: 9079474599036452916
     - rid: 9079474591330205815
   - speaker: {fileID: 0}
     dialog: 
@@ -226,8 +228,34 @@ MonoBehaviour:
     dialog: I've managed to make my way to the keep.
     ScreenActions:
     - rid: 9079474591330205824
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: It's you and me prisoner, stay close!
+    ScreenActions:
+    - rid: 9079474599036452919
   - speaker: {fileID: 0}
-    dialog: 
+    dialog: Oh yeah, he does show up around here, now where's-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: Ralof, you damned traitor. Out of my way!
+    ScreenActions:
+    - rid: 9079474599036452920
+  - speaker: {fileID: 0}
+    dialog: There he is!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
+    dialog: We're escaping Hadvar. You're not stopping us this time.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: Fine. I hope that dragon takes you all to Sovngarde.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
+    dialog: You! Come on, into the keep!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: With me prisoner! Let's go!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Now who should I go with...
     ScreenActions: []
   playerChoices:
   - choiceText: Ralof
@@ -401,6 +429,36 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 1
+    - rid: 9079474599036452915
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerMaxHealth
+        flagValue: 20
+        increment: 0
+        persistent: 0
+    - rid: 9079474599036452916
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 20
+        increment: 0
+        persistent: 0
+    - rid: 9079474599036452919
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 500, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 9079474599036452920
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -500, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
     - rid: 9142198014508531834
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:

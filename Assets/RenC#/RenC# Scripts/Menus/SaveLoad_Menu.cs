@@ -104,7 +104,7 @@ namespace RenCSharp.Menus
         {
             Script_Manager.SM.SaveShit(fileName);
             OnMenuClose();
-            //OnMenuOpen();
+            OnMenuOpen();
         }
     }
 }
