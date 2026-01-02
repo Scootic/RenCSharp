@@ -12,7 +12,8 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Fight/Start a Fight";
+            return "Fight/" +
+                "Start a Fight";
         }
     }
 }
