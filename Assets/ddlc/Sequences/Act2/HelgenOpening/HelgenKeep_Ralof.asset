@@ -15,8 +15,14 @@ MonoBehaviour:
   autoFocusSpeaker: 0
   screens:
   - speaker: {fileID: 0}
-    dialog: 
-    ScreenActions: []
+    dialog: I decide to head with Ralof.
+    ScreenActions:
+    - rid: 9079474599036452922
+    - rid: 9079474599036452924
+  - speaker: {fileID: 0}
+    dialog: We make our way into Helgen Keep.
+    ScreenActions:
+    - rid: 9079474599036452926
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -33,4 +39,24 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 9079474599036452922
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: CivilWarFaction
+        flagValue: -1
+        increment: 1
+        persistent: 0
+    - rid: 9079474599036452924
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+        fadeTime: 0.5
+    - rid: 9079474599036452926
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - {fileID: 21300000, guid: 2df149d294a52d9478800939edacf8d5, type: 3}
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1

@@ -15,8 +15,14 @@ MonoBehaviour:
   autoFocusSpeaker: 0
   screens:
   - speaker: {fileID: 0}
-    dialog: 
-    ScreenActions: []
+    dialog: I decide to head with Hadvar.
+    ScreenActions:
+    - rid: 9079474599036452921
+    - rid: 9079474599036452923
+  - speaker: {fileID: 0}
+    dialog: We make our way into Helgen Keep.
+    ScreenActions:
+    - rid: 9079474599036452925
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -26,11 +32,31 @@ MonoBehaviour:
     requireCondition: 0
     conditions: []
   myself:
-    m_AssetGUID: b06a72430fede5d459c3c8280867817d
+    m_AssetGUID: 888a6e4b5513b13438e84fb279659f16
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 9079474599036452921
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: CivilWarFaction
+        flagValue: 1
+        increment: 1
+        persistent: 0
+    - rid: 9079474599036452923
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
+        fadeTime: 0.5
+    - rid: 9079474599036452925
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - {fileID: 21300000, guid: 275504472f3c41d4abdc59cd840cdbca, type: 3}
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
