@@ -12,13 +12,14 @@ namespace RenCSharp
         [SerializeField] private string flagToCheck;
         [SerializeField, Tooltip("The found flag value is the left side of the operation.")] private ConditionalOperator operation;
         [SerializeField] private int desiredValue;
+        [SerializeField] private bool persistent;
         [Header("BITWISE")]
         [SerializeField, Tooltip("Decides if you're comparing bits. Only cares about equalling.")] private bool bitWise;
 
         public bool ConditionMet()
         {
             bool met = false;
-            int foundVal = Flag_Manager.GetFlag(flagToCheck);
+            int foundVal = Flag_Manager.GetFlag(flagToCheck, persistent);
             if (!bitWise)
             {
                 switch (operation)
