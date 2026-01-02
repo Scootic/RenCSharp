@@ -201,14 +201,40 @@ MonoBehaviour:
     dialog: Allyoop-!
     ScreenActions: []
   - speaker: {fileID: 0}
-    dialog: 
+    dialog: Ah-!
     ScreenActions:
     - rid: 9079474591330205811
+  - speaker: {fileID: 0}
+    dialog: I think I sprained my ankle a little...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Ah crap, no time to worry about that-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474591330205812
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474591330205815
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474591330205823
+  - speaker: {fileID: 0}
+    dialog: I've managed to make my way to the keep.
+    ScreenActions:
+    - rid: 9079474591330205824
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
-  - choiceText: 
+  - choiceText: Ralof
+    resultingSequence: {fileID: 0}
+    requireCondition: 0
+    conditions: []
+  - choiceText: Hadvar
     resultingSequence: {fileID: 0}
     requireCondition: 0
     conditions: []
@@ -299,9 +325,81 @@ MonoBehaviour:
     - rid: 9079474591330205811
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG: []
+        newBG:
+        - {fileID: 21300000, guid: 9b116be68e6209d46a60c3b1f46e97f5, type: 3}
         secondsPerFrame: 0.1
-        fadeTransition: 0
+        fadeTransition: 4
+        fadeDuration: 1
+    - rid: 9079474591330205812
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: CombatTut
+            operation: 0
+            desiredValue: 0
+            persistent: 1
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+            dialog: <font=glitchfont>You might want to get your hands on WASD or
+              the arrow keys.
+            ScreenActions:
+            - rid: 9079474591330205814
+    - rid: 9079474591330205814
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: CombatTut
+        flagValue: 1
+        increment: 0
+        persistent: 1
+    - rid: 9079474591330205815
+      type: {class: Start_Single_Attack, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        attackToRunThrough: {fileID: 11400000, guid: c86e5fe32c1f4f84a9914f7504d123c4, type: 2}
+    - rid: 9079474591330205823
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 0
+            desiredValue: 20
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 0}
+            dialog: How did I dodge all of those on my sprained ankle... No matter!
+              Got places to be!
+            ScreenActions: []
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 1
+            desiredValue: 10
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 0}
+            dialog: Ack-! I'm a bit singed... But I have to keep moving!
+            ScreenActions: []
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 1
+            desiredValue: 0
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 0}
+            dialog: Graaagh... I feel like crap... I gotta make it to the keep, the
+              I should be able to rest a bit...
+            ScreenActions: []
+    - rid: 9079474591330205824
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - {fileID: 21300000, guid: 2056ed07e467ea04f84c89b13f09cd12, type: 3}
+        secondsPerFrame: 0.1
+        fadeTransition: 3
         fadeDuration: 1
     - rid: 9142198014508531834
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
