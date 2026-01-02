@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
   m_Name: HelgenKeep_Hadvar
   m_EditorClassIdentifier: 
-  autoFocusSpeaker: 0
+  autoFocusSpeaker: 1
   screens:
   - speaker: {fileID: 0}
     dialog: I decide to head with Hadvar.
@@ -23,6 +23,88 @@ MonoBehaviour:
     dialog: We make our way into Helgen Keep.
     ScreenActions:
     - rid: 9079474599036452925
+    - rid: 9079474618519257088
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: Was that a dragon...?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Well, yeah. That was Alduin.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: The World-Eater?!? I thought he was just a legend meant to scare Nord
+      children...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Oh what was it that Ulfric said...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Legends don't burn down villages.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... I think that's what he said...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Anyway, you mind helping me with these bindings?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: Oh, of course.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I walk closer to Hadvar, who cuts my bindings with an iron dagger.
+    ScreenActions:
+    - rid: 9079474618519257141
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: There you go. There should be some equipment in that chest over there.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 'One of the better reasons to choose Hadvar: you don''t have to wear
+      some dead guy''s armor!'
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I open up the chest, finding an iron sword and some light Imperial armor.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... how am I supposed to put this on...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Hey Hadvar, you mind giving me a hand with this armor?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: Hmm?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: You're not experienced with fighting, are you?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... not a good look in front of a Nord...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Yeah...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: Here-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Hadvar helps me with fastening my tunic; I could figure out the bracers
+      and boots on my own.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Thanks.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I draw my newly acquired iron sword.
+    ScreenActions:
+    - rid: 9079474618519257143
+  - speaker: {fileID: 0}
+    dialog: ... I honestly thought it would be heavier...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: Alright, let's get going.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I follow Hadvar into the next room, bracing myself for the upcoming fight
+      with the Stormcloaks.
+    ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -60,3 +142,59 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 1
+    - rid: 9079474618519257088
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 381a98c41c893784889ef0d98676af3c, type: 3}
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9079474618519257141
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: -500, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+        loopOnScreen: 0
+    - rid: 9079474618519257143
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerDamage
+        flagValue: 8
+        increment: 0
+        persistent: 0

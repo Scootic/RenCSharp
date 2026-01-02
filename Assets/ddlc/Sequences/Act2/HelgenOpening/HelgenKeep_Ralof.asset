@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
   m_Name: HelgenKeep_Ralof
   m_EditorClassIdentifier: 
-  autoFocusSpeaker: 0
+  autoFocusSpeaker: 1
   screens:
   - speaker: {fileID: 0}
     dialog: I decide to head with Ralof.
@@ -23,6 +23,7 @@ MonoBehaviour:
     dialog: We make our way into Helgen Keep.
     ScreenActions:
     - rid: 9079474599036452926
+    - rid: 9079474618519257089
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -60,3 +61,9 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 1
+    - rid: 9079474618519257089
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 381a98c41c893784889ef0d98676af3c, type: 3}
+        fadeTime: 1
+        setToSameTime: 0
