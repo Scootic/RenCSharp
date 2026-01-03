@@ -32,7 +32,7 @@ namespace RenCSharp.Combat
         [SerializeField] private AudioSource attackSound;
 
         private int curAttackIndex;
-        private int prevAttackRoll, dir;
+        private int prevAttackPosRoll, prevAttackIndRoll, dir;
         private EnemyObject curEnemy;
         private Player_Object curPlayer;
         private UI_Element curPAttack;
@@ -89,7 +89,8 @@ namespace RenCSharp.Combat
             fighting = true;
             lostFight = false;
             playerAttack = false;
-            prevAttackRoll = 0;
+            prevAttackPosRoll = 0;
+            prevAttackIndRoll = 0;
             Textbox_String.JumpToEndOfTextbox = false;
             curAttackIndex = 0;
             dir = 1;
@@ -158,21 +159,28 @@ namespace RenCSharp.Combat
                 {
                     f = 0;
                     //roll which position/direction we have when first spawning a projectile
-                    if (prevAttackRoll == 0) dir = 1;
-                    else if (prevAttackRoll >= ea.SpawnPoints.Length - 1) dir = -1;
-                    int randI = ea.ProjectileSpawnMethod switch
+                    if (prevAttackPosRoll == 0) dir = 1;
+                    else if (prevAttackPosRoll >= ea.SpawnPoints.Length - 1) dir = -1;
+                    int randI = ea.ProjectileSpawnPositionMethod switch
                     {
                         AttackSpawnSelectionMethod.TrueRandom => Random.Range(0, ea.SpawnPoints.Length),
-                        AttackSpawnSelectionMethod.NoRepeatRandom => RandomHelper.NoRepeatRoll("attackRoll", ea.SpawnPoints.Length),
-                        AttackSpawnSelectionMethod.LoopThrough => (prevAttackRoll >= ea.SpawnPoints.Length - 1) ? 0 : prevAttackRoll + 1,
-                        AttackSpawnSelectionMethod.PingPong => prevAttackRoll += dir,
+                        AttackSpawnSelectionMethod.NoRepeatRandom => RandomHelper.NoRepeatRoll("attackSpawnRoll", ea.SpawnPoints.Length),
+                        AttackSpawnSelectionMethod.LoopThrough => (prevAttackPosRoll >= ea.SpawnPoints.Length - 1) ? 0 : prevAttackPosRoll + 1,
+                        AttackSpawnSelectionMethod.PingPong => prevAttackPosRoll += dir,
                         _ => 0 //default scenario of garbage null enum, just return 0 and probably complain too
                     };
-                    prevAttackRoll = randI;
+                    prevAttackPosRoll = randI;
                     //roll which projectile we shall spawn from array. (probably not as important as randspawn/dir)
-                    int randI2 = Random.Range(0, ea.ProjectilesThatSpawn.Length);
+                    int randI2 = ea.ProjectileIndexMethod switch
+                    {
+                        AttackSpawnSelectionMethod.TrueRandom => Random.Range(0, ea.Indexes.Length),
+                        AttackSpawnSelectionMethod.NoRepeatRandom => RandomHelper.NoRepeatRoll("attackProjRoll", ea.Indexes.Length),
+                        AttackSpawnSelectionMethod.LoopThrough => (prevAttackIndRoll >= ea.Indexes.Length - 1) ? 0 : prevAttackIndRoll + 1,
+                        AttackSpawnSelectionMethod.PingPong => prevAttackIndRoll += dir,
+                        _ => 0
+                    };
 
-                    Base_Projectile projToSpawn = ea.ProjectilesThatSpawn[randI2];
+                    Base_Projectile projToSpawn = ea.ProjectilesThatSpawn[ea.Indexes[randI2]];
                     Vector3 spawnPosition = ea.SpawnPoints[randI];
                     Vector3 ogProjDir = ea.InitialDirections[randI];
 
