@@ -58,7 +58,7 @@ namespace RenCSharp.Combat
         {
             Event_Bus.TryRemoveFloatEvent("EnemyDamageNumber");
         }
-
+        #region StartUp
         public void StartAFight(EnemySO eso)
         {
             Debug.Log("Starting a fight!");
@@ -97,7 +97,7 @@ namespace RenCSharp.Combat
             curPlayer = playerObj.GetComponent<Player_Object>();
             playerObj.SetActive(false);
         }
-
+        #endregion
         public void EndAFight(bool loss)
         {
             Debug.Log("Ending a fight!");

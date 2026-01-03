@@ -8,12 +8,15 @@ namespace RenCSharp.Combat
         [SerializeField] private AnimationCurve dodgeCurve;
         [SerializeField, Min(1)] private float distanceFromCenter = 50;
         [SerializeField, Min(0.1f)] private float timeToDodge = 0.5f;
-        [SerializeField] private Vector3 originPosition = new Vector3(900, 500, 0);
+        private Vector3 originPosition;
         private float t = 0;
         private Coroutine dodgeRoutine;
         protected override void MovementEffect(Vector2 dir)
         {
+            Debug.Log("Received Dodge Input!~");
             if (midDodge) return;
+            Debug.Log("Should be dodgering now!");
+            midDodge = true;
             float x = 0;
             float y = 0;
 
@@ -23,26 +26,27 @@ namespace RenCSharp.Combat
             if (dir.y > 0.5f) y = 1;
             else if (dir.y < -0.5f) y = -1;
 
-            Vector3 desPos = new Vector3(x * distanceFromCenter,y * distanceFromCenter,0);
+            Vector3 desPos = originPosition + new Vector3(x * distanceFromCenter,y * distanceFromCenter,0);
 
-            dodgeRoutine = playerObj.StartCoroutine(DodgeAnimation(desPos));
+            dodgeRoutine = Fight_Manager.FM.StartCoroutine(DodgeAnimation(desPos));
         }
 
         public override void EnterControl()
         {
             base.EnterControl();
-            playerObj.transform.position = originPosition;
+            playerObj.transform.localPosition = Vector3.zero;
+            originPosition = playerObj.transform.position;
+            midDodge = false;
         }
 
         public override void ExitControl()
         {
+            if (dodgeRoutine != null) Fight_Manager.FM.StopCoroutine(dodgeRoutine);
             base.ExitControl();
-            if(dodgeRoutine != null) playerObj.StopCoroutine(dodgeRoutine);
         }
 
         private IEnumerator DodgeAnimation(Vector3 desPos)
         {
-            midDodge = true;
             t = 0;
             playerObj.transform.position = originPosition;
             while (t <= timeToDodge)

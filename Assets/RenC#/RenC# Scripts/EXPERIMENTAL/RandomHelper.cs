@@ -14,7 +14,9 @@ namespace EXPERIMENTAL
         /// <returns>The integer that's different from the previous one.</returns>
         public static int NoRepeatRoll(string id, int rangeLimit)
         {
+            if (rangeLimit == 1) return 0; //if we only have 1 possible value, absolutely do not spend time looking for a non-same roll
             int roll = Random.Range(0, rangeLimit);
+            
             if (prevIRolls.ContainsKey(id))
             {
                 while(roll == prevIRolls[id])
