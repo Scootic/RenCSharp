@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: -2506182205116807624}
   - component: {fileID: -1317450562956184785}
   m_Layer: 6
-  m_Name: AxeProj
+  m_Name: FromSideMedAxeProj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,40 +136,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageOverTime: 0
-  destroyOnHit: 0
-  baseDamage: 0.1
+  destroyOnHit: 1
+  baseDamage: 3
   moveSpeed: 500
-  lifetime: 2
+  lifetime: 1.5
   spawnSoundVol: 0.4
-  colliderEnableTime: 0.1
+  colliderEnableTime: 0.45
   spawnSound: {fileID: 8300000, guid: b40532dff090cf84b8986386702391a1, type: 3}
-  distanceFromSpawn: 700
-  arcHeight: 100
-  xCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  yCurve:
+  distanceFromSpawn: 800
+  arcHeight: 400
+  animateBezCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
