@@ -10,32 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
-  m_Name: MedAxeAttack1
+  m_Name: GreatAxe1
   m_EditorClassIdentifier: 
   arenaDimensions: {x: 550, y: 550}
   controlType:
-    rid: 9079474618519257148
+    rid: 9079474635428593806
   attackDuration: 10
-  secondsPerProjectileSpawn: 2
+  secondsPerProjectileSpawn: 1
   projectilesThatSpawn:
-  - {fileID: 4082723905301835762, guid: c3f56907dece5a146a294ad2754fe63a, type: 3}
+  - {fileID: 4082723905301835762, guid: 3ae3676fefbcdd943a3a0a5ed99eb4b9, type: 3}
   spawnPoints:
-  - {x: -400, y: 400, z: 0}
-  - {x: 400, y: 400, z: 0}
-  - {x: 400, y: -400, z: 0}
-  - {x: -400, y: -400, z: 0}
+  - {x: -400, y: 300, z: 0}
+  - {x: 400, y: -300, z: 0}
   initialDirections:
   - {x: 1, y: 0, z: 0}
-  - {x: 0, y: -1, z: 0}
   - {x: -1, y: 0, z: 0}
-  - {x: 0, y: 1, z: 0}
-  indexes: 00000000000000000000000000000000
+  indexes: 0000000000000000
   projectileSpawnPositionMethod: 2
   projectileIndexMethod: 2
   references:
     version: 2
     RefIds:
-    - rid: 9079474618519257148
+    - rid: 9079474635428593806
       type: {class: Dodge, ns: RenCSharp.Combat, asm: Battle}
       data:
         dodgeCurve:
@@ -53,23 +49,23 @@ MonoBehaviour:
           - serializedVersion: 3
             time: 0.5
             value: 1
-            inSlope: 0.008343669
-            outSlope: 0.008343669
+            inSlope: 0.025789846
+            outSlope: 0.025789846
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0.56666666
+            inWeight: 0.36666667
             outWeight: 0.33333334
           - serializedVersion: 3
             time: 1
             value: 0
-            inSlope: -1.3754568
-            outSlope: -1.3754568
+            inSlope: -0.85106397
+            outSlope: -0.85106397
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0.27499998
+            inWeight: 0.29999995
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
         distanceFromCenter: 250
-        timeToDodge: 0.5
+        timeToDodge: 0.6

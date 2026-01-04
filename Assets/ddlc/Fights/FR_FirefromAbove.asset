@@ -17,7 +17,6 @@ MonoBehaviour:
     rid: 9142197945214697573
   attackDuration: 8
   secondsPerProjectileSpawn: 0.8
-  postAttackDescription: Why is brodie doing magic???
   projectilesThatSpawn:
   - {fileID: 4247805767152981636, guid: d57feeca9d568294d8662ccea0a89a68, type: 3}
   spawnPoints:
@@ -26,11 +25,13 @@ MonoBehaviour:
   - {x: 150, y: 550, z: 0}
   - {x: 450, y: 550, z: 0}
   initialDirections:
-  - {x: 0, y: -1, z: 0}
+  - {x: 0.05, y: -1, z: 0}
   - {x: 0.1, y: -1, z: 0}
   - {x: -0.1, y: -1, z: 0}
   - {x: -0.05, y: -1, z: 0}
-  projectileSpawnMethod: 2
+  indexes: 00000000000000000000000000000000
+  projectileSpawnPositionMethod: 3
+  projectileIndexMethod: 3
   references:
     version: 2
     RefIds:

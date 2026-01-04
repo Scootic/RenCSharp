@@ -13,9 +13,7 @@ namespace RenCSharp.Combat
         private Coroutine dodgeRoutine;
         protected override void MovementEffect(Vector2 dir)
         {
-            Debug.Log("Received Dodge Input!~");
             if (midDodge) return;
-            Debug.Log("Should be dodgering now!");
             midDodge = true;
             float x = 0;
             float y = 0;

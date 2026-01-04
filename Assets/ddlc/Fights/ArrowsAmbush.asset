@@ -10,30 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
-  m_Name: FR_ArrowsfromSide
+  m_Name: ArrowsAmbush
   m_EditorClassIdentifier: 
-  arenaDimensions: {x: 300, y: 500}
+  arenaDimensions: {x: 500, y: 500}
   controlType:
     rid: 9142197968636215383
-  attackDuration: 5
-  secondsPerProjectileSpawn: 0.5
+  attackDuration: 10
+  secondsPerProjectileSpawn: 0.25
   projectilesThatSpawn:
   - {fileID: 8204135625514222407, guid: ab8571686c2fac043a02eb75f11b2e50, type: 3}
   spawnPoints:
-  - {x: -800, y: 200, z: 0}
-  - {x: 800, y: 100, z: 0}
-  - {x: -800, y: 0, z: 0}
-  - {x: 800, y: -100, z: 0}
-  - {x: -800, y: -200, z: 0}
+  - {x: -800, y: 700, z: 0}
+  - {x: -400, y: 700, z: 0}
+  - {x: 0, y: 700, z: 0}
+  - {x: 400, y: 700, z: 0}
+  - {x: 800, y: 700, z: 0}
+  - {x: 800, y: 400, z: 0}
+  - {x: 800, y: 0, z: 0}
+  - {x: 800, y: -400, z: 0}
+  - {x: 800, y: -800, z: 0}
   initialDirections:
-  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: -1, z: 0}
+  - {x: 0.5, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: -0.5, y: -1, z: 0}
+  - {x: -1, y: -1, z: 0}
+  - {x: -1, y: -0.5, z: 0}
   - {x: -1, y: 0, z: 0}
-  - {x: 1, y: 0, z: 0}
-  - {x: -1, y: 0, z: 0}
-  - {x: 1, y: 0, z: 0}
-  indexes: 0000000000000000000000000000000000000000
-  projectileSpawnPositionMethod: 3
-  projectileIndexMethod: 3
+  - {x: -1, y: 0.5, z: 0}
+  - {x: -1, y: 1, z: 0}
+  indexes: 000000000000000000000000000000000000000000000000000000000000000000000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
   references:
     version: 2
     RefIds:

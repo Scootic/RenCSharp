@@ -8,4 +8,10 @@ namespace RenCSharp.Combat
         LoopThrough,
         PingPong
     }
+
+    public enum BezierCurveType
+    {
+        SimpleArc,
+        SCurve
+    }
 }

@@ -32,11 +32,11 @@ namespace RenCSharp.Combat
         [SerializeField] private AudioSource attackSound;
 
         private int curAttackIndex;
-        private int prevAttackPosRoll, prevAttackIndRoll, dir;
+        private int prevAttackPosRoll, dir;
         private EnemyObject curEnemy;
         private Player_Object curPlayer;
         private UI_Element curPAttack;
-        private bool fighting, lostFight, playerTurn, playerAttack, singleAttack;
+        private bool fighting, lostFight, playerTurn, playerAttack, singleAttack, passedScript; //probably stupid to have all of these
         private Coroutine flavorTextRoutine;
         private GameObject playerObj;
         private List<GameObject> activeProj = new();
@@ -65,6 +65,7 @@ namespace RenCSharp.Combat
             BulkSetUp();
             playerTurn = true;
             singleAttack = false;
+            passedScript = false;
             Textbox_String.PauseTextbox(true);
             curEnemy = Object_Factory.SpawnObject(enemyPrefab.gameObject, "EnemyObject", enemyHolder).GetComponent<EnemyObject>();
             curEnemy.ReceiveEnemySO(eso);
@@ -90,7 +91,6 @@ namespace RenCSharp.Combat
             lostFight = false;
             playerAttack = false;
             prevAttackPosRoll = 0;
-            prevAttackIndRoll = 0;
             Textbox_String.JumpToEndOfTextbox = false;
             curAttackIndex = 0;
             dir = 1;
@@ -109,20 +109,17 @@ namespace RenCSharp.Combat
         private IEnumerator RunThroughEnemy()
         {
             Textbox_String.PauseTextbox(false);
-            flavorTextRoutine = StartCoroutine(Textbox_String.RunThroughText(combatTextbox, "Hit this fool!"));
             yield return PlayerTurnRoutine();
             while (fighting)
             {
-                //Debug.Log("curAttackIndex: " + curAttackIndex + ", SA Length: " + curEnemy.MySO.ScriptedAttacks.Length);
-                if (curAttackIndex < curEnemy.MySO.ScriptedAttacks.Length)
+                if (WithinScriptedAttacks())
                 {
-                    //Debug.Log("Going through a scripted attack sequence");
                     yield return RunThroughAttack(curEnemy.MySO.ScriptedAttacks[curAttackIndex]);
                 }
                 else
                 {
-                    int randI = Random.Range(0, curEnemy.MySO.RandomAttacks.Length);
-                    yield return RunThroughAttack(curEnemy.MySO.RandomAttacks[randI]);
+                    passedScript = true;
+                    yield return RunThroughAttack(curEnemy.MySO.RandomAttacks[curAttackIndex]);
                 }
             }
             if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
@@ -135,6 +132,7 @@ namespace RenCSharp.Combat
                 yield return Textbox_String.RunThroughText(combatTextbox, curEnemy.MySO.DefeatText);
                 yield return new WaitForSeconds(2);
                 Object_Factory.RemoveObject("PlayerObject");
+                Object_Factory.RemoveObject("PlayerAttack"); //do not tolerate garbage hoarding
                 Event_Bus.TryFireVoidEvent("UnpauseSequence"); //allow sequence to resume
                 combatCanvas.SetActive(false);
             }
@@ -161,6 +159,7 @@ namespace RenCSharp.Combat
                     //roll which position/direction we have when first spawning a projectile
                     if (prevAttackPosRoll == 0) dir = 1;
                     else if (prevAttackPosRoll >= ea.SpawnPoints.Length - 1) dir = -1;
+
                     int randI = ea.ProjectileSpawnPositionMethod switch
                     {
                         AttackSpawnSelectionMethod.TrueRandom => Random.Range(0, ea.SpawnPoints.Length),
@@ -171,16 +170,17 @@ namespace RenCSharp.Combat
                     };
                     prevAttackPosRoll = randI;
                     //roll which projectile we shall spawn from array. (probably not as important as randspawn/dir)
-                    int randI2 = ea.ProjectileIndexMethod switch
-                    {
-                        AttackSpawnSelectionMethod.TrueRandom => Random.Range(0, ea.Indexes.Length),
-                        AttackSpawnSelectionMethod.NoRepeatRandom => RandomHelper.NoRepeatRoll("attackProjRoll", ea.Indexes.Length),
-                        AttackSpawnSelectionMethod.LoopThrough => (prevAttackIndRoll >= ea.Indexes.Length - 1) ? 0 : prevAttackIndRoll + 1,
-                        AttackSpawnSelectionMethod.PingPong => prevAttackIndRoll += dir,
-                        _ => 0
-                    };
-
-                    Base_Projectile projToSpawn = ea.ProjectilesThatSpawn[ea.Indexes[randI2]];
+                    //int randI2 = ea.ProjectileIndexMethod switch
+                    //{
+                    //    AttackSpawnSelectionMethod.TrueRandom => Random.Range(0, ea.Indexes.Length),
+                    //    AttackSpawnSelectionMethod.NoRepeatRandom => RandomHelper.NoRepeatRoll("attackProjRoll", ea.Indexes.Length),
+                    //    AttackSpawnSelectionMethod.LoopThrough => (prevAttackIndRoll >= ea.Indexes.Length - 1) ? 0 : prevAttackIndRoll + 1,
+                    //    AttackSpawnSelectionMethod.PingPong => prevAttackIndRoll += dir,
+                    //    _ => 0
+                    //};
+                    //prevAttackIndRoll = randI2;
+                    Debug.Log("RandI: " + randI);
+                    Base_Projectile projToSpawn = ea.ProjectilesThatSpawn[randI < ea.Indexes.Length ? ea.Indexes[randI] : 0]; //panic grab 0 index if we suck
                     Vector3 spawnPosition = ea.SpawnPoints[randI];
                     Vector3 ogProjDir = ea.InitialDirections[randI];
 
@@ -197,18 +197,17 @@ namespace RenCSharp.Combat
                 yield return null;
             }
             playerTurn = true;
-            for (int i = activeProj.Count - 1; i >= 0; i--)
+            for (int i = activeProj.Count - 1; i >= 0; i--) //despawn all projectiles after attack is done
             {
                 if (activeProj[i].activeInHierarchy) Object_Pooling.Despawn(activeProj[i]);
                 activeProj.RemoveAt(i);
             }
-            ea.ControlType.ExitControl();
+            ea.ControlType.ExitControl(); //disable player dodge object and turn off its controls
             playerObj.SetActive(false);
             if (!singleAttack)
             {
-                curAttackIndex++;
-                if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
-                flavorTextRoutine = StartCoroutine(Textbox_String.RunThroughText(combatTextbox, ea.PostAttackDescription));
+                if(WithinScriptedAttacks())curAttackIndex++;
+                else curAttackIndex = RandomHelper.NoRepeatRoll("RandomAttackID", curEnemy.MySO.RandomAttacks.Length);
             }
             
             playerAttack = false;
@@ -233,7 +232,7 @@ namespace RenCSharp.Combat
             float eval;
             playerHolder.gameObject.SetActive(true);
             RectTransform rt = playerHolder.GetComponent<RectTransform>();
-            while (t <= arenaSetUpTime)
+            while (t <= arenaSetUpTime) //set the size of arena before spawning player back in
             {
                 t += Time.deltaTime;
                 eval = t / arenaSetUpTime;
@@ -241,8 +240,9 @@ namespace RenCSharp.Combat
                 yield return null;
             }
             playerObj.SetActive(true);
+            playerObj.transform.SetParent(playerHolder); //guarantee????
             playerObj.transform.localPosition = Vector3.zero; //reset to origin of holder?
-            if (curAttackIndex == 0) playerObj.GetComponent<Player_Object>().StartOfFight();
+            if (curAttackIndex == 0 && !passedScript) playerObj.GetComponent<Player_Object>().StartOfFight();
             ea.ControlType.EnterControl();
         }
 
@@ -267,7 +267,9 @@ namespace RenCSharp.Combat
             float t = 0;
             int i = 0;
             float perc = playerAttackAnimationDuration / (float)playerAttackAnimFrames.Length;
-            
+            if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
+            flavorTextRoutine = StartCoroutine(Textbox_String.RunThroughText(combatTextbox, WithinScriptedAttacks() ? 
+                curEnemy.MySO.ScriptedFlavorTexts[curAttackIndex] : curEnemy.MySO.RandomFlavorTexts[curAttackIndex]));
             while (playerTurn && fighting)
             {
                 if(!playerAttack) yield return null;
@@ -358,6 +360,11 @@ namespace RenCSharp.Combat
             Rigidbody rb = fella.GetComponent<Rigidbody>();
             rb.linearVelocity = Vector3.zero;
             rb.AddForce(lauchDir * enemyDamageNumberForce, ForceMode.VelocityChange);
+        }
+
+        private bool WithinScriptedAttacks()
+        {
+            return curAttackIndex < curEnemy.MySO.ScriptedAttacks.Length && !passedScript;
         }
     }
 }

@@ -17,32 +17,35 @@ MonoBehaviour:
     rid: 9142197945214697573
   attackDuration: 8
   secondsPerProjectileSpawn: 0.3
-  postAttackDescription: Why is this jerk throwing swords?
   projectilesThatSpawn:
   - {fileID: 8204135625514222407, guid: 08a6e4ee4a206684b8b74b5389fc3b65, type: 3}
   spawnPoints:
-  - {x: -450, y: 550, z: 0}
-  - {x: -150, y: 550, z: 0}
-  - {x: 150, y: 550, z: 0}
-  - {x: 450, y: 550, z: 0}
-  - {x: 300, y: 550, z: 0}
-  - {x: -300, y: 550, z: 0}
+  - {x: -450, y: 450, z: 0}
+  - {x: -300, y: 450, z: 0}
+  - {x: -150, y: 450, z: 0}
+  - {x: 0, y: 450, z: 0}
+  - {x: 150, y: 450, z: 0}
+  - {x: 300, y: 450, z: 0}
+  - {x: 450, y: 450, z: 0}
   - {x: -800, y: 0, z: 0}
-  - {x: -800, y: -100, z: 0}
-  - {x: 800, y: 100, z: 0}
+  - {x: 800, y: -100, z: 0}
   - {x: -800, y: -200, z: 0}
+  - {x: 800, y: -300, z: 0}
   initialDirections:
   - {x: 0, y: -1, z: 0}
   - {x: 0.1, y: -1, z: 0}
+  - {x: 0.2, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: -0.2, y: -1, z: 0}
   - {x: -0.1, y: -1, z: 0}
   - {x: 0, y: -1, z: 0}
-  - {x: -0.05, y: -1, z: 0}
-  - {x: 0.05, y: -1, z: 0}
-  - {x: 1, y: 0, z: 0}
   - {x: 1, y: 0, z: 0}
   - {x: -1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
   - {x: -1, y: 0, z: 0}
-  projectileSpawnMethod: 3
+  indexes: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  projectileSpawnPositionMethod: 3
+  projectileIndexMethod: 3
   references:
     version: 2
     RefIds:

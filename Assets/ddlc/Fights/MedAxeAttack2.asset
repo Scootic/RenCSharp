@@ -16,8 +16,7 @@ MonoBehaviour:
   controlType:
     rid: 9079474618519257148
   attackDuration: 10
-  secondsPerProjectileSpawn: 2
-  postAttackDescription: The soldier brandishes their axe.
+  secondsPerProjectileSpawn: 1
   projectilesThatSpawn:
   - {fileID: 4082723905301835762, guid: c3f56907dece5a146a294ad2754fe63a, type: 3}
   spawnPoints:
@@ -30,7 +29,9 @@ MonoBehaviour:
   - {x: 0, y: -1, z: 0}
   - {x: -1, y: 0, z: 0}
   - {x: 0, y: 1, z: 0}
-  projectileSpawnMethod: 2
+  indexes: 00000000000000000000000000000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
   references:
     version: 2
     RefIds:

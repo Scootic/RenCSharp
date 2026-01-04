@@ -17,7 +17,6 @@ MonoBehaviour:
     rid: 9142197945214697573
   attackDuration: 10
   secondsPerProjectileSpawn: 1
-  postAttackDescription: He's Mr. White Christmas, he's Mr. Snow.
   projectilesThatSpawn:
   - {fileID: 6106508995416417585, guid: 74291f42c881664488d194d5e47aca51, type: 3}
   spawnPoints:
@@ -30,13 +29,15 @@ MonoBehaviour:
   - {x: 550, y: 550, z: 0}
   initialDirections:
   - {x: 0.15, y: -1, z: 0}
-  - {x: 0, y: -1, z: 0}
+  - {x: 0.05, y: -1, z: 0}
   - {x: 0.1, y: -1, z: 0}
   - {x: 0, y: -1, z: 0}
   - {x: -0.1, y: -1, z: 0}
   - {x: -0.05, y: -1, z: 0}
   - {x: -0.15, y: -1, z: 0}
-  projectileSpawnMethod: 2
+  indexes: 00000000000000000000000000000000000000000000000000000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
   references:
     version: 2
     RefIds:

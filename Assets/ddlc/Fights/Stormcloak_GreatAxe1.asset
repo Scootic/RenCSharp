@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: Stormcloak_GreatAxe1
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 1eacdd05f130e994b8e02c5ec9ee8191, type: 2}
+  - {fileID: 11400000, guid: 5f90375df0f28c042bc93a924550e369, type: 2}
+  - {fileID: 11400000, guid: fdbe4a54bcc583944a99a8756fa13ade, type: 2}
+  - {fileID: 11400000, guid: c86e5fe32c1f4f84a9914f7504d123c4, type: 2}
+  scriptedFlavorTexts:
+  - The soldier brandishes his great-axe.
+  - One of his allies starts firing their bow at you!
+  - He takes another swing at you with his great-axe!
+  - The soldier takes a knee, clearly on death's door.
+  randomAttacks: []
+  randomFlavorTexts: []
+  maxHealth: 25
+  visualInformation:
+  - {fileID: 21300000, guid: 9fbec8b5d8b02f24ea219e02be45f1c2, type: 3}
+  defeatText: ... it was easier to kill him. Hopefully you don't get used to this...
+  nameText: Stormcloak Soldier
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
