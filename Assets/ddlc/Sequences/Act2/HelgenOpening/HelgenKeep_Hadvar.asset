@@ -401,7 +401,8 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: Sneak Increased to 10
-    ScreenActions: []
+    ScreenActions:
+    - rid: 9079474635428593851
   - speaker: {fileID: 0}
     dialog: ... I feel pretty sneaky right now...
     ScreenActions: []
@@ -841,3 +842,12 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 2
+    - rid: 9079474635428593851
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 32fc600949d70124e806a10f09f18422, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
