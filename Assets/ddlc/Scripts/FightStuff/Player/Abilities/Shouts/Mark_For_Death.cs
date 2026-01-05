@@ -7,6 +7,7 @@ namespace RenCSharp.Combat
         public override void FireAbility()
         {
             base.FireAbility();
+            if (!validToFire || Fight_Manager.FM.PlayerTurn) return;
             Debug.LogError("Marked for death not yet implemented");
         }
     }

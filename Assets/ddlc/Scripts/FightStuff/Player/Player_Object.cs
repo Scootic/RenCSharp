@@ -10,13 +10,11 @@ namespace RenCSharp.Combat
     public class Player_Object : MonoBehaviour, IDamage
     {
         [SerializeField, Min(1)] private int maxHealth = 20;
-        private float curHealth;
-        private float preResistance = 0;
-        private float postResistance;
         [SerializeField] private float invincibilitySeconds = 0.25f;
         [SerializeField] private AudioSource hurtedSound;
         [SerializeField] private AnimationCurve invincibleCurve;
         private bool invincible = false, hurtSoundGood = true;
+        private float curHealth, preResistance = 0, postResistance;
 
         public float CurrentHealth => curHealth;
         public void StartOfFight()
@@ -24,8 +22,9 @@ namespace RenCSharp.Combat
             maxHealth = Flag_Manager.GetFlag("PlayerMaxHealth");
             invincible = false;
             curHealth = Flag_Manager.GetFlag("PlayerCurHealth");
-            preResistance = (float)Flag_Manager.GetFlag("PlayerResistance") / 100f;
-            postResistance = preResistance;
+            //preResistance = (float)Flag_Manager.GetFlag("PlayerResistance") / 100f; important for future developments, but timing issue makes
+            //defend option not work on the first turn. very strange.
+            //postResistance = preResistance;
             Event_Bus.TryFireFloatEvent("PlayerHealth", curHealth);
             Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
         }
@@ -81,8 +80,7 @@ namespace RenCSharp.Combat
                 StartCoroutine(HurtSoundHandle());
             }
 
-
-            if (!dot && !invincible) //only worry about IFrames if the damage is bulk, not over time
+            if (!dot && !invincible && f > 0) //only worry about IFrames if the damage is bulk, not over time
             {
                 invincible = true;
                 StartCoroutine(IFrames());

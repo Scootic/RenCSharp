@@ -7,7 +7,9 @@ namespace RenCSharp.Combat
         public override void FireAbility()
         {
             base.FireAbility();
-            int skill = Flag_Manager.GetFlag("SayoriHealSkill");
+            Debug.Log("Sayori Heal Fired!");
+            if (!validToFire || Fight_Manager.FM.PlayerTurn) return;
+            int skill = Flag_Manager.GetFlag(associatedTag);
             if(Object_Factory.TryGetObject("PlayerObject", out GameObject go))
             {
                 go.GetComponent<Player_Object>().TakeDamage(-skill, false);

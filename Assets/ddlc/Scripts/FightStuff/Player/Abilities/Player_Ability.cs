@@ -8,6 +8,7 @@ namespace RenCSharp.Combat
         [SerializeField, Min(1)] protected float abilityCooldown = 2;
         [SerializeField, Tooltip("Handles whether or not an ability is unlocked by consulting the stupid " +
             "flag_manager about it. Obviously, a bitwise operation, so please use binary ah numbers.")] protected int requiredBit = 0;
+        [SerializeField, Tooltip("To be used by abilities that reference flags for certain values, like damage or resistances.")] protected string associatedTag;
         protected float t = 0;
         protected bool validToFire;
 
@@ -18,9 +19,10 @@ namespace RenCSharp.Combat
         protected virtual void Update()
         {
             if (!Fight_Manager.FM.PlayerTurn) 
-            { 
-                if(t <= abilityCooldown) t += Time.deltaTime;
-                if (t > abilityCooldown) t = abilityCooldown;
+            {
+                Debug.Log("doing ability update: " + gameObject.name + ", t: " + t);
+                t += Time.deltaTime;
+                if (t >= abilityCooldown) { t = abilityCooldown; validToFire = true; }
                 float perc = t / abilityCooldown;
                 Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", perc);
             }
@@ -38,8 +40,9 @@ namespace RenCSharp.Combat
         /// </summary>
         public virtual void FireAbility()
         {
-            if (!validToFire) return;
+            if (!validToFire || Fight_Manager.FM.PlayerTurn) return;
             t = 0;
+            validToFire = false;
             Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", t);
         }
     }

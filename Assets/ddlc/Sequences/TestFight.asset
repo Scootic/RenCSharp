@@ -20,13 +20,15 @@ MonoBehaviour:
     - rid: 9142197945214697603
     - rid: 9142197945214697604
     - rid: 9142197945214697623
-    - rid: 9079474664396030123
   - speaker: {fileID: 0}
     dialog: It will go crazy, I swear.
     ScreenActions:
     - rid: 9079474591330205789
     - rid: 9079474591330205790
     - rid: 9079474591330205791
+    - rid: 9079474680798380111
+    - rid: 9079474680798380136
+    - rid: 9079474680798380137
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -81,11 +83,25 @@ MonoBehaviour:
         flagValue: 20
         increment: 0
         persistent: 0
-    - rid: 9079474664396030123
+    - rid: 9079474680798380111
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         flagID: PlayerAbilities
         flagValue: 15
+        increment: 0
+        persistent: 0
+    - rid: 9079474680798380136
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: MonikaDMG
+        flagValue: 10
+        increment: 0
+        persistent: 0
+    - rid: 9079474680798380137
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: SayoriHEAL
+        flagValue: 8
         increment: 0
         persistent: 0
     - rid: 9142197945214697601

@@ -10,10 +10,13 @@ namespace RenCSharp.Combat
         [SerializeField] private Transform abilityHolder;
         [SerializeField] private Player_Action_Handler pah;
         [SerializeField] private UI_Element[] abilitySpriters;
-
         [SerializeField,Min(1)] private int yJump = 3;
+        [Header("FlickThroughMenu")]
+        [SerializeField] private AudioClip flickSound;
+        [SerializeField, Min(0)] private float flickThroughTime = 0.1f;
+        [SerializeField, Range(0, 1)] private float flickVolume = 0.3f;
         private int curAbilityIndex, curGOIndex, activeGOs;
-        private bool selectedAnAbility;
+        private bool selectedAnAbility, flickThrough;
         private Sprite[] ogSprites;
         public override IEnumerator ActionResult()
         {
@@ -21,6 +24,7 @@ namespace RenCSharp.Combat
             curGOIndex = 0;
             activeGOs = 0;
             selectedAnAbility = false;
+            flickThrough = false;
             abilityHolder.gameObject.SetActive(true);
             Player_Input.Movement += ScrollThroughAbilities;
             Player_Input.Attack += SelectAbility;
@@ -32,10 +36,12 @@ namespace RenCSharp.Combat
             }
             abilitySpriters[curAbilityIndex].Images[0].sprite = selectedImage;
 
-            foreach(Player_Ability pa in allAbilities)
+            for (int i = 0; i < allAbilities.Length; i++)
             {
-                pa.gameObject.SetActive(AbilityUnlocked(pa));
-                if (pa.gameObject.activeInHierarchy) activeGOs++;
+                bool unlocked = AbilityUnlocked(allAbilities[i]);
+                allAbilities[i].gameObject.SetActive(unlocked);
+                abilitySpriters[i].gameObject.SetActive(unlocked);
+                if (unlocked) activeGOs++;
             }
 
             while (!selectedAnAbility)
@@ -43,6 +49,7 @@ namespace RenCSharp.Combat
                 //idle until we've selected a stinkin' ability.
                 yield return null;
             }
+
             pah.SetCurrentPlayerAbility(allAbilities[curAbilityIndex]);
             abilityHolder.gameObject.SetActive(false);
             Player_Input.Movement -= ScrollThroughAbilities;
@@ -53,24 +60,33 @@ namespace RenCSharp.Combat
         {
             if (AbilityUnlocked(allAbilities[curAbilityIndex]))
             {
+                Debug.Log("Selected an ability: " + allAbilities[curAbilityIndex].gameObject.name);
                 abilitySpriters[curAbilityIndex].Images[0].sprite = ogSprites[curAbilityIndex];
                 selectedAnAbility = true;
             }
             else
             {
-                Debug.LogWarning("Player is trying to select an ability that is not yet unlocked!");
+                Debug.LogWarning("Player is trying to select an ability that is not yet unlocked! Somehow!");
             }
         }
 
         private bool AbilityUnlocked(Player_Ability pa)
         {
             int reqBit = pa.RequiredBit;
-            if ((reqBit & Flag_Manager.GetFlag("PlayerAbilities")) == reqBit) return true;
+            if ((reqBit & Flag_Manager.GetFlag("PlayerAbilities")) == reqBit) 
+            {
+                Debug.Log("Ability: " + pa.gameObject.name + " is unlocked!");
+                return true; 
+            }
+            Debug.Log("Ability: " + pa.gameObject.name + " is not unlocked.");
             return false;
         }
 
         private void ScrollThroughAbilities(Vector2 v2)
         {
+            if (flickThrough) return;
+            flickThrough = true;
+            StartCoroutine(FlickThrough());
             abilitySpriters[curAbilityIndex].Images[0].sprite = ogSprites[curAbilityIndex];
 
             if (v2.x >= 1)
@@ -86,22 +102,29 @@ namespace RenCSharp.Combat
                 if (curGOIndex < 0) curGOIndex = activeGOs - 1;
                 while (!abilityHolder.GetChild(curGOIndex).gameObject.activeInHierarchy) curGOIndex--;
             }
-            else if (v2.y >= 1)
-            {
-                curGOIndex += yJump;
-                if (curGOIndex >= activeGOs) curGOIndex -= activeGOs;
-                while (!abilityHolder.GetChild(curGOIndex).gameObject.activeInHierarchy) curGOIndex++;
-            }
-            else if (v2.y <= -1) 
+            else if (v2.y >= 1 && activeGOs > yJump)
             {
                 curGOIndex -= yJump;
-                if (curGOIndex < 0) curGOIndex = activeGOs + curGOIndex;
+                if (curGOIndex >= activeGOs) curGOIndex += activeGOs;
                 while (!abilityHolder.GetChild(curGOIndex).gameObject.activeInHierarchy) curGOIndex--;
+            }
+            else if (v2.y <= -1 && activeGOs > yJump) 
+            {
+                curGOIndex += yJump;
+                if (curGOIndex < 0) curGOIndex = activeGOs - curGOIndex;
+                while (!abilityHolder.GetChild(curGOIndex).gameObject.activeInHierarchy) curGOIndex++;
             }
 
             Debug.Log("current gameobject index: " + curGOIndex);
             curAbilityIndex = curGOIndex;
             abilitySpriters[curAbilityIndex].Images[0].sprite = selectedImage;
+            Audio_Manager.AM.Play2DSFX(flickSound, 0.9f, 1.1f, flickVolume);
+        }
+
+        private IEnumerator FlickThrough()
+        {
+            yield return new WaitForSeconds(flickThroughTime);
+            flickThrough = false;
         }
     }
 }

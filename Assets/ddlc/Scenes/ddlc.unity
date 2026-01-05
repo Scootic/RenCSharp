@@ -418,9 +418,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 61163341}
-  - component: {fileID: 61163342}
   m_Layer: 0
-  m_Name: PlayerActionHandler
+  m_Name: PlayerAbilitiesUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -447,22 +446,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &61163342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 61163340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3c383321e6981f408da1c4a50dea284, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerActions:
-  - {fileID: 2127356385}
-  - {fileID: 1788516665}
-  - {fileID: 494710883}
 --- !u!1 &72991875
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,6 +1006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityCooldown: 2
   requiredBit: 256
+  associatedTag: 
 --- !u!1 &234527078
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,7 +1158,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -1282,7 +1266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 308660487}
   m_Layer: 0
-  m_Name: __PlayerAbilities
+  m_Name: __PlayerAbilitiesHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2860,6 +2844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityCooldown: 2
   requiredBit: 1024
+  associatedTag: 
 --- !u!1 &591614682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2956,6 +2941,7 @@ GameObject:
   - component: {fileID: 602494144}
   - component: {fileID: 602494143}
   - component: {fileID: 602494145}
+  - component: {fileID: 602494146}
   m_Layer: 0
   m_Name: __FightManager
   m_TagString: Untagged
@@ -2979,7 +2965,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
   playerPrefab: {fileID: 2614798061061783121, guid: 22a4bb103b29c884a91f073115b738ce, type: 3}
   ssl: {fileID: 133660090}
-  pah: {fileID: 61163342}
+  pah: {fileID: 602494146}
   enemyHolder: {fileID: 784788666}
   playerHolder: {fileID: 1026804368}
   abilityHolder: {fileID: 308660486}
@@ -3019,6 +3005,25 @@ MonoBehaviour:
   movement: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   attack: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   ability: {fileID: 7040659881675835329, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!114 &602494146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602494142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c383321e6981f408da1c4a50dea284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerActions:
+  - {fileID: 2127356385}
+  - {fileID: 1788516665}
+  - {fileID: 494710883}
+  flickThroughMenuTime: 0.2
+  actionSelectVolume: 0.3
+  actionSelectSound: {fileID: 8300000, guid: 10044a09e9701344eb0955734d7c46d1, type: 3}
 --- !u!1 &639490696
 GameObject:
   m_ObjectHideFlags: 0
@@ -3229,6 +3234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityCooldown: 3
   requiredBit: 0
+  associatedTag: 
 --- !u!1 &669039813
 GameObject:
   m_ObjectHideFlags: 0
@@ -3625,6 +3631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityCooldown: 15
   requiredBit: 1
+  associatedTag: SayoriHEAL
 --- !u!1 &677926262
 GameObject:
   m_ObjectHideFlags: 0
@@ -3882,6 +3889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityCooldown: 60
   requiredBit: 2048
+  associatedTag: 
 --- !u!4 &754855418
 Transform:
   m_ObjectHideFlags: 0
@@ -4102,6 +4110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityCooldown: 20
   requiredBit: 2
+  associatedTag: MonikaDMG
 --- !u!1 &922278126
 GameObject:
   m_ObjectHideFlags: 0
@@ -5358,6 +5367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityCooldown: 2
   requiredBit: 32
+  associatedTag: 
 --- !u!1 &1175302878
 GameObject:
   m_ObjectHideFlags: 0
@@ -5481,6 +5491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityCooldown: 2
   requiredBit: 512
+  associatedTag: 
 --- !u!1 &1184533485
 GameObject:
   m_ObjectHideFlags: 0
@@ -6454,6 +6465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityCooldown: 2
   requiredBit: 64
+  associatedTag: 
 --- !u!1 &1416496021
 GameObject:
   m_ObjectHideFlags: 0
@@ -6500,6 +6512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityCooldown: 2
   requiredBit: 128
+  associatedTag: 
 --- !u!1 &1419313111
 GameObject:
   m_ObjectHideFlags: 0
@@ -6843,7 +6856,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
@@ -7154,6 +7167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityCooldown: 30
   requiredBit: 4
+  associatedTag: 
 --- !u!1 &1529338260
 GameObject:
   m_ObjectHideFlags: 0
@@ -7378,6 +7392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityCooldown: 10
   requiredBit: 16
+  associatedTag: 
 --- !u!1 &1613547944
 GameObject:
   m_ObjectHideFlags: 0
@@ -8212,9 +8227,25 @@ MonoBehaviour:
   - {fileID: 587510864}
   - {fileID: 754855417}
   abilityHolder: {fileID: 94724903}
-  pah: {fileID: 61163342}
-  abilitySpriters: []
+  pah: {fileID: 602494146}
+  abilitySpriters:
+  - {fileID: 389745543}
+  - {fileID: 1883240786}
+  - {fileID: 328984958}
+  - {fileID: 1357855417}
+  - {fileID: 534580502}
+  - {fileID: 1749521589}
+  - {fileID: 1962984124}
+  - {fileID: 1375874588}
+  - {fileID: 1933282304}
+  - {fileID: 19106785}
+  - {fileID: 2091754331}
+  - {fileID: 1191632809}
+  - {fileID: 352520758}
   yJump: 3
+  flickSound: {fileID: 8300000, guid: 10044a09e9701344eb0955734d7c46d1, type: 3}
+  flickThroughTime: 0.2
+  flickVolume: 0.3
 --- !u!1 &1815807803
 GameObject:
   m_ObjectHideFlags: 0
@@ -9642,7 +9673,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
@@ -9926,6 +9957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityCooldown: 5
   requiredBit: 8
+  associatedTag: 
 --- !u!1 &2091754329
 GameObject:
   m_ObjectHideFlags: 0
@@ -10260,7 +10292,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0

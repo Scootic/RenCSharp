@@ -8,6 +8,7 @@ namespace RenCSharp.Combat
         public override void FireAbility()
         {
             base.FireAbility();
+            if (!validToFire || Fight_Manager.FM.PlayerTurn) return;
             Debug.LogError("YURI KNIVES Not Yet Implemented!");
         }
     }

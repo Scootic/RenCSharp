@@ -7,6 +7,8 @@ namespace RenCSharp.Combat
         public override void FireAbility()
         {
             base.FireAbility();
+            if (!validToFire || Fight_Manager.FM.PlayerTurn) return;
+            Debug.Log("Monika Insta-kill fired!");
             if(Object_Factory.TryGetObject("EnemyObject", out GameObject go))
             {
                 go.GetComponent<EnemyObject>().TakeDamage(9999999, false);

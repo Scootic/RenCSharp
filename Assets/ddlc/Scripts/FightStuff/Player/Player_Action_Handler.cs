@@ -6,10 +6,13 @@ namespace RenCSharp.Combat
     public sealed class Player_Action_Handler : MonoBehaviour
     {
         [SerializeField] private Player_Action[] playerActions;
+        [SerializeField,Min(0)] private float flickThroughMenuTime = 0.1f;
+        [SerializeField, Range(0,1)] private float actionSelectVolume = 1;
+        [SerializeField] private AudioClip actionSelectSound;
         private Player_Action curAction;
         private int curIndex;
         private Player_Ability curAbility;
-        private bool lockedIn;
+        private bool lockedIn, flickThroughMenu;
         public bool PlayerActionLockedIn => lockedIn;
         public Player_Action CurrentPlayerAction => curAction;
         public Player_Ability CurrentAbility => curAbility;
@@ -18,6 +21,7 @@ namespace RenCSharp.Combat
         {
             lockedIn = false;
             curIndex = 0;
+            flickThroughMenu = false;
             SelectAnAction(curIndex); //default to first possible action whenever a turn has started
             Player_Input.Movement += ScrollThroughActions;
             Player_Input.Attack += LockInAction;
@@ -25,8 +29,7 @@ namespace RenCSharp.Combat
 
         public void EndPlayerTurn()
         {
-            Player_Input.Movement -= ScrollThroughActions;
-            Player_Input.Attack -= LockInAction;
+            //?
         }
 
         public void SetCurrentPlayerAbility(Player_Ability pa)
@@ -38,6 +41,9 @@ namespace RenCSharp.Combat
 
         private void ScrollThroughActions(Vector2 guh)
         {
+            if (flickThroughMenu == true) return;
+            flickThroughMenu = true;
+            StartCoroutine(FlickThroughMenu());     
             //we don' care 'bout y tf
             if (guh.x >= 1)
             {
@@ -58,11 +64,20 @@ namespace RenCSharp.Combat
             if (curAction != null) curAction.OnActionDeselect();
             curAction = playerActions[index];
             curAction.OnActionSelect();
+            Audio_Manager.AM.Play2DSFX(actionSelectSound, 0.9f, 1.1f, actionSelectVolume);
         }
 
         private void LockInAction()
         {
             lockedIn = true;
+            Player_Input.Movement -= ScrollThroughActions;
+            Player_Input.Attack -= LockInAction;
+        }
+
+        private IEnumerator FlickThroughMenu()
+        {
+            yield return new WaitForSeconds(flickThroughMenuTime);
+            flickThroughMenu = false;
         }
     }
 }

@@ -174,7 +174,7 @@ namespace RenCSharp.Combat
                     //    _ => 0
                     //};
                     //prevAttackIndRoll = randI2;
-                    Debug.Log("RandI: " + randI);
+                    //Debug.Log("RandI: " + randI);
                     Base_Projectile projToSpawn = ea.ProjectilesThatSpawn[randI < ea.Indexes.Length ? ea.Indexes[randI] : 0]; //panic grab 0 index if we suck
                     Vector3 spawnPosition = ea.SpawnPoints[randI];
                     Vector3 ogProjDir = ea.InitialDirections[randI];
@@ -282,12 +282,16 @@ namespace RenCSharp.Combat
             if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
             flavorTextRoutine = StartCoroutine(Textbox_String.RunThroughText(combatTextbox, WithinScriptedAttacks() ? 
                 curEnemy.MySO.ScriptedFlavorTexts[curAttackIndex] : curEnemy.MySO.RandomFlavorTexts[curAttackIndex]));
+
+            pah.StartPlayerTurn();
+
             while (playerTurn && fighting)
             {
                 if(!pah.PlayerActionLockedIn) yield return null;
                 else
                 {
                     yield return pah.CurrentPlayerAction.ActionResult();
+                    pah.EndPlayerTurn();
                     playerTurn = false;
                 }
             }
