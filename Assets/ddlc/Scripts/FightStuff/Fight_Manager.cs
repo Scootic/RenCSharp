@@ -164,6 +164,8 @@ namespace RenCSharp.Combat
                         AttackSpawnSelectionMethod.PingPong => prevAttackPosRoll += dir,
                         _ => 0 //default scenario of garbage null enum, just return 0 and probably complain too
                     };
+
+                    if (randI >= ea.Indexes.Length) randI = 0; //panic grab 0 index if we suck nuts
                     prevAttackPosRoll = randI;
                     //roll which projectile we shall spawn from array. (probably not as important as randspawn/dir)
                     //int randI2 = ea.ProjectileIndexMethod switch
@@ -176,7 +178,7 @@ namespace RenCSharp.Combat
                     //};
                     //prevAttackIndRoll = randI2;
                     //Debug.Log("RandI: " + randI);
-                    Base_Projectile projToSpawn = ea.ProjectilesThatSpawn[randI < ea.Indexes.Length ? ea.Indexes[randI] : 0]; //panic grab 0 index if we suck
+                    Base_Projectile projToSpawn = ea.ProjectilesThatSpawn[ea.Indexes[randI]];
                     Vector3 spawnPosition = ea.SpawnPoints[randI];
                     Vector3 ogProjDir = ea.InitialDirections[randI];
 

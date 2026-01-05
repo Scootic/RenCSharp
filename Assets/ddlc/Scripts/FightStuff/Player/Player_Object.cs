@@ -73,7 +73,7 @@ namespace RenCSharp.Combat
                 //Game Over stuff here!
                 Fight_Manager.FM.EndAFight(true);
             }
-            else if(hurtSoundGood)
+            else if(hurtSoundGood && f > 0)
             {
                 Audio_Manager.AM.Play2DSFX(hurtedSound.clip, 0.99f, 1.01f);
                 hurtSoundGood = false;
