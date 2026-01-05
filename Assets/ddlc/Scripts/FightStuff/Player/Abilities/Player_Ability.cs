@@ -12,18 +12,19 @@ namespace RenCSharp.Combat
         protected float t = 0;
         protected bool validToFire;
 
+        public bool Current;
         public int RequiredBit => requiredBit;
         /// <summary>
         /// Always include .base before custom functionality, the base method handles timer logic.
         /// </summary>
         protected virtual void Update()
         {
-            if (!Fight_Manager.FM.PlayerTurn) 
+            if (!Fight_Manager.FM.PlayerTurn && Fight_Manager.FM.Fighting && Current) 
             {
                 Debug.Log("doing ability update: " + gameObject.name + ", t: " + t);
                 t += Time.deltaTime;
                 if (t >= abilityCooldown) { t = abilityCooldown; validToFire = true; }
-                float perc = t / abilityCooldown;
+                float perc = (float)t / (float)abilityCooldown;
                 Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", perc);
             }
         }
@@ -42,7 +43,6 @@ namespace RenCSharp.Combat
         {
             if (!validToFire || Fight_Manager.FM.PlayerTurn) return;
             t = 0;
-            validToFire = false;
             Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", t);
         }
     }

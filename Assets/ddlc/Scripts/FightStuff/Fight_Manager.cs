@@ -38,6 +38,7 @@ namespace RenCSharp.Combat
         private List<GameObject> activeProj = new();
 
         public bool PlayerTurn => playerTurn;
+        public bool Fighting => fighting;
         private void Awake()
         {
             if (FM == null) FM = this;

@@ -18,6 +18,7 @@ namespace RenCSharp.Combat
         private int curAbilityIndex, curGOIndex, activeGOs;
         private bool selectedAnAbility, flickThrough;
         private Sprite[] ogSprites;
+        private Player_Ability curAbility;
         public override IEnumerator ActionResult()
         {
             curAbilityIndex = 0;
@@ -60,8 +61,11 @@ namespace RenCSharp.Combat
         {
             if (AbilityUnlocked(allAbilities[curAbilityIndex]))
             {
+                if (curAbility != null) curAbility.Current = false;
                 Debug.Log("Selected an ability: " + allAbilities[curAbilityIndex].gameObject.name);
                 abilitySpriters[curAbilityIndex].Images[0].sprite = ogSprites[curAbilityIndex];
+                curAbility = allAbilities[curAbilityIndex];
+                curAbility.Current = true;
                 selectedAnAbility = true;
             }
             else

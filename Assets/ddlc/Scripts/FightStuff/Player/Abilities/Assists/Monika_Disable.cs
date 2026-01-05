@@ -11,6 +11,7 @@ namespace RenCSharp.Combat
             Debug.Log("Monika Insta-kill fired!");
             if(Object_Factory.TryGetObject("EnemyObject", out GameObject go))
             {
+                validToFire = false;
                 go.GetComponent<EnemyObject>().TakeDamage(9999999, false);
             }
         }

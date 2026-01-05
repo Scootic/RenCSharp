@@ -12,6 +12,7 @@ namespace RenCSharp.Combat
             int dmg = Flag_Manager.GetFlag(associatedTag);
             if(Object_Factory.TryGetObject("EnemyObject", out GameObject go))
             {
+                validToFire = false;
                 go.GetComponent<EnemyObject>().TakeDamage(dmg, false);
             }
         }

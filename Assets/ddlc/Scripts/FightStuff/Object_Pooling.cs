@@ -24,13 +24,13 @@ public static class Object_Pooling
     public static IEnumerator DespawnOverTime(GameObject obj, float timeToDespawn)
     {
         float t = 0;
-        while (t <= timeToDespawn && obj.activeInHierarchy)
+        while (obj != null && t <= timeToDespawn && obj.activeInHierarchy)
         {
             t += Time.deltaTime;
             yield return null;
         }
 
-        if(obj.activeInHierarchy) Despawn(obj);
+        if(obj != null && obj.activeInHierarchy) Despawn(obj);
     }
 
     public static void Despawn(GameObject obj)
