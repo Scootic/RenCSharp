@@ -34,7 +34,8 @@ namespace EXPERIMENTAL
         #region VoidEvents
         public static void AddVoidEvent(string name, Action Event)
         {
-            if(!voidEvents.ContainsKey(name))voidEvents.Add(name, Event);
+            if (!voidEvents.ContainsKey(name)) voidEvents.Add(name, Event);
+            else voidEvents[name] += Event;
         }
 
         public static bool TryFireVoidEvent(string name)
@@ -71,7 +72,8 @@ namespace EXPERIMENTAL
         #region BoolEvents
         public static void AddBoolEvent(string name, Action<bool> Event)
         {
-            if(!boolEvents.ContainsKey(name))boolEvents.Add(name, Event);
+            if (!boolEvents.ContainsKey(name)) boolEvents.Add(name, Event);
+            else boolEvents[name] += Event;
         }
 
         public static bool TryFireBoolEvent(string name, bool b)
@@ -108,7 +110,8 @@ namespace EXPERIMENTAL
         #region IntEvents
         public static void AddIntEvent(string name, Action<int> Event)
         {
-            if(!intEvents.ContainsKey(name))intEvents.Add(name, Event);
+            if (!intEvents.ContainsKey(name)) intEvents.Add(name, Event);
+            else intEvents[name] += Event;
         }
 
         public static bool TryFireIntEvent(string name, int i)
@@ -145,7 +148,8 @@ namespace EXPERIMENTAL
         #region FloatEvents
         public static void AddFloatEvent(string name, Action<float> Event)
         {
-            if(!floatEvents.ContainsKey(name))floatEvents.Add(name, Event);
+            if (!floatEvents.ContainsKey(name)) floatEvents.Add(name, Event);
+            else floatEvents[name] += Event;
         }
 
         public static bool TryFireFloatEvent(string name, float f)
@@ -183,6 +187,7 @@ namespace EXPERIMENTAL
         public static void AddStringEvent(string name, Action<string> Event)
         {
             if(!stringEvents.ContainsKey(name))stringEvents.Add(name, Event);
+            else stringEvents[name] += Event;
         }
 
         public static bool TryFireStringEvent(string name, string s)
@@ -219,7 +224,8 @@ namespace EXPERIMENTAL
         #region DoubleObjEvents
         public static void AddDoubleObjEvent(string name, Action<object,object> Event)
         {
-            if(!doubleObjEvents.ContainsKey(name))doubleObjEvents.Add(name, Event);
+            if (!doubleObjEvents.ContainsKey(name)) doubleObjEvents.Add(name, Event);
+            else doubleObjEvents[name] += Event;
         }
 
         public static bool TryFireDoubleObjEvent(string name, object arg1, object arg2)
@@ -257,6 +263,7 @@ namespace EXPERIMENTAL
         public static void AddSingleObjEvent(string name, Action<object> Event)
         {
             if(!singleObjEvents.ContainsKey(name))singleObjEvents.Add(name, Event);
+            else singleObjEvents[name] += Event;
         }
 
         public static bool TryFireSingleObjEvent(string name, object arg)

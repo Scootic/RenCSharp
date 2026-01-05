@@ -25,6 +25,7 @@ namespace RenCSharp.Combat
         {
             receiver = other.GetComponent<IDamage>();
             if (!damageOverTime && receiver != null) receiver.TakeDamage(baseDamage, false);
+            if (BehindWall(other)) return;//don't bother with logic if coming from behind a wall, absolutely don't do bouncing in such scenarios
             cBounce++;
             if(cBounce <= bounces)
             {

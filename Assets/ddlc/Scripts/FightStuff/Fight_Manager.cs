@@ -14,35 +14,30 @@ namespace RenCSharp.Combat
         [SerializeField] private EnemyObject enemyPrefab;
         [SerializeField] private Player_Object playerPrefab;
         [SerializeField] private Simple_Scene_Loader ssl;
+        [SerializeField] private Player_Action_Handler pah;
         [Header("Holders")]
         [SerializeField] private Transform enemyHolder;
         [SerializeField] private Transform playerHolder;
+        [SerializeField] private GameObject abilityHolder;
         [SerializeField] private TextMeshProUGUI combatTextbox;
-        [Header("Arena")]
+        [Header("Arena/Enemy cosmetics")]
         [SerializeField, Min(0.1f)] private float arenaSetUpTime = 1f;
         [SerializeField, Min(0.1f)] private float enemyDamageNumberForce = 5f;
         [SerializeField, Tooltip("For handling direction text is launched in."), Range(-360,360)] private float minDeg = 0;
         [SerializeField, Tooltip("For handling direction text is launched in."), Range(-360,360)] private float maxDeg = 180;
         [SerializeField] private UI_Element enemyDamageNumber;
-        [Header("PlayerAttack")]
-        [SerializeField] private float playerAttackAnimationDuration;
-        [SerializeField, Range(0, 1)] private float playerAttackVolMult = 0.5f;
-        [SerializeField] private Sprite[] playerAttackAnimFrames;
-        [SerializeField] private UI_Element playerAttackFab;
-        [SerializeField] private AudioSource attackSound;
 
         private int curAttackIndex;
         private int prevAttackPosRoll, dir;
         private EnemyObject curEnemy;
         private Player_Object curPlayer;
-        private UI_Element curPAttack;
-        private bool fighting, lostFight, playerTurn, playerAttack, singleAttack, passedScript; //probably stupid to have all of these
+
+        private bool fighting, lostFight, playerTurn, singleAttack, passedScript; //probably stupid to have all of these
         private Coroutine flavorTextRoutine;
         private GameObject playerObj;
         private List<GameObject> activeProj = new();
 
         public bool PlayerTurn => playerTurn;
-
         private void Awake()
         {
             if (FM == null) FM = this;
@@ -64,12 +59,13 @@ namespace RenCSharp.Combat
             Debug.Log("Starting a fight!");
             BulkSetUp();
             playerTurn = true;
+            abilityHolder.SetActive(true);
             singleAttack = false;
             passedScript = false;
             Textbox_String.PauseTextbox(true);
+            Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", 0);
             curEnemy = Object_Factory.SpawnObject(enemyPrefab.gameObject, "EnemyObject", enemyHolder).GetComponent<EnemyObject>();
             curEnemy.ReceiveEnemySO(eso);
-            Player_Input.Attack += PlayerAttack;
             StartCoroutine(RunThroughEnemy());
         }
 
@@ -89,7 +85,6 @@ namespace RenCSharp.Combat
             playerHolder.gameObject.SetActive(false);
             fighting = true;
             lostFight = false;
-            playerAttack = false;
             prevAttackPosRoll = 0;
             Textbox_String.JumpToEndOfTextbox = false;
             curAttackIndex = 0;
@@ -99,11 +94,13 @@ namespace RenCSharp.Combat
             playerObj.SetActive(false);
         }
         #endregion
+        #region FightHandling
         public void EndAFight(bool loss)
         {
             Debug.Log("Ending a fight!");
             fighting = false;
             lostFight = loss;
+            abilityHolder.SetActive(false);
         }
 
         private IEnumerator RunThroughEnemy()
@@ -123,7 +120,6 @@ namespace RenCSharp.Combat
                 }
             }
             if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
-            Player_Input.Attack -= PlayerAttack;
             if (!lostFight) //if we won that there battle
             {
                 Flag_Manager.SetFlag("PlayerCurHealth", Mathf.CeilToInt(curPlayer.CurrentHealth)); //we remember damage taken, for immersion
@@ -141,7 +137,6 @@ namespace RenCSharp.Combat
                 yield return LostTheFight();
             }
         }
-
         private IEnumerator RunThroughAttack(EnemyAttack ea)
         {
             float t = 0;
@@ -209,9 +204,9 @@ namespace RenCSharp.Combat
                 if(WithinScriptedAttacks())curAttackIndex++;
                 else curAttackIndex = RandomHelper.NoRepeatRoll("RandomAttackID", curEnemy.MySO.RandomAttacks.Length);
             }
-            
-            playerAttack = false;
+
             yield return CloseArena();
+
             if(!singleAttack) yield return PlayerTurnRoutine();
             else if(!lostFight)
             {
@@ -226,6 +221,23 @@ namespace RenCSharp.Combat
             }
         }
 
+        public void AddProjectileToList(GameObject go)
+        {
+            activeProj.Add(go);
+        }
+        private IEnumerator LostTheFight()
+        {
+            Textbox_String.PauseTextbox(false);
+            playerHolder.gameObject.SetActive(false);
+            yield return Textbox_String.RunThroughText(combatTextbox, "Good going idiot, you died! You're going back to the main menu now.");
+            yield return new WaitForSeconds(2);
+            Object_Factory.RemoveObject("EnemyObject");
+            Object_Factory.RemoveObject("PlayerObject");
+            ssl.LoadAnScene(1);
+        }
+        #endregion
+
+        #region Arena
         private IEnumerator SetUpArena(EnemyAttack ea)
         {
             float t = 0;
@@ -261,94 +273,26 @@ namespace RenCSharp.Combat
             }
             playerHolder.gameObject.SetActive(false);
         }
+        #endregion
 
+        #region Player
         private IEnumerator PlayerTurnRoutine()
         {
-            float t = 0;
-            int i = 0;
-            float perc = playerAttackAnimationDuration / (float)playerAttackAnimFrames.Length;
+            curPlayer.SetNewResistance(true, 0);
             if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
             flavorTextRoutine = StartCoroutine(Textbox_String.RunThroughText(combatTextbox, WithinScriptedAttacks() ? 
                 curEnemy.MySO.ScriptedFlavorTexts[curAttackIndex] : curEnemy.MySO.RandomFlavorTexts[curAttackIndex]));
             while (playerTurn && fighting)
             {
-                if(!playerAttack) yield return null;
+                if(!pah.PlayerActionLockedIn) yield return null;
                 else
                 {
-                    if(t == 0) //only play sounds after player input, but only one time please
-                    {
-                        Audio_Manager.AM.Play2DSFX(attackSound.clip, 1, 1, playerAttackVolMult, false);
-                        Textbox_String.JumpToEndOfTextbox = true;
-                    }
-                    t += Time.deltaTime;
-                    //do the animation
-                    if(t >= perc)
-                    {
-                        t = 0;
-                        i++;
-
-                        if(i < playerAttackAnimFrames.Length)
-                        {
-                            curPAttack.Images[0].sprite = playerAttackAnimFrames[i];
-                            //do midway logic
-                            if (playerAttackAnimFrames.Length % 2 == 0) //if we have an even amount of anim frames
-                            {
-                                if (i == playerAttackAnimFrames.Length * 0.5f)
-                                {
-                                    curEnemy.TakeDamage(Flag_Manager.GetFlag("PlayerDamage", false), false);
-                                }
-                            }
-                            else //do bs
-                            {
-                                float approxI = i + 0.5f;
-                                if (Mathf.Approximately(approxI, playerAttackAnimFrames.Length * 0.5f))
-                                {
-                                    curEnemy.TakeDamage(Flag_Manager.GetFlag("PlayerDamage", false), false);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Object_Factory.RemoveObject("PlayerAttack");
-                            playerTurn = false;
-                        }
-                    }
-                    yield return null;
+                    yield return pah.CurrentPlayerAction.ActionResult();
+                    playerTurn = false;
                 }
             }
         }
-
-        public void AddProjectileToList(GameObject go)
-        {
-            activeProj.Add(go);
-        }
-
-        private IEnumerator LostTheFight()
-        {
-            Textbox_String.PauseTextbox(false);
-            playerHolder.gameObject.SetActive(false);
-            yield return Textbox_String.RunThroughText(combatTextbox, "Good going idiot, you died! You're going back to the main menu now.");
-            yield return new WaitForSeconds(2);
-            Object_Factory.RemoveObject("EnemyObject");
-            Object_Factory.RemoveObject("PlayerObject");
-            ssl.LoadAnScene(1);
-        }
-
-        void PlayerAttack()
-        {
-            if (playerTurn && !playerAttack)
-            {
-                Debug.Log("Player Attacked!");
-                curPAttack = Object_Factory.SpawnObject(playerAttackFab.gameObject, "PlayerAttack", curEnemy.transform).GetComponent<UI_Element>();
-                curPAttack.Images[0].sprite = playerAttackAnimFrames[0];
-                playerAttack = true;
-            }
-            else
-            {
-                Debug.LogWarning("Player's trying to attack when they shouldn't!");
-            }
-        }
-
+        #endregion
         void SpawnEnemyDamageNumber(float damageTaken)
         {
             UI_Element fella = Object_Pooling.Spawn(enemyDamageNumber.gameObject, curEnemy.transform.position, Quaternion.identity).GetComponent<UI_Element>();

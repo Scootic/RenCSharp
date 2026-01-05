@@ -28,6 +28,7 @@ namespace RenCSharp
         void OnDisable()
         {
             Event_Bus.TryRemoveFloatEvent(eventName);
+            //can be evil maybe?
         }
     }
 }

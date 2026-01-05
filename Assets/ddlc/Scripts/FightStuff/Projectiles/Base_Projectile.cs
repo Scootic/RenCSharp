@@ -54,7 +54,7 @@ namespace RenCSharp.Combat
         {
             receiver = other.GetComponent<IDamage>();
             if (!damageOverTime && receiver != null) receiver.TakeDamage(baseDamage, false);
-            if (destroyOnHit)
+            if (destroyOnHit && !BehindWall(other))
             {
                 Object_Pooling.Despawn(gameObject);
             }
@@ -72,6 +72,14 @@ namespace RenCSharp.Combat
         {
             if (!other.CompareTag("Player")) return;
             if (receiver != null) receiver = null;
+        }
+
+        protected bool BehindWall(Collider hitcol)
+        {
+            if (hitcol.CompareTag("Player")) return false; //if we hit a player, absolutely refuse to give AF
+            Vector3 dirToHitObj = hitcol.transform.position - transform.position;
+            dirToHitObj.Normalize();
+            return Vector3.Dot(hitcol.transform.up, dirToHitObj) > 0; //should only return true if locally above, which is to say behind the wall
         }
 
         public virtual void OnDespawn()

@@ -12,6 +12,7 @@ namespace RenCSharp.Combat
         [SerializeField, Min(1)] private int maxHealth = 20;
         private float curHealth;
         private float preResistance = 0;
+        private float postResistance;
         [SerializeField] private float invincibilitySeconds = 0.25f;
         [SerializeField] private AudioSource hurtedSound;
         [SerializeField] private AnimationCurve invincibleCurve;
@@ -24,9 +25,18 @@ namespace RenCSharp.Combat
             invincible = false;
             curHealth = Flag_Manager.GetFlag("PlayerCurHealth");
             preResistance = (float)Flag_Manager.GetFlag("PlayerResistance") / 100f;
-
+            postResistance = preResistance;
             Event_Bus.TryFireFloatEvent("PlayerHealth", curHealth);
             Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
+        }
+
+        public void SetNewResistance(bool reset, float val)
+        {
+            if(reset) postResistance = preResistance;
+            else
+            {
+                postResistance = val;
+            }
         }
 
         void OnDisable()
@@ -54,6 +64,7 @@ namespace RenCSharp.Combat
 
             curHealth -= f - (f * Resistance());
             curHealth = Mathf.Max(curHealth, 0);
+            curHealth = Mathf.Min(curHealth, maxHealth);
 
             Event_Bus.TryFireFloatEvent("PlayerHealth", curHealth);
             Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
@@ -86,7 +97,7 @@ namespace RenCSharp.Combat
 
         public float Resistance()
         {
-            return preResistance;
+            return postResistance;
         }
 
         public Vector3 GetPosition => transform.position;

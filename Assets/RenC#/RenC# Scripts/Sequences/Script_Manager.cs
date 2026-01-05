@@ -15,7 +15,7 @@ namespace RenCSharp
     /// <summary>
     /// The guy who handles the game logic. Runs through the screens of a sequence, and does all the stuff. For some god awful reason, does not
     /// like sequences that only have 1 screen in them. If you really desparetely need a 1 screen sequence, just include a completely empty screen
-    /// as the second screen.
+    /// as the second screen, or the first.
     /// </summary>
     public sealed class Script_Manager : MonoBehaviour
     {
@@ -610,12 +610,12 @@ namespace RenCSharp
         /// <summary>
         /// Used for textboxes
         /// </summary>
-        /// <param name="value">FLOAT seconds per char</param>
+        /// <param name="floatvalue">FLOAT seconds per char</param>
         /// <param name="reset">BOOL whether or not we're resetting to prev speed from an altered speed</param>
-        private void SetSpeed(object value, object reset)
+        private void SetSpeed(object floatvalue, object reset)
         {
             bool r = (bool)reset;
-            float f = (float)value;
+            float f = (float)floatvalue;
 
             Textbox_String.TextSpeed = r ? textSpeed : f; 
         }

@@ -6,10 +6,10 @@ namespace RenCSharp.Combat
 {
     public sealed class Player_Input : MonoBehaviour
     {
-        [SerializeField] private InputActionReference movement, attack;
+        [SerializeField] private InputActionReference movement, attack, ability;
 
         public static Action<Vector2> Movement;
-        public static Action Attack;
+        public static Action Attack, Ability;
 
         private bool move;
 
@@ -19,13 +19,13 @@ namespace RenCSharp.Combat
             movement.action.started += ctx => Fight_Manager.FM.StartCoroutine(ReadMovement()); 
             movement.action.canceled += ctx => move = false; 
             attack.action.performed += ctx => Attack?.Invoke();
+            ability.action.performed += ctx => Ability?.Invoke();
 
             movement.action.Enable();
             attack.action.Enable();
-
-            //Movement += DebugInputMove;
+            ability.action.Enable();
         }
-
+        //fluh!
         private IEnumerator ReadMovement()
         {
             move = true;
@@ -36,7 +36,7 @@ namespace RenCSharp.Combat
             }
             Movement?.Invoke(Vector2.zero);
         }
-
+        //buh
         private void DebugInputMove(Vector2 v2)
         {
             Debug.Log("Input Grabbed: " + v2);
@@ -46,15 +46,16 @@ namespace RenCSharp.Combat
         {
             Movement = null;
             Attack = null;
+            Ability = null;
             Fight_Manager.FM.StopCoroutine(ReadMovement());
             movement.action.started -= ctx => Fight_Manager.FM.StartCoroutine(ReadMovement());
             movement.action.canceled -= ctx => move = false;
             attack.action.performed -= ctx => Attack?.Invoke();
+            ability.action.performed -= ctx => Ability?.Invoke();
 
             movement.action.Disable();
             attack.action.Disable();
-
-            //Movement -= DebugInputMove;
+            ability.action.Disable();
         }
     }
 }

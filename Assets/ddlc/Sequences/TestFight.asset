@@ -20,6 +20,7 @@ MonoBehaviour:
     - rid: 9142197945214697603
     - rid: 9142197945214697604
     - rid: 9142197945214697623
+    - rid: 9079474664396030123
   - speaker: {fileID: 0}
     dialog: It will go crazy, I swear.
     ScreenActions:
@@ -78,6 +79,13 @@ MonoBehaviour:
       data:
         flagID: PlayerCurHealth
         flagValue: 20
+        increment: 0
+        persistent: 0
+    - rid: 9079474664396030123
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerAbilities
+        flagValue: 15
         increment: 0
         persistent: 0
     - rid: 9142197945214697601
