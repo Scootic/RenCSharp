@@ -16,14 +16,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1eacdd05f130e994b8e02c5ec9ee8191, type: 2}
   - {fileID: 11400000, guid: 5f90375df0f28c042bc93a924550e369, type: 2}
   - {fileID: 11400000, guid: fdbe4a54bcc583944a99a8756fa13ade, type: 2}
-  - {fileID: 11400000, guid: c86e5fe32c1f4f84a9914f7504d123c4, type: 2}
   scriptedFlavorTexts:
   - The soldier brandishes his great-axe.
   - One of his allies starts firing their bow at you!
   - He takes another swing at you with his great-axe!
-  - The soldier takes a knee, clearly on death's door.
-  randomAttacks: []
-  randomFlavorTexts: []
+  randomAttacks:
+  - {fileID: 11400000, guid: 5f90375df0f28c042bc93a924550e369, type: 2}
+  - {fileID: 11400000, guid: 1eacdd05f130e994b8e02c5ec9ee8191, type: 2}
+  randomFlavorTexts:
+  - One of his allies starts firing their bow at you!
+  - The soldier tries to hit you with his great-axe. Again.
   maxHealth: 25
   visualInformation:
   - {fileID: 21300000, guid: 9fbec8b5d8b02f24ea219e02be45f1c2, type: 3}

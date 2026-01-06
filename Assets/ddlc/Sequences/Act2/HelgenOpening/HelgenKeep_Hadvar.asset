@@ -231,7 +231,7 @@ MonoBehaviour:
     dialog: But why leave it in such disrepair?
     ScreenActions: []
   - speaker: {fileID: 0}
-    dialog: As a testement to the crumbling influence of the Mede empire?
+    dialog: As a testament to the crumbling influence of the Mede empire?
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: ...
@@ -383,7 +383,8 @@ MonoBehaviour:
     dialog: ... otherwise I'd feel really bad for not helping Hadvar more, especially
       since he's been doing way more heavy lifting for me than he ever did for my
       player characters.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 9079474680798380210
   - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
     dialog: Hold up. There's a bear just up ahead, see?
     ScreenActions: []
@@ -400,7 +401,7 @@ MonoBehaviour:
     dialog: We both crouch down, and successfully make our way past the bear.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
-    dialog: Sneak Increased to 10
+    dialog: <font=futura>Sneak Increased to 10
     ScreenActions:
     - rid: 9079474635428593851
   - speaker: {fileID: 0}
@@ -410,12 +411,89 @@ MonoBehaviour:
     dialog: Ah, open air! I didn't know how much I missed you!
     ScreenActions:
     - rid: 9079474635428593850
+    - rid: 9079474680798380177
+  - speaker: {fileID: 0}
+    dialog: Alduin flies overhead, luckily not noticing us.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: There he goes... Looks like he's gone for good this time.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Eh... give it a minute. I think we'll see him again at Kynesgrove?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... then again, Hadvar probably won't be there when Alduin shows up...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... I like how I just assumed I'll be doing the main quest, and not trying
+      to get back home...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: There's no way to know if anyone else made it out alive...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: The closest town is Riverwood, my uncle's the blacksmith there. I'm sure
+      he'd help you out.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+    dialog: It'd probably be best if we split up. Good luck.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Hadvar leaves, heading down the road to Riverwood.
+    ScreenActions:
+    - rid: 9079474680798380211
+  - speaker: {fileID: 0}
+    dialog: Doesn't he say something about not being able to make it out alive without
+      my help in the original game?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Dang.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: My stomach growls.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Ah yes, I <i>have</i> been working up a sweat without having had breakfast...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I take a seat on a nearby rock to rest my feet before starting my journey
+      to Riverwood.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Heh, Sayori would probably scold me for skipping breakfast-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: OH GOD THE FESTIVAL-!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... wait, why am I in Skyrim anyway?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: The pain I've felt so far has been pretty real, so I don't think this
+      is all a dream...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I might be dead, but I really doubt I died peacefully in my sleep.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Assuming I didn't get murdered...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Hm.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: After a few minutes of resting, I get on my feet, and start heading to
+      Riverwood.
+    ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: bd30022cf9b9f5f4b9c58c9932d73df9, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -851,3 +929,23 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 0
         loopDuration: 1
+    - rid: 9079474680798380177
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 05a05d43ce3caf54bb66fa61b71eb60d, type: 3}
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9079474680798380210
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079474680798380211
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
+        fadeTime: 0.5
