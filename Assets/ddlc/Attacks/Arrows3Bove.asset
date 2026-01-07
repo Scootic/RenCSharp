@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arenaDimensions: {x: 300, y: 500}
   controlType:
-    rid: 9142197968636215383
+    rid: 9079474705638883489
   attackDuration: 5
   secondsPerProjectileSpawn: 0.5
   projectilesThatSpawn:
@@ -33,8 +33,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 9142197968636215383
-      type: {class: FreeRoam, ns: RenCSharp.Combat, asm: Battle}
-      data: {playerObj: {fileID: 0}, speed: 500, rb: {fileID: 0}}
+    - rid: 9079474705638883489
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500

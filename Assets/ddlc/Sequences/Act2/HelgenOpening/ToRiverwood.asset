@@ -15,7 +15,18 @@ MonoBehaviour:
   autoFocusSpeaker: 1
   screens:
   - speaker: {fileID: 0}
-    dialog: 
+    dialog: I never really gave much appreciation to my walks to school.
+    ScreenActions:
+    - rid: 9079474705638883538
+  - speaker: {fileID: 0}
+    dialog: I imagine this would suck way more if I didn't walk regularly.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Then again, the hills do make this definetively worse than the walk to
+      school.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Also the lack of Sayori. That doesn't help either.
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
@@ -33,4 +44,12 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 9079474705638883538
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - {fileID: 21300000, guid: 584e6a9c304e38c4989b529a3c1d67b8, type: 3}
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 2

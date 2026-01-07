@@ -12,15 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
   m_Name: HomingArrows
   m_EditorClassIdentifier: 
-  arenaDimensions: {x: 600, y: 350}
+  arenaDimensions: {x: 600, y: 400}
   controlType:
     rid: 9079474705638883490
-  attackDuration: 5
-  secondsPerProjectileSpawn: 0.5
-  projectilesThatSpawn: []
-  spawnPoints: []
-  initialDirections: []
-  indexes: 
+  attackDuration: 8
+  secondsPerProjectileSpawn: 0.75
+  projectilesThatSpawn:
+  - {fileID: 8335507302958493363, guid: 9bc93140c61cfd94daf99be7de3f6cfb, type: 3}
+  spawnPoints:
+  - {x: -800, y: 600, z: 0}
+  - {x: 800, y: 600, z: 0}
+  - {x: -800, y: -600, z: 0}
+  - {x: 800, y: -600, z: 0}
+  initialDirections:
+  - {x: 1, y: -1, z: 0}
+  - {x: -1, y: -1, z: 0}
+  - {x: 1, y: 1, z: 0}
+  - {x: -1, y: 1, z: 0}
+  indexes: 00000000000000000000000000000000
   projectileSpawnPositionMethod: 1
   projectileIndexMethod: 1
   references:

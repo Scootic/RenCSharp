@@ -69,7 +69,6 @@ namespace RenCSharp.Combat
             passedScript = false;
             Textbox_String.PauseTextbox(true);
             Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", 0);
-            Event_Bus.AddBoolEvent("EndAFight", EndAFight);
             curEnemy = Object_Factory.SpawnObject(enemyPrefab.gameObject, "EnemyObject", enemyHolder).GetComponent<EnemyObject>();
             curEnemy.ReceiveEnemySO(eso);
             StartCoroutine(RunThroughEnemy());
@@ -81,6 +80,7 @@ namespace RenCSharp.Combat
             playerTurn = false;
             BulkSetUp();
             combatTextbox.text = "";
+            Event_Bus.AddBoolEvent("EndAFight", EndAFight);
             StartCoroutine(RunThroughAttack(ea));
         }
 
