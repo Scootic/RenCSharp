@@ -6,6 +6,7 @@ namespace RenCSharp.Combat.Enemies
     {
         [Header("Homing BS")]
         [SerializeField, Range(0,1)] private float homeStrength = 1;
+        [SerializeField, Range(0,1)] private float distanceWeakener = 0.2f;
         private Transform playerTransform;
 
         protected override void OnEnable()
@@ -21,7 +22,9 @@ namespace RenCSharp.Combat.Enemies
         {
             base.Update();
             Vector3 dirToPlayer = playerTransform.position - transform.position;
-            Vector3 t = Vector3.Lerp(moveDir, dirToPlayer, homeStrength);
+            float distanceFromPlayer = dirToPlayer.magnitude * distanceWeakener;
+            dirToPlayer.Normalize();
+            Vector3 t = Vector3.Lerp(moveDir, dirToPlayer, homeStrength * Time.deltaTime * distanceFromPlayer);
             UpdateMoveDir(t);
         }
     }

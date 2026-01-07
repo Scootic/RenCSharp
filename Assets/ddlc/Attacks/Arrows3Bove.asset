@@ -20,24 +20,21 @@ MonoBehaviour:
   projectilesThatSpawn:
   - {fileID: 8204135625514222407, guid: ab8571686c2fac043a02eb75f11b2e50, type: 3}
   spawnPoints:
-  - {x: -800, y: 200, z: 0}
-  - {x: 800, y: 100, z: 0}
-  - {x: -800, y: 0, z: 0}
-  - {x: 800, y: -100, z: 0}
-  - {x: -800, y: -200, z: 0}
+  - {x: -150, y: 500, z: 0}
+  - {x: 0, y: 500, z: 0}
+  - {x: 150, y: 500, z: 0}
   initialDirections:
-  - {x: 1, y: 0, z: 0}
-  - {x: -1, y: 0, z: 0}
-  - {x: 1, y: 0, z: 0}
-  - {x: -1, y: 0, z: 0}
-  - {x: 1, y: 0, z: 0}
-  indexes: 0000000000000000000000000000000000000000
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  indexes: 000000000000000000000000
   projectileSpawnPositionMethod: 3
   projectileIndexMethod: 3
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 9142197968636215383
       type: {class: FreeRoam, ns: RenCSharp.Combat, asm: Battle}
-      data:
-        speed: 500
+      data: {playerObj: {fileID: 0}, speed: 500, rb: {fileID: 0}}
