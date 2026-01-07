@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Player
 {
     public class Player_Action_Ability_Select : Player_Action
     {

@@ -1,6 +1,7 @@
 using UnityEngine;
+using EXPERIMENTAL;
 using RenCSharp.Combat.Interfaces;
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Enemies
 {
     [RequireComponent(typeof(Rigidbody))]
     public class Physics_Projectile : Base_Projectile

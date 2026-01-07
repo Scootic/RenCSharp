@@ -1,13 +1,13 @@
 using UnityEngine;
 
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Player
 {
     public class Storm_Call : Player_Ability
     {
         public override void FireAbility()
         {
             base.FireAbility();
-            if (!validToFire || Fight_Manager.FM.PlayerTurn) return;
+            if (!validToFire || PlayerTurn) return;
             Debug.LogError("Storm call not yet implemented");
         }
     }

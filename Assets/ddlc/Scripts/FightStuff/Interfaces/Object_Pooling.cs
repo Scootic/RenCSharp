@@ -21,7 +21,7 @@ public static class Object_Pooling
         return _thePools[obj].Spawn(position, rotation);
     }
 
-    public static IEnumerator DespawnOverTime(GameObject obj, float timeToDespawn)
+    public static IEnumerator DespawnOverTime(GameObject obj, float timeToDespawn, bool b = false)
     {
         float t = 0;
         while (obj != null && t <= timeToDespawn && obj.activeInHierarchy)
@@ -30,15 +30,15 @@ public static class Object_Pooling
             yield return null;
         }
 
-        if(obj != null && obj.activeInHierarchy) Despawn(obj);
+        if(obj != null && obj.activeInHierarchy) Despawn(obj, b);
     }
 
-    public static void Despawn(GameObject obj)
+    public static void Despawn(GameObject obj, bool b = false)
     {
         IDespawn id = obj.GetComponent<IDespawn>();
         if(id != null)
         {
-            id.OnDespawn();
+            id.OnDespawn(b);
         }
 
         if(obj.GetComponent<PoolMember>() == null)

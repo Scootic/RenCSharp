@@ -4,7 +4,7 @@ using EXPERIMENTAL;
 using UnityEngine.UI;
 using System;
 using RenCSharp.Combat.Interfaces;
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Player
 {
     [Serializable]
     public class Player_Object : MonoBehaviour, IDamage
@@ -19,9 +19,11 @@ namespace RenCSharp.Combat
         public float CurrentHealth => curHealth;
         public void StartOfFight()
         {
+            Event_Bus.TryRemoveDoubleObjEvent("SetPlayerResistance");
             maxHealth = Flag_Manager.GetFlag("PlayerMaxHealth");
             invincible = false;
             curHealth = Flag_Manager.GetFlag("PlayerCurHealth");
+            Event_Bus.AddDoubleObjEvent("SetPlayerResistance", SetNewResistance);
             //preResistance = (float)Flag_Manager.GetFlag("PlayerResistance") / 100f; important for future developments, but timing issue makes
             //defend option not work on the first turn. very strange.
             //postResistance = preResistance;
@@ -29,12 +31,19 @@ namespace RenCSharp.Combat
             Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
         }
 
-        public void SetNewResistance(bool reset, float val)
+        /// <summary>
+        /// Temporarily sets the player resistance.
+        /// </summary>
+        /// <param name="r">BOOL whether or not we reset to the initial value, or false for being a modifier</param>
+        /// <param name="val">FLOAT the value that sets the new value if BOOL is false</param>
+        private void SetNewResistance(object r, object val)
         {
+            bool reset = (bool)r;
+            float value = (float)val;
             if(reset) postResistance = preResistance;
             else
             {
-                postResistance = val;
+                postResistance = value;
             }
         }
 
@@ -57,8 +66,10 @@ namespace RenCSharp.Combat
             }
             invincible = false;
         }
-        public void TakeDamage(float f, bool dot)
+        public void TakeDamage(object floatarg, object boolarg)
         {
+            float f = (float)floatarg;
+            bool b = (bool)boolarg;
             if (invincible) return; //don't take damage if invincible. go figure!
 
             curHealth -= f - (f * Resistance());
@@ -71,7 +82,8 @@ namespace RenCSharp.Combat
             if (curHealth == 0)
             {
                 //Game Over stuff here!
-                Fight_Manager.FM.EndAFight(true);
+                //Fight_Manager.FM.EndAFight(true);
+                Event_Bus.TryFireBoolEvent("EndAFight", true);
             }
             else if(hurtSoundGood && f > 0)
             {
@@ -80,7 +92,7 @@ namespace RenCSharp.Combat
                 StartCoroutine(HurtSoundHandle());
             }
 
-            if (!dot && !invincible && f > 0) //only worry about IFrames if the damage is bulk, not over time
+            if (!b && !invincible && f > 0) //only worry about IFrames if the damage is bulk, not over time
             {
                 invincible = true;
                 StartCoroutine(IFrames());

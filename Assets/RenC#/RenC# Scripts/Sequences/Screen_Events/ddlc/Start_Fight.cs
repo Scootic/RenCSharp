@@ -1,5 +1,6 @@
 using UnityEngine;
 using RenCSharp.Combat;
+using RenCSharp.Combat.Enemies;
 namespace RenCSharp.Sequences
 {
     public class Start_Fight : Screen_Event

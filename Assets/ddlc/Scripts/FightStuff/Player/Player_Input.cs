@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 using System.Collections;
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Player
 {
     public sealed class Player_Input : MonoBehaviour
     {
@@ -15,8 +15,8 @@ namespace RenCSharp.Combat
 
         private void OnEnable()
         {
-            //only uses FM to do coroutine to prevent garbage objs dying with scene load (we can't reference our mono, because it dies on unload)
-            movement.action.started += ctx => Fight_Manager.FM.StartCoroutine(ReadMovement()); 
+            //only uses AM to do coroutine to prevent garbage objs dying with scene load (we can't reference our mono, because it dies on unload)
+            movement.action.started += ctx => Audio_Manager.AM.StartCoroutine(ReadMovement()); 
             movement.action.canceled += ctx => move = false; 
             attack.action.performed += ctx => Attack?.Invoke();
             ability.action.performed += ctx => Ability?.Invoke();
@@ -47,8 +47,8 @@ namespace RenCSharp.Combat
             Movement = null;
             Attack = null;
             Ability = null;
-            Fight_Manager.FM.StopCoroutine(ReadMovement());
-            movement.action.started -= ctx => Fight_Manager.FM.StartCoroutine(ReadMovement());
+            Audio_Manager.AM.StopCoroutine(ReadMovement());
+            movement.action.started -= ctx => Audio_Manager.AM.StartCoroutine(ReadMovement());
             movement.action.canceled -= ctx => move = false;
             attack.action.performed -= ctx => Attack?.Invoke();
             ability.action.performed -= ctx => Ability?.Invoke();

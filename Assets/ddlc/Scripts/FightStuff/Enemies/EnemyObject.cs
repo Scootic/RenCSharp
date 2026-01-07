@@ -4,7 +4,7 @@ using System.Collections;
 using EXPERIMENTAL;
 using UnityEngine.UI;
 using RenCSharp.Combat.Interfaces;
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Enemies
 {
     [RequireComponent(typeof(UI_Element))]
     public class EnemyObject : MonoBehaviour, IDamage
@@ -58,8 +58,20 @@ namespace RenCSharp.Combat
             transform.position = ogPos;
         }
 
-        public void TakeDamage(float f, bool b)
+        void OnEnable()
         {
+            Event_Bus.AddDoubleObjEvent("EnemyTakeDamage", TakeDamage);
+        }
+
+        void OnDisable()
+        {
+            Event_Bus.TryRemoveDoubleObjEvent("EnemyTakeDamage");
+        }
+
+        public void TakeDamage(object floatarg, object boolarg)
+        {
+            bool b = (bool)boolarg;
+            float f = (float)floatarg;
             float damageToTake = f - (f * resistance);
             curHealth -= damageToTake;
             curHealth = Mathf.Max(curHealth, 0);
@@ -70,7 +82,7 @@ namespace RenCSharp.Combat
             {
                 //become killed af!
                 //tell somebody about what happened.
-                Fight_Manager.FM.EndAFight(false);
+                Event_Bus.TryFireBoolEvent("EndAFight", false);
             }
             else
             {

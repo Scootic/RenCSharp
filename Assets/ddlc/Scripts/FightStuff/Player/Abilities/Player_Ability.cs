@@ -1,6 +1,6 @@
 using EXPERIMENTAL;
 using UnityEngine;
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Player
 {
     public abstract class Player_Ability : MonoBehaviour
     {
@@ -12,14 +12,14 @@ namespace RenCSharp.Combat
         protected float t = 0;
         protected bool validToFire;
 
-        public bool Current;
+        public bool Current, PlayerTurn, Fighting;
         public int RequiredBit => requiredBit;
         /// <summary>
         /// Always include .base before custom functionality, the base method handles timer logic.
         /// </summary>
         protected virtual void Update()
         {
-            if (!Fight_Manager.FM.PlayerTurn && Fight_Manager.FM.Fighting && Current) 
+            if (!PlayerTurn && Fighting && Current) 
             {
                 Debug.Log("doing ability update: " + gameObject.name + ", t: " + t);
                 t += Time.deltaTime;
@@ -41,7 +41,7 @@ namespace RenCSharp.Combat
         /// </summary>
         public virtual void FireAbility()
         {
-            if (!validToFire || Fight_Manager.FM.PlayerTurn) return;
+            if (!validToFire || PlayerTurn) return;
             t = 0;
             Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", t);
         }

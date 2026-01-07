@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-
+using RenCSharp.Combat.Enemies;
+using RenCSharp.Combat.Interfaces;
+using RenCSharp.Combat.Player;
 namespace RenCSharp.Combat
 {
     public sealed class Fight_Manager : MonoBehaviour
@@ -53,6 +55,8 @@ namespace RenCSharp.Combat
         private void OnDisable()
         {
             Event_Bus.TryRemoveFloatEvent("EnemyDamageNumber");
+            Event_Bus.TryRemoveSingleObjEvent("AddAProjectile");
+            Event_Bus.TryRemoveBoolEvent("EndAFight");
         }
         #region StartUp
         public void StartAFight(EnemySO eso)
@@ -65,6 +69,7 @@ namespace RenCSharp.Combat
             passedScript = false;
             Textbox_String.PauseTextbox(true);
             Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", 0);
+            Event_Bus.AddBoolEvent("EndAFight", EndAFight);
             curEnemy = Object_Factory.SpawnObject(enemyPrefab.gameObject, "EnemyObject", enemyHolder).GetComponent<EnemyObject>();
             curEnemy.ReceiveEnemySO(eso);
             StartCoroutine(RunThroughEnemy());
@@ -86,6 +91,7 @@ namespace RenCSharp.Combat
             playerHolder.gameObject.SetActive(false);
             fighting = true;
             lostFight = false;
+            Event_Bus.AddSingleObjEvent("AddAProjectile", AddProjectileToList);
             prevAttackPosRoll = 0;
             Textbox_String.JumpToEndOfTextbox = false;
             curAttackIndex = 0;
@@ -101,6 +107,9 @@ namespace RenCSharp.Combat
             Debug.Log("Ending a fight!");
             fighting = false;
             lostFight = loss;
+            Event_Bus.TryRemoveBoolEvent("EndAFight");
+            Event_Bus.TryRemoveSingleObjEvent("AddAProjectile");
+            pah.EndFight();
             abilityHolder.SetActive(false);
         }
 
@@ -123,6 +132,7 @@ namespace RenCSharp.Combat
             if (!lostFight) //if we won that there battle
             {
                 Flag_Manager.SetFlag("PlayerCurHealth", Mathf.CeilToInt(curPlayer.CurrentHealth)); //we remember damage taken, for immersion
+                Event_Bus.TryFireVoidEvent("WonFight");
                 //sequence transition can optionally undo tf out of this shit.
                 Object_Factory.RemoveObject("EnemyObject"); //despawn anemone
                 yield return Textbox_String.RunThroughText(combatTextbox, curEnemy.MySO.DefeatText);
@@ -186,7 +196,7 @@ namespace RenCSharp.Combat
             playerTurn = true;
             for (int i = activeProj.Count - 1; i >= 0; i--) //despawn all projectiles after attack is done
             {
-                if (activeProj[i].activeInHierarchy) Object_Pooling.Despawn(activeProj[i]);
+                if (activeProj[i].activeInHierarchy) Object_Pooling.Despawn(activeProj[i], true);
                 activeProj.RemoveAt(i);
             }
             ea.ControlType.ExitControl(); //disable player dodge object and turn off its controls
@@ -206,6 +216,7 @@ namespace RenCSharp.Combat
             if(!singleAttack) yield return PlayerTurnRoutine();
             else if(!lostFight)
             {
+                Event_Bus.TryFireVoidEvent("WonFight");
                 Flag_Manager.SetFlag("PlayerCurHealth", Mathf.CeilToInt(curPlayer.CurrentHealth));
                 Event_Bus.TryFireVoidEvent("UnpauseSequence");
                 combatCanvas.SetActive(false);
@@ -216,10 +227,15 @@ namespace RenCSharp.Combat
                 yield return LostTheFight();
             }
         }
-
-        public void AddProjectileToList(GameObject go)
+        /// <summary>
+        /// Adds a gameobject to the projectile list, so we can clean them up when the attack is finished.
+        /// </summary>
+        /// <param name="obj">GAMEOBJEKT the gameobject we are adding to list</param>
+        private void AddProjectileToList(object obj)
         {
+            GameObject go = (GameObject) obj;
             activeProj.Add(go);
+            //Debug.Log("Added Projectile to List: " + go.name);
         }
         private IEnumerator LostTheFight()
         {
@@ -274,7 +290,7 @@ namespace RenCSharp.Combat
         #region Player
         private IEnumerator PlayerTurnRoutine()
         {
-            curPlayer.SetNewResistance(true, 0);
+            Event_Bus.TryFireDoubleObjEvent("SetPlayerResistance", (object)true, (object)0f); //reset player resistance to value not affected by defend
             if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
             if (!WithinScriptedAttacks() && curAttackIndex >= curEnemy.MySO.RandomAttacks.Length) //evil ah check that's probably because
                                                                                                   //of a random timing problem somewhere

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Enemies  
 {
     public class Spinning_Projectile : Base_Projectile
     {

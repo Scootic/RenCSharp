@@ -1,7 +1,8 @@
+using EXPERIMENTAL;
 using System.Collections;
 using UnityEngine;
 
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Player
 {
     public class Player_Action_Defend : Player_Action
     {
@@ -12,7 +13,7 @@ namespace RenCSharp.Combat
             Textbox_String.JumpToEndOfTextbox = true;
             if(Object_Factory.TryGetObject("PlayerObject", out GameObject go))
             {
-                go.GetComponent<Player_Object>().SetNewResistance(false, newResistance);
+                Event_Bus.TryFireDoubleObjEvent("SetPlayerResistance", (object)false, (object)newResistance);
             }
             yield return null;
         }

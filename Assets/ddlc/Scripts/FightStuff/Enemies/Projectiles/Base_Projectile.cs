@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using EXPERIMENTAL;
 using RenCSharp.Combat.Interfaces;
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Enemies
 {
     [RequireComponent(typeof(Collider))]
     public class Base_Projectile : MonoBehaviour, IDespawn
@@ -56,7 +57,7 @@ namespace RenCSharp.Combat
             if (!damageOverTime && receiver != null) receiver.TakeDamage(baseDamage, false);
             if (destroyOnHit && !BehindWall(other))
             {
-                Object_Pooling.Despawn(gameObject);
+                Object_Pooling.Despawn(gameObject, false);
             }
         }
         //scale base damage down based on time.deltaTime since DoT is a per frame kind of thing.
@@ -82,7 +83,7 @@ namespace RenCSharp.Combat
             return Vector3.Dot(hitcol.transform.up, dirToHitObj) > 0; //should only return true if locally above, which is to say behind the wall
         }
 
-        public virtual void OnDespawn()
+        public virtual void OnDespawn(bool playerTurn)
         {
 
         }

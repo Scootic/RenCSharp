@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: ImperialBowman
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 5f90375df0f28c042bc93a924550e369, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  scriptedFlavorTexts:
+  - The Imperial Bowman fires his bow at you!
+  - null
+  - null
+  randomAttacks: []
+  randomFlavorTexts: []
+  maxHealth: 30
+  visualInformation:
+  - {fileID: 21300000, guid: da1b018323399ea4aacfd065bf52e437, type: 3}
+  defeatText: ... it was easier to kill him. Hopefully you don't get used to this...
+  nameText: Imperial Bowman
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}

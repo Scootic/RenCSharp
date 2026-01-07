@@ -1,5 +1,5 @@
 using UnityEditor;
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Player
 {
     [CustomPropertyDrawer(typeof(ControlType))]
     public class ControlType_Drawer : PolymorphicPropertyDrawer<ControlType>

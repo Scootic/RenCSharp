@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using RenCSharp.Combat.Interfaces;
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Enemies
 {
     [RequireComponent(typeof(UI_Element))]
     public class Beam_Projectile : Base_Projectile

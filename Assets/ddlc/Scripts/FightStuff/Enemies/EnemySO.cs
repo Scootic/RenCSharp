@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Enemies
 {
     [CreateAssetMenu(menuName = "New Enemy")]
     public class EnemySO : ScriptableObject

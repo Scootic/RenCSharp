@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Player
 {
     public class Dodge : ControlType
     {
@@ -26,7 +26,7 @@ namespace RenCSharp.Combat
 
             Vector3 desPos = originPosition + new Vector3(x * distanceFromCenter,y * distanceFromCenter,0);
 
-            dodgeRoutine = Fight_Manager.FM.StartCoroutine(DodgeAnimation(desPos));
+            dodgeRoutine = Audio_Manager.AM.StartCoroutine(DodgeAnimation(desPos));
         }
 
         public override void EnterControl()
@@ -39,7 +39,7 @@ namespace RenCSharp.Combat
 
         public override void ExitControl()
         {
-            if (dodgeRoutine != null) Fight_Manager.FM.StopCoroutine(dodgeRoutine);
+            if (dodgeRoutine != null) Audio_Manager.AM.StopCoroutine(dodgeRoutine);
             base.ExitControl();
         }
 

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Player
 {
     public sealed class Player_Action_Handler : MonoBehaviour
     {
@@ -22,6 +22,7 @@ namespace RenCSharp.Combat
             lockedIn = false;
             curIndex = 0;
             flickThroughMenu = false;
+            if (curAbility != null) { curAbility.PlayerTurn = true; curAbility.Fighting = true; }
             SelectAnAction(curIndex); //default to first possible action whenever a turn has started
             Player_Input.Movement += ScrollThroughActions;
             Player_Input.Attack += LockInAction;
@@ -29,7 +30,12 @@ namespace RenCSharp.Combat
 
         public void EndPlayerTurn()
         {
-            //?
+            if (curAbility != null) curAbility.PlayerTurn = false;
+        }
+
+        public void EndFight()
+        {
+            if(curAbility != null) curAbility.Fighting = false;
         }
 
         public void SetCurrentPlayerAbility(Player_Ability pa)

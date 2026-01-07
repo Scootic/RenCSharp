@@ -1,6 +1,7 @@
 using UnityEngine;
-
-namespace RenCSharp.Combat
+using EXPERIMENTAL;
+using RenCSharp.Combat.Interfaces;
+namespace RenCSharp.Combat.Enemies
 {
     public class Boomerang_Projectile : Base_Projectile
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Player
 {
     public abstract class Player_Action : MonoBehaviour
     {

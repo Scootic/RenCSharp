@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace RenCSharp.Combat
+namespace EXPERIMENTAL
 {
     public static class TrigHelper
     {

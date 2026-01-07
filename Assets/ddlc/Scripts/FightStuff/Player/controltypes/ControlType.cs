@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Player
 {
     [Serializable]
     public abstract class ControlType

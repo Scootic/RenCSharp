@@ -150,6 +150,71 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: If I remember right, that captain should have the key to get out of here.
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
+    dialog: Imperial dogs!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Ralof charges in, going for the captain, which leaves me to deal with
+      the other soldier...
+    ScreenActions:
+    - rid: 9079474705638883382
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474705638883383
+    - rid: 9079474705638883384
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... I just killed a man for the first time...
+    ScreenActions:
+    - rid: 9079474705638883385
+    - rid: 9079474705638883386
+  - speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
+    dialog: Maybe one of the Imperials had the key.
+    ScreenActions:
+    - rid: 9079474705638883387
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Yep...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I search the Imperial captain's pockets, which was a lot harder to do
+      than it is in game.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Sure enough, there's the key that will unlock the door.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
+    dialog: Did you find a key? Let's see if it unlocks that door.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I already know it will, so I promptly open the door, eager to move on
+      from this experience.
+    ScreenActions:
+    - rid: 9079474705638883389
+  - speaker: {fileID: 0}
+    dialog: Jesus-
+    ScreenActions:
+    - rid: 9079474705638883392
+  - speaker: {fileID: 0}
+    dialog: Oh right, the ceiling caving in here was a scripted event in the game.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I guess that means the world I've found myself in follows the events
+      of the game, to at least a certain degree.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: We make our way through the dining area, encountering more Imperials.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474705638883393
+    - rid: 9079474705638883394
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -286,3 +351,68 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
         loopOnScreen: 0
+    - rid: 9079474705638883382
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
+        fadeTime: 0.5
+    - rid: 9079474705638883383
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 02b65c7a4c6282f43b3187ca944f4658, type: 3}
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079474705638883384
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 11400000, guid: fde2dc6ba332b214fb451fdb1f6bc2b0, type: 2}
+    - rid: 9079474705638883385
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 381a98c41c893784889ef0d98676af3c, type: 3}
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079474705638883386
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: 7ae89b6f8c3126d4fa85dd1e398805c6, type: 3}
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079474705638883387
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -500, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 9079474705638883389
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079474705638883392
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - {fileID: 21300000, guid: 17356841e6445694c806d0f1d3ee77da, type: 3}
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079474705638883393
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 791116a661dfe9549b471ecdd1a1ed28, type: 3}
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079474705638883394
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 0}

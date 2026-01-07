@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
-namespace RenCSharp.Combat
+using RenCSharp.Combat.Interfaces;
+using RenCSharp.Combat.Player;
+namespace RenCSharp.Combat.Enemies
 {
     [CreateAssetMenu(menuName = "New Enemy Attack")]
     public class EnemyAttack : ScriptableObject
@@ -11,11 +13,12 @@ namespace RenCSharp.Combat
         [SerializeField, Min(0.01f)] private float secondsPerProjectileSpawn = 0.5f;
         [Header("projectiles")]
         [SerializeField] private Base_Projectile[] projectilesThatSpawn;
-        [SerializeField, Tooltip("Offset from arena center point")] private List<Vector3> spawnPoints = new();
-        [SerializeField, Tooltip("corresponds to spawn points. Please be normalized!")] private List<Vector3> initialDirections = new();
+        [SerializeField, Tooltip("Offset from arena center point (local position)")] private List<Vector3> spawnPoints = new();
+        [SerializeField, Tooltip("Please be normalized (unless you are evil)!")] private List<Vector3> initialDirections = new();
         [SerializeField, Tooltip("chooses between the projectiles that spawn based on the projectile index method")] private List<int> indexes = new();
         [SerializeField] private AttackSpawnSelectionMethod projectileSpawnPositionMethod = AttackSpawnSelectionMethod.NoRepeatRandom;
         [SerializeField] private AttackSpawnSelectionMethod projectileIndexMethod = AttackSpawnSelectionMethod.NoRepeatRandom;
+
         //Automatically scale all of our arrays, so that we will never have a time in which we can get an index outside of one of them.
         private void OnValidate()
         {

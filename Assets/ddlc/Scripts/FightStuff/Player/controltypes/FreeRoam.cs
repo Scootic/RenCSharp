@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Player
 {
     public class FreeRoam : ControlType
     {

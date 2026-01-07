@@ -1,7 +1,8 @@
+using EXPERIMENTAL;
 using System.Collections;
 using UnityEngine;
 
-namespace RenCSharp.Combat
+namespace RenCSharp.Combat.Player
 {
     public class Player_Action_Attack : Player_Action
     {
@@ -12,7 +13,6 @@ namespace RenCSharp.Combat
         [SerializeField] private UI_Element playerAttackFab;
         [SerializeField] private AudioClip attackSound;
         private UI_Element curPAttack;
-        private EnemyObject curEnemy;
 
         public override IEnumerator ActionResult()
         {
@@ -21,7 +21,6 @@ namespace RenCSharp.Combat
             float perc = playerAttackAnimationDuration / (float)playerAttackAnimFrames.Length;
             if (Object_Factory.TryGetObject("EnemyObject", out GameObject go))
             {
-                curEnemy = go.GetComponent<EnemyObject>();
                 Debug.Log("Player Attacked!");
                 curPAttack = Object_Factory.SpawnObject(playerAttackFab.gameObject, "PlayerAttack", go.transform).GetComponent<UI_Element>();
                 curPAttack.Images[0].sprite = playerAttackAnimFrames[0];
@@ -41,12 +40,13 @@ namespace RenCSharp.Combat
                         if (i < playerAttackAnimFrames.Length)
                         {
                             curPAttack.Images[0].sprite = playerAttackAnimFrames[i];
+                            float pDamage = (float)Flag_Manager.GetFlag("PlayerDamage", false); 
                             //do midway logic
                             if (playerAttackAnimFrames.Length % 2 == 0) //if we have an even amount of anim frames
                             {
                                 if (i == playerAttackAnimFrames.Length * 0.5f)
                                 {
-                                    curEnemy.TakeDamage(Flag_Manager.GetFlag("PlayerDamage", false), false);
+                                    Event_Bus.TryFireDoubleObjEvent("EnemyTakeDamage", (object)pDamage, (object)false);
                                 }
                             }
                             else //do bs
@@ -54,7 +54,7 @@ namespace RenCSharp.Combat
                                 float approxI = i + 0.5f;
                                 if (Mathf.Approximately(approxI, playerAttackAnimFrames.Length * 0.5f))
                                 {
-                                    curEnemy.TakeDamage(Flag_Manager.GetFlag("PlayerDamage", false), false);
+                                    Event_Bus.TryFireDoubleObjEvent("EnemyTakeDamage", (object)pDamage, (object)false);
                                 }
                             }
                         }

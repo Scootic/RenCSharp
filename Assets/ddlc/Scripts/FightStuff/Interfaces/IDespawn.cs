@@ -3,6 +3,6 @@ namespace RenCSharp.Combat.Interfaces
 {
     public interface IDespawn 
     {
-        public void OnDespawn();
+        public void OnDespawn(bool playerTurn);
     }
 }
