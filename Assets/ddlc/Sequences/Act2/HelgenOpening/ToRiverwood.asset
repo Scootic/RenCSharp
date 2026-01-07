@@ -29,6 +29,80 @@ MonoBehaviour:
     dialog: Also the lack of Sayori. That doesn't help either.
     ScreenActions: []
   - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: After a few minutes of walking, I come upon the Guardian Stones.
+    ScreenActions:
+    - rid: 9079474728083652608
+  - speaker: {fileID: 0}
+    dialog: In the game, interacting with them would give you a permanent buff.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: For these three, it would be an increase to experience gained for the
+      skills that correspond to Warriors, Mages, and Thieves.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... I wonder what they'd do for me?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I walk up next to the Warrior Stone, the one I usually go with.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Standing next to it, I can feel something...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I would say magical, but I feel like that wouldn't be accurate.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I reach out my hand to touch the stone...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: At my touch, the stone lights up, projecting a beacon into the sky.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I feel... something?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: What it did to me, I'm not sure, but I guess it'd be better to have its
+      boon than to not.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: With archaic rock power flowing through me(?), I continue my journey
+      to Riverwood.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: After another few minutes, and a couple encounters with unfriendly fauna,
+      I arrive to Riverwood.
+    ScreenActions:
+    - rid: 9079474728083652660
+  - speaker: {fileID: 0}
+    dialog: Remember not to hit the chicken!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Alright, time to take stock of my situation.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Foreign land, no money, I have a weapon, but no food.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 'Hmm. '
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I suppose there's nothing stopping me from getting help from both Alvor
+      and Gerdur...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: If I remember right, Gerdur should have food, Alvor has smithing materials,
+      and both should have some gold they can spare me...
+    ScreenActions: []
+  - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
@@ -53,3 +127,19 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 2
+    - rid: 9079474728083652608
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - {fileID: 21300000, guid: 584e6a9c304e38c4989b529a3c1d67b8, type: 3}
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079474728083652660
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - {fileID: 21300000, guid: 0668de91f3f0a8f4fba44c327a6fabba, type: 3}
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
