@@ -65,6 +65,7 @@ namespace RenCSharp
         private History curHist;
         private Coroutine textRoutine;
         private Sequences.Screen curScreen;
+        private List<Button> curButtons;
 
         public static Script_Manager SM;
         public static Action ProgressScreenEvent, EndOfAllSequencesEvent;
@@ -99,9 +100,12 @@ namespace RenCSharp
             Event_Bus.AddVoidEvent("UnpauseSequence", UnpauseSequence);
             Event_Bus.AddDoubleObjEvent("SMSpeed", SetSpeed);
             Event_Bus.AddSingleObjEvent("OverrideScreen", OverrideScreen);
+            Event_Bus.AddDoubleObjEvent("SpawnPlayerButtons", SpawnPlayerButtons);
+            Event_Bus.AddSingleObjEvent("AssignPlayerButtonBehavior", AssignButtonBehavior);
 
             EndOfAllSequencesEvent += Application.Quit; //TEMPORARY THING
             SequencePausedEvent += ToggleDialogUI;
+            curButtons = new();
         }
         private void Start()
         {
@@ -124,7 +128,9 @@ namespace RenCSharp
             Event_Bus.TryRemoveVoidEvent("UnpauseSequence");
             Event_Bus.TryRemoveFloatEvent("TextSpeed");
             Event_Bus.TryRemoveDoubleObjEvent("SMSpeed");
+            Event_Bus.TryRemoveDoubleObjEvent("SpawnPlayerButtons");
             Event_Bus.TryRemoveSingleObjEvent("OverrideScreen");
+            Event_Bus.TryRemoveSingleObjEvent("AssignPlayerButtonBehavior");
         }
         #region SequenceHandling
         public void StartSequence()
@@ -197,16 +203,20 @@ namespace RenCSharp
 
                     if (firstPc.ChoiceText != string.Empty)
                     {
-                        PauseSequence();
+                        int amountOfButtons = 0;
+                        List<string> buttonNames = new();
+                        List<Action> loadSequences = new();
                         //spawn player choice buttons, and assign accordingly
                         foreach (Player_Choice pc in currentSequence.PlayerChoices)
                         {
                             if (pc.RequireCondition && !pc.MetAllConditions()) continue; //don't display a choice if it hasn't met its conditions
 
-                            Button b = Instantiate(playerchoicePrefab, playerchoiceHolder);
-                            b.GetComponentInChildren<TextMeshProUGUI>().text = pc.ChoiceText;
-                            b.onClick.AddListener(delegate { LoadASequence(pc.ResultingSequence); UnpauseSequence(); });
+                            amountOfButtons++;
+                            buttonNames.Add(pc.ChoiceText);
+                            loadSequences.Add(delegate { LoadASequence(pc.ResultingSequence); });
                         }
+                        SpawnPlayerButtons((object)amountOfButtons, (object)buttonNames);
+                        AssignButtonBehavior((object)loadSequences);
                     }
                     //if the string is empty for first choice, don't give buttons, and instead load first valid sequence
                     else
@@ -220,6 +230,48 @@ namespace RenCSharp
                     }
                 }
             }
+        }
+        /// <summary>
+        /// Spawns player buttons to do stuff. Doesn't assign any actual functionality, just spawns them.
+        /// </summary>
+        /// <param name="arg1">INT the amount of buttons you want to spawn</param>
+        /// <param name="arg2">LIST<STRING> the text those buttons will display</param>
+        private void SpawnPlayerButtons(object arg1, object arg2)
+        {
+            int amountOfButtons = (int)arg1;
+            List<string> buttonTexts = (List<string>)arg2;
+            PauseSequence();
+            for (int i = 0; i < amountOfButtons; i++)
+            {
+                Button b = Object_Factory.SpawnObject(playerchoicePrefab.gameObject, "Button"+i, playerchoiceHolder).GetComponent<Button>();
+                b.GetComponentInChildren<TextMeshProUGUI>().text = buttonTexts[i];
+                curButtons.Add(b);
+            }
+        }
+        /// <summary>
+        /// Assign a list of actions to the buttons, by index. So button[0] gets Action[0], and so on. Might collect garbage forever?
+        /// </summary>
+        /// <param name="obj">LIST<AcTION> The list of actions to be assigned to le button</param>
+        private void AssignButtonBehavior(object obj)
+        {
+            List<Action> stuffToDo = (List<Action>)obj;
+            Debug.Log("Action count: " + stuffToDo.Count + ", curButtoncount: " + curButtons.Count);
+            for(int i = 0;i < stuffToDo.Count; i++)
+            {
+                int ind = i;
+                //we always despawn buttons after player picks one, for reasons... and stuff!
+                curButtons[ind].onClick.AddListener(delegate { stuffToDo[ind]?.Invoke(); DespawnButtons(); });
+            }
+        }
+
+        private void DespawnButtons()
+        {
+            for(int i = curButtons.Count - 1; i >= 0; i--)
+            {
+                Object_Factory.RemoveObject("Button" + i);
+            }
+            curButtons = new(); //dispose of garbage button data after objects have been removed
+            UnpauseSequence();
         }
 
         private IEnumerator RunThroughScreen(Sequences.Screen screen)
