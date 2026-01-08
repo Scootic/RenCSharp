@@ -167,27 +167,26 @@ namespace RenCSharp
         public void ProgressToNextScreen() //for an UI button to use, hopefully
         {
             if (paused) return; //the ui button's interactivity SHOULD be able to handle this automatically
-            if (!Textbox_String.JumpToEndOfTextbox) Textbox_String.JumpToEndOfTextbox = true;
+            if (!Textbox_String.JumpToEndOfTextbox) Textbox_String.JumpToEndOfTextbox = true; //make the text box jump to the end if it's still rendering text
             else
             {
                 Debug.Log("Moving to next screen!");
-                ProgressScreenEvent?.Invoke();
+                ProgressScreenEvent?.Invoke(); //exists to make any in-progress things (like a screen event) complete before moving on
                 ProgressScreenEvent = null; //wipe all delegates from the action before continuing
                 curScreenIndex++;
                 Debug.Log("current Scrindex: " + curScreenIndex + ", Final Screen? " + (curScreenIndex >= currentSequence.Screens.Length - 1));
-                if (curScreenIndex < currentSequence.Screens.Length) 
+                if (curScreenIndex < currentSequence.Screens.Length) //if we are still within the sequence
                 {
                     curScreen = currentSequence.Screens[curScreenIndex];
                     foreach (Screen_Event se in curScreen.ScreenActions) //do all screen events BEFORE processing any dialog. does not care if SM is paused or not.
                     {
                         se.DoShit();
                     }
-                    ///if (textRoutine != null) StopCoroutine(textRoutine);
                     textRoutine = StartCoroutine(RunThroughScreen(curScreen)); 
                 }
                 else if (curScreenIndex > currentSequence.Screens.Length - 1)//final screen of the sequence
                 {
-                    if (currentSequence.PlayerChoices.Length == 0)//if there are no valid next sequences, sum shit gone wrong
+                    if (currentSequence.PlayerChoices.Length == 0)//if there are no valid next sequences, sum shit gone wrong and it's probably end of game
                     {
                         Debug.LogWarning("No next sequence, game over?");
                         EndOfAllSequencesEvent?.Invoke();
@@ -214,9 +213,9 @@ namespace RenCSharp
                     {
                         foreach (Player_Choice pc in currentSequence.PlayerChoices)
                         {
-                            if (pc.RequireCondition && !pc.MetAllConditions()) continue;
+                            if (pc.RequireCondition && !pc.MetAllConditions()) continue; //keep going until we find the first sequence with met conditions
                             LoadASequence(pc.ResultingSequence);
-                            break;
+                            break; //bail out once we do find one that's good to load
                         }
                     }
                 }
@@ -258,7 +257,7 @@ namespace RenCSharp
                 {
                     yield return null;
                 }
-                //manually move on, we don't want to show off a true empty if we can't help it.
+                //automatically move on, we don't want to show off a true empty textbox if we can't help it.
                 Textbox_String.JumpToEndOfTextbox = true;
                 ProgressToNextScreen();
                 yield break;

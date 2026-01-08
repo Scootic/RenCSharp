@@ -19,7 +19,7 @@ namespace RenCSharp.Menus
         public override void OnMenuOpen()
         {
             saveMenu.SetActive(true);
-            openMenu = StartCoroutine(MenuOpenRoutine());
+            openMenu = Script_Manager.SM.StartCoroutine(MenuOpenRoutine());
         }
 
         private IEnumerator MenuOpenRoutine()

@@ -12,7 +12,7 @@ namespace RenCSharp.Combat.Player
         protected float t = 0;
         protected bool validToFire;
 
-        public bool Current, PlayerTurn, Fighting;
+        [HideInInspector] public bool Current, PlayerTurn, Fighting;
         public int RequiredBit => requiredBit;
         /// <summary>
         /// Always include .base before custom functionality, the base method handles timer logic.
