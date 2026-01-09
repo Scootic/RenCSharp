@@ -71,12 +71,12 @@ namespace RenCSharp.Sequences
 
         private void ResetToOG()
         {
-            Debug.Log("ActorPos pre-reset: " + actorObj.transform.position);
+            //Debug.Log("ActorPos pre-reset: " + actorObj.transform.position);
             valid = false;
             //if (motion != null) Script_Manager.SM.StopCoroutine(motion);
             //else Debug.LogWarning("There's no motion coroutine here! Very frightening.");
             //if it's a loop motion, the implication is that the actor should end in the place they started whenever the next screen happens
-            Debug.Log("ActorPos post-reset: " + actorObj.transform.position);
+            //Debug.Log("ActorPos post-reset: " + actorObj.transform.position);
             
         }
 

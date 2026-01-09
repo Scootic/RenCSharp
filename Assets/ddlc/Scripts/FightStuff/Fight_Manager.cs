@@ -55,6 +55,7 @@ namespace RenCSharp.Combat
         private void OnDisable()
         {
             Event_Bus.TryRemoveFloatEvent("EnemyDamageNumber");
+            //below two get added in bulksetup()
             Event_Bus.TryRemoveSingleObjEvent("AddAProjectile");
             Event_Bus.TryRemoveBoolEvent("EndAFight");
         }
@@ -101,6 +102,7 @@ namespace RenCSharp.Combat
             playerObj.SetActive(false);
         }
         #endregion
+
         #region FightHandling
         public void EndAFight(bool loss)
         {
@@ -318,7 +320,7 @@ namespace RenCSharp.Combat
         void SpawnEnemyDamageNumber(float damageTaken)
         {
             UI_Element fella = Object_Pooling.Spawn(enemyDamageNumber.gameObject, curEnemy.transform.position, Quaternion.identity).GetComponent<UI_Element>();
-            fella.transform.SetParent(curEnemy.transform);
+            fella.transform.SetParent(curEnemy.transform); //'cause canvas chicanery mostly
             StartCoroutine(Object_Pooling.DespawnOverTime(fella.gameObject, 2f));
             fella.Texts[0].text = "-" + damageTaken.ToString("n1");
             Vector3 lauchDir = Noise_Helper.SineNoiseVector(Mathf.Deg2Rad * minDeg, Mathf.Deg2Rad * maxDeg);
