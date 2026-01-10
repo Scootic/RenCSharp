@@ -484,7 +484,9 @@ namespace RenCSharp
         private IEnumerator WaitForScreenShot(SaveData sd, string fileName)
         {
             yield return new WaitForEndOfFrame();
-            sd.SaveScreenshot = ScreenCapture.CaptureScreenshotAsTexture().EncodeToPNG();
+            Texture2D raw = ScreenCapture.CaptureScreenshotAsTexture();
+            Texture2D scaled = Evil_Texture_Resizer.Scaled(raw, 640, 480, FilterMode.Bilinear);
+            sd.SaveScreenshot = scaled.EncodeToPNG();
             menuBase.SetActive(true);
             SaveLoad.Save(fileName, sd);
             saving = false;

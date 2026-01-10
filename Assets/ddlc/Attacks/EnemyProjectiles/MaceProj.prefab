@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 2711639654553654952}
   - component: {fileID: 512394676569696241}
   - component: {fileID: 8204080492186913528}
-  - component: {fileID: 8335507302958493363}
-  - component: {fileID: 8094239482754136957}
-  - component: {fileID: -783756840232840153}
+  - component: {fileID: 8238751090672788180}
+  - component: {fileID: -2506182205116807624}
+  - component: {fileID: -1317450562956184785}
+  - component: {fileID: 5761082792419645901}
   m_Layer: 6
-  m_Name: HomingArrowProj
+  m_Name: MaceProj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +39,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 80, y: 350}
+  m_SizeDelta: {x: 125, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &512394676569696241
 CanvasRenderer:
@@ -68,7 +69,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -567747794, guid: 209c5ca5e33b4e245a4382b22bfa8d5b, type: 3}
+  m_Sprite: {fileID: 1600773544, guid: 209c5ca5e33b4e245a4382b22bfa8d5b, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -78,7 +79,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8335507302958493363
+--- !u!114 &8238751090672788180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,19 +88,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 7609347526362195393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2604468c77b7f6469f369d228dc3878, type: 3}
+  m_Script: {fileID: 11500000, guid: 82e02c6ff7134a24898787f5e338918f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageOverTime: 0
   destroyOnHit: 1
-  baseDamage: 2
-  moveSpeed: 550
-  lifetime: 8
-  spawnSoundVol: 0.5
+  baseDamage: 4
+  moveSpeed: 500
+  lifetime: 10
+  spawnSoundVol: 0.4
   colliderEnableTime: 0.1
   spawnSound: {fileID: 8300000, guid: b40532dff090cf84b8986386702391a1, type: 3}
-  homeStrength: 2
---- !u!54 &8094239482754136957
+  bounces: 3
+  reboundStrength: 2
+  ignoreMass: 1
+--- !u!54 &-2506182205116807624
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,11 +125,11 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 56
   m_CollisionDetection: 0
---- !u!65 &-783756840232840153
+--- !u!65 &-1317450562956184785
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,5 +148,20 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 58, y: 175, z: 50}
-  m_Center: {x: 0, y: -87.5, z: 0}
+  m_Size: {x: 100, y: 100, z: 50}
+  m_Center: {x: 0, y: -77.3, z: 0}
+--- !u!114 &5761082792419645901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7609347526362195393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b38c79484264404596b443fb6c9a06f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dir: {x: 0, y: -1, z: 0}
+  strength: 300
+  ignoreMass: 1

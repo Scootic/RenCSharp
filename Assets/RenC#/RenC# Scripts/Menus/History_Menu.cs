@@ -1,4 +1,3 @@
-using RenCSharp.Sequences;
 using UnityEngine;
 
 namespace RenCSharp.Menus
@@ -9,25 +8,34 @@ namespace RenCSharp.Menus
         [SerializeField] private GameObject historyPrefab;
         [SerializeField] private GameObject historyMenu;
         int activeHistories = 0;
+        private Awaitable spawner;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        public override void OnMenuOpen()
+        public override async Awaitable OnMenuOpen()
         {
             historyMenu.SetActive(true);
             History t = Script_Manager.SM.CurrentHistory;
-
+            Debug.Log("History lengther: " + t.DialogBoxes.Length);
             for (int i = 0; i < t.HistoryLength; i++)
             {
-                if (t.SpeakerNames == null) continue;
-                UI_Element uie = Object_Factory.SpawnObject(historyPrefab, "History" + i, historyHolder).GetComponent<UI_Element>();
-                uie.Texts[0].text = t.SpeakerNames[i];
-                uie.Texts[1].text = t.DialogBoxes[i];
-                activeHistories++;
+                if (t.SpeakerNames[i] == null) continue;
+                spawner = SpawnHistory(i, t.SpeakerNames[i], t.DialogBoxes[i]);
+                await spawner;
+                await Awaitable.NextFrameAsync();
             }
+        }
+
+        private async Awaitable SpawnHistory(int i, string speaker, string dialoge)
+        {
+            UI_Element uie = Object_Factory.SpawnObject(historyPrefab, "History" + i, historyHolder).GetComponent<UI_Element>();
+            uie.Texts[0].text = speaker;
+            uie.Texts[1].text = dialoge;
+            activeHistories++;
         }
 
         // Update is called once per frame
         public override void OnMenuClose()
         {
+            //if (!spawner.IsCompleted) spawner.Cancel();
             for (int i = activeHistories - 1; i >= 0; i--)
             {
                 Object_Factory.RemoveObject("History" + i);

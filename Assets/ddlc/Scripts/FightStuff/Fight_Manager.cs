@@ -81,13 +81,15 @@ namespace RenCSharp.Combat
             playerTurn = false;
             BulkSetUp();
             combatTextbox.text = "";
-            Event_Bus.AddBoolEvent("EndAFight", EndAFight);
             StartCoroutine(RunThroughAttack(ea));
         }
 
         private void BulkSetUp()
         {
             Event_Bus.TryFireVoidEvent("PauseSequence");
+            Event_Bus.AddBoolEvent("EndAFight", EndAFight);
+            Event_Bus.TryFireFloatEvent("PlayerHealth", (float)Flag_Manager.GetFlag("PlayerCurHealth"));
+            Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (float)Flag_Manager.GetFlag("PlayerCurHealth") / (float)Flag_Manager.GetFlag("PlayerMaxHealth"));
             combatCanvas.SetActive(true);
             playerHolder.gameObject.SetActive(false);
             fighting = true;

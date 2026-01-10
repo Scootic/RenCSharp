@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Text.RegularExpressions;
 using RenCSharp.Sequences;
-using System.Collections;
 namespace RenCSharp.Menus
 {
     public class SaveLoad_Menu : Menu_Base
@@ -15,57 +14,70 @@ namespace RenCSharp.Menus
         [SerializeField] private byte sceneToLoadIndex = 2;
         private int activeDatas = 0;
         private string fileName = "SaveData";
-        private Coroutine openMenu;
-        public override void OnMenuOpen()
+        private Awaitable openMenu;
+        public override async Awaitable OnMenuOpen()
         {
             saveMenu.SetActive(true);
-            openMenu = Script_Manager.SM.StartCoroutine(MenuOpenRoutine());
+            openMenu = MenuOpenVoid();
+            await openMenu;
         }
 
-        private IEnumerator MenuOpenRoutine()
+        private async Awaitable MenuOpenVoid() //maybe eight frames?
         {
-            activeDatas = 0;
             int length = SaveLoad.AllSavesLength();
             string[] paths = SaveLoad.AllSavesPaths();
-            while (activeDatas < length) 
+            RectTransform rt = loadGameHolder.GetComponent<RectTransform>();
+            rt.anchoredPosition = new Vector2(-650, 0);
+            for (int j = activeDatas - 1; j >= 0; j--) //say screw it, and get rid of all objects before hand.
             {
-                SaveLoad.TryLoadFromPath(paths[activeDatas], out SaveData? s);
-                SaveData sd = (SaveData)s;
-                UI_Element loadElement = Object_Factory.SpawnObject(loadGamePrefab, "Save" + activeDatas, loadGameHolder).GetComponent<UI_Element>();
-                loadElement.Texts[0].text = sd.FileName != null ? sd.FileName : "SaveData";
-                if (sd.SaveScreenshot != null)
-                {
-                    Texture2D screenShotTexture = new Texture2D(2, 2);
-                    screenShotTexture.LoadImage(sd.SaveScreenshot);
-                    Sprite spr = Sprite.Create(screenShotTexture, new Rect(0, 0, screenShotTexture.width, screenShotTexture.height), new Vector2(0.5f, 0.5f));
-                    loadElement.Images[0].sprite = spr;
-                }
-                else
-                {
-                    loadElement.Images[0].sprite = defaultImage;
-                }
-
-                loadElement.Buttons[0].onClick.AddListener(delegate { Load(sd); });
-                loadElement.Buttons[1].onClick.AddListener(delegate { Delete(sd.FileName); });
-                activeDatas++;
-                yield return null; //yield frame before next save
+                Object_Factory.RemoveObject("Save" + j);
             }
+            activeDatas = 0;
+            await Awaitable.NextFrameAsync(); //give previous operation a frame of breathing room, lmao.
+            for(int i = 0; i < length; i++)
+            {
+                if (!saveMenu.activeInHierarchy) break; //just stop ts if we aren't even in the save menu no more
+                SaveData sd = (SaveData) await SaveLoad.TryLoadFromPathAsync(paths[i]);
+                await SpawnLoadButton(sd, i);
+                await Awaitable.NextFrameAsync();
+            }
+        }
+
+        private async Awaitable SpawnLoadButton(SaveData sd, int i)
+        {
+            GameObject go = await Object_Factory.SpawnObjectAsync(loadGamePrefab, "Save" + i, loadGameHolder);
+            UI_Element loadElement = go.GetComponent<UI_Element>();
+            loadElement.Texts[0].text = sd.FileName != null ? sd.FileName : "SaveData";
+            await Awaitable.NextFrameAsync();
+            if (sd.SaveScreenshot != null)
+            {
+                Texture2D screenShotTexture = new Texture2D(2, 2);
+                await Awaitable.NextFrameAsync();
+                screenShotTexture.LoadImage(sd.SaveScreenshot);
+                await Awaitable.NextFrameAsync();
+                Sprite spr = Sprite.Create(screenShotTexture, new Rect(0, 0, screenShotTexture.width, screenShotTexture.height), new Vector2(0.5f, 0.5f));
+                await Awaitable.NextFrameAsync();
+                loadElement.Images[0].sprite = spr;
+            }
+            else
+            {
+                loadElement.Images[0].sprite = defaultImage;
+            }
+
+            loadElement.Buttons[0].onClick.AddListener(delegate { Load(sd); });
+            loadElement.Buttons[1].onClick.AddListener(delegate { Delete(sd.FileName); });
+            activeDatas++;
         }
 
         public override void OnMenuClose()
         {
-            if(openMenu != null) StopCoroutine(openMenu);
-            for (int i = activeDatas - 1; i >= 0; i--) 
-            {
-                Object_Factory.RemoveObject("Save" + i);
-            }
-            activeDatas = 0;
+            Debug.Log("Save menu closed!");
             saveMenu.SetActive(false);
         }
 
         private void Load(SaveData sd)
         {
-            if (openMenu != null) StopCoroutine(openMenu);
+            //if (!openMenu.IsCompleted) openMenu.Cancel();
             if (Script_Manager.SM != null)
             {
                 Script_Manager.SM.LoadShit(sd);
@@ -86,11 +98,11 @@ namespace RenCSharp.Menus
             }
         }
 
-        private void Delete(string saveFileName)
+        private async Awaitable Delete(string saveFileName)
         {
             SaveLoad.DeleteFile(saveFileName);
             OnMenuClose();
-            OnMenuOpen();
+            await OnMenuOpen();
         }
 
         public void SetFileName(string s)

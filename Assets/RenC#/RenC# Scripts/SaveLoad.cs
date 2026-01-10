@@ -10,6 +10,7 @@ namespace RenCSharp
     /// </summary>
     public static class SaveLoad
     {
+        private static BinaryFormatter bf = new BinaryFormatter();
         /// <summary>
         /// Save a SaveData struct to a file in the persistent datapath.
         /// </summary>
@@ -21,7 +22,6 @@ namespace RenCSharp
             sd.FileName = fileName;
             Debug.Log("Saving data to: " + filePath);
             FileStream fs = new FileStream(filePath, FileMode.Create);
-            BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(fs, sd);
             fs.Close();
         }
@@ -34,7 +34,6 @@ namespace RenCSharp
             string filePath = Application.persistentDataPath + "/persistentFlags.fla";
             Debug.Log("Saving Persistent Flags!");
             FileStream fs = new FileStream(filePath, FileMode.Create);
-            BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(fs, ft);
             fs.Close();
         }
@@ -50,13 +49,37 @@ namespace RenCSharp
             sd = new SaveData();
             if (!File.Exists(filePath)) { Debug.LogWarning("No file at: " + filePath); return false; }
 
-            BinaryFormatter bf = new BinaryFormatter();
             FileStream fs = new FileStream(filePath, FileMode.Open);
             sd = (SaveData) bf.Deserialize(fs);
             Debug.Log("Found save data at: " + filePath);
             fs.Close();
             return true;
         }
+        /// <summary>
+        /// Uses awaitables to get some save data. ~20fps in the middle of loading thanks to offloading some stuffs to BG thread.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns>The save data at filePath</returns>
+        
+        public static async Awaitable<SaveData?> TryLoadFromPathAsync(string filePath)
+        {
+            await Awaitable.BackgroundThreadAsync();
+            SaveData? sd = null;
+            if (!File.Exists(filePath) || !filePath.Contains(".sav"))
+            {
+                Debug.LogWarning("No/Bad file at: " + filePath);
+                return null;
+            }
+            //FileStream fs = new FileStream(filePath, FileMode.Open);
+            using (FileStream fs = File.Open(filePath, FileMode.Open))
+            {
+                sd = (SaveData?)bf.Deserialize(fs);
+            }
+            //fs.Close();
+            await Awaitable.MainThreadAsync();
+            return sd;
+        }
+
         /// <summary>
         /// Should make sure to only return files that we know for a fact are save datas. It should probably give null complaints
         /// in the event of finding non save files in the persistent datapath.
@@ -67,13 +90,14 @@ namespace RenCSharp
         public static bool TryLoadFromPath(string filePath, out SaveData? sd)
         {
             if(!File.Exists(filePath) || !filePath.Contains(".sav")) { Debug.LogWarning("No/Bad file at: " + filePath); sd = null; return false; }
-            BinaryFormatter bf = new BinaryFormatter();
+
             FileStream fs = new FileStream(filePath, FileMode.Open);
             sd = (SaveData) bf.Deserialize(fs);
             fs.Close();
             if (sd == null) return false;
             return true;
         }
+
         /// <summary>
         /// Get the persistent flags from the persistentFlags file. Since they transcend specific save files, we always look for
         /// them at the same file location: Application.persistentDataPath/persistentFlags.fla
@@ -83,7 +107,7 @@ namespace RenCSharp
         {
             FlagToken ft = new();
             if (!File.Exists(Application.persistentDataPath + "/persistentFlags.fla")) return ft;
-            BinaryFormatter bf = new BinaryFormatter();
+
             FileStream fs = new FileStream(Application.persistentDataPath + "/persistentFlags.fla", FileMode.Open);
             ft = (FlagToken)bf.Deserialize(fs);
             fs.Close();
@@ -130,7 +154,7 @@ namespace RenCSharp
         }
 
         /// <summary>
-        /// Specifically used to delete certain save data files, not any file at all.
+        /// Specifically used to delete certain save data files, not any file at all contrary to the name.
         /// </summary>
         /// <param name="fileName">File name of save you want gone, not filepath!</param>
         public static void DeleteFile(string fileName)

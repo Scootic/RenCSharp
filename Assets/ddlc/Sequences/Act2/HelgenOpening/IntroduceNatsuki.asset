@@ -109,12 +109,65 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
+    ScreenActions:
+    - rid: 9079474771628392448
+    - rid: 9079474771628392449
+  - speaker: {fileID: 11400000, guid: 89f7d0b97106b6448939eb57dd9aa235, type: 2}
+    dialog: We're here. Your orders, captain?
+    ScreenActions:
+    - rid: 9079474771628392450
+    - rid: 9079474771628392451
+    - rid: 9079474771628392452
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Hmm...
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (The bandits have the high ground, so...)
+    ScreenActions:
+    - rid: 9079474771628392504
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: 'First, we need to secure the entrance of the cave. '
+    ScreenActions:
+    - rid: 9079474771628392505
+  - speaker: {fileID: 11400000, guid: 89f7d0b97106b6448939eb57dd9aa235, type: 2}
+    dialog: So, should we charge in?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Uhh...
+    ScreenActions:
+    - rid: 9079474771628392506
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (What do you think?)
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474771628392507
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Alright.)
+    ScreenActions:
+    - rid: 9079474771628392508
+    - rid: 9079474771628392519
+    - rid: 9079474771628392544
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
-    requireCondition: 0
-    conditions: []
+    resultingSequence: {fileID: 11400000, guid: 53161404e43e4ac4e853b14448666eca, type: 2}
+    requireCondition: 1
+    conditions:
+    - flagToCheck: garbage
+      operation: 0
+      desiredValue: 0
+      persistent: 0
+      bitWise: 0
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: d05472d0827c31b459f3fdc0fe3e0df7, type: 2}
+    requireCondition: 1
+    conditions:
+    - flagToCheck: garbage
+      operation: 0
+      desiredValue: 1
+      persistent: 0
+      bitWise: 0
   myself:
     m_AssetGUID: 88daba205045f164782945e071a2bf35
     m_SubObjectName: 
@@ -219,3 +272,102 @@ MonoBehaviour:
         - skySmug
         - skySmug
         - terror
+    - rid: 9079474771628392448
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeTime: 0.5
+    - rid: 9079474771628392449
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - {fileID: 21300000, guid: 69eadcb8c76e61942b13e79155807026, type: 3}
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079474771628392450
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 400, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - surprise
+        - EMPTY
+    - rid: 9079474771628392451
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -400, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - stern
+        - EMPTY
+    - rid: 9079474771628392452
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 6e8f3b41616a8444ba8d4984e723f1ad, type: 3}
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9079474771628392504
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - closeEyeFrown
+    - rid: 9079474771628392505
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - sternSpeak
+    - rid: 9079474771628392506
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - sternSweat
+    - rid: 9079474771628392507
+      type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        buttonNames:
+        - Go in!
+        - Hang back, use archery.
+        flagsToAlter:
+        - garbage
+        - garbage
+        newFlagValues: 0000000001000000
+        increment: 0
+        persistent: 0
+    - rid: 9079474771628392508
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - stern
+    - rid: 9079474771628392519
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerDamage
+        flagValue: 7
+        increment: 0
+        persistent: 0
+    - rid: 9079474771628392544
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 20
+        increment: 0
+        persistent: 0

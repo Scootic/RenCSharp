@@ -4,7 +4,7 @@ using RenCSharp.Combat.Interfaces;
 namespace RenCSharp.Combat.Enemies
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Physics_Projectile : Base_Projectile
+    public class Physics_Projectile : Base_Projectile, IDespawn
     {
         [Header("Physics")]
         [SerializeField] private byte bounces = 5;
@@ -33,7 +33,8 @@ namespace RenCSharp.Combat.Enemies
                 Vector3 dirToOther = other.transform.position - transform.position;
                 dirToOther.Normalize();
                 Physics.Raycast(transform.position, dirToOther, out RaycastHit shit, 5f);
-                Vector3 reflection = TrigHelper.ReflectDirection(rb.linearVelocity, shit.normal);
+                Vector3 reflection = Vector3.Reflect(rb.linearVelocity, shit.normal);
+                reflection *= -1;
                 Debug.Log("Reflection: " + reflection);
                 UpdateMoveDir(reflection * reboundStrength);
             }
@@ -47,6 +48,12 @@ namespace RenCSharp.Combat.Enemies
         {
             if (rb.linearVelocity == Vector3.zero) return;
             transform.rotation = TrigHelper.GetQuaternion(rb.linearVelocity.normalized);
+        }
+
+        public override void OnDespawn(bool playerTurn)
+        {
+            //reset velo?
+            rb.linearVelocity = Vector3.zero;
         }
     }
 }

@@ -5,8 +5,7 @@ namespace RenCSharp.Combat.Enemies
     public class Homing_Projectile : Base_Projectile
     {
         [Header("Homing BS")]
-        [SerializeField, Range(0,1)] private float homeStrength = 1;
-        [SerializeField, Range(0,1)] private float distanceWeakener = 0.2f;
+        [SerializeField, Min(0)] private float homeStrength = 1;
         private Transform playerTransform;
 
         protected override void OnEnable()
@@ -22,9 +21,9 @@ namespace RenCSharp.Combat.Enemies
         {
             base.Update();
             Vector3 dirToPlayer = playerTransform.position - transform.position;
-            float distanceFromPlayer = dirToPlayer.magnitude * distanceWeakener;
             dirToPlayer.Normalize();
-            Vector3 t = Vector3.Lerp(moveDir, dirToPlayer, homeStrength * Time.deltaTime * distanceFromPlayer);
+            float dot = Vector3.Dot(moveDir, dirToPlayer);
+            Vector3 t = Vector3.Lerp(moveDir, dirToPlayer, homeStrength * Time.deltaTime * Mathf.Abs(dot));
             UpdateMoveDir(t);
         }
     }

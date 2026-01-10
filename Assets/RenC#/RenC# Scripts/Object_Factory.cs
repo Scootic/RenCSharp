@@ -29,6 +29,16 @@ namespace RenCSharp
             return t;
         }
 
+        public static async Awaitable<GameObject> SpawnObjectAsync(GameObject prefab, string name, Transform parent = null)
+        {
+            await Awaitable.MainThreadAsync();
+            if (activeGameObjects.ContainsKey(name)) return null;
+            GameObject t = GameObject.Instantiate(prefab, parent);
+            t.name = name;
+            activeGameObjects.Add(name, t);
+            return t;
+        }
+
         public static void RemoveObject(string name)
         {
             if (activeGameObjects.ContainsKey(name))
