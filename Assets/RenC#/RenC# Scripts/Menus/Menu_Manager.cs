@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RenCSharp.Menus
 {
-    public class Menu_Manager : MonoBehaviour
+    public sealed class Menu_Manager : MonoBehaviour
     {
         public static Menu_Manager MM;
         private Menu_Base curMenu;

@@ -509,7 +509,7 @@ namespace RenCSharp
             curHist = sd.CurrentHistory;
 
             //grab playername from file
-            playerName = sd.PlayerName;
+            SetPlayerName(sd.PlayerName);
 
             //grab assets
             curScreenIndex = sd.CurrentScreenIndex;
@@ -684,7 +684,11 @@ namespace RenCSharp
         }
         private void SetPlayerName(string s)
         {
-            if(s!= string.Empty) playerName = s;
+            if (s != string.Empty) 
+            { 
+                playerName = s;
+                Textbox_String.AddReplacableText(playerTag, playerName);
+            }
         }
         #endregion
     }

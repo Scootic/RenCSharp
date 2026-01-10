@@ -2,10 +2,12 @@ using System.Collections;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 namespace RenCSharp
 {
     public static class Textbox_String
     {
+        private static Dictionary<string, string> replacerTexts = new();
         /// <summary>
         /// Since there's only one textbox open at a time, I hope, doing things with static parameters SHOULD work.
         /// </summary>
@@ -26,7 +28,15 @@ namespace RenCSharp
         {
             float t = 0;
             int i = 0;
-            char[] dialogchars = endText.ToCharArray();
+            string amended = endText;
+
+            foreach(KeyValuePair<string,string> kvp in replacerTexts) //by the end of this, replace generic guys like {mc} with the actual player's name
+            {
+                Debug.Log("Doing a stupid replacering!");
+                amended = Regex.Replace(amended, kvp.Key, kvp.Value);
+            }
+
+            char[] dialogchars = amended.ToCharArray();
             textBox.text = ""; //empty box before repopulating below
             JumpToEndOfTextbox = false;
 
@@ -60,7 +70,7 @@ namespace RenCSharp
                         }
                         else //remove tags from the final display if it's being handled by tag parser
                         {
-                            endText = Regex.Replace(endText, tag, "");
+                            amended = Regex.Replace(amended, tag, "");
                         }
                     }
                     else //just add the char and move on if it's a regular ah character
@@ -74,7 +84,7 @@ namespace RenCSharp
             }
 
             JumpToEndOfTextbox = true;
-            textBox.text = TagParser.CleanOutTags(endText);
+            textBox.text = TagParser.CleanOutTags(amended);
         }
         /// <summary>
         /// Stops any textbox from displaying new chars, hover on current string instead.
@@ -83,6 +93,25 @@ namespace RenCSharp
         public static void PauseTextbox(bool stop)
         {
             pausedTextbox = stop;
+        }
+
+        /// <summary>
+        /// Strings fed into the RunThroughText IEnumerator are parsed by a dictionary of strings. It will replace any instance
+        /// of the pattern that's the key, with the pattern that's the value. Regex moment. This adds a KVP to that dictionary.
+        /// </summary>
+        /// <param name="replaced">The string pattern that will be replaced.</param>
+        /// <param name="replacer">What the replaced string pattern will be replaced by.</param>
+        public static void AddReplacableText(string replaced, string replacer)
+        {
+            if (!replacerTexts.ContainsKey(replaced))
+            {
+                replacerTexts.Add(replaced, replacer);
+            }
+            else
+            {
+                Debug.LogWarning("The replacer texts dictionary already contains: " + replaced + ". Setting value to: " + replacer);
+                replacerTexts[replaced] = replacer;
+            }
         }
     }
 }
