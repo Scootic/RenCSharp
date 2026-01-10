@@ -98,11 +98,11 @@ namespace RenCSharp.Menus
             }
         }
 
-        private async Awaitable Delete(string saveFileName)
+        private void Delete(string saveFileName)
         {
             SaveLoad.DeleteFile(saveFileName);
             OnMenuClose();
-            await OnMenuOpen();
+            OnMenuOpen();
         }
 
         public void SetFileName(string s)
