@@ -32,7 +32,7 @@ namespace RenCSharp
 
             foreach(KeyValuePair<string,string> kvp in replacerTexts) //by the end of this, replace generic guys like {mc} with the actual player's name
             {
-                Debug.Log("Doing a stupid replacering!");
+                //Debug.Log("Doing a stupid replacering!");
                 amended = Regex.Replace(amended, kvp.Key, kvp.Value);
             }
 
@@ -89,7 +89,7 @@ namespace RenCSharp
         /// <summary>
         /// Stops any textbox from displaying new chars, hover on current string instead.
         /// </summary>
-        /// <param name="t">What we set the paused value to. True to stop, False to go.</param>
+        /// <param name="stop">What we set the paused value to. True to stop, False to go.</param>
         public static void PauseTextbox(bool stop)
         {
             pausedTextbox = stop;
