@@ -20,7 +20,7 @@ MonoBehaviour:
     - rid: 9142197338057736267
     - rid: 9142197338057736268
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: Grh... what time is it?
+    dialog: <Speed=1>Grh...</Speed> what time is it?
     ScreenActions:
     - rid: 9142197338057736269
   - speaker: {fileID: 0}
@@ -194,6 +194,7 @@ MonoBehaviour:
         position: {x: 0, y: 0, z: 0}
         environmental: 0
         loop: 0
+        stopOnScreenProgress: 1
         loopDuration: 1
     - rid: 9142197338057736275
       type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}

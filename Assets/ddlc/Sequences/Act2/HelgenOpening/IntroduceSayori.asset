@@ -271,6 +271,7 @@ MonoBehaviour:
     dialog: Uh, Monika...?
     ScreenActions:
     - rid: 9079474749396484247
+    - rid: 9079474795981832308
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Yeah?
     ScreenActions:
@@ -287,6 +288,7 @@ MonoBehaviour:
       their valuables.
     ScreenActions:
     - rid: 9079474749396484250
+    - rid: 9079474795981832309
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Oh! Thanks, Monika!
     ScreenActions:
@@ -302,6 +304,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9079474749396484254
     - rid: 9079474749396484255
+    - rid: 9079474795981832310
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Of course, Madame President!
     ScreenActions:
@@ -1212,3 +1215,21 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         fadeTime: 0.5
+    - rid: 9079474795981832308
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9079474795981832309
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 07169a44e565b2e46a97c1e0d18c4997, type: 3}
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079474795981832310
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 63856e1ac10661c41a9339bc19594687, type: 3}
+        fadeTime: 2
+        setToSameTime: 0

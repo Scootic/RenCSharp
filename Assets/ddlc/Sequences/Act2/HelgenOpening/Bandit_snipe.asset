@@ -35,6 +35,39 @@ MonoBehaviour:
     - rid: 9079474771628392571
   - speaker: {fileID: 0}
     dialog: 
+    ScreenActions:
+    - rid: 9079474795981832263
+    - rid: 9079474795981832264
+    - rid: 9079474795981832262
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474795981832267
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474795981832269
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474795981832271
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474795981832274
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474795981832276
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Okay, everyone! Head count!
+    ScreenActions:
+    - rid: 9079474795981832278
+    - rid: 9079474795981832279
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: <font=futura> Monika starts counting, noting that one guard is dead,
+      one guard has taken a few too many arrows to continue fighting, and that four
+      bandits have died.
     ScreenActions: []
   playerChoices:
   - choiceText: 
@@ -66,7 +99,7 @@ MonoBehaviour:
     - rid: 9079474771628392571
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        enemyToLoad: {fileID: 0}
+        enemyToLoad: {fileID: 11400000, guid: d870a9ff44ecda94d99d7847a9e2c067, type: 2}
     - rid: 9079474771628392740
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -115,3 +148,280 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         loopOnScreen: 0
+    - rid: 9079474795981832262
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 2
+            desiredValue: 10
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: Oh no! Monika, are you okay?!?
+            ScreenActions:
+            - rid: 9079474795981832265
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 2
+            desiredValue: 15
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (That could've gone better...)
+            ScreenActions: []
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 3
+            desiredValue: 15
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: <b>You</b> really <i>did</i> watch over me, didn't <b>you</b>?
+            ScreenActions:
+            - rid: 9079474795981832266
+    - rid: 9079474795981832263
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -400, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - closeEyeFrown
+        - EMPTY
+    - rid: 9079474795981832264
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 400, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - surprise
+        - EMPTY
+    - rid: 9079474795981832265
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - crySad
+    - rid: 9079474795981832266
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - closeEyeSmile
+    - rid: 9079474795981832267
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 2
+            desiredValue: 10
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+            dialog: <font=futura>Sayori goes over to Monika, being attentive to her
+              wounds.
+            ScreenActions:
+            - rid: 9079474795981832268
+    - rid: 9079474795981832268
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: -600, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        loopOnScreen: 0
+    - rid: 9079474795981832269
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 2
+            desiredValue: 10
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+            dialog: <font=futura>Much to both of their surprise, a yellow light comes
+              from Sayori's hands, closing Monika's wounds.
+            ScreenActions:
+            - rid: 9079474795981832270
+    - rid: 9079474795981832270
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - blankSpeak
+    - rid: 9079474795981832271
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 2
+            desiredValue: 10
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: Sayori? What did you do?
+            ScreenActions:
+            - rid: 9079474795981832272
+    - rid: 9079474795981832272
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - surpriseSpeak
+    - rid: 9079474795981832274
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 2
+            desiredValue: 10
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: I... I don't know, but are you feeling better now?
+            ScreenActions:
+            - rid: 9079474795981832275
+    - rid: 9079474795981832275
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 300, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        loopOnScreen: 0
+    - rid: 9079474795981832276
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 2
+            desiredValue: 10
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: ... yeah. I do feel better, thanks I guess.
+            ScreenActions:
+            - rid: 9079474795981832277
+    - rid: 9079474795981832277
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - pitySmile
+    - rid: 9079474795981832278
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - grin
+    - rid: 9079474795981832279
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
