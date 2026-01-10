@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
+using RenCSharp.Tags;
 namespace RenCSharp
 {
     public static class Textbox_String

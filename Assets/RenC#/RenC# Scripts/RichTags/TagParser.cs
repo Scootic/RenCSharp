@@ -1,14 +1,16 @@
-using EXPERIMENTAL;
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using UnityEngine;
-namespace RenCSharp
+namespace RenCSharp.Tags
 {
     public class TagParser
     {
-        private static Type tp = typeof(TagParser);
+        private static Assembly tagAssembly = Assembly.GetAssembly(typeof(TagParser));
+        private static Type[] allTags = tagAssembly.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(Base_Tag))).ToArray();
         private static TagParser instance = new TagParser();
+
         /// <summary>
         /// Removes any tag parser tags from a string. Ideally also fires those tag's affects, so that any expected behavior still occurs.
         /// </summary>
@@ -27,6 +29,12 @@ namespace RenCSharp
                     string possibleTag = "";
                     while (chars[i] != '>') //probably dangerous if you just include a random ass '<'. careful!
                     {
+                        if(i >= chars.Length)
+                        {
+                            Debug.LogWarning("The tag parser found a random '<' symbol, that never closes! " +
+                                "Very scary. You're going to be getting an empty string for this!");
+                            return sToReturn;
+                        }
                         possibleTag += chars[i];
                         i++;
                     }
@@ -37,6 +45,7 @@ namespace RenCSharp
 
             return sToReturn;
         }
+
         /// <summary>
         /// Find if we have ourselves a valid tag parser tag. Fire that mf's functionality if we do.
         /// </summary>
@@ -44,6 +53,7 @@ namespace RenCSharp
         /// <returns>True if we found a valid tag, false otherwise.</returns>
         public static bool Parse(string tag)
         {
+            Debug.Log("Length of valid tag types: " + allTags.Length);
             string[] split = Regex.Split(tag, "[=,]"); //0 should be function name, 1+ is arguments
             string[] splitNoFirst = new string[split.Length - 1];
             for (int i = 1; i < split.Length; i++)
@@ -51,8 +61,8 @@ namespace RenCSharp
                 splitNoFirst[i - 1] = split[i];
             }
 
-            split[0] = Regex.Replace(split[0], "/", "End");
-            split[0] = Regex.Replace(split[0], "[<>]", "");
+            split[0] = Regex.Replace(split[0], "/", "End"); //swap out the slash symbol for "End" which is what it represents
+            split[0] = Regex.Replace(split[0], "[<>]", ""); //get rid of tag wrapper symbols
 
             for(int i = 0; i < splitNoFirst.Length; i++)
             {
@@ -60,24 +70,20 @@ namespace RenCSharp
             }
             
             Debug.Log("The split tag: " + split[0]);
-            MethodInfo method = tp.GetMethod(split[0], BindingFlags.NonPublic | BindingFlags.Static);
-            Debug.Log(method);
-            if (method != null) { method.Invoke(instance, splitNoFirst); return true; }
-            else { return false; }
-        }
+            MethodInfo method;
 
-        protected static void Speed(string value)
-        {
-            if (float.TryParse(value, out float valley))
+            foreach(Type T in allTags) //check every single type to see if our method exists. probably suboptimal, but screw finding a better way.
             {
-                valley = 1 / (valley * 10);
-                Event_Bus.TryFireDoubleObjEvent("SMSpeed", (object)valley, (object)false);
+                method = T.GetMethod(split[0], BindingFlags.NonPublic | BindingFlags.Static);
+                Debug.Log("This type (" + T.FullName + "), says method: " + method);
+                if(method != null) 
+                {
+                    method.Invoke(instance, splitNoFirst); //invoke on the instance obj?
+                    return true;
+                }
             }
-        }
 
-        protected static void EndSpeed()
-        {
-            Event_Bus.TryFireDoubleObjEvent("SMSpeed", (object)0f, (object)true);
+            return false;
         }
     }
 }
