@@ -36,7 +36,7 @@ namespace RenCSharp
                 //Debug.Log("Doing a stupid replacering!");
                 amended = Regex.Replace(amended, kvp.Key, kvp.Value);
             }
-
+            amended = TagParser.CleanOutFlags(amended);
             char[] dialogchars = amended.ToCharArray();
             textBox.text = ""; //empty box before repopulating below
             JumpToEndOfTextbox = false;
