@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-namespace RenCSharp
+namespace EXPERIMENTAL
 {
     /// <summary>
     /// A static class for referencing and comparing flags. Stores flags in a dictionary (based on whether or not you want it to be persistent)
@@ -66,31 +66,15 @@ namespace RenCSharp
             }
         }
         /// <summary>
-        /// Takes a flag token, and fills in one of the dictionaries based on the flag token's data. 
+        /// Takes a dictionary, and replaces one of the dictionaries based on the flag token's data. 
         /// </summary>
-        /// <param name="ft">The flag token being parsed.</param>
+        /// <param name="dict">The dictionary being passed in</param>
         /// <param name="persistent">Whether or not we should be loading into the curFlags dict, or the persistentFlags dict.</param>
-        public static void ReceiveFlagToken(FlagToken ft, bool persistent = false)
+        public static void ReceiveFlagToken(Dictionary<string, int> dict, bool persistent = false)
         {
             Dictionary<string, int> t = new();
-            if (!persistent)
-            {
-                if (ft.FlagValues.Count == 0) { curFlags = new(); return; }
-                for (int i = 0; i < ft.FlagValues.Count; i++)
-                {
-                    t.Add(ft.FlagIDs[i], ft.FlagValues[i]);
-                }
-                curFlags = t;
-            }
-            else
-            {
-                if(ft.FlagValues.Count == 0) { persistentFlags = new(); return; }
-                for (int i = 0; i < ft.FlagValues.Count; i++)
-                {
-                    t.Add(ft.FlagIDs[i], ft.FlagValues[i]);
-                }
-                persistentFlags = t;
-            }
+            if (!persistent) curFlags = dict;
+            else persistentFlags = dict;
         }
     }
 }

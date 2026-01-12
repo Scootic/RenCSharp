@@ -86,8 +86,8 @@ namespace RenCSharp
 
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder);
             Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform);//horrid
-
-            Flag_Manager.ReceiveFlagToken(SaveLoad.LoadPersistentFlags(), true); //safety thing, make sure we have persistent flags
+            FlagToken ft = new FlagToken();
+            Flag_Manager.ReceiveFlagToken(ft.FlagTokenToDictionary(SaveLoad.LoadPersistentFlags()), true); //safety thing, make sure we have persistent flags
 
             curHist = new History(historyLength);
             textSpeed = PlayerPrefs.GetFloat("TextSpeed");
@@ -503,7 +503,7 @@ namespace RenCSharp
 
             //grab flags
             FlagToken ft = sd.CurrentFlags;
-            Flag_Manager.ReceiveFlagToken(ft, false);
+            Flag_Manager.ReceiveFlagToken(ft.FlagTokenToDictionary(ft), false);
 
             //grab history
             curHist = sd.CurrentHistory;
