@@ -61,6 +61,7 @@ namespace RenCSharp
             InitSFX(); // now that the manager is up, initialize all needed audio sources
             DontDestroyOnLoad(gameObject);
         }
+
         #region 2DSFX
         /// <summary>
         /// Play a 2D sound effect.
