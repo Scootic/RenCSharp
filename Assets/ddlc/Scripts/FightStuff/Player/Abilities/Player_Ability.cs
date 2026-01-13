@@ -9,10 +9,15 @@ namespace RenCSharp.Combat.Player
         [SerializeField, Tooltip("Handles whether or not an ability is unlocked by consulting the stupid " +
             "flag_manager about it. Obviously, a bitwise operation, so please use binary ah numbers.")] protected int requiredBit = 0;
         [SerializeField, Tooltip("To be used by abilities that reference flags for certain values, like damage or resistances.")] protected string associatedTag;
-        protected float t = 0;
+        [SerializeField] protected bool firableOnSelect = false;
+        protected float t;
         protected bool validToFire;
 
         [HideInInspector] public bool Current, PlayerTurn, Fighting;
+
+        public float SetTimer { set { t = value; } }
+
+        public bool FireableOnSelect => firableOnSelect;
         public int RequiredBit => requiredBit;
         /// <summary>
         /// Always include .base before custom functionality, the base method handles timer logic.

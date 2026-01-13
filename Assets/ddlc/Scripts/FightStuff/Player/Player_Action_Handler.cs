@@ -42,6 +42,7 @@ namespace RenCSharp.Combat.Player
         {
             Player_Input.Ability = null; //clear out previous ability, if applicable
             curAbility = pa;
+            if (curAbility.FireableOnSelect) curAbility.SetTimer = 99999999f;
             Player_Input.Ability += pa.FireAbility;
         }
 

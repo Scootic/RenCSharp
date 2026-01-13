@@ -503,13 +503,42 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: After taking care of the mage, I look to see that Yuri and Monika have
       successfully taken care of the other one.
+    ScreenActions:
+    - rid: 9079474842872840344
+    - rid: 9079474842872840345
+  - speaker: {fileID: 0}
+    dialog: I whip my head around at the sound of banging on the door, while Sayori
+      and Natsuki appear to be recoiling from some sort of impact...
+    ScreenActions:
+    - rid: 9079474842872840373
+    - rid: 9079474842872840374
+    - rid: 9079474842872840375
+    - rid: 9079474842872840376
+  - speaker: {fileID: 0}
+    dialog: It doesn't take a genius to figure out what's going on.
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Monika, Yuri! We're helping keep the door shut!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: The three of us join Sayori and Natsuki's efforts.
+    ScreenActions:
+    - rid: 9079474842872840350
+    - rid: 9079474842872840351
+  - speaker: {fileID: 0}
+    dialog: With all five of us providing resistance, the bandits outside seem to
+      give up after just under a minute of banging on the door.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions:
+    - rid: 9079474842872840352
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: e63c920dcb3d6a54f829c47b17a5e80a, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -1453,7 +1482,7 @@ MonoBehaviour:
     - rid: 9079474842872840325
       type: {class: Start_Single_Attack, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        attackToRunThrough: {fileID: 11400000, guid: e7c6152489b3f15419843421db29e35c, type: 2}
+        attackToRunThrough: {fileID: 11400000, guid: 1a3fa6f672261d845a697a98581c52bf, type: 2}
     - rid: 9079474842872840326
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1533,3 +1562,79 @@ MonoBehaviour:
         flagValue: 10
         increment: 0
         persistent: 0
+    - rid: 9079474842872840344
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - closeEyeSpeak
+    - rid: 9079474842872840345
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - sighSpeak
+    - rid: 9079474842872840350
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -600, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - determinedSpeak
+        - EMPTY
+    - rid: 9079474842872840351
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 600, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - sternSpeak
+        - EMPTY
+    - rid: 9079474842872840352
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9079474842872840373
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeTime: 0.5
+    - rid: 9079474842872840374
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        fadeTime: 0.5
+    - rid: 9079474842872840375
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -200, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - '><Shock'
+        - EMPTY
+    - rid: 9079474842872840376
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 200, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - '><Shock'
+        - EMPTY
