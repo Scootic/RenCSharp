@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: BleakFallsBandit
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 925c70fdaa26d464b8f0ab97620eb9ee, type: 2}
+  - {fileID: 11400000, guid: 307fd18508231434780a6f4d7d3d9a3b, type: 2}
+  - {fileID: 11400000, guid: a4244c4dae955b6418be12fca2420d0d, type: 2}
+  scriptedFlavorTexts:
+  - The bandit's hands fill with fire.
+  - The bandit's hands become frigid.
+  - The left hand remains cold, while the right hand becomes hot...?!?
+  randomAttacks:
+  - {fileID: 11400000, guid: a4ce3c135536ada4db37869f887b06b9, type: 2}
+  randomFlavorTexts:
+  - The bandit seems to have run out of magicka!
+  maxHealth: 35
+  visualInformation:
+  - {fileID: 21300000, guid: 06e230dd874e3e14e9ed5db440c813f7, type: 3}
+  defeatText: The two bandits have been slain.
+  nameText: Bandit
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
