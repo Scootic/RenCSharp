@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using EXPERIMENTAL;
+using UnityEngine.UI;
 using RenCSharp.Combat.Interfaces;
 namespace RenCSharp.Combat.Enemies
 {
@@ -16,6 +17,7 @@ namespace RenCSharp.Combat.Enemies
         [SerializeField, Range(0, 1)] protected float spawnSoundVol = 1;
         [SerializeField, Min(0.1f)] protected float colliderEnableTime = 0.1f;
         [SerializeField] protected AudioClip spawnSound;
+        [SerializeField] protected Image sprite;
         protected IDamage receiver;
         protected Vector3 moveDir;
         protected Collider myCol;
@@ -35,13 +37,26 @@ namespace RenCSharp.Combat.Enemies
         protected virtual void OnEnable()
         {
             myCol = GetComponent<Collider>();
+            if (sprite == null) sprite = GetComponentInChildren<Image>();
             StartCoroutine(EnableTriggerOverTime());
         }
 
         protected virtual IEnumerator EnableTriggerOverTime()
         {
             myCol.enabled = false;
-            yield return new WaitForSeconds(colliderEnableTime);
+            Vector3 endScale = transform.localScale;
+            Color endC = sprite.color;
+            float t = 0;
+            float eval;
+            while(t < colliderEnableTime)
+            {
+                t += Time.deltaTime;
+                eval = (float)t / (float)colliderEnableTime;
+                transform.localScale = Vector3.Lerp(Vector3.zero, endScale, eval);
+                sprite.color = Color.Lerp(CoolColors.transparent, endC, eval);
+                yield return null;
+            }
+            transform.localScale = endScale;
             myCol.enabled = true;
         }
 

@@ -99,7 +99,8 @@ MonoBehaviour:
     - rid: 9079474864314122431
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: We are <i>murdering</i> this spider!
-    ScreenActions: []
+    ScreenActions:
+    - rid: 9079474864314122438
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -227,3 +228,10 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - sternSpeak
+    - rid: 9079474864314122438
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: garbage
+        flagValue: 1
+        increment: 0
+        persistent: 0

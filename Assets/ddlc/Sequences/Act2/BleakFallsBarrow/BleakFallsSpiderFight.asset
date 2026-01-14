@@ -21,6 +21,7 @@ MonoBehaviour:
     - rid: 9079474864314122412
     - rid: 9079474864314122413
     - rid: 9079474864314122414
+    - rid: 9079474864314122436
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -35,12 +36,27 @@ MonoBehaviour:
     - rid: 9079474864314122419
   - speaker: {fileID: 0}
     dialog: 
-    ScreenActions: []
+    ScreenActions:
+    - rid: 9079474864314122455
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 8fa5b0e467aa8ea4291edf16363b49f5, type: 2}
     requireCondition: 0
-    conditions: []
+    conditions:
+    - flagToCheck: garbage
+      operation: 0
+      desiredValue: 0
+      persistent: 0
+      bitWise: 0
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: f1b267c24069b814db2d0293e835e647, type: 2}
+    requireCondition: 0
+    conditions:
+    - flagToCheck: garbage
+      operation: 0
+      desiredValue: 1
+      persistent: 0
+      bitWise: 0
   myself:
     m_AssetGUID: 7c18603a2e6d6714fa1fd954ecdf16b7
     m_SubObjectName: 
@@ -111,4 +127,17 @@ MonoBehaviour:
     - rid: 9079474864314122419
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        enemyToLoad: {fileID: 0}
+        enemyToLoad: {fileID: 11400000, guid: f23d167246e8c574f8b899ca55ec4340, type: 2}
+    - rid: 9079474864314122436
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerAbilities
+        flagValue: 15
+        increment: 1
+        persistent: 0
+    - rid: 9079474864314122455
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: e20f9bbbe7bdec44da7061586992a76a, type: 3}
+        fadeTime: 1
+        setToSameTime: 0

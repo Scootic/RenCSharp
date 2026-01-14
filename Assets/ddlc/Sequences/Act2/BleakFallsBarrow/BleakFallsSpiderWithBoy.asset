@@ -16,7 +16,8 @@ MonoBehaviour:
   screens:
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (Alright.)
-    ScreenActions: []
+    ScreenActions:
+    - rid: 9079474864314122487
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -35,7 +36,8 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: <Speed=20>Who said that- are you in my head- why are you in my head-?!?</Speed>
-    ScreenActions: []
+    ScreenActions:
+    - rid: 9079474864314122440
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -117,6 +119,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
+    - rid: 9079474864314122439
     - rid: 9079474864314122408
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: <font=futura>{mc}, unable to deny you, draws his weapon and steps forward,
@@ -124,6 +127,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9079474864314122409
     - rid: 9079474864314122411
+    - rid: 9079474864314122437
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -281,3 +285,29 @@ MonoBehaviour:
         musicTrack: {fileID: 8300000, guid: 791116a661dfe9549b471ecdd1a1ed28, type: 3}
         fadeTime: 1
         setToSameTime: 0
+    - rid: 9079474864314122437
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: garbage
+        flagValue: 0
+        increment: 0
+        persistent: 0
+    - rid: 9079474864314122439
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
+        fadeTime: 0
+        setToSameTime: 0
+    - rid: 9079474864314122440
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 7515e5703331eed4a95064f0ba97f297, type: 3}
+        fadeTime: 3
+        setToSameTime: 0
+    - rid: 9079474864314122487
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: WeirdRoute
+        flagValue: 1
+        increment: 1
+        persistent: 0

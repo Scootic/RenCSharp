@@ -13,7 +13,6 @@ namespace RenCSharp.Combat
     {
         public static Fight_Manager FM;
         [SerializeField] private GameObject combatCanvas;
-        [SerializeField] private EnemyObject enemyPrefab;
         [SerializeField] private Player_Object playerPrefab;
         [SerializeField] private Simple_Scene_Loader ssl;
         [SerializeField] private Player_Action_Handler pah;
@@ -70,7 +69,7 @@ namespace RenCSharp.Combat
             passedScript = false;
             Textbox_String.PauseTextbox(true);
             Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", 0);
-            curEnemy = Object_Factory.SpawnObject(enemyPrefab.gameObject, "EnemyObject", enemyHolder).GetComponent<EnemyObject>();
+            curEnemy = Object_Factory.SpawnObject(eso.EnemyPrefab.gameObject, "EnemyObject", enemyHolder).GetComponent<EnemyObject>();
             curEnemy.ReceiveEnemySO(eso);
             StartCoroutine(RunThroughEnemy());
         }
