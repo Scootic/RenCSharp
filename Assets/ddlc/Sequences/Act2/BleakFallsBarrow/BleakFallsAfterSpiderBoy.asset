@@ -170,7 +170,8 @@ MonoBehaviour:
     - rid: 9079474864314122488
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Watcha two love birds whispering about!
-    ScreenActions: []
+    ScreenActions:
+    - rid: 9079474884650467401
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Natsuki!
     ScreenActions:
@@ -369,3 +370,9 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - angrySpeak
+    - rid: 9079474884650467401
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: e20f9bbbe7bdec44da7061586992a76a, type: 3}
+        fadeTime: 1
+        setToSameTime: 0

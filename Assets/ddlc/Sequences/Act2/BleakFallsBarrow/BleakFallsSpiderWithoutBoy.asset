@@ -16,7 +16,9 @@ MonoBehaviour:
   screens:
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (Alright.)
-    ScreenActions: []
+    ScreenActions:
+    - rid: 9079474884650467404
+    - rid: 9079474884650467405
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: We're gonna have to take on that thing without {mc}.
     ScreenActions:
@@ -229,6 +231,20 @@ MonoBehaviour:
         - skyUp
         - sternSpeak
     - rid: 9079474864314122438
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: garbage
+        flagValue: 1
+        increment: 0
+        persistent: 0
+    - rid: 9079474884650467404
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 20
+        increment: 0
+        persistent: 0
+    - rid: 9079474884650467405
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         flagID: garbage

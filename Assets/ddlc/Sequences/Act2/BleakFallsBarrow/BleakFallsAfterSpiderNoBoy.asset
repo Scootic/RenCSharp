@@ -26,6 +26,7 @@ MonoBehaviour:
     - rid: 9079474864314122460
     - rid: 9079474864314122461
     - rid: 9079474864314122463
+    - rid: 9079474884650467402
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: You don't need to worry anymore, {mc}, we took care of that big mean
       spider for you!
@@ -177,3 +178,9 @@ MonoBehaviour:
         - skySmug
         - skySmug
         - grinSpeak
+    - rid: 9079474884650467402
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: e20f9bbbe7bdec44da7061586992a76a, type: 3}
+        fadeTime: 1
+        setToSameTime: 0

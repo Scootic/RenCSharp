@@ -606,7 +606,11 @@ MonoBehaviour:
     - rid: 9079474864314122391
   - speaker: {fileID: 0}
     dialog: 
-    ScreenActions: []
+    ScreenActions:
+    - rid: 9079474884650467396
+    - rid: 9079474884650467397
+    - rid: 9079474884650467398
+    - rid: 9079474884650467399
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -615,7 +619,7 @@ MonoBehaviour:
     resultingSequence: {fileID: 11400000, guid: c1b5466a6965d0b4a9c83e4eab40f94e, type: 2}
     requireCondition: 0
     conditions: []
-  - choiceText: I help you fight without him.
+  - choiceText: I'll help you fight without him.
     resultingSequence: {fileID: 11400000, guid: f4dba16a15692124e8c58cad81334542, type: 2}
     requireCondition: 0
     conditions: []
@@ -2506,3 +2510,31 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - blank
+    - rid: 9079474884650467396
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: SayoriHEAL
+        flagValue: 10
+        increment: 0
+        persistent: 0
+    - rid: 9079474884650467397
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: MonikaDMG
+        flagValue: 20
+        increment: 0
+        persistent: 0
+    - rid: 9079474884650467398
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: YuriDMG
+        flagValue: 5
+        increment: 0
+        persistent: 0
+    - rid: 9079474884650467399
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: NatsukiSTR
+        flagValue: 1
+        increment: 0
+        persistent: 0
