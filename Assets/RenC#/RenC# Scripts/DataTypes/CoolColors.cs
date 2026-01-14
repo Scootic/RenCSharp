@@ -5,6 +5,6 @@ namespace RenCSharp
 {
     public static class CoolColors
     {
-        public static readonly Color transparent = new Color(0, 0, 0, 0);
+        public static readonly Color transparent = new Color(1, 1, 1, 0);
     }
 }

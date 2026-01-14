@@ -40,13 +40,13 @@ namespace RenCSharp.Sequences
         private IEnumerator FadeIn(UI_Element uie)
         {
             float t = 0;
-            Color transGender = new Color(1, 1, 1, 0);
-            foreach (Image image in uie.Images) { image.color = transGender; }
+
+            foreach (Image image in uie.Images) { image.color = CoolColors.transparent; }
             while(t <= fadeInTime)
             {
                 t += Time.deltaTime;
                 float perc = t / fadeInTime;
-                Color tcol = Color.Lerp(transGender, Color.white, perc);
+                Color tcol = Color.Lerp(CoolColors.transparent, Color.white, perc);
 
                 foreach(Image image in uie.Images) { image.color = tcol; }
                 yield return null;

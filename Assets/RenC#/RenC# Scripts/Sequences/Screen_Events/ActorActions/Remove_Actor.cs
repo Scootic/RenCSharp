@@ -43,12 +43,11 @@ namespace RenCSharp.Sequences
         private IEnumerator FadeOut(List<Image> imgPo)
         {
             float t = 0;
-            Color transGender = new Color(1, 1, 1, 0);
 
             while(t < fadeTime)
             {
                 t += Time.deltaTime;
-                Color tcol = Color.Lerp(Color.white, transGender, (t / fadeTime));
+                Color tcol = Color.Lerp(Color.white, CoolColors.transparent, (t / fadeTime));
                 foreach(Image ing in imgPo)
                 {
                     ing.color = tcol;
