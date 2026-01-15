@@ -4,6 +4,8 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using EXPERIMENTAL;
+using TMPro;
+using System.Collections.Generic;
 namespace RenCSharp.Tags
 {
     public class TagParser
@@ -11,18 +13,21 @@ namespace RenCSharp.Tags
         private static Assembly tagAssembly = Assembly.GetAssembly(typeof(TagParser));
         private static Type[] allTags = tagAssembly.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(Base_Tag))).ToArray();
         private static TagParser instance = new TagParser();
+        private static TextMeshProUGUI currentTextMesh;
+
+        public static TextMeshProUGUI SetCurrentTextMesh { set { currentTextMesh = value; } }
 
         /// <summary>
         /// Removes any tag parser tags from a string. Ideally also fires those tag's affects, so that any expected behavior still occurs.
         /// </summary>
         /// <param name="sToClean">String you want scrubbed.</param>
         /// <returns>The string minus any TagParser valid tags.</returns>
-        public static string CleanOutTags(string sToClean) 
+        public static string CleanOutTags(string sToClean, bool fire = true)
         {
             string sToReturn = "";
 
             char[] chars = sToClean.ToCharArray();
-            for(int i = 0; i < chars.Length; i++)
+            for (int i = 0; i < chars.Length; i++)
             {
                 if (chars[i] != '<') sToReturn += chars[i];
                 else
@@ -30,7 +35,7 @@ namespace RenCSharp.Tags
                     string possibleTag = "";
                     while (chars[i] != '>') //probably dangerous if you just include a random ass '<'. careful!
                     {
-                        if(i >= chars.Length)
+                        if (i >= chars.Length)
                         {
                             Debug.LogWarning("The tag parser found a random '<' symbol, that never closes! " +
                                 "Very scary. You're going to be getting an empty string for this!");
@@ -39,8 +44,11 @@ namespace RenCSharp.Tags
                         possibleTag += chars[i];
                         i++;
                     }
+
                     possibleTag += chars[i];
-                    if (!Parse(possibleTag)) sToReturn += possibleTag;
+                    if (!fire) continue; //just ignore ts if we ain't firing
+                    
+                    if(!Parse(possibleTag)) sToReturn += possibleTag; 
                 }
             }
 
@@ -89,20 +97,22 @@ namespace RenCSharp.Tags
         {
             Debug.Log("Length of valid tag types: " + allTags.Length);
             string[] split = Regex.Split(tag, "[=,]"); //0 should be function name, 1+ is arguments
-            string[] splitNoFirst = new string[split.Length - 1];
+            List<object> splitNoFirst = new List<object>();
             for (int i = 1; i < split.Length; i++)
             {
-                splitNoFirst[i - 1] = split[i];
+                splitNoFirst.Add(split[i]);
             }
 
             split[0] = Regex.Replace(split[0], "/", "End"); //swap out the slash symbol for "End" which is what it represents
             split[0] = Regex.Replace(split[0], "[<>]", ""); //get rid of tag wrapper symbols
 
-            for(int i = 0; i < splitNoFirst.Length; i++)
+            for(int i = 0; i < splitNoFirst.Count; i++)
             {
-                splitNoFirst[i] = Regex.Replace(splitNoFirst[i], "[<>]", "");
+                splitNoFirst[i] = Regex.Replace((string) splitNoFirst[i], "[<>]", "");
             }
-            
+
+            if (!split[0].Contains("End")) splitNoFirst.Insert(0, currentTextMesh); //if it's an "End" function, we can assume no arguments are being passed in
+
             Debug.Log("The split tag: " + split[0]);
             MethodInfo method;
 
@@ -112,7 +122,7 @@ namespace RenCSharp.Tags
                 Debug.Log("This type (" + T.FullName + "), says method: " + method);
                 if(method != null) 
                 {
-                    method.Invoke(instance, splitNoFirst); //invoke on the instance obj?
+                    method.Invoke(instance, splitNoFirst.ToArray()); //invoke on the instance obj?
                     return true;
                 }
             }

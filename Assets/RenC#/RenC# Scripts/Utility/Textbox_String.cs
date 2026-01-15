@@ -30,6 +30,7 @@ namespace RenCSharp
             float t = 0;
             int i = 0;
             string amended = endText;
+            TagParser.SetCurrentTextMesh = textBox;
 
             foreach(KeyValuePair<string,string> kvp in replacerTexts) //by the end of this, replace generic guys like {mc} with the actual player's name
             {
@@ -37,11 +38,12 @@ namespace RenCSharp
                 amended = Regex.Replace(amended, kvp.Key, kvp.Value);
             }
             amended = TagParser.CleanOutFlags(amended);
+            string tagless = TagParser.CleanOutTags(amended, false);
             char[] dialogchars = amended.ToCharArray();
             textBox.text = ""; //empty box before repopulating below
             JumpToEndOfTextbox = false;
 
-            while (dialogchars.Length > textBox.text.Length && endText.Length > textBox.text.Length && !JumpToEndOfTextbox)
+            while (dialogchars.Length > textBox.text.Length && tagless.Length > textBox.text.Length && !JumpToEndOfTextbox)
             {
                 //only run through text if the SM is unpaused
                 while (pausedTextbox)
