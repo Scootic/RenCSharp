@@ -586,6 +586,8 @@ namespace RenCSharp
             else SequenceAsset.Release();
             loaded = true;
             textRoutine = StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
+
+            Event_Bus.TryFireVoidEvent("LoadedSave");
         }
         #endregion
         #region JuiceStuff

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 using RenCSharp.Tags;
+using EXPERIMENTAL;
 namespace RenCSharp
 {
     public static class Textbox_String
@@ -79,6 +80,9 @@ namespace RenCSharp
                     else //just add the char and move on if it's a regular ah character
                     {
                         textBox.text += dialogchars[i];
+                        textBox.ForceMeshUpdate();
+                        TMP_CharacterInfo c = textBox.textInfo.characterInfo[textBox.text.Length - 1];
+                        Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
                         i++;
                     }
                 }

@@ -46,9 +46,8 @@ namespace RenCSharp.Tags
                     }
 
                     possibleTag += chars[i];
-                    if (!fire) continue; //just ignore ts if we ain't firing
                     
-                    if(!Parse(possibleTag)) sToReturn += possibleTag; 
+                    if(!Parse(possibleTag, fire)) sToReturn += possibleTag; 
                 }
             }
 
@@ -93,7 +92,7 @@ namespace RenCSharp.Tags
         /// </summary>
         /// <param name="tag"></param>
         /// <returns>True if we found a valid tag, false otherwise.</returns>
-        public static bool Parse(string tag)
+        public static bool Parse(string tag, bool fire = true)
         {
             Debug.Log("Length of valid tag types: " + allTags.Length);
             string[] split = Regex.Split(tag, "[=,]"); //0 should be function name, 1+ is arguments
@@ -122,7 +121,7 @@ namespace RenCSharp.Tags
                 Debug.Log("This type (" + T.FullName + "), says method: " + method);
                 if(method != null) 
                 {
-                    method.Invoke(instance, splitNoFirst.ToArray()); //invoke on the instance obj?
+                    if(fire) method.Invoke(instance, splitNoFirst.ToArray()); //invoke on the instance obj?
                     return true;
                 }
             }

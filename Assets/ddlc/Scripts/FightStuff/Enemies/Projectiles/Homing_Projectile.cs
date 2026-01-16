@@ -24,6 +24,7 @@ namespace RenCSharp.Combat.Enemies
             dirToPlayer.Normalize();
             float dot = Vector3.Dot(moveDir, dirToPlayer);
             Vector3 t = Vector3.Lerp(moveDir, dirToPlayer, homeStrength * Time.deltaTime * Mathf.Abs(dot));
+            t.Normalize();
             UpdateMoveDir(t);
         }
     }
