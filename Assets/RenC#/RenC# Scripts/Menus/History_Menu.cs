@@ -27,6 +27,7 @@ namespace RenCSharp.Menus
         private async Awaitable SpawnHistory(int i, string speaker, string dialoge)
         {
             UI_Element uie = Object_Factory.SpawnObject(historyPrefab, "History" + i, historyHolder).GetComponent<UI_Element>();
+            await Awaitable.EndOfFrameAsync();
             uie.Texts[0].text = speaker;
             uie.Texts[1].text = dialoge;
             activeHistories++;

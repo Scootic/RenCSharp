@@ -8,6 +8,7 @@ namespace RenCSharp.Menus
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override async Awaitable OnMenuOpen()
         {
+            await Awaitable.EndOfFrameAsync();
             menuObject.SetActive(true);
         }
 

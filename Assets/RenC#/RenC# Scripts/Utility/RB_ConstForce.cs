@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace RenCSharp
 {
+    /// <summary>
+    /// Only exists because built-in gravity doesn't work well with canvas objects. (Problems with weird-ah world scaling?)
+    /// </summary>
     [RequireComponent(typeof(Rigidbody))]
     public class RB_ConstForce : MonoBehaviour
     {
