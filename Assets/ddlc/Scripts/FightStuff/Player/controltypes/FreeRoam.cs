@@ -13,6 +13,12 @@ namespace RenCSharp.Combat.Player
             rb.linearVelocity = newV;
         }
 
+        public override void ExitControl()
+        {
+            rb.linearVelocity = Vector3.zero;
+            base.ExitControl();
+        }
+
         public override void EnterControl()
         {
             base.EnterControl();

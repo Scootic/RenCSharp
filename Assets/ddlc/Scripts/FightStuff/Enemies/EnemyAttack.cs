@@ -11,6 +11,7 @@ namespace RenCSharp.Combat.Enemies
         [SerializeReference] private ControlType controlType = new FreeRoam(); //default to freeroam, cause screw it
         [SerializeField, Min(1)] private float attackDuration = 5f;
         [SerializeField, Min(0.01f)] private float secondsPerProjectileSpawn = 0.5f;
+        [SerializeField, Min(1), Tooltip("How many indices we run through at a time. X projectiles per secondsPerSpawn")] private int projectilesPerSpawn = 1;
         [Header("projectiles")]
         [SerializeField] private Base_Projectile[] projectilesThatSpawn;
         [SerializeField, Tooltip("Offset from arena center point (local position)")] private List<Vector3> spawnPoints = new();
@@ -53,5 +54,7 @@ namespace RenCSharp.Combat.Enemies
         public int[] Indexes => indexes.ToArray();
         public float AttackDuration => attackDuration;
         public float SecondsPerProjectileSpawn => secondsPerProjectileSpawn;
+
+        public int ProjectilesPerSpawn => projectilesPerSpawn;
     }
 }

@@ -28,6 +28,7 @@ namespace RenCSharp
         [SerializeField] private Image speakerNameBox;
         [SerializeField] private Image dialogBox;
         [SerializeField, Tooltip("Decides the color of the textboxes if there's no actor in a screen.")] private Color defaultTextBoxColor = Color.white;
+        [SerializeField] private TMP_FontAsset defaultFont;
 
         [Header("Buttons")]
         [SerializeField] private Button playerchoicePrefab;
@@ -289,6 +290,7 @@ namespace RenCSharp
                 speakerNameBox.gameObject.SetActive(curActor.ActorName != "");
                 speakerNameBox.color = curActor.TextboxColor;
                 dialogBox.color = curActor.TextboxColor;
+                dialogField.font = curActor.ActorFont;
                 speakerNameField.text = curActor.ActorName;
                 if(curActor.ActorName == playerTag) speakerNameField.text = playerName; 
                 if (currentSequence.AutoFocusSpeaker && !prevActorIscurSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so
@@ -298,6 +300,7 @@ namespace RenCSharp
                 speakerNameBox.color = defaultTextBoxColor;
                 speakerNameBox.gameObject.SetActive(false);
                 dialogBox.color = defaultTextBoxColor;
+                dialogField.font = defaultFont;
             }
 
             string amended = Regex.Replace(screen.Dialog, playerTag, playerName); //insert the player's custom name into dialog

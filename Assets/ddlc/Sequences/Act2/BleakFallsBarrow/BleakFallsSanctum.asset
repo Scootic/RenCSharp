@@ -228,6 +228,91 @@ MonoBehaviour:
     - rid: 9079474908378955953
     - rid: 9079474908378955954
     - rid: 9079474908378955955
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: So? Where's this Dragonstone?
+    ScreenActions:
+    - rid: 9079474934013755392
+    - rid: 9079474934013755393
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Well, you see that elevated platform with the curved wall?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: There's a powerful draugr up there that has it.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Powerful? There's still five of us, and one of it, though!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: ... I guess you're right.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: We make our way to the heart of the sanctum.
+    ScreenActions:
+    - rid: 9079474934013755445
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474934013755446
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: I don't see any draugr over here...
+    ScreenActions:
+    - rid: 9079474934013755447
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: He should be in that coffin right over there.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: So do we have to open it, or what?
+    ScreenActions:
+    - rid: 9079474934013755448
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Well, in the original game-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: The coffin opens when the player character learns the word of power...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Hold on, let me stare at this wall for a bit.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Wha-?
+    ScreenActions:
+    - rid: 9079474934013755449
+  - speaker: {fileID: 0}
+    dialog: I stare at the word wall, hoping to find... something.
+    ScreenActions:
+    - rid: 9079474934013755450
+  - speaker: {fileID: 0}
+    dialog: <Speed=1>...</Speed>
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: There doesn't seem to be-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Here lies the guardian, Keeper of the Dragonstone, And a <SineText=5>force</SineText>
+      of unending, rage and darkness.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Huh, I didn't know that's what it-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: The coffin behind me bursts open; the Draugr Overlord seems to have noticed
+      my impecable literacy.
+    ScreenActions:
+    - rid: 9079474934013755451
+    - rid: 9079474934013755452
+    - rid: 9079474934013755453
+    - rid: 9079474934013755454
+    - rid: 9079474934013755455
+  - speaker: {fileID: 0}
+    dialog: Time to give this punk the business! Hopefully!
+    ScreenActions:
+    - rid: 9079474934013755463
+    - rid: 9079474934013755464
+    - rid: 9079474934013755465
+    - rid: 9079474934013755466
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -368,7 +453,7 @@ MonoBehaviour:
     - rid: 9079474908378955941
       type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
+        musicTrack: {fileID: 8300000, guid: 5a93fc8ae631b124cadb995783767fee, type: 3}
         fadeTime: 2
         setToSameTime: 0
     - rid: 9079474908378955942
@@ -467,3 +552,123 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+    - rid: 9079474934013755392
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 9079474934013755393
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - grinSpeak
+    - rid: 9079474934013755445
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 9079474934013755446
+      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - {fileID: 21300000, guid: d909537f462f4fb47965975bee8715fb, type: 3}
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079474934013755447
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwaySpeak
+    - rid: 9079474934013755448
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - speak
+    - rid: 9079474934013755449
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - focus
+    - rid: 9079474934013755450
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9079474934013755451
+      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        musicTrack: {fileID: 8300000, guid: e0a4c357a680b0d4599165228cde15d6, type: 3}
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079474934013755452
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - shock
+    - rid: 9079474934013755453
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - grimace
+    - rid: 9079474934013755454
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - '><Shock'
+    - rid: 9079474934013755455
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - stern
+    - rid: 9079474934013755463
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        fadeTime: 0.5
+    - rid: 9079474934013755464
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeTime: 0.5
+    - rid: 9079474934013755465
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeTime: 0.5
+    - rid: 9079474934013755466
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeTime: 0.5

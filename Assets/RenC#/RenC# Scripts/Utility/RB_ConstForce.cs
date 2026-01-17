@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RenCSharp.Combat
+namespace RenCSharp
 {
     [RequireComponent(typeof(Rigidbody))]
     public class RB_ConstForce : MonoBehaviour
@@ -19,6 +19,13 @@ namespace RenCSharp.Combat
         void FixedUpdate()
         {
             rb.AddForce(dir * strength, ignoreMass ? ForceMode.Acceleration : ForceMode.Force);
+        }
+
+        public void InitForce(Vector3 direction, float str, bool ignoreMassForce = true)
+        {
+            dir = direction;
+            strength = str;
+            ignoreMass = ignoreMassForce;
         }
     }
 }

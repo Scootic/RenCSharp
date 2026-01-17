@@ -164,34 +164,37 @@ namespace RenCSharp.Combat
                 if (f >= ea.SecondsPerProjectileSpawn)
                 {
                     f = 0;
-                    //roll which position/direction we have when first spawning a projectile
-                    if (prevAttackPosRoll == 0) dir = 1;
-                    else if (prevAttackPosRoll >= ea.SpawnPoints.Length - 1) dir = -1;
-
-                    int randI = ea.ProjectileSpawnPositionMethod switch
+                    for (int i = 0; i < ea.ProjectilesPerSpawn; i++) //spawn as many projectiles as we want in one go. the intelligent rolling should prevent bs
                     {
-                        AttackSpawnSelectionMethod.TrueRandom => Random.Range(0, ea.SpawnPoints.Length),
-                        AttackSpawnSelectionMethod.NoRepeatRandom => RandomHelper.NoRepeatRoll("attackSpawnRoll", ea.SpawnPoints.Length),
-                        AttackSpawnSelectionMethod.LoopThrough => (prevAttackPosRoll >= ea.SpawnPoints.Length - 1) ? 0 : prevAttackPosRoll + 1,
-                        AttackSpawnSelectionMethod.PingPong => prevAttackPosRoll += dir,
-                        _ => 0 //default scenario of garbage null enum, just return 0 and probably complain too
-                    };
+                        //roll which position/direction we have when first spawning a projectile
+                        if (prevAttackPosRoll == 0) dir = 1;
+                        else if (prevAttackPosRoll >= ea.SpawnPoints.Length - 1) dir = -1;
 
-                    if (randI >= ea.Indexes.Length) randI = 0; //panic grab 0 index if we suck nuts
-                    prevAttackPosRoll = randI;
+                        int randI = ea.ProjectileSpawnPositionMethod switch
+                        {
+                            AttackSpawnSelectionMethod.TrueRandom => Random.Range(0, ea.SpawnPoints.Length),
+                            AttackSpawnSelectionMethod.NoRepeatRandom => RandomHelper.NoRepeatRoll("attackSpawnRoll", ea.SpawnPoints.Length),
+                            AttackSpawnSelectionMethod.LoopThrough => (prevAttackPosRoll >= ea.SpawnPoints.Length - 1) ? 0 : prevAttackPosRoll + 1,
+                            AttackSpawnSelectionMethod.PingPong => prevAttackPosRoll += dir,
+                            _ => 0 //default scenario of garbage null enum, just return 0 and probably complain too
+                        };
 
-                    Base_Projectile projToSpawn = ea.ProjectilesThatSpawn[ea.Indexes[randI]];
-                    Vector3 spawnPosition = ea.SpawnPoints[randI];
-                    Vector3 ogProjDir = ea.InitialDirections[randI];
+                        if (randI >= ea.Indexes.Length) randI = 0; //panic grab 0 index if we suck nuts
+                        prevAttackPosRoll = randI;
 
-                    Base_Projectile cur = Object_Pooling.Spawn(projToSpawn.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Base_Projectile>();
-                    cur.transform.SetParent(playerHolder);
-                    cur.transform.localPosition = spawnPosition;
-                    cur.UpdateMoveDir(ogProjDir);
-                    Vector3 soundSpawnPos = Camera.main.transform.position + cur.transform.localPosition.normalized;
-                    Audio_Manager.AM.Play3DSFX(cur.SpawnSound, soundSpawnPos, false, false, cur.SpawnSoundVol, 0.9f, 1.1f);
-                    AddProjectileToList(cur.gameObject);
-                    StartCoroutine(Object_Pooling.DespawnOverTime(cur.gameObject, cur.Lifetime));
+                        Base_Projectile projToSpawn = ea.ProjectilesThatSpawn[ea.Indexes[randI]];
+                        Vector3 spawnPosition = ea.SpawnPoints[randI];
+                        Vector3 ogProjDir = ea.InitialDirections[randI];
+
+                        Base_Projectile cur = Object_Pooling.Spawn(projToSpawn.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Base_Projectile>();
+                        cur.transform.SetParent(playerHolder);
+                        cur.transform.localPosition = spawnPosition;
+                        cur.UpdateMoveDir(ogProjDir);
+                        Vector3 soundSpawnPos = Camera.main.transform.position + cur.transform.localPosition.normalized;
+                        Audio_Manager.AM.Play3DSFX(cur.SpawnSound, soundSpawnPos, false, false, cur.SpawnSoundVol, 0.9f, 1.1f);
+                        AddProjectileToList(cur.gameObject);
+                        StartCoroutine(Object_Pooling.DespawnOverTime(cur.gameObject, cur.Lifetime));
+                    }
                 }
 
                 yield return null;

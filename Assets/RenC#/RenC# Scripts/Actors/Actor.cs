@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.AddressableAssets;
+using TMPro;
 namespace RenCSharp.Actors
 {
     /// <summary>
@@ -14,6 +15,7 @@ namespace RenCSharp.Actors
     {
         [SerializeField] private string actorName;
         [SerializeField] private GameObject actorPrefab;
+        [SerializeField] private TMP_FontAsset actorFont;
         [SerializeField] private Color textboxColor = Color.white;
         [SerializeField, Tooltip("2D Array. 0 is bottom layer, with each successive layer being on top of previous.")] private SpriteArray[] visuals;
         [SerializeField] private AssetReference myself;
@@ -23,5 +25,6 @@ namespace RenCSharp.Actors
         public SpriteArray[] Visuals => visuals;
         public GameObject ActorPrefab => actorPrefab;
         public Color TextboxColor => textboxColor;
+        public TMP_FontAsset ActorFont => actorFont;
     }
 }
