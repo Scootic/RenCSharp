@@ -132,7 +132,8 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: We hear a strange sound, a roar, coming from the distance.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 9079474977939128412
   - speaker: {fileID: 0}
     dialog: Good news! Alduin's coming to save me!
     ScreenActions: []
@@ -168,6 +169,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9079474591330205802
     - rid: 9079474591330205807
+    - rid: 9079474977939128411
   - speaker: {fileID: 0}
     dialog: Not dying today, boys!
     ScreenActions: []
@@ -459,6 +461,24 @@ MonoBehaviour:
         spawnOffset: {x: -500, y: 0, z: 0}
         visualSpriteIndexes:
         - default
+    - rid: 9079474977939128411
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 468aea67a488b4644baaa92bbdf4118c, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 9079474977939128412
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: dfabdf9e321262b478dd7cb54a783384, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
     - rid: 9142198014508531834
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
