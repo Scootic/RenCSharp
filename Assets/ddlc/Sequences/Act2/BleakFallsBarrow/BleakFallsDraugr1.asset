@@ -399,6 +399,7 @@ MonoBehaviour:
     - rid: 9079474884650467449
     - rid: 9079474884650467450
     - rid: 9079474884650467451
+    - rid: 9079474951791575134
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Yuri!
     ScreenActions: []
@@ -2730,3 +2731,12 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+    - rid: 9079474951791575134
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 4a5153978164c7f4d888ef52ae8f516b, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1

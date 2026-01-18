@@ -19,8 +19,10 @@ namespace RenCSharp.Combat.Enemies
         [SerializeField] protected AudioClip spawnSound;
         [SerializeField] protected Image sprite;
         protected IDamage receiver;
-        protected Vector3 moveDir;
+        protected Vector3 moveDir, endScale;
+        protected Color endC;
         protected Collider myCol;
+        protected Coroutine spawnInRoutine;
         public float Lifetime => lifetime;
         public float SpawnSoundVol => spawnSoundVol;
         public AudioClip SpawnSound => spawnSound;
@@ -38,14 +40,14 @@ namespace RenCSharp.Combat.Enemies
         {
             myCol = GetComponent<Collider>();
             if (sprite == null) sprite = GetComponentInChildren<Image>();
-            StartCoroutine(EnableTriggerOverTime());
+            spawnInRoutine = StartCoroutine(EnableTriggerOverTime());
         }
 
         protected virtual IEnumerator EnableTriggerOverTime()
         {
             myCol.enabled = false;
-            Vector3 endScale = transform.localScale;
-            Color endC = sprite.color;
+            endScale = transform.localScale;
+            endC = sprite.color;
             float t = 0;
             float eval;
             while(t < colliderEnableTime)
@@ -100,7 +102,9 @@ namespace RenCSharp.Combat.Enemies
 
         public virtual void OnDespawn(bool playerTurn)
         {
-
+            StopCoroutine(spawnInRoutine);
+            transform.localScale = endScale;
+            sprite.color = endC;
         }
     }
 }

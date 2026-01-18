@@ -76,6 +76,8 @@ namespace RenCSharp.Combat.Player
             curHealth = Mathf.Max(curHealth, 0);
             curHealth = Mathf.Min(curHealth, maxHealth);
 
+            Debug.Log("Damage Taken by Player: " + f);
+
             Event_Bus.TryFireFloatEvent("PlayerHealth", curHealth);
             Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
 

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: BleakFallsDraugrOverlord1
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 60b0dca81320eb04ea6cb738857e7154, type: 2}
+  - {fileID: 11400000, guid: c138e04b04515d240be6bd06c33a7b6b, type: 2}
+  - {fileID: 11400000, guid: c5ce081ffc191354a9563e3d6cfee3ef, type: 2}
+  - {fileID: 11400000, guid: 3617b65b86c234e4db5ee73c8c7887f0, type: 2}
+  scriptedFlavorTexts:
+  - The Draugr Overlord bears his enchanted great-axe.
+  - "The Draugr Overlord has you cornered in the word wall!\t"
+  - After dodging out from the wall, your foot falls into a crevice!
+  - The Draugr Overlord unleashes his great-axe once more!
+  randomAttacks:
+  - {fileID: 11400000, guid: c138e04b04515d240be6bd06c33a7b6b, type: 2}
+  - {fileID: 11400000, guid: c5ce081ffc191354a9563e3d6cfee3ef, type: 2}
+  randomFlavorTexts:
+  - You find yourself stuck between two big rocks!
+  - You dodge into a wall-!
+  maxHealth: 45
+  visualInformation:
+  - {fileID: 21300000, guid: 5fbe2698666b19948826863968762af4, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
+  defeatText: The Draugr Overlord recoils from the damage he's taken, but-!
+  nameText: Draugr Overlord
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}

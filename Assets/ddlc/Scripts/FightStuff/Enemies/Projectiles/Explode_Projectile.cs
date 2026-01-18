@@ -10,6 +10,7 @@ namespace RenCSharp.Combat.Enemies
         [SerializeField] private Base_Projectile subProjectile;
         public override void OnDespawn(bool playerTurn)
         {
+            base.OnDespawn(playerTurn);
             if (playerTurn) return; //don't do nonsense if turn is done
             foreach(Vector3 v in explosionDirs)
             {

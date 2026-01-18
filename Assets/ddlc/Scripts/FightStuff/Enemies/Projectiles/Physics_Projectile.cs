@@ -52,6 +52,7 @@ namespace RenCSharp.Combat.Enemies
 
         public override void OnDespawn(bool playerTurn)
         {
+            base.OnDespawn(playerTurn);
             //reset velo?
             rb.linearVelocity = Vector3.zero;
         }

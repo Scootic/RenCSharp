@@ -385,7 +385,7 @@ MonoBehaviour:
     dialog: Huh-
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: EAT IT NOW!
+    dialog: EAT IT <NoiseText=3,1>NOW</NoiseText>!
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: Finally understanding the urgency of the situation, Natsuki scarfs down
@@ -856,6 +856,7 @@ MonoBehaviour:
         position: {x: 0, y: 0, z: 0}
         environmental: 0
         loop: 0
+        stopOnScreenProgress: 1
         loopDuration: 1
     - rid: 9142197581518209142
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
@@ -1102,6 +1103,7 @@ MonoBehaviour:
         position: {x: 0, y: 0, z: 0}
         environmental: 0
         loop: 0
+        stopOnScreenProgress: 1
         loopDuration: 1
     - rid: 9142197581518209169
       type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
@@ -1130,6 +1132,7 @@ MonoBehaviour:
         position: {x: 0, y: 0, z: 0}
         environmental: 0
         loop: 0
+        stopOnScreenProgress: 1
         loopDuration: 1
     - rid: 9142197581518209178
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
@@ -1563,6 +1566,7 @@ MonoBehaviour:
         position: {x: 0, y: 0, z: 0}
         environmental: 0
         loop: 0
+        stopOnScreenProgress: 1
         loopDuration: 1
     - rid: 9142197581518209228
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
