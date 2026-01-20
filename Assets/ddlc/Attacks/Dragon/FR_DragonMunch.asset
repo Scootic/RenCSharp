@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: FR_DragonMunch
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 450, y: 450}
+  controlType:
+    rid: 9079475023196979330
+  attackDuration: 10
+  secondsPerProjectileSpawn: 1
+  projectilesPerSpawn: 2
+  projectilesThatSpawn:
+  - {fileID: 1000076809610374492, guid: f930223e6cfc5d7409100b085e4a91b8, type: 3}
+  spawnPoints:
+  - {x: 400, y: 200, z: 0}
+  - {x: -400, y: 200, z: 0}
+  - {x: 0, y: 400, z: 0}
+  - {x: 0, y: -400, z: 0}
+  - {x: -400, y: -200, z: 0}
+  - {x: 400, y: -200, z: 0}
+  - {x: 400, y: 300, z: 0}
+  - {x: -300, y: -400, z: 0}
+  - {x: 400, y: 0, z: 0}
+  - {x: -400, y: 0, z: 0}
+  initialDirections:
+  - {x: -1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: -1, y: -1, z: 0}
+  - {x: 1, y: 1, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  indexes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: 9079475023196979330
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500

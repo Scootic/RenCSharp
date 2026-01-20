@@ -6,6 +6,7 @@ namespace RenCSharp.Combat.Interfaces
         TrueRandom,
         NoRepeatRandom,
         LoopThrough,
+        ReverseLoopThrough,
         PingPong
     }
 

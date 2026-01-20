@@ -44,6 +44,17 @@ namespace RenCSharp.Combat.Enemies
             }
         }
 
+        public void OverrideSpawnPoints(List<Vector3> newSP, List<Vector3> newID)
+        {
+            spawnPoints = newSP;
+            initialDirections = newID;
+            indexes = new();
+            for(int i = 0; i < spawnPoints.Count; i++)
+            {
+                indexes.Add(0);
+            }
+        }
+
         public AttackSpawnSelectionMethod ProjectileSpawnPositionMethod => projectileSpawnPositionMethod;
         public AttackSpawnSelectionMethod ProjectileIndexMethod => projectileIndexMethod;
         public Vector2 ArenaDimensions => arenaDimensions;

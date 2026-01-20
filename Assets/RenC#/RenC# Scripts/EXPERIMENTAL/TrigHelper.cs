@@ -3,6 +3,8 @@ namespace EXPERIMENTAL
 {
     public static class TrigHelper
     {
+        public const float TAU = Mathf.PI * 2;
+
         /// <summary>
         /// Do trig bullshit to get a quaternion out of a vec2. For bottom facing sprite type things. (projectiles).
         /// </summary>

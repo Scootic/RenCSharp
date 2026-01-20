@@ -176,6 +176,7 @@ namespace RenCSharp.Combat
                             AttackSpawnSelectionMethod.TrueRandom => Random.Range(0, ea.SpawnPoints.Length),
                             AttackSpawnSelectionMethod.NoRepeatRandom => RandomHelper.NoRepeatRoll("attackSpawnRoll", ea.SpawnPoints.Length),
                             AttackSpawnSelectionMethod.LoopThrough => (prevAttackPosRoll >= ea.SpawnPoints.Length - 1) ? 0 : prevAttackPosRoll + 1,
+                            AttackSpawnSelectionMethod.ReverseLoopThrough => (prevAttackPosRoll <= 0) ? ea.SpawnPoints.Length - 1 : prevAttackPosRoll - 1,
                             AttackSpawnSelectionMethod.PingPong => prevAttackPosRoll += dir,
                             _ => 0 //default scenario of garbage null enum, just return 0 and probably complain too
                         };
