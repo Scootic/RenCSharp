@@ -12,14 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
   m_Name: Mirmulnir1
   m_EditorClassIdentifier: 
-  scriptedAttacks: []
-  scriptedFlavorTexts: []
-  randomAttacks: []
-  randomFlavorTexts: []
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 4c66d5faac8b4f54295ab645e740cff5, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  scriptedFlavorTexts:
+  - The flies overhead, breathing fire down.
+  - null
+  - null
+  randomAttacks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  randomFlavorTexts:
+  - null
+  - null
+  - null
   maxHealth: 100
   visualInformation:
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 16d21b3d2eebd6b44858bdad6eb1116d, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: 8297a0d78344aeb4fadd8d391be3fffe, type: 3}
-  defeatText: 
+  defeatText: The dragon, after taking so much damage, falls out of the sky.
   nameText: Mirmulnir
   hurtedSound: {fileID: 0}

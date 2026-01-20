@@ -12,6 +12,6 @@ namespace RenCSharp.Combat.Interfaces
     public enum BezierCurveType
     {
         SimpleArc,
-        SCurve
+        SCurve,
     }
 }

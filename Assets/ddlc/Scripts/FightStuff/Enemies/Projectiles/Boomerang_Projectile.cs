@@ -13,7 +13,7 @@ namespace RenCSharp.Combat.Enemies
 
         private float eval;
         private float t;
-        private Vector3[] boundingPositions = new Vector3[4];
+        private readonly Vector3[] boundingPositions = new Vector3[4]; 
         private Vector3 arcDir;
 
         protected override void OnEnable()
@@ -25,16 +25,18 @@ namespace RenCSharp.Combat.Enemies
         public override void UpdateMoveDir(Vector3 v3)
         {
             moveDir = v3;
-            boundingPositions[0] = transform.position;
+            
             arcDir = Vector3.Cross(moveDir, Vector3.forward);
             switch (curveType) 
             {
                 case BezierCurveType.SimpleArc:
+                    boundingPositions[0] = transform.position;
                     boundingPositions[3] = boundingPositions[0] + moveDir * distanceFromSpawn;
                     boundingPositions[1] = boundingPositions[0] + arcDir * arcHeight;
                     boundingPositions[2] = boundingPositions[3] + arcDir * arcHeight;
                     break;
                 case BezierCurveType.SCurve:
+                    boundingPositions[0] = transform.position;
                     boundingPositions[1] = boundingPositions[0] + arcDir * arcHeight;
                     boundingPositions[2] = boundingPositions[0] + moveDir * distanceFromSpawn;
                     boundingPositions[3] = boundingPositions[2] + arcDir * arcHeight;
