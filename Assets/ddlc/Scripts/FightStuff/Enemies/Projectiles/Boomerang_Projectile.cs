@@ -1,6 +1,9 @@
 using UnityEngine;
 using EXPERIMENTAL;
 using RenCSharp.Combat.Interfaces;
+using UnityEngine.Jobs;
+using Unity.Collections;
+using Unity.Jobs;
 namespace RenCSharp.Combat.Enemies
 {
     public class Boomerang_Projectile : Base_Projectile
@@ -13,11 +16,15 @@ namespace RenCSharp.Combat.Enemies
 
         private float eval;
         private float t;
-        private readonly Vector3[] boundingPositions = new Vector3[4]; 
+        private readonly Vector3[] boundingPositions = new Vector3[4];
+        private NativeArray<Vector3> bounders;
+        private TransformAccessArray me;
         private Vector3 arcDir;
 
         protected override void OnEnable()
         {
+            bounders = new(boundingPositions, Allocator.Persistent);
+            me = new(new Transform[] { transform },1);
             base.OnEnable();
             t = 0;
         }
@@ -25,8 +32,8 @@ namespace RenCSharp.Combat.Enemies
         public override void UpdateMoveDir(Vector3 v3)
         {
             moveDir = v3;
-            
             arcDir = Vector3.Cross(moveDir, Vector3.forward);
+
             switch (curveType) 
             {
                 case BezierCurveType.SimpleArc:
@@ -50,12 +57,26 @@ namespace RenCSharp.Combat.Enemies
         {
             t += Time.deltaTime;
             eval = t / lifetime;
+            Vector3 prevPos = transform.position;
+            BezierPositionJob moveJob = new BezierPositionJob()
+            {
+                boundingPositions = bounders,
+                percentAlongCurve = animateBezCurve.Evaluate(eval)
+            };
+            JobHandle handle = moveJob.Schedule(me);
+            handle.Complete();
+
             Vector3 newFramePos = TrigHelper.BezPos(boundingPositions, animateBezCurve.Evaluate(eval));
             //Debug.Log("New Frame Pos: " + newFramePos + ", eval: " + eval);
-            Vector3 dirToFramePos = newFramePos - transform.position;
+            Vector3 dirToFramePos = transform.position - prevPos;
             if(dirToFramePos != Vector3.zero) transform.rotation = TrigHelper.GetQuaternion(dirToFramePos);
+        }
 
-            transform.position = newFramePos;
+        public override void OnDespawn(bool playerTurn)
+        {
+            base.OnDespawn(playerTurn);
+            bounders.Dispose();
+            me.Dispose();
         }
     }
 }

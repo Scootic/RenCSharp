@@ -7,6 +7,7 @@ using UnityEngine;
 using RenCSharp.Combat.Enemies;
 using RenCSharp.Combat.Interfaces;
 using RenCSharp.Combat.Player;
+using System.Linq;
 namespace RenCSharp.Combat
 {
     public sealed class Fight_Manager : MonoBehaviour
@@ -22,7 +23,6 @@ namespace RenCSharp.Combat
         [SerializeField] private GameObject abilityHolder;
         [SerializeField] private TextMeshProUGUI combatTextbox;
         [Header("Arena/Enemy cosmetics")]
-        [SerializeField] private byte maximumProjectiles = 30;
         [SerializeField, Min(0.1f)] private float arenaSetUpTime = 1f;
         [SerializeField, Min(0.1f)] private float enemyDamageNumberForce = 5f;
         [SerializeField, Tooltip("For handling direction text is launched in."), Range(-360,360)] private float minDeg = 0;
@@ -156,6 +156,7 @@ namespace RenCSharp.Combat
             float t = 0; //timer for the attack
             float f = 0; //timer for individual projectiles
             Textbox_String.JumpToEndOfTextbox = true;
+            prevAttackPosRoll = -1; //make sure that 0 is always the first for an attack?
             yield return SetUpArena(ea);
 
             while (t <= ea.AttackDuration && fighting)
@@ -243,12 +244,6 @@ namespace RenCSharp.Combat
         {
             GameObject go = (GameObject) obj;
             activeProj.Add(go);
-            if(activeProj.Count > maximumProjectiles) //clean up to prevent excessive lag. may be bad.
-            {
-                Object_Pooling.Despawn(activeProj[0]);
-                activeProj.RemoveAt(0);
-            }
-            //Debug.Log("Added Projectile to List: " + go.name);
         }
         private IEnumerator LostTheFight()
         {

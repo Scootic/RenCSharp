@@ -68,7 +68,7 @@ namespace RenCSharp.Combat.Enemies
                             Vector3 local = v.x * transform.right + v.y * transform.up;
                             bp.UpdateMoveDir(local);
                         }
-                        bp.StartCoroutine(Object_Pooling.DespawnOverTime(bp.gameObject, bp.Lifetime));
+                        bp.StartCoroutine(Object_Pooling.DespawnOverTime(bp.gameObject, lifetime - t));
                     }
                 }
 

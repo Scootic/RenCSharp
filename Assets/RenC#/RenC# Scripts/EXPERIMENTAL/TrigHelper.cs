@@ -1,4 +1,7 @@
+using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Jobs;
+using Unity.Burst;
 namespace EXPERIMENTAL
 {
     public static class TrigHelper
@@ -118,6 +121,36 @@ namespace EXPERIMENTAL
             //return the single value found after (potentially) many lerps.
             posToReturn = recursiveLayer[0];
             return posToReturn;
+        }
+    }
+
+    [BurstCompile]
+    public struct BezierPositionJob : IJobParallelForTransform
+    {
+        [ReadOnly] public NativeArray<Vector3> boundingPositions;
+        [ReadOnly] public float percentAlongCurve;
+
+        public void Execute(int index, TransformAccess transform)
+        {
+            Vector3 posToReturn = Vector3.zero; 
+            NativeArray<Vector3> recursiveLayer = new NativeArray<Vector3>(new Vector3[boundingPositions.Length - 1], Allocator.Domain);
+            for (int i = 0; i < recursiveLayer.Length; i++)
+            {
+                recursiveLayer[i] = Vector3.Lerp(boundingPositions[i], boundingPositions[i + 1], percentAlongCurve);
+            }
+
+            while (recursiveLayer.Length > 1)
+            {
+                NativeArray<Vector3> subLayer = new NativeArray<Vector3>(new Vector3[recursiveLayer.Length - 1], Allocator.Domain);
+                for (int i = 0; i < subLayer.Length; i++)
+                {
+                    subLayer[i] = Vector3.Lerp(recursiveLayer[i], recursiveLayer[i + 1], percentAlongCurve);
+                }
+                recursiveLayer = subLayer;
+            }
+            posToReturn = recursiveLayer[0];
+
+            transform.position = posToReturn;
         }
     }
 }
