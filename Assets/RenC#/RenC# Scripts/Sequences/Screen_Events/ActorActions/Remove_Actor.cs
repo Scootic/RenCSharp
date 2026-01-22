@@ -13,7 +13,7 @@ namespace RenCSharp.Sequences
     public class Remove_Actor: Screen_Event
     {
         [SerializeField] private Actor actorToRemove;
-        [SerializeField, Tooltip("How long it takes for the actor to fade out.")] private float fadeTime = 0f;
+        [SerializeField, Tooltip("How long it takes for the actor to fade out."), Min(0f)] private float fadeTime = 0.5f;
         private Coroutine fadeOut;
         private GameObject fellaToRemove;
         public override void DoShit()
@@ -65,7 +65,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Remove Actor";
+            return "Actor/Remove Actor";
         }
     }
 }

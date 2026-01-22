@@ -7,7 +7,6 @@ using UnityEngine;
 using RenCSharp.Combat.Enemies;
 using RenCSharp.Combat.Interfaces;
 using RenCSharp.Combat.Player;
-using System.Linq;
 namespace RenCSharp.Combat
 {
     public sealed class Fight_Manager : MonoBehaviour
@@ -154,10 +153,11 @@ namespace RenCSharp.Combat
         private IEnumerator RunThroughAttack(EnemyAttack ea)
         {
             float t = 0; //timer for the attack
-            float f = 0; //timer for individual projectiles
+            float f = ea.SecondsPerProjectileSpawn; //timer for individual projectiles
             Textbox_String.JumpToEndOfTextbox = true;
             prevAttackPosRoll = -1; //make sure that 0 is always the first for an attack?
             yield return SetUpArena(ea);
+            yield return new WaitForSeconds(0.75f); //wait less than a second before immediately spawning an projectile
 
             while (t <= ea.AttackDuration && fighting)
             {

@@ -14,7 +14,7 @@ namespace RenCSharp.Sequences
     public class Spawn_Actor : Screen_Event
     {
         [SerializeField] private Actor actorToSpawn;
-        [SerializeField, Tooltip("For coroutine to make the actor fade in. 0 for instantaneous spawning.")] private float fadeInTime = 0f;
+        [SerializeField, Tooltip("For coroutine to make the actor fade in. 0 for instantaneous spawning."), Min(0)] private float fadeInTime = 0.5f;
         [SerializeField] private Vector3 spawnOffset = Vector3.zero;
         [SerializeField, Tooltip("Type in the light gray boxes.")] private string[] visualSpriteIndexes = new string[1];
         private Coroutine fadeIn;
@@ -61,7 +61,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Spawn Actor";
+            return "Actor/Spawn Actor";
         }
     }
 }

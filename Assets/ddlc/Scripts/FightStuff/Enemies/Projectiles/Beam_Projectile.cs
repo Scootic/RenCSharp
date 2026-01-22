@@ -12,11 +12,13 @@ namespace RenCSharp.Combat.Enemies
         [SerializeField, Range(0,1)] private float beamSoundVol = 1;
         [SerializeField] private Color emptyBeamC = Color.black;
         [SerializeField] private Color fullBeamC = Color.red;
+        private bool activeHitbox;
 
         protected override IEnumerator EnableTriggerOverTime()
         {
             float t = 0;
             float eval;
+            activeHitbox = false;
             myCol.enabled = false; 
             beamElements.Images[0].enabled = false; //main image
             beamElements.Images[1].enabled = true; //underlay
@@ -38,6 +40,7 @@ namespace RenCSharp.Combat.Enemies
             }
 
             myCol.enabled = true;
+            activeHitbox = true;
             Audio_Manager.AM.Play2DSFX(beamFullSound, 0.9f, 1.01f, beamSoundVol, false);
             beamElements.Images[0].enabled = true; //main image
             beamElements.Images[1].enabled = false; //underlay
@@ -47,7 +50,12 @@ namespace RenCSharp.Combat.Enemies
 
         protected override void Update()
         {
-            //do jack shit, lmao!
+            if(activeHitbox) transform.position += moveDir * moveSpeed * Time.deltaTime;
+        }
+
+        public override void OnDespawn(bool playerTurn)
+        {
+            StopCoroutine(spawnInRoutine);
         }
 
         protected override void OnTriggerEnter(Collider other)

@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: -2506182205116807624}
   - component: {fileID: -1317450562956184785}
   m_Layer: 6
-  m_Name: DragonSlashProj
+  m_Name: DragonSlashArcProj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,31 +139,31 @@ MonoBehaviour:
   destroyOnHit: 0
   baseDamage: 5
   moveSpeed: 500
-  lifetime: 2
+  lifetime: 1.5
   spawnSoundVol: 0.4
   colliderEnableTime: 0.35
   spawnSound: {fileID: 8300000, guid: b40532dff090cf84b8986386702391a1, type: 3}
   sprite: {fileID: 6633296226558677985}
   distanceFromSpawn: 800
-  arcHeight: 400
+  arcHeight: 800
   animateBezCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
