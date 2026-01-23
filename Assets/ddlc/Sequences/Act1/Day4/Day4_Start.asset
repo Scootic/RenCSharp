@@ -170,7 +170,7 @@ MonoBehaviour:
       data:
         imagesToSet:
         - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
-        overlayText: Day 4 - Act 1
+        overlayText: 'Act 1 - Day 4: I Hate Triangles!'
         fadeTime: 2
         endWithScreen: 1
         secondsPerFrame: 0.1
@@ -196,6 +196,7 @@ MonoBehaviour:
         position: {x: 0, y: 0, z: 0}
         environmental: 0
         loop: 0
+        stopOnScreenProgress: 1
         loopDuration: 1
     - rid: 9142197673170042986
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
@@ -293,6 +294,7 @@ MonoBehaviour:
         position: {x: 0, y: 0, z: 0}
         environmental: 0
         loop: 0
+        stopOnScreenProgress: 1
         loopDuration: 1
     - rid: 9142197673170042998
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
