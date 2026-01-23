@@ -58,8 +58,7 @@ MonoBehaviour:
     - rid: 9079474728083652678
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: I don't really know where I am, but this place looks kind of...
-    ScreenActions:
-    - rid: 9079474728083652679
+    ScreenActions: []
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Scandinavian, I guess.
     ScreenActions:
@@ -71,7 +70,8 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: A nice, tall, handsome Dane or Swede to come take me off of my feet.
       How romantic!
-    ScreenActions: []
+    ScreenActions:
+    - rid: 9079475074706702387
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Only one way to find out! I'll have to get out there and-
     ScreenActions:
@@ -442,53 +442,10 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         loopOnScreen: 0
-    - rid: 9079474728083652679
-      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        localMotionOffset: {x: -1000, y: 0, z: 0}
-        motionDuration: 1
-        motionPathX:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        motionPathY:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        motionPathZ:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        target: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-        loopOnScreen: 0
     - rid: 9079474728083652680
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        localMotionOffset: {x: 500, y: 0, z: 0}
+        localMotionOffset: {x: -1000, y: 0, z: 0}
         motionDuration: 1
         motionPathX:
           serializedVersion: 2
@@ -907,3 +864,46 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         fadeTime: 0.5
+    - rid: 9079475074706702387
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 500, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        loopOnScreen: 0
