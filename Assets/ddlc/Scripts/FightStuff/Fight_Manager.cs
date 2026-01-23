@@ -87,8 +87,6 @@ namespace RenCSharp.Combat
         {
             Event_Bus.TryFireVoidEvent("PauseSequence");
             Event_Bus.AddBoolEvent("EndAFight", EndAFight);
-            Event_Bus.TryFireFloatEvent("PlayerHealth", (float)Flag_Manager.GetFlag("PlayerCurHealth"));
-            Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (float)Flag_Manager.GetFlag("PlayerCurHealth") / (float)Flag_Manager.GetFlag("PlayerMaxHealth"));
             combatCanvas.SetActive(true);
             playerHolder.gameObject.SetActive(false);
             fighting = true;
@@ -100,6 +98,9 @@ namespace RenCSharp.Combat
             dir = 1;
             playerObj = Object_Factory.SpawnObject(playerPrefab.gameObject, "PlayerObject", playerHolder);
             curPlayer = playerObj.GetComponent<Player_Object>();
+            curPlayer.StartOfFight();
+            Event_Bus.TryFireFloatEvent("PlayerHealth", (float)Flag_Manager.GetFlag("PlayerCurHealth"));
+            Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (float)Flag_Manager.GetFlag("PlayerCurHealth") / (float)Flag_Manager.GetFlag("PlayerMaxHealth"));
             playerObj.SetActive(false);
         }
         #endregion
@@ -157,6 +158,7 @@ namespace RenCSharp.Combat
             Textbox_String.JumpToEndOfTextbox = true;
             prevAttackPosRoll = -1; //make sure that 0 is always the first for an attack?
             yield return SetUpArena(ea);
+            playerObj.transform.localPosition = Vector3.zero; //PLEASE PLEASE DON'T BE OUTSIDE OF THE BOX DAMN YOU
             yield return new WaitForSeconds(0.75f); //wait less than a second before immediately spawning an projectile
 
             while (t <= ea.AttackDuration && fighting)
@@ -274,7 +276,7 @@ namespace RenCSharp.Combat
             playerObj.SetActive(true);
             playerObj.transform.SetParent(playerHolder); //guarantee????
             playerObj.transform.localPosition = Vector3.zero; //reset to origin of holder?
-            if (curAttackIndex == 0 && !passedScript) playerObj.GetComponent<Player_Object>().StartOfFight();
+            //if (curAttackIndex == 0 && !passedScript) playerObj.GetComponent<Player_Object>().StartOfFight();
             ea.ControlType.EnterControl();
         }
 

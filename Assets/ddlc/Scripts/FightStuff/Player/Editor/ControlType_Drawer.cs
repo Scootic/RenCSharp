@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 namespace RenCSharp.Combat.Player
 {
@@ -10,3 +11,4 @@ namespace RenCSharp.Combat.Player
         }
     }
 }
+#endif

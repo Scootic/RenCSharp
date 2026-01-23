@@ -73,7 +73,7 @@ namespace RenCSharp.Combat.Player
             if (invincible) return; //don't take damage if invincible. go figure!
 
             curHealth -= f - (f * Resistance());
-            curHealth = Mathf.Max(curHealth, 0);
+            //curHealth = Mathf.Max(curHealth, 0);
             curHealth = Mathf.Min(curHealth, maxHealth);
 
             Debug.Log("Damage Taken by Player: " + f);
@@ -81,7 +81,7 @@ namespace RenCSharp.Combat.Player
             Event_Bus.TryFireFloatEvent("PlayerHealth", curHealth);
             Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
 
-            if (curHealth == 0)
+            if (curHealth <= 0)
             {
                 //Game Over stuff here!
                 //Fight_Manager.FM.EndAFight(true);

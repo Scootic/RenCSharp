@@ -43,8 +43,10 @@ namespace RenCSharp
         private Actor curActor;
         [HideInInspector] public List<Actor> activeActors = new(); //nasty!
 
-        [Header("Overlay")]
+        [Header("Full Graphic Stuff")]
         [SerializeField] private GameObject overlayPrefab; //should have a TMPro child
+        [SerializeField] private GameObject bgPrefab; //should have a TMPro child
+        [SerializeField] private Transform bgHolder;
         [SerializeField] private Transform overlayHolder;
         [SerializeField] private GameObject menuBase;
 
@@ -86,7 +88,7 @@ namespace RenCSharp
             }
 
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder);
-            Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform);//horrid
+            Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder);//horrid
             FlagToken ft = new FlagToken();
             Flag_Manager.ReceiveFlagToken(ft.FlagTokenToDictionary(SaveLoad.LoadPersistentFlags()), true); //safety thing, make sure we have persistent flags
 
