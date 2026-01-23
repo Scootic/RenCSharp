@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 namespace RenCSharp.Sequences
 {
     /// <summary>
     /// Plays a new music track and fades out the old one.
     /// </summary>
+    [Obsolete("Outdated, should use PlayBGMAsset instead to communicate with Save/Load.", false)]
     public class Play_BGM : Screen_Event
     {
         [SerializeField] private AudioClip musicTrack;
@@ -16,7 +18,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Play Music Track";
+            return "Deprecated/Play Music Track";
         }
     }
 }

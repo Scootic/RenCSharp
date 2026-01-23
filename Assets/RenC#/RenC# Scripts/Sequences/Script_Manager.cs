@@ -389,8 +389,8 @@ namespace RenCSharp
         #region SaveLoadHandling
         public void SaveShit(string saveFileName)
         {
-            if (saving) return;
-            if (saveFileName == null) saveFileName = "SaveData";
+            if (saving) return; //don't interrupt our save, good god!
+            if (saveFileName == null) saveFileName = "SaveData"; //default to prevent extreme BS
             if(overlayDatabase == null || backgroundDatabase == null || audioDatabase == null)
             {
                 Debug.LogWarning("You're a missing a database, you damned fool! I refuse to save under these working conditions!");
@@ -402,13 +402,13 @@ namespace RenCSharp
             ScreenToken st = new ScreenToken();
 
             manToSave.CurrentScreenIndex = curScreenIndex; //:)
-            manToSave.PlayerName = playerName;
+            manToSave.PlayerName = playerName; //should probably change to handle the dictionary that Textbox_String uses to replace stuffs.
             manToSave.CurrentFlags = new FlagToken(Flag_Manager.GetSaveDataFlags);
             manToSave.CurrentHistory = curHist;
 
             //grab the cursequence. horrid! USES THE ASSET REFERENcE WE DONE STORED. MAYBE IT WORK? MAYBE IT NO :)
             manToSave.CurrentSequenceAsset = currentSequence.Myself.AssetGUID;
-
+            //save bg data
             if (Object_Factory.TryGetObject("Background", out GameObject bg)) 
             {
                 Animated_Image_Handler aih = bg.GetComponent<Animated_Image_Handler>();
@@ -428,7 +428,7 @@ namespace RenCSharp
                 st.BackgroundAssetKeys = t.ToArray();
                 st.BackgroundSPF = aih.SecondsPerFrame;
             }
-
+            //save overlay data
             if(Object_Factory.TryGetObject("Overlay", out GameObject ov))
             {
                 Animated_Image_Handler aih = ov.GetComponent<Animated_Image_Handler>();
@@ -448,15 +448,8 @@ namespace RenCSharp
                 st.OverlaySPF = aih.SecondsPerFrame;
             }
 
-            if (audioDatabase.Sounds.ContainsKey(Audio_Manager.AM.CurrentBGM.name))
-            {
-                st.MusicAssetKey = Audio_Manager.AM.CurrentBGM.name;
-            }
-            else
-            {
-                Debug.LogWarning(Audio_Manager.AM.CurrentBGM.name + " isn't in the audio database, allegedly.");
-            }
-
+            st.MusicAssetKey = Audio_Manager.AM.SongAssetGUID;
+            //save actor data
             List<ActorToken> actorTokens = new();
 
             foreach (Actor actor in activeActors)
@@ -504,7 +497,7 @@ namespace RenCSharp
             Object_Factory.ScrubDictionary();
 
             Animated_Image_Handler ov = Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Animated_Image_Handler>();
-            Animated_Image_Handler bg = Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform).GetComponent<Animated_Image_Handler>();
+            Animated_Image_Handler bg = Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder).GetComponent<Animated_Image_Handler>();
 
             //grab flags
             FlagToken ft = sd.CurrentFlags;
@@ -547,17 +540,12 @@ namespace RenCSharp
             ov.ReceiveAnimationInformation(ovFrames.ToArray(),std.OverlaySPF);
             bg.ReceiveAnimationInformation(bgFrames.ToArray(),std.BackgroundSPF);
 
-            if (audioDatabase.Sounds.ContainsKey(std.MusicAssetKey))
-            {
-                Audio_Manager.AM.PlayBGM(audioDatabase.Sounds[std.MusicAssetKey], 1f, true,
-                   Audio_Manager.AM.CurrentBGM == audioDatabase.Sounds[std.MusicAssetKey] ? true : false);
-            }
-            else
-            {
-                Debug.LogWarning("Music Asset Key is evil! - " + std.MusicAssetKey);
-            }
+            AsyncOperationHandle bgmHandle = Addressables.LoadAssetAsync<AudioClip>(std.MusicAssetKey);
+            bgmHandle.WaitForCompletion();
+            if (bgmHandle.Status == AsyncOperationStatus.Succeeded) Audio_Manager.AM.PlayBGM(bgmHandle.Result as AudioClip, 1, true, false);
+            else bgmHandle.Release();
 
-                SequenceAsset = Addressables.LoadAssetAsync<Sequence>(sd.CurrentSequenceAsset);
+            SequenceAsset = Addressables.LoadAssetAsync<Sequence>(sd.CurrentSequenceAsset);
 
             Debug.Log("Amount of actors we should be loading: " + std.ActiveActors.Count);
 

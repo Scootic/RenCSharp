@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using EXPERIMENTAL;
 namespace RenCSharp
 {
@@ -20,12 +22,14 @@ namespace RenCSharp
         private int sfxIndex = 0; //Store the current sfx index
         private bool enteringBGM = false; //used to see if we are currently doing a BGM fade transition.
         private Coroutine bgmRoutine;
+        private string songAssetGUID;
 
         [Range(0, 1)] private float bgmVolMult = 0.5f, sfxVolMult = 0.5f, esfxVolMult = 0.5f; //volume multipliers
         public float BGMVol => bgmVolMult;
         public float SFXVol => sfxVolMult;
         public float ESFXVol => esfxVolMult;
         public AudioClip CurrentBGM => leMusic.clip;
+        public string SongAssetGUID => songAssetGUID;
 
         private void InitSFX()
         {
@@ -226,7 +230,13 @@ namespace RenCSharp
         #endregion
 
         #region BGM
-        //only exists so a coroutine can be called by another script
+        /// <summary>
+        /// plays a song.
+        /// </summary>
+        /// <param name="musicToPlay"></param>
+        /// <param name="fadeTime"></param>
+        /// <param name="isLooping"></param>
+        /// <param name="setSameTime"></param>
         public void PlayBGM(AudioClip musicToPlay, float fadeTime = 5f, bool isLooping = true, bool setSameTime = false)
         {
             if (musicToPlay != null) 
@@ -239,6 +249,32 @@ namespace RenCSharp
                 bgmRoutine = StartCoroutine(PlayBGMPog(musicToPlay, fadeTime, isLooping, setSameTime)); 
             }
             else Debug.Log("You didn't give AM a clip to play bgm! Dumbass!");
+        }
+        /// <summary>
+        /// plays a song from an asset reference. async moment.
+        /// </summary>
+        /// <param name="musicAsset"></param>
+        /// <param name="fadeTime"></param>
+        /// <param name="isLooping"></param>
+        /// <param name="setSameTime"></param>
+        /// <returns></returns>
+        public async Awaitable PlayBGM(AssetReference musicAsset, float fadeTime =5f, bool isLooping = true, bool setSameTime = false)
+        {
+            AsyncOperationHandle songHandle = musicAsset.LoadAssetAsync<AudioClip>();
+            await songHandle.Task;
+
+            if(songHandle.Status == AsyncOperationStatus.Failed) { Debug.LogWarning("Failed to load song asset: " + musicAsset.Asset); return; }
+            AudioClip song = songHandle.Result as AudioClip;
+            songAssetGUID = musicAsset.AssetGUID;
+
+            if (enteringBGM)
+            {
+                if (newBGM != null) Destroy(newBGM);
+                StopCoroutine(bgmRoutine);
+            }
+            bgmRoutine = StartCoroutine(PlayBGMPog(song, fadeTime, isLooping, setSameTime));
+
+            Addressables.Release(songHandle); //release the song once finished.
         }
 
         private IEnumerator PlayBGMPog(AudioClip musicToPlay, float fadeTime = 3f, bool isLooping = true, bool setSameTime = false)
