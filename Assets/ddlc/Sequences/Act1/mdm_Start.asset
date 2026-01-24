@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d7d90acd337545242978d965e5b6e6f5, type: 2}
     dialog: Heeeeey!
     ScreenActions:
-    - rid: 8612954368440271007
+    - rid: 9079475098267418678
     - rid: 9079475089592287301
   - speaker: {fileID: 0}
     dialog: I see an annoying girl running toward me from the distance, waving her
@@ -28,7 +28,7 @@ MonoBehaviour:
     dialog: <font="glitchfont">Wow.
     ScreenActions:
     - rid: 9079475089592287312
-    - rid: 8612954481186308160
+    - rid: 9079475098267418675
     - rid: 8612954484556955709
   - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
     dialog: <font="glitchfont">That's the first impression we're going to give our
@@ -66,26 +66,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 8612954368440271007
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 36f7c6032a374db4a968c0e1236322e1, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 2
-        fadeDuration: 4
-    - rid: 8612954481186308160
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: -1528548662, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
-        - {fileID: -1433182800, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
-        - {fileID: 141569737, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
-        - {fileID: 774781490, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 0
-        secondsPerFrame: 0.1
     - rid: 8612954484556955709
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -117,3 +97,48 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
+    - rid: 9079475098267418675
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
+          m_SubObjectName: glitchanim_0
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
+          m_SubObjectName: glitchanim_1
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 0
+        - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
+          m_SubObjectName: glitchanim_2
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
+          m_SubObjectName: glitchanim_3
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 0
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418678
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 36f7c6032a374db4a968c0e1236322e1
+          m_SubObjectName: street
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 2
+        fadeDuration: 4

@@ -18,7 +18,7 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 9079475089592287591
-    - rid: 9079474749396484276
+    - rid: 9079475098267418886
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Guhh...
     ScreenActions:
@@ -75,7 +75,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079474749396484285
+    - rid: 9079475098267418887
   - speaker: {fileID: 11400000, guid: 4ad5dd808ad82574db508b579bfc59b8, type: 2}
     dialog: You see those yellow-lookin' blobs out there?
     ScreenActions:
@@ -111,7 +111,7 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 9079474771628392448
-    - rid: 9079474771628392449
+    - rid: 9079475098267418888
   - speaker: {fileID: 11400000, guid: 89f7d0b97106b6448939eb57dd9aa235, type: 2}
     dialog: We're here. Your orders, captain?
     ScreenActions:
@@ -177,14 +177,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9079474749396484276
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: bf5d02ca36950fe40963e79e571c3677, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 3
     - rid: 9079474749396484277
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -233,14 +225,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
         fadeTime: 0.5
-    - rid: 9079474749396484285
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: fc706ef5cf75aff4ea48a0c02e31ab17, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474749396484286
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -265,14 +249,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
         fadeTime: 0.5
-    - rid: 9079474771628392449
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 69eadcb8c76e61942b13e79155807026, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
     - rid: 9079474771628392450
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -386,3 +362,39 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
+    - rid: 9079475098267418886
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: bf5d02ca36950fe40963e79e571c3677
+          m_SubObjectName: whiterunbandit2
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 3
+    - rid: 9079475098267418887
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: fc706ef5cf75aff4ea48a0c02e31ab17
+          m_SubObjectName: whiterunbandit3
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418888
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 69eadcb8c76e61942b13e79155807026
+          m_SubObjectName: whiterunbandit1
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1

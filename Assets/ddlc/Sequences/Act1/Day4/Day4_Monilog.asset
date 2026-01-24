@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: ...
     ScreenActions:
-    - rid: 9142197695858868468
+    - rid: 9079475098267418785
     - rid: 9079475089592287422
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: ...
@@ -148,11 +148,15 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
-    - rid: 9142197695858868468
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418785
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: abc74be64ac42cd4cae2846997565291, type: 3}
+        - m_AssetGUID: abc74be64ac42cd4cae2846997565291
+          m_SubObjectName: Classroom_05_night
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 4

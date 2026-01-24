@@ -33,7 +33,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: ...
     ScreenActions:
-    - rid: 9079475045585125655
+    - rid: 9079475098267418977
     - rid: 9079475089592287519
   - speaker: {fileID: 0}
     dialog: I'm having trouble getting to sleep.
@@ -396,14 +396,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         fadeTime: 1
-    - rid: 9079475045585125655
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: d001226a69f817944b3be63f058f7a56, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 3
     - rid: 9079475070362714164
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -671,3 +663,15 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
+    - rid: 9079475098267418977
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: d001226a69f817944b3be63f058f7a56
+          m_SubObjectName: riverwoodinnroom
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 3

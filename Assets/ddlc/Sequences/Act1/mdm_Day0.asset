@@ -17,13 +17,13 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 8612954481186308164
-    - rid: 9079475089592287627
+    - rid: 9079475098267418680
+    - rid: 9079475098267418681
     - rid: 9079475089592287313
   - speaker: {fileID: 0}
     dialog: Finally done with my homework. Friggin' hate Mondays.
     ScreenActions:
-    - rid: 9079475089592287628
+    - rid: 9079475098267418682
   - speaker: {fileID: 0}
     dialog: I can't believe that our teacher made us read a whole chapter for our
       history homework.
@@ -60,11 +60,11 @@ MonoBehaviour:
     dialog: 'Enough wallowing, I guess I''ll start my 35th playthrough of: "The Elder
       Scrolls V: Skyrim."'
     ScreenActions:
-    - rid: 8612954484556955719
+    - rid: 9079475098267418683
   - speaker: {fileID: 0}
     dialog: (Why did I say the full title like that?)
     ScreenActions:
-    - rid: 8612954484556955720
+    - rid: 9079475098267418684
   - speaker: {fileID: 0}
     dialog: I boot up Skyrim and start a new playthrough, going until it's time to
       get ready for bed.
@@ -72,7 +72,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: After a nice warm shower, I'm ready to face tomorrow.
     ScreenActions:
-    - rid: 8612954621401628741
+    - rid: 9079475098267418685
   - speaker: {fileID: 0}
     dialog: Hopefully tomorrow's homework isn't as garbage as today's...
     ScreenActions: []
@@ -90,40 +90,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 8612954481186308164
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 51aa5cf7e5d98d940b920b780d5f7d1d, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 4
-    - rid: 8612954484556955719
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 5eeaa0a169f3b294b8dd71cb0291e026, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 1
-        secondsPerFrame: 0.1
-    - rid: 8612954484556955720
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 1
-        secondsPerFrame: 0.1
-    - rid: 8612954621401628741
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 21e4c3850e9fe4140ab31bf60a1b8643, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9079475089592287313
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -135,21 +101,85 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
-    - rid: 9079475089592287627
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418680
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 51aa5cf7e5d98d940b920b780d5f7d1d
+          m_SubObjectName: room_dusk_light_on
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 4
+    - rid: 9079475098267418681
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         imagesToSet:
-        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
+        - m_AssetGUID: 1e39ac913664afa4e9b4756e5117b10d
+          m_SubObjectName: blackpng
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
         overlayText: 'Act 1 - Day 0: New Year, New Me'
         fadeTime: 2
         endWithScreen: 1
         secondsPerFrame: 0.1
-    - rid: 9079475089592287628
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418682
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
         overlayText: 
         fadeTime: 2
         endWithScreen: 1
         secondsPerFrame: 0.1
+    - rid: 9079475098267418683
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 5eeaa0a169f3b294b8dd71cb0291e026
+          m_SubObjectName: skyrimboxart
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418684
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418685
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 21e4c3850e9fe4140ab31bf60a1b8643
+          m_SubObjectName: room_night_light_off
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2

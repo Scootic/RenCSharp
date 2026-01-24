@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079475045585125570
+    - rid: 9079475098267418939
     - rid: 9079475089592287540
   - speaker: {fileID: 0}
     dialog: We've all crammed ourselves on two of the tables, eating our supper.
@@ -97,7 +97,7 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 9079475089592287541
-    - rid: 9079475045585125579
+    - rid: 9079475098267418940
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: -now, the Sigil Stones were what anchored the Oblivion Gates to Mundus-
     ScreenActions:
@@ -217,7 +217,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079475045585125592
+    - rid: 9079475098267418941
     - rid: 9079475089592287542
   - speaker: {fileID: 0}
     dialog: ... that bed's lookin' <i>real</i> comfy right about now.
@@ -237,7 +237,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079475045585125594
+    - rid: 9079475098267418942
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (Psst! Hey!)
     ScreenActions: []
@@ -368,14 +368,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9079475045585125570
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: cda383db3403501468aca70c3fed067e, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 3
     - rid: 9079475045585125572
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -426,14 +418,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smileSpeak
-    - rid: 9079475045585125579
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: cda383db3403501468aca70c3fed067e, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 2
     - rid: 9079475045585125580
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -528,22 +512,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         fadeTime: 0.5
-    - rid: 9079475045585125592
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: d001226a69f817944b3be63f058f7a56, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
-    - rid: 9079475045585125594
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 80d3dca12667cba48acfd8ca0bd00f92, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 3
     - rid: 9079475045585125596
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -857,3 +825,51 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
+    - rid: 9079475098267418939
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: cda383db3403501468aca70c3fed067e
+          m_SubObjectName: riverwoodinn
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 3
+    - rid: 9079475098267418940
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: cda383db3403501468aca70c3fed067e
+          m_SubObjectName: riverwoodinn
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 2
+    - rid: 9079475098267418941
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: d001226a69f817944b3be63f058f7a56
+          m_SubObjectName: riverwoodinnroom
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418942
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 80d3dca12667cba48acfd8ca0bd00f92
+          m_SubObjectName: riverwoodinnroom2
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 3

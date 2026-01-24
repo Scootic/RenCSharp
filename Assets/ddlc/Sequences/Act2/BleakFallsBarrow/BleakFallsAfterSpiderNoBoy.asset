@@ -17,8 +17,8 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079474864314122456
-    - rid: 9079474864314122458
+    - rid: 9079475098267418919
+    - rid: 9079475098267418920
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Take that, you eight-legged punk!
     ScreenActions:
@@ -35,7 +35,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: ... eh, wha-?
     ScreenActions:
-    - rid: 9079474864314122465
+    - rid: 9079475098267418921
   - speaker: {fileID: 0}
     dialog: Sure enough, the Giant Frostbite Spider lies dead.
     ScreenActions: []
@@ -84,23 +84,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9079474864314122456
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: be94bf1c83783d94098cd0a3c751e8ae, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
-    - rid: 9079474864314122458
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 7ae89b6f8c3126d4fa85dd1e398805c6, type: 3}
-        overlayText: 
-        fadeTime: 1
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 9079474864314122459
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -153,15 +136,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
-    - rid: 9079474864314122465
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 9079474864314122466
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -189,3 +163,41 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
+    - rid: 9079475098267418919
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: be94bf1c83783d94098cd0a3c751e8ae
+          m_SubObjectName: barrowSPIDER
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079475098267418920
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 7ae89b6f8c3126d4fa85dd1e398805c6
+          m_SubObjectName: vignet
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 1
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418921
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1

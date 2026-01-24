@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9142197338057736289
+    - rid: 9079475098267418727
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Hi again, {mc}!
     ScreenActions:
@@ -352,11 +352,15 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9142197338057736289
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418727
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
+        - m_AssetGUID: b520dd2a984ff1445b8e8874f212ecfa
+          m_SubObjectName: Classroom_05_day
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2

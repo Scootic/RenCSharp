@@ -17,14 +17,14 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9142197556909965476
-    - rid: 9142197556909965477
+    - rid: 9079475098267418742
+    - rid: 9079475098267418743
     - rid: 9079475089592287378
     - rid: 9142197556909965480
   - speaker: {fileID: 0}
     dialog: Morning already?
     ScreenActions:
-    - rid: 9142197556909965479
+    - rid: 9079475098267418744
   - speaker: {fileID: 0}
     dialog: I check the time.
     ScreenActions: []
@@ -44,7 +44,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Alright, what's for breakfast?
     ScreenActions:
-    - rid: 9142197581518209092
+    - rid: 9079475098267418745
   - speaker: {fileID: 0}
     dialog: I open the fridge to see what I have.
     ScreenActions: []
@@ -84,7 +84,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: I make my way over to Sayori's front door.
     ScreenActions:
-    - rid: 9142197581518209093
+    - rid: 9079475098267418746
   - speaker: {fileID: 0}
     dialog: Knock knock!
     ScreenActions:
@@ -143,7 +143,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Notably absent is any sign of her parents...
     ScreenActions:
-    - rid: 9142197581518209100
+    - rid: 9079475098267418747
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Hey, Sayori?
     ScreenActions: []
@@ -204,7 +204,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: We both make our way into the kitchen.
     ScreenActions:
-    - rid: 9142197581518209107
+    - rid: 9079475098267418748
     - rid: 9142197581518209108
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: So, what's on the menu, chef?
@@ -239,7 +239,7 @@ MonoBehaviour:
       waffle iron.
     ScreenActions:
     - rid: 9142197581518209113
-    - rid: 9142197581518209114
+    - rid: 9079475098267418749
   - speaker: {fileID: 0}
     dialog: An arrangement intentionally designed so Sayori is as far away from the
       stove as possible.
@@ -267,7 +267,7 @@ MonoBehaviour:
     dialog: With breakfast ready, we sit down at the dining table.
     ScreenActions:
     - rid: 9142197581518209116
-    - rid: 9142197581518209117
+    - rid: 9079475098267418750
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: It's been so long since we've last had breakfast with each other, {mc}.
     ScreenActions:
@@ -348,53 +348,121 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
-    - rid: 9142197556909965476
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418742
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: 3e4d032d6ea4d414097ebda42d13f2fd, type: 3}
+        - m_AssetGUID: 3e4d032d6ea4d414097ebda42d13f2fd
+          m_SubObjectName: room_morning_light_off
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 4
-    - rid: 9142197556909965477
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418743
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         imagesToSet:
-        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
+        - m_AssetGUID: 1e39ac913664afa4e9b4756e5117b10d
+          m_SubObjectName: blackpng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         overlayText: 'Act 1 - Day 3: The Cracks Begin to Show'
         fadeTime: 2
         endWithScreen: 1
         secondsPerFrame: 0.1
-    - rid: 9142197556909965479
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418744
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 2
         endWithScreen: 1
         secondsPerFrame: 0.1
+    - rid: 9079475098267418745
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 0fa7aea805a5e8642814b80a787a2a04
+          m_SubObjectName: condo_Day 07
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9079475098267418746
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 36f7c6032a374db4a968c0e1236322e1
+          m_SubObjectName: street
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9079475098267418747
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 8512c969622050b4cbfe8e803d04aa3a
+          m_SubObjectName: sayocondo_Day 01
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9079475098267418748
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 9d739718a113fe64584adb329e4c968c
+          m_SubObjectName: sayokitchen_day
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9079475098267418749
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 9d739718a113fe64584adb329e4c968c
+          m_SubObjectName: sayokitchen_day
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9079475098267418750
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 8512c969622050b4cbfe8e803d04aa3a
+          m_SubObjectName: sayocondo_Day 01
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
     - rid: 9142197556909965480
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToRemove: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         fadeTime: 0.5
-    - rid: 9142197581518209092
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 0fa7aea805a5e8642814b80a787a2a04, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
-    - rid: 9142197581518209093
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 36f7c6032a374db4a968c0e1236322e1, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9142197581518209094
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -445,14 +513,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         fadeTime: 0.5
-    - rid: 9142197581518209100
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 8512c969622050b4cbfe8e803d04aa3a, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9142197581518209101
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -504,14 +564,6 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - pitySmile
-    - rid: 9142197581518209107
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 9d739718a113fe64584adb329e4c968c, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9142197581518209108
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -560,14 +612,6 @@ MonoBehaviour:
         - uniUp
         - uniUp
         - '><Shock'
-    - rid: 9142197581518209114
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 9d739718a113fe64584adb329e4c968c, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9142197581518209115
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -584,14 +628,6 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - smile
-    - rid: 9142197581518209117
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 8512c969622050b4cbfe8e803d04aa3a, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9142197581518209118
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

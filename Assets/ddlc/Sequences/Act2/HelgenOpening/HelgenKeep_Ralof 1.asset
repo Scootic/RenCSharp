@@ -22,7 +22,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: We make our way into Helgen Keep.
     ScreenActions:
-    - rid: 9079474599036452926
+    - rid: 9079475098267418869
     - rid: 9079475089592287578
   - speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
     dialog: Looks like we're the only ones who made it...
@@ -170,7 +170,7 @@ MonoBehaviour:
     dialog: ... I just killed a man for the first time...
     ScreenActions:
     - rid: 9079475089592287580
-    - rid: 9079474705638883386
+    - rid: 9079475098267418870
   - speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
     dialog: Maybe one of the Imperials had the key.
     ScreenActions:
@@ -195,11 +195,11 @@ MonoBehaviour:
     dialog: I already know it will, so I promptly open the door, eager to move on
       from this experience.
     ScreenActions:
-    - rid: 9079474705638883389
+    - rid: 9079475098267418871
   - speaker: {fileID: 0}
     dialog: Jesus-
     ScreenActions:
-    - rid: 9079474705638883392
+    - rid: 9079475098267418872
   - speaker: {fileID: 0}
     dialog: Oh right, the ceiling caving in here was a scripted event in the game.
     ScreenActions: []
@@ -236,7 +236,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: The two of us arrive to the torture room...
     ScreenActions:
-    - rid: 9079474705638883512
+    - rid: 9079475098267418873
     - rid: 9079474705638883514
   - speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
     dialog: Troll's blood... it's a torture room!
@@ -289,11 +289,11 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079474705638883517
+    - rid: 9079475098267418874
   - speaker: {fileID: 0}
     dialog: Ah crap-!
     ScreenActions:
-    - rid: 9079474705638883518
+    - rid: 9079475098267418875
   - speaker: {fileID: 0}
     dialog: There's like four Imperials here!
     ScreenActions: []
@@ -339,15 +339,15 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079474705638883523
+    - rid: 9079475098267418876
   - speaker: {fileID: 0}
     dialog: Ah crap...
     ScreenActions:
-    - rid: 9079474705638883524
+    - rid: 9079475098267418877
   - speaker: {fileID: 0}
     dialog: Frostbite spiders...
     ScreenActions:
-    - rid: 9079474705638883525
+    - rid: 9079475098267418878
     - rid: 9079474705638883526
   - speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
     dialog: I hate those damn things. Too many eyes, you know?
@@ -377,7 +377,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: ...
     ScreenActions:
-    - rid: 9079474705638883530
+    - rid: 9079475098267418879
   - speaker: {fileID: 0}
     dialog: Despite having two people personally fighting for me, I in no way felt
       safe.
@@ -399,8 +399,8 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
     dialog: Hold up. There's a bear ahead. See her?
     ScreenActions:
-    - rid: 9079474705638883533
-    - rid: 9079474705638883532
+    - rid: 9079475098267418880
+    - rid: 9079475098267418881
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Hm? Oh, yeah.
     ScreenActions: []
@@ -423,7 +423,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Ah! Fresh air, how I've missed you!
     ScreenActions:
-    - rid: 9079474705638883535
+    - rid: 9079475098267418882
     - rid: 9079475089592287585
   - speaker: {fileID: 0}
     dialog: Alduin flies overhead, luckily not noticing us.
@@ -526,14 +526,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
         fadeTime: 0.5
-    - rid: 9079474599036452926
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 2df149d294a52d9478800939edacf8d5, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474680798380212
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -636,15 +628,6 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: fde2dc6ba332b214fb451fdb1f6bc2b0, type: 2}
-    - rid: 9079474705638883386
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 7ae89b6f8c3126d4fa85dd1e398805c6, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 9079474705638883387
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -653,23 +636,6 @@ MonoBehaviour:
         spawnOffset: {x: -500, y: 0, z: 0}
         visualSpriteIndexes:
         - default
-    - rid: 9079474705638883389
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 1
-        secondsPerFrame: 0.1
-    - rid: 9079474705638883392
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 17356841e6445694c806d0f1d3ee77da, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474705638883394
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -780,14 +746,6 @@ MonoBehaviour:
         flagValue: 8
         increment: 1
         persistent: 0
-    - rid: 9079474705638883512
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: fa0529e653942c44da3af5edd3a70f43, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474705638883514
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -809,22 +767,6 @@ MonoBehaviour:
         spawnOffset: {x: 300, y: 0, z: 0}
         visualSpriteIndexes:
         - default
-    - rid: 9079474705638883517
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 49614aa063affeb4d8561fbe7bcbc7a1, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
-    - rid: 9079474705638883518
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 00964ae34967298428ce68c250b114e8, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474705638883519
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -834,31 +776,6 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: c23759af2e88b8744be3c9acb67d593e, type: 2}
-    - rid: 9079474705638883523
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 645d94a1c8803fa4ab56eb4c9c1678aa, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
-    - rid: 9079474705638883524
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: efaac02f7233f1a46b329adaf3561a82, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
-    - rid: 9079474705638883525
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 7ae89b6f8c3126d4fa85dd1e398805c6, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 9079474705638883526
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -877,14 +794,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
         fadeTime: 0.5
-    - rid: 9079474705638883530
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: efaac02f7233f1a46b329adaf3561a82, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
     - rid: 9079474705638883531
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -893,23 +802,6 @@ MonoBehaviour:
         spawnOffset: {x: -500, y: 0, z: 0}
         visualSpriteIndexes:
         - default
-    - rid: 9079474705638883532
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: d9542d60f355d9848ae736f54d73121d, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
-    - rid: 9079474705638883533
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 9079474705638883534
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -919,14 +811,6 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
-    - rid: 9079474705638883535
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 5a97278dbbb3ce24e9b633390135144c, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 2
     - rid: 9079474705638883537
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1020,3 +904,175 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
+    - rid: 9079475098267418869
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 2df149d294a52d9478800939edacf8d5
+          m_SubObjectName: helgenkeep1
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418870
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 7ae89b6f8c3126d4fa85dd1e398805c6
+          m_SubObjectName: vignet
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418871
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418872
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 17356841e6445694c806d0f1d3ee77da
+          m_SubObjectName: helgenkeep2
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418873
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: fa0529e653942c44da3af5edd3a70f43
+          m_SubObjectName: helgenkeep3
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418874
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 49614aa063affeb4d8561fbe7bcbc7a1
+          m_SubObjectName: helgenkeep4
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418875
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 00964ae34967298428ce68c250b114e8
+          m_SubObjectName: helgenkeep5
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418876
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 645d94a1c8803fa4ab56eb4c9c1678aa
+          m_SubObjectName: helgenkeep6
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418877
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: efaac02f7233f1a46b329adaf3561a82
+          m_SubObjectName: helgenkeep7
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418878
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 7ae89b6f8c3126d4fa85dd1e398805c6
+          m_SubObjectName: vignet
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418879
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: efaac02f7233f1a46b329adaf3561a82
+          m_SubObjectName: helgenkeep7
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079475098267418880
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418881
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: d9542d60f355d9848ae736f54d73121d
+          m_SubObjectName: helgenkeep8
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079475098267418882
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 5a97278dbbb3ce24e9b633390135144c
+          m_SubObjectName: escapekeep
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 2

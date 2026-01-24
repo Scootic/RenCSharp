@@ -17,12 +17,12 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9142198014508531834
-    - rid: 9142198014508531835
+    - rid: 9079475098267418845
+    - rid: 9079475098267418846
   - speaker: {fileID: 0}
     dialog: I am in a video game...
     ScreenActions:
-    - rid: 9142198014508531837
+    - rid: 9079475098267418847
   - speaker: {fileID: 0}
     dialog: On the plus side, I'm pretty familiar with Skyrim, so I won't be completely
       lost.
@@ -43,7 +43,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Either way, I guess I'm going to find out soon.
     ScreenActions:
-    - rid: 9142198014508531838
+    - rid: 9079475098267418848
   - speaker: {fileID: 11400000, guid: cc2df41360429a84496bc5d6151fc651, type: 2}
     dialog: Next!
     ScreenActions: []
@@ -156,7 +156,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Alright... any second now...
     ScreenActions:
-    - rid: 9079474591330205801
+    - rid: 9079475098267418849
     - rid: 9079475089592287570
   - speaker: {fileID: 0}
     dialog: The executioner raises his axe.
@@ -167,7 +167,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Oh, there he is!
     ScreenActions:
-    - rid: 9079474591330205802
+    - rid: 9079475098267418850
     - rid: 9079475089592287571
     - rid: 9079474977939128411
   - speaker: {fileID: 0}
@@ -179,14 +179,14 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: I decide to listen to Ralof, not that he needed to tell me anyway.
     ScreenActions:
-    - rid: 9079474591330205809
+    - rid: 9079475098267418851
   - speaker: {fileID: 0}
     dialog: 'As chaotic as this is, I know the route:'
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: Run through the tower, and wait for Alduin to piss off.
     ScreenActions:
-    - rid: 9079474591330205810
+    - rid: 9079475098267418852
   - speaker: {fileID: 0}
     dialog: Once he's gone, jump through to the inn.
     ScreenActions: []
@@ -205,7 +205,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Ah-!
     ScreenActions:
-    - rid: 9079474591330205811
+    - rid: 9079475098267418853
   - speaker: {fileID: 0}
     dialog: I think I sprained my ankle a little...
     ScreenActions: []
@@ -229,7 +229,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: I've managed to make my way to the keep.
     ScreenActions:
-    - rid: 9079474591330205824
+    - rid: 9079475098267418854
   - speaker: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
     dialog: It's you and me prisoner, stay close!
     ScreenActions:
@@ -295,22 +295,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
         fadeTime: 0.5
-    - rid: 9079474591330205801
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 13b5badb4b5cb0f4da158d83e061406a, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
-    - rid: 9079474591330205802
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 652d703ee69cc52449a8d8c07e0715c2, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 1
-        fadeDuration: 0.5
     - rid: 9079474591330205804
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -324,30 +308,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
         fadeTime: 0.5
-    - rid: 9079474591330205809
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: bd5f053004fb62d41ab4528384b3bc01, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
-    - rid: 9079474591330205810
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 7b22a3f28a7190843a04afaddc161a11, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
-    - rid: 9079474591330205811
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 9b116be68e6209d46a60c3b1f46e97f5, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 4
-        fadeDuration: 1
     - rid: 9079474591330205812
       type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -411,14 +371,6 @@ MonoBehaviour:
             dialog: Graaagh... I feel like crap... I gotta make it to the keep, the
               I should be able to rest a bit...
             ScreenActions: []
-    - rid: 9079474591330205824
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 2056ed07e467ea04f84c89b13f09cd12, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474599036452915
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -489,37 +441,125 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
-    - rid: 9142198014508531834
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418845
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: 0ea8227f372d23a4c8ae707cf59374ff, type: 3}
+        - m_AssetGUID: 0ea8227f372d23a4c8ae707cf59374ff
+          m_SubObjectName: helgen2
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 8
-    - rid: 9142198014508531835
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418846
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         imagesToSet:
-        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
+        - m_AssetGUID: 1e39ac913664afa4e9b4756e5117b10d
+          m_SubObjectName: blackpng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         overlayText: 'Act 2 - Episode 1: Brave New World'
         fadeTime: 4
         endWithScreen: 1
         secondsPerFrame: 0.1
-    - rid: 9142198014508531837
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418847
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 2
         endWithScreen: 1
         secondsPerFrame: 0.1
-    - rid: 9142198014508531838
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418848
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: 66427a8310d9d2b478665dab1cd515b9, type: 3}
+        - m_AssetGUID: 66427a8310d9d2b478665dab1cd515b9
+          m_SubObjectName: pre-execution
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418849
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 13b5badb4b5cb0f4da158d83e061406a
+          m_SubObjectName: execution
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418850
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 652d703ee69cc52449a8d8c07e0715c2
+          m_SubObjectName: dragon!
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 1
+        fadeDuration: 0.5
+    - rid: 9079475098267418851
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: bd5f053004fb62d41ab4528384b3bc01
+          m_SubObjectName: postdragon1
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418852
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 7b22a3f28a7190843a04afaddc161a11
+          m_SubObjectName: postdragon2
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418853
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 9b116be68e6209d46a60c3b1f46e97f5
+          m_SubObjectName: postdragon3
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 4
+        fadeDuration: 1
+    - rid: 9079475098267418854
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 2056ed07e467ea04f84c89b13f09cd12
+          m_SubObjectName: postdragon4choice
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 1

@@ -18,7 +18,7 @@ MonoBehaviour:
     dialog: 'Since she seemed so excited to walk with me yesterday, I decide to wait
       for Sayori at her house like I used to. '
     ScreenActions:
-    - rid: 9142197338057736278
+    - rid: 9079475098267418735
     - rid: 9079475089592287353
   - speaker: {fileID: 0}
     dialog: Hopefully, she won't be too much longer now...
@@ -40,7 +40,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Did you remember to bring your poem?
     ScreenActions:
-    - rid: 9142197338057736282
+    - rid: 9079475098267418736
     - rid: 9142197338057736283
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Yeah? What kind of guy do you take me for?
@@ -112,11 +112,27 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
-    - rid: 9142197338057736278
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418735
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: 36f7c6032a374db4a968c0e1236322e1, type: 3}
+        - m_AssetGUID: 36f7c6032a374db4a968c0e1236322e1
+          m_SubObjectName: street
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9079475098267418736
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 81bda4138dcd08548a14480d81972ff9
+          m_SubObjectName: some_building_usa
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
@@ -139,14 +155,6 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - content
-    - rid: 9142197338057736282
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 81bda4138dcd08548a14480d81972ff9, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9142197338057736283
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079474749396484194
+    - rid: 9079475098267418889
     - rid: 9079475089592287594
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: <font=futura>...
@@ -145,7 +145,7 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 9079474749396484219
-    - rid: 9079474749396484217
+    - rid: 9079475098267418890
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Now if I were Monika, where would I be...?
     ScreenActions:
@@ -428,14 +428,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9079474749396484194
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: ba69ed49917a0c843a4f1c90ef21ceba, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 3
     - rid: 9079474749396484196
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -678,14 +670,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         fadeTime: 0
-    - rid: 9079474749396484217
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 1570d8359ab50134c8ce556aa53ac25d, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474749396484218
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1253,3 +1237,27 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
+    - rid: 9079475098267418889
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: ba69ed49917a0c843a4f1c90ef21ceba
+          m_SubObjectName: whiteruntemple
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 3
+    - rid: 9079475098267418890
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 1570d8359ab50134c8ce556aa53ac25d
+          m_SubObjectName: whiterun2
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1

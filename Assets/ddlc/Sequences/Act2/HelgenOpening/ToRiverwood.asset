@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: I never really gave much appreciation to my walks to school.
     ScreenActions:
-    - rid: 9079474705638883538
+    - rid: 9079475098267418905
   - speaker: {fileID: 0}
     dialog: I imagine this would suck way more if I didn't walk regularly.
     ScreenActions: []
@@ -34,7 +34,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: After a few minutes of walking, I come upon the Guardian Stones.
     ScreenActions:
-    - rid: 9079474728083652608
+    - rid: 9079475098267418906
   - speaker: {fileID: 0}
     dialog: In the game, interacting with them would give you a permanent buff.
     ScreenActions: []
@@ -78,7 +78,7 @@ MonoBehaviour:
     dialog: After another few minutes, and a couple encounters with unfriendly fauna,
       I arrive to Riverwood.
     ScreenActions:
-    - rid: 9079474728083652660
+    - rid: 9079475098267418907
   - speaker: {fileID: 0}
     dialog: Remember not to hit the chicken!
     ScreenActions: []
@@ -141,7 +141,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: I make my way to the lumbermill, where Gerdur should be waiting for me.
     ScreenActions:
-    - rid: 9079474728083652661
+    - rid: 9079475098267418908
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Hello?
     ScreenActions:
@@ -209,7 +209,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: I make my way to the smithy.
     ScreenActions:
-    - rid: 9079474728083652664
+    - rid: 9079475098267418909
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Hey.
     ScreenActions:
@@ -281,7 +281,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Alright.
     ScreenActions:
-    - rid: 9079474728083652666
+    - rid: 9079475098267418910
   - speaker: {fileID: 0}
     dialog: Blade successfully sharpened.
     ScreenActions:
@@ -310,7 +310,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: ...
     ScreenActions:
-    - rid: 9079474728083652669
+    - rid: 9079475098267418911
     - rid: 9079475089592287546
   - speaker: {fileID: 0}
     dialog: Maybe I'll learn more about how and why I got here if I follow along
@@ -339,38 +339,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9079474705638883538
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 584e6a9c304e38c4989b529a3c1d67b8, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 2
-    - rid: 9079474728083652608
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 584e6a9c304e38c4989b529a3c1d67b8, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
-    - rid: 9079474728083652660
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 0668de91f3f0a8f4fba44c327a6fabba, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
-    - rid: 9079474728083652661
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: aa5893ea88209734388469b2a6fba99c, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474728083652662
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -384,14 +352,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: fb230e338deb88646a084896067acdd8, type: 2}
         fadeTime: 0.5
-    - rid: 9079474728083652664
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 8cf990c6dcc8cb84cbdff4a1047c2b0b, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474728083652665
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -400,14 +360,6 @@ MonoBehaviour:
         spawnOffset: {x: 500, y: 0, z: 0}
         visualSpriteIndexes:
         - default
-    - rid: 9079474728083652666
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 8cf990c6dcc8cb84cbdff4a1047c2b0b, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
     - rid: 9079474728083652667
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -420,14 +372,6 @@ MonoBehaviour:
         flagValue: 2
         increment: 1
         persistent: 0
-    - rid: 9079474728083652669
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: e42ecc380b32b804fad134ff3f067383, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079475089592287546
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -439,3 +383,87 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
+    - rid: 9079475098267418905
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 584e6a9c304e38c4989b529a3c1d67b8
+          m_SubObjectName: guardianstones
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 2
+    - rid: 9079475098267418906
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 584e6a9c304e38c4989b529a3c1d67b8
+          m_SubObjectName: guardianstones
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418907
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 0668de91f3f0a8f4fba44c327a6fabba
+          m_SubObjectName: riverwood1
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418908
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: aa5893ea88209734388469b2a6fba99c
+          m_SubObjectName: riverwoodlumber
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418909
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 8cf990c6dcc8cb84cbdff4a1047c2b0b
+          m_SubObjectName: riverwoodblacksmith
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418910
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 8cf990c6dcc8cb84cbdff4a1047c2b0b
+          m_SubObjectName: riverwoodblacksmith
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079475098267418911
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: e42ecc380b32b804fad134ff3f067383
+          m_SubObjectName: riverwood2
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1

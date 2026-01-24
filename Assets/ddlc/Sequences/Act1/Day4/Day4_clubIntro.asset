@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: School's out! It's club time.
     ScreenActions:
-    - rid: 9142197673170042999
+    - rid: 9079475098267418784
     - rid: 9079475089592287441
   - speaker: {fileID: 0}
     dialog: I enter the clubroom, finding everyone present, except Monika. Sayori's
@@ -469,11 +469,15 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
-    - rid: 9142197673170042999
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418784
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
+        - m_AssetGUID: b520dd2a984ff1445b8e8874f212ecfa
+          m_SubObjectName: Classroom_05_day
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2

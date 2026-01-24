@@ -21,12 +21,12 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079474864314122394
+    - rid: 9079475098267418974
     - rid: 9079475089592287473
   - speaker: {fileID: 0}
     dialog: <Speed=20>-thereStayupthereStayupthereStayupthereStayup-</Speed>
     ScreenActions:
-    - rid: 9079474864314122397
+    - rid: 9079475098267418975
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -125,7 +125,7 @@ MonoBehaviour:
     dialog: <font=futura>{mc}, unable to deny you, draws his weapon and steps forward,
       ready to take on the spider.
     ScreenActions:
-    - rid: 9079474864314122409
+    - rid: 9079475098267418976
     - rid: 9079475089592287476
     - rid: 9079474864314122437
   - speaker: {fileID: 0}
@@ -145,23 +145,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9079474864314122394
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: be94bf1c83783d94098cd0a3c751e8ae, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
-    - rid: 9079474864314122397
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 7ae89b6f8c3126d4fa85dd1e398805c6, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 9079474864314122398
       type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -264,15 +247,6 @@ MonoBehaviour:
         newFlagValues: 00000000
         increment: 0
         persistent: 0
-    - rid: 9079474864314122409
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 9079474864314122437
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -331,3 +305,41 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
+    - rid: 9079475098267418974
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: be94bf1c83783d94098cd0a3c751e8ae
+          m_SubObjectName: barrowSPIDER
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079475098267418975
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 7ae89b6f8c3126d4fa85dd1e398805c6
+          m_SubObjectName: vignet
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418976
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1

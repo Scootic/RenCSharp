@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: I've managed to survive another school day.
     ScreenActions:
-    - rid: 8612954484556955754
+    - rid: 9079475098267418700
     - rid: 8612954484556955755
   - speaker: {fileID: 0}
     dialog: Thank goodness our teacher decided to spare us after Monday's whole-chapter-for-homework
@@ -133,14 +133,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 8612954484556955754
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 67dd5da0ba57ebc48906bc83e29c54c8, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 8612954484556955755
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -288,3 +280,16 @@ MonoBehaviour:
         - uniUp
         - uniUp
         - contentGrin
+    - rid: 9079475098267418700
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 67dd5da0ba57ebc48906bc83e29c54c8
+          m_SubObjectName: classroom_afternoon
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2

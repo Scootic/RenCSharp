@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079474728083652671
+    - rid: 9079475098267418883
     - rid: 9079475089592287586
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: <font=futura>...
@@ -157,7 +157,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: No no no no...
     ScreenActions:
-    - rid: 9079474728083652693
+    - rid: 9079475098267418884
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: <font=futura>She couldn't find anything. She couldn't find any files
       at all. She didn't see anything at all.
@@ -235,7 +235,7 @@ MonoBehaviour:
     dialog: ... maybe this place isn't <i>so</i> bad.
     ScreenActions:
     - rid: 9079475089592287590
-    - rid: 9079474749396484173
+    - rid: 9079475098267418885
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: <font=futura>Monika wipes the tears from her face, only now noticing
       that she's wearing armor.
@@ -342,14 +342,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9079474728083652671
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 31669af4b987f89408ac769e3a1f9bb7, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 3
     - rid: 9079474728083652673
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -543,15 +535,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - terror
-    - rid: 9079474728083652693
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 7ae89b6f8c3126d4fa85dd1e398805c6, type: 3}
-        overlayText: 
-        fadeTime: 1
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 9079474728083652694
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -624,15 +607,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - blushCry
-    - rid: 9079474749396484173
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 9079474749396484174
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -932,3 +906,41 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
+    - rid: 9079475098267418883
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 31669af4b987f89408ac769e3a1f9bb7
+          m_SubObjectName: whiteruncommand
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 3
+    - rid: 9079475098267418884
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 7ae89b6f8c3126d4fa85dd1e398805c6
+          m_SubObjectName: vignet
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 1
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418885
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1

@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Hey, Sayori. Do Yuri and Natsuki argue like that often?
     ScreenActions:
-    - rid: 9142197556909965456
+    - rid: 9079475098267418738
     - rid: 9142197556909965457
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: No, no, no!
@@ -101,7 +101,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: <Speed=1>...</Speed>
     ScreenActions:
-    - rid: 9142197556909965468
+    - rid: 9079475098267418739
     - rid: 9079475089592287363
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Alright.
@@ -265,11 +265,27 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
-    - rid: 9142197556909965456
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418738
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: 36f7c6032a374db4a968c0e1236322e1, type: 3}
+        - m_AssetGUID: 36f7c6032a374db4a968c0e1236322e1
+          m_SubObjectName: street
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 4
+    - rid: 9079475098267418739
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: abc74be64ac42cd4cae2846997565291
+          m_SubObjectName: Classroom_05_night
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 4
@@ -358,14 +374,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         fadeTime: 0.5
-    - rid: 9142197556909965468
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: abc74be64ac42cd4cae2846997565291, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 4
     - rid: 9142197556909965472
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:

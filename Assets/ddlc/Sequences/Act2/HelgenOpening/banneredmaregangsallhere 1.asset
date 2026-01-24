@@ -18,7 +18,7 @@ MonoBehaviour:
     dialog: Alright.
     ScreenActions:
     - rid: 9079475089592287560
-    - rid: 9079474820206559233
+    - rid: 9079475098267418841
   - speaker: {fileID: 0}
     dialog: What to do first...
     ScreenActions:
@@ -786,7 +786,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: I flag down Saadia to take our order.
     ScreenActions:
-    - rid: 9079474820206559374
+    - rid: 9079475098267418842
     - rid: 9079475089592287566
   - speaker: {fileID: 0}
     dialog: She asks what we'd like to drink, to which of course the girls have no
@@ -836,7 +836,7 @@ MonoBehaviour:
     dialog: Turns out, the Honningbrew Mead is the most popular item among the girls
       by far.
     ScreenActions:
-    - rid: 9079474820206559383
+    - rid: 9079475098267418843
   - speaker: {fileID: 0}
     dialog: The sweetness really does help balance out the taste of booze.
     ScreenActions: []
@@ -875,7 +875,7 @@ MonoBehaviour:
     dialog: We manage to have a lovely lunch without incident, even if we now only
       have [Gold] septims.
     ScreenActions:
-    - rid: 9079474820206559414
+    - rid: 9079475098267418844
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: That was good!
     ScreenActions: []
@@ -1155,14 +1155,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9079474820206559233
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: efe49f66cc55be14580ea08d29596b10, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474820206559285
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1958,13 +1950,6 @@ MonoBehaviour:
         - skyDown
         - skySmug
         - smile2
-    - rid: 9079474820206559374
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG: []
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474820206559376
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2021,13 +2006,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile2
-    - rid: 9079474820206559383
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG: []
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474820206559397
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2070,13 +2048,6 @@ MonoBehaviour:
         flagValue: -13
         increment: 1
         persistent: 0
-    - rid: 9079474820206559414
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG: []
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474820206559415
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2411,3 +2382,36 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
+    - rid: 9079475098267418841
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: efe49f66cc55be14580ea08d29596b10
+          m_SubObjectName: whiteruninn1
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418842
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: []
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418843
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: []
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418844
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG: []
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
