@@ -56,7 +56,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079474951791575254
+    - rid: 9079475098267418922
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: And I'm telling you, you don't need to be. <i>He'll be fine</i>.
     ScreenActions:
@@ -108,7 +108,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Monika, I know you've gotten candy bars specifically for me before.
     ScreenActions:
-    - rid: 9079474951791575266
+    - rid: 9079475098267418923
     - rid: 9079475089592287525
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Huh?
@@ -327,7 +327,7 @@ MonoBehaviour:
     dialog: So what is your type anyway-
     ScreenActions:
     - rid: 9079474951791575301
-    - rid: 9079474951791575302
+    - rid: 9079475098267418924
     - rid: 9079474977939128320
   - speaker: {fileID: 11400000, guid: a15860a01600501449a676d719ce3ca0, type: 2}
     dialog: Uh, Captain Monika, what business brings you here?
@@ -409,7 +409,7 @@ MonoBehaviour:
     dialog: What happened, son?
     ScreenActions:
     - rid: 9079475089592287530
-    - rid: 9079474977939128389
+    - rid: 9079475098267418925
     - rid: 9079474977939128390
   - speaker: {fileID: 11400000, guid: 89f7d0b97106b6448939eb57dd9aa235, type: 2}
     dialog: I was patrolling out by the Western Watchtower, and-
@@ -464,7 +464,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: (Uh, Monika? How are we supposed to take on a dragon?)
     ScreenActions:
-    - rid: 9079474977939128396
+    - rid: 9079475098267418926
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (Strength in numbers, I guess?)
     ScreenActions:
@@ -473,7 +473,7 @@ MonoBehaviour:
     dialog: (But didn't {mc} say something about the place he woke up being completely
       destroyed by one?)
     ScreenActions:
-    - rid: 9079474977939128398
+    - rid: 9079475098267418927
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (Uhh...)
     ScreenActions: []
@@ -496,7 +496,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: (We're being marched to our deaths out here!)
     ScreenActions:
-    - rid: 9079474977939128403
+    - rid: 9079475098267418928
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (With <i>that</i> attitude we are, yeah.)
     ScreenActions:
@@ -513,7 +513,7 @@ MonoBehaviour:
     dialog: (It means that assuming we're going to die, means that we're probably
       going to die.)
     ScreenActions:
-    - rid: 9079474977939128408
+    - rid: 9079475098267418929
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: (What kind of delusional nonsense is-)
     ScreenActions:
@@ -553,7 +553,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079475045585125472
+    - rid: 9079475098267418930
     - rid: 9079475089592287532
   - speaker: {fileID: 0}
     dialog: You know, I can't remember a time where I was able to feel so much pain,
@@ -597,7 +597,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079475045585125481
+    - rid: 9079475098267418931
   - speaker: {fileID: 0}
     dialog: As we get closer, we see a wounded Natsuki crawling toward the watchtower,
       while a few guards and Monika cover her.
@@ -655,7 +655,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: ... I guess I really am dragonborn, then.
     ScreenActions:
-    - rid: 9079475045585125497
+    - rid: 9079475098267418932
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: -Dragon Soul Absorbed-
     ScreenActions: []
@@ -980,14 +980,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - sternSweat
-    - rid: 9079474951791575254
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 1570d8359ab50134c8ce556aa53ac25d, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474951791575255
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1068,14 +1060,6 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - closeEyeGrinSweat
-    - rid: 9079474951791575266
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 71ca2acef93a0314bae11db92197ec10, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 2
     - rid: 9079474951791575268
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1324,14 +1308,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - blankSpeak
-    - rid: 9079474951791575302
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 61ff70e0032a7244483ec877c86c1555, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474951791575303
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1543,14 +1519,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - inquisitive
-    - rid: 9079474977939128389
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 31669af4b987f89408ac769e3a1f9bb7, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474977939128390
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1596,14 +1564,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - closeEyeGrinSweat
-    - rid: 9079474977939128396
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 1570d8359ab50134c8ce556aa53ac25d, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474977939128397
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1612,14 +1572,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smileSweat
-    - rid: 9079474977939128398
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: fd9cd9df14ec8814b838aa2fd5ca067e, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474977939128399
       type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1654,14 +1606,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - grimace
-    - rid: 9079474977939128403
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 6734c85e8bf5ccc4e838d74674ced594, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474977939128404
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1686,14 +1630,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - '><Shock'
-    - rid: 9079474977939128408
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: a841c2f9e4678d34ca1215f1d689e7d8, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474977939128409
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1769,14 +1705,6 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: 4b1ec60d7c132024492b3657e3dddc81, type: 2}
-    - rid: 9079475045585125472
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: a7d152b1a05e977468dcd4c2dc96a34c, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9079475045585125473
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1848,14 +1776,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - cryConcern
-    - rid: 9079475045585125481
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: a841c2f9e4678d34ca1215f1d689e7d8, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079475045585125482
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2013,14 +1933,6 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: 1c1a167480658f04192eeba07a78b0f4, type: 2}
-    - rid: 9079475045585125497
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: e41fd2b68ceaaef49b7469e68089cffb, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 1
-        fadeDuration: 1
     - rid: 9079475045585125498
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2751,3 +2663,135 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
+    - rid: 9079475098267418922
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 1570d8359ab50134c8ce556aa53ac25d
+          m_SubObjectName: whiterun2
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418923
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 71ca2acef93a0314bae11db92197ec10
+          m_SubObjectName: whiterundragonsreach
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 2
+    - rid: 9079475098267418924
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 61ff70e0032a7244483ec877c86c1555
+          m_SubObjectName: whiterunwizard
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418925
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 31669af4b987f89408ac769e3a1f9bb7
+          m_SubObjectName: whiteruncommand
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418926
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 1570d8359ab50134c8ce556aa53ac25d
+          m_SubObjectName: whiterun2
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418927
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: fd9cd9df14ec8814b838aa2fd5ca067e
+          m_SubObjectName: whiterun1
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418928
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 6734c85e8bf5ccc4e838d74674ced594
+          m_SubObjectName: whiterunoutskirts
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418929
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: a841c2f9e4678d34ca1215f1d689e7d8
+          m_SubObjectName: whiterunwatchtower
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418930
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: a7d152b1a05e977468dcd4c2dc96a34c
+          m_SubObjectName: whiterunroadsigns
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9079475098267418931
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: a841c2f9e4678d34ca1215f1d689e7d8
+          m_SubObjectName: whiterunwatchtower
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418932
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: e41fd2b68ceaaef49b7469e68089cffb
+          m_SubObjectName: whiterundeaddragonwatchtower
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 1
+        fadeDuration: 1

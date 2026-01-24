@@ -18,7 +18,7 @@ MonoBehaviour:
     dialog: We hit up the class next door.
     ScreenActions:
     - rid: 9142197673170043065
-    - rid: 9142197673170043066
+    - rid: 9079475098267418790
     - rid: 9079475089592287415
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Uh... {mc}?
@@ -223,7 +223,7 @@ MonoBehaviour:
     dialog: I book it out of the room, and start rushing down the halls toward the
       nurse's office.
     ScreenActions:
-    - rid: 9142197673170043084
+    - rid: 9079475098267418791
   - speaker: {fileID: 0}
     dialog: Just as I make it to the nurse's office, I can see the nurse coming out
       of it.
@@ -245,7 +245,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: I'm back!
     ScreenActions:
-    - rid: 9142197673170043085
+    - rid: 9079475098267418792
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Sayori, what are you doing?
     ScreenActions:
@@ -370,7 +370,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9142197673170043097
+    - rid: 9079475098267418793
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Finally! It took you long enough-
     ScreenActions:
@@ -418,7 +418,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: ... ah crap.
     ScreenActions:
-    - rid: 9142197673170043107
+    - rid: 9079475098267418794
   - speaker: {fileID: 0}
     dialog: This volume is actually kind of good...
     ScreenActions: []
@@ -556,19 +556,71 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
+    - rid: 9079475098267418790
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 67dd5da0ba57ebc48906bc83e29c54c8
+          m_SubObjectName: classroom_afternoon
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9079475098267418791
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: dd6c8e5b87af36a418069980751df3b4
+          m_SubObjectName: school_corridor_background
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079475098267418792
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 67dd5da0ba57ebc48906bc83e29c54c8
+          m_SubObjectName: classroom_afternoon
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079475098267418793
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: b520dd2a984ff1445b8e8874f212ecfa
+          m_SubObjectName: Classroom_05_day
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079475098267418794
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: b520dd2a984ff1445b8e8874f212ecfa
+          m_SubObjectName: Classroom_05_day
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
     - rid: 9142197673170043065
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         fadeTime: 0.5
-    - rid: 9142197673170043066
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 67dd5da0ba57ebc48906bc83e29c54c8, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9142197673170043068
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -734,22 +786,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         fadeTime: 0.5
-    - rid: 9142197673170043084
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: dd6c8e5b87af36a418069980751df3b4, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
-    - rid: 9142197673170043085
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 67dd5da0ba57ebc48906bc83e29c54c8, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
     - rid: 9142197673170043086
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -809,14 +845,6 @@ MonoBehaviour:
         - uniDown
         - uniUp
         - pitySmile
-    - rid: 9142197673170043097
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
     - rid: 9142197673170043098
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -916,14 +944,6 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - smile2
-    - rid: 9142197673170043107
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9142197673170043108
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

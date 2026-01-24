@@ -18,7 +18,7 @@ MonoBehaviour:
     dialog: Thanks for Playing! Progressing to the next screen should boot you to
       title scene.
     ScreenActions:
-    - rid: 8612954507180769449
+    - rid: 9079475098267418686
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -32,11 +32,16 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 8612954507180769449
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418686
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         imagesToSet:
-        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
+        - m_AssetGUID: 1e39ac913664afa4e9b4756e5117b10d
+          m_SubObjectName: blackpng
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
         overlayText: END DEMO
         fadeTime: 0.5
         endWithScreen: 0

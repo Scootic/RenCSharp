@@ -18,7 +18,7 @@ MonoBehaviour:
     dialog: We start heading toward the grocery store, which is a different direction
       than home.
     ScreenActions:
-    - rid: 9142197651443286218
+    - rid: 9079475098267418740
   - speaker: {fileID: 0}
     dialog: Sayori's been kind of quiet...
     ScreenActions: []
@@ -192,7 +192,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: We've arrived at the grocery store.
     ScreenActions:
-    - rid: 9142197651443286237
+    - rid: 9079475098267418741
     - rid: 9079475089592287367
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: H-hey, {mc}?
@@ -376,11 +376,27 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
-    - rid: 9142197651443286218
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418740
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: 81bda4138dcd08548a14480d81972ff9, type: 3}
+        - m_AssetGUID: 81bda4138dcd08548a14480d81972ff9
+          m_SubObjectName: some_building_usa
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9079475098267418741
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 0cd45414efb80de49bf80ebb5310e706
+          m_SubObjectName: grocerystore
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
@@ -523,14 +539,6 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - concernSpeak
-    - rid: 9142197651443286237
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 0cd45414efb80de49bf80ebb5310e706, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9142197651443286241
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

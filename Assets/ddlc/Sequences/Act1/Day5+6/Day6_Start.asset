@@ -17,12 +17,12 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9142197738211377306
-    - rid: 9142197738211377307
+    - rid: 9079475098267418829
+    - rid: 9079475098267418830
   - speaker: {fileID: 0}
     dialog: Ah...
     ScreenActions:
-    - rid: 9142197738211377308
+    - rid: 9079475098267418831
   - speaker: {fileID: 0}
     dialog: I managed to game straight from 1:30, when Monika left, all the way 'til
       bed time.
@@ -54,7 +54,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: As expected, we make our way into the kitchen.
     ScreenActions:
-    - rid: 9142197738211377312
+    - rid: 9079475098267418832
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Did you remember to buy everything I asked you to?
     ScreenActions: []
@@ -136,7 +136,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: In our quest for batter, we've made quite the mess.
     ScreenActions:
-    - rid: 9142197738211377323
+    - rid: 9079475098267418833
     - rid: 9079475089592287456
   - speaker: {fileID: 0}
     dialog: Turns out, the mixer isn't big enough to do it all in one go, so we've
@@ -335,7 +335,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Ah, that smells good!
     ScreenActions:
-    - rid: 9142197764797497426
+    - rid: 9079475098267418834
     - rid: 9142197764797497427
   - speaker: {fileID: 0}
     dialog: The batter has finished baking, and is now ready to be frosted.
@@ -426,7 +426,7 @@ MonoBehaviour:
     dialog: After we finished decorating the last cupcake, Natsuki puts them all
       side by side on the counter.
     ScreenActions:
-    - rid: 9142197764797497434
+    - rid: 9079475098267418835
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Look at how pretty they all are together!
     ScreenActions:
@@ -575,32 +575,92 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
-    - rid: 9142197738211377306
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418829
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: 36f7c6032a374db4a968c0e1236322e1, type: 3}
+        - m_AssetGUID: 36f7c6032a374db4a968c0e1236322e1
+          m_SubObjectName: street
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 4
-    - rid: 9142197738211377307
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418830
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         imagesToSet:
-        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
+        - m_AssetGUID: 1e39ac913664afa4e9b4756e5117b10d
+          m_SubObjectName: blackpng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         overlayText: 'Act 1 - Day 6: The Penultimate!'
         fadeTime: 2
         endWithScreen: 1
         secondsPerFrame: 0.1
-    - rid: 9142197738211377308
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418831
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 2
         endWithScreen: 1
         secondsPerFrame: 0.1
+    - rid: 9079475098267418832
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 0fa7aea805a5e8642814b80a787a2a04
+          m_SubObjectName: condo_Day 07
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9079475098267418833
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 0fa7aea805a5e8642814b80a787a2a04
+          m_SubObjectName: condo_Day 07
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079475098267418834
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 0fa7aea805a5e8642814b80a787a2a04
+          m_SubObjectName: condo_Day 07
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079475098267418835
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 0fa7aea805a5e8642814b80a787a2a04
+          m_SubObjectName: condo_Day 07
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
     - rid: 9142197738211377310
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -620,14 +680,6 @@ MonoBehaviour:
         - casDown
         - casSmug
         - smile
-    - rid: 9142197738211377312
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 0fa7aea805a5e8642814b80a787a2a04, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9142197738211377313
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -708,14 +760,6 @@ MonoBehaviour:
         - casDown
         - casSmug
         - smile
-    - rid: 9142197738211377323
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 0fa7aea805a5e8642814b80a787a2a04, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
     - rid: 9142197738211377325
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -917,14 +961,6 @@ MonoBehaviour:
         - casDown
         - casDown
         - smile2
-    - rid: 9142197764797497426
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 0fa7aea805a5e8642814b80a787a2a04, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
     - rid: 9142197764797497427
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -981,14 +1017,6 @@ MonoBehaviour:
         - casDown
         - casSmug
         - smile2
-    - rid: 9142197764797497434
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 0fa7aea805a5e8642814b80a787a2a04, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
     - rid: 9142197764797497435
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

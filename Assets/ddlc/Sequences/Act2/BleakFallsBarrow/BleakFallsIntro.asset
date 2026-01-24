@@ -18,8 +18,8 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 9079475089592287494
-    - rid: 9079474820206559447
-    - rid: 9079474820206559448
+    - rid: 9079475098267418943
+    - rid: 9079475098267418944
     - rid: 9079474820206559450
     - rid: 9079474820206559451
     - rid: 9079474820206559452
@@ -27,11 +27,11 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: We start our journey to Bleak Falls Barrow.
     ScreenActions:
-    - rid: 9079474820206559449
+    - rid: 9079475098267418945
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079474842872840192
+    - rid: 9079475098267418946
   - speaker: {fileID: 0}
     dialog: On the way we encounter a couple of wolves.
     ScreenActions: []
@@ -68,7 +68,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9079474842872840262
     - rid: 9079474842872840263
-    - rid: 9079474842872840264
+    - rid: 9079475098267418947
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Are we there yet?
     ScreenActions:
@@ -79,7 +79,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: We're going to be following this path up the mountain.
     ScreenActions:
-    - rid: 9079474842872840266
+    - rid: 9079475098267418948
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Are we there yet?
     ScreenActions: []
@@ -90,7 +90,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Oh- wait!
     ScreenActions:
-    - rid: 9079474842872840268
+    - rid: 9079475098267418949
     - rid: 9079475089592287495
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Hmm?
@@ -293,7 +293,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: We manage to sneak our way toward the barrow itself without incident.
     ScreenActions:
-    - rid: 9079474842872840299
+    - rid: 9079475098267418950
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: (Alright.)
     ScreenActions:
@@ -470,7 +470,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Now, slam it shut!
     ScreenActions:
-    - rid: 9079474842872840334
+    - rid: 9079475098267418951
   - speaker: {fileID: 0}
     dialog: All five of us turn around, closing the door behind us.
     ScreenActions: []
@@ -550,32 +550,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9079474820206559447
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: fd9cd9df14ec8814b838aa2fd5ca067e, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 8
-    - rid: 9079474820206559448
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
-        overlayText: 'Act 2 - Episode 2: Dungeons and Draugr and Dragons'
-        fadeTime: 4
-        endWithScreen: 1
-        secondsPerFrame: 0.1
-    - rid: 9079474820206559449
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
-        overlayText: 
-        fadeTime: 2
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 9079474820206559450
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -596,14 +570,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         fadeTime: 0.5
-    - rid: 9079474842872840192
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 6734c85e8bf5ccc4e838d74674ced594, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474842872840193
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -853,14 +819,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         fadeTime: 0.5
-    - rid: 9079474842872840264
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: a7d152b1a05e977468dcd4c2dc96a34c, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 2
     - rid: 9079474842872840265
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -872,14 +830,6 @@ MonoBehaviour:
         - skyUp
         - smileSpeak
         - EMPTY
-    - rid: 9079474842872840266
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: ebb4690dbc9ed1f4d80c00cc512fb9c9, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 2
     - rid: 9079474842872840267
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -888,14 +838,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - content
-    - rid: 9079474842872840268
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: db390d4515f03c34280d534f4297e44a, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 2
     - rid: 9079474842872840269
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1238,14 +1180,6 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         loopOnScreen: 0
-    - rid: 9079474842872840299
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: ef92f858974b29c479bedbac28ae0b50, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 2
     - rid: 9079474842872840300
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1497,14 +1431,6 @@ MonoBehaviour:
         - skyUp
         - sternSpeak
         - EMPTY
-    - rid: 9079474842872840334
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 105b225be0690da4dbf9f274def02502, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474842872840336
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1673,3 +1599,113 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
+    - rid: 9079475098267418943
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: fd9cd9df14ec8814b838aa2fd5ca067e
+          m_SubObjectName: whiterun1
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 8
+    - rid: 9079475098267418944
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 1e39ac913664afa4e9b4756e5117b10d
+          m_SubObjectName: blackpng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 'Act 2 - Episode 2: Dungeons and Draugr and Dragons'
+        fadeTime: 4
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418945
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 2
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418946
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 6734c85e8bf5ccc4e838d74674ced594
+          m_SubObjectName: whiterunoutskirts
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418947
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: a7d152b1a05e977468dcd4c2dc96a34c
+          m_SubObjectName: whiterunroadsigns
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 2
+    - rid: 9079475098267418948
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: ebb4690dbc9ed1f4d80c00cc512fb9c9
+          m_SubObjectName: barrowapproach
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 2
+    - rid: 9079475098267418949
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: db390d4515f03c34280d534f4297e44a
+          m_SubObjectName: barrowbandit
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 2
+    - rid: 9079475098267418950
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: ef92f858974b29c479bedbac28ae0b50
+          m_SubObjectName: barrowlocation
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 2
+    - rid: 9079475098267418951
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 105b225be0690da4dbf9f274def02502
+          m_SubObjectName: barrowentrance
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1

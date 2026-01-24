@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: The trip to Whiterun has been pretty uneventful, thankfully.
     ScreenActions:
-    - rid: 9079474795981832368
+    - rid: 9079475098267418898
     - rid: 9079475089592287598
   - speaker: {fileID: 0}
     dialog: There were a few wolves, but they only attacked one at a time, which
@@ -33,7 +33,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Ah, the stables.
     ScreenActions:
-    - rid: 9079474795981832370
+    - rid: 9079475098267418899
   - speaker: {fileID: 0}
     dialog: Not much further now...
     ScreenActions: []
@@ -82,7 +82,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: ...
     ScreenActions:
-    - rid: 9079474795981832373
+    - rid: 9079475098267418900
     - rid: 9079475089592287599
   - speaker: {fileID: 0}
     dialog: There's something different about actually being here in person.
@@ -118,7 +118,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: I've arrived. The Jarl is arguing with his steward, as expected.
     ScreenActions:
-    - rid: 9079474795981832375
+    - rid: 9079475098267418901
     - rid: 9079475089592287600
   - speaker: {fileID: 11400000, guid: e66ba0c6207b7664dbb0b977115f10b2, type: 2}
     dialog: Who goes there? The Jarl was not expecting visitors...
@@ -138,7 +138,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Irileth leads me to the throne...
     ScreenActions:
-    - rid: 9079474795981832379
+    - rid: 9079475098267418902
   - speaker: {fileID: 11400000, guid: 5301facf4ef9bfe46bdb4745494365d2, type: 2}
     dialog: So... what brings you to my court in these troubled times.
     ScreenActions:
@@ -196,7 +196,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079474795981832387
+    - rid: 9079475098267418903
   - speaker: {fileID: 11400000, guid: 5301facf4ef9bfe46bdb4745494365d2, type: 2}
     dialog: Farengar!
     ScreenActions:
@@ -548,7 +548,7 @@ MonoBehaviour:
     dialog: So, uh, not to be that guy, <i>but</i>...
     ScreenActions:
     - rid: 9079475089592287603
-    - rid: 9079474795981832416
+    - rid: 9079475098267418904
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: Yes?
     ScreenActions: []
@@ -720,38 +720,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9079474795981832368
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 6734c85e8bf5ccc4e838d74674ced594, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 3
-    - rid: 9079474795981832370
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: d208dc87ad706504b8cef8d0cdec9828, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
-    - rid: 9079474795981832373
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: fd9cd9df14ec8814b838aa2fd5ca067e, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
-    - rid: 9079474795981832375
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 71ca2acef93a0314bae11db92197ec10, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474795981832377
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -760,14 +728,6 @@ MonoBehaviour:
         spawnOffset: {x: 0, y: 0, z: 0}
         visualSpriteIndexes:
         - default
-    - rid: 9079474795981832379
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: fc91cd84241aec44098bb09d9f1a7478, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474795981832380
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -867,14 +827,6 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: 5301facf4ef9bfe46bdb4745494365d2, type: 2}
         loopOnScreen: 0
-    - rid: 9079474795981832387
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 61ff70e0032a7244483ec877c86c1555, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474795981832388
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1106,14 +1058,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
-    - rid: 9079474795981832416
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 1570d8359ab50134c8ce556aa53ac25d, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
     - rid: 9079474795981832417
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1481,3 +1425,87 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 4
         setToSameTime: 0
+    - rid: 9079475098267418898
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 6734c85e8bf5ccc4e838d74674ced594
+          m_SubObjectName: whiterunoutskirts
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 3
+    - rid: 9079475098267418899
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: d208dc87ad706504b8cef8d0cdec9828
+          m_SubObjectName: whiterunstable
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418900
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: fd9cd9df14ec8814b838aa2fd5ca067e
+          m_SubObjectName: whiterun1
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418901
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 71ca2acef93a0314bae11db92197ec10
+          m_SubObjectName: whiterundragonsreach
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418902
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: fc91cd84241aec44098bb09d9f1a7478
+          m_SubObjectName: whiterunthrone
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418903
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 61ff70e0032a7244483ec877c86c1555
+          m_SubObjectName: whiterunwizard
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 9079475098267418904
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 1570d8359ab50134c8ce556aa53ac25d
+          m_SubObjectName: whiterun2
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1

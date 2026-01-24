@@ -48,7 +48,7 @@ MonoBehaviour:
     - rid: 9142197738211377235
     - rid: 9142197738211377236
     - rid: 9079475089592287444
-    - rid: 9142197738211377238
+    - rid: 9079475098267418804
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: D-d-damnit!!!
     ScreenActions: []
@@ -79,7 +79,7 @@ MonoBehaviour:
     dialog: Ah!
     ScreenActions:
     - rid: 9142197738211377241
-    - rid: 9142197738211377242
+    - rid: 9079475098267418805
   - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
     dialog: <font="glitchfont">There. You happy?
     ScreenActions: []
@@ -96,13 +96,13 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Oh? Did you need something, Monika?
     ScreenActions:
-    - rid: 9142197738211377244
-    - rid: 9142197738211377245
+    - rid: 9079475098267418806
+    - rid: 9079475098267418807
     - rid: 9079475089592287445
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: H-huh?
     ScreenActions:
-    - rid: 9142197738211377247
+    - rid: 9079475098267418808
     - rid: 9079475089592287446
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: I mean, I could hear the printer going, so I thought everything was fine...
@@ -339,7 +339,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: You know, now that we're finished folding...
     ScreenActions:
-    - rid: 9142197738211377282
+    - rid: 9079475098267418809
   - speaker: {fileID: 0}
     dialog: I think Sayori's going to spend the entirety of her weekend drawing.
     ScreenActions: []
@@ -645,6 +645,96 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
+    - rid: 9079475098267418804
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
+          m_SubObjectName: glitchanim_0
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
+          m_SubObjectName: glitchanim_1
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
+          m_SubObjectName: glitchanim_2
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
+          m_SubObjectName: glitchanim_3
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 0
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418805
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 1
+        fadeDuration: 0.1
+    - rid: 9079475098267418806
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 1e39ac913664afa4e9b4756e5117b10d
+          m_SubObjectName: blackpng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418807
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 03c0213668613e8409b2e140cb2cb9bd
+          m_SubObjectName: playerlivingroom
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 1
+        fadeDuration: 1
+    - rid: 9079475098267418808
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418809
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 03c0213668613e8409b2e140cb2cb9bd
+          m_SubObjectName: playerlivingroom
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
     - rid: 9142197738211377228
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -702,18 +792,6 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
-    - rid: 9142197738211377238
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: -1528548662, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
-        - {fileID: -1433182800, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
-        - {fileID: 141569737, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
-        - {fileID: 774781490, guid: 62b8c34cd16ce974fae58f33d1bb73c8, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 0
-        secondsPerFrame: 0.1
     - rid: 9142197738211377239
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -739,40 +817,6 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
-    - rid: 9142197738211377242
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 1
-        fadeDuration: 0.1
-    - rid: 9142197738211377244
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 1
-        secondsPerFrame: 0.1
-    - rid: 9142197738211377245
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 03c0213668613e8409b2e140cb2cb9bd, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 1
-        fadeDuration: 1
-    - rid: 9142197738211377247
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 9142197738211377249
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -917,14 +961,6 @@ MonoBehaviour:
         - casDown
         - casDown
         - smile
-    - rid: 9142197738211377282
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 03c0213668613e8409b2e140cb2cb9bd, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9142197738211377284
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

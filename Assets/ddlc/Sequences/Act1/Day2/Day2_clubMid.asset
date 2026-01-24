@@ -17,12 +17,12 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: I decide to pass the time reading the book Yuri just gave me.
     ScreenActions:
-    - rid: 9142197513939845223
+    - rid: 9079475098267418723
     - rid: 9079475089592287342
   - speaker: {fileID: 0}
     dialog: '"The Portrait of Markov"...'
     ScreenActions:
-    - rid: 9142197513939845226
+    - rid: 9079475098267418724
   - speaker: {fileID: 0}
     dialog: The cover alone is pretty spooky.
     ScreenActions: []
@@ -59,7 +59,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Well, I'll be damned. It's actually been pretty enthralling so far.
     ScreenActions:
-    - rid: 9142197513939845235
+    - rid: 9079475098267418725
   - speaker: {fileID: 0}
     dialog: I've read all the way through to the fourth chapter, and I haven't really
       looked away since I started reading.
@@ -97,7 +97,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Oh, right. I'm in a clubroom right now.
     ScreenActions:
-    - rid: 9142197513939845237
+    - rid: 9079475098267418726
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: I think it's about time we share today's poems with each other.
     ScreenActions: []
@@ -204,31 +204,56 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
-    - rid: 9142197513939845223
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418723
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
+        - m_AssetGUID: b520dd2a984ff1445b8e8874f212ecfa
+          m_SubObjectName: Classroom_05_day
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
-    - rid: 9142197513939845226
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418724
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         imagesToSet:
-        - {fileID: 21300000, guid: 98d1320cc1454004689c3193fdd4e372, type: 3}
+        - m_AssetGUID: 98d1320cc1454004689c3193fdd4e372
+          m_SubObjectName: Markovtrait
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 0.5
         endWithScreen: 1
         secondsPerFrame: 0.1
-    - rid: 9142197513939845235
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418725
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: b520dd2a984ff1445b8e8874f212ecfa, type: 3}
+        - m_AssetGUID: b520dd2a984ff1445b8e8874f212ecfa
+          m_SubObjectName: Classroom_05_day
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
+    - rid: 9079475098267418726
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
     - rid: 9142197513939845236
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -240,15 +265,6 @@ MonoBehaviour:
         - uniUp
         - smile
         - EMPTY
-    - rid: 9142197513939845237
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
-        overlayText: 
-        fadeTime: 0.5
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 9142197513939845238
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:

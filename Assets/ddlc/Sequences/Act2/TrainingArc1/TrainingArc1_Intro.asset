@@ -17,13 +17,13 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079475070362714196
-    - rid: 9079475070362714197
+    - rid: 9079475098267418836
+    - rid: 9079475098267418837
     - rid: 9079475089592287545
   - speaker: {fileID: 0}
     dialog: ...
     ScreenActions:
-    - rid: 9079475070362714198
+    - rid: 9079475098267418838
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Get up, {mc}!
     ScreenActions: []
@@ -52,32 +52,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9079475070362714196
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: d001226a69f817944b3be63f058f7a56, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 8
-    - rid: 9079475070362714197
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
-        overlayText: 'Act 2 - Episode 3: Exposure Therapy'
-        fadeTime: 4
-        endWithScreen: 1
-        secondsPerFrame: 0.1
-    - rid: 9079475070362714198
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
-        overlayText: 
-        fadeTime: 2
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 9079475070362714200
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -108,3 +82,41 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 4
         setToSameTime: 0
+    - rid: 9079475098267418836
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: d001226a69f817944b3be63f058f7a56
+          m_SubObjectName: riverwoodinnroom
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 8
+    - rid: 9079475098267418837
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 1e39ac913664afa4e9b4756e5117b10d
+          m_SubObjectName: blackpng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 'Act 2 - Episode 3: Exposure Therapy'
+        fadeTime: 4
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418838
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 2
+        endWithScreen: 1
+        secondsPerFrame: 0.1

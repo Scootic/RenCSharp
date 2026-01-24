@@ -18,12 +18,12 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 9079475089592287453
-    - rid: 9142197715491881034
-    - rid: 9142197715491881035
+    - rid: 9079475098267418810
+    - rid: 9079475098267418811
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Guh-?
     ScreenActions:
-    - rid: 9142197715491881036
+    - rid: 9079475098267418812
     - rid: 9142197715491881037
   - speaker: {fileID: 0}
     dialog: My sleep was interrupted by a knock on the door-
@@ -45,7 +45,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Once dressed, I head to the front door where Yuri is waiting.
     ScreenActions:
-    - rid: 9142197715491881040
+    - rid: 9079475098267418813
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: Um, did I come too early, {mc}?
     ScreenActions:
@@ -77,7 +77,7 @@ MonoBehaviour:
       have as much space as possible.
     ScreenActions:
     - rid: 9079475089592287454
-    - rid: 9142197715491881046
+    - rid: 9079475098267418814
   - speaker: {fileID: 0}
     dialog: Yuri glances around the room for a bit, which is fair. It's the first
       time she's been in my house, after all.
@@ -390,7 +390,7 @@ MonoBehaviour:
     dialog: Once I've finished with the ribbons, and Yuri's done with the cardstock,
       we attach them one by one.
     ScreenActions:
-    - rid: 9142197715491881071
+    - rid: 9079475098267418815
     - rid: 9142197715491881072
   - speaker: {fileID: 0}
     dialog: We lay them all out once we're finished, and from the looks of it we
@@ -422,7 +422,7 @@ MonoBehaviour:
     dialog: After heading over to the kitchen, I pour a little bit of water into
       our smaller plastic cups, which I bring back to Yuri.
     ScreenActions:
-    - rid: 9142197715491881074
+    - rid: 9079475098267418816
     - rid: 9142197715491881075
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: Alright, this should be enough water, thanks {mc}.
@@ -629,7 +629,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: And that should do it...
     ScreenActions:
-    - rid: 9142197715491881093
+    - rid: 9079475098267418817
   - speaker: {fileID: 0}
     dialog: The night sky is now done, filled with little twinkly stars.
     ScreenActions: []
@@ -766,32 +766,104 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
-    - rid: 9142197715491881034
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418810
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: 3e4d032d6ea4d414097ebda42d13f2fd, type: 3}
+        - m_AssetGUID: 3e4d032d6ea4d414097ebda42d13f2fd
+          m_SubObjectName: room_morning_light_off
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 4
-    - rid: 9142197715491881035
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418811
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         imagesToSet:
-        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
+        - m_AssetGUID: 1e39ac913664afa4e9b4756e5117b10d
+          m_SubObjectName: blackpng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         overlayText: 'Act 1 - Day 5: Ma''am, What are You Doing?'
         fadeTime: 2
         endWithScreen: 1
         secondsPerFrame: 0.1
-    - rid: 9142197715491881036
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475098267418812
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 0.5
         endWithScreen: 1
         secondsPerFrame: 0.1
+    - rid: 9079475098267418813
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 36f7c6032a374db4a968c0e1236322e1
+          m_SubObjectName: street
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9079475098267418814
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 03c0213668613e8409b2e140cb2cb9bd
+          m_SubObjectName: playerlivingroom
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 2
+    - rid: 9079475098267418815
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 03c0213668613e8409b2e140cb2cb9bd
+          m_SubObjectName: playerlivingroom
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079475098267418816
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 03c0213668613e8409b2e140cb2cb9bd
+          m_SubObjectName: playerlivingroom
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079475098267418817
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 03c0213668613e8409b2e140cb2cb9bd
+          m_SubObjectName: playerlivingroom
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
     - rid: 9142197715491881037
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -801,14 +873,6 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
-    - rid: 9142197715491881040
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 36f7c6032a374db4a968c0e1236322e1, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9142197715491881041
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -841,14 +905,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         fadeTime: 0.5
-    - rid: 9142197715491881046
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 03c0213668613e8409b2e140cb2cb9bd, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 2
     - rid: 9142197715491881047
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1046,14 +1102,6 @@ MonoBehaviour:
         - casDown
         - casDown
         - pitySmile
-    - rid: 9142197715491881071
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 03c0213668613e8409b2e140cb2cb9bd, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
     - rid: 9142197715491881072
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1070,14 +1118,6 @@ MonoBehaviour:
         - casDown
         - casDown
         - inquisitiveSpeak
-    - rid: 9142197715491881074
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 03c0213668613e8409b2e140cb2cb9bd, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
     - rid: 9142197715491881075
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1212,14 +1252,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         fadeTime: 0.5
-    - rid: 9142197715491881093
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: 03c0213668613e8409b2e140cb2cb9bd, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
     - rid: 9142197715491881094
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
