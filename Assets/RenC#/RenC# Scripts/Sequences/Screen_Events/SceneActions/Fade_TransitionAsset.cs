@@ -1,31 +1,32 @@
-
-using System;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using System.Collections.Generic;
 namespace RenCSharp.Sequences
 {
-    /// <summary>
-    /// Screen Event to change the background to something else, with a fade to hide it goodly better.
-    /// Technically problematic; remember to assign your index 0 anim events as the middle of a fade and your index 1 anim events as
-    /// the end of a fade.
-    /// </summary>
-    [Obsolete("Deprecated, please use Fade_TransitionAsset instead.", false)]
-    public class Fade_Transition : Screen_Event
+    public class Fade_TransitionAsset : Screen_Event
     {
-        [SerializeField] private Sprite[] newBG;
+        [SerializeField] private List<AssetReferenceSprite> newBG;
         [SerializeField] private float secondsPerFrame = 0.1f;
         [SerializeField, Tooltip("Decide which type of transition to tell animator to use.")] private int fadeTransition = 0;
         [SerializeField, Tooltip("How long should the fade be in seconds?")] private float fadeDuration = 1f;
         private Animation_Event_Delegates aed;
+        private string[] assetRefGUIDs;
 
-        public Sprite[] GetNewBG => newBG;
-        public float GetSecondsPerFrame => secondsPerFrame;
-        public int GetFadeTransition => fadeTransition;
-        public float GetFadeDuration => fadeDuration;
+        public List<AssetReferenceSprite> SetNewBG { set { newBG = value; } }
+        public float SetSecondsPerFrame { set { secondsPerFrame = value; } }
+        public int SetFadeTransition { set { fadeTransition = value; } }
+        public float SetFadeDuration { set { fadeDuration = value; } }
 
         public override void DoShit()
         {
             if (GameObject.FindGameObjectWithTag("Fader").TryGetComponent(out Animator fader)) //find the fader
             {
+                assetRefGUIDs = new string[newBG.Count];
+                for (int i = 0; i < newBG.Count; i++)
+                {
+                    assetRefGUIDs[i] = newBG[i].AssetGUID;
+                }
+
                 fader.SetInteger("FadeType", fadeTransition);
                 fader.SetTrigger("Fade");
                 fader.SetFloat("SpeedMult", 1f / fadeDuration);
@@ -50,7 +51,7 @@ namespace RenCSharp.Sequences
         private void SwapBG()
         {
             if (!Object_Factory.TryGetObject("Background", out GameObject go)) return;
-            //go.GetComponent<Animated_Image_Handler>().ReceiveAnimationInformation(newBG, secondsPerFrame);
+            go.GetComponent<Animated_Image_Handler>().ReceiveAnimationInformation(assetRefGUIDs, secondsPerFrame);
         }
 
         private void UnpauseSM()
@@ -61,7 +62,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Deprecated/Fade Transition";
+            return "Fade Transition";
         }
     }
 }

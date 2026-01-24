@@ -157,7 +157,7 @@ MonoBehaviour:
     dialog: Alright... any second now...
     ScreenActions:
     - rid: 9079474591330205801
-    - rid: 9079474591330205806
+    - rid: 9079475089592287570
   - speaker: {fileID: 0}
     dialog: The executioner raises his axe.
     ScreenActions: []
@@ -168,7 +168,7 @@ MonoBehaviour:
     dialog: Oh, there he is!
     ScreenActions:
     - rid: 9079474591330205802
-    - rid: 9079474591330205807
+    - rid: 9079475089592287571
     - rid: 9079474977939128411
   - speaker: {fileID: 0}
     dialog: Not dying today, boys!
@@ -324,18 +324,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 507b69390860cfe4ba479b15a3c06ec2, type: 2}
         fadeTime: 0.5
-    - rid: 9079474591330205806
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
-        fadeTime: 2
-        setToSameTime: 0
-    - rid: 9079474591330205807
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: e0a4c357a680b0d4599165228cde15d6, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079474591330205809
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -479,6 +467,28 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+    - rid: 9079475089592287570
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9079475089592287571
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: e0a4c357a680b0d4599165228cde15d6
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
     - rid: 9142198014508531834
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:

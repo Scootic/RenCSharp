@@ -23,7 +23,7 @@ MonoBehaviour:
     dialog: We make our way into Helgen Keep.
     ScreenActions:
     - rid: 9079474599036452926
-    - rid: 9079474618519257089
+    - rid: 9079475089592287578
   - speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
     dialog: Looks like we're the only ones who made it...
     ScreenActions: []
@@ -161,7 +161,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079474705638883383
+    - rid: 9079475089592287579
     - rid: 9079474705638883384
   - speaker: {fileID: 0}
     dialog: ...
@@ -169,7 +169,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: ... I just killed a man for the first time...
     ScreenActions:
-    - rid: 9079474705638883385
+    - rid: 9079475089592287580
     - rid: 9079474705638883386
   - speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
     dialog: Maybe one of the Imperials had the key.
@@ -214,12 +214,12 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079474705638883393
+    - rid: 9079475089592287581
     - rid: 9079474705638883394
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079474705638883503
+    - rid: 9079475089592287582
     - rid: 9079474705638883504
   - speaker: {fileID: 0}
     dialog: 
@@ -320,12 +320,12 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079474705638883520
+    - rid: 9079475089592287583
     - rid: 9079474705638883521
   - speaker: {fileID: 0}
     dialog: Jesus...
     ScreenActions:
-    - rid: 9079474705638883522
+    - rid: 9079475089592287584
   - speaker: {fileID: 0}
     dialog: While I fought the battlemage, Ralof and the other Stormcloak took care
       of the other two Imperials.
@@ -424,7 +424,7 @@ MonoBehaviour:
     dialog: Ah! Fresh air, how I've missed you!
     ScreenActions:
     - rid: 9079474705638883535
-    - rid: 9079474705638883536
+    - rid: 9079475089592287585
   - speaker: {fileID: 0}
     dialog: Alduin flies overhead, luckily not noticing us.
     ScreenActions: []
@@ -534,12 +534,6 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 1
-    - rid: 9079474618519257089
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 381a98c41c893784889ef0d98676af3c, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079474680798380212
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -638,22 +632,10 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
         fadeTime: 0.5
-    - rid: 9079474705638883383
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 02b65c7a4c6282f43b3187ca944f4658, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079474705638883384
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: fde2dc6ba332b214fb451fdb1f6bc2b0, type: 2}
-    - rid: 9079474705638883385
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 381a98c41c893784889ef0d98676af3c, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079474705638883386
       type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -688,22 +670,10 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 1
-    - rid: 9079474705638883393
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 791116a661dfe9549b471ecdd1a1ed28, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079474705638883394
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: bebc94122d17eb342b563cf66af5436f, type: 2}
-    - rid: 9079474705638883503
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 381a98c41c893784889ef0d98676af3c, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079474705638883504
       type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -860,22 +830,10 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
         fadeTime: 0.5
-    - rid: 9079474705638883520
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 791116a661dfe9549b471ecdd1a1ed28, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079474705638883521
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: c23759af2e88b8744be3c9acb67d593e, type: 2}
-    - rid: 9079474705638883522
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 381a98c41c893784889ef0d98676af3c, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079474705638883523
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -969,14 +927,96 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 2
-    - rid: 9079474705638883536
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 05a05d43ce3caf54bb66fa61b71eb60d, type: 3}
-        fadeTime: 2
-        setToSameTime: 0
     - rid: 9079474705638883537
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToRemove: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
         fadeTime: 0.5
+    - rid: 9079475089592287578
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 381a98c41c893784889ef0d98676af3c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287579
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 02b65c7a4c6282f43b3187ca944f4658
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287580
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 381a98c41c893784889ef0d98676af3c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287581
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 791116a661dfe9549b471ecdd1a1ed28
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287582
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 381a98c41c893784889ef0d98676af3c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287583
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 791116a661dfe9549b471ecdd1a1ed28
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287584
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 381a98c41c893784889ef0d98676af3c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287585
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 05a05d43ce3caf54bb66fa61b71eb60d
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0

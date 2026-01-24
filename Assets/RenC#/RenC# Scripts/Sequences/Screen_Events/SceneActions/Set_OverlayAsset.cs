@@ -1,15 +1,14 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AddressableAssets;
 namespace RenCSharp.Sequences
 {
-    [Obsolete("Deprecated. Please use Set_OverlayAsset instead.", false)]
-    public class Set_Overlay : Screen_Event
+    public class Set_OverlayAsset : Screen_Event
     {
-        [SerializeField, Tooltip("If not animated, just uses index 0.")] private List<Sprite> imagesToSet;
+        [SerializeField, Tooltip("If not animated, just uses index 0.")] private List<AssetReferenceSprite> imagesToSet;
         [SerializeField, Tooltip("Title card type stuff.")] private string overlayText = string.Empty;
         [SerializeField] private float fadeTime = 0.5f;
         [Header("Animate Overlay")]
@@ -18,18 +17,27 @@ namespace RenCSharp.Sequences
 
         private Coroutine fadeImage;
         private Animated_Image_Handler overlay;
+        private string[] spriteGUIDs;
 
-        public List<Sprite> GetImagesToSet => imagesToSet;
-        public string GetOverlayText => overlayText;
-        public float GetFadeTime => fadeTime;
-        public bool GetEndWithScreen => endWithScreen;
-        public float GetSecondsPerFrame => secondsPerFrame;
+        public string SetOverlayText { set { overlayText = value; } }
+        public float SetFadeTime { set { fadeTime = value; } }
+        public bool SetEndWithScreen { set { endWithScreen = value; } }
+        public float SetSecondsPerFrame { set { secondsPerFrame = value; } }
+        public List<AssetReferenceSprite> SetImagesToSet { set { imagesToSet = value; } }
 
         public override void DoShit()
         {
             if (!Object_Factory.TryGetObject("Overlay", out GameObject go)) return;
+
+            spriteGUIDs = new string[imagesToSet.Count];
+
+            for(int i = 0; i < imagesToSet.Count; i++)
+            {
+                spriteGUIDs[i] = imagesToSet[i].AssetGUID;
+            }
+
             overlay = go.GetComponent<Animated_Image_Handler>();
-            fadeImage = Script_Manager.SM.StartCoroutine(FadeIn(overlay.Image, imagesToSet));
+            fadeImage = Script_Manager.SM.StartCoroutine(FadeIn(overlay.Image, spriteGUIDs));
             if (endWithScreen) Script_Manager.ProgressScreenEvent += PanicStop;
         }
 
@@ -37,11 +45,11 @@ namespace RenCSharp.Sequences
         {
             Debug.LogWarning("Set overlay panic stopped!");
             overlay.Image.color = Color.white;
-            //overlay.ReceiveAnimationInformation(imagesToSet.ToArray(), secondsPerFrame);
+            overlay.ReceiveAnimationInformation(spriteGUIDs, secondsPerFrame);
             if (fadeImage != null) Script_Manager.SM.StopCoroutine(fadeImage);
         }
 
-        private IEnumerator FadeIn(Image overlayImg, List<Sprite> sprites)
+        private IEnumerator FadeIn(Image overlayImg, string[] spriteGUIDs)
         {
             float t = 0;
             float perc;
@@ -61,7 +69,7 @@ namespace RenCSharp.Sequences
                 {
                     if (!flick)
                     {
-                        //overlay.ReceiveAnimationInformation(sprites.ToArray(), secondsPerFrame);
+                        overlay.ReceiveAnimationInformation(spriteGUIDs, secondsPerFrame);
                         flick = true;
                     }
 
@@ -76,7 +84,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Deprecated/Set Overlay Image";
+            return "Set Overlay Image";
         }
     }
 }

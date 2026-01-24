@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: This sequence is for testing a fight. Next screen will start a fight.
     ScreenActions:
-    - rid: 9142197945214697603
+    - rid: 9079475089592287632
     - rid: 9079475089592287292
     - rid: 9142197945214697623
   - speaker: {fileID: 0}
@@ -137,18 +137,23 @@ MonoBehaviour:
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
+    - rid: 9079475089592287632
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: abc74be64ac42cd4cae2846997565291
+          m_SubObjectName: Classroom_05_night
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
     - rid: 9142197945214697602
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: 0d40da9ac722af34fae37993e970de32, type: 2}
-    - rid: 9142197945214697603
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - {fileID: 21300000, guid: abc74be64ac42cd4cae2846997565291, type: 3}
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 1
     - rid: 9142197945214697623
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:

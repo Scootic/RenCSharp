@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -39,6 +40,7 @@ namespace RenCSharp.Sequences
                             Screen_Event vent = s.ScreenActions[j];
                             if (vent.ToString() == "Deprecated/Play Music Track")
                             {
+                                Debug.Log("Replacing BGM Play...");
                                 Play_BGM bgmVent = vent as Play_BGM;
                                 Play_BGMAsset newVent = new Play_BGMAsset();
 
@@ -48,6 +50,51 @@ namespace RenCSharp.Sequences
                                 string johnson = AssetDatabase.GetAssetPath(bgmVent.Song);
                                 string guid = AssetDatabase.AssetPathToGUID(johnson);
                                 newVent.SetSongAsset = new AssetReference(guid);
+                                replaced++;
+                            }
+                            else if(vent.ToString() == "Deprecated/Set Overlay Image")
+                            {
+                                Debug.Log("Replacing Set Overlay...");
+                                Set_Overlay oldVent = vent as Set_Overlay;
+                                Set_OverlayAsset newVent = new Set_OverlayAsset();
+
+                                newVent.SetOverlayText = oldVent.GetOverlayText;
+                                newVent.SetSecondsPerFrame = oldVent.GetSecondsPerFrame;
+                                newVent.SetEndWithScreen = oldVent.GetEndWithScreen;
+                                newVent.SetFadeTime = oldVent.GetFadeTime;
+
+                                List<Sprite> sprungles = oldVent.GetImagesToSet;
+                                List<AssetReferenceSprite> leRefs = new();
+                                foreach(Sprite spr in sprungles) //get shiz set up!
+                                {
+                                    string johnson = AssetDatabase.GetAssetPath(spr);
+                                    string guid = AssetDatabase.AssetPathToGUID(johnson);
+                                    leRefs.Add(new AssetReferenceSprite(guid));
+                                }
+                                newVent.SetImagesToSet = leRefs;
+                                s.ScreenActions[j] = newVent;
+                                replaced++;
+                            }
+                            else if(vent.ToString() == "Deprecated/Fade Transtion")
+                            {
+                                Debug.Log("Replacing Fade Transition...");
+                                Fade_Transition oldVent = vent as Fade_Transition;
+                                Fade_TransitionAsset newVent = new Fade_TransitionAsset();
+
+                                newVent.SetFadeTransition = oldVent.GetFadeTransition;
+                                newVent.SetFadeDuration = oldVent.GetFadeDuration;
+                                newVent.SetSecondsPerFrame = oldVent.GetSecondsPerFrame;
+
+                                Sprite[] dingus = oldVent.GetNewBG;
+                                List<AssetReferenceSprite> leRefs = new();
+                                foreach (Sprite spr in dingus)
+                                {
+                                    string johnson = AssetDatabase.GetAssetPath(spr);
+                                    string guid = AssetDatabase.AssetPathToGUID(johnson);
+                                    leRefs.Add(new AssetReferenceSprite(guid));
+                                }
+                                newVent.SetNewBG = leRefs;
+                                s.ScreenActions[j] = newVent;
                                 replaced++;
                             }
                         }

@@ -18,12 +18,12 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 8612954481186308164
-    - rid: 8612954481186308161
+    - rid: 9079475089592287627
     - rid: 9079475089592287313
   - speaker: {fileID: 0}
     dialog: Finally done with my homework. Friggin' hate Mondays.
     ScreenActions:
-    - rid: 8612954484556955711
+    - rid: 9079475089592287628
   - speaker: {fileID: 0}
     dialog: I can't believe that our teacher made us read a whole chapter for our
       history homework.
@@ -90,15 +90,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 8612954481186308161
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
-        overlayText: 'Act 1 - Day 0: New Year, New Me'
-        fadeTime: 2
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 8612954481186308164
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -107,15 +98,6 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 4
-    - rid: 8612954484556955711
-      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
-        overlayText: 
-        fadeTime: 2
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 8612954484556955719
       type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -153,3 +135,21 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
+    - rid: 9079475089592287627
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
+        overlayText: 'Act 1 - Day 0: New Year, New Me'
+        fadeTime: 2
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475089592287628
+      type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+        overlayText: 
+        fadeTime: 2
+        endWithScreen: 1
+        secondsPerFrame: 0.1

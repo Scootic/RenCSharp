@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 namespace RenCSharp
 {
     [RequireComponent(typeof(Image))]
@@ -7,11 +9,13 @@ namespace RenCSharp
     {
         private Image image;
         private Sprite[] animationFrames;
+        private string[] spriteAssetGUIDs;
         private float secondsPerFrame = 0.1f, t;
         private int curI;
 
         public Image Image => image;
         public Sprite[] AnimationFrames => animationFrames;
+        public string[] SpriteAssetGUIDs => spriteAssetGUIDs;
         public float SecondsPerFrame => secondsPerFrame;
 
         void OnEnable()
@@ -35,13 +39,32 @@ namespace RenCSharp
             }
         }
 
-        public void ReceiveAnimationInformation(Sprite[] frames, float SPF)
+        public void ReceiveAnimationInformation(string[] spriteAssetGUID, float SPF)
         {
             curI = 0;
             t = 0;
-            animationFrames = frames;
+            spriteAssetGUIDs = spriteAssetGUID;
+            animationFrames = new Sprite[spriteAssetGUID.Length];
+
+            for(int i = 0; i < spriteAssetGUID.Length; i++) //run thru each
+            {
+                AsyncOperationHandle spriteHandle = Addressables.LoadAssetAsync<Sprite>(spriteAssetGUID[i]);
+                spriteHandle.WaitForCompletion();
+
+                if (spriteHandle.Status == AsyncOperationStatus.Succeeded)
+                {
+                    animationFrames[i] = spriteHandle.Result as Sprite;
+                }
+                else
+                {
+                    Debug.LogError("Fucked up loading the: " + i + "'th sprite!");
+                }
+
+                spriteHandle.Release();
+            }
+
             secondsPerFrame = SPF;
-            if(frames.Length > 0) image.sprite = frames[0];
+            if(animationFrames.Length > 0) image.sprite = animationFrames[0];
         }
     }
 }

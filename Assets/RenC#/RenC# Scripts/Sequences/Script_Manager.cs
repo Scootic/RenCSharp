@@ -59,10 +59,6 @@ namespace RenCSharp
         [SerializeField, Tooltip("How long the SM will linger on a screen while on auto.")] private float lingerTime = 0.5f;
         [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero.")] private byte historyLength = 10;
 
-        [Header("Databases")]
-        [SerializeField] private Sprite_Database overlayDatabase;
-        [SerializeField] private Sprite_Database backgroundDatabase;
-
         private bool paused = false, saving = false, loaded = false;
         private History curHist;
         private Coroutine textRoutine;
@@ -390,11 +386,6 @@ namespace RenCSharp
         {
             if (saving) return; //don't interrupt our save, good god!
             if (saveFileName == null) saveFileName = "SaveData"; //default to prevent extreme BS
-            if(overlayDatabase == null || backgroundDatabase == null)
-            {
-                Debug.LogWarning("You're a missing a database, you damned fool! I refuse to save under these working conditions!");
-                return;
-            }
             saving = true;
 
             SaveData manToSave = new SaveData();
@@ -411,39 +402,14 @@ namespace RenCSharp
             if (Object_Factory.TryGetObject("Background", out GameObject bg)) 
             {
                 Animated_Image_Handler aih = bg.GetComponent<Animated_Image_Handler>();
-                List<string> t = new();
-
-                foreach(Sprite s in aih.AnimationFrames)
-                {
-                    if (backgroundDatabase.Sprites.ContainsKey(s.name))
-                    {
-                        t.Add(s.name);
-                    }
-                    else
-                    {
-                        Debug.LogWarning(s.name + " isn't in the bg database, allegedly.");
-                    }
-                }
-                st.BackgroundAssetKeys = t.ToArray();
+                st.BackgroundAssetKeys = aih.SpriteAssetGUIDs;
                 st.BackgroundSPF = aih.SecondsPerFrame;
             }
             //save overlay data
             if(Object_Factory.TryGetObject("Overlay", out GameObject ov))
             {
                 Animated_Image_Handler aih = ov.GetComponent<Animated_Image_Handler>();
-                List<string> t = new();
-                foreach(Sprite s in aih.AnimationFrames)
-                {
-                    if (overlayDatabase.Sprites.ContainsKey(s.name))
-                    {
-                        t.Add(s.name);
-                    }
-                    else
-                    {
-                        Debug.LogWarning(s.name + " isn't in the ov database, allegedly.");
-                    }
-                }
-                st.OverlayAssetKeys = t.ToArray();
+                st.OverlayAssetKeys = aih.SpriteAssetGUIDs;
                 st.OverlaySPF = aih.SecondsPerFrame;
             }
 
@@ -513,31 +479,8 @@ namespace RenCSharp
             ScreenToken std = sd.ScreenInformation;
             AsyncOperationHandle SequenceAsset;
 
-            List<Sprite> ovFrames = new();
-            List<Sprite> bgFrames = new();
-
-            foreach(string s in std.OverlayAssetKeys)
-            {
-                if(!overlayDatabase.Sprites.ContainsKey(s))
-                {
-                    Debug.LogWarning("Found an evil overlay key, somehow. - " + s);
-                    continue;
-                }
-                ovFrames.Add(overlayDatabase.Sprites[s]);
-            }
-
-            foreach (string s in std.BackgroundAssetKeys)
-            {
-                if(!backgroundDatabase.Sprites.ContainsKey(s))
-                {
-                    Debug.LogWarning("Found an evil background key, somehow. - " + s);
-                    continue;
-                }
-                bgFrames.Add(backgroundDatabase.Sprites[s]);
-            }
-
-            ov.ReceiveAnimationInformation(ovFrames.ToArray(),std.OverlaySPF);
-            bg.ReceiveAnimationInformation(bgFrames.ToArray(),std.BackgroundSPF);
+            ov.ReceiveAnimationInformation(std.OverlayAssetKeys,std.OverlaySPF);
+            bg.ReceiveAnimationInformation(std.BackgroundAssetKeys,std.BackgroundSPF);
 
             AsyncOperationHandle bgmHandle = Addressables.LoadAssetAsync<AudioClip>(std.MusicAssetKey);
             bgmHandle.WaitForCompletion();
