@@ -38,6 +38,7 @@ namespace RenCSharp.Sequences
                 {
                     if (i >= assignedActor.Visuals.Length) break;
                     string[] src = assignedActor.Visuals[i].visualIDs.ToArray();
+                    Rect justAfterArray = new Rect(sprinRect.x, sprinRect.y + (EditorGUIUtility.singleLineHeight * (i + 1) + EditorGUIUtility.standardVerticalSpacing * (i + 1)), newR.width, EditorGUIUtility.singleLineHeight);
                     //string log = "Exising IDs: ";
                     //foreach(string s in src)
                     //{
@@ -45,7 +46,7 @@ namespace RenCSharp.Sequences
                     //}
                     //Debug.Log(log);
                     sprindexArray.GetArrayElementAtIndex(i).stringValue = 
-                        EditorExtend.TextFieldAutoComplete(sprindexArray.GetArrayElementAtIndex(i).stringValue, src, 10);
+                        EditorExtend.TextFieldAutoComplete(justAfterArray, sprindexArray.GetArrayElementAtIndex(i).stringValue, src, 10);
                 }
             } 
             
@@ -54,7 +55,7 @@ namespace RenCSharp.Sequences
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return Drawer_Helper.PropertyHeight(property) + EditorGUIUtility.singleLineHeight * 10;
+            return Drawer_Helper.PropertyHeight(property) + EditorGUIUtility.singleLineHeight * 12;
         }
     }
     [CustomPropertyDrawer(typeof(Actor_Expression))]
@@ -85,14 +86,15 @@ namespace RenCSharp.Sequences
                 {
                     if (i >= actorToAlter.Visuals.Length) break; //don't do shit if there's no visual there
                     string[] src = actorToAlter.Visuals[i].visualIDs.ToArray();
-                    //string log = "Existing IDs: ";
+                    Rect justAfterArray = new Rect(sprinRect.x, sprinRect.y + (EditorGUIUtility.singleLineHeight * (i + 1) + EditorGUIUtility.standardVerticalSpacing * (i + 1)), newR.width, EditorGUIUtility.singleLineHeight);
+                    //string log = "Exising IDs: ";
                     //foreach (string s in src) 
                     //{
                     //    log += s + ", ";
                     //}
                     //Debug.Log(log);
                     sprindexArray.GetArrayElementAtIndex(i).stringValue =
-                        EditorExtend.TextFieldAutoComplete(sprindexArray.GetArrayElementAtIndex(i).stringValue, src, 10);
+                        EditorExtend.TextFieldAutoComplete(justAfterArray, sprindexArray.GetArrayElementAtIndex(i).stringValue, src, 10);
                 }
             }
 
@@ -100,7 +102,7 @@ namespace RenCSharp.Sequences
         }
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return Drawer_Helper.PropertyHeight(property) + EditorGUIUtility.singleLineHeight * 10;
+            return Drawer_Helper.PropertyHeight(property) + EditorGUIUtility.singleLineHeight * 12;
         }
     }
 }

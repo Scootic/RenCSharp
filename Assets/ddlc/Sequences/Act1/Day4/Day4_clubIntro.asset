@@ -18,7 +18,7 @@ MonoBehaviour:
     dialog: School's out! It's club time.
     ScreenActions:
     - rid: 9142197673170042999
-    - rid: 9142197673170043003
+    - rid: 9079475089592287441
   - speaker: {fileID: 0}
     dialog: I enter the clubroom, finding everyone present, except Monika. Sayori's
       focused on drawing something-
@@ -458,6 +458,17 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 9079475089592287441
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 51f2b1be4fb05b142acbbe506e86b1d2
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
     - rid: 9142197673170042999
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -520,12 +531,6 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         loopOnScreen: 0
-    - rid: 9142197673170043003
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 51f2b1be4fb05b142acbbe506e86b1d2, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9142197673170043005
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:

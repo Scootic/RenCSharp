@@ -106,12 +106,12 @@ MonoBehaviour:
     dialog: Wait a minute... when <i>are</i> they getting back?
     ScreenActions:
     - rid: 9142197338057736273
-    - rid: 9142197338057736275
+    - rid: 9079475089592287347
   - speaker: {fileID: 0}
     dialog: <font="glitchfont">My alarm goes off.</font>
     ScreenActions:
     - rid: 9142197338057736274
-    - rid: 9142197338057736276
+    - rid: 9079475089592287348
     - rid: 9142197338057736277
   - speaker: {fileID: 0}
     dialog: Time for school already?!? But I only just had breakfast-
@@ -133,6 +133,28 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 9079475089592287347
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 9d18ee034d9bea149886efe3a7a02057
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287348
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
     - rid: 9142197338057736267
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -196,18 +218,6 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
-    - rid: 9142197338057736275
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 9d18ee034d9bea149886efe3a7a02057, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
-    - rid: 9142197338057736276
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9142197338057736277
       type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
       data:

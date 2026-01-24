@@ -19,7 +19,7 @@ MonoBehaviour:
       for Sayori at her house like I used to. '
     ScreenActions:
     - rid: 9142197338057736278
-    - rid: 9142197338057736279
+    - rid: 9079475089592287353
   - speaker: {fileID: 0}
     dialog: Hopefully, she won't be too much longer now...
     ScreenActions: []
@@ -101,6 +101,17 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 9079475089592287353
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: ba13accb8b1fe3b47bb3401b0a6229b8
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
     - rid: 9142197338057736278
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -109,12 +120,6 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
-    - rid: 9142197338057736279
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: ba13accb8b1fe3b47bb3401b0a6229b8, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9142197338057736280
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:

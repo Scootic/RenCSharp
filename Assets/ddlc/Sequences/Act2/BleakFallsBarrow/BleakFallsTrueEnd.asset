@@ -34,7 +34,7 @@ MonoBehaviour:
     dialog: ...
     ScreenActions:
     - rid: 9079475045585125655
-    - rid: 9079475045585125656
+    - rid: 9079475089592287519
   - speaker: {fileID: 0}
     dialog: I'm having trouble getting to sleep.
     ScreenActions: []
@@ -404,12 +404,6 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 3
-    - rid: 9079475045585125656
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: d204716103d14b04786a1df20e8ecd22, type: 3}
-        fadeTime: 3
-        setToSameTime: 0
     - rid: 9079475070362714164
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -666,3 +660,14 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         fadeTime: 0.5
+    - rid: 9079475089592287519
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: d204716103d14b04786a1df20e8ecd22
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 3
+        setToSameTime: 0

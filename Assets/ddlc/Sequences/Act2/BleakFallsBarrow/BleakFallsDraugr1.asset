@@ -269,7 +269,7 @@ MonoBehaviour:
     dialog: (What are draugr, really?)
     ScreenActions:
     - rid: 9079474884650467420
-    - rid: 9079474884650467421
+    - rid: 9079475089592287477
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: (...)
     ScreenActions: []
@@ -279,7 +279,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: (Well!)
     ScreenActions:
-    - rid: 9079474884650467422
+    - rid: 9079475089592287478
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: (Long, long ago, thousands of years ago!)
     ScreenActions:
@@ -342,7 +342,7 @@ MonoBehaviour:
     dialog: Are <NoiseText=3,1>you done</NoiseText>?!?
     ScreenActions:
     - rid: 9079474884650467428
-    - rid: 9079474884650467429
+    - rid: 9079475089592287479
     - rid: 9079474884650467433
     - rid: 9079474884650467434
     - rid: 9079474884650467435
@@ -352,7 +352,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: All of the draugr in the room begin stirring.
     ScreenActions:
-    - rid: 9079474884650467436
+    - rid: 9079475089592287480
     - rid: 9079474884650467437
     - rid: 9079474884650467438
     - rid: 9079474884650467439
@@ -449,7 +449,7 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 9079474884650467462
-    - rid: 9079474884650467466
+    - rid: 9079475089592287481
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: '{mc}, Yuri, are you okay?'
     ScreenActions:
@@ -506,7 +506,7 @@ MonoBehaviour:
     - rid: 9079474884650467477
     - rid: 9079474884650467478
     - rid: 9079474884650467479
-    - rid: 9079474884650467484
+    - rid: 9079475089592287482
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: That's probably for the best, {mc}.
     ScreenActions:
@@ -742,7 +742,7 @@ MonoBehaviour:
     dialog: ...
     ScreenActions:
     - rid: 9079474908378955855
-    - rid: 9079474908378955856
+    - rid: 9079475089592287483
     - rid: 9079474908378955857
     - rid: 9079474908378955858
   - speaker: {fileID: 0}
@@ -777,7 +777,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9079474908378955861
     - rid: 9079474908378955862
-    - rid: 9079474908378955863
+    - rid: 9079475089592287484
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: ... what's really going on, Natsuki?
     ScreenActions: []
@@ -866,7 +866,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Well, I forgive you. Let's get going, fellas.
     ScreenActions:
-    - rid: 9079474908378955870
+    - rid: 9079475089592287485
     - rid: 9079474908378955871
     - rid: 9079474908378955872
     - rid: 9079474908378955873
@@ -968,7 +968,7 @@ MonoBehaviour:
     - rid: 9079474908378955899
     - rid: 9079474908378955900
     - rid: 9079474908378955902
-    - rid: 9079474908378955903
+    - rid: 9079475089592287486
     - rid: 9079474908378955904
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Alright, draugr down.
@@ -977,7 +977,7 @@ MonoBehaviour:
     - rid: 9079474908378955910
     - rid: 9079474908378955911
     - rid: 9079474908378955913
-    - rid: 9079474908378955915
+    - rid: 9079475089592287487
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: That was kind of easy, why are we so worried about those guys, anyway?
     ScreenActions:
@@ -1231,18 +1231,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - inquisitiveSpeak
-    - rid: 9079474884650467421
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
-    - rid: 9079474884650467422
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 07169a44e565b2e46a97c1e0d18c4997, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079474884650467423
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1291,12 +1279,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - '><Shock'
-    - rid: 9079474884650467429
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079474884650467430
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1345,12 +1327,6 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - grinSweat
-    - rid: 9079474884650467436
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 6e8f3b41616a8444ba8d4984e723f1ad, type: 3}
-        fadeTime: 2
-        setToSameTime: 0
     - rid: 9079474884650467437
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1607,12 +1583,6 @@ MonoBehaviour:
         - skyDown
         - lookAwaySad
         - EMPTY
-    - rid: 9079474884650467466
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 242eec1aaa8c1fd41832783905b45d54, type: 3}
-        fadeTime: 2
-        setToSameTime: 0
     - rid: 9079474884650467467
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1763,12 +1733,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - focus
-    - rid: 9079474884650467484
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 35cba3ca908d70d48a8a042cf6323f5c, type: 3}
-        fadeTime: 2
-        setToSameTime: 0
     - rid: 9079474884650467485
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2243,12 +2207,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - lookAwayGrin
-    - rid: 9079474908378955856
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079474908378955857
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2367,12 +2325,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - shySweat
-    - rid: 9079474908378955863
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 242eec1aaa8c1fd41832783905b45d54, type: 3}
-        fadeTime: 2
-        setToSameTime: 0
     - rid: 9079474908378955864
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2397,12 +2349,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - shySweat
-    - rid: 9079474908378955870
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: e20f9bbbe7bdec44da7061586992a76a, type: 3}
-        fadeTime: 2
-        setToSameTime: 0
     - rid: 9079474908378955871
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2631,12 +2577,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         fadeTime: 0.5
-    - rid: 9079474908378955903
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 6e8f3b41616a8444ba8d4984e723f1ad, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079474908378955904
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2685,12 +2625,6 @@ MonoBehaviour:
         - skyDown
         - smile
         - EMPTY
-    - rid: 9079474908378955915
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: e20f9bbbe7bdec44da7061586992a76a, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079474908378955920
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2740,3 +2674,124 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+    - rid: 9079475089592287477
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287478
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 07169a44e565b2e46a97c1e0d18c4997
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287479
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287480
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9079475089592287481
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 242eec1aaa8c1fd41832783905b45d54
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9079475089592287482
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 35cba3ca908d70d48a8a042cf6323f5c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9079475089592287483
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287484
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 242eec1aaa8c1fd41832783905b45d54
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9079475089592287485
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: e20f9bbbe7bdec44da7061586992a76a
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9079475089592287486
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287487
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: e20f9bbbe7bdec44da7061586992a76a
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0

@@ -35,12 +35,12 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Sayori's reading my poem...!
     ScreenActions:
-    - rid: 9142197630066229389
+    - rid: 9079475089592287372
     - rid: 9142197630066229390
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Ooh...!
     ScreenActions:
-    - rid: 9142197630066229391
+    - rid: 9079475089592287373
     - rid: 9142197630066229392
     - rid: 9142197630066229393
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
@@ -115,12 +115,12 @@ MonoBehaviour:
     dialog: MY EYES! MY EYES! THEY... READ!!!
     ScreenActions:
     - rid: 9142197630066229402
-    - rid: 9142197630066229403
+    - rid: 9079475089592287374
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: I-uh...
     ScreenActions:
     - rid: 9142197630066229404
-    - rid: 9142197630066229405
+    - rid: 9079475089592287375
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Does the person in this poem have a dustpan, Sayori?
     ScreenActions: []
@@ -167,7 +167,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: W-what?
     ScreenActions:
-    - rid: 9142197630066229412
+    - rid: 9079475089592287376
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: D-don't be silly, {mc}! My footsies are perfectly safe!
     ScreenActions:
@@ -178,7 +178,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: I thought your poem was pretty good, potential floor hazards not withstanding.
     ScreenActions:
-    - rid: 9142197630066229414
+    - rid: 9079475089592287377
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Aww... thanks, {mc}!
     ScreenActions:
@@ -236,12 +236,79 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 9079475089592287372
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: bc23e4f3ce7edb94d8ba1d16f34f47d2
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 1
+    - rid: 9079475089592287373
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: f69b9b9960adff94fb7e37dcda38ce7a
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287374
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 1cbae0632d755c64a9dd5c624aed23d0
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 1
+    - rid: 9079475089592287375
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: f69b9b9960adff94fb7e37dcda38ce7a
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 1
+    - rid: 9079475089592287376
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287377
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: f69b9b9960adff94fb7e37dcda38ce7a
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
     - rid: 9142197612043829250
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         flagID: Day3Poem
         flagValue: 1
         increment: 1
+        persistent: 0
     - rid: 9142197630066229387
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -261,23 +328,11 @@ MonoBehaviour:
         - uniUp
         - uniUp
         - content
-    - rid: 9142197630066229389
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: bc23e4f3ce7edb94d8ba1d16f34f47d2, type: 3}
-        fadeTime: 1
-        setToSameTime: 1
     - rid: 9142197630066229390
       type: {class: Spawn_Poem, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         poemToSpawn: {fileID: 11400000, guid: dba25e97024cb7446a74b3e2446c24c5, type: 2}
         poemGOFab: {fileID: 5290200269201261796, guid: 6d6393fac9e8d974d9c9e622079f890f, type: 3}
-    - rid: 9142197630066229391
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: f69b9b9960adff94fb7e37dcda38ce7a, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9142197630066229392
       type: {class: Remove_Poem, ns: RenCSharp.Sequences, asm: Sequences}
       data: 
@@ -358,21 +413,9 @@ MonoBehaviour:
       data:
         poemToSpawn: {fileID: 11400000, guid: 43fdde6092acd09419b85f9a0273be44, type: 2}
         poemGOFab: {fileID: 5290200269201261796, guid: 6d6393fac9e8d974d9c9e622079f890f, type: 3}
-    - rid: 9142197630066229403
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 1cbae0632d755c64a9dd5c624aed23d0, type: 3}
-        fadeTime: 1
-        setToSameTime: 1
     - rid: 9142197630066229404
       type: {class: Remove_Poem, ns: RenCSharp.Sequences, asm: Sequences}
       data: 
-    - rid: 9142197630066229405
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: f69b9b9960adff94fb7e37dcda38ce7a, type: 3}
-        fadeTime: 1
-        setToSameTime: 1
     - rid: 9142197630066229406
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -421,12 +464,6 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - concernSpeak
-    - rid: 9142197630066229412
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9142197630066229413
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -435,12 +472,6 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - contentGrinBlush
-    - rid: 9142197630066229414
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: f69b9b9960adff94fb7e37dcda38ce7a, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9142197630066229415
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

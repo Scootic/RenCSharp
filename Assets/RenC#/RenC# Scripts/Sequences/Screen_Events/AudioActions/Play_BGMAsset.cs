@@ -19,5 +19,9 @@ namespace RenCSharp.Sequences
         {
             return "Play Music Track";
         }
+        public AssetReference SetSongAsset { set { songAsset = value; } }
+
+        public float SetFadeTime { set { fadeTime = value; } }
+        public bool SetToSameTime { set { setToSameTime = value; } }
     }
 }

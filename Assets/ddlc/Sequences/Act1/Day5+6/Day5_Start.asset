@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9142197715491881033
+    - rid: 9079475089592287453
     - rid: 9142197715491881034
     - rid: 9142197715491881035
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
@@ -76,7 +76,7 @@ MonoBehaviour:
     dialog: I decide it would be best for us to work in the living room, so we can
       have as much space as possible.
     ScreenActions:
-    - rid: 9142197715491881045
+    - rid: 9079475089592287454
     - rid: 9142197715491881046
   - speaker: {fileID: 0}
     dialog: Yuri glances around the room for a bit, which is fair. It's the first
@@ -714,7 +714,7 @@ MonoBehaviour:
     dialog: I escort Yuri out of my front door, closing the door behind her as she
       leaves.
     ScreenActions:
-    - rid: 9142197715491881102
+    - rid: 9079475089592287455
     - rid: 9142197715491881103
   - speaker: {fileID: 0}
     dialog: One down, three to go...
@@ -733,11 +733,38 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9142197715491881033
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475089592287453
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        musicTrack: {fileID: 8300000, guid: 35cba3ca908d70d48a8a042cf6323f5c, type: 3}
+        songAsset:
+          m_AssetGUID: 35cba3ca908d70d48a8a042cf6323f5c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         fadeTime: 2
+        setToSameTime: 0
+    - rid: 9079475089592287454
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 07169a44e565b2e46a97c1e0d18c4997
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287455
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
         setToSameTime: 0
     - rid: 9142197715491881034
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
@@ -814,12 +841,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         fadeTime: 0.5
-    - rid: 9142197715491881045
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 07169a44e565b2e46a97c1e0d18c4997, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9142197715491881046
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1250,12 +1271,6 @@ MonoBehaviour:
         - casDown
         - casDown
         - eyesClosedSmile
-    - rid: 9142197715491881102
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9142197715491881103
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:

@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: ...
     ScreenActions:
-    - rid: 9142197695858868401
+    - rid: 9079475089592287440
   - speaker: {fileID: 0}
     dialog: ... I really wish Yuri gave me her beach poem instead...
     ScreenActions: []
@@ -453,10 +453,15 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9142197695858868401
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475089592287440
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        musicTrack: {fileID: 8300000, guid: 51f2b1be4fb05b142acbbe506e86b1d2, type: 3}
+        songAsset:
+          m_AssetGUID: 51f2b1be4fb05b142acbbe506e86b1d2
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
     - rid: 9142197695858868403

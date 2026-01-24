@@ -19,7 +19,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9142197673170042981
     - rid: 9142197673170042982
-    - rid: 9142197673170042984
+    - rid: 9079475089592287439
   - speaker: {fileID: 0}
     dialog: Heckin' sun...
     ScreenActions:
@@ -157,6 +157,17 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 9079475089592287439
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 35cba3ca908d70d48a8a042cf6323f5c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0
     - rid: 9142197673170042981
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -183,12 +194,6 @@ MonoBehaviour:
         fadeTime: 2
         endWithScreen: 1
         secondsPerFrame: 0.1
-    - rid: 9142197673170042984
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 35cba3ca908d70d48a8a042cf6323f5c, type: 3}
-        fadeTime: 2
-        setToSameTime: 0
     - rid: 9142197673170042985
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:

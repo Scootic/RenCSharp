@@ -18,7 +18,7 @@ MonoBehaviour:
     dialog: I decide to pass the time reading the book Yuri just gave me.
     ScreenActions:
     - rid: 9142197513939845223
-    - rid: 9142197513939845224
+    - rid: 9079475089592287342
   - speaker: {fileID: 0}
     dialog: '"The Portrait of Markov"...'
     ScreenActions:
@@ -193,6 +193,17 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 9079475089592287342
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 07169a44e565b2e46a97c1e0d18c4997
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0
     - rid: 9142197513939845223
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -201,12 +212,6 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
-    - rid: 9142197513939845224
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 07169a44e565b2e46a97c1e0d18c4997, type: 3}
-        fadeTime: 2
-        setToSameTime: 0
     - rid: 9142197513939845226
       type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
       data:

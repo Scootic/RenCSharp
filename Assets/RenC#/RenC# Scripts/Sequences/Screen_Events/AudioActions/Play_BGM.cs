@@ -20,5 +20,9 @@ namespace RenCSharp.Sequences
         {
             return "Deprecated/Play Music Track";
         }
+
+        public float FadeTime => fadeTime;
+        public bool SetToSameTime => setToSameTime;
+        public AudioClip Song => musicTrack;
     }
 }

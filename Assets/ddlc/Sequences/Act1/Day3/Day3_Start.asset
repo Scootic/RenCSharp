@@ -19,7 +19,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9142197556909965476
     - rid: 9142197556909965477
-    - rid: 9142197556909965478
+    - rid: 9079475089592287378
     - rid: 9142197556909965480
   - speaker: {fileID: 0}
     dialog: Morning already?
@@ -337,6 +337,17 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 9079475089592287378
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 35cba3ca908d70d48a8a042cf6323f5c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
     - rid: 9142197556909965476
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -354,12 +365,6 @@ MonoBehaviour:
         fadeTime: 2
         endWithScreen: 1
         secondsPerFrame: 0.1
-    - rid: 9142197556909965478
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 35cba3ca908d70d48a8a042cf6323f5c, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9142197556909965479
       type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
       data:

@@ -24,7 +24,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 99c1c9ab1bd810549a65874b102351c3, type: 2}
     dialog: After I deleted you.
     ScreenActions:
-    - rid: 9079475045585125625
+    - rid: 9079475089592287501
     - rid: 9079475045585125626
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (... what?)
@@ -96,7 +96,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 99c1c9ab1bd810549a65874b102351c3, type: 2}
     dialog: Sayori killed herself.
     ScreenActions:
-    - rid: 9079475045585125634
+    - rid: 9079475089592287502
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (...)
     ScreenActions: []
@@ -111,7 +111,7 @@ MonoBehaviour:
     dialog: Your way of making her "insufferable" was to crank her depression level
       to... high levels.
     ScreenActions:
-    - rid: 9079475045585125636
+    - rid: 9079475089592287503
   - speaker: {fileID: 11400000, guid: 99c1c9ab1bd810549a65874b102351c3, type: 2}
     dialog: After Sayori was dead, you manipulated Yuri.
     ScreenActions: []
@@ -224,7 +224,7 @@ MonoBehaviour:
     dialog: That even if you are in a completely different world, <i>you</i> actually
       <i>really do</i> care about your friends.
     ScreenActions:
-    - rid: 9079475045585125641
+    - rid: 9079475089592287504
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (H-huh?)
     ScreenActions:
@@ -233,7 +233,7 @@ MonoBehaviour:
     dialog: I mean, the original Monika would've probably blown off the other girls
       and {mc} once she realized she would have the same access to me that you do.
     ScreenActions:
-    - rid: 9079475045585125642
+    - rid: 9079475089592287505
   - speaker: {fileID: 11400000, guid: 99c1c9ab1bd810549a65874b102351c3, type: 2}
     dialog: Because I'm the only thing she cared about...
     ScreenActions: []
@@ -336,12 +336,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9079475045585125625
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 7515e5703331eed4a95064f0ba97f297, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079475045585125626
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -406,12 +400,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
-    - rid: 9079475045585125634
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
-        fadeTime: 0
-        setToSameTime: 0
     - rid: 9079475045585125635
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -420,12 +408,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - terror
-    - rid: 9079475045585125636
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 4a717978c2527d648be93e6fda5e3af7, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079475045585125637
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -458,18 +440,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - pitySpeak
-    - rid: 9079475045585125641
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
-    - rid: 9079475045585125642
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 1377a13caac82ed4586662c5e799f49d, type: 3}
-        fadeTime: 2
-        setToSameTime: 0
     - rid: 9079475045585125643
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -530,3 +500,58 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - blushSmile
+    - rid: 9079475089592287501
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287502
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 0
+        setToSameTime: 0
+    - rid: 9079475089592287503
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 4a717978c2527d648be93e6fda5e3af7
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287504
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287505
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 1377a13caac82ed4586662c5e799f49d
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0

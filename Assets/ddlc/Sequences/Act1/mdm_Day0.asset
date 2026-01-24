@@ -19,7 +19,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 8612954481186308164
     - rid: 8612954481186308161
-    - rid: 8612954481186308162
+    - rid: 9079475089592287313
   - speaker: {fileID: 0}
     dialog: Finally done with my homework. Friggin' hate Mondays.
     ScreenActions:
@@ -99,12 +99,6 @@ MonoBehaviour:
         fadeTime: 2
         endWithScreen: 1
         secondsPerFrame: 0.1
-    - rid: 8612954481186308162
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 35cba3ca908d70d48a8a042cf6323f5c, type: 3}
-        fadeTime: 2
-        setToSameTime: 0
     - rid: 8612954481186308164
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -148,3 +142,14 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
+    - rid: 9079475089592287313
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 35cba3ca908d70d48a8a042cf6323f5c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0

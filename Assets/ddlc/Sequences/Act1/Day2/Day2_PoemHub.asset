@@ -18,7 +18,7 @@ MonoBehaviour:
     dialog: ...
     ScreenActions:
     - rid: 9142197513939845245
-    - rid: 9142197513939845246
+    - rid: 9079475089592287362
   - speaker: {fileID: 0}
     dialog: Who should I show my poem to?
     ScreenActions: []
@@ -30,6 +30,7 @@ MonoBehaviour:
     - flagToCheck: Day2Poem
       operation: 5
       desiredValue: 1
+      persistent: 0
       bitWise: 1
   - choiceText: Natsuki
     resultingSequence: {fileID: 11400000, guid: 387bcb72e7fcaf6419602b5917f4ab2d, type: 2}
@@ -38,6 +39,7 @@ MonoBehaviour:
     - flagToCheck: Day2Poem
       operation: 5
       desiredValue: 2
+      persistent: 0
       bitWise: 1
   - choiceText: Yuri
     resultingSequence: {fileID: 11400000, guid: 494763f7336d38540b2e5d7f2168a0ba, type: 2}
@@ -46,6 +48,7 @@ MonoBehaviour:
     - flagToCheck: Day2Poem
       operation: 5
       desiredValue: 4
+      persistent: 0
       bitWise: 1
   - choiceText: Monika
     resultingSequence: {fileID: 11400000, guid: 7f2935f4b5a331c46bc047cf6d666fba, type: 2}
@@ -54,6 +57,7 @@ MonoBehaviour:
     - flagToCheck: Day2Poem
       operation: 5
       desiredValue: 8
+      persistent: 0
       bitWise: 1
   - choiceText: Done!
     resultingSequence: {fileID: 11400000, guid: b66f1b6f8b828c44683b87e949d18d61, type: 2}
@@ -62,6 +66,7 @@ MonoBehaviour:
     - flagToCheck: Day2Poem
       operation: 0
       desiredValue: 15
+      persistent: 0
       bitWise: 0
   myself:
     m_AssetGUID: 5a134f5da8e13f142bd92c848e63bfde
@@ -72,6 +77,17 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 9079475089592287362
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: f69b9b9960adff94fb7e37dcda38ce7a
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 1
     - rid: 9142197513939845245
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -80,9 +96,3 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
-    - rid: 9142197513939845246
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: f69b9b9960adff94fb7e37dcda38ce7a, type: 3}
-        fadeTime: 2
-        setToSameTime: 1

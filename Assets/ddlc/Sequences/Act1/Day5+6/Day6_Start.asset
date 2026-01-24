@@ -137,7 +137,7 @@ MonoBehaviour:
     dialog: In our quest for batter, we've made quite the mess.
     ScreenActions:
     - rid: 9142197738211377323
-    - rid: 9142197738211377324
+    - rid: 9079475089592287456
   - speaker: {fileID: 0}
     dialog: Turns out, the mixer isn't big enough to do it all in one go, so we've
       had to do multiple batches,
@@ -462,12 +462,12 @@ MonoBehaviour:
     dialog: ...!
     ScreenActions:
     - rid: 9142197764797497438
-    - rid: 9142197764797497443
+    - rid: 9079475089592287457
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Actually, my dad told me to be home for lunch...
     ScreenActions:
     - rid: 9142197764797497439
-    - rid: 9142197764797497444
+    - rid: 9079475089592287458
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Sorry.
     ScreenActions:
@@ -492,11 +492,11 @@ MonoBehaviour:
     dialog: I help Natsuki pack up her things, and see her out the door.
     ScreenActions:
     - rid: 9142197764797497441
-    - rid: 9142197764797497442
+    - rid: 9079475089592287459
   - speaker: {fileID: 0}
     dialog: Alright, what would Sayori want for lunch...
     ScreenActions:
-    - rid: 9142197764797497445
+    - rid: 9079475089592287460
   - speaker: {fileID: 0}
     dialog: Since I'm making it for her, maybe something breakfast-y?
     ScreenActions: []
@@ -520,6 +520,61 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 9079475089592287456
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 07169a44e565b2e46a97c1e0d18c4997
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287457
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287458
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 242eec1aaa8c1fd41832783905b45d54
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287459
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287460
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 35cba3ca908d70d48a8a042cf6323f5c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
     - rid: 9142197738211377306
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -661,12 +716,6 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 1
-    - rid: 9142197738211377324
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 07169a44e565b2e46a97c1e0d18c4997, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9142197738211377325
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -993,27 +1042,3 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
         fadeTime: 0.5
-    - rid: 9142197764797497442
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
-    - rid: 9142197764797497443
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
-    - rid: 9142197764797497444
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 242eec1aaa8c1fd41832783905b45d54, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
-    - rid: 9142197764797497445
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 35cba3ca908d70d48a8a042cf6323f5c, type: 3}
-        fadeTime: 1
-        setToSameTime: 0

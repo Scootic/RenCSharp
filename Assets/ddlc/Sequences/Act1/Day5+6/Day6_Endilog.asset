@@ -17,12 +17,12 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9142197764797497489
+    - rid: 9079475089592287461
     - rid: 9142197764797497490
   - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
     dialog: <font="glitchfont">Alright, everything seems to be in order.
     ScreenActions:
-    - rid: 9142197764797497491
+    - rid: 9079475089592287462
     - rid: 9142197764797497492
   - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
     dialog: <font="glitchfont">Natsuki's partially revealed the source of her Tsun...
@@ -56,7 +56,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9142197764797497493
+    - rid: 9079475089592287463
     - rid: 9142197764797497494
     - rid: 9142197764797497495
   - speaker: {fileID: 0}
@@ -71,7 +71,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: ...
     ScreenActions:
-    - rid: 9142197764797497496
+    - rid: 9079475089592287464
     - rid: 9142197764797497497
     - rid: 9142197764797497501
   - speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
@@ -130,10 +130,48 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9142197764797497489
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475089592287461
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 3
+        setToSameTime: 0
+    - rid: 9079475089592287462
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 9d18ee034d9bea149886efe3a7a02057
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287463
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287464
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: da445bd2251a3ab48a32d19d772ecb62
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
     - rid: 9142197764797497490
@@ -144,12 +182,6 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 4
-    - rid: 9142197764797497491
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 9d18ee034d9bea149886efe3a7a02057, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9142197764797497492
       type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -162,12 +194,6 @@ MonoBehaviour:
         fadeTime: 0.5
         endWithScreen: 0
         secondsPerFrame: 0.1
-    - rid: 9142197764797497493
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 627e52765a52cac45a8d7bc68d11ca78, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9142197764797497494
       type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -185,12 +211,6 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 3
-    - rid: 9142197764797497496
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: da445bd2251a3ab48a32d19d772ecb62, type: 3}
-        fadeTime: 3
-        setToSameTime: 0
     - rid: 9142197764797497497
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:

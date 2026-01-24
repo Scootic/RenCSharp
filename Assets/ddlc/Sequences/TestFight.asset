@@ -32,12 +32,12 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9142197945214697601
+    - rid: 9079475089592287310
     - rid: 9142197945214697602
   - speaker: {fileID: 0}
     dialog: The fight should now be finished.
     ScreenActions:
-    - rid: 9142197968636215362
+    - rid: 9079475089592287311
   - speaker: {fileID: 0}
     dialog: 'Up next is a single attack:'
     ScreenActions: []
@@ -108,17 +108,33 @@ MonoBehaviour:
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         songAsset:
-          m_AssetGUID: 
+          m_AssetGUID: 2b05b9a4d137b2145bdf266a79213b6a
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287310
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 02b65c7a4c6282f43b3187ca944f4658
           m_SubObjectName: 
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
-    - rid: 9142197945214697601
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475089592287311
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        musicTrack: {fileID: 8300000, guid: 02b65c7a4c6282f43b3187ca944f4658, type: 3}
+        songAsset:
+          m_AssetGUID: e82cf2abd98ac45439666764a84213a5
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
     - rid: 9142197945214697602
@@ -140,12 +156,6 @@ MonoBehaviour:
         flagValue: 5
         increment: 0
         persistent: 0
-    - rid: 9142197968636215362
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: e82cf2abd98ac45439666764a84213a5, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9142197987744153805
       type: {class: Start_Single_Attack, ns: RenCSharp.Sequences, asm: Sequences}
       data:

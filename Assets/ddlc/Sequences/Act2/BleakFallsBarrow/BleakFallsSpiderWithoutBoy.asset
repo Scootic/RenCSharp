@@ -23,7 +23,7 @@ MonoBehaviour:
     dialog: We're gonna have to take on that thing without {mc}.
     ScreenActions:
     - rid: 9079474864314122392
-    - rid: 9079474864314122393
+    - rid: 9079475089592287493
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: Do you really think we can?
     ScreenActions: []
@@ -128,12 +128,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - sternSpeak
-    - rid: 9079474864314122393
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 02b65c7a4c6282f43b3187ca944f4658, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 9079474864314122420
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -251,3 +245,14 @@ MonoBehaviour:
         flagValue: 1
         increment: 0
         persistent: 0
+    - rid: 9079475089592287493
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 02b65c7a4c6282f43b3187ca944f4658
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0

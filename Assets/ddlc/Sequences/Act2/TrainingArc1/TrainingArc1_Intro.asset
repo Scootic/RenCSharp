@@ -19,7 +19,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9079475070362714196
     - rid: 9079475070362714197
-    - rid: 9079475070362714199
+    - rid: 9079475089592287545
   - speaker: {fileID: 0}
     dialog: ...
     ScreenActions:
@@ -78,12 +78,6 @@ MonoBehaviour:
         fadeTime: 2
         endWithScreen: 1
         secondsPerFrame: 0.1
-    - rid: 9079475070362714199
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: b62e7cbd4928440438172d681ae668c1, type: 3}
-        fadeTime: 4
-        setToSameTime: 0
     - rid: 9079475070362714200
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -103,3 +97,14 @@ MonoBehaviour:
         - skySmug
         - skySmug
         - closedEyeGrin
+    - rid: 9079475089592287545
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: b62e7cbd4928440438172d681ae668c1
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 4
+        setToSameTime: 0

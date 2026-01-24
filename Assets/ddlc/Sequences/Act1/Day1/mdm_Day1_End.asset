@@ -44,7 +44,7 @@ MonoBehaviour:
     dialog: I've spent the last hour taking care of the little bit of homework we
       were assigned today.
     ScreenActions:
-    - rid: 8612954527079858320
+    - rid: 9079475089592287318
     - rid: 8612954527079858321
   - speaker: {fileID: 0}
     dialog: I used to procrastinate more in middle school, but my post-homework gaming
@@ -218,12 +218,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         fadeTime: 0.5
-    - rid: 8612954527079858320
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 35cba3ca908d70d48a8a042cf6323f5c, type: 3}
-        fadeTime: 2
-        setToSameTime: 0
     - rid: 8612954527079858321
       type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -265,6 +259,7 @@ MonoBehaviour:
         position: {x: 0, y: 0, z: 0}
         environmental: 0
         loop: 0
+        stopOnScreenProgress: 1
         loopDuration: 1
     - rid: 8612954549043593286
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
@@ -273,6 +268,7 @@ MonoBehaviour:
         position: {x: 0, y: 0, z: 0}
         environmental: 0
         loop: 1
+        stopOnScreenProgress: 1
         loopDuration: 1e+11
     - rid: 8612954549043593287
       type: {class: Set_Overlay, ns: RenCSharp.Sequences, asm: Sequences}
@@ -436,3 +432,14 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         fadeTime: 0.5
+    - rid: 9079475089592287318
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 35cba3ca908d70d48a8a042cf6323f5c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0
