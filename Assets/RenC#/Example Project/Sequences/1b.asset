@@ -19,13 +19,13 @@ MonoBehaviour:
     ScreenActions:
     - rid: 8612954348509724882
     - rid: 8612954348509724883
-    - rid: 9142197901655015509
+    - rid: 9079475099098677354
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
     - rid: 8612954348509724879
     - rid: 8612954348509724880
-    - rid: 8612954368440270943
+    - rid: 9079475099098677355
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 8747cf3008a6b5b499ac9acabec6bec5, type: 2}
@@ -64,17 +64,26 @@ MonoBehaviour:
         visualSpriteIndexes:
         - default
         - doom
-    - rid: 8612954368440270943
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475099098677354
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 74fdc0d30ae248245afd0081776e380d
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475099098677355
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: 99a6132652ac424438484748116a7f01, type: 3}
+        - m_AssetGUID: 99a6132652ac424438484748116a7f01
+          m_SubObjectName: whitepng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 1
-    - rid: 9142197901655015509
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: 74fdc0d30ae248245afd0081776e380d, type: 3}
-        fadeTime: 1
-        setToSameTime: 0

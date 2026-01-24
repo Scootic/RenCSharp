@@ -17,7 +17,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: This a sequence for testing speed tags.
     ScreenActions:
-    - rid: 9142197901655015510
+    - rid: 9079475099098677356
   - speaker: {fileID: 0}
     dialog: <Speed=0.5>This text is quite slow.</Speed>
     ScreenActions: []
@@ -38,9 +38,14 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9142197901655015510
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475099098677356
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        musicTrack: {fileID: 8300000, guid: 6f62dea8410ec9a47b47031cc70de34e, type: 3}
+        songAsset:
+          m_AssetGUID: 6f62dea8410ec9a47b47031cc70de34e
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0

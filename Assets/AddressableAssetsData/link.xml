@@ -1,0 +1,127 @@
+<linker>
+  <assembly fullname="Actors, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RenCSharp.Actors.Actor" preserve="all" />
+  </assembly>
+  <assembly fullname="Enemies, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RenCSharp.Combat.Enemies.Base_Projectile" preserve="all" />
+    <type fullname="RenCSharp.Combat.Enemies.Beam_Projectile" preserve="all" />
+    <type fullname="RenCSharp.Combat.Enemies.Boomerang_Projectile" preserve="all" />
+    <type fullname="RenCSharp.Combat.Enemies.Emitting_Projectile" preserve="all" />
+    <type fullname="RenCSharp.Combat.Enemies.EnemyAttack" preserve="all" />
+    <type fullname="RenCSharp.Combat.Enemies.EnemyObject" preserve="all" />
+    <type fullname="RenCSharp.Combat.Enemies.EnemySO" preserve="all" />
+    <type fullname="RenCSharp.Combat.Enemies.Explode_Projectile" preserve="all" />
+    <type fullname="RenCSharp.Combat.Enemies.Homing_Projectile" preserve="all" />
+    <type fullname="RenCSharp.Combat.Enemies.Physics_Projectile" preserve="all" />
+    <type fullname="RenCSharp.Combat.Enemies.Sinewave_Projectile" preserve="all" />
+    <type fullname="RenCSharp.Combat.Enemies.Spinning_Projectile" preserve="all" />
+  </assembly>
+  <assembly fullname="RenCSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RenCSharp.Animated_Image_Handler" preserve="all" />
+    <type fullname="RenCSharp.ImageFill_FloatEvent" preserve="all" />
+    <type fullname="RenCSharp.RB_ConstForce" preserve="all" />
+    <type fullname="RenCSharp.UI_Element" preserve="all" />
+    <type fullname="RenCSharp.ConditionalOperator" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.SpriteArray" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Sequences, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="RenCSharp.Sequences.Poem" preserve="all" />
+    <type fullname="RenCSharp.Sequences.Sequence" preserve="all" />
+    <type fullname="RenCSharp.FlagCondition" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Actor_Expression" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Conditional_Screen_Overrider" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Fade_TransitionAsset" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Group_Simple_Actor_Motion" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Play_BGMAsset" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Play_SFX" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Player_Button_Flag" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Player_Choice" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Remove_Actor" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Remove_Poem" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Screen" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Set_Flag" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Set_OverlayAsset" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Simple_Actor_Motion" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Spawn_Actor" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Spawn_Poem" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Start_Fight" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Start_Single_Attack" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Sequences.Stop_SFX" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+    <type fullname="UnityEngine.AddressableAssets.AssetReference" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="TMPro.TextMeshProUGUI" preserve="all" />
+    <type fullname="TMPro.TMP_FontAsset" preserve="all" />
+    <type fullname="TMPro.FaceInfo_Legacy" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.FontAssetCreationSettings" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.KerningTable" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_FontFeatureTable" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_FontWeightPair" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.VertexGradient" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.LigatureSubstitutionRecord" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_Character" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AudioClip" preserve="all" />
+    <type fullname="UnityEngine.AudioSource" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.RectTransform" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Events.PersistentCallGroup" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.BoxCollider" preserve="all" />
+    <type fullname="UnityEngine.Rigidbody" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Font" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.UI.AspectRatioFitter" preserve="all" />
+    <type fullname="UnityEngine.UI.Image" preserve="all" />
+    <type fullname="UnityEngine.UI.LayoutElement" preserve="all" />
+    <type fullname="UnityEngine.UI.Mask" preserve="all" />
+    <type fullname="UnityEngine.UI.Scrollbar" preserve="all" />
+    <type fullname="UnityEngine.UI.ScrollRect" preserve="all" />
+    <type fullname="UnityEngine.UI.MaskableGraphic/CullStateChangedEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.AnimationTriggers" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.ColorBlock" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.Navigation" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.ScrollRect/ScrollRectEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.Scrollbar/ScrollEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.SpriteState" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.CanvasRenderer" preserve="all" />
+  </assembly>
+  <assembly fullname="Player">
+    <type fullname="RenCSharp.Combat.Player.Dodge" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Combat.Player.FreeRoam" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Combat.Player.Platformer" preserve="nothing" serialized="true" />
+    <type fullname="RenCSharp.Combat.Player.Shield" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.TextCoreFontEngineModule">
+    <type fullname="UnityEngine.TextCore.FaceInfo" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.Glyph" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.GlyphMetrics" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.GlyphRect" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphAdjustmentRecord" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphPairAdjustmentRecord" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphValueRecord" preserve="nothing" serialized="true" />
+  </assembly>
+</linker>

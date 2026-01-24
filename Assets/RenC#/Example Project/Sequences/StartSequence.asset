@@ -17,9 +17,9 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 7487abcf4a0053a4f813c3724c2a2ed5, type: 2}
     dialog: 'Hey, {MC} you are stupid! '
     ScreenActions:
-    - rid: 9142197901655015506
+    - rid: 9079475099098677357
     - rid: 9142197901655015507
-    - rid: 9142197901655015508
+    - rid: 9079475099098677358
   - speaker: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
     dialog: No, they're not! What do you think, {MC}?
     ScreenActions:
@@ -95,14 +95,29 @@ MonoBehaviour:
         visualSpriteIndexes:
         - default
         - smirk
-    - rid: 9142197901655015506
-      type: {class: Fade_Transition, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 9079475099098677357
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
-        - {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
+        - m_AssetGUID: 1e39ac913664afa4e9b4756e5117b10d
+          m_SubObjectName: blackpng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 1
+    - rid: 9079475099098677358
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: bc338100d2d4a094caab299739191f3e
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
     - rid: 9142197901655015507
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -112,9 +127,3 @@ MonoBehaviour:
         visualSpriteIndexes:
         - default
         - angery
-    - rid: 9142197901655015508
-      type: {class: Play_BGM, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        musicTrack: {fileID: 8300000, guid: bc338100d2d4a094caab299739191f3e, type: 3}
-        fadeTime: 1
-        setToSameTime: 0
