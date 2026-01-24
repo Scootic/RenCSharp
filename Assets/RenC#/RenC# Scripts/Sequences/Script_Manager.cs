@@ -62,7 +62,6 @@ namespace RenCSharp
         [Header("Databases")]
         [SerializeField] private Sprite_Database overlayDatabase;
         [SerializeField] private Sprite_Database backgroundDatabase;
-        [SerializeField] private Audio_Database audioDatabase;
 
         private bool paused = false, saving = false, loaded = false;
         private History curHist;
@@ -391,7 +390,7 @@ namespace RenCSharp
         {
             if (saving) return; //don't interrupt our save, good god!
             if (saveFileName == null) saveFileName = "SaveData"; //default to prevent extreme BS
-            if(overlayDatabase == null || backgroundDatabase == null || audioDatabase == null)
+            if(overlayDatabase == null || backgroundDatabase == null)
             {
                 Debug.LogWarning("You're a missing a database, you damned fool! I refuse to save under these working conditions!");
                 return;
