@@ -107,9 +107,6 @@ namespace RenCSharp.Sequences
                     EditorUtility.SetDirty(obj);
                     Debug.Log("Done replacing " + _target.name + "'s deprecated events! Replaced: " + replaced + " events.");
                 }
-
-                
-
             }
             base.OnInspectorGUI();
         }

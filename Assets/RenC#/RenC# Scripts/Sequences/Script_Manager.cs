@@ -481,7 +481,9 @@ namespace RenCSharp
             ScreenToken std = sd.ScreenInformation;
             AsyncOperationHandle SequenceAsset;
 
-            ov.ReceiveAnimationInformation(std.OverlayAssetKeys, std.OverlaySubobjectKeys,std.OverlaySPF);
+            Debug.Log("Length of overlay assety keyyys: " + std.OverlayAssetKeys);
+
+            if (std.OverlayAssetKeys != null) ov.ReceiveAnimationInformation(std.OverlayAssetKeys, std.OverlaySubobjectKeys,std.OverlaySPF);
             bg.ReceiveAnimationInformation(std.BackgroundAssetKeys, std.BackgroundSubobjectKeys,std.BackgroundSPF);
 
             AsyncOperationHandle bgmHandle = Addressables.LoadAssetAsync<AudioClip>(std.MusicAssetKey);

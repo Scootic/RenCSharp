@@ -27,7 +27,7 @@ namespace RenCSharp.Sequences
                 for (int i = 0; i < newBG.Count; i++)
                 {
                     assetRefGUIDs[i] = newBG[i].AssetGUID;
-                    subObjectGUIDS[i] = newBG[i].SubObjectGUID;
+                    subObjectGUIDS[i] = newBG[i].SubObjectName;
                 }
 
                 fader.SetInteger("FadeType", fadeTransition);

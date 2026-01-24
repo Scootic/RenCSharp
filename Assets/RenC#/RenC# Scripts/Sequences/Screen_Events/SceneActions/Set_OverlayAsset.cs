@@ -35,7 +35,7 @@ namespace RenCSharp.Sequences
             for(int i = 0; i < imagesToSet.Count; i++)
             {
                 spriteGUIDs[i] = imagesToSet[i].AssetGUID;
-                subObjectGUIDS[i] = imagesToSet[i].SubObjectGUID;
+                subObjectGUIDS[i] = imagesToSet[i].SubObjectName;
             }
 
             overlay = go.GetComponent<Animated_Image_Handler>();

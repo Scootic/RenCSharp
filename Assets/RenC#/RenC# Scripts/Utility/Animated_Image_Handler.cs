@@ -25,6 +25,8 @@ namespace RenCSharp
             curI = 0;
             image = GetComponent<Image>();
             animationFrames = new Sprite[0];
+            spriteAssetGUIDs = new string[0];
+            subObjectGUIDs = new string[0];
         }
 
         void Update()
@@ -50,7 +52,8 @@ namespace RenCSharp
 
             for(int i = 0; i < spriteAssetGUID.Length; i++) //run thru each
             {
-                string key = $"{spriteAssetGUIDs[i]}[{subObjectGUIDs[i]}]";
+                string key = $"{spriteAssetGUIDs[i]}";
+                if (subObjectGUIDs[i] != "") { key += $"[{subObjectGUIDs[i]}]"; Debug.Log("We gotta sub-sprite!"); }
                 AsyncOperationHandle spriteHandle = Addressables.LoadAssetAsync<Sprite>(key);
                 spriteHandle.WaitForCompletion();
 
