@@ -263,7 +263,12 @@ namespace RenCSharp
             AsyncOperationHandle songHandle = musicAsset.LoadAssetAsync<AudioClip>();
             await songHandle.Task;
 
-            if(songHandle.Status == AsyncOperationStatus.Failed) { Debug.LogWarning("Failed to load song asset: " + musicAsset.Asset); return; }
+            if(songHandle.Status == AsyncOperationStatus.Failed) 
+            { 
+                Debug.LogWarning("Failed to load song asset: " + musicAsset.Asset);
+                Addressables.Release(songHandle);
+                return; 
+            }
             AudioClip song = songHandle.Result as AudioClip;
             songAssetGUID = musicAsset.AssetGUID;
 
@@ -274,7 +279,7 @@ namespace RenCSharp
             }
             bgmRoutine = StartCoroutine(PlayBGMPog(song, fadeTime, isLooping, setSameTime));
 
-            Addressables.Release(songHandle); //release the song once finished.
+            
         }
 
         private IEnumerator PlayBGMPog(AudioClip musicToPlay, float fadeTime = 3f, bool isLooping = true, bool setSameTime = false)

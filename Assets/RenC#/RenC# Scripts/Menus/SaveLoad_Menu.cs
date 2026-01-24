@@ -90,6 +90,7 @@ namespace RenCSharp.Menus
                     Debug.LogWarning("No Scene Loader Assigned to SaveLoad Menu");
                     return;
                 }
+                Debug.Log("Loading from Menu");
                 //we're on main menu doin' stuff
                 SaveData_From_Main_Menu sdfmm = Object_Factory.SpawnObject(new GameObject(), "SL").AddComponent<SaveData_From_Main_Menu>();
                 sdfmm.SD = sd;

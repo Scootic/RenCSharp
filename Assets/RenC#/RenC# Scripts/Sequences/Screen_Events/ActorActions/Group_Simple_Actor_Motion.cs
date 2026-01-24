@@ -108,10 +108,11 @@ namespace RenCSharp.Sequences
         private void ResetToOG()
         {
             valid = false;
-            //for(int i = 0; i < actorObjs.Count; i++)
-            //{
-            //    actorObjs[i].transform.position = loopOnScreen ? ogPos[i] : desPos[i];
-            //}
+            for(int i = 0; i < actorObjs.Count; i++)
+            {
+                float eval = loopOnScreen ? 0 : 1;
+                if (actorObjs[i] != null) actorObjs[i].transform.position = CurveLerp(ogPos[i], desPos[i],eval);
+            }
         }
 
         public override string ToString()

@@ -78,9 +78,9 @@ namespace RenCSharp.Sequences
         protected virtual void ResetToOG()
         {
             valid = false;
-            //if (actorObj == null) return;
-            //if (loopOnScreen) actorObj.transform.position = SetPosition(0f);
-            //else actorObj.transform.position = SetPosition(1f);
+            if (actorObj == null) return;
+            if (loopOnScreen) actorObj.transform.position = SetPosition(0f);
+            else actorObj.transform.position = SetPosition(1f);
         }
 
         public override string ToString()

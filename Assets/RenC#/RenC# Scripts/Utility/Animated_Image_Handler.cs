@@ -64,9 +64,8 @@ namespace RenCSharp
                 else
                 {
                     Debug.LogError("Fucked up loading the: " + i + "'th sprite!");
+                    spriteHandle.Release();
                 }
-
-                spriteHandle.Release();
             }
 
             secondsPerFrame = SPF;
