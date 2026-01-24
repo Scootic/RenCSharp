@@ -5946,6 +5946,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1273049948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1273049950}
+  - component: {fileID: 1273049949}
+  m_Layer: 0
+  m_Name: togglefs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1273049949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273049948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4c818e0835e2040b3fd99767863a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefName: Fullscreen
+  theToggler: {fileID: 1434654520298650135}
+--- !u!4 &1273049950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273049948}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 799.24786, y: 497.6415, z: 396.87943}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1300556577
 GameObject:
   m_ObjectHideFlags: 0
@@ -10451,6 +10497,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -440.19998
       objectReference: {fileID: 0}
+    - target: {fileID: 3155147725431944992, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3545802076038546219, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -10471,6 +10521,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1830216314}
+    - target: {fileID: 4383212383564531550, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
+      propertyPath: theToggler
+      value: 
+      objectReference: {fileID: 1434654520298650135}
     - target: {fileID: 4549257927520568539, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -10611,7 +10665,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4383212383564531550, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10625,6 +10680,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09b77a8566d097849931755c879d473e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1434654520298650135 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3155147725431944992, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
+  m_PrefabInstance: {fileID: 1434654520298650133}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
@@ -10643,3 +10709,4 @@ SceneRoots:
   - {fileID: 673683159}
   - {fileID: 656388321}
   - {fileID: 133660091}
+  - {fileID: 1273049950}

@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Text.RegularExpressions;
 using RenCSharp.Sequences;
-using System.Threading.Tasks;
 namespace RenCSharp.Menus
 {
     public class SaveLoad_Menu : Menu_Base
@@ -23,7 +22,7 @@ namespace RenCSharp.Menus
             await openMenu;
         }
 
-        private async Awaitable MenuOpenVoid() //maybe eight frames?
+        private async Awaitable MenuOpenVoid() //maybe eight frames per menu item?
         {
             int length = SaveLoad.AllSavesLength();
             string[] paths = SaveLoad.AllSavesPaths();
@@ -86,7 +85,7 @@ namespace RenCSharp.Menus
             }
             else
             {
-                if(ssl == null)
+                if (ssl == null)
                 {
                     Debug.LogWarning("No Scene Loader Assigned to SaveLoad Menu");
                     return;
