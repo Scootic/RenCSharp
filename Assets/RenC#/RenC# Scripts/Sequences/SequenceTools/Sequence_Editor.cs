@@ -24,8 +24,7 @@ namespace RenCSharp.Sequences
         private Sequence _target;
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
-
+            
             if(GUILayout.Button("Replace Deprecated Events"))
             {
                 foreach (Object obj in targets)
@@ -68,14 +67,18 @@ namespace RenCSharp.Sequences
                                 foreach(Sprite spr in sprungles) //get shiz set up!
                                 {
                                     string johnson = AssetDatabase.GetAssetPath(spr);
+                                    Debug.Log("Asset Path for sprite? " + johnson);
                                     string guid = AssetDatabase.AssetPathToGUID(johnson);
-                                    leRefs.Add(new AssetReferenceSprite(guid));
+                                    AssetReferenceSprite stupid = new AssetReferenceSprite(guid);
+                                    stupid.SubObjectName = spr.name; //?
+                                    leRefs.Add(stupid);
+
                                 }
                                 newVent.SetImagesToSet = leRefs;
                                 s.ScreenActions[j] = newVent;
                                 replaced++;
                             }
-                            else if(vent.ToString() == "Deprecated/Fade Transtion")
+                            else if(vent.ToString() == "Deprecated/Fade Transition")
                             {
                                 Debug.Log("Replacing Fade Transition...");
                                 Fade_Transition oldVent = vent as Fade_Transition;
@@ -91,7 +94,9 @@ namespace RenCSharp.Sequences
                                 {
                                     string johnson = AssetDatabase.GetAssetPath(spr);
                                     string guid = AssetDatabase.AssetPathToGUID(johnson);
-                                    leRefs.Add(new AssetReferenceSprite(guid));
+                                    AssetReferenceSprite stupid = new AssetReferenceSprite(guid);
+                                    stupid.SubObjectName = spr.name;
+                                    leRefs.Add(stupid);
                                 }
                                 newVent.SetNewBG = leRefs;
                                 s.ScreenActions[j] = newVent;
@@ -102,7 +107,11 @@ namespace RenCSharp.Sequences
                     EditorUtility.SetDirty(obj);
                     Debug.Log("Done replacing " + _target.name + "'s deprecated events! Replaced: " + replaced + " events.");
                 }
+
+                
+
             }
+            base.OnInspectorGUI();
         }
     }
 

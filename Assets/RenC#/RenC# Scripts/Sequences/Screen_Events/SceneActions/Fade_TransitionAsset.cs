@@ -11,6 +11,7 @@ namespace RenCSharp.Sequences
         [SerializeField, Tooltip("How long should the fade be in seconds?")] private float fadeDuration = 1f;
         private Animation_Event_Delegates aed;
         private string[] assetRefGUIDs;
+        private string[] subObjectGUIDS;
 
         public List<AssetReferenceSprite> SetNewBG { set { newBG = value; } }
         public float SetSecondsPerFrame { set { secondsPerFrame = value; } }
@@ -22,9 +23,11 @@ namespace RenCSharp.Sequences
             if (GameObject.FindGameObjectWithTag("Fader").TryGetComponent(out Animator fader)) //find the fader
             {
                 assetRefGUIDs = new string[newBG.Count];
+                subObjectGUIDS = new string[newBG.Count];
                 for (int i = 0; i < newBG.Count; i++)
                 {
                     assetRefGUIDs[i] = newBG[i].AssetGUID;
+                    subObjectGUIDS[i] = newBG[i].SubObjectGUID;
                 }
 
                 fader.SetInteger("FadeType", fadeTransition);
@@ -51,7 +54,7 @@ namespace RenCSharp.Sequences
         private void SwapBG()
         {
             if (!Object_Factory.TryGetObject("Background", out GameObject go)) return;
-            go.GetComponent<Animated_Image_Handler>().ReceiveAnimationInformation(assetRefGUIDs, secondsPerFrame);
+            go.GetComponent<Animated_Image_Handler>().ReceiveAnimationInformation(assetRefGUIDs, subObjectGUIDS, secondsPerFrame);
         }
 
         private void UnpauseSM()

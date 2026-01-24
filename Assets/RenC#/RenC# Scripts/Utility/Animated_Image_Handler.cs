@@ -9,13 +9,14 @@ namespace RenCSharp
     {
         private Image image;
         private Sprite[] animationFrames;
-        private string[] spriteAssetGUIDs;
+        private string[] spriteAssetGUIDs, subObjectGUIDs;
         private float secondsPerFrame = 0.1f, t;
         private int curI;
 
         public Image Image => image;
         public Sprite[] AnimationFrames => animationFrames;
         public string[] SpriteAssetGUIDs => spriteAssetGUIDs;
+        public string[] SubObjectGUIDs => subObjectGUIDs;
         public float SecondsPerFrame => secondsPerFrame;
 
         void OnEnable()
@@ -39,16 +40,18 @@ namespace RenCSharp
             }
         }
 
-        public void ReceiveAnimationInformation(string[] spriteAssetGUID, float SPF)
+        public void ReceiveAnimationInformation(string[] spriteAssetGUID, string[] subObjectGUIDS, float SPF)
         {
             curI = 0;
             t = 0;
             spriteAssetGUIDs = spriteAssetGUID;
+            subObjectGUIDs = subObjectGUIDS;
             animationFrames = new Sprite[spriteAssetGUID.Length];
 
             for(int i = 0; i < spriteAssetGUID.Length; i++) //run thru each
             {
-                AsyncOperationHandle spriteHandle = Addressables.LoadAssetAsync<Sprite>(spriteAssetGUID[i]);
+                string key = $"{spriteAssetGUIDs[i]}[{subObjectGUIDs[i]}]";
+                AsyncOperationHandle spriteHandle = Addressables.LoadAssetAsync<Sprite>(key);
                 spriteHandle.WaitForCompletion();
 
                 if (spriteHandle.Status == AsyncOperationStatus.Succeeded)

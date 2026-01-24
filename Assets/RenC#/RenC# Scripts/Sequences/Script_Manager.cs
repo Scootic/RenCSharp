@@ -403,6 +403,7 @@ namespace RenCSharp
             {
                 Animated_Image_Handler aih = bg.GetComponent<Animated_Image_Handler>();
                 st.BackgroundAssetKeys = aih.SpriteAssetGUIDs;
+                st.BackgroundSubobjectKeys = aih.SubObjectGUIDs;
                 st.BackgroundSPF = aih.SecondsPerFrame;
             }
             //save overlay data
@@ -410,6 +411,7 @@ namespace RenCSharp
             {
                 Animated_Image_Handler aih = ov.GetComponent<Animated_Image_Handler>();
                 st.OverlayAssetKeys = aih.SpriteAssetGUIDs;
+                st.OverlaySubobjectKeys = aih.SubObjectGUIDs;
                 st.OverlaySPF = aih.SecondsPerFrame;
             }
 
@@ -479,8 +481,8 @@ namespace RenCSharp
             ScreenToken std = sd.ScreenInformation;
             AsyncOperationHandle SequenceAsset;
 
-            ov.ReceiveAnimationInformation(std.OverlayAssetKeys,std.OverlaySPF);
-            bg.ReceiveAnimationInformation(std.BackgroundAssetKeys,std.BackgroundSPF);
+            ov.ReceiveAnimationInformation(std.OverlayAssetKeys, std.OverlaySubobjectKeys,std.OverlaySPF);
+            bg.ReceiveAnimationInformation(std.BackgroundAssetKeys, std.BackgroundSubobjectKeys,std.BackgroundSPF);
 
             AsyncOperationHandle bgmHandle = Addressables.LoadAssetAsync<AudioClip>(std.MusicAssetKey);
             bgmHandle.WaitForCompletion();

@@ -17,7 +17,7 @@ namespace RenCSharp.Sequences
 
         private Coroutine fadeImage;
         private Animated_Image_Handler overlay;
-        private string[] spriteGUIDs;
+        private string[] spriteGUIDs, subObjectGUIDS;
 
         public string SetOverlayText { set { overlayText = value; } }
         public float SetFadeTime { set { fadeTime = value; } }
@@ -30,10 +30,12 @@ namespace RenCSharp.Sequences
             if (!Object_Factory.TryGetObject("Overlay", out GameObject go)) return;
 
             spriteGUIDs = new string[imagesToSet.Count];
+            subObjectGUIDS = new string[imagesToSet.Count];
 
             for(int i = 0; i < imagesToSet.Count; i++)
             {
                 spriteGUIDs[i] = imagesToSet[i].AssetGUID;
+                subObjectGUIDS[i] = imagesToSet[i].SubObjectGUID;
             }
 
             overlay = go.GetComponent<Animated_Image_Handler>();
@@ -45,7 +47,7 @@ namespace RenCSharp.Sequences
         {
             Debug.LogWarning("Set overlay panic stopped!");
             overlay.Image.color = Color.white;
-            overlay.ReceiveAnimationInformation(spriteGUIDs, secondsPerFrame);
+            overlay.ReceiveAnimationInformation(spriteGUIDs, subObjectGUIDS, secondsPerFrame);
             if (fadeImage != null) Script_Manager.SM.StopCoroutine(fadeImage);
         }
 
@@ -69,7 +71,7 @@ namespace RenCSharp.Sequences
                 {
                     if (!flick)
                     {
-                        overlay.ReceiveAnimationInformation(spriteGUIDs, secondsPerFrame);
+                        overlay.ReceiveAnimationInformation(spriteGUIDs, subObjectGUIDS, secondsPerFrame);
                         flick = true;
                     }
 
