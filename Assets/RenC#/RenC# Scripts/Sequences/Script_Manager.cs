@@ -178,6 +178,7 @@ namespace RenCSharp
                 ProgressScreenEvent?.Invoke(); //exists to make any in-progress things (like a screen event) complete before moving on
                 ProgressScreenEvent = null; //wipe all delegates from the action before continuing
                 curScreenIndex++;
+                Event_Bus.TryFireStringEvent("DebugSequence", "Sequence '" + currentSequence.name + "' | Index: " + curScreenIndex);
                 Debug.Log("current Scrindex: " + curScreenIndex + ", Final Screen? " + (curScreenIndex >= currentSequence.Screens.Length - 1));
                 if (curScreenIndex < currentSequence.Screens.Length) //if we are still within the sequence
                 {
@@ -382,7 +383,7 @@ namespace RenCSharp
         }
         #endregion
         #region SaveLoadHandling
-        public void SaveShit(string saveFileName)
+        public void SaveShit(string saveFileName, bool auto = false)
         {
             if (saving) return; //don't interrupt our save, good god!
             if (saveFileName == null) saveFileName = "SaveData"; //default to prevent extreme BS
@@ -443,16 +444,16 @@ namespace RenCSharp
             st.ActiveActors = actorTokens;
             manToSave.ScreenInformation = st;
             menuBase.SetActive(false);
-            StartCoroutine(WaitForScreenShot(manToSave, saveFileName));
+            StartCoroutine(WaitForScreenShot(manToSave, saveFileName, auto));
         }
 
-        private IEnumerator WaitForScreenShot(SaveData sd, string fileName)
+        private IEnumerator WaitForScreenShot(SaveData sd, string fileName, bool auto)
         {
             yield return new WaitForEndOfFrame();
             Texture2D raw = ScreenCapture.CaptureScreenshotAsTexture();
             Texture2D scaled = Evil_Texture_Resizer.Scaled(raw, 640, 480, FilterMode.Bilinear);
             sd.SaveScreenshot = scaled.EncodeToPNG();
-            menuBase.SetActive(true);
+            if(!auto) menuBase.SetActive(true);
             SaveLoad.Save(fileName, sd);
             saving = false;
         }

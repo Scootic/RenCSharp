@@ -325,7 +325,7 @@ namespace RenCSharp
         private void ReceiveBGM(float f)
         {
             bgmVolMult = f;
-            if (!enteringBGM) leMusic.volume = f;
+            if (!enteringBGM && leMusic != null) leMusic.volume = f;
         }
 
         void ReceiveSFX(float f)
