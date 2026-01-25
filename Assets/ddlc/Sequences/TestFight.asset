@@ -20,6 +20,7 @@ MonoBehaviour:
     - rid: 9079475089592287632
     - rid: 9079475089592287292
     - rid: 9142197945214697623
+    - rid: 9079475110781911296
   - speaker: {fileID: 0}
     dialog: It will go crazy, I swear.
     ScreenActions:
@@ -154,6 +155,10 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 1
+    - rid: 9079475110781911296
+      type: {class: AutoSave_Screen, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        fileName: Test_Fight
     - rid: 9142197945214697602
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:

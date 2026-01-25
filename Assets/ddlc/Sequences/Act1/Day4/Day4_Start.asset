@@ -20,6 +20,7 @@ MonoBehaviour:
     - rid: 9079475098267418795
     - rid: 9079475098267418796
     - rid: 9079475089592287439
+    - rid: 9079475110781911290
   - speaker: {fileID: 0}
     dialog: Heckin' sun...
     ScreenActions:
@@ -230,6 +231,10 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
+    - rid: 9079475110781911290
+      type: {class: AutoSave_Screen, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        fileName: '!AutoSave_Act1_Day4'
     - rid: 9142197673170042985
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:

@@ -20,6 +20,7 @@ MonoBehaviour:
     - rid: 9079475098267418687
     - rid: 9079475089592287320
     - rid: 9079475098267418688
+    - rid: 9079475110781911287
   - speaker: {fileID: 11400000, guid: d7d90acd337545242978d965e5b6e6f5, type: 2}
     dialog: Heeeeey!
     ScreenActions:
@@ -337,3 +338,7 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
+    - rid: 9079475110781911287
+      type: {class: AutoSave_Screen, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        fileName: '!AutoSave_Act1_Day1'

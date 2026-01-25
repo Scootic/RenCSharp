@@ -20,6 +20,7 @@ MonoBehaviour:
     - rid: 9079475089592287453
     - rid: 9079475098267418810
     - rid: 9079475098267418811
+    - rid: 9079475110781911291
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Guh-?
     ScreenActions:
@@ -864,6 +865,10 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 1
+    - rid: 9079475110781911291
+      type: {class: AutoSave_Screen, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        fileName: '!AutoSave_Act1_Day5'
     - rid: 9142197715491881037
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:

@@ -19,6 +19,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9079475098267418845
     - rid: 9079475098267418846
+    - rid: 9079475110781911293
   - speaker: {fileID: 0}
     dialog: I am in a video game...
     ScreenActions:
@@ -563,6 +564,10 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 1
+    - rid: 9079475110781911293
+      type: {class: AutoSave_Screen, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        fileName: '!AutoSave_Act2_Episode1'
     - rid: 9142198014508531841
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:

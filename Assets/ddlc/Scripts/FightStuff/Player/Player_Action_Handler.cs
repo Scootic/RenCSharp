@@ -33,6 +33,11 @@ namespace RenCSharp.Combat.Player
             if (curAbility != null) curAbility.PlayerTurn = false;
         }
 
+        public void StartFight()
+        {
+            curAbility = null;
+        }
+
         public void EndFight()
         {
             if(curAbility != null) curAbility.Fighting = false;

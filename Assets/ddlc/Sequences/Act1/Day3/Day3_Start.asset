@@ -21,6 +21,7 @@ MonoBehaviour:
     - rid: 9079475098267418743
     - rid: 9079475089592287378
     - rid: 9142197556909965480
+    - rid: 9079475110781911289
   - speaker: {fileID: 0}
     dialog: Morning already?
     ScreenActions:
@@ -458,6 +459,10 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
+    - rid: 9079475110781911289
+      type: {class: AutoSave_Screen, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        fileName: '!AutoSave_Act1_Day3'
     - rid: 9142197556909965480
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:

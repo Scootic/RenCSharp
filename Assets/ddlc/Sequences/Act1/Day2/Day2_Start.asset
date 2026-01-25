@@ -19,6 +19,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9079475098267418728
     - rid: 9079475098267418729
+    - rid: 9079475110781911288
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: <Speed=1>Grh...</Speed> what time is it?
     ScreenActions:
@@ -258,6 +259,10 @@ MonoBehaviour:
         fadeTime: 0.5
         endWithScreen: 1
         secondsPerFrame: 0.1
+    - rid: 9079475110781911288
+      type: {class: AutoSave_Screen, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        fileName: '!AutoSave_Act1_Day2'
     - rid: 9142197338057736274
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:

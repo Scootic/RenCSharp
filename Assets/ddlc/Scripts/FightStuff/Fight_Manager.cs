@@ -96,6 +96,7 @@ namespace RenCSharp.Combat
             Textbox_String.JumpToEndOfTextbox = false;
             curAttackIndex = 0;
             dir = 1;
+            pah.StartFight();
             playerObj = Object_Factory.SpawnObject(playerPrefab.gameObject, "PlayerObject", playerHolder);
             curPlayer = playerObj.GetComponent<Player_Object>();
             curPlayer.StartOfFight();
