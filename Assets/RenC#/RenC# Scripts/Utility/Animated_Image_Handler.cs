@@ -19,14 +19,14 @@ namespace RenCSharp
         public string[] SubObjectGUIDs => subObjectGUIDs;
         public float SecondsPerFrame => secondsPerFrame;
 
-        void OnEnable()
+        void OnEnable() //?
         {
             t = 0;
             curI = 0;
-            image = GetComponent<Image>();
-            animationFrames = new Sprite[0];
-            spriteAssetGUIDs = new string[0];
-            subObjectGUIDs = new string[0];
+            if(image == null) image = GetComponent<Image>();
+            if(animationFrames == null) animationFrames = new Sprite[0];
+            if(spriteAssetGUIDs == null) spriteAssetGUIDs = new string[0];
+            if(subObjectGUIDs == null) subObjectGUIDs = new string[0];
         }
 
         void Update()
@@ -41,7 +41,26 @@ namespace RenCSharp
                 image.sprite = animationFrames[curI];
             }
         }
+        /// <summary>
+        /// Only for unsaved stuff.
+        /// </summary>
+        /// <param name="visuals">The sprites being run thru</param>
+        /// <param name="SPF">Seconds per frame</param>
+        public void ReceiveAnimationInformation(Sprite[] visuals, float SPF)
+        {
+            curI = 0;
+            t = 0;
+            animationFrames = visuals;
+            secondsPerFrame = SPF;
+            if (animationFrames.Length > 0) image.sprite = animationFrames[0];
+        }
 
+        /// <summary>
+        /// Used for save load safety
+        /// </summary>
+        /// <param name="spriteAssetGUID">Addressable AssetReference GUIDs</param>
+        /// <param name="subObjectGUIDS">Addressable AssetReference.SubObjectNames</param>
+        /// <param name="SPF">Seconds per Frame</param>
         public void ReceiveAnimationInformation(string[] spriteAssetGUID, string[] subObjectGUIDS, float SPF)
         {
             curI = 0;
@@ -50,7 +69,7 @@ namespace RenCSharp
             subObjectGUIDs = subObjectGUIDS;
             animationFrames = new Sprite[spriteAssetGUID.Length];
 
-            for(int i = 0; i < spriteAssetGUID.Length; i++) //run thru each
+            for (int i = 0; i < spriteAssetGUID.Length; i++) //run thru each
             {
                 string key = $"{spriteAssetGUIDs[i]}";
                 if (subObjectGUIDs[i] != "") { key += $"[{subObjectGUIDs[i]}]"; Debug.Log("We gotta sub-sprite!"); }
@@ -69,7 +88,7 @@ namespace RenCSharp
             }
 
             secondsPerFrame = SPF;
-            if(animationFrames.Length > 0) image.sprite = animationFrames[0];
+            if (animationFrames.Length > 0) image.sprite = animationFrames[0];
         }
     }
 }

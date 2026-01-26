@@ -90,6 +90,8 @@ namespace RenCSharp.Combat.Enemies
                 Event_Bus.TryFireFloatEvent("EnemyDamageNumber", damageToTake);
                 StartCoroutine(TakeDamageVisual());
             }
+            string s = $"{meSo.NameText} - Health Remaining: {curHealth}\n{meSo.BlurbText}";
+            Event_Bus.TryFireStringEvent("GrabEnemyString", s);
         }
 
         public float Resistance()
@@ -108,6 +110,7 @@ namespace RenCSharp.Combat.Enemies
             }
             hurtedSound.clip = meSo.HurtedSound;
             curHealth = so.MaxHealth;
+            Event_Bus.TryFireStringEvent("GrabEnemyString", $"{meSo.NameText} - Health Remaining: {curHealth}\n{meSo.BlurbText}");
         }
     }
 }

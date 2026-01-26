@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -33,7 +33,7 @@ RenderSettings:
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
+  m_DefaultReflectionResolution: 16
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 0
   m_CustomReflection: {fileID: 0}
@@ -66,7 +66,7 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_ReflectionCompression: 2
+    m_ReflectionCompression: 1
     m_MixedBakeMode: 2
     m_BakeBackend: 1
     m_PVRSampling: 1
@@ -960,6 +960,210 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &144830454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 144830455}
+  - component: {fileID: 144830459}
+  - component: {fileID: 144830458}
+  - component: {fileID: 144830457}
+  - component: {fileID: 144830456}
+  m_Layer: 0
+  m_Name: BlurbText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &144830455
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144830454}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1425847300}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -500, y: 700}
+  m_SizeDelta: {x: -1100, y: -700}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &144830456
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144830454}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e1bc6772c544e904c9dcf72c1a4a48d8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &144830457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144830454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a04637a37991cf249a4645bcfdc9b261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fellaToFire:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 144830458}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 144830456}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: slideIn
+          m_BoolArgument: 0
+        m_CallState: 2
+  eventName: Investigate
+--- !u!114 &144830458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144830454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'EnemyName - Health Remaining: 200
+
+    This is where the stupid dumb blurb
+    text will go, it''s very problematic and you should be worried about the implications
+    of what''s being written.'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 45
+  m_fontSizeBase: 45
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &144830459
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144830454}
+  m_CullTransparentMesh: 1
 --- !u!1 &161640116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,7 +1864,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 125
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1681,7 +1885,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 985, y: 521, z: -864}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2092,7 +2296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Random BS
+  m_text: Investigate
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d9583cfcc333da44dbb0ef0f47d838c6, type: 2}
   m_sharedMaterial: {fileID: 6218314671421108960, guid: d9583cfcc333da44dbb0ef0f47d838c6, type: 2}
@@ -3206,7 +3410,7 @@ GameObject:
   - component: {fileID: 665594693}
   - component: {fileID: 665594694}
   m_Layer: 0
-  m_Name: randombs
+  m_Name: investigate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3239,7 +3443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e840ca7b70a4784ba0ab99c6f74b52a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityCooldown: 3
+  abilityCooldown: 1
   requiredBit: 0
   associatedTag: 
   firableOnSelect: 1
@@ -3641,12 +3845,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityCooldown: 15
-  requiredBit: 1
+  requiredBit: 6
   associatedTag: SayoriHEAL
   firableOnSelect: 0
   Current: 0
   PlayerTurn: 0
   Fighting: 0
+  healSprites:
+  - {fileID: 1557533957, guid: fc68c5ee8d399de42b387da35b1d453b, type: 3}
+  - {fileID: 579797997, guid: fc68c5ee8d399de42b387da35b1d453b, type: 3}
+  - {fileID: 1077054655, guid: fc68c5ee8d399de42b387da35b1d453b, type: 3}
+  - {fileID: 146711443, guid: fc68c5ee8d399de42b387da35b1d453b, type: 3}
+  - {fileID: 404451366, guid: fc68c5ee8d399de42b387da35b1d453b, type: 3}
+  - {fileID: -1608782978, guid: fc68c5ee8d399de42b387da35b1d453b, type: 3}
+  - {fileID: 1017440038, guid: fc68c5ee8d399de42b387da35b1d453b, type: 3}
+  - {fileID: 1922347009, guid: fc68c5ee8d399de42b387da35b1d453b, type: 3}
+  - {fileID: 429108481, guid: fc68c5ee8d399de42b387da35b1d453b, type: 3}
+  - {fileID: -384822388, guid: fc68c5ee8d399de42b387da35b1d453b, type: 3}
+  healAnimationDuration: 0.5
+  healFrame: 6
+  healFab: {fileID: 4451312297498170555, guid: fcb7febdd72acee4c84576c7ff9a046a, type: 3}
+  healSound: {fileID: 8300000, guid: 4525e98dfb3d9ed4d90ab81145c9f53e, type: 3}
+  startHeal: {fileID: 8300000, guid: 54734e6f01b9dee4687420900dd9a070, type: 3}
+  minPitch: 1
+  maxPitch: 1.025
 --- !u!1 &677926262
 GameObject:
   m_ObjectHideFlags: 0
@@ -4149,6 +4371,23 @@ MonoBehaviour:
   Current: 0
   PlayerTurn: 0
   Fighting: 0
+  animFrames:
+  - {fileID: 1203038187, guid: 138ef1a27bdf3a841a0ec9d13923aeb7, type: 3}
+  - {fileID: 1759040959, guid: 138ef1a27bdf3a841a0ec9d13923aeb7, type: 3}
+  - {fileID: -2108648960, guid: 138ef1a27bdf3a841a0ec9d13923aeb7, type: 3}
+  - {fileID: 1177774601, guid: 138ef1a27bdf3a841a0ec9d13923aeb7, type: 3}
+  - {fileID: -348924165, guid: 138ef1a27bdf3a841a0ec9d13923aeb7, type: 3}
+  - {fileID: -23902641, guid: 138ef1a27bdf3a841a0ec9d13923aeb7, type: 3}
+  - {fileID: 1916829809, guid: 138ef1a27bdf3a841a0ec9d13923aeb7, type: 3}
+  - {fileID: 1893919869, guid: 138ef1a27bdf3a841a0ec9d13923aeb7, type: 3}
+  - {fileID: 301887830, guid: 138ef1a27bdf3a841a0ec9d13923aeb7, type: 3}
+  animationDuration: 0.66
+  hitTargetFrameIndex: 5
+  shootFab: {fileID: 4451312297498170555, guid: 641eda30973f652418ed6b28ea027903, type: 3}
+  minPitch: 1
+  maxPitch: 1.025
+  shootSound: {fileID: 8300000, guid: 0870b8a3e6ad3fb4e81793692c20e863, type: 3}
+  hitSound: {fileID: 8300000, guid: a9cf81a1e296f0341b286752e451c7ad, type: 3}
 --- !u!1 &922278126
 GameObject:
   m_ObjectHideFlags: 0
@@ -6811,6 +7050,7 @@ RectTransform:
   - {fileID: 784788666}
   - {fileID: 1026804368}
   - {fileID: 61163341}
+  - {fileID: 144830455}
   m_Father: {fileID: 673683159}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7318,6 +7558,22 @@ MonoBehaviour:
   Current: 0
   PlayerTurn: 0
   Fighting: 0
+  knivesFab: {fileID: 4451312297498170555, guid: fc92d7a8c78d61c45a7fa6b108c881a8, type: 3}
+  dispellTime: 60
+  ticksBeforeDispell: 15
+  animationFrames:
+  - {fileID: -324856496, guid: 4e1636ebd432de940b17cae151f1a716, type: 3}
+  - {fileID: -1793520409, guid: 4e1636ebd432de940b17cae151f1a716, type: 3}
+  - {fileID: -1882500979, guid: 4e1636ebd432de940b17cae151f1a716, type: 3}
+  - {fileID: 546840129, guid: 4e1636ebd432de940b17cae151f1a716, type: 3}
+  - {fileID: -151052910, guid: 4e1636ebd432de940b17cae151f1a716, type: 3}
+  - {fileID: -191452468, guid: 4e1636ebd432de940b17cae151f1a716, type: 3}
+  secondsPerFrame: 0.05
+  summonSound: {fileID: 8300000, guid: 99f7a8dde4a22ed4997ef1f651a8ced2, type: 3}
+  damageTick: {fileID: 8300000, guid: 79a8cce3a88b874449e8d4ed463f93ee, type: 3}
+  volume: 0.33
+  minPitch: 1
+  maxPitch: 1.025
 --- !u!1 &1529338260
 GameObject:
   m_ObjectHideFlags: 0
@@ -10115,6 +10371,21 @@ MonoBehaviour:
   Current: 0
   PlayerTurn: 0
   Fighting: 0
+  hammerFab: {fileID: 442479731320546455, guid: 5379950d194b4ab4d98ee1231c55dbc5, type: 3}
+  shieldLifeTime: 15
+  animationFrames:
+  - {fileID: -809728758, guid: 4524c79167242dc4dbf84f7df770b64d, type: 3}
+  - {fileID: 140238233, guid: 4524c79167242dc4dbf84f7df770b64d, type: 3}
+  - {fileID: -58774878, guid: 4524c79167242dc4dbf84f7df770b64d, type: 3}
+  - {fileID: -640281815, guid: 4524c79167242dc4dbf84f7df770b64d, type: 3}
+  - {fileID: -1155281116, guid: 4524c79167242dc4dbf84f7df770b64d, type: 3}
+  - {fileID: -986854247, guid: 4524c79167242dc4dbf84f7df770b64d, type: 3}
+  - {fileID: 1128917697, guid: 4524c79167242dc4dbf84f7df770b64d, type: 3}
+  - {fileID: 6298435, guid: 4524c79167242dc4dbf84f7df770b64d, type: 3}
+  secondsPerFrame: 0.05
+  spawnShieldSFX: {fileID: 8300000, guid: 860c311fafb2339418e591c516bbd6e5, type: 3}
+  minPitch: 1
+  maxPitch: 1.025
 --- !u!1 &2091754329
 GameObject:
   m_ObjectHideFlags: 0
@@ -10362,8 +10633,8 @@ MonoBehaviour:
   ogImage: {fileID: -928522720, guid: c1d11ae724be0a5438cf1026138771da, type: 3}
   selectedImage: {fileID: 981301775, guid: d2378e34c20bfb4448cbc5b62c103c8f, type: 3}
   myImage: {fileID: 2024474346}
-  playerAttackAnimationDuration: 0.75
-  playerAttackVolMult: 0.5
+  playerAttackAnimationDuration: 0.66
+  playerAttackVolMult: 1
   playerAttackAnimFrames:
   - {fileID: -1043164786, guid: d26f5690478f5b442ab4a944ba44c04c, type: 3}
   - {fileID: -426036169, guid: d26f5690478f5b442ab4a944ba44c04c, type: 3}
@@ -10371,7 +10642,7 @@ MonoBehaviour:
   - {fileID: 2130825503, guid: d26f5690478f5b442ab4a944ba44c04c, type: 3}
   - {fileID: -1107699366, guid: d26f5690478f5b442ab4a944ba44c04c, type: 3}
   - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
-  playerAttackFab: {fileID: 5346759452938364020, guid: 507a439079076a745abe33588398372b, type: 3}
+  playerAttackFab: {fileID: 4451312297498170555, guid: 507a439079076a745abe33588398372b, type: 3}
   attackSound: {fileID: 8300000, guid: cf9819d5e1bc6c148b94ff4cf04c2670, type: 3}
 --- !u!1 &2131880289
 GameObject:

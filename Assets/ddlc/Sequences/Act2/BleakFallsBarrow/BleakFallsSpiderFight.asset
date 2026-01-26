@@ -22,6 +22,8 @@ MonoBehaviour:
     - rid: 9079474864314122413
     - rid: 9079474864314122414
     - rid: 9079474864314122436
+    - rid: 9079475137338146920
+    - rid: 9079475137338146921
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -33,11 +35,23 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
+    - rid: 9079475144973353030
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079475144973353032
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079475144973353031
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
     - rid: 9079474864314122419
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079475089592287492
+    - rid: 9079475144973353033
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 8fa5b0e467aa8ea4291edf16363b49f5, type: 2}
@@ -115,15 +129,7 @@ MonoBehaviour:
             speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
             dialog: <font=glitchfont>You can fire an ability you select with 'X'
               during an enemy turn when the compass bar is full.
-            ScreenActions:
-            - rid: 9079474864314122418
-    - rid: 9079474864314122418
-      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        flagID: CombatTut
-        flagValue: 2
-        increment: 0
-        persistent: 1
+            ScreenActions: []
     - rid: 9079474864314122419
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -135,7 +141,67 @@ MonoBehaviour:
         flagValue: 15
         increment: 1
         persistent: 0
-    - rid: 9079475089592287492
+    - rid: 9079475137338146920
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: YuriDMG
+        flagValue: 20
+        increment: 0
+        persistent: 0
+    - rid: 9079475137338146921
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: NatsukiSTR
+        flagValue: 6
+        increment: 0
+        persistent: 0
+    - rid: 9079475144973353030
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: CombatTut
+            operation: 2
+            desiredValue: 2
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+            dialog: Sayori's ability will heal you and Monika's will fire an arrow
+              at the enemy for major damage.
+            ScreenActions: []
+    - rid: 9079475144973353031
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: CombatTut
+            operation: 2
+            desiredValue: 2
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+            dialog: Natsuki's ability will provide a temporary shield that can take
+              some hits from you, but cannot protect you against piercing attacks.
+            ScreenActions:
+            - rid: 9079475144973353034
+    - rid: 9079475144973353032
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: CombatTut
+            operation: 2
+            desiredValue: 2
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+            dialog: Yuri's ability will summon a swarm of bound daggers that will
+              cause damage over a period of time, even while you use other skills.
+            ScreenActions: []
+    - rid: 9079475144973353033
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         songAsset:
@@ -143,6 +209,13 @@ MonoBehaviour:
           m_SubObjectName: 
           m_SubObjectGUID: 
           m_SubObjectType: 
-          m_EditorAssetChanged: 0
+          m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
+    - rid: 9079475144973353034
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: CombatTut
+        flagValue: 2
+        increment: 0
+        persistent: 1

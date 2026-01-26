@@ -15,7 +15,7 @@ namespace RenCSharp.Combat.Enemies
         [SerializeField, Min(1)] private int maxHealth = 10;
         [SerializeField] private Sprite[] visualInformation;
         [SerializeField] private EnemyObject enemyPrefab;
-        [SerializeField, TextArea(3, 5)] private string defeatText, nameText;
+        [SerializeField, TextArea(3, 5)] private string defeatText, nameText, blurbText;
         [SerializeField] private AudioClip hurtedSound;
 
         private void OnValidate()
@@ -42,6 +42,7 @@ namespace RenCSharp.Combat.Enemies
         public Sprite[] VisualInformation => visualInformation;
         public string NameText => nameText;
         public string DefeatText => defeatText;
+        public string BlurbText => blurbText;
         public AudioClip HurtedSound => hurtedSound;
         public EnemyObject EnemyPrefab => enemyPrefab;
     }

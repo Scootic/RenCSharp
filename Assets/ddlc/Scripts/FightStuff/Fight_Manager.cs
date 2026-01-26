@@ -70,6 +70,7 @@ namespace RenCSharp.Combat
             Textbox_String.PauseTextbox(true);
             Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", 0);
             curEnemy = Object_Factory.SpawnObject(eso.EnemyPrefab.gameObject, "EnemyObject", enemyHolder).GetComponent<EnemyObject>();
+            Event_Bus.TryFireSingleObjEvent("GetEnemyTransform", (object)curEnemy.transform);
             curEnemy.ReceiveEnemySO(eso);
             StartCoroutine(RunThroughEnemy());
         }
@@ -212,6 +213,7 @@ namespace RenCSharp.Combat
                 activeProj.RemoveAt(i);
             }
             ea.ControlType.ExitControl(); //disable player dodge object and turn off its controls
+            Player_Object.BeforeDisablePlayerAction?.Invoke();
             playerObj.SetActive(false);
             if (!singleAttack)
             {

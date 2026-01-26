@@ -30,6 +30,8 @@ MonoBehaviour:
     - rid: 9079474680798380111
     - rid: 9079474680798380136
     - rid: 9079474680798380137
+    - rid: 9079475144973353011
+    - rid: 9079475144973353012
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -159,6 +161,20 @@ MonoBehaviour:
       type: {class: AutoSave_Screen, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         fileName: Test_Fight
+    - rid: 9079475144973353011
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: YuriDMG
+        flagValue: 20
+        increment: 0
+        persistent: 0
+    - rid: 9079475144973353012
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: NatsukiSTR
+        flagValue: 6
+        increment: 0
+        persistent: 0
     - rid: 9142197945214697602
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:

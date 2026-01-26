@@ -10,63 +10,28 @@ namespace RenCSharp.Combat.Player
         [SerializeField] private float playerAttackAnimationDuration;
         [SerializeField, Range(0, 1)] private float playerAttackVolMult = 0.5f;
         [SerializeField] private Sprite[] playerAttackAnimFrames;
-        [SerializeField] private UI_Element playerAttackFab;
+        [SerializeField] private Animated_Image_Handler playerAttackFab;
         [SerializeField] private AudioClip attackSound;
-        private UI_Element curPAttack;
+        private Animated_Image_Handler curPAttack;
 
         public override IEnumerator ActionResult()
         {
-            float t = 0;
-            int i = 0;
-            float perc = playerAttackAnimationDuration / (float)playerAttackAnimFrames.Length;
             if (Object_Factory.TryGetObject("EnemyObject", out GameObject go))
             {
+                float divTwo = playerAttackAnimationDuration * 0.5f;
+                float secondsPerFrame = playerAttackAnimationDuration / (float)playerAttackAnimFrames.Length;
                 Debug.Log("Player Attacked!");
-                curPAttack = Object_Factory.SpawnObject(playerAttackFab.gameObject, "PlayerAttack", go.transform).GetComponent<UI_Element>();
-                curPAttack.Images[0].sprite = playerAttackAnimFrames[0];
+                curPAttack = Object_Factory.SpawnObject(playerAttackFab.gameObject, "PlayerAttack", go.transform).GetComponent<Animated_Image_Handler>();
+                curPAttack.ReceiveAnimationInformation(playerAttackAnimFrames, secondsPerFrame);
 
                 Audio_Manager.AM.Play2DSFX(attackSound, 1, 1, playerAttackVolMult, false);
                 Textbox_String.JumpToEndOfTextbox = true;
 
-                while (t <= playerAttackAnimationDuration)
-                {
-                    t += Time.deltaTime;
-                    //do the animation
-                    if (t >= perc)
-                    {
-                        t = 0;
-                        i++;
-
-                        if (i < playerAttackAnimFrames.Length)
-                        {
-                            curPAttack.Images[0].sprite = playerAttackAnimFrames[i];
-                            float pDamage = (float)Flag_Manager.GetFlag("PlayerDamage", false); 
-                            //do midway logic
-                            if (playerAttackAnimFrames.Length % 2 == 0) //if we have an even amount of anim frames
-                            {
-                                if (i == playerAttackAnimFrames.Length * 0.5f)
-                                {
-                                    Event_Bus.TryFireDoubleObjEvent("EnemyTakeDamage", (object)pDamage, (object)false);
-                                }
-                            }
-                            else //do bs
-                            {
-                                float approxI = i + 0.5f;
-                                if (Mathf.Approximately(approxI, playerAttackAnimFrames.Length * 0.5f))
-                                {
-                                    Event_Bus.TryFireDoubleObjEvent("EnemyTakeDamage", (object)pDamage, (object)false);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            //complete animation if there is no next frame
-                            Object_Factory.RemoveObject("PlayerAttack");
-                            yield break;
-                        }
-                    }
-                    yield return null;
-                }
+                yield return new WaitForSeconds(divTwo);
+                float pDamage = (float)Flag_Manager.GetFlag("PlayerDamage");
+                Event_Bus.TryFireDoubleObjEvent("EnemyTakeDamage", (object)pDamage, (object)false);
+                yield return new WaitForSeconds(divTwo);
+                Object_Factory.RemoveObject("PlayerAttack");
             }
             else
             {

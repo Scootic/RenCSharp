@@ -61,11 +61,14 @@ namespace RenCSharp.Combat.Player
         {
             if (AbilityUnlocked(allAbilities[curAbilityIndex]))
             {
-                if (curAbility != null) curAbility.Current = false;
+                if (curAbility != null) { curAbility.Current = false; }
                 Debug.Log("Selected an ability: " + allAbilities[curAbilityIndex].gameObject.name);
                 abilitySpriters[curAbilityIndex].Images[0].sprite = ogSprites[curAbilityIndex];
                 curAbility = allAbilities[curAbilityIndex];
                 curAbility.Current = true;
+                //these bottom two SHOULD be unnecessary. and yet, here we are.
+                curAbility.Fighting = true;
+                curAbility.PlayerTurn = false;
                 selectedAnAbility = true;
             }
             else

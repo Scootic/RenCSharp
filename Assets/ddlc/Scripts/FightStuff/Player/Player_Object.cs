@@ -13,8 +13,11 @@ namespace RenCSharp.Combat.Player
         [SerializeField] private float invincibilitySeconds = 0.25f;
         [SerializeField] private AudioSource hurtedSound;
         [SerializeField] private AnimationCurve invincibleCurve;
+        [SerializeField] private bool main = false;
         private bool invincible = false, hurtSoundGood = true;
         private float curHealth, preResistance = 0, postResistance;
+
+        public static Action BeforeDisablePlayerAction;
 
         public float CurrentHealth => curHealth;
         public void StartOfFight()
@@ -29,6 +32,12 @@ namespace RenCSharp.Combat.Player
             //postResistance = preResistance;
             Event_Bus.TryFireFloatEvent("PlayerHealth", curHealth);
             Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
+        }
+
+        public void ManualSetHealths(int newMax, float newcur)
+        {
+            maxHealth = newMax;
+            curHealth = newcur;
         }
 
         /// <summary>
@@ -46,7 +55,6 @@ namespace RenCSharp.Combat.Player
                 postResistance = value;
             }
         }
-
         void OnDisable()
         {
             invincible = false;
@@ -76,16 +84,23 @@ namespace RenCSharp.Combat.Player
             //curHealth = Mathf.Max(curHealth, 0);
             curHealth = Mathf.Min(curHealth, maxHealth);
 
-            Debug.Log("Damage Taken by Player: " + f);
-
-            Event_Bus.TryFireFloatEvent("PlayerHealth", curHealth);
-            Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
+            Debug.Log($"Damage Taken by {gameObject.name}: " + f);
+            if (main)
+            {
+                Event_Bus.TryFireFloatEvent("PlayerHealth", curHealth);
+                Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
+            }
 
             if (curHealth <= 0)
             {
-                //Game Over stuff here!
-                //Fight_Manager.FM.EndAFight(true);
-                Event_Bus.TryFireBoolEvent("EndAFight", true);
+                if (main) //game over if a main player obj.
+                {
+                    Event_Bus.TryFireBoolEvent("EndAFight", true);
+                }
+                else
+                {
+                    Object_Factory.RemoveObject(gameObject.name);
+                }
             }
             else if(hurtSoundGood && f > 0)
             {
