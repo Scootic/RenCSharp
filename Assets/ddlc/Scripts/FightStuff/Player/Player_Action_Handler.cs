@@ -41,6 +41,8 @@ namespace RenCSharp.Combat.Player
         public void EndFight()
         {
             if(curAbility != null) curAbility.Fighting = false;
+            Player_Input.Movement -= ScrollThroughActions;
+            Player_Input.Attack -= LockInAction;
         }
 
         public void SetCurrentPlayerAbility(Player_Ability pa)

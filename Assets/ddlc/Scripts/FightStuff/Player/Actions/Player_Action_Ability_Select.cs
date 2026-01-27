@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using EXPERIMENTAL;
+using System.Collections.Generic;
 namespace RenCSharp.Combat.Player
 {
     public class Player_Action_Ability_Select : Player_Action
@@ -42,7 +43,7 @@ namespace RenCSharp.Combat.Player
                 bool unlocked = AbilityUnlocked(allAbilities[i]);
                 allAbilities[i].gameObject.SetActive(unlocked);
                 abilitySpriters[i].gameObject.SetActive(unlocked);
-                if (unlocked) activeGOs++;
+                if (unlocked) { activeGOs++; }
             }
 
             while (!selectedAnAbility)
@@ -99,27 +100,35 @@ namespace RenCSharp.Combat.Player
             if (v2.x >= 1)
             {
                 curGOIndex++;
-                if (curGOIndex >= activeGOs) curGOIndex = 0;
-                while (!abilityHolder.GetChild(curGOIndex).gameObject.activeInHierarchy) curGOIndex++;
+                if (curGOIndex >= allAbilities.Length) curGOIndex = 0;
+                while (!allAbilities[curGOIndex].gameObject.activeInHierarchy) 
+                { 
+                    curGOIndex++;
+                    if (curGOIndex >= allAbilities.Length) curGOIndex = 0;
+                }
                 
             }
             else if (v2.x <= -1)
             {
                 curGOIndex--;
-                if (curGOIndex < 0) curGOIndex = activeGOs - 1;
-                while (!abilityHolder.GetChild(curGOIndex).gameObject.activeInHierarchy) curGOIndex--;
+                if (curGOIndex < 0) curGOIndex = allAbilities.Length - 1;
+                while (!allAbilities[curGOIndex].gameObject.activeInHierarchy) 
+                { 
+                    curGOIndex--;
+                    if (curGOIndex < 0) curGOIndex = allAbilities.Length - 1;
+                }
             }
             else if (v2.y >= 1 && activeGOs > yJump)
             {
                 curGOIndex -= yJump;
                 if (curGOIndex >= activeGOs) curGOIndex += activeGOs;
-                while (!abilityHolder.GetChild(curGOIndex).gameObject.activeInHierarchy) curGOIndex--;
+                while (!allAbilities[curGOIndex].gameObject.activeInHierarchy) curGOIndex--;
             }
             else if (v2.y <= -1 && activeGOs > yJump) 
             {
                 curGOIndex += yJump;
                 if (curGOIndex < 0) curGOIndex = activeGOs - curGOIndex;
-                while (!abilityHolder.GetChild(curGOIndex).gameObject.activeInHierarchy) curGOIndex++;
+                while (!allAbilities[curGOIndex].gameObject.activeInHierarchy) curGOIndex++;
             }
 
             Debug.Log("current gameobject index: " + curGOIndex);

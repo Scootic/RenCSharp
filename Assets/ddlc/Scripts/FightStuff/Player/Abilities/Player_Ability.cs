@@ -36,7 +36,7 @@ namespace RenCSharp.Combat.Player
         /// <summary>
         /// Should fire whenever a fight starts, meaning ability cds are preserved through attacks, but not fights.
         /// </summary>
-        protected void OnEnable()
+        protected virtual void OnEnable()
         {
             t = 0;
         }

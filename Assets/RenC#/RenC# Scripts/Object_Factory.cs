@@ -20,12 +20,17 @@ namespace RenCSharp
             }
         }
 
-        public static GameObject SpawnObject(GameObject prefab, string name, Transform parent = null) 
+        public static GameObject SpawnObject(GameObject prefab, string name, Transform parent = null)
         {
-            if (activeGameObjects.ContainsKey(name)) return null;
             GameObject t = GameObject.Instantiate(prefab, parent);
             t.name = name;
+            if (activeGameObjects.ContainsKey(name))
+            {
+                RemoveObject(name);
+            }
+
             activeGameObjects.Add(name, t);
+            
             return t;
         }
 

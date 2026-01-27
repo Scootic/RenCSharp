@@ -604,7 +604,6 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9079475045585125482
     - rid: 9079475045585125483
-    - rid: 9079475045585125484
     - rid: 9079475045585125485
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Good news, the dragon's already landed.
@@ -1793,18 +1792,11 @@ MonoBehaviour:
         - skyUp
         - shock
         - EMPTY
-    - rid: 9079475045585125484
-      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        flagID: PlayerAbilities
-        flagValue: 1
-        increment: 1
-        persistent: 0
     - rid: 9079475045585125485
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         flagID: PlayerAbilities
-        flagValue: -8
+        flagValue: -7
         increment: 1
         persistent: 0
     - rid: 9079475045585125486
@@ -1937,8 +1929,8 @@ MonoBehaviour:
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         flagID: PlayerAbilities
-        flagValue: 12
-        increment: 1
+        flagValue: 31
+        increment: 0
         persistent: 0
     - rid: 9079475045585125501
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}

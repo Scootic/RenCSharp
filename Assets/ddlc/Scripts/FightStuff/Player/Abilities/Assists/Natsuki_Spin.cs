@@ -1,5 +1,4 @@
 using EXPERIMENTAL;
-using System.Collections;
 using UnityEngine;
 using System;
 namespace RenCSharp.Combat.Player
@@ -19,14 +18,15 @@ namespace RenCSharp.Combat.Player
 
         public override void FireAbility()
         {
-            base.FireAbility();
             if (!validToFire || PlayerTurn || activeShield != null) return;
             if(Object_Factory.TryGetObject("PlayerObject", out GameObject go))
             {
+                t = 0;
+                Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", t);
                 Event_Bus.AddBoolEvent("EndAFight", GetRidOfShieldFR);
                 int value = Flag_Manager.GetFlag(associatedTag);
                 validToFire = false;
-                activeShield = Object_Factory.SpawnObject(hammerFab, "NatsukiShield", go.transform);
+                activeShield = Object_Factory.SpawnObject(hammerFab, "NatsukiShield", go.transform); //will override previous with a new shield???
                 activeShield.GetComponent<Player_Object>().ManualSetHealths(value, value);
                 activeShield.GetComponent<Animated_Image_Handler>().ReceiveAnimationInformation(animationFrames, secondsPerFrame);
                 Audio_Manager.AM.Play2DSFX(spawnShieldSFX, minPitch, maxPitch);

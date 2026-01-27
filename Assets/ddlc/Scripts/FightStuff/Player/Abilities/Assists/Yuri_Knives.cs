@@ -1,6 +1,7 @@
 using EXPERIMENTAL;
 using System;
 using System.Collections;
+using System.Xml.Linq;
 using UnityEngine;
 
 namespace RenCSharp.Combat.Player
@@ -25,9 +26,11 @@ namespace RenCSharp.Combat.Player
 
         public override void FireAbility()
         {
-            base.FireAbility();
             if (!validToFire || PlayerTurn || curKnives != null) return;
+            t = 0;
+            Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", t);
             dmg = (float)Flag_Manager.GetFlag(associatedTag);
+            Event_Bus.AddVoidEvent("EnemyDied", EnemyStinker);
             tickDMG = dmg / ticksBeforeDispell;
             curKnives = Object_Factory.SpawnObject(knivesFab.gameObject, "YuriDoT", enemyTransform).GetComponent<Animated_Image_Handler>();
             curKnives.ReceiveAnimationInformation(animationFrames, secondsPerFrame);
@@ -59,20 +62,42 @@ namespace RenCSharp.Combat.Player
                     {
                         //enemy dead means that the stinking event can't happen, so get rid of DoT!
                         Object_Factory.RemoveObject("YuriDoT");
+                        if (Event_Bus.TryGetVoidEvent("EnemyDied", out Action venter))
+                        {
+                            venter -= EnemyStinker;
+                        }
                         yield break;
                     }
                 }
                
                 yield return null;
             }
-
+            if (Event_Bus.TryGetVoidEvent("EnemyDied", out Action vent))
+            {
+                vent -= EnemyStinker;
+            }
             Object_Factory.RemoveObject("YuriDoT");
             //get rid of obj
+        }
+
+        private void EnemyStinker()
+        {
+            Object_Factory.RemoveObject("YuriDoT");
+            if (Event_Bus.TryGetVoidEvent("EnemyDied", out Action vent))
+            {
+                vent -= EnemyStinker;
+            }
         }
 
         private void Start()
         {
             Event_Bus.AddSingleObjEvent("GetEnemyTransform", GetEnemyTransform);
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            
         }
 
         private void OnDisable()

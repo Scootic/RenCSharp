@@ -82,6 +82,7 @@ namespace RenCSharp.Combat.Enemies
             {
                 //become killed af!
                 //tell somebody about what happened.
+                Event_Bus.TryFireVoidEvent("EnemyDied");
                 Event_Bus.TryFireBoolEvent("EndAFight", false);
             }
             else
