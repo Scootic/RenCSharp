@@ -269,20 +269,52 @@ namespace RenCSharp
                 Addressables.Release(songHandle);
                 return; 
             }
+
             AudioClip song = songHandle.Result as AudioClip;
             songAssetGUID = musicAsset.AssetGUID;
+            //Addressables.Release(songHandle);
 
             if (enteringBGM)
             {
                 if (newBGM != null) Destroy(newBGM);
                 StopCoroutine(bgmRoutine);
             }
-            bgmRoutine = StartCoroutine(PlayBGMPog(song, fadeTime, isLooping, setSameTime));
-
-            
+            bgmRoutine = StartCoroutine(PlayBGMPogAddressable(song, fadeTime, isLooping, setSameTime));
         }
 
         private IEnumerator PlayBGMPog(AudioClip musicToPlay, float fadeTime = 3f, bool isLooping = true, bool setSameTime = false)
+        {
+            enteringBGM = true;
+            newBGM = gameObject.AddComponent<AudioSource>(); //make a new Audio sauce
+            newBGM.clip = musicToPlay; //Init the new sauce, based on passed in values
+            newBGM.volume = 0;
+            newBGM.loop = isLooping;
+            newBGM.Play();
+
+            if (setSameTime) newBGM.time = leMusic.time;
+            float t = 0; //shorthand for time, starting at 0
+
+            while (t < fadeTime)
+            {
+                //increase t by amount of time passed between frames
+                t += Time.deltaTime;
+                //calc percent of time that has passed, based on fadeTime
+                float perc = t / fadeTime;
+                //fade the musics out/in
+                leMusic.volume = Mathf.Lerp(bgmVolMult, 0, perc);
+                newBGM.volume = Mathf.Lerp(0, bgmVolMult, perc);
+                //yield the frame, then continue
+                yield return null;
+            }
+            //destroy unneeded audio sauce
+            Addressables.Release(leMusic.clip);
+            Destroy(leMusic);
+            //set new sauce where the old sauce was
+            leMusic = newBGM;
+            enteringBGM = false;
+        }
+
+        private IEnumerator PlayBGMPogAddressable(AudioClip musicToPlay, float fadeTime = 3f, bool isLooping = true, bool setSameTime = false)
         {
             enteringBGM = true;
             newBGM = gameObject.AddComponent<AudioSource>(); //make a new Audio sauce

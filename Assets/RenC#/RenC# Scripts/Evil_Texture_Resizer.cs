@@ -11,13 +11,13 @@ namespace RenCSharp
         /// <param name="width">Destination texture width</param>
         /// <param name="height">Destination texture height</param>
         /// <param name="mode">Filtering mode</param>
-        public static Texture2D Scaled(Texture2D src, int width, int height, FilterMode mode = FilterMode.Trilinear)
+        public static Texture2D Scaled(Texture2D src, int width, int height, FilterMode mode = FilterMode.Trilinear, TextureFormat texFormat = TextureFormat.ARGB32)
         {
             Rect texR = new(0, 0, width, height);
             _gpu_scale(src, width, height, mode);
 
             //Get rendered data back to a new texture
-            Texture2D result = new(width, height, TextureFormat.ARGB32, true);
+            Texture2D result = new(width, height, texFormat, true);
             result.Reinitialize(width, height);
             result.ReadPixels(texR, 0, 0, true);
             return result;

@@ -47,7 +47,7 @@ namespace RenCSharp.Combat.Player
             Movement = null;
             Attack = null;
             Ability = null;
-            Audio_Manager.AM.StopCoroutine(ReadMovement());
+            if(Audio_Manager.AM != null) Audio_Manager.AM.StopCoroutine(ReadMovement());
             movement.action.started -= ctx => Audio_Manager.AM.StartCoroutine(ReadMovement());
             movement.action.canceled -= ctx => move = false;
             attack.action.performed -= ctx => Attack?.Invoke();

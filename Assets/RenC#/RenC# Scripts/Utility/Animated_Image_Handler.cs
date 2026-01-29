@@ -42,7 +42,7 @@ namespace RenCSharp
             }
         }
         /// <summary>
-        /// Only for unsaved stuff.
+        /// Only for unsaved stuff. Just takes in sprites, no assetreferences.
         /// </summary>
         /// <param name="visuals">The sprites being run thru</param>
         /// <param name="SPF">Seconds per frame</param>
@@ -56,7 +56,7 @@ namespace RenCSharp
         }
 
         /// <summary>
-        /// Used for save load safety
+        /// Used for save load safety. AssetReference moment.
         /// </summary>
         /// <param name="spriteAssetGUID">Addressable AssetReference GUIDs</param>
         /// <param name="subObjectGUIDS">Addressable AssetReference.SubObjectNames</param>
@@ -67,12 +67,18 @@ namespace RenCSharp
             t = 0;
             spriteAssetGUIDs = spriteAssetGUID;
             subObjectGUIDs = subObjectGUIDS;
+
+            foreach(Sprite s in animationFrames)
+            {
+                Addressables.Release(s);
+            }
+
             animationFrames = new Sprite[spriteAssetGUID.Length];
 
             for (int i = 0; i < spriteAssetGUID.Length; i++) //run thru each
             {
                 string key = $"{spriteAssetGUIDs[i]}";
-                if (subObjectGUIDs[i] != "") { key += $"[{subObjectGUIDs[i]}]"; Debug.Log("We gotta sub-sprite!"); }
+                if (subObjectGUIDs[i] != "") { key += $"[{subObjectGUIDs[i]}]"; } //Debug.Log("We gotta sub-sprite!"); 
                 AsyncOperationHandle spriteHandle = Addressables.LoadAssetAsync<Sprite>(key);
                 spriteHandle.WaitForCompletion();
 

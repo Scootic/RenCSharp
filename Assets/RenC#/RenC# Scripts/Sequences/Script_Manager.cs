@@ -53,7 +53,7 @@ namespace RenCSharp
         [Header("Settings")]
         [SerializeField, Tooltip("In seconds, 0 for character every frame."), Min(0)] private float textSpeed = 0;
         [SerializeField, Tooltip("In seconds."), Min(0)] private float autoFocusScaleDuration = 0.25f;
-        [SerializeField] private string playerName = "Guy"; //probably should be handled by an save data
+        [SerializeField, Tooltip("Handled by SaveData. Only viewable for debug purposes.")] private string playerName = "Guy"; //probably should be handled by an save data
         [SerializeField, Tooltip("This will be string that is replaced by inputted player name.")] private string playerTag = "{MC}";
         [SerializeField] private bool auto = false;
         [SerializeField, Tooltip("How long the SM will linger on a screen while on auto.")] private float lingerTime = 0.5f;
@@ -335,7 +335,7 @@ namespace RenCSharp
             float t = 0;
             while(t < lingerTime)
             {
-                if (index != curScreenIndex) yield break;
+                if (index != curScreenIndex) yield break; //bail out if the player moves past the textbox manually
                 t += Time.deltaTime;
                 yield return null;
             }
@@ -450,8 +450,10 @@ namespace RenCSharp
         private IEnumerator WaitForScreenShot(SaveData sd, string fileName, bool auto)
         {
             yield return new WaitForEndOfFrame();
-            Texture2D raw = ScreenCapture.CaptureScreenshotAsTexture();
-            Texture2D scaled = Evil_Texture_Resizer.Scaled(raw, 640, 480, FilterMode.Bilinear);
+            Texture2D raw = new Texture2D(UnityEngine.Screen.width, UnityEngine.Screen.height, TextureFormat.ARGB32, false);
+            raw.ReadPixels(new Rect(0, 0, UnityEngine.Screen.width, UnityEngine.Screen.height), 0, 0);
+            raw.Apply();
+            Texture2D scaled = Evil_Texture_Resizer.Scaled(raw, 640, 480, FilterMode.Trilinear);
             sd.SaveScreenshot = scaled.EncodeToPNG();
             if(!auto) menuBase.SetActive(true);
             SaveLoad.Save(fileName, sd);
