@@ -1,0 +1,117 @@
+using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
+using EXPERIMENTAL;
+using UnityEngine.UI;
+using RenCSharp.Combat.Interfaces;
+namespace RenCSharp.Combat.Enemies
+{
+    [RequireComponent(typeof(UI_Element))]
+    public class EnemyObject : MonoBehaviour, IDamage
+    {
+        private UI_Element uie;
+        private float curHealth;
+        private List<Color> ogColors;
+        [SerializeField] private AudioSource hurtedSound;
+        [SerializeField, Range(0,1)] private float resistance = 0;
+        [SerializeField, Min(0.01f)] private float damageAnimationTime = 0.5f, maxDistFromOG = 50f;
+        [SerializeField] private AnimationCurve[] possibleCurves;
+        private float t;
+        private EnemySO meSo;
+        public EnemySO MySO => meSo;
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Awake()
+        {
+            uie = GetComponent<UI_Element>();
+        }
+
+        // Update is called once per frame
+        IEnumerator TakeDamageVisual()
+        {
+            t = 0;
+            Vector3 ogPos = transform.position;
+            int xRoll = Random.Range(0, possibleCurves.Length);
+            int yRoll = Random.Range(0, possibleCurves.Length);
+            AnimationCurve x = possibleCurves[xRoll];
+            AnimationCurve y = possibleCurves[yRoll];
+            Vector3 rollPos = Noise_Helper.SineNoiseVector(0, Noise_Helper.TAU);
+            float xDist = Random.Range(0, maxDistFromOG);
+            float yDist = Random.Range(0, maxDistFromOG);
+            Vector3 newPos = ogPos + new Vector3(rollPos.x * xDist, rollPos.y * yDist, 0);
+            foreach (Image i in uie.Images)
+            {
+                i.color = Color.red;
+            }
+            while (t <= damageAnimationTime)
+            {
+                t += Time.deltaTime;
+                float eval = t / damageAnimationTime;
+                float midAnimX = Mathf.Lerp(ogPos.x, newPos.x, x.Evaluate(eval)); 
+                float midAnimY = Mathf.Lerp(ogPos.y, newPos.y, y.Evaluate(eval)); 
+                transform.position = new Vector3(midAnimX, midAnimY, 0);
+                yield return null;
+            }
+            for (int i = 0; i < uie.Images.Length; i++)
+            {
+                uie.Images[i].color = ogColors[i];
+            }
+            transform.position = ogPos;
+        }
+
+        void OnEnable()
+        {
+            Event_Bus.AddDoubleObjEvent("EnemyTakeDamage", TakeDamage);
+        }
+
+        void OnDisable()
+        {
+            Event_Bus.TryRemoveDoubleObjEvent("EnemyTakeDamage");
+        }
+
+        public void TakeDamage(object floatarg, object boolarg)
+        {
+            bool b = (bool)boolarg;
+            float f = (float)floatarg;
+            float damageToTake = f - (f * resistance);
+            curHealth -= damageToTake;
+            curHealth = Mathf.Max(curHealth, 0);
+
+            Event_Bus.TryFireFloatEvent("EnemyHealthPerc", (curHealth / meSo.MaxHealth));
+
+            if (curHealth == 0)
+            {
+                //become killed af!
+                //tell somebody about what happened.
+                Event_Bus.TryFireVoidEvent("EnemyDied");
+                Event_Bus.TryFireBoolEvent("EndAFight", false);
+            }
+            else
+            {
+                Audio_Manager.AM.Play2DSFX(hurtedSound.clip , 0.99f, 1.01f);
+                Event_Bus.TryFireFloatEvent("EnemyDamageNumber", damageToTake);
+                StartCoroutine(TakeDamageVisual());
+            }
+            string s = $"{meSo.NameText} - Health Remaining: {curHealth}\n{meSo.BlurbText}";
+            Event_Bus.TryFireStringEvent("GrabEnemyString", s);
+        }
+
+        public float Resistance()
+        {
+            return resistance;
+        }
+
+        public void ReceiveEnemySO(EnemySO so)
+        {
+            ogColors = new();
+            meSo = so;
+            for(int i = 0; i < so.VisualInformation.Length; i++)
+            {
+                uie.Images[i].sprite = so.VisualInformation[i];
+                ogColors.Add(uie.Images[i].color);
+            }
+            hurtedSound.clip = meSo.HurtedSound;
+            curHealth = so.MaxHealth;
+            Event_Bus.TryFireStringEvent("GrabEnemyString", $"{meSo.NameText} - Health Remaining: {curHealth}\n{meSo.BlurbText}");
+        }
+    }
+}

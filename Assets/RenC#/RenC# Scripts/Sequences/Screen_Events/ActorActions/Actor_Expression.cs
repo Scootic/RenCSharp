@@ -28,7 +28,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Change Actor Expression";
+            return "Actor/Change Actor Expression";
         }
     }
 }

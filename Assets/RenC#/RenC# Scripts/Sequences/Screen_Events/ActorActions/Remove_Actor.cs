@@ -13,13 +13,13 @@ namespace RenCSharp.Sequences
     public class Remove_Actor: Screen_Event
     {
         [SerializeField] private Actor actorToRemove;
-        [SerializeField, Tooltip("How long it takes for the actor to fade out.")] private float fadeTime = 0f;
+        [SerializeField, Tooltip("How long it takes for the actor to fade out."), Min(0f)] private float fadeTime = 0.5f;
         private Coroutine fadeOut;
         private GameObject fellaToRemove;
         public override void DoShit()
         {
             if (!Object_Factory.TryGetObject(actorToRemove.ActorName, out fellaToRemove)) return;
-
+            Script_Manager.SM.activeActors.Remove(actorToRemove);
             List<Image> imgPo = new();
             Image img = fellaToRemove.transform.GetChild(0).GetComponent<Image>();
             imgPo.Add(img);
@@ -43,35 +43,29 @@ namespace RenCSharp.Sequences
         private IEnumerator FadeOut(List<Image> imgPo)
         {
             float t = 0;
-            Color transGender = new Color(1, 1, 1, 0);
 
             while(t < fadeTime)
             {
                 t += Time.deltaTime;
-                Color tcol = Color.Lerp(Color.white, transGender, (t / fadeTime));
+                Color tcol = Color.Lerp(Color.white, CoolColors.transparent, (t / fadeTime));
                 foreach(Image ing in imgPo)
                 {
                     ing.color = tcol;
                 }
                 yield return null;
             }
-            Script_Manager.SM.activeActors.Remove(actorToRemove);
             Object_Factory.RemoveObject(actorToRemove.ActorName);
         }
 
         private void PanicStop()
         {
             if(fadeOut != null) Script_Manager.SM.StopCoroutine(fadeOut);
-            if (fellaToRemove != null) 
-            {
-                Script_Manager.SM.activeActors.Remove(actorToRemove);
-                Object_Factory.RemoveObject(actorToRemove.ActorName); 
-            }
+            if (fellaToRemove != null) Object_Factory.RemoveObject(actorToRemove.ActorName);
         }
 
         public override string ToString()
         {
-            return "Remove Actor";
+            return "Actor/Remove Actor";
         }
     }
 }

@@ -1,0 +1,345 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: BleakFallsSpiderWithBoy
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Alright.)
+    ScreenActions:
+    - rid: 9079474864314122487
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079475098267418974
+    - rid: 9079475089592287473
+  - speaker: {fileID: 0}
+    dialog: <Speed=20>-thereStayupthereStayupthereStayupthereStayup-</Speed>
+    ScreenActions:
+    - rid: 9079475098267418975
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474864314122398
+  - speaker: {fileID: 0}
+    dialog: Wha-!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: <Speed=20>Who said that- are you in my head- why are you in my head-?!?</Speed>
+    ScreenActions:
+    - rid: 9079475089592287474
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474864314122399
+  - speaker: {fileID: 0}
+    dialog: I-I-I-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474864314122400
+  - speaker: {fileID: 0}
+    dialog: ...!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474864314122401
+  - speaker: {fileID: 0}
+    dialog: Letting them down...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Of course I'm letting them down!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I'm just some guy!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Literally the only thing I have going for me is that I've played Skyrim
+      before!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: That, and a metric ton of luck when it comes to not getting hit-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474864314122402
+  - speaker: {fileID: 0}
+    dialog: W-what?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474864314122403
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Are-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Are you God?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474864314122404
+  - speaker: {fileID: 0}
+    dialog: O-oh...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474864314122406
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079474864314122407
+  - speaker: {fileID: 0}
+    dialog: N-n-no...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079475089592287475
+    - rid: 9079474864314122408
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: <font=futura>{mc}, unable to deny you, draws his weapon and steps forward,
+      ready to take on the spider.
+    ScreenActions:
+    - rid: 9079475098267418976
+    - rid: 9079475089592287476
+    - rid: 9079474864314122437
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: 7c18603a2e6d6714fa1fd954ecdf16b7, type: 2}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: c1b5466a6965d0b4a9c83e4eab40f94e
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 9079474864314122398
+      type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        buttonNames:
+        - Hey.
+        flagsToAlter:
+        - garbage
+        newFlagValues: 00000000
+        increment: 0
+        persistent: 0
+    - rid: 9079474864314122399
+      type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        buttonNames:
+        - What are you doing?
+        flagsToAlter:
+        - garbage
+        newFlagValues: 00000000
+        increment: 0
+        persistent: 0
+    - rid: 9079474864314122400
+      type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        buttonNames:
+        - They need your help.
+        flagsToAlter:
+        - garbage
+        newFlagValues: 00000000
+        increment: 0
+        persistent: 0
+    - rid: 9079474864314122401
+      type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        buttonNames:
+        - And you're letting them down.
+        flagsToAlter:
+        - garbage
+        newFlagValues: 00000000
+        increment: 0
+        persistent: 0
+    - rid: 9079474864314122402
+      type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        buttonNames:
+        - That's not luck.
+        flagsToAlter:
+        - garbage
+        newFlagValues: 00000000
+        increment: 0
+        persistent: 0
+    - rid: 9079474864314122403
+      type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        buttonNames:
+        - That was me helping you.
+        flagsToAlter:
+        - garbage
+        newFlagValues: 00000000
+        increment: 0
+        persistent: 0
+    - rid: 9079474864314122404
+      type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        buttonNames:
+        - No.
+        - I might as well be.
+        flagsToAlter:
+        - garbage
+        - garbage
+        newFlagValues: 0000000001000000
+        increment: 0
+        persistent: 0
+    - rid: 9079474864314122406
+      type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        buttonNames:
+        - I'll see you through this.
+        flagsToAlter:
+        - garbage
+        newFlagValues: 00000000
+        increment: 0
+        persistent: 0
+    - rid: 9079474864314122407
+      type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        buttonNames:
+        - So, get off your butt. We've a spider to squash.
+        flagsToAlter:
+        - garbage
+        newFlagValues: 00000000
+        increment: 0
+        persistent: 0
+    - rid: 9079474864314122408
+      type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        buttonNames:
+        - <b>Do it.</b>
+        flagsToAlter:
+        - garbage
+        newFlagValues: 00000000
+        increment: 0
+        persistent: 0
+    - rid: 9079474864314122437
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: garbage
+        flagValue: 0
+        increment: 0
+        persistent: 0
+    - rid: 9079474864314122487
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: WeirdRoute
+        flagValue: 1
+        increment: 1
+        persistent: 0
+    - rid: 9079475089592287473
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287474
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 3
+        setToSameTime: 0
+    - rid: 9079475089592287475
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 0
+        setToSameTime: 0
+    - rid: 9079475089592287476
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 791116a661dfe9549b471ecdd1a1ed28
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475098267418974
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: be94bf1c83783d94098cd0a3c751e8ae
+          m_SubObjectName: barrowSPIDER
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079475098267418975
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 7ae89b6f8c3126d4fa85dd1e398805c6
+          m_SubObjectName: vignet
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418976
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1

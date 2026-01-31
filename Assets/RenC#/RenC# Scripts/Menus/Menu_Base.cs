@@ -4,7 +4,7 @@ namespace RenCSharp.Menus
 {
     public abstract class Menu_Base : MonoBehaviour
     {
-        public abstract void OnMenuOpen();
+        public abstract Awaitable OnMenuOpen();
         public abstract void OnMenuClose();
     }
 }

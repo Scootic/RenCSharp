@@ -1,6 +1,6 @@
-using UnityEngine;
 using RenCSharp.Actors;
 using System.Collections;
+using UnityEngine;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -10,28 +10,34 @@ namespace RenCSharp.Sequences
     /// </summary>
     public class Simple_Actor_Motion : Screen_Event
     {
-        [SerializeField] private Vector3 localMotionOffset;
-        [SerializeField, Min(0.01f)] private float motionDuration = 1;
-        [SerializeField] private AnimationCurve motionPathX, motionPathY, motionPathZ;
+        [SerializeField] protected Vector3 localMotionOffset;
+        [SerializeField, Min(0.01f)] protected float motionDuration = 1;
+        [SerializeField] protected AnimationCurve motionPathX, motionPathY, motionPathZ;
         [SerializeField] private Actor target;
-        [SerializeField] private bool loopOnScreen = false;
-        private float t, eval, dir = 1;
+        [SerializeField] protected bool loopOnScreen = false;
+        protected float t, eval, dir = 1;
         private GameObject actorObj;
         private Vector3 ogPos, desPos;
-        private Coroutine motion;
-        private bool valid;
+        protected Coroutine motion;
+        protected bool valid;
         public override void DoShit()
         {
-            actorObj = GameObject.Find(target.ActorName);
-            ogPos = actorObj.transform.position;
-            desPos = ogPos + localMotionOffset;
-            t = 0;
-            valid = true;
-            motion = Script_Manager.SM.StartCoroutine(Animate());
-            Script_Manager.ProgressScreenEvent += ResetToOG;
+            if (Object_Factory.TryGetObject(target.ActorName, out actorObj))
+            {
+                ogPos = actorObj.transform.position;
+                desPos = ogPos + localMotionOffset;
+                t = 0;
+                valid = true;
+                motion = Script_Manager.SM.StartCoroutine(Animate());
+                Script_Manager.ProgressScreenEvent += ResetToOG;
+            }
+            else
+            {
+                Debug.LogWarning("couldn't find actor object: " + target.ActorName);
+            }
         }
 
-        private IEnumerator Animate()
+        protected virtual IEnumerator Animate()
         {
             if (!loopOnScreen) //if no loop, end at the end of the curve
             {
@@ -59,7 +65,7 @@ namespace RenCSharp.Sequences
             }
         }
 
-        Vector3 SetPosition(float eval)
+        protected Vector3 SetPosition(float eval)
         {
             Vector3 pos;
             float x = Mathf.LerpUnclamped(ogPos.x, desPos.x, motionPathX.Evaluate(eval));
@@ -69,20 +75,17 @@ namespace RenCSharp.Sequences
             return pos;
         }
 
-        private void ResetToOG()
+        protected virtual void ResetToOG()
         {
-            Debug.Log("ActorPos pre-reset: " + actorObj.transform.position);
             valid = false;
-            //if (motion != null) Script_Manager.SM.StopCoroutine(motion);
-            //else Debug.LogWarning("There's no motion coroutine here! Very frightening.");
-            //if it's a loop motion, the implication is that the actor should end in the place they started whenever the next screen happens
-            Debug.Log("ActorPos post-reset: " + actorObj.transform.position);
-            
+            if (actorObj == null) return;
+            if (loopOnScreen) actorObj.transform.position = SetPosition(0f);
+            else actorObj.transform.position = SetPosition(1f);
         }
 
         public override string ToString()
         {
-            return "Simple Actor Motion";
+            return "Actor/Simple Actor Motion";
         }
     }
 }

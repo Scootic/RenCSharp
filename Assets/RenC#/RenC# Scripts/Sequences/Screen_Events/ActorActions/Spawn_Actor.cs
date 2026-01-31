@@ -14,7 +14,7 @@ namespace RenCSharp.Sequences
     public class Spawn_Actor : Screen_Event
     {
         [SerializeField] private Actor actorToSpawn;
-        [SerializeField, Tooltip("For coroutine to make the actor fade in. 0 for instantaneous spawning.")] private float fadeInTime = 0f;
+        [SerializeField, Tooltip("For coroutine to make the actor fade in. 0 for instantaneous spawning."), Min(0)] private float fadeInTime = 0.5f;
         [SerializeField] private Vector3 spawnOffset = Vector3.zero;
         [SerializeField, Tooltip("Type in the light gray boxes.")] private string[] visualSpriteIndexes = new string[1];
         private Coroutine fadeIn;
@@ -27,6 +27,7 @@ namespace RenCSharp.Sequences
             go.transform.position += spawnOffset;
             UI_Element uie = go.GetComponent<UI_Element>();
             Script_Manager.SM.activeActors.Add(actorToSpawn);
+
             for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
             {
                 if (visualSpriteIndexes[i] != string.Empty) uie.Images[i].sprite = actorToSpawn.Visuals[i].ReturnSprite(visualSpriteIndexes[i]);
@@ -39,13 +40,13 @@ namespace RenCSharp.Sequences
         private IEnumerator FadeIn(UI_Element uie)
         {
             float t = 0;
-            Color transGender = new Color(1, 1, 1, 0);
-            foreach (Image image in uie.Images) { image.color = transGender; }
+
+            foreach (Image image in uie.Images) { image.color = CoolColors.transparent; }
             while(t <= fadeInTime)
             {
                 t += Time.deltaTime;
                 float perc = t / fadeInTime;
-                Color tcol = Color.Lerp(transGender, Color.white, perc);
+                Color tcol = Color.Lerp(CoolColors.transparent, Color.white, perc);
 
                 foreach(Image image in uie.Images) { image.color = tcol; }
                 yield return null;
@@ -60,7 +61,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Spawn Actor";
+            return "Actor/Spawn Actor";
         }
     }
 }

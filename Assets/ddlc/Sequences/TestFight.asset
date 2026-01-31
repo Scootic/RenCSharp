@@ -1,0 +1,199 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: TestFight
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: This sequence is for testing a fight. Next screen will start a fight.
+    ScreenActions:
+    - rid: 9079475089592287632
+    - rid: 9079475089592287292
+    - rid: 9142197945214697623
+    - rid: 9079475110781911296
+  - speaker: {fileID: 0}
+    dialog: It will go crazy, I swear.
+    ScreenActions:
+    - rid: 9079474591330205789
+    - rid: 9079474591330205790
+    - rid: 9079474591330205791
+    - rid: 9079474680798380111
+    - rid: 9079474680798380136
+    - rid: 9079474680798380137
+    - rid: 9079475144973353011
+    - rid: 9079475144973353012
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9079475089592287310
+    - rid: 9142197945214697602
+  - speaker: {fileID: 0}
+    dialog: The fight should now be finished.
+    ScreenActions:
+    - rid: 9079475089592287311
+  - speaker: {fileID: 0}
+    dialog: 'Up next is a single attack:'
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 9142197987744153805
+  - speaker: {fileID: 0}
+    dialog: How frightening!
+    ScreenActions:
+    - rid: 9142197987744153823
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: daff6a8c44dc89c41925dd353bc26227, type: 2}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: 2be5878bd9417b643b127cf8c12983c0
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 9079474591330205789
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerResistance
+        flagValue: 0
+        increment: 0
+        persistent: 0
+    - rid: 9079474591330205790
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerMaxHealth
+        flagValue: 1000
+        increment: 0
+        persistent: 0
+    - rid: 9079474591330205791
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 1000
+        increment: 0
+        persistent: 0
+    - rid: 9079474680798380111
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerAbilities
+        flagValue: 15
+        increment: 0
+        persistent: 0
+    - rid: 9079474680798380136
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: MonikaDMG
+        flagValue: 10
+        increment: 0
+        persistent: 0
+    - rid: 9079474680798380137
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: SayoriHEAL
+        flagValue: 8
+        increment: 0
+        persistent: 0
+    - rid: 9079475089592287292
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 2b05b9a4d137b2145bdf266a79213b6a
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287310
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 02b65c7a4c6282f43b3187ca944f4658
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287311
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: e82cf2abd98ac45439666764a84213a5
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475089592287632
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: abc74be64ac42cd4cae2846997565291
+          m_SubObjectName: Classroom_05_night
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 9079475110781911296
+      type: {class: AutoSave_Screen, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        fileName: Test_Fight
+    - rid: 9079475144973353011
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: YuriDMG
+        flagValue: 20
+        increment: 0
+        persistent: 0
+    - rid: 9079475144973353012
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: NatsukiSTR
+        flagValue: 6
+        increment: 0
+        persistent: 0
+    - rid: 9142197945214697602
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 11400000, guid: 0d40da9ac722af34fae37993e970de32, type: 2}
+    - rid: 9142197945214697623
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerDamage
+        flagValue: 5
+        increment: 0
+        persistent: 0
+    - rid: 9142197987744153805
+      type: {class: Start_Single_Attack, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        attackToRunThrough: {fileID: 11400000, guid: c86e5fe32c1f4f84a9914f7504d123c4, type: 2}
+    - rid: 9142197987744153823
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 20
+        increment: 0
+        persistent: 0

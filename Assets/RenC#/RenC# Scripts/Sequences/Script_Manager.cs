@@ -15,7 +15,7 @@ namespace RenCSharp
     /// <summary>
     /// The guy who handles the game logic. Runs through the screens of a sequence, and does all the stuff. For some god awful reason, does not
     /// like sequences that only have 1 screen in them. If you really desparetely need a 1 screen sequence, just include a completely empty screen
-    /// as the second screen.
+    /// as the second screen, or the first.
     /// </summary>
     public sealed class Script_Manager : MonoBehaviour
     {
@@ -28,6 +28,7 @@ namespace RenCSharp
         [SerializeField] private Image speakerNameBox;
         [SerializeField] private Image dialogBox;
         [SerializeField, Tooltip("Decides the color of the textboxes if there's no actor in a screen.")] private Color defaultTextBoxColor = Color.white;
+        [SerializeField] private TMP_FontAsset defaultFont;
 
         [Header("Buttons")]
         [SerializeField] private Button playerchoicePrefab;
@@ -42,29 +43,27 @@ namespace RenCSharp
         private Actor curActor;
         [HideInInspector] public List<Actor> activeActors = new(); //nasty!
 
-        [Header("Overlay")]
+        [Header("Full Graphic Stuff")]
         [SerializeField] private GameObject overlayPrefab; //should have a TMPro child
+        [SerializeField] private GameObject bgPrefab; //should have a TMPro child
+        [SerializeField] private Transform bgHolder;
         [SerializeField] private Transform overlayHolder;
         [SerializeField] private GameObject menuBase;
 
         [Header("Settings")]
         [SerializeField, Tooltip("In seconds, 0 for character every frame."), Min(0)] private float textSpeed = 0;
         [SerializeField, Tooltip("In seconds."), Min(0)] private float autoFocusScaleDuration = 0.25f;
-        [SerializeField] private string playerName = "Guy"; //probably should be handled by an save data
+        [SerializeField, Tooltip("Handled by SaveData. Only viewable for debug purposes.")] private string playerName = "Guy"; //probably should be handled by an save data
         [SerializeField, Tooltip("This will be string that is replaced by inputted player name.")] private string playerTag = "{MC}";
         [SerializeField] private bool auto = false;
         [SerializeField, Tooltip("How long the SM will linger on a screen while on auto.")] private float lingerTime = 0.5f;
         [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero.")] private byte historyLength = 10;
 
-        [Header("Databases")]
-        [SerializeField] private Sprite_Database overlayDatabase;
-        [SerializeField] private Sprite_Database backgroundDatabase;
-        [SerializeField] private Audio_Database audioDatabase;
-
         private bool paused = false, saving = false, loaded = false;
         private History curHist;
         private Coroutine textRoutine;
         private Sequences.Screen curScreen;
+        private List<Button> curButtons;
 
         public static Script_Manager SM;
         public static Action ProgressScreenEvent, EndOfAllSequencesEvent;
@@ -84,9 +83,9 @@ namespace RenCSharp
             }
 
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder);
-            Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform);//horrid
-
-            Flag_Manager.ReceiveFlagToken(SaveLoad.LoadPersistentFlags(), true); //safety thing, make sure we have persistent flags
+            Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder);//horrid
+            FlagToken ft = new FlagToken();
+            Flag_Manager.ReceiveFlagToken(ft.FlagTokenToDictionary(SaveLoad.LoadPersistentFlags()), true); //safety thing, make sure we have persistent flags
 
             curHist = new History(historyLength);
             textSpeed = PlayerPrefs.GetFloat("TextSpeed");
@@ -99,9 +98,12 @@ namespace RenCSharp
             Event_Bus.AddVoidEvent("UnpauseSequence", UnpauseSequence);
             Event_Bus.AddDoubleObjEvent("SMSpeed", SetSpeed);
             Event_Bus.AddSingleObjEvent("OverrideScreen", OverrideScreen);
+            Event_Bus.AddDoubleObjEvent("SpawnPlayerButtons", SpawnPlayerButtons);
+            Event_Bus.AddSingleObjEvent("AssignPlayerButtonBehavior", AssignButtonBehavior);
 
             EndOfAllSequencesEvent += Application.Quit; //TEMPORARY THING
             SequencePausedEvent += ToggleDialogUI;
+            curButtons = new();
         }
         private void Start()
         {
@@ -124,7 +126,9 @@ namespace RenCSharp
             Event_Bus.TryRemoveVoidEvent("UnpauseSequence");
             Event_Bus.TryRemoveFloatEvent("TextSpeed");
             Event_Bus.TryRemoveDoubleObjEvent("SMSpeed");
+            Event_Bus.TryRemoveDoubleObjEvent("SpawnPlayerButtons");
             Event_Bus.TryRemoveSingleObjEvent("OverrideScreen");
+            Event_Bus.TryRemoveSingleObjEvent("AssignPlayerButtonBehavior");
         }
         #region SequenceHandling
         public void StartSequence()
@@ -167,27 +171,27 @@ namespace RenCSharp
         public void ProgressToNextScreen() //for an UI button to use, hopefully
         {
             if (paused) return; //the ui button's interactivity SHOULD be able to handle this automatically
-            if (!Textbox_String.JumpToEndOfTextbox) Textbox_String.JumpToEndOfTextbox = true;
+            if (!Textbox_String.JumpToEndOfTextbox) Textbox_String.JumpToEndOfTextbox = true; //make the text box jump to the end if it's still rendering text
             else
             {
                 Debug.Log("Moving to next screen!");
-                ProgressScreenEvent?.Invoke();
+                ProgressScreenEvent?.Invoke(); //exists to make any in-progress things (like a screen event) complete before moving on
                 ProgressScreenEvent = null; //wipe all delegates from the action before continuing
                 curScreenIndex++;
+                Event_Bus.TryFireStringEvent("DebugSequence", "Sequence '" + currentSequence.name + "' | Index: " + curScreenIndex);
                 Debug.Log("current Scrindex: " + curScreenIndex + ", Final Screen? " + (curScreenIndex >= currentSequence.Screens.Length - 1));
-                if (curScreenIndex < currentSequence.Screens.Length) 
+                if (curScreenIndex < currentSequence.Screens.Length) //if we are still within the sequence
                 {
                     curScreen = currentSequence.Screens[curScreenIndex];
                     foreach (Screen_Event se in curScreen.ScreenActions) //do all screen events BEFORE processing any dialog. does not care if SM is paused or not.
                     {
                         se.DoShit();
                     }
-                    ///if (textRoutine != null) StopCoroutine(textRoutine);
                     textRoutine = StartCoroutine(RunThroughScreen(curScreen)); 
                 }
                 else if (curScreenIndex > currentSequence.Screens.Length - 1)//final screen of the sequence
                 {
-                    if (currentSequence.PlayerChoices.Length == 0)//if there are no valid next sequences, sum shit gone wrong
+                    if (currentSequence.PlayerChoices.Length == 0)//if there are no valid next sequences, sum shit gone wrong and it's probably end of game
                     {
                         Debug.LogWarning("No next sequence, game over?");
                         EndOfAllSequencesEvent?.Invoke();
@@ -198,29 +202,75 @@ namespace RenCSharp
 
                     if (firstPc.ChoiceText != string.Empty)
                     {
-                        PauseSequence();
+                        int amountOfButtons = 0;
+                        List<string> buttonNames = new();
+                        List<Action> loadSequences = new();
                         //spawn player choice buttons, and assign accordingly
                         foreach (Player_Choice pc in currentSequence.PlayerChoices)
                         {
                             if (pc.RequireCondition && !pc.MetAllConditions()) continue; //don't display a choice if it hasn't met its conditions
 
-                            Button b = Instantiate(playerchoicePrefab, playerchoiceHolder);
-                            b.GetComponentInChildren<TextMeshProUGUI>().text = pc.ChoiceText;
-                            b.onClick.AddListener(delegate { LoadASequence(pc.ResultingSequence); UnpauseSequence(); });
+                            amountOfButtons++;
+                            buttonNames.Add(pc.ChoiceText);
+                            loadSequences.Add(delegate { LoadASequence(pc.ResultingSequence); });
                         }
+                        SpawnPlayerButtons((object)amountOfButtons, (object)buttonNames);
+                        AssignButtonBehavior((object)loadSequences);
                     }
                     //if the string is empty for first choice, don't give buttons, and instead load first valid sequence
                     else
                     {
                         foreach (Player_Choice pc in currentSequence.PlayerChoices)
                         {
-                            if (pc.RequireCondition && !pc.MetAllConditions()) continue;
+                            if (pc.RequireCondition && !pc.MetAllConditions()) continue; //keep going until we find the first sequence with met conditions
                             LoadASequence(pc.ResultingSequence);
-                            break;
+                            break; //bail out once we do find one that's good to load
                         }
                     }
                 }
             }
+        }
+        /// <summary>
+        /// Spawns player buttons to do stuff. Doesn't assign any actual functionality, just spawns them.
+        /// </summary>
+        /// <param name="arg1">INT the amount of buttons you want to spawn</param>
+        /// <param name="arg2">LIST<STRING> the text those buttons will display</param>
+        private void SpawnPlayerButtons(object arg1, object arg2)
+        {
+            int amountOfButtons = (int)arg1;
+            List<string> buttonTexts = (List<string>)arg2;
+            PauseSequence();
+            for (int i = 0; i < amountOfButtons; i++)
+            {
+                Button b = Object_Factory.SpawnObject(playerchoicePrefab.gameObject, "Button"+i, playerchoiceHolder).GetComponent<Button>();
+                b.GetComponentInChildren<TextMeshProUGUI>().text = buttonTexts[i];
+                curButtons.Add(b);
+            }
+        }
+        /// <summary>
+        /// Assign a list of actions to the buttons, by index. So button[0] gets Action[0], and so on. Might collect garbage forever?
+        /// </summary>
+        /// <param name="obj">LIST<AcTION> The list of actions to be assigned to le button</param>
+        private void AssignButtonBehavior(object obj)
+        {
+            List<Action> stuffToDo = (List<Action>)obj;
+            Debug.Log("Action count: " + stuffToDo.Count + ", curButtoncount: " + curButtons.Count);
+            for(int i = 0;i < stuffToDo.Count; i++)
+            {
+                int ind = i;
+                //we always despawn buttons after player picks one, for reasons... and stuff!
+                curButtons[ind].onClick.AddListener(delegate { stuffToDo[ind]?.Invoke(); DespawnButtons(); });
+            }
+        }
+
+        private void DespawnButtons()
+        {
+            for(int i = curButtons.Count - 1; i >= 0; i--)
+            {
+                Object_Factory.RemoveObject("Button" + i);
+            }
+            curButtons = new(); //dispose of garbage button data after objects have been removed
+            UnpauseSequence();
         }
 
         private IEnumerator RunThroughScreen(Sequences.Screen screen)
@@ -238,6 +288,7 @@ namespace RenCSharp
                 speakerNameBox.gameObject.SetActive(curActor.ActorName != "");
                 speakerNameBox.color = curActor.TextboxColor;
                 dialogBox.color = curActor.TextboxColor;
+                dialogField.font = curActor.ActorFont;
                 speakerNameField.text = curActor.ActorName;
                 if(curActor.ActorName == playerTag) speakerNameField.text = playerName; 
                 if (currentSequence.AutoFocusSpeaker && !prevActorIscurSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so
@@ -247,6 +298,7 @@ namespace RenCSharp
                 speakerNameBox.color = defaultTextBoxColor;
                 speakerNameBox.gameObject.SetActive(false);
                 dialogBox.color = defaultTextBoxColor;
+                dialogField.font = defaultFont;
             }
 
             string amended = Regex.Replace(screen.Dialog, playerTag, playerName); //insert the player's custom name into dialog
@@ -258,7 +310,7 @@ namespace RenCSharp
                 {
                     yield return null;
                 }
-                //manually move on, we don't want to show off a true empty if we can't help it.
+                //automatically move on, we don't want to show off a true empty textbox if we can't help it.
                 Textbox_String.JumpToEndOfTextbox = true;
                 ProgressToNextScreen();
                 yield break;
@@ -283,7 +335,7 @@ namespace RenCSharp
             float t = 0;
             while(t < lingerTime)
             {
-                if (index != curScreenIndex) yield break;
+                if (index != curScreenIndex) yield break; //bail out if the player moves past the textbox manually
                 t += Time.deltaTime;
                 yield return null;
             }
@@ -331,76 +383,41 @@ namespace RenCSharp
         }
         #endregion
         #region SaveLoadHandling
-        public void SaveShit(string saveFileName)
+        public void SaveShit(string saveFileName, bool auto = false)
         {
-            if (saving) return;
-            if (saveFileName == null) saveFileName = "SaveData";
-            if(overlayDatabase == null || backgroundDatabase == null || audioDatabase == null)
-            {
-                Debug.LogWarning("You're a missing a database, you damned fool! I refuse to save under these working conditions!");
-                return;
-            }
+            if (saving) return; //don't interrupt our save, good god!
+            if (saveFileName == null) saveFileName = "SaveData"; //default to prevent extreme BS
             saving = true;
 
             SaveData manToSave = new SaveData();
             ScreenToken st = new ScreenToken();
 
             manToSave.CurrentScreenIndex = curScreenIndex; //:)
-            manToSave.PlayerName = playerName;
+            manToSave.PlayerName = playerName; //should probably change to handle the dictionary that Textbox_String uses to replace stuffs.
             manToSave.CurrentFlags = new FlagToken(Flag_Manager.GetSaveDataFlags);
             manToSave.CurrentHistory = curHist;
 
             //grab the cursequence. horrid! USES THE ASSET REFERENcE WE DONE STORED. MAYBE IT WORK? MAYBE IT NO :)
             manToSave.CurrentSequenceAsset = currentSequence.Myself.AssetGUID;
-
+            //save bg data
             if (Object_Factory.TryGetObject("Background", out GameObject bg)) 
             {
                 Animated_Image_Handler aih = bg.GetComponent<Animated_Image_Handler>();
-                List<string> t = new();
-
-                foreach(Sprite s in aih.AnimationFrames)
-                {
-                    if (backgroundDatabase.Sprites.ContainsKey(s.name))
-                    {
-                        t.Add(s.name);
-                    }
-                    else
-                    {
-                        Debug.LogWarning(s.name + " isn't in the bg database, allegedly.");
-                    }
-                }
-                st.BackgroundAssetKeys = t.ToArray();
+                st.BackgroundAssetKeys = aih.SpriteAssetGUIDs;
+                st.BackgroundSubobjectKeys = aih.SubObjectGUIDs;
                 st.BackgroundSPF = aih.SecondsPerFrame;
             }
-
+            //save overlay data
             if(Object_Factory.TryGetObject("Overlay", out GameObject ov))
             {
                 Animated_Image_Handler aih = ov.GetComponent<Animated_Image_Handler>();
-                List<string> t = new();
-                foreach(Sprite s in aih.AnimationFrames)
-                {
-                    if (overlayDatabase.Sprites.ContainsKey(s.name))
-                    {
-                        t.Add(s.name);
-                    }
-                    else
-                    {
-                        Debug.LogWarning(s.name + " isn't in the ov database, allegedly.");
-                    }
-                }
-                st.OverlayAssetKeys = t.ToArray();
+                st.OverlayAssetKeys = aih.SpriteAssetGUIDs;
+                st.OverlaySubobjectKeys = aih.SubObjectGUIDs;
                 st.OverlaySPF = aih.SecondsPerFrame;
             }
 
-            if (audioDatabase.Sounds.ContainsKey(Audio_Manager.AM.CurrentBGM.name))
-            {
-                st.MusicAssetKey = Audio_Manager.AM.CurrentBGM.name;
-            }
-            else
-            {
-                Debug.LogWarning(Audio_Manager.AM.CurrentBGM.name + " isn't in the audio database, allegedly.");
-            }
-
+            st.MusicAssetKey = Audio_Manager.AM.SongAssetGUID;
+            //save actor data
             List<ActorToken> actorTokens = new();
 
             foreach (Actor actor in activeActors)
@@ -427,14 +444,18 @@ namespace RenCSharp
             st.ActiveActors = actorTokens;
             manToSave.ScreenInformation = st;
             menuBase.SetActive(false);
-            StartCoroutine(WaitForScreenShot(manToSave, saveFileName));
+            StartCoroutine(WaitForScreenShot(manToSave, saveFileName, auto));
         }
 
-        private IEnumerator WaitForScreenShot(SaveData sd, string fileName)
+        private IEnumerator WaitForScreenShot(SaveData sd, string fileName, bool auto)
         {
             yield return new WaitForEndOfFrame();
-            sd.SaveScreenshot = ScreenCapture.CaptureScreenshotAsTexture().EncodeToPNG();
-            menuBase.SetActive(true);
+            Texture2D raw = new Texture2D(UnityEngine.Screen.width, UnityEngine.Screen.height, TextureFormat.ARGB32, false);
+            raw.ReadPixels(new Rect(0, 0, UnityEngine.Screen.width, UnityEngine.Screen.height), 0, 0);
+            raw.Apply();
+            Texture2D scaled = Evil_Texture_Resizer.Scaled(raw, 640, 480, FilterMode.Trilinear);
+            sd.SaveScreenshot = scaled.EncodeToPNG();
+            if(!auto) menuBase.SetActive(true);
             SaveLoad.Save(fileName, sd);
             saving = false;
         }
@@ -446,60 +467,29 @@ namespace RenCSharp
             Object_Factory.ScrubDictionary();
 
             Animated_Image_Handler ov = Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Animated_Image_Handler>();
-            Animated_Image_Handler bg = Object_Factory.SpawnObject(overlayPrefab, "Background", GameObject.Find("BGcanv").transform).GetComponent<Animated_Image_Handler>();
+            Animated_Image_Handler bg = Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder).GetComponent<Animated_Image_Handler>();
 
             //grab flags
             FlagToken ft = sd.CurrentFlags;
-            Flag_Manager.ReceiveFlagToken(ft, false);
+            Flag_Manager.ReceiveFlagToken(ft.FlagTokenToDictionary(ft), false);
 
             //grab history
             curHist = sd.CurrentHistory;
 
             //grab playername from file
-            playerName = sd.PlayerName;
+            SetPlayerName(sd.PlayerName);
 
             //grab assets
             curScreenIndex = sd.CurrentScreenIndex;
             ScreenToken std = sd.ScreenInformation;
             AsyncOperationHandle SequenceAsset;
 
-            List<Sprite> ovFrames = new();
-            List<Sprite> bgFrames = new();
+            ov.ReceiveAnimationInformation(std.OverlayAssetKeys, std.OverlaySubobjectKeys,std.OverlaySPF);
+            bg.ReceiveAnimationInformation(std.BackgroundAssetKeys, std.BackgroundSubobjectKeys,std.BackgroundSPF);
 
-            foreach(string s in std.OverlayAssetKeys)
-            {
-                if(!overlayDatabase.Sprites.ContainsKey(s))
-                {
-                    Debug.LogWarning("Found an evil overlay key, somehow. - " + s);
-                    continue;
-                }
-                ovFrames.Add(overlayDatabase.Sprites[s]);
-            }
+            Audio_Manager.AM.PlayBGM(std.MusicAssetKey, 1);
 
-            foreach (string s in std.BackgroundAssetKeys)
-            {
-                if(!backgroundDatabase.Sprites.ContainsKey(s))
-                {
-                    Debug.LogWarning("Found an evil background key, somehow. - " + s);
-                    continue;
-                }
-                bgFrames.Add(backgroundDatabase.Sprites[s]);
-            }
-
-            ov.ReceiveAnimationInformation(ovFrames.ToArray(),std.OverlaySPF);
-            bg.ReceiveAnimationInformation(bgFrames.ToArray(),std.BackgroundSPF);
-
-            if (audioDatabase.Sounds.ContainsKey(std.MusicAssetKey))
-            {
-                Audio_Manager.AM.PlayBGM(audioDatabase.Sounds[std.MusicAssetKey], 1f, true,
-                   Audio_Manager.AM.CurrentBGM == audioDatabase.Sounds[std.MusicAssetKey] ? true : false);
-            }
-            else
-            {
-                Debug.LogWarning("Music Asset Key is evil! - " + std.MusicAssetKey);
-            }
-
-                SequenceAsset = Addressables.LoadAssetAsync<Sequence>(sd.CurrentSequenceAsset);
+            SequenceAsset = Addressables.LoadAssetAsync<Sequence>(sd.CurrentSequenceAsset);
 
             Debug.Log("Amount of actors we should be loading: " + std.ActiveActors.Count);
 
@@ -525,7 +515,6 @@ namespace RenCSharp
                     Debug.LogWarning("Failed to load actor: " + at.ActorAsset);
                     ActorSO.Release();
                 }
-                
             }
 
             SequenceAsset.WaitForCompletion();
@@ -533,6 +522,8 @@ namespace RenCSharp
             else SequenceAsset.Release();
             loaded = true;
             textRoutine = StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
+
+            Event_Bus.TryFireVoidEvent("LoadedSave");
         }
         #endregion
         #region JuiceStuff
@@ -610,12 +601,12 @@ namespace RenCSharp
         /// <summary>
         /// Used for textboxes
         /// </summary>
-        /// <param name="value">FLOAT seconds per char</param>
+        /// <param name="floatvalue">FLOAT seconds per char</param>
         /// <param name="reset">BOOL whether or not we're resetting to prev speed from an altered speed</param>
-        private void SetSpeed(object value, object reset)
+        private void SetSpeed(object floatvalue, object reset)
         {
             bool r = (bool)reset;
-            float f = (float)value;
+            float f = (float)floatvalue;
 
             Textbox_String.TextSpeed = r ? textSpeed : f; 
         }
@@ -631,7 +622,11 @@ namespace RenCSharp
         }
         private void SetPlayerName(string s)
         {
-            if(s!= string.Empty) playerName = s;
+            if (s != string.Empty) 
+            { 
+                playerName = s;
+                Textbox_String.AddReplacableText(playerTag, playerName);
+            }
         }
         #endregion
     }

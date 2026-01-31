@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using EXPERIMENTAL;
 namespace RenCSharp
 {
@@ -19,13 +21,15 @@ namespace RenCSharp
 
         private int sfxIndex = 0; //Store the current sfx index
         private bool enteringBGM = false; //used to see if we are currently doing a BGM fade transition.
-        private Coroutine bgmRoutine;
+        private Coroutine bgmRoutine; //stores the current bgm transition coroutine incase we need to stop it preemptively
+        private string songAssetGUID; //keeps track of asset guid that'll be passed to save/load
 
         [Range(0, 1)] private float bgmVolMult = 0.5f, sfxVolMult = 0.5f, esfxVolMult = 0.5f; //volume multipliers
         public float BGMVol => bgmVolMult;
         public float SFXVol => sfxVolMult;
         public float ESFXVol => esfxVolMult;
         public AudioClip CurrentBGM => leMusic.clip;
+        public string SongAssetGUID => songAssetGUID;
 
         private void InitSFX()
         {
@@ -61,11 +65,21 @@ namespace RenCSharp
             InitSFX(); // now that the manager is up, initialize all needed audio sources
             DontDestroyOnLoad(gameObject);
         }
+
         #region 2DSFX
-        public void Play2DSFX(AudioClip clipToPlay, float volume = 1, bool environmental = false)
+        /// <summary>
+        /// Play a 2D sound effect.
+        /// </summary>
+        /// <param name="clipToPlay">The clip that will be played by AM</param>
+        /// <param name="minRand">the lowest pitch it can randomly be</param>
+        /// <param name="maxRand">the highest pitch it can randomly be</param>
+        /// <param name="volume">volume multiplier based on settings</param>
+        /// <param name="environmental">whether or not to use environmental or regular sound settings</param>
+        public void Play2DSFX(AudioClip clipToPlay, float minRand = 1, float maxRand = 1, float volume = 1, bool environmental = false)
         {
             sfxSources[sfxIndex].clip = clipToPlay; //tell the current audio source to load x clip
             sfxSources[sfxIndex].volume = volume * (environmental ? esfxVolMult : sfxVolMult);
+            sfxSources[sfxIndex].pitch = Random.Range(minRand, maxRand);
             sfxSources[sfxIndex].Play(); //tell the current audio source to play
 
             sfxIndex++; //increment to next current clip
@@ -74,6 +88,20 @@ namespace RenCSharp
             {
                 sfxIndex = 0; //reset index if true
             }
+        }
+        /// <summary>
+        /// Plays a random 2D sfx from an array of sounds, without repeating the previous one.
+        /// </summary>
+        /// <param name="clips">Array of sound clips that the desired sound will be found from</param>
+        /// <param name="randomID">name of integer id, to remember what the prev roll was</param>
+        /// <param name="minRand">the lowest pitch it can randomly be</param>
+        /// <param name="maxRand">the highest pitch it can randomly be</param>
+        /// <param name="volume">volume multiplier based on settings</param>
+        /// <param name="environmental">whether or not to use environmental or regular sound settings.</param>
+        public void PlayRandom2DSFX(AudioClip[] clips, string randomID, float minRand = 1, float maxRand = 1, float volume = 1, bool environmental = false)
+        {
+            int randI = RandomHelper.NoRepeatRoll(randomID, clips.Length);
+            Play2DSFX(clips[randI], minRand, maxRand, volume, environmental);
         }
 
         public void Stop2DSFX(AudioClip clipToStop, bool onlyStopOne = true)
@@ -87,10 +115,19 @@ namespace RenCSharp
                 }
             }
         }
+
+        public bool AlreadyPlaying2DSFX(AudioClip clipToCheck)
+        {
+            foreach(AudioSource sauce in sfxSources)
+            {
+                if (sauce.clip == clipToCheck && sauce.isPlaying) return true;
+            }
+            return false;
+        }
         #endregion
 
         #region 3DSFX
-        public void Play3DSFX(AudioSource ThingToPlay, Vector3 position, bool environmental, bool loop)
+        public void Play3DSFX(AudioSource ThingToPlay, Vector3 position, bool environmental = false, bool loop = false, float vol = 1, float minRand = 1, float maxRand = 1)
         {
             AudioObjectCheck();
             
@@ -106,15 +143,16 @@ namespace RenCSharp
             AudioSource temp = gaming.GetComponent<AudioSource>();
             temp = ThingToPlay; //works or nah???
             temp.spatialBlend = 1f;
-            temp.volume = 1; //reset volume because object pooling
+            temp.volume = vol; //reset volume because object pooling
             temp.loop = loop;
+            temp.pitch = Random.Range(minRand, maxRand);
             temp.volume *= environmental ? esfxVolMult : sfxVolMult;
             temp.Play();
 
             if(!loop) StartCoroutine(BleanUp(gaming, ThingToPlay.clip.length));
         }
 
-        public void Play3DSFX(AudioClip clipToPlay, Vector3 position, bool environmental, bool loop)
+        public void Play3DSFX(AudioClip clipToPlay, Vector3 position, bool environmental = false, bool loop = false, float vol = 1, float minRand = 1, float maxRand = 1)
         {
             AudioObjectCheck();
 
@@ -130,7 +168,8 @@ namespace RenCSharp
             AudioSource temp = gaming.GetComponent<AudioSource>();
             temp.clip = clipToPlay;
             temp.spatialBlend = 1;
-            temp.volume = 1;
+            temp.volume = vol;
+            temp.pitch = Random.Range(minRand, maxRand);
             temp.volume *= environmental ? esfxVolMult : sfxVolMult;
             temp.loop = loop;
             temp.Play();
@@ -147,7 +186,11 @@ namespace RenCSharp
                 audioObject.AddComponent<AudioSource>();
             }
         }
-
+        /// <summary>
+        /// Removes a 3DSFX from scene
+        /// </summary>
+        /// <param name="clipToRemove">The type of sound that will be removed</param>
+        /// <param name="removeOnlyOne">Remove every instance of this sound, or just the first we find</param>
         public void Stop3DSFX(AudioClip clipToRemove, bool removeOnlyOne = true)
         {
             foreach (GameObject go in sfxList)
@@ -160,13 +203,21 @@ namespace RenCSharp
                 }
             }
         }
-
+        /// <summary>
+        /// Removes a 3DSFX from scene
+        /// </summary>
+        /// <param name="goToRemove">The gameobject reference of the specific sound you want gone</param>
         public void Stop3DSFX(GameObject goToRemove)
         {
             sfxList.Remove(goToRemove);
             Destroy(goToRemove);
         }
-
+        /// <summary>
+        /// cleans up a 3d sfx from the sfxList
+        /// </summary>
+        /// <param name="gaming">The gameobject that's playing the sound that we wish to be gone</param>
+        /// <param name="duration">how long it takes to despawn sound obj</param>
+        /// <returns>Jack</returns>
         private IEnumerator BleanUp(GameObject gaming, float duration)
         {
             yield return new WaitForSeconds(duration);
@@ -179,7 +230,13 @@ namespace RenCSharp
         #endregion
 
         #region BGM
-        //only exists so a coroutine can be called by another script
+        /// <summary>
+        /// plays a song.
+        /// </summary>
+        /// <param name="musicToPlay"></param>
+        /// <param name="fadeTime"></param>
+        /// <param name="isLooping"></param>
+        /// <param name="setSameTime"></param>
         public void PlayBGM(AudioClip musicToPlay, float fadeTime = 5f, bool isLooping = true, bool setSameTime = false)
         {
             if (musicToPlay != null) 
@@ -192,6 +249,67 @@ namespace RenCSharp
                 bgmRoutine = StartCoroutine(PlayBGMPog(musicToPlay, fadeTime, isLooping, setSameTime)); 
             }
             else Debug.Log("You didn't give AM a clip to play bgm! Dumbass!");
+        }
+        /// <summary>
+        /// plays a song from an asset reference. async moment.
+        /// </summary>
+        /// <param name="musicAsset"></param>
+        /// <param name="fadeTime"></param>
+        /// <param name="isLooping"></param>
+        /// <param name="setSameTime"></param>
+        /// <returns></returns>
+        public async Awaitable PlayBGM(AssetReference musicAsset, float fadeTime =5f, bool isLooping = true, bool setSameTime = false)
+        {
+            AsyncOperationHandle songHandle = musicAsset.LoadAssetAsync<AudioClip>();
+            await songHandle.Task;
+
+            if(songHandle.Status == AsyncOperationStatus.Failed) 
+            { 
+                Debug.LogWarning("Failed to load song asset: " + musicAsset.Asset);
+                Addressables.Release(songHandle);
+                return; 
+            }
+
+            AudioClip song = songHandle.Result as AudioClip;
+            songAssetGUID = musicAsset.AssetGUID;
+            //Addressables.Release(songHandle);
+
+            if (enteringBGM)
+            {
+                if (newBGM != null) Destroy(newBGM);
+                StopCoroutine(bgmRoutine);
+            }
+            bgmRoutine = StartCoroutine(PlayBGMPogAddressable(song, fadeTime, isLooping, setSameTime));
+        }
+        /// <summary>
+        /// play song from an asset's GUID. async moment.
+        /// </summary>
+        /// <param name="assetGUID"></param>
+        /// <param name="fadeTime"></param>
+        /// <param name="isLooping"></param>
+        /// <param name="setSameTime"></param>
+        /// <returns></returns>
+        public async Awaitable PlayBGM(string assetGUID, float fadeTime = 5f, bool isLooping = true, bool setSameTime = false)
+        {
+            AsyncOperationHandle songHandle = Addressables.LoadAssetAsync<AudioClip>(assetGUID);
+            await songHandle.Task;
+
+            if(songHandle.Status == AsyncOperationStatus.Failed)
+            {
+                Debug.LogWarning("Failed to load song asset (guid): " + assetGUID);
+                Addressables.Release(songHandle);
+                return;
+            }
+
+            AudioClip song = songHandle.Result as AudioClip;
+            songAssetGUID = assetGUID;
+
+            if (enteringBGM)
+            {
+                if (newBGM != null) Destroy(newBGM);
+                StopCoroutine(bgmRoutine);
+            }
+            bgmRoutine = StartCoroutine(PlayBGMPogAddressable(song, fadeTime, isLooping, setSameTime));
         }
 
         private IEnumerator PlayBGMPog(AudioClip musicToPlay, float fadeTime = 3f, bool isLooping = true, bool setSameTime = false)
@@ -219,6 +337,39 @@ namespace RenCSharp
                 yield return null;
             }
             //destroy unneeded audio sauce
+            
+            Destroy(leMusic);
+            //set new sauce where the old sauce was
+            leMusic = newBGM;
+            enteringBGM = false;
+        }
+
+        private IEnumerator PlayBGMPogAddressable(AudioClip musicToPlay, float fadeTime = 3f, bool isLooping = true, bool setSameTime = false)
+        {
+            enteringBGM = true;
+            newBGM = gameObject.AddComponent<AudioSource>(); //make a new Audio sauce
+            newBGM.clip = musicToPlay; //Init the new sauce, based on passed in values
+            newBGM.volume = 0;
+            newBGM.loop = isLooping;
+            newBGM.Play();
+
+            if (setSameTime) newBGM.time = leMusic.time;
+            float t = 0; //shorthand for time, starting at 0
+
+            while (t < fadeTime)
+            {
+                //increase t by amount of time passed between frames
+                t += Time.deltaTime;
+                //calc percent of time that has passed, based on fadeTime
+                float perc = t / fadeTime;
+                //fade the musics out/in
+                leMusic.volume = Mathf.Lerp(bgmVolMult, 0, perc);
+                newBGM.volume = Mathf.Lerp(0, bgmVolMult, perc);
+                //yield the frame, then continue
+                yield return null;
+            }
+            //destroy unneeded audio sauce
+            if(leMusic.clip != null) Addressables.Release(leMusic.clip);
             Destroy(leMusic);
             //set new sauce where the old sauce was
             leMusic = newBGM;
@@ -231,12 +382,13 @@ namespace RenCSharp
             else return false;
         }
         #endregion
+
         #region Settings
       
         private void ReceiveBGM(float f)
         {
             bgmVolMult = f;
-            if (!enteringBGM) leMusic.volume = f;
+            if (!enteringBGM && leMusic != null) leMusic.volume = f;
         }
 
         void ReceiveSFX(float f)

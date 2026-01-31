@@ -31,14 +31,31 @@ namespace RenCSharp.Sequences
             EditorGUI.PropertyField(spawnRect, spawnOffset, new GUIContent("SpawnOffset"), true);
             EditorGUI.PropertyField(fadeInRect, fadeInTime, new GUIContent("FadeInTime"), true);
             EditorGUI.PropertyField(sprinRect, sprindexArray, new GUIContent("Visual Sprite Indexes"), true);
-            //Debug.Log("Assigned actor: " + assignedActor.ActorName);
+             //Debug.Log("Assigned actor: " + assignedActor.ActorName);
+            if (assignedActor != null)
+            {
+                for (int i = 0; i < sprindexArray.arraySize; i++)
+                {
+                    if (i >= assignedActor.Visuals.Length) break;
+                    string[] src = assignedActor.Visuals[i].visualIDs.ToArray();
+                    Rect justAfterArray = new Rect(sprinRect.x, sprinRect.y + (EditorGUIUtility.singleLineHeight * (i + 1) + EditorGUIUtility.standardVerticalSpacing * (i + 1)), newR.width, EditorGUIUtility.singleLineHeight);
+                    //string log = "Exising IDs: ";
+                    //foreach(string s in src)
+                    //{
+                    //    log += s + ", ";
+                    //}
+                    //Debug.Log(log);
+                    sprindexArray.GetArrayElementAtIndex(i).stringValue = 
+                        EditorExtend.TextFieldAutoComplete(justAfterArray, sprindexArray.GetArrayElementAtIndex(i).stringValue, src, 10);
+                }
+            } 
             
             EditorGUI.EndProperty();
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return Drawer_Helper.PropertyHeight(property) + EditorGUIUtility.singleLineHeight * 10;
+            return Drawer_Helper.PropertyHeight(property) + EditorGUIUtility.singleLineHeight * 12;
         }
     }
     [CustomPropertyDrawer(typeof(Actor_Expression))]
@@ -63,11 +80,29 @@ namespace RenCSharp.Sequences
             EditorGUI.PropertyField(actRect, actorProperty, new GUIContent("Actor to Alter"), true);
             EditorGUI.PropertyField(sprinRect, sprindexArray, new GUIContent("Visual Sprite Indexes"), true);
 
+            if (actorToAlter != null)
+            {
+                for (int i = 0; i < sprindexArray.arraySize; i++)
+                {
+                    if (i >= actorToAlter.Visuals.Length) break; //don't do shit if there's no visual there
+                    string[] src = actorToAlter.Visuals[i].visualIDs.ToArray();
+                    Rect justAfterArray = new Rect(sprinRect.x, sprinRect.y + (EditorGUIUtility.singleLineHeight * (i + 1) + EditorGUIUtility.standardVerticalSpacing * (i + 1)), newR.width, EditorGUIUtility.singleLineHeight);
+                    //string log = "Exising IDs: ";
+                    //foreach (string s in src) 
+                    //{
+                    //    log += s + ", ";
+                    //}
+                    //Debug.Log(log);
+                    sprindexArray.GetArrayElementAtIndex(i).stringValue =
+                        EditorExtend.TextFieldAutoComplete(justAfterArray, sprindexArray.GetArrayElementAtIndex(i).stringValue, src, 10);
+                }
+            }
+
             EditorGUI.EndProperty();
         }
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return Drawer_Helper.PropertyHeight(property) + EditorGUIUtility.singleLineHeight * 10;
+            return Drawer_Helper.PropertyHeight(property) + EditorGUIUtility.singleLineHeight * 12;
         }
     }
 }

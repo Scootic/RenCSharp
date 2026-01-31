@@ -1,6 +1,6 @@
 
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -8,6 +8,7 @@ namespace RenCSharp.Sequences
     /// Technically problematic; remember to assign your index 0 anim events as the middle of a fade and your index 1 anim events as
     /// the end of a fade.
     /// </summary>
+    [Obsolete("Deprecated, please use Fade_TransitionAsset instead.", false)]
     public class Fade_Transition : Screen_Event
     {
         [SerializeField] private Sprite[] newBG;
@@ -15,6 +16,12 @@ namespace RenCSharp.Sequences
         [SerializeField, Tooltip("Decide which type of transition to tell animator to use.")] private int fadeTransition = 0;
         [SerializeField, Tooltip("How long should the fade be in seconds?")] private float fadeDuration = 1f;
         private Animation_Event_Delegates aed;
+
+        public Sprite[] GetNewBG => newBG;
+        public float GetSecondsPerFrame => secondsPerFrame;
+        public int GetFadeTransition => fadeTransition;
+        public float GetFadeDuration => fadeDuration;
+
         public override void DoShit()
         {
             if (GameObject.FindGameObjectWithTag("Fader").TryGetComponent(out Animator fader)) //find the fader
@@ -43,7 +50,7 @@ namespace RenCSharp.Sequences
         private void SwapBG()
         {
             if (!Object_Factory.TryGetObject("Background", out GameObject go)) return;
-            go.GetComponent<Animated_Image_Handler>().ReceiveAnimationInformation(newBG, secondsPerFrame);
+            //go.GetComponent<Animated_Image_Handler>().ReceiveAnimationInformation(newBG, secondsPerFrame);
         }
 
         private void UnpauseSM()
@@ -54,7 +61,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Fade Transition";
+            return "Deprecated/Fade Transition";
         }
     }
 }

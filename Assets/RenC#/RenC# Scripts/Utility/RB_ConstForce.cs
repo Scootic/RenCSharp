@@ -1,0 +1,34 @@
+using UnityEngine;
+
+namespace RenCSharp
+{
+    /// <summary>
+    /// Only exists because built-in gravity doesn't work well with canvas objects. (Problems with weird-ah world scaling?)
+    /// </summary>
+    [RequireComponent(typeof(Rigidbody))]
+    public class RB_ConstForce : MonoBehaviour
+    {
+        [SerializeField] private Vector3 dir;
+        [SerializeField, Min(0.01f)] private float strength = 9.81f;
+        [SerializeField] private bool ignoreMass = true;
+        private Rigidbody rb;
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
+        {
+            rb = GetComponent<Rigidbody>();
+        }
+
+        // Update is called once per frame
+        void FixedUpdate()
+        {
+            rb.AddForce(dir * strength, ignoreMass ? ForceMode.Acceleration : ForceMode.Force);
+        }
+
+        public void InitForce(Vector3 direction, float str, bool ignoreMassForce = true)
+        {
+            dir = direction;
+            strength = str;
+            ignoreMass = ignoreMassForce;
+        }
+    }
+}

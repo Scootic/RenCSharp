@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: mdm_Start
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 11400000, guid: d7d90acd337545242978d965e5b6e6f5, type: 2}
+    dialog: Heeeeey!
+    ScreenActions:
+    - rid: 9079475098267418678
+    - rid: 9079475089592287301
+  - speaker: {fileID: 0}
+    dialog: I see an annoying girl running toward me from the distance, waving her
+      arms in the air like she's totally oblivious to any attention she might draw
+      to herself.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: <font="glitchfont">Wow.
+    ScreenActions:
+    - rid: 9079475089592287312
+    - rid: 9079475098267418675
+    - rid: 8612954484556955709
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: <font="glitchfont">That's the first impression we're going to give our
+      player?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: <font="glitchfont">I can already tell that this vessel is hopeless.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: <font="glitchfont">Welp, back to the drawing board...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: <font="glitchfont">Oh! I've still got the other one lying around here
+      somewhere.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: <font="glitchfont">Let me just-</font>
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: b5e5d95b529f10f43ba9f69cb89a2890, type: 2}
+    requireCondition: 0
+    conditions:
+    - flagToCheck: 
+      operation: 0
+      desiredValue: 0
+      persistent: 0
+      bitWise: 0
+  myself:
+    m_AssetGUID: 431bd350262bb974682efa653042f25d
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 8612954484556955709
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 4f09cc94363340d459ef2681fc443d19, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 9079475089592287301
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: ba13accb8b1fe3b47bb3401b0a6229b8
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 9079475089592287312
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 9d18ee034d9bea149886efe3a7a02057
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 9079475098267418675
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
+          m_SubObjectName: glitchanim_0
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
+          m_SubObjectName: glitchanim_1
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 0
+        - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
+          m_SubObjectName: glitchanim_2
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
+          m_SubObjectName: glitchanim_3
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 0
+        secondsPerFrame: 0.1
+    - rid: 9079475098267418678
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 36f7c6032a374db4a968c0e1236322e1
+          m_SubObjectName: street
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 2
+        fadeDuration: 4

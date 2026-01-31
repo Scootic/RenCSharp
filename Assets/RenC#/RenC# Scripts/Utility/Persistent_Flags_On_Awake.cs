@@ -12,7 +12,11 @@ namespace RenCSharp
         {
             Debug.Log("PersistentFlagAwake!");
             FlagToken ft = SaveLoad.LoadPersistentFlags();
+<<<<<<< HEAD
             Flag_Manager.ReceiveFlagToken(ft, true);
+=======
+            Flag_Manager.ReceiveFlagToken(ft.FlagTokenToDictionary(ft), true);
+>>>>>>> ddlcfanshit
             foreach(KeyValuePair<string, int> kvp in Flag_Manager.GetPersistentDataFlags)
             {
                 Debug.Log("PERSISTENTFLAG: " + kvp.Key + ", Value: " + kvp.Value);

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: Mirmulnir1
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 4c66d5faac8b4f54295ab645e740cff5, type: 2}
+  - {fileID: 11400000, guid: 75d383a00fb147740b98373ce6646668, type: 2}
+  - {fileID: 11400000, guid: 0e92942cb20ff5e4585ebc30eabfe112, type: 2}
+  scriptedFlavorTexts:
+  - The dragon flies overhead, breathing fire down.
+  - The dragon flies back and forth, releasing spurts of fire breath.
+  - The dragon focus its attention on Monika...
+  randomAttacks:
+  - {fileID: 11400000, guid: 4c66d5faac8b4f54295ab645e740cff5, type: 2}
+  - {fileID: 11400000, guid: 2c33081e5d577ae4185a2a98f9d6de8a, type: 2}
+  - {fileID: 11400000, guid: 69c6d1ced0b5a6f4cabaf969fbbbaba2, type: 2}
+  - {fileID: 11400000, guid: 75d383a00fb147740b98373ce6646668, type: 2}
+  randomFlavorTexts:
+  - The dragon flies overhead, breathing fire down.
+  - The dragon unleashes focused blasts at Natsuki.
+  - The dragon flies around Monika, spraying fire at her.
+  - The dragon flies back and forth, releasing spurts of fire breath.
+  maxHealth: 100
+  visualInformation:
+  - {fileID: 21300000, guid: 16d21b3d2eebd6b44858bdad6eb1116d, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: 8297a0d78344aeb4fadd8d391be3fffe, type: 3}
+  defeatText: The dragon, after taking so much damage, falls out of the sky-
+  nameText: Mirmulnir
+  blurbText: Since Natsuki doesn't have a bow, Monika's doing most of the work.
+  hurtedSound: {fileID: 8300000, guid: 283867f29d9f03a488734d08744fd7c4, type: 3}

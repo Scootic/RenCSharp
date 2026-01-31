@@ -21,6 +21,7 @@ namespace RenCSharp.Sequences
         [SerializeField] private AssetReference myself;
 
         public bool AutoFocusSpeaker => autoFocusSpeaker;
+        public AssetReference Myself => myself;
         public Screen[] Screens => screens;
         public Player_Choice[] PlayerChoices => playerChoices;
         public AssetReference Myself => myself;

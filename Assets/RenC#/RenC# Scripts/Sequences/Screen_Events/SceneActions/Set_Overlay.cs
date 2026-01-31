@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace RenCSharp.Sequences
 {
+    [Obsolete("Deprecated. Please use Set_OverlayAsset instead.", false)]
     public class Set_Overlay : Screen_Event
     {
         [SerializeField, Tooltip("If not animated, just uses index 0.")] private List<Sprite> imagesToSet;
@@ -16,6 +18,12 @@ namespace RenCSharp.Sequences
 
         private Coroutine fadeImage;
         private Animated_Image_Handler overlay;
+
+        public List<Sprite> GetImagesToSet => imagesToSet;
+        public string GetOverlayText => overlayText;
+        public float GetFadeTime => fadeTime;
+        public bool GetEndWithScreen => endWithScreen;
+        public float GetSecondsPerFrame => secondsPerFrame;
 
         public override void DoShit()
         {
@@ -29,14 +37,13 @@ namespace RenCSharp.Sequences
         {
             Debug.LogWarning("Set overlay panic stopped!");
             overlay.Image.color = Color.white;
-            overlay.ReceiveAnimationInformation(imagesToSet.ToArray(), secondsPerFrame);
-            if (fadeImage != null)Script_Manager.SM.StopCoroutine(fadeImage);
+            //overlay.ReceiveAnimationInformation(imagesToSet.ToArray(), secondsPerFrame);
+            if (fadeImage != null) Script_Manager.SM.StopCoroutine(fadeImage);
         }
 
         private IEnumerator FadeIn(Image overlayImg, List<Sprite> sprites)
         {
             float t = 0;
-            Color transGender = new Color(1, 1, 1, 0);
             float perc;
             bool flick = false;
             TextMeshProUGUI text = overlay.GetComponent<UI_Element>().Texts[0];
@@ -46,19 +53,19 @@ namespace RenCSharp.Sequences
                 t += Time.deltaTime;
                 perc = t / fadeTime;
 
-                if(perc < 0.5f)
+                if (perc < 0.5f)
                 {
-                    overlayImg.color = Color.Lerp(Color.white, transGender, perc * 2);
+                    overlayImg.color = Color.Lerp(Color.white, CoolColors.transparent, perc * 2);
                 }
                 else
                 {
-                    if (!flick) 
+                    if (!flick)
                     {
-                        overlay.ReceiveAnimationInformation(sprites.ToArray(), secondsPerFrame);
+                        //overlay.ReceiveAnimationInformation(sprites.ToArray(), secondsPerFrame);
                         flick = true;
                     }
 
-                    overlayImg.color = Color.Lerp(transGender, Color.white, perc * 2 - 1);
+                    overlayImg.color = Color.Lerp(CoolColors.transparent, Color.white, perc * 2 - 1);
                 }
 
                 yield return null;
@@ -69,7 +76,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Set Overlay Image";
+            return "Deprecated/Set Overlay Image";
         }
     }
 }

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: ImperialBattlemage
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 925c70fdaa26d464b8f0ab97620eb9ee, type: 2}
+  - {fileID: 11400000, guid: 19d9226ef92e0cb42990ce4ebfa0fe7f, type: 2}
+  - {fileID: 11400000, guid: 307fd18508231434780a6f4d7d3d9a3b, type: 2}
+  scriptedFlavorTexts:
+  - Fire fills his hands...
+  - Lightning starts crackling from his fingertips...
+  - A chill permiates the air...
+  randomAttacks:
+  - {fileID: 11400000, guid: 656e045420c23d249a8d7d3d0d40e030, type: 2}
+  randomFlavorTexts:
+  - The Imperial seems to have ran out of magicka, and now brandishes his dagger.
+  maxHealth: 28
+  visualInformation:
+  - {fileID: 21300000, guid: da78657d99a3a374587e4edd0480f3bf, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
+  defeatText: Wizard down...
+  nameText: Imperial Battlemage
+  blurbText: Surely he'll run out of mana...
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
