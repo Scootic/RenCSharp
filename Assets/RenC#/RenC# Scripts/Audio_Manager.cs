@@ -21,8 +21,8 @@ namespace RenCSharp
 
         private int sfxIndex = 0; //Store the current sfx index
         private bool enteringBGM = false; //used to see if we are currently doing a BGM fade transition.
-        private Coroutine bgmRoutine;
-        private string songAssetGUID;
+        private Coroutine bgmRoutine; //stores the current bgm transition coroutine incase we need to stop it preemptively
+        private string songAssetGUID; //keeps track of asset guid that'll be passed to save/load
 
         [Range(0, 1)] private float bgmVolMult = 0.5f, sfxVolMult = 0.5f, esfxVolMult = 0.5f; //volume multipliers
         public float BGMVol => bgmVolMult;
@@ -281,6 +281,36 @@ namespace RenCSharp
             }
             bgmRoutine = StartCoroutine(PlayBGMPogAddressable(song, fadeTime, isLooping, setSameTime));
         }
+        /// <summary>
+        /// play song from an asset's GUID. async moment.
+        /// </summary>
+        /// <param name="assetGUID"></param>
+        /// <param name="fadeTime"></param>
+        /// <param name="isLooping"></param>
+        /// <param name="setSameTime"></param>
+        /// <returns></returns>
+        public async Awaitable PlayBGM(string assetGUID, float fadeTime = 5f, bool isLooping = true, bool setSameTime = false)
+        {
+            AsyncOperationHandle songHandle = Addressables.LoadAssetAsync<AudioClip>(assetGUID);
+            await songHandle.Task;
+
+            if(songHandle.Status == AsyncOperationStatus.Failed)
+            {
+                Debug.LogWarning("Failed to load song asset (guid): " + assetGUID);
+                Addressables.Release(songHandle);
+                return;
+            }
+
+            AudioClip song = songHandle.Result as AudioClip;
+            songAssetGUID = assetGUID;
+
+            if (enteringBGM)
+            {
+                if (newBGM != null) Destroy(newBGM);
+                StopCoroutine(bgmRoutine);
+            }
+            bgmRoutine = StartCoroutine(PlayBGMPogAddressable(song, fadeTime, isLooping, setSameTime));
+        }
 
         private IEnumerator PlayBGMPog(AudioClip musicToPlay, float fadeTime = 3f, bool isLooping = true, bool setSameTime = false)
         {
@@ -307,7 +337,7 @@ namespace RenCSharp
                 yield return null;
             }
             //destroy unneeded audio sauce
-            Addressables.Release(leMusic.clip);
+            
             Destroy(leMusic);
             //set new sauce where the old sauce was
             leMusic = newBGM;
@@ -339,6 +369,7 @@ namespace RenCSharp
                 yield return null;
             }
             //destroy unneeded audio sauce
+            if(leMusic.clip != null) Addressables.Release(leMusic.clip);
             Destroy(leMusic);
             //set new sauce where the old sauce was
             leMusic = newBGM;

@@ -33,7 +33,7 @@ namespace RenCSharp.Combat
         private EnemyObject curEnemy;
         private Player_Object curPlayer;
 
-        private bool fighting, lostFight, playerTurn, singleAttack, passedScript; //probably stupid to have all of these
+        private bool fighting, lostFight, playerTurn, singleAttack, passedScript; //probably stupid to have ALL of these
         private Coroutine flavorTextRoutine;
         private GameObject playerObj;
         private List<GameObject> activeProj = new();
@@ -341,7 +341,7 @@ namespace RenCSharp.Combat
             rb.AddForce(lauchDir * enemyDamageNumberForce, ForceMode.VelocityChange);
         }
 
-        private bool WithinScriptedAttacks()
+        private bool WithinScriptedAttacks() //evil bool
         {
             if (curAttackIndex < curEnemy.MySO.ScriptedAttacks.Length && !passedScript)
             {

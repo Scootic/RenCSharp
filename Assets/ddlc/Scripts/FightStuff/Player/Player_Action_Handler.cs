@@ -55,7 +55,7 @@ namespace RenCSharp.Combat.Player
 
         private void ScrollThroughActions(Vector2 guh)
         {
-            if (flickThroughMenu == true) return;
+            if (flickThroughMenu == true || !curAction.gameObject.activeInHierarchy) return;
             flickThroughMenu = true;
             StartCoroutine(FlickThroughMenu());     
             //we don' care 'bout y tf

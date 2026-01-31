@@ -487,10 +487,7 @@ namespace RenCSharp
             ov.ReceiveAnimationInformation(std.OverlayAssetKeys, std.OverlaySubobjectKeys,std.OverlaySPF);
             bg.ReceiveAnimationInformation(std.BackgroundAssetKeys, std.BackgroundSubobjectKeys,std.BackgroundSPF);
 
-            AsyncOperationHandle bgmHandle = Addressables.LoadAssetAsync<AudioClip>(std.MusicAssetKey);
-            bgmHandle.WaitForCompletion();
-            if (bgmHandle.Status == AsyncOperationStatus.Succeeded) Audio_Manager.AM.PlayBGM(bgmHandle.Result as AudioClip, 1, true, false);
-            else bgmHandle.Release();
+            Audio_Manager.AM.PlayBGM(std.MusicAssetKey, 1);
 
             SequenceAsset = Addressables.LoadAssetAsync<Sequence>(sd.CurrentSequenceAsset);
 
@@ -518,7 +515,6 @@ namespace RenCSharp
                     Debug.LogWarning("Failed to load actor: " + at.ActorAsset);
                     ActorSO.Release();
                 }
-                
             }
 
             SequenceAsset.WaitForCompletion();
