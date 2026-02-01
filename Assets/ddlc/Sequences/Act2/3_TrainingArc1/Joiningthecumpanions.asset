@@ -177,13 +177,36 @@ MonoBehaviour:
     - rid: 9079475269545230395
   - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
     dialog: Alright, show me what you're made of!
-    ScreenActions: []
+    ScreenActions:
+    - rid: 4351267813221466169
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
     - rid: 9079475269545230396
     - rid: 9079475269545230397
     - rid: 9079475269545230398
+  - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+    dialog: That's enough.
+    ScreenActions:
+    - rid: 4351267813221466192
+    - rid: 4351267813221466193
+  - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+    dialog: 
+    ScreenActions:
+    - rid: 4351267813221466194
+  - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+    dialog: I'm still not <i>entirely</i> sure what the old man saw in you, but I
+      can respect his judgements after clashing blades with you.
+    ScreenActions:
+    - rid: 4351267813221466198
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: (You friggin' better...)
+    ScreenActions:
+    - rid: 4351267813221466199
+  - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+    dialog: But! You're still a whelp around here, lass.
+    ScreenActions:
+    - rid: 4351267813221466200
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -201,6 +224,117 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 4351267813221466169
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerAbilities
+        flagValue: 8
+        increment: 0
+        persistent: 0
+    - rid: 4351267813221466192
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - grimaceBlush
+        - EMPTY
+    - rid: 4351267813221466193
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 4351267813221466194
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 2
+            desiredValue: 10
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+            dialog: Hmm. Your form is unrefined...
+            ScreenActions:
+            - rid: 4351267813221466197
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 4
+            desiredValue: 20
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+            dialog: You've carried yourself relatively well...
+            ScreenActions:
+            - rid: 4351267813221466196
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 1
+            desiredValue: 20
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+            dialog: You might make yourself a Companion, yet!
+            ScreenActions:
+            - rid: 4351267813221466195
+    - rid: 4351267813221466195
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - closedEyeGrin
+    - rid: 4351267813221466196
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - smile
+    - rid: 4351267813221466197
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwayGrimace
+    - rid: 4351267813221466198
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - smile
+    - rid: 4351267813221466199
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwayGrin
+    - rid: 4351267813221466200
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - grimace
     - rid: 9079475250346852550
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
