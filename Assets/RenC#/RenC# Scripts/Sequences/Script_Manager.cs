@@ -147,6 +147,7 @@ namespace RenCSharp
         {
             Debug.Log("SM PAUSED");
             paused = true;
+            Textbox_String.PauseTextbox(true);
             SequencePausedEvent?.Invoke(paused); //for cool mfs to do game stuff whenever the sequence is paused. minigame mayhaps?
         }
 
@@ -154,6 +155,7 @@ namespace RenCSharp
         {
             Debug.Log("SM UNPAUSED");
             paused = false;
+            Textbox_String.PauseTextbox(false);
             SequencePausedEvent?.Invoke(paused);
         }
         private void LoadASequence(Sequence s)
