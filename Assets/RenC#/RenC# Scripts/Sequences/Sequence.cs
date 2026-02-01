@@ -24,7 +24,6 @@ namespace RenCSharp.Sequences
         public AssetReference Myself => myself;
         public Screen[] Screens => screens;
         public Player_Choice[] PlayerChoices => playerChoices;
-        public AssetReference Myself => myself;
 
         public override string ToString()
         {

@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
-<<<<<<< HEAD
-=======
+
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
->>>>>>> ddlcfanshit
+
 namespace RenCSharp
 {
     [RequireComponent(typeof(Image))]
@@ -12,25 +11,14 @@ namespace RenCSharp
     {
         private Image image;
         private Sprite[] animationFrames;
-<<<<<<< HEAD
-=======
+
         private string[] spriteAssetGUIDs, subObjectGUIDs;
->>>>>>> ddlcfanshit
         private float secondsPerFrame = 0.1f, t;
         private int curI;
 
         public Image Image => image;
         public Sprite[] AnimationFrames => animationFrames;
-<<<<<<< HEAD
-        public float SecondsPerFrame => secondsPerFrame;
 
-        void OnEnable()
-        {
-            t = 0;
-            curI = 0;
-            image = GetComponent<Image>();
-            animationFrames = new Sprite[0];
-=======
         public string[] SpriteAssetGUIDs => spriteAssetGUIDs;
         public string[] SubObjectGUIDs => subObjectGUIDs;
         public float SecondsPerFrame => secondsPerFrame;
@@ -43,7 +31,6 @@ namespace RenCSharp
             if(animationFrames == null) animationFrames = new Sprite[0];
             if(spriteAssetGUIDs == null) spriteAssetGUIDs = new string[0];
             if(subObjectGUIDs == null) subObjectGUIDs = new string[0];
->>>>>>> ddlcfanshit
         }
 
         void Update()
@@ -58,7 +45,6 @@ namespace RenCSharp
                 image.sprite = animationFrames[curI];
             }
         }
-<<<<<<< HEAD
 
         public void ReceiveAnimationInformation(Sprite[] frames, float SPF)
         {
@@ -67,19 +53,6 @@ namespace RenCSharp
             animationFrames = frames;
             secondsPerFrame = SPF;
             if(frames.Length > 0) image.sprite = frames[0];
-=======
-        /// <summary>
-        /// Only for unsaved stuff. Just takes in sprites, no assetreferences.
-        /// </summary>
-        /// <param name="visuals">The sprites being run thru</param>
-        /// <param name="SPF">Seconds per frame</param>
-        public void ReceiveAnimationInformation(Sprite[] visuals, float SPF)
-        {
-            curI = 0;
-            t = 0;
-            animationFrames = visuals;
-            secondsPerFrame = SPF;
-            if (animationFrames.Length > 0) image.sprite = animationFrames[0];
         }
 
         /// <summary>
@@ -122,7 +95,6 @@ namespace RenCSharp
 
             secondsPerFrame = SPF;
             if (animationFrames.Length > 0) image.sprite = animationFrames[0];
->>>>>>> ddlcfanshit
         }
     }
 }

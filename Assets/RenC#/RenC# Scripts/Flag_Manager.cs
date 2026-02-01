@@ -92,5 +92,11 @@ namespace RenCSharp
                 persistentFlags = t;
             }
         }
+
+        public static void ReceiveFlagToken(Dictionary<string, int> dictionary, bool persistent = false)
+        {
+            if (persistent) persistentFlags = dictionary;
+            else curFlags = dictionary;
+        }
     }
 }
