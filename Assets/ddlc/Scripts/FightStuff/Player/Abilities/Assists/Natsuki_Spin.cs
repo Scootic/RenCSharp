@@ -33,6 +33,12 @@ namespace RenCSharp.Combat.Player
             }
         }
 
+        private void LateUpdate() //NASTY GROSS DISGUSTING WE DO NOT cARE!
+        {
+            if (activeShield == null) return;
+            activeShield.transform.localPosition = Vector3.zero;
+        }
+
         private void GetRidOfShieldFR(bool b)
         {
             Object_Factory.RemoveObject("NatsukiShield");
