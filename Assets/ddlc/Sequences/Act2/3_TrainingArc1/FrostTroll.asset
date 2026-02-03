@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: FrostTroll
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 47175bb4bb9bd724e86e334f00cedf34, type: 2}
+  - {fileID: 11400000, guid: 99d86416aef2b1a4f825d4f37a099183, type: 2}
+  - {fileID: 11400000, guid: a1488229404e3774e8e071f7f7970abb, type: 2}
+  - {fileID: 11400000, guid: 1dbdff8b598dc0340ab527a1a677711a, type: 2}
+  - {fileID: 11400000, guid: b0398d78fbf135944a6d27c77da4122a, type: 2}
+  scriptedFlavorTexts:
+  - The troll swipes at you, with the force of a <i>dragon</i>.
+  - The troll tries to bite you, with spit flinging from its mouth.
+  - The troll raises its arm to slam down on you, with hair coming off of its arms.
+  - The troll attempts to clap you. Literally.
+  - The troll tries to sweep at your shins.
+  randomAttacks:
+  - {fileID: 11400000, guid: 99d86416aef2b1a4f825d4f37a099183, type: 2}
+  - {fileID: 11400000, guid: 47175bb4bb9bd724e86e334f00cedf34, type: 2}
+  - {fileID: 11400000, guid: 1dbdff8b598dc0340ab527a1a677711a, type: 2}
+  - {fileID: 11400000, guid: a1488229404e3774e8e071f7f7970abb, type: 2}
+  - {fileID: 11400000, guid: b0398d78fbf135944a6d27c77da4122a, type: 2}
+  randomFlavorTexts:
+  - The troll tries to bite at you. Again.
+  - The troll tries to slash at you. Again.
+  - The troll tries to clap you. Pause. Again.
+  - The troll tries to slap you while shedding. Again. (Someone should groom this
+    guy!)
+  - The troll tries to sweep at your shins. Again. And head. Again.
+  maxHealth: 150
+  visualInformation:
+  - {fileID: 21300000, guid: 838cd8ad2bb3e5e40ba565cff385506d, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
+  defeatText: Despite being horrifically under-leveled by all accounts, {mc} and
+    Monika have managed to pull through.
+  nameText: Frost Troll
+  blurbText: Everyone knows him. Everyone hates him!
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
