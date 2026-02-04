@@ -69,12 +69,7 @@ namespace RenCSharp
 
                         if (!TagParser.Parse(tag)) //if it's not a tagparser tag, it's probably unity valid. add that boy back in.
                         {
-                            textBox.text += tag; //?
-                            //for(int j = textBox.text.Length - tag.Length; j <= textBox.text.Length - 1; j++) 
-                            //{
-                            //    TMP_CharacterInfo c = textBox.textInfo.characterInfo[j];
-                            //    Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
-                            //}
+                            textBox.text += tag;
                         }
                         else //remove tags from the final display if it's being handled by tag parser
                         {
@@ -83,9 +78,9 @@ namespace RenCSharp
                     }
                     else //just add the char and move on if it's a regular ah character
                     {
-                        //we can't just do i, because that doesn't account for other non-tagparser tags...
                         textBox.text += dialogchars[i];
                         textBox.ForceMeshUpdate();
+                        //we can't just do i, because that doesn't account for built-in tags/dummy behavior
                         int goodLength = TagParser.StringLengthExcludeBuiltinTags(textBox.text) - 1;
                         TMP_CharacterInfo c = textBox.textInfo.characterInfo[goodLength];
                         Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
