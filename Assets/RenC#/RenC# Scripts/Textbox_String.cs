@@ -33,12 +33,9 @@ namespace RenCSharp
             string amended = endText;
             TagParser.SetCurrentTextMesh = textBox;
 
-            foreach(KeyValuePair<string,string> kvp in replacerTexts) //by the end of this, replace generic guys like {mc} with the actual player's name
-            {
-                //Debug.Log("Doing a stupid replacering!");
-                amended = Regex.Replace(amended, kvp.Key, kvp.Value);
-            }
+            amended = ReplaceableText(amended);
             amended = TagParser.CleanOutFlags(amended);
+
             string tagless = TagParser.CleanOutTags(amended, false);
             char[] dialogchars = amended.ToCharArray();
             textBox.text = ""; //empty box before repopulating below
@@ -92,6 +89,22 @@ namespace RenCSharp
 
             JumpToEndOfTextbox = true;
             textBox.text = TagParser.CleanOutTags(amended);
+        }
+        /// <summary>
+        /// Goes through a string, and replaces all instances of keys in the replaceabletexts dictionary with their values.
+        /// Ie. Replace {mc} with the name stored in savedata, etc.
+        /// </summary>
+        /// <param name="sInput">The text you want parsed.</param>
+        /// <returns>The input with all replaceable texts replaced.</returns>
+        public static string ReplaceableText(string sInput)
+        {
+            string sOutput = sInput;
+            foreach (KeyValuePair<string, string> kvp in replacerTexts) //by the end of this, replace generic guys like {mc} with the actual player's name
+            {
+                //Debug.Log("Doing a stupid replacering!");
+                sOutput = Regex.Replace(sOutput, kvp.Key, kvp.Value);
+            }
+            return sOutput;
         }
         /// <summary>
         /// Stops any textbox from displaying new chars, hover on current string instead.

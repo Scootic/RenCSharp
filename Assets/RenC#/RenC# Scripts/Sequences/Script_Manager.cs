@@ -242,6 +242,11 @@ namespace RenCSharp
             int amountOfButtons = (int)arg1;
             List<string> buttonTexts = (List<string>)arg2;
             PauseSequence();
+            for (int i = 0; i < buttonTexts.Count; i++)
+            {
+                buttonTexts[i] = Textbox_String.ReplaceableText(buttonTexts[i]);
+            }
+
             for (int i = 0; i < amountOfButtons; i++)
             {
                 Button b = Object_Factory.SpawnObject(playerchoicePrefab.gameObject, "Button"+i, playerchoiceHolder).GetComponent<Button>();
