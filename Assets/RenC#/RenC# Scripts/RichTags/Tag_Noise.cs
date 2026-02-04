@@ -21,6 +21,7 @@ namespace RenCSharp.Tags
             if (float.TryParse(maxDistance, out float maxDist) && float.TryParse(deviation, out float devi))
             {
                 Event_Bus.AddVoidEvent("LoadedSave", PanicStop);
+                Event_Bus.AddVoidEvent("ProgressScreen", PanicStop);
                 Event_Bus.AddSingleObjEvent("TextboxNewChar", AddCharToNoiseList);
                 routines.Add(TagRoutineHandler.TRH.StartCoroutine(NoiseTextRoutine(text, maxDist, devi)));
             }
@@ -47,22 +48,32 @@ namespace RenCSharp.Tags
                 fella -= PanicStop;
             }
 
+            if(Event_Bus.TryGetVoidEvent("ProgressScreen", out Action goober))
+            {
+                goober -= PanicStop;
+            }
+
             affectedNoiseChars = new();
         }
 
         private static void AddCharToNoiseList(object chara)
         {
             TMP_CharacterInfo c = (TMP_CharacterInfo)chara;
+            Debug.Log("Inputting char to list: " + c.character);
             affectedNoiseChars.Add(c);
         }
 
         private static IEnumerator NoiseTextRoutine(TextMeshProUGUI text, float maxDist, float acceptableDeviation)
         {
             Mesh mesh = text.mesh;
+
             while (text.text.Length >= 1) //end the routine with a new screen, and reset the chars.
             {
                 text.ForceMeshUpdate();
                 Vector3[] verts = mesh.vertices;
+
+                Debug.Log("charListLength: " + affectedNoiseChars.Count);
+
                 foreach(TMP_CharacterInfo c in affectedNoiseChars)
                 {
                     int index = c.vertexIndex;

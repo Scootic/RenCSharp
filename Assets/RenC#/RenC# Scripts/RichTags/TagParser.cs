@@ -83,11 +83,45 @@ namespace RenCSharp.Tags
                         i++;
                     }
                     possibleTag += chars[i];
-                    if(Parse(possibleTag, false)) lengthToReturn += possibleTag;
+                    if (Parse(possibleTag, false)) lengthToReturn += possibleTag;
                 }
             }
 
             return lengthToReturn.Length;
+        }
+
+        public static int StringIndexExcludeBuiltinTags(string s, int index)
+        {
+            int indexToReturn = index;
+            char[] chars = s.ToCharArray();
+
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (chars[i] == '<')
+                {
+                    string possibleTag = "";
+                    while (chars[i] != '>')
+                    {
+                        if (i >= chars.Length)
+                        {
+                            Debug.LogWarning("The tag parser's string index check found a tag that never closes. Scary AF! You're getting the og index for this.");
+                            return index;
+                        }
+                        possibleTag += chars[i];
+                        i++;
+                    }
+                    possibleTag += chars[i];
+                    if (!Parse(possibleTag, false)) indexToReturn -= possibleTag.Length;
+                }
+            }
+
+            if (indexToReturn < s.Length)
+            {
+                return indexToReturn;
+            }
+
+            Debug.LogWarning("Your new index would be smaller than 0 if passed through! Returning og index.");
+            return index;
         }
 
         /// <summary>

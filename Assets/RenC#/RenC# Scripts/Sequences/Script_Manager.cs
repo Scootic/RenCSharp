@@ -178,6 +178,7 @@ namespace RenCSharp
             {
                 Debug.Log("Moving to next screen!");
                 ProgressScreenEvent?.Invoke(); //exists to make any in-progress things (like a screen event) complete before moving on
+                Event_Bus.TryFireVoidEvent("ProgressScreen");
                 ProgressScreenEvent = null; //wipe all delegates from the action before continuing
                 curScreenIndex++;
                 Event_Bus.TryFireStringEvent("DebugSequence", "Sequence '" + currentSequence.name + "' | Index: " + curScreenIndex);
