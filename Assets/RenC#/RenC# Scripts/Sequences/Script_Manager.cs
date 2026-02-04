@@ -9,7 +9,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.UI;
+using UnityEngine.UI; //:)
 namespace RenCSharp
 {
     /// <summary>
@@ -91,7 +91,7 @@ namespace RenCSharp
             textSpeed = PlayerPrefs.GetFloat("TextSpeed");
             lingerTime = PlayerPrefs.GetFloat("LingerTime");
             Textbox_String.TextSpeed = textSpeed;
-
+            //the event bus!
             Event_Bus.AddFloatEvent("TextSpeed", TextSpeed);
             Event_Bus.AddFloatEvent("LingerTime", TextAutoHang);
             Event_Bus.AddVoidEvent("PauseSequence", PauseSequence);

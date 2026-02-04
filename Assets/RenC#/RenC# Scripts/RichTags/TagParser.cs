@@ -22,7 +22,7 @@ namespace RenCSharp.Tags
         /// </summary>
         /// <param name="sToClean">String you want scrubbed.</param>
         /// <returns>The string minus any TagParser valid tags.</returns>
-        public static string CleanOutTags(string sToClean, bool fire = true)
+        public static string CleanOutTags(string sToClean, bool fire = true, bool includeBuiltInTags = true)
         {
             string sToReturn = "";
 
@@ -47,7 +47,7 @@ namespace RenCSharp.Tags
 
                     possibleTag += chars[i];
                     
-                    if(!Parse(possibleTag, fire)) sToReturn += possibleTag; 
+                    if(!Parse(possibleTag, fire) && includeBuiltInTags) sToReturn += possibleTag; 
                 }
             }
 

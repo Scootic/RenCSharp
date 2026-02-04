@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using RenCSharp.Tags;
 using EXPERIMENTAL;
+using System.Linq;
 namespace RenCSharp
 {
     public static class Textbox_String
@@ -68,6 +69,11 @@ namespace RenCSharp
                         if (!TagParser.Parse(tag)) //if it's not a tagparser tag, it's probably unity valid. add that boy back in.
                         {
                             textBox.text += tag;
+                            for(int j = textBox.text.Length - tag.Length; j <= textBox.text.Length - 1; j++) 
+                            {
+                                TMP_CharacterInfo c = textBox.textInfo.characterInfo[j];
+                                Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
+                            }
                         }
                         else //remove tags from the final display if it's being handled by tag parser
                         {
