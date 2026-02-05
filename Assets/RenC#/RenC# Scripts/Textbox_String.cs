@@ -8,6 +8,9 @@ using RenCSharp.Tags;
 using EXPERIMENTAL;
 namespace RenCSharp
 {
+    /// <summary>
+    /// This is a static class to handle textboxes in a better way. Anyone can reference this, but you'll need some TMP juices.
+    /// </summary>
     public static class Textbox_String
     {
         /// <summary>
@@ -16,7 +19,8 @@ namespace RenCSharp
         /// </summary>
         private static Dictionary<string, string> replacerTexts = new();
         /// <summary>
-        /// Since there's only one textbox open at a time, I hope, doing things with static parameters SHOULD work.
+        /// Since there's only one textbox open at a time, I hope, doing things with static parameters SHOULD work. The seconds it takes for next 
+        /// char to be displayed by RunThroughText().
         /// </summary>
         public static float TextSpeed = 0.1f;
         /// <summary>
