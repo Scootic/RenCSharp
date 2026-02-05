@@ -113,6 +113,83 @@ MonoBehaviour:
     dialog: Trial?
     ScreenActions:
     - rid: 4351267874930426039
+  - speaker: {fileID: 11400000, guid: 19994ba39eb37754eb26e44446994a72, type: 2}
+    dialog: That's right, if you carry yourself with honor, you will become a true
+      Companion.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: (I thought I already was one...)
+    ScreenActions:
+    - rid: 4351267894911041718
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Well, where am I heading, then?
+    ScreenActions:
+    - rid: 4351267894911041719
+  - speaker: {fileID: 11400000, guid: 19994ba39eb37754eb26e44446994a72, type: 2}
+    dialog: Dustman's Cairn.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 19994ba39eb37754eb26e44446994a72, type: 2}
+    dialog: Farkas will be your Shield-Brother on this venture; try not to disappoint
+      or get him killed.
+    ScreenActions:
+    - rid: 4351267894911041720
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: (... whatever.)
+    ScreenActions:
+    - rid: 4351267894911041721
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Natsuki makes her way back upstairs, looking for Farkas.
+    ScreenActions:
+    - rid: 4351267894911041722
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4351267894911041723
+    - rid: 4351267894911041724
+    - rid: 4351267894911041734
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Hey, Farkas-
+    ScreenActions:
+    - rid: 4351267894911041726
+  - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+    dialog: Need something?
+    ScreenActions:
+    - rid: 4351267894911041728
+    - rid: 4351267894911041729
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Uh, yeah...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Skjor said you would be my Shield-Brother for my Trial, or whatever.
+    ScreenActions:
+    - rid: 4351267894911041730
+  - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+    dialog: You're having your trial already?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Yeah we're going to Dustman's Cairn to get a fragment of Wuuthrad...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Wherever that is.
+    ScreenActions:
+    - rid: 4351267894911041731
+  - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+    dialog: Ah, I know where that is. Follow me.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Natsuki does as Farkas says, following his lead.
+    ScreenActions:
+    - rid: 4351267894911041732
+    - rid: 4351267894911041733
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4351267894911041735
+  - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+    dialog: This is the place.
+    ScreenActions:
+    - rid: 4351267894911041736
+    - rid: 4351267894911041737
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -334,3 +411,154 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - inquisitive
+    - rid: 4351267894911041718
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - pout
+    - rid: 4351267894911041719
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - speak
+    - rid: 4351267894911041720
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - scowl
+    - rid: 4351267894911041721
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - closedEyeFrustratedSpeak
+    - rid: 4351267894911041722
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeTime: 0.5
+    - rid: 4351267894911041723
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 19994ba39eb37754eb26e44446994a72, type: 2}
+        fadeTime: 0.5
+    - rid: 4351267894911041724
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 97c464fa57dd7324a839112fb3136665
+          m_SubObjectName: whiterun_jorrvaskrinside
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 4351267894911041726
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - speak
+        - EMPTY
+    - rid: 4351267894911041728
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 4351267894911041729
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - scowl
+    - rid: 4351267894911041730
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - speak
+    - rid: 4351267894911041731
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwayGrin
+    - rid: 4351267894911041732
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeTime: 0.5
+    - rid: 4351267894911041733
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+        fadeTime: 0.5
+    - rid: 4351267894911041734
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 32a9370533f2f4142b3357de14c0bc4f
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 4351267894911041735
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 85b0a82706b80b744a2c0e4958ba6b5b
+          m_SubObjectName: dustmancairn1
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 3
+    - rid: 4351267894911041736
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+        - EMPTY
+    - rid: 4351267894911041737
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
