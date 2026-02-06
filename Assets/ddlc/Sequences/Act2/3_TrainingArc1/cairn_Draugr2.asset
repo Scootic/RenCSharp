@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: cairn_Draugr2
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: c5ce081ffc191354a9563e3d6cfee3ef, type: 2}
+  - {fileID: 11400000, guid: 30e174e1da9400f439ac8f80c26ef3e2, type: 2}
+  - {fileID: 11400000, guid: 6d8f93af818b93243af3c60502d13e79, type: 2}
+  scriptedFlavorTexts:
+  - The draugr swings his greataxe at Natsuki.
+  - The draugr flings his greataxe at Natsuki.
+  - The draugr flings his greataxe at Natsuki with the ferocity of a <i>troll</i>.
+  randomAttacks:
+  - {fileID: 11400000, guid: c5ce081ffc191354a9563e3d6cfee3ef, type: 2}
+  - {fileID: 11400000, guid: 30e174e1da9400f439ac8f80c26ef3e2, type: 2}
+  - {fileID: 11400000, guid: e14fc41afe60f36408f69e13a49f94dd, type: 2}
+  randomFlavorTexts:
+  - The draugr swings his greataxe at Natsuki. Again.
+  - The draugr flings his greataxe at Natsuki. Again.
+  - The draugr flings his greataxe with the ferocity of a <i>troll</i>. Again.
+  maxHealth: 40
+  visualInformation:
+  - {fileID: 21300000, guid: 5fbe2698666b19948826863968762af4, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
+  defeatText: Natsuki and Farkas have slain this draugr.
+  nameText: Draugr
+  blurbText: I'm not like the other girls who aren't like the other girls!
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}

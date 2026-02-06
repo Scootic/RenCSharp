@@ -125,7 +125,7 @@ namespace RenCSharp.Combat
             yield return PlayerTurnRoutine(); //start off with a player turn
             while (fighting)
             {
-                if (WithinScriptedAttacks())
+                if (WithinScriptedAttacks()) //deranged if statement. i'm livid
                 {
                     yield return RunThroughAttack(curEnemy.MySO.ScriptedAttacks[curAttackIndex]);
                 }
@@ -137,7 +137,7 @@ namespace RenCSharp.Combat
             if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
             if (!lostFight) //if we won that there battle
             {
-                Flag_Manager.SetFlag("PlayerCurHealth", Mathf.CeilToInt(curPlayer.CurrentHealth)); //we remember damage taken, for immersion
+                Flag_Manager.SetFlag("PlayerCurHealth", Mathf.CeilToInt(curPlayer.CurrentHealth)); //we remember damage taken, for immersion lmao
                 Event_Bus.TryFireVoidEvent("WonFight");
                 //sequence transition can optionally undo tf out of this shit.
                 Object_Factory.RemoveObject("EnemyObject"); //despawn anemone
@@ -167,7 +167,7 @@ namespace RenCSharp.Combat
             {
                 t += Time.deltaTime;
                 f += Time.deltaTime; //screw it, second timer for spawning projectiles
-                if (f >= ea.SecondsPerProjectileSpawn)
+                if (f >= ea.SecondsPerProjectileSpawn) //go through spawning all the projectiles for the duration of the attack
                 {
                     f = 0;
                     for (int i = 0; i < ea.ProjectilesPerSpawn; i++) //spawn as many projectiles as we want in one go. the intelligent rolling should prevent bs
@@ -186,10 +186,15 @@ namespace RenCSharp.Combat
                             _ => 0 //default scenario of garbage null enum, just return 0 and probably complain too
                         };
 
-                        if (randI >= ea.Indexes.Length) randI = 0; //panic grab 0 index if we suck nuts
+                        if (randI >= ea.Indexes.Length || randI < 0) randI = 0; //panic grab 0 index if we suck nuts
                         prevAttackPosRoll = randI;
 
                         Base_Projectile projToSpawn = ea.ProjectilesThatSpawn[ea.Indexes[randI]];
+                        if(projToSpawn == null)
+                        {
+                            Debug.LogWarning("Null projectile found, moving on to next projectile.");
+                            continue;
+                        }
                         Vector3 spawnPosition = ea.SpawnPoints[randI];
                         Vector3 ogProjDir = ea.InitialDirections[randI];
 
@@ -279,7 +284,6 @@ namespace RenCSharp.Combat
             playerObj.SetActive(true);
             playerObj.transform.SetParent(playerHolder); //guarantee????
             playerObj.transform.localPosition = Vector3.zero; //reset to origin of holder?
-            //if (curAttackIndex == 0 && !passedScript) playerObj.GetComponent<Player_Object>().StartOfFight();
             ea.ControlType.EnterControl();
         }
 
@@ -332,10 +336,10 @@ namespace RenCSharp.Combat
         {
             UI_Element fella = Object_Pooling.Spawn(enemyDamageNumber.gameObject, curEnemy.transform.position, Quaternion.identity).GetComponent<UI_Element>();
             fella.transform.SetParent(curEnemy.transform); //'cause canvas chicanery mostly
-            StartCoroutine(Object_Pooling.DespawnOverTime(fella.gameObject, 2f));
+            StartCoroutine(Object_Pooling.DespawnOverTime(fella.gameObject, 2f)); //despawn damage number over time
             fella.Texts[0].text = "-" + damageTaken.ToString("n1");
-            Vector3 lauchDir = Noise_Helper.SineNoiseVector(Mathf.Deg2Rad * minDeg, Mathf.Deg2Rad * maxDeg);
-            lauchDir.Set(lauchDir.x, lauchDir.y, 0);
+            Vector3 lauchDir = Noise_Helper.SineNoiseVector(Mathf.Deg2Rad * minDeg, Mathf.Deg2Rad * maxDeg); //get a random dir to throw the number
+            lauchDir.Set(lauchDir.x, lauchDir.y, 0); //don't move along z-axis, because canvas be 2D, dummy!
             Rigidbody rb = fella.GetComponent<Rigidbody>();
             rb.linearVelocity = Vector3.zero;
             rb.AddForce(lauchDir * enemyDamageNumberForce, ForceMode.VelocityChange);
@@ -343,14 +347,8 @@ namespace RenCSharp.Combat
 
         private bool WithinScriptedAttacks() //evil bool
         {
-            if (curAttackIndex < curEnemy.MySO.ScriptedAttacks.Length && !passedScript)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            if (curAttackIndex < curEnemy.MySO.ScriptedAttacks.Length && !passedScript) return true;
+            return false;
         }
     }
 }
