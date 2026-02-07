@@ -16,12 +16,13 @@ namespace RenCSharp.Sequences
         [SerializeField, Min(0), Tooltip("Decides how long a sfx should loop for, unused if loop is false. " +
             "Leave at 0 if you want it to be stopped manually." +
             "SFX will be automatically stopped by screen changing if duration is not 0.")] private float loopDuration = 1f;
+        [SerializeField, Range(0f, 1f)] private float baseVolume = 1f;
         private Coroutine stopLoopRoutine;
         private bool is3D => position != Vector3.zero;
         public override void DoShit()
         {
-            if (!is3D) Audio_Manager.AM.Play2DSFX(sfxToPlay);
-            else Audio_Manager.AM.Play3DSFX(sfxToPlay, position, environmental, loop);
+            if (!is3D) Audio_Manager.AM.Play2DSFX(sfxToPlay, 1f, 1f, baseVolume);
+            else Audio_Manager.AM.Play3DSFX(sfxToPlay, position, environmental, loop, baseVolume);
 
             if (loop && loopDuration > 0)
             {
