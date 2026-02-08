@@ -470,7 +470,7 @@ namespace RenCSharp
 
         public void LoadShit(SaveData sd)
         {
-            //wipe the brown poops
+            //stop all deranged nonsense!
             StopAllCoroutines();
             Object_Factory.ScrubDictionary();
 
@@ -495,11 +495,12 @@ namespace RenCSharp
             ov.ReceiveAnimationInformation(std.OverlayAssetKeys, std.OverlaySubobjectKeys,std.OverlaySPF);
             bg.ReceiveAnimationInformation(std.BackgroundAssetKeys, std.BackgroundSubobjectKeys,std.BackgroundSPF);
 
-            Audio_Manager.AM.PlayBGM(std.MusicAssetKey, 1);
+            Audio_Manager.AM.PlayBGM(std.MusicAssetKey, 1); //i doubt it would matter if everything else starts happening before bgm call ends
 
             SequenceAsset = Addressables.LoadAssetAsync<Sequence>(sd.CurrentSequenceAsset);
 
             Debug.Log("Amount of actors we should be loading: " + std.ActiveActors.Count);
+            activeActors = new();
 
             foreach (ActorToken at in std.ActiveActors) //spawn in all of the actors that were chillin' like villain before
             {
@@ -509,6 +510,7 @@ namespace RenCSharp
                 if (ActorSO.Status == AsyncOperationStatus.Succeeded)
                 {
                     Actor guy = (Actor)ActorSO.Result;
+                    activeActors.Add(guy);
                     GameObject go = Object_Factory.SpawnObject(guy.ActorPrefab, guy.ActorName, actorHolder);
                     if (go == null) continue;
                     UI_Element uie = go.GetComponent<UI_Element>();
@@ -520,7 +522,7 @@ namespace RenCSharp
                 }
                 else
                 {
-                    Debug.LogWarning("Failed to load actor: " + at.ActorAsset);
+                    Debug.LogError("Failed to load actor: " + at.ActorAsset);
                     ActorSO.Release();
                 }
             }
