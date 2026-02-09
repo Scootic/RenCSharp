@@ -38,7 +38,7 @@ namespace RenCSharp
             // Update new texture
             tex.Reinitialize(width, height);
             tex.ReadPixels(texR, 0, 0, true);
-            tex.Apply(true); //Remove this if you hate us applying textures for you :)
+            tex.Apply(true); 
         }
 
         // Internal unility that renders the source texture into the RTT - the scaling method itself.
@@ -48,7 +48,6 @@ namespace RenCSharp
             src.filterMode = fmode;
             src.Apply(true);
 
-            //Using RTT for best quality and performance. Thanks, Unity 5
             RenderTexture rtt = new(width, height, 32);
 
             //Set the RTT in order to render to it

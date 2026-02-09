@@ -14,7 +14,7 @@ namespace RenCSharp.Sequences
     [Serializable]
     public abstract class Screen_Event
     {
-        public abstract void DoShit();
+        public abstract void DoEvent();
 
         public override string ToString()
         {

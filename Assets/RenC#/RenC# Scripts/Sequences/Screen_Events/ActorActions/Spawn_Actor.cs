@@ -18,7 +18,7 @@ namespace RenCSharp.Sequences
         [SerializeField] private Vector3 spawnOffset = Vector3.zero;
         [SerializeField, Tooltip("Type in the light gray boxes.")] private string[] visualSpriteIndexes = new string[1];
         private Coroutine fadeIn;
-        public override void DoShit()
+        public override void DoEvent()
         {
             //don't spawn another of an actor that already exists. save/load moment?
             if (Object_Factory.TryGetObject(actorToSpawn.ActorName, out GameObject go)) return;

@@ -10,7 +10,7 @@ namespace RenCSharp.Sequences
         [SerializeField] private AudioClip clipToStop;
         [SerializeField] private bool is3D = false;
 
-        public override void DoShit()
+        public override void DoEvent()
         {
             if (is3D) Audio_Manager.AM.Stop3DSFX(clipToStop);
             else Audio_Manager.AM.Stop2DSFX(clipToStop);

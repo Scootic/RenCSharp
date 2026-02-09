@@ -55,7 +55,7 @@ namespace RenCSharp
             } else Debug.LogWarning("No active gameobject of name: " + name);
         }
         /// <summary>
-        /// Very dangerous. Only should be used OnDisable for SM or sum shit;
+        /// Very dangerous. Only should be used OnDisable for SM or sum thang;
         /// </summary>
         public static void ScrubDictionary()
         {

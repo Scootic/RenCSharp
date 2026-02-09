@@ -20,18 +20,18 @@ namespace RenCSharp
 
         public override string ToString()
         {
-            string shit = "";
+            string stuff = "";
 
-            shit += $"Position: ({XPos}, {YPos}, {ZPos})";
-            shit += $"\nActor Asset: {ActorAsset}";
-            shit += $"\nVisual Indexes: ";
+            stuff += $"Position: ({XPos}, {YPos}, {ZPos})";
+            stuff += $"\nActor Asset: {ActorAsset}";
+            stuff += $"\nVisual Indexes: ";
 
             foreach(int i in VisualIndexes)
             {
-                shit += $"{i}, ";
+                stuff += $"{i}, ";
             }
 
-            return shit;
+            return stuff;
         }
     }
 }

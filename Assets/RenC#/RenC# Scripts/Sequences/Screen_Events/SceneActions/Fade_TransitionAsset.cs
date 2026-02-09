@@ -18,7 +18,7 @@ namespace RenCSharp.Sequences
         public int SetFadeTransition { set { fadeTransition = value; } }
         public float SetFadeDuration { set { fadeDuration = value; } }
 
-        public override void DoShit()
+        public override void DoEvent()
         {
             if (GameObject.FindGameObjectWithTag("Fader").TryGetComponent(out Animator fader)) //find the fader
             {

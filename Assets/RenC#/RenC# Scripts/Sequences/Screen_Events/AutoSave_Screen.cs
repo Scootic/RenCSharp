@@ -5,7 +5,7 @@ namespace RenCSharp.Sequences
     public class AutoSave_Screen : Screen_Event
     {
         [SerializeField] private string fileName = "AutoSave";
-        public override void DoShit()
+        public override void DoEvent()
         {
             Debug.Log("Autosaving game!");
             Script_Manager.ProgressScreenEvent += PanicStop;
@@ -13,7 +13,7 @@ namespace RenCSharp.Sequences
 
         private void PanicStop()
         {
-            Script_Manager.SM.SaveShit(fileName, true);
+            Script_Manager.SM.SaveGameData(fileName, true);
             Script_Manager.ProgressScreenEvent -= PanicStop;
         }
 

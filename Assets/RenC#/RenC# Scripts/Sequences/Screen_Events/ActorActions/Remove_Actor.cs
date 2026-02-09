@@ -16,7 +16,7 @@ namespace RenCSharp.Sequences
         [SerializeField, Tooltip("How long it takes for the actor to fade out."), Min(0f)] private float fadeTime = 0.5f;
         private Coroutine fadeOut;
         private GameObject fellaToRemove;
-        public override void DoShit()
+        public override void DoEvent()
         {
             if (!Object_Factory.TryGetObject(actorToRemove.ActorName, out fellaToRemove)) return;
             Script_Manager.SM.activeActors.Remove(actorToRemove);

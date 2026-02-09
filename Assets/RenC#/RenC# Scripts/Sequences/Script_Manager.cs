@@ -139,7 +139,7 @@ namespace RenCSharp
             Sequences.Screen screen = currentSequence.Screens[0];
             foreach (Screen_Event se in screen.ScreenActions)
             {
-                se.DoShit();
+                se.DoEvent();
             }
             textRoutine = StartCoroutine(RunThroughScreen(screen));
         }
@@ -189,13 +189,13 @@ namespace RenCSharp
                     curScreen = currentSequence.Screens[curScreenIndex];
                     foreach (Screen_Event se in curScreen.ScreenActions) //do all screen events BEFORE processing any dialog. does not care if SM is paused or not.
                     {
-                        se.DoShit();
+                        se.DoEvent();
                     }
                     textRoutine = StartCoroutine(RunThroughScreen(curScreen)); 
                 }
                 else if (curScreenIndex > currentSequence.Screens.Length - 1)//final screen of the sequence
                 {
-                    if (currentSequence.PlayerChoices.Length == 0)//if there are no valid next sequences, sum shit gone wrong and it's probably end of game
+                    if (currentSequence.PlayerChoices.Length == 0)//if there are no valid next sequences, sum thing gone wrong and it's probably end of game
                     {
                         Debug.LogWarning("No next sequence, game over?");
                         EndOfAllSequencesEvent?.Invoke();
@@ -388,12 +388,12 @@ namespace RenCSharp
             curScreen = s;
             foreach(Screen_Event se in curScreen.ScreenActions) //fire the events of our newly acquired screen
             {
-                se.DoShit();
+                se.DoEvent();
             }
         }
         #endregion
         #region SaveLoadHandling
-        public void SaveShit(string saveFileName, bool auto = false)
+        public void SaveGameData(string saveFileName, bool auto = false)
         {
             if (saving) return; //don't interrupt our save, good god!
             if (saveFileName == null) saveFileName = "SaveData"; //default to prevent extreme BS

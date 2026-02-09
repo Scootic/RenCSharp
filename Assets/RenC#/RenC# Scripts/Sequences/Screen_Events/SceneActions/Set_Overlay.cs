@@ -25,7 +25,7 @@ namespace RenCSharp.Sequences
         public bool GetEndWithScreen => endWithScreen;
         public float GetSecondsPerFrame => secondsPerFrame;
 
-        public override void DoShit()
+        public override void DoEvent()
         {
             if (!Object_Factory.TryGetObject("Overlay", out GameObject go)) return;
             overlay = go.GetComponent<Animated_Image_Handler>();
