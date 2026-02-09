@@ -72,7 +72,7 @@ namespace RenCSharp.Tags
                 foreach(TMP_CharacterInfo c in affectedSineChars)
                 {
                     int index = c.vertexIndex;
-                    Vector3 offset = SineWobble(Time.time * speed + c.index * Mathf.PI * 0.5f); //offset bastards by partial rotations of unit kirkle
+                    Vector3 offset = SineWobble(Time.time * speed + c.index * Mathf.PI * 0.5f); //offset guys by partial rotations of unit kirkle
                     vertices[index] += offset;
                     vertices[index + 1] += offset;
                     vertices[index + 2] += offset;

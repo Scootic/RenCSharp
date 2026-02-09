@@ -5,7 +5,7 @@ namespace EXPERIMENTAL
 {
     /// <summary>
     /// Bastardo Omnibus. contains dictionaries of every flavor of action you'd probably need.
-    /// Instead of spaghetti dependencies on managers in some jerkoff AssDef, you just tell this 
+    /// Instead of spaghetti dependencies on managers in some stupid AssDef, you just tell this 
     /// guy about it.
     /// </summary>
     public static class Event_Bus 
@@ -18,7 +18,7 @@ namespace EXPERIMENTAL
         private static Dictionary<string, Action<object>> singleObjEvents = new();
         private static Dictionary<string, Action<object, object>> doubleObjEvents = new();
         /// <summary>
-        /// Dangerous as stuff. Removes ALL actions from ALL dictionaries. Important because these bastards are static. Gc moment.
+        /// Dangerous as stuff. Removes ALL actions from ALL dictionaries. Important because these guys are static. Gc moment.
         /// </summary>
         public static void PurgeEvents()
         {
