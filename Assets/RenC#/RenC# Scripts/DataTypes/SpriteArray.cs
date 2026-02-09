@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace RenCSharp
 {
     /// <summary>
-    /// A wrapper for actors to have a '2D' sprite array in inspector. Thx Obama. Not even an array anymore. This bastard is
+    /// A wrapper for actors to have a '2D' sprite array in inspector. Thx Obama. Not even an array anymore. This guy is
     /// an overglorified dictionary.
     /// </summary>
     [Serializable]
