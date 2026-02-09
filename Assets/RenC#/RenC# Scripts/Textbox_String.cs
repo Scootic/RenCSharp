@@ -45,7 +45,7 @@ namespace RenCSharp
             string amended = endText;
             TagParser.SetCurrentTextMesh = textBox;
 
-            amended = ReplaceableText(amended);
+            amended = ReplaceableText(amended); //this can potentially fire before the dictionary is updated with new information.
             amended = TagParser.CleanOutFlags(amended);
 
             textBox.text = amended; //insert text that will be shown over time

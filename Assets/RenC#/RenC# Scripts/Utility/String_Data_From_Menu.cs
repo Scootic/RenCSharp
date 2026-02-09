@@ -20,10 +20,10 @@ namespace RenCSharp
             passValue = s;
         }
 
-        // Update is called once per frame
+        //EVILL!
         void Update()
         {
-            if(Event_Bus.TryFireStringEvent(eventName, passValue)) Destroy(gameObject);
+            if (Event_Bus.TryFireStringEvent(eventName, passValue)) Destroy(gameObject);
         }
     }
 }
