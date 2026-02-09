@@ -20,6 +20,7 @@ namespace RenCSharp.Tags
             if(float.TryParse(speedValue, out float speed))
             {
                 Event_Bus.AddVoidEvent("LoadedSave", PanicStop);
+                Event_Bus.AddVoidEvent("ProgressScreen", PanicStop);
                 Event_Bus.AddSingleObjEvent("TextboxNewChar", AddCharToSineList);
                 routines.Add(TagRoutineHandler.TRH.StartCoroutine(SineTextRoutine(text, speed)));
             }
@@ -47,6 +48,11 @@ namespace RenCSharp.Tags
                 fella -= PanicStop;
             }
 
+            if(Event_Bus.TryGetVoidEvent("ProgressScreen", out Action goober))
+            {
+                goober -= PanicStop;
+            }
+
             affectedSineChars = new();
         }
 
@@ -58,7 +64,7 @@ namespace RenCSharp.Tags
         private static IEnumerator SineTextRoutine(TextMeshProUGUI text, float speed)
         {
             Mesh mesh = text.mesh;
-
+            string ogSTR = text.text;
             while (text.text.Length >= 1) //since new texboxes make the text itself become empty, it should stop when ever screen progresses.
             {
                 text.ForceMeshUpdate();

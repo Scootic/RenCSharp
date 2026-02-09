@@ -21,8 +21,10 @@ namespace RenCSharp.Tags
         /// Removes any tag parser tags from a string. Ideally also fires those tag's affects, so that any expected behavior still occurs.
         /// </summary>
         /// <param name="sToClean">String you want scrubbed.</param>
+        /// <param name="fire">Decides whether or not to fire the effects of any found valid tagparser tag.</param>
+        /// <param name="includeBuiltInTags">Decides whether or not to include any non-tagparser tags in the returned string. Ie. italics tag, etc. </param>>
         /// <returns>The string minus any TagParser valid tags.</returns>
-        public static string CleanOutTags(string sToClean, bool fire = true)
+        public static string CleanOutTags(string sToClean, bool fire = true, bool includeBuiltInTags = true)
         {
             string sToReturn = "";
 
@@ -47,12 +49,81 @@ namespace RenCSharp.Tags
 
                     possibleTag += chars[i];
                     
-                    if(!Parse(possibleTag, fire)) sToReturn += possibleTag; 
+                    if(!Parse(possibleTag, fire) && includeBuiltInTags) sToReturn += possibleTag; 
                 }
             }
 
             return sToReturn;
         }
+
+        /// <summary>
+        /// Only exists so that the stupid hidden tags don't interfere with tagparser chicanery!
+        /// </summary>
+        /// <param name="s">The string whose length we want trimmed.</param>
+        /// <returns>The length of the string, minus any character associated with a built-in tag.</returns>
+        public static int StringLengthExcludeBuiltinTags(string s)
+        {
+            string lengthToReturn = "";
+            char[] chars = s.ToCharArray();
+
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (chars[i] != '<') lengthToReturn += chars[i];
+                else
+                {
+                    string possibleTag = "";
+                    while (chars[i] != '>')
+                    {
+                        if (i >= chars.Length)
+                        {
+                            Debug.LogWarning("The tag parser's string length check found a tag that never closes. Scary AF! You're getting a -1 for this.");
+                            return -1;
+                        }
+                        possibleTag += chars[i];
+                        i++;
+                    }
+                    possibleTag += chars[i];
+                    if (Parse(possibleTag, false)) lengthToReturn += possibleTag;
+                }
+            }
+
+            return lengthToReturn.Length;
+        }
+
+        public static int StringIndexExcludeBuiltinTags(string s, int index)
+        {
+            int indexToReturn = index;
+            char[] chars = s.ToCharArray();
+
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (chars[i] == '<')
+                {
+                    string possibleTag = "";
+                    while (chars[i] != '>')
+                    {
+                        if (i >= chars.Length)
+                        {
+                            Debug.LogWarning("The tag parser's string index check found a tag that never closes. Scary AF! You're getting the og index for this.");
+                            return index;
+                        }
+                        possibleTag += chars[i];
+                        i++;
+                    }
+                    possibleTag += chars[i];
+                    if (!Parse(possibleTag, false)) indexToReturn -= possibleTag.Length;
+                }
+            }
+
+            if (indexToReturn < s.Length)
+            {
+                return indexToReturn;
+            }
+
+            Debug.LogWarning("Your new index would be smaller than 0 if passed through! Returning og index.");
+            return index;
+        }
+
         /// <summary>
         /// Removes any flag pattern ( [flagName] ) from a string, replacing all [flagName] instances with the number assigned to the flag instead.
         /// </summary>

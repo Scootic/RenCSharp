@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Text.RegularExpressions;
+using System;
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
@@ -7,24 +8,35 @@ using RenCSharp.Tags;
 using EXPERIMENTAL;
 namespace RenCSharp
 {
+    /// <summary>
+    /// This is a static class to handle textboxes in a better way. Anyone can reference this, but you'll need some TMP juices.
+    /// </summary>
     public static class Textbox_String
     {
+        /// <summary>
+        /// Stupid dumb dictionary that contains key strings that we want replaced by value strings. Ie. replacing any instance of {mc} with the
+        /// inputted name given by player. Used by the RunThroughText coroutine
+        /// </summary>
         private static Dictionary<string, string> replacerTexts = new();
         /// <summary>
-        /// Since there's only one textbox open at a time, I hope, doing things with static parameters SHOULD work.
+        /// Since there's only one textbox open at a time, I hope, doing things with static parameters SHOULD work. The seconds it takes for next 
+        /// char to be displayed by RunThroughText().
         /// </summary>
         public static float TextSpeed = 0.1f;
         /// <summary>
         /// Makes the coroutine skip past the filling in char by char and just displays final text
         /// </summary>
         public static bool JumpToEndOfTextbox = false;
+        /// <summary>
+        /// Makes sure the coroutine will idle if the player is paused or something else is going on, like a fade transition.
+        /// </summary>
         private static bool pausedTextbox = false;
         /// <summary>
         /// Does animated text for a textbox, one character at a time. can be forced to fill in every other character by setting
         /// JumpToEndOfTextbox to true. Idles on a character if pausedTextbox is true.
         /// </summary>
         /// <param name="textBox">The text area being populated by the text.</param>
-        /// <param name="endText">What the text should look like when done.</param>
+        /// <param name="endText">The stupid dumb string that the textbox will be filled with</param>
         /// <returns>Peace in our time.</returns>
         public static IEnumerator RunThroughText(TextMeshProUGUI textBox, string endText)
         {
@@ -33,18 +45,16 @@ namespace RenCSharp
             string amended = endText;
             TagParser.SetCurrentTextMesh = textBox;
 
-            foreach(KeyValuePair<string,string> kvp in replacerTexts) //by the end of this, replace generic guys like {mc} with the actual player's name
-            {
-                //Debug.Log("Doing a stupid replacering!");
-                amended = Regex.Replace(amended, kvp.Key, kvp.Value);
-            }
+            amended = ReplaceableText(amended);
             amended = TagParser.CleanOutFlags(amended);
-            string tagless = TagParser.CleanOutTags(amended, false);
-            char[] dialogchars = amended.ToCharArray();
-            textBox.text = ""; //empty box before repopulating below
+
+            textBox.text = amended; //insert text that will be shown over time
+
+            textBox.maxVisibleCharacters = 0;
+            textBox.ForceMeshUpdate();
             JumpToEndOfTextbox = false;
 
-            while (dialogchars.Length > textBox.text.Length && tagless.Length > textBox.text.Length && !JumpToEndOfTextbox)
+            while (i < textBox.text.Length && !JumpToEndOfTextbox) //while running through a textbox (player hasn't done nothing)
             {
                 //only run through text if the SM is unpaused
                 while (pausedTextbox)
@@ -54,35 +64,37 @@ namespace RenCSharp
 
                 t += Time.deltaTime;
                 //add one character at a time, depending on text speed
-                if (t >= TextSpeed && i < dialogchars.Length)
+                if (t >= TextSpeed)
                 {
                     t = 0;
-
-                    if (dialogchars[i] == '<') //we've found a rich text tag
+                    if (textBox.text[i] == '<') //we've found a rich text tag
                     {
-                        string tag = "" + dialogchars[i]; //collect all the chars that make up our tag
-                        while (dialogchars[i] != '>')
+                        string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
+                        while (textBox.text[i] != '>')
                         {
                             i++;
-                            tag += dialogchars[i];
+                            tag += textBox.text[i];
                         }
-                        i++;
 
-                        if (!TagParser.Parse(tag)) //if it's not a tagparser tag, it's probably unity valid. add that boy back in.
+                        if (TagParser.Parse(tag))
                         {
-                            textBox.text += tag;
-                        }
-                        else //remove tags from the final display if it's being handled by tag parser
-                        {
-                            amended = Regex.Replace(amended, tag, "");
+                            string s = Regex.Replace(textBox.text, tag, "");
+                            textBox.text = s;
+                            textBox.ForceMeshUpdate();
+                            i -= tag.Length - 1; //??
                         }
                     }
                     else //just add the char and move on if it's a regular ah character
                     {
-                        textBox.text += dialogchars[i];
+                        textBox.maxVisibleCharacters++;
                         textBox.ForceMeshUpdate();
-                        TMP_CharacterInfo c = textBox.textInfo.characterInfo[textBox.text.Length - 1];
-                        Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
+                        //only care about passing in a stupid char for the event if event actually exists
+                        if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
+                        {
+                            int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i);
+                            TMP_CharacterInfo c = textBox.textInfo.characterInfo[goodI];
+                            Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
+                        }
                         i++;
                     }
                 }
@@ -91,7 +103,56 @@ namespace RenCSharp
             }
 
             JumpToEndOfTextbox = true;
-            textBox.text = TagParser.CleanOutTags(amended);
+
+            while(i < textBox.text.Length) //just run through everything in a single frame if player skipped ahead.
+            {
+                if (textBox.text[i] == '<') //we've found a rich text tag
+                {
+                    string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
+                    while (textBox.text[i] != '>')
+                    {
+                        i++;
+                        tag += textBox.text[i];
+                    }
+
+                    if (TagParser.Parse(tag))
+                    {
+                        string s = Regex.Replace(textBox.text, tag, "");
+                        textBox.text = s;
+                        i -= tag.Length - 1; //??
+                    }
+                }
+                else //just add the char and move on if it's a regular ah character
+                {
+                    textBox.maxVisibleCharacters++;
+                    //only care about passing in a stupid char for the event if event actually exists
+                    if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
+                    {
+                        int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i);
+                        TMP_CharacterInfo c = textBox.textInfo.characterInfo[goodI];
+                        Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
+                    }
+                    i++;
+                }
+            }
+            textBox.ForceMeshUpdate();
+            textBox.maxVisibleCharacters = textBox.text.Length; //please show everything if we aren't already!
+        }
+        /// <summary>
+        /// Goes through a string, and replaces all instances of keys in the replaceabletexts dictionary with their values.
+        /// Ie. Replace {mc} with the name stored in savedata, etc.
+        /// </summary>
+        /// <param name="sInput">The text you want parsed.</param>
+        /// <returns>The input with all replaceable texts replaced.</returns>
+        public static string ReplaceableText(string sInput)
+        {
+            string sOutput = sInput;
+            foreach (KeyValuePair<string, string> kvp in replacerTexts) //by the end of this, replace generic guys like {mc} with the actual player's name
+            {
+                //Debug.Log("Doing a stupid replacering!");
+                sOutput = Regex.Replace(sOutput, kvp.Key, kvp.Value);
+            }
+            return sOutput;
         }
         /// <summary>
         /// Stops any textbox from displaying new chars, hover on current string instead.

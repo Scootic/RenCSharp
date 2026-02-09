@@ -260,7 +260,22 @@ namespace RenCSharp
         /// <returns></returns>
         public async Awaitable PlayBGM(AssetReference musicAsset, float fadeTime =5f, bool isLooping = true, bool setSameTime = false)
         {
+            if (musicAsset.IsValid())
+            {
+                AudioClip clip = musicAsset.OperationHandle.Result as AudioClip;
+                songAssetGUID = musicAsset.AssetGUID;
+
+                if (enteringBGM)
+                {
+                    if (newBGM != null) Destroy(newBGM);
+                    StopCoroutine(bgmRoutine);
+                }
+                bgmRoutine = StartCoroutine(PlayBGMPogAddressable(clip, fadeTime, isLooping, setSameTime));
+                return;
+            }
+
             AsyncOperationHandle songHandle = musicAsset.LoadAssetAsync<AudioClip>();
+
             await songHandle.Task;
 
             if(songHandle.Status == AsyncOperationStatus.Failed) 

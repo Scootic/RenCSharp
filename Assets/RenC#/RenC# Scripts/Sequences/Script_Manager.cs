@@ -9,7 +9,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.UI;
+using UnityEngine.UI; //:)
 namespace RenCSharp
 {
     /// <summary>
@@ -91,7 +91,7 @@ namespace RenCSharp
             textSpeed = PlayerPrefs.GetFloat("TextSpeed");
             lingerTime = PlayerPrefs.GetFloat("LingerTime");
             Textbox_String.TextSpeed = textSpeed;
-
+            //the event bus!
             Event_Bus.AddFloatEvent("TextSpeed", TextSpeed);
             Event_Bus.AddFloatEvent("LingerTime", TextAutoHang);
             Event_Bus.AddVoidEvent("PauseSequence", PauseSequence);
@@ -178,6 +178,7 @@ namespace RenCSharp
             {
                 Debug.Log("Moving to next screen!");
                 ProgressScreenEvent?.Invoke(); //exists to make any in-progress things (like a screen event) complete before moving on
+                Event_Bus.TryFireVoidEvent("ProgressScreen");
                 ProgressScreenEvent = null; //wipe all delegates from the action before continuing
                 curScreenIndex++;
                 Event_Bus.TryFireStringEvent("DebugSequence", "Sequence '" + currentSequence.name + "' | Index: " + curScreenIndex);
@@ -242,6 +243,11 @@ namespace RenCSharp
             int amountOfButtons = (int)arg1;
             List<string> buttonTexts = (List<string>)arg2;
             PauseSequence();
+            for (int i = 0; i < buttonTexts.Count; i++)
+            {
+                buttonTexts[i] = Textbox_String.ReplaceableText(buttonTexts[i]);
+            }
+
             for (int i = 0; i < amountOfButtons; i++)
             {
                 Button b = Object_Factory.SpawnObject(playerchoicePrefab.gameObject, "Button"+i, playerchoiceHolder).GetComponent<Button>();
@@ -464,7 +470,7 @@ namespace RenCSharp
 
         public void LoadShit(SaveData sd)
         {
-            //wipe the brown poops
+            //stop all deranged nonsense!
             StopAllCoroutines();
             Object_Factory.ScrubDictionary();
 
@@ -489,11 +495,12 @@ namespace RenCSharp
             ov.ReceiveAnimationInformation(std.OverlayAssetKeys, std.OverlaySubobjectKeys,std.OverlaySPF);
             bg.ReceiveAnimationInformation(std.BackgroundAssetKeys, std.BackgroundSubobjectKeys,std.BackgroundSPF);
 
-            Audio_Manager.AM.PlayBGM(std.MusicAssetKey, 1);
+            Audio_Manager.AM.PlayBGM(std.MusicAssetKey, 1); //i doubt it would matter if everything else starts happening before bgm call ends
 
             SequenceAsset = Addressables.LoadAssetAsync<Sequence>(sd.CurrentSequenceAsset);
 
             Debug.Log("Amount of actors we should be loading: " + std.ActiveActors.Count);
+            activeActors = new();
 
             foreach (ActorToken at in std.ActiveActors) //spawn in all of the actors that were chillin' like villain before
             {
@@ -503,6 +510,7 @@ namespace RenCSharp
                 if (ActorSO.Status == AsyncOperationStatus.Succeeded)
                 {
                     Actor guy = (Actor)ActorSO.Result;
+                    activeActors.Add(guy);
                     GameObject go = Object_Factory.SpawnObject(guy.ActorPrefab, guy.ActorName, actorHolder);
                     if (go == null) continue;
                     UI_Element uie = go.GetComponent<UI_Element>();
@@ -514,7 +522,7 @@ namespace RenCSharp
                 }
                 else
                 {
-                    Debug.LogWarning("Failed to load actor: " + at.ActorAsset);
+                    Debug.LogError("Failed to load actor: " + at.ActorAsset);
                     ActorSO.Release();
                 }
             }
