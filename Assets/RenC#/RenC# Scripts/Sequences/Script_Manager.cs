@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI; //:)
+using RenCSharp.Tags;
 namespace RenCSharp
 {
     /// <summary>
@@ -324,7 +325,8 @@ namespace RenCSharp
                 yield break;
             }
             //if we have actual text, log that in the history
-            else UpdateHistory(curActor != null ? curActor.ActorName == playerTag ? playerName : curActor.ActorName : "Internal Narration", amended);
+            else UpdateHistory(curActor != null ? curActor.ActorName == playerTag ? playerName : curActor.ActorName : "Internal Narration", 
+                TagParser.CleanOutTags(amended, false));
             //start adding text to the box, character by character
             yield return Textbox_String.RunThroughText(dialogField, amended);
 
@@ -633,9 +635,9 @@ namespace RenCSharp
         private void SetPlayerName(string s)
         {
             if (s != string.Empty) 
-            { 
+            {
                 playerName = s;
-                Textbox_String.AddReplacableText(playerTag, playerName);
+                Textbox_String.AddReplacableText(playerTag, s);
             }
         }
         #endregion
