@@ -26,4 +26,11 @@ the string through. Is currently used to input a custom player name when startin
 Unity_Event_Read_Persistent_Flag fires a Unity Event based on whether or not a persistent flag meets the
 conditions set by a designer. The checking method is public, so anyone could fire it, but it also includes
 a bool to see if it should fire OnEnable().
+
+UI_Element:
+
+The UI Element is a helper class that just stores Images, Buttons, and TMProTexts so that other scripts don't
+have to do to many .GetComponent() calls. Basically, you set up a prefab, assign the elements in UI_Element, and
+then you can safely assume that you can set whatever you want based on an index. See Actor_Expression for an
+example of how this works.
 ------------------------------------------------------------------------------------------------------------------

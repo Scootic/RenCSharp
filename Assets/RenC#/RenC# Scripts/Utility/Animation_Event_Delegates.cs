@@ -24,7 +24,7 @@ namespace RenCSharp
         {
             for (int i = 0; i < AnimationDelegates.Length; i++)
             {
-                AnimationDelegates[i] = null; //scrub the events so that there's no repeat bullshit
+                AnimationDelegates[i] = null; //scrub the events so that there's no repeat bullstuff
             }
         }
     }

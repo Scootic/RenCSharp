@@ -86,7 +86,7 @@ namespace RenCSharp.Sequences
             //{
             //    for (int i = 0; i < sprindexArray.arraySize; i++)
             //    {
-            //        if (i >= actorToAlter.Visuals.Length) break; //don't do shit if there's no visual there
+            //        if (i >= actorToAlter.Visuals.Length) break; //don't do stuff if there's no visual there
             //        string[] src = actorToAlter.Visuals[i].visualIDs.ToArray();
             //        Rect justAfterArray = new Rect(sprinRect.x, sprinRect.y + (EditorGUIUtility.singleLineHeight * (i + 1) + EditorGUIUtility.standardVerticalSpacing * (i + 1)), newR.width, EditorGUIUtility.singleLineHeight);
                     //string log = "Exising IDs: ";

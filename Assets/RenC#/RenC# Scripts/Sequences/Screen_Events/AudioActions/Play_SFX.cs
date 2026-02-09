@@ -19,7 +19,7 @@ namespace RenCSharp.Sequences
         [SerializeField, Range(0f, 1f)] private float baseVolume = 1f;
         private Coroutine stopLoopRoutine;
         private bool is3D => position != Vector3.zero;
-        public override void DoShit()
+        public override void DoEvent()
         {
             if (!is3D) Audio_Manager.AM.Play2DSFX(sfxToPlay, 1f, 1f, baseVolume);
             else Audio_Manager.AM.Play3DSFX(sfxToPlay, position, environmental, loop, baseVolume);

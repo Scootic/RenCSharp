@@ -12,7 +12,7 @@ Creating Custom Screen Events:
 
 Whenever you create a custom Screen_Event, make sure that it is both a child of the Screen_Event class, and that
 it is within the Screen_Events folder, or a subfolder. When inheriting from Screen_Event, you must create a public
-override method for DoShit() that will be fired by the Script Manager.
+override method for DoEvent() that will be fired by the Script Manager.
 
 It is important to include your custom script somewhere in this folder because of how the dropdown menu operates.
 It can only give options that are within the Assembly housing Screen_Event, which is Sequences. Additionally,

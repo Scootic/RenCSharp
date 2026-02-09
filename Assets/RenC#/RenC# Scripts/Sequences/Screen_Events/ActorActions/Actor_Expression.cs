@@ -12,7 +12,7 @@ namespace RenCSharp.Sequences
         [SerializeField] private Actor actorToAlter;
         [SerializeField,Tooltip("Reference the strings you put in the actor SO. Empty to skip layer." +
             "Type in the light gray boxes for auto-fill.")] private string[] visualSpriteIndexes = new string[1];
-        public override void DoShit()
+        public override void DoEvent()
         {
             if (Object_Factory.TryGetObject(actorToAlter.ActorName, out GameObject spawnt))
             {

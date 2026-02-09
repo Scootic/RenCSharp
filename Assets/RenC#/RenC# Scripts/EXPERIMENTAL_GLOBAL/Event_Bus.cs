@@ -18,7 +18,7 @@ namespace EXPERIMENTAL
         private static Dictionary<string, Action<object>> singleObjEvents = new();
         private static Dictionary<string, Action<object, object>> doubleObjEvents = new();
         /// <summary>
-        /// Dangerous as shit. Removes ALL actions from ALL dictionaries. Important because these bastards are static. Gc moment.
+        /// Dangerous as stuff. Removes ALL actions from ALL dictionaries. Important because these bastards are static. Gc moment.
         /// </summary>
         public static void PurgeEvents()
         {

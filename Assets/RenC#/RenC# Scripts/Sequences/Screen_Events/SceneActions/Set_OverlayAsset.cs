@@ -25,7 +25,7 @@ namespace RenCSharp.Sequences
         public float SetSecondsPerFrame { set { secondsPerFrame = value; } }
         public List<AssetReferenceSprite> SetImagesToSet { set { imagesToSet = value; } }
 
-        public override void DoShit()
+        public override void DoEvent()
         {
             if (!Object_Factory.TryGetObject("Overlay", out GameObject go)) return;
 

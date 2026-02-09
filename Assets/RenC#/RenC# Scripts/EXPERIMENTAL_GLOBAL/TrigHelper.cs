@@ -11,7 +11,7 @@ namespace EXPERIMENTAL
         public const float TAU = Mathf.PI * 2;
 
         /// <summary>
-        /// Do trig bullshit to get a quaternion out of a vec2. For bottom facing sprite type things. (projectiles).
+        /// Do trig bullstuff to get a quaternion out of a vec2. For bottom facing sprite type things. (projectiles).
         /// </summary>
         /// <param name="v2">Vector2 for relative dir pos</param>
         /// <returns>A quaternion with a euler angle z being relative and 0 x + 0 y.</returns>
@@ -23,7 +23,7 @@ namespace EXPERIMENTAL
             return Quaternion.Euler(euler);
         }
         /// <summary>
-        /// Do trig bullshit to get a quaternion out of a vec3. For bottom facing sprite type things. (projectiles).
+        /// Do trig bullstuff to get a quaternion out of a vec3. For bottom facing sprite type things. (projectiles).
         /// </summary>
         /// <param name="v3">Vector3 for relative dir pos</param>
         /// <returns>A quaternion with a euler angle z being relative and 0 x + 0 y. If V3 is 0, return quat.identity</returns>

@@ -11,7 +11,7 @@ namespace RenCSharp.Sequences
         [SerializeField] private AudioClip musicTrack;
         [SerializeField,Min(0), Tooltip("0 for no fade out.")] private float fadeTime = 1f;
         [SerializeField, Tooltip("Sets the new audio track to start at current track's duration.")] private bool setToSameTime = false;
-        public override void DoShit()
+        public override void DoEvent()
         {
             Audio_Manager.AM.PlayBGM(musicTrack, fadeTime, true, setToSameTime);
         }

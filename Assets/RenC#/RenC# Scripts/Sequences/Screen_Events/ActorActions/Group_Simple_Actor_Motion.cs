@@ -18,7 +18,7 @@ namespace RenCSharp.Sequences
         private Coroutine motion;
         private bool valid;
 
-        public override void DoShit()
+        public override void DoEvent()
         {
             actorObjs = new();
             foreach(Actor a in targets)

@@ -109,13 +109,13 @@ namespace RenCSharp.Menus
         public void SetFileName(string s)
         {
             Regex.Replace(s, @"[^a-zA-Z0-9]+", ""); //get rid of any special characters
-            if (s == string.Empty) s = "SaveData"; //if, for some bumfuck reason, you only have special characters, make it default back to SaveData;
+            if (s == string.Empty) s = "SaveData"; //if, for some bumguck reason, you only have special characters, make it default back to SaveData;
             fileName = s;
         }
 
         public void Save()
         {
-            Script_Manager.SM.SaveShit(fileName);
+            Script_Manager.SM.SaveGameData(fileName);
             OnMenuClose();
             OnMenuOpen();
         }

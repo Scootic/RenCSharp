@@ -20,7 +20,7 @@ namespace RenCSharp.Sequences
         private Vector3 ogPos, desPos;
         protected Coroutine motion;
         protected bool valid;
-        public override void DoShit()
+        public override void DoEvent()
         {
             if (Object_Factory.TryGetObject(target.ActorName, out actorObj))
             {

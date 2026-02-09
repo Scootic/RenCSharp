@@ -15,7 +15,7 @@ namespace RenCSharp.Sequences
         [SerializeField] private bool increment;
         [SerializeField] private bool persistent;
 
-        public override void DoShit()
+        public override void DoEvent()
         {
             //spawn X buttons, and give them text corresponding to buttonNames
             Event_Bus.TryFireDoubleObjEvent("SpawnPlayerButtons", (object)buttonNames.Count, (object)buttonNames);
