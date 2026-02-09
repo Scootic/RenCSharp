@@ -119,14 +119,12 @@ namespace RenCSharp
                     {
                         string s = Regex.Replace(textBox.text, tag, "");
                         textBox.text = s;
-                        textBox.ForceMeshUpdate();
                         i -= tag.Length - 1; //??
                     }
                 }
                 else //just add the char and move on if it's a regular ah character
                 {
                     textBox.maxVisibleCharacters++;
-                    textBox.ForceMeshUpdate();
                     //only care about passing in a stupid char for the event if event actually exists
                     if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                     {
@@ -137,6 +135,7 @@ namespace RenCSharp
                     i++;
                 }
             }
+            textBox.ForceMeshUpdate();
             textBox.maxVisibleCharacters = textBox.text.Length; //please show everything if we aren't already!
         }
         /// <summary>
