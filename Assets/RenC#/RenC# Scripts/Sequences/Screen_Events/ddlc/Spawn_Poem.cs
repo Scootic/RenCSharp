@@ -7,7 +7,7 @@ namespace RenCSharp.Sequences
         [SerializeField] private Poem poemToSpawn;
         [SerializeField] private GameObject poemGOFab;
         private bool here;
-        public override void DoShit()
+        public override void DoEvent()
         {
             here = false;
             SpawnGuy();

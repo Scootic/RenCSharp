@@ -9,7 +9,7 @@ namespace RenCSharp.Sequences
     public class Remove_Poem : Screen_Event
     {
         private bool gone;
-        public override void DoShit()
+        public override void DoEvent()
         {
             gone = false;
             RemoveGuy();

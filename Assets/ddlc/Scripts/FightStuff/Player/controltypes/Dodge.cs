@@ -32,7 +32,6 @@ namespace RenCSharp.Combat.Player
         public override void EnterControl()
         {
             base.EnterControl();
-            playerObj.transform.localPosition = Vector3.zero;
             originPosition = playerObj.transform.position;
             midDodge = false;
         }

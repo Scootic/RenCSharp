@@ -283,7 +283,6 @@ namespace RenCSharp.Combat
             }
             playerObj.SetActive(true);
             playerObj.transform.SetParent(playerHolder); //guarantee????
-            playerObj.transform.localPosition = Vector3.zero; //reset to origin of holder?
             ea.ControlType.EnterControl();
         }
 

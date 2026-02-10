@@ -21,6 +21,7 @@ namespace RenCSharp.Combat.Player
             if(!Object_Factory.TryGetObject("PlayerObject", out GameObject go)) { Debug.LogWarning("No player obj!"); return; }
             playerObj = go.GetComponent<Player_Object>();
             playerObj.GetComponent<Image>().color = PlayerColor();
+            playerObj.transform.localPosition = Vector3.zero;
             Player_Input.Movement += MovementEffect;
         }
         /// <summary>
@@ -28,6 +29,7 @@ namespace RenCSharp.Combat.Player
         /// </summary>
         public virtual void ExitControl()
         {
+            playerObj.transform.localPosition = Vector3.zero;
             Player_Input.Movement -= MovementEffect;
         }
 

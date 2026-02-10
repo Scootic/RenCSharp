@@ -6,7 +6,7 @@ namespace RenCSharp.Sequences
     public class Start_Fight : Screen_Event
     {
         [SerializeField] private EnemySO enemyToLoad;
-        public override void DoShit()
+        public override void DoEvent()
         {
             Fight_Manager.FM.StartAFight(enemyToLoad);
         }
