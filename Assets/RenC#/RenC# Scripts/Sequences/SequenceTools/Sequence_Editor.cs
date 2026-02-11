@@ -24,8 +24,38 @@ namespace RenCSharp.Sequences
         private Sequence _target;
         public override void OnInspectorGUI()
         {
+            if (GUILayout.Button("Calculate Sequence Length")) 
+            {
+                int totalScreens = 0;
+                long totalChars = 0;
+
+                foreach(Object obj in targets)
+                {
+                    _target = (Sequence)obj;
+                    totalScreens += _target.Screens.Length;
+                    foreach(Screen s in _target.Screens)
+                    {
+                        totalChars += s.Dialog.Length;
+                    }
+                }
+
+                double totalSeconds = (double)totalChars / 60d;
+                double totalMinutes = totalSeconds / 60d;
+                double totalHours = totalMinutes / 60d;
+
+                totalHours = Mathf.Floor((float)totalHours);
+                totalMinutes -= totalHours * 60d;
+                totalMinutes = Mathf.Floor((float) totalMinutes);
+                totalSeconds -= totalMinutes * 60d;
+                totalSeconds = Mathf.Floor((float)totalSeconds);
+
+                Debug.Log($"Total Found Screens: {totalScreens}." +
+                    $"\nTotal Found Characters: {totalChars}." +
+                    $"\nAssuming 60FPS and left on auto at fastest possible speed, the total time *should* be:" +
+                    $"\n{totalHours}:{totalMinutes}:{totalSeconds} (H:M:S)");
+            }
             
-            if(GUILayout.Button("Replace Deprecated Events"))
+            if(GUILayout.Button("Replace Deprecated Events")) //pretty please update to include things you want to replace en masse
             {
                 foreach (Object obj in targets)
                 {
