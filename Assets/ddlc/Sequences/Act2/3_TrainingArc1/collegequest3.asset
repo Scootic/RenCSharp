@@ -286,10 +286,78 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
+    ScreenActions:
+    - rid: 4351268055900487680
+    - rid: 4351268055900487681
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: As the three of them walk closer to the strange glowy orb, they notice
+      a particularly ornate draugr sitting on a throne before it.
+    ScreenActions:
+    - rid: 4351268055900487682
+    - rid: 4351268055900487683
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: I am <NoiseText=3,1>sick</NoiseText> of these things!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Letting the rage flow through her, Sayori raises her mace and brings
+      it down onto the draugr's head as hard as she can.
+    ScreenActions:
+    - rid: 4351268055900487684
+    - rid: 4351268055900487686
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 4351268055900487687
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: To very little effect?!?
+    ScreenActions:
+    - rid: 4351268055900487685
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Oh poo...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: The draugr, in retaliation, swings his axe toward Sayori-!
+    ScreenActions:
+    - rid: 4351268055900487691
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Ow!
+    ScreenActions:
+    - rid: 4351268055900487689
+    - rid: 4351268055900487690
+    - rid: 4351268055900487692
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Sayori-!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Tolfdir attempts to strike the draugr with a bolt of lightning, it too
+      is uneffective.
+    ScreenActions:
+    - rid: 4351268055900487693
+  - speaker: {fileID: 11400000, guid: f2b4d7673734a1a43a263468a2605a5c, type: 2}
+    dialog: Our spells aren't having any effect...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: f2b4d7673734a1a43a263468a2605a5c, type: 2}
+    dialog: Alright, you'll have to keep the draugr busy while I try to drain its
+      power...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: e7c7e3536637d7648bd8419a15142094, type: 2}
+    requireCondition: 1
+    conditions:
+    - flagToCheck: WeirdRoute
+      operation: 0
+      desiredValue: 2
+      persistent: 0
+      bitWise: 1
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: 43ea4bfac05b92e4a9548ef9c5b3006a, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -1006,3 +1074,153 @@ MonoBehaviour:
         spawnOffset: {x: -400, y: 0, z: 0}
         visualSpriteIndexes:
         - default
+    - rid: 4351268055900487680
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 08b4c62d8d247e24893d9e58029dba4a
+          m_SubObjectName: saarthal17
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 4351268055900487681
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: ad5ac629158c6194990b78c283c19236
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 4351268055900487682
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - '><Shock'
+    - rid: 4351268055900487683
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - angry
+    - rid: 4351268055900487684
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - shock
+    - rid: 4351268055900487685
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - '><Shock'
+    - rid: 4351268055900487686
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - angrySpeak
+    - rid: 4351268055900487687
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - shock
+    - rid: 4351268055900487689
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: a67f3af0a88dfef4194e419ab633887d, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 4351268055900487690
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 0, y: -1000, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        loopOnScreen: 0
+    - rid: 4351268055900487691
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - fear
+    - rid: 4351268055900487692
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerAbilities
+        flagValue: 4
+        increment: 0
+        persistent: 0
+    - rid: 4351268055900487693
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 56027e9b62786544ab9a50b8c054eae6, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
