@@ -200,9 +200,9 @@ MonoBehaviour:
       data:
         actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - shock
+        - skyUp
+        - skyUp
+        - fear
     - rid: 4351267964947792103
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -232,7 +232,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyUp
-        - concernSpeak
+        - scowl
     - rid: 4351267964947792106
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -240,7 +240,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - concern
+        - grumpySpeak
     - rid: 4351267964947792108
       type: {class: Group_Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:

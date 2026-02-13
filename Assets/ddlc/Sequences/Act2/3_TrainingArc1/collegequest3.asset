@@ -376,9 +376,9 @@ MonoBehaviour:
         fadeInTime: 0.5
         spawnOffset: {x: -300, y: 0, z: 0}
         visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - pondering
+        - skyUp
+        - skyUp
+        - lookAwayShock
         - EMPTY
     - rid: 4351267988772749489
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
@@ -398,15 +398,15 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - lookAwayGrin
+        - sighSpeak
     - rid: 4351267988772749491
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - eyesClosedSigh
+        - skyUp
+        - skyUp
+        - fear
     - rid: 4351267988772749492
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -422,7 +422,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - pitySmile
+        - scowl
     - rid: 4351267988772749494
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -430,7 +430,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - lookAwayPity
+        - grumpySpeak
     - rid: 4351267988772749495
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
