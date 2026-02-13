@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-
 namespace RenCSharp
 {
     [RequireComponent(typeof(Image))]
@@ -11,14 +9,12 @@ namespace RenCSharp
     {
         private Image image;
         private Sprite[] animationFrames;
-
         private string[] spriteAssetGUIDs, subObjectGUIDs;
         private float secondsPerFrame = 0.1f, t;
         private int curI;
 
         public Image Image => image;
         public Sprite[] AnimationFrames => animationFrames;
-
         public string[] SpriteAssetGUIDs => spriteAssetGUIDs;
         public string[] SubObjectGUIDs => subObjectGUIDs;
         public float SecondsPerFrame => secondsPerFrame;
@@ -45,14 +41,18 @@ namespace RenCSharp
                 image.sprite = animationFrames[curI];
             }
         }
-
-        public void ReceiveAnimationInformation(Sprite[] frames, float SPF)
+        /// <summary>
+        /// Only for unsaved stuff. Just takes in sprites, no assetreferences.
+        /// </summary>
+        /// <param name="visuals">The sprites being run thru</param>
+        /// <param name="SPF">Seconds per frame</param>
+        public void ReceiveAnimationInformation(Sprite[] visuals, float SPF)
         {
             curI = 0;
             t = 0;
-            animationFrames = frames;
+            animationFrames = visuals;
             secondsPerFrame = SPF;
-            if(frames.Length > 0) image.sprite = frames[0];
+            if (animationFrames.Length > 0 && animationFrames[0] != null) image.sprite = animationFrames[0];
         }
 
         /// <summary>

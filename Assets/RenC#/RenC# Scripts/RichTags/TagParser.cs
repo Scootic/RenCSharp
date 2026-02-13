@@ -90,7 +90,7 @@ namespace RenCSharp.Tags
             return lengthToReturn.Length;
         }
 
-        public static int StringIndexExcludeBuiltinTags(string s, int index)
+        public static int StringIndexExcludeBuiltinTags(string s, int index, bool returnAtFirstValidTag = false)
         {
             int indexToReturn = index;
             char[] chars = s.ToCharArray();
@@ -112,6 +112,7 @@ namespace RenCSharp.Tags
                     }
                     possibleTag += chars[i];
                     if (!Parse(possibleTag, false)) indexToReturn -= possibleTag.Length;
+                    else if (returnAtFirstValidTag) return indexToReturn;
                 }
             }
 
