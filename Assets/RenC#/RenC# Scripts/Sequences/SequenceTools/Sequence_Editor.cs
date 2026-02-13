@@ -27,6 +27,7 @@ namespace RenCSharp.Sequences
             if (GUILayout.Button("Calculate Sequence Length")) 
             {
                 int totalScreens = 0;
+                int wordcount = 0;
                 long totalChars = 0;
 
                 foreach(Object obj in targets)
@@ -35,11 +36,29 @@ namespace RenCSharp.Sequences
                     totalScreens += _target.Screens.Length;
                     foreach(Screen s in _target.Screens)
                     {
-                        totalChars += s.Dialog.Length;
+                        int i = 0;
+                        char[] chars = s.Dialog.ToCharArray();
+                        while (i < chars.Length)
+                        {
+                            while (i < chars.Length && !char.IsWhiteSpace(chars[i])) 
+                            {
+                                i++;
+                                totalChars++;
+                            }
+
+                            wordcount++;
+
+                            while (i < chars.Length && char.IsWhiteSpace(chars[i]))
+                            {
+                                i++;
+                                totalChars++;
+                            }
+                        }
                     }
                 }
 
-                double totalSeconds = (double)totalChars / 60d;
+                double totalSeconds = ((double)totalChars / 60d) + (totalScreens * 0.5f); //total characters divided by 60FPS (a char a frame) +
+                                                                                          //linger time of 0.5seconds per screen.
                 double totalMinutes = totalSeconds / 60d;
                 double totalHours = totalMinutes / 60d;
 
@@ -50,9 +69,9 @@ namespace RenCSharp.Sequences
                 totalSeconds = Mathf.Floor((float)totalSeconds);
 
                 Debug.Log($"Total Found Screens: {totalScreens}." +
-                    $"\nTotal Found Characters: {totalChars}." +
-                    $"\nAssuming 60FPS and left on auto at fastest possible speed, the total time *should* be:" +
-                    $"\n{totalHours}:{totalMinutes}:{totalSeconds} (H:M:S)");
+                    $"\nTotal Found Characters: {totalChars}. Total Word Count: {wordcount}" +
+                    $"\nAssuming 60FPS and left on auto at fastest possible speed (linger time of 0.5s), the total time *should* be:" +
+                    $"\n{totalHours}:{totalMinutes}:{totalSeconds} (H:M:S). (Ignores fade transitions and other pauses to sequence.)");
             }
             
             if(GUILayout.Button("Replace Deprecated Events")) //pretty please update to include things you want to replace en masse

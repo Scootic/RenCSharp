@@ -52,7 +52,7 @@ namespace RenCSharp
             t = 0;
             animationFrames = visuals;
             secondsPerFrame = SPF;
-            if (animationFrames.Length > 0) image.sprite = animationFrames[0];
+            if (animationFrames.Length > 0 && animationFrames[0] != null) image.sprite = animationFrames[0];
         }
 
         /// <summary>

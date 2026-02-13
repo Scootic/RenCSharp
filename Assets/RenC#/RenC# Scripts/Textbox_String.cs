@@ -91,7 +91,7 @@ namespace RenCSharp
                         //only care about passing in a stupid char for the event if event actually exists
                         if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                         {
-                            int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i);
+                            int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i, true); //since the text string gets rid of valid tags???
                             TMP_CharacterInfo c = textBox.textInfo.characterInfo[goodI];
                             Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
                         }
