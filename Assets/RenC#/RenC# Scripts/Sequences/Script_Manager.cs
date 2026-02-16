@@ -315,6 +315,7 @@ namespace RenCSharp
 
             if(dialogchars.Length == 0) //hover on empty screens until the transition or whatever is finished
             {
+                dialogField.text = "";
                 while (paused)
                 {
                     yield return null;
