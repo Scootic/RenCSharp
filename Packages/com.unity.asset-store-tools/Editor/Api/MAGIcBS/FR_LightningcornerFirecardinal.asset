@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: FR_LightningcornerFirecardinal
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 450, y: 450}
+  controlType:
+    rid: 4351268012365971518
+  attackDuration: 11
+  secondsPerProjectileSpawn: 0.75
+  projectilesPerSpawn: 2
+  projectilesThatSpawn:
+  - {fileID: 711264266446520143, guid: fffebc460e24ecb44ab0bf08226bcf6d, type: 3}
+  - {fileID: 4247805767152981636, guid: d57feeca9d568294d8662ccea0a89a68, type: 3}
+  - {fileID: 0}
+  spawnPoints:
+  - {x: -200, y: 200, z: 0}
+  - {x: -200, y: 200, z: 0}
+  - {x: 0, y: 500, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 200, y: 200, z: 0}
+  - {x: 200, y: 200, z: 0}
+  - {x: 500, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 200, y: -200, z: 0}
+  - {x: 200, y: -200, z: 0}
+  - {x: 0, y: -500, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -200, y: -200, z: 0}
+  - {x: -200, y: -200, z: 0}
+  - {x: -500, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  initialDirections:
+  - {x: 0.25, y: 1, z: 0}
+  - {x: 1, y: 0.25, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -0.25, y: 1, z: 0}
+  - {x: -1, y: 0.25, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0.25, y: 1, z: 0}
+  - {x: 1, y: 0.25, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -0.25, y: -1, z: 0}
+  - {x: -1, y: -0.25, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  indexes: 00000000000000000100000002000000000000000000000001000000020000000000000000000000010000000200000000000000000000000100000002000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: 4351268012365971518
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500

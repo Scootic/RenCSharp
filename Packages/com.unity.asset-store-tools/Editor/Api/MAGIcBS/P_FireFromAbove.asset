@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: P_FireFromAbove
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 960, y: 440}
+  controlType:
+    rid: 4351268012365971515
+  attackDuration: 8
+  secondsPerProjectileSpawn: 0.8
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 4247805767152981636, guid: d57feeca9d568294d8662ccea0a89a68, type: 3}
+  - {fileID: 8204135625514222407, guid: 0f3444684f274b848b653e2f7f28fc79, type: 3}
+  spawnPoints:
+  - {x: -450, y: 500, z: 0}
+  - {x: -150, y: 500, z: 0}
+  - {x: -500, y: -50, z: 0}
+  - {x: 150, y: 500, z: 0}
+  - {x: 450, y: 500, z: 0}
+  - {x: 500, y: -50, z: 0}
+  initialDirections:
+  - {x: 0.05, y: -1, z: 0}
+  - {x: 0.1, y: -1, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: -0.05, y: -1, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  indexes: 000000000000000001000000000000000000000001000000
+  projectileSpawnPositionMethod: 3
+  projectileIndexMethod: 3
+  references:
+    version: 2
+    RefIds:
+    - rid: 4351268012365971515
+      type: {class: Platformer, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500
+        gravityForce: 600
+        jumpForce: 500
+        groundedDistance: 26
+        jumpcd: 0.2
+        jumpMask:
+          serializedVersion: 2
+          m_Bits: 8

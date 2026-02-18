@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: saarthal_jyrik
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: df49047635cca9d4c82253b972cdbd80, type: 2}
+  - {fileID: 11400000, guid: b3f457d72d8b49547833ef3bc9ed5efe, type: 2}
+  - {fileID: 11400000, guid: f2a426d8daf5b70468756909ade42944, type: 2}
+  - {fileID: 11400000, guid: 854e87f27b9cc5b48b63917aab4324ae, type: 2}
+  - {fileID: 11400000, guid: a6e1d4f2bd10ed54eb6ffba05eb7b3a7, type: 2}
+  - {fileID: 11400000, guid: ff5045f6373d90d4cb95b94810a9a2cb, type: 2}
+  - {fileID: 11400000, guid: 2618a909e43a93f458c150bcd90099c7, type: 2}
+  scriptedFlavorTexts:
+  - Jyrik swings his axe at Yuri.
+  - Jyrik attempts to grab Yuri and unleashes frost at her.
+  - Jyrik managed to grab Yuri, and now tries to blasts beams of frost at her face.
+  - Despite breaking lose from his clutches, Jyrik fires more beams of frost at Yuri.
+  - Jyrik unleashes a cloud above Yuri, which rains down frost.
+  - Jyrik flings out many smaller frostbolts.
+  - Jyrik unleashes many different sizes of snowball.
+  randomAttacks:
+  - {fileID: 11400000, guid: 6de8e039534381e4c95a8c711cbeada9, type: 2}
+  - {fileID: 11400000, guid: b8874015c459c1d4b94fc5a28ece5302, type: 2}
+  - {fileID: 11400000, guid: e2554851ad7a7f14291f9ed278585dbf, type: 2}
+  - {fileID: 11400000, guid: adc7e818458bc7d40b93befff9c24661, type: 2}
+  - {fileID: 11400000, guid: 19d9226ef92e0cb42990ce4ebfa0fe7f, type: 2}
+  - {fileID: 11400000, guid: 7bbad59e87da8e844b37ccc3d91d6255, type: 2}
+  - {fileID: 11400000, guid: a4244c4dae955b6418be12fca2420d0d, type: 2}
+  randomFlavorTexts:
+  - Jyrik unleashes a small blizzard.
+  - Jyrik unleashes the powers of lightning and fire.
+  - Jyrik unleashes vast quantities of large fireballs.
+  - Jyrik attempts to sandwich Yuri between frostbolts.
+  - Jyrik unleashes bolts of lightning.
+  - Jyrik stomps his foot down onto Yuri's, attempting to blast her with streams
+    of fire.
+  - Jyrik unleashes the power of frost and flame.
+  maxHealth: 150
+  visualInformation:
+  - {fileID: 21300000, guid: 73f51534ec1b0e6468284ba7ed6abdcf, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
+  defeatText: Through the combined efforts of Tolfdir draining his power and Yuri
+    confronting him directly, Jyrik Gaulderson has been defeated.
+  nameText: Jyrik Gaulderson
+  blurbText: A lot of good that writ of sealing did...
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
