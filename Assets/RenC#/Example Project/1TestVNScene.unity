@@ -1442,6 +1442,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &912109126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 912109128}
+  - component: {fileID: 912109127}
+  m_Layer: 0
+  m_Name: __StupidTagRoutineHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &912109127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912109126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e02e8bda571e8488574f57ec69f0db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &912109128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912109126}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &962664651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,7 +1622,8 @@ MonoBehaviour:
   speakerNameBox: {fileID: 696893494}
   dialogBox: {fileID: 1423157132}
   defaultTextBoxColor: {r: 0.11372549, g: 0.36862746, b: 0.20784314, a: 1}
-  playerchoicePrefab: {fileID: 8153918950037617235, guid: 6b97e95c9a928bf48b80becf6d54c837, type: 3}
+  defaultFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  playerchoicePrefab: {fileID: 895609340302167952, guid: eae3be99d04bab645ab00571c4484d1f, type: 3}
   progressDialogButton: {fileID: 1207802444}
   toggleImage: {fileID: 110200285}
   togglePressedColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
@@ -1610,18 +1655,17 @@ MonoBehaviour:
     m_RotationOrder: 4
   activeActors: []
   overlayPrefab: {fileID: 5236450459068519206, guid: 1640874aeddacd847a388d427572db67, type: 3}
+  bgPrefab: {fileID: 6869637161436435994, guid: 75cb5abf527a37741b62b92fa28e5c34, type: 3}
+  bgHolder: {fileID: 1129549383}
   overlayHolder: {fileID: 1824803559}
   menuBase: {fileID: 4687125932741654691}
   textSpeed: 0.01
   autoFocusScaleDuration: 0.25
-  playerName: My Dude
-  playerTag: '{mc}'
+  playerName: Player Name
+  playerTag: '{MC}'
   auto: 0
   lingerTime: 0.75
   historyLength: 10
-  overlayDatabase: {fileID: 11400000, guid: 6de0740df344c8f4c9947c864a0151d6, type: 2}
-  backgroundDatabase: {fileID: 11400000, guid: 82999a06b9496634bb7ee9f5cb1ca6c4, type: 2}
-  audioDatabase: {fileID: 11400000, guid: 6c7eac8ae7d67cf49adc40525983971f, type: 2}
 --- !u!4 &1038785424
 Transform:
   m_ObjectHideFlags: 0
@@ -2247,7 +2291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxAmount: 20
-  audioObject: {fileID: 0}
+  audioObject: {fileID: 671009502448587198, guid: cffa1c7f0d6977542a65a46c8e5575f8, type: 3}
   sfxList: []
 --- !u!4 &1229214355
 Transform:
@@ -3317,6 +3361,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1830216314}
+    - target: {fileID: 1529642719462775204, guid: 9ea96d6d463ccb340a41f59515b5924b, type: 3}
+      propertyPath: ssl
+      value: 
+      objectReference: {fileID: 133660090}
+    - target: {fileID: 1529642719462775204, guid: 9ea96d6d463ccb340a41f59515b5924b, type: 3}
+      propertyPath: defaultImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 1e39ac913664afa4e9b4756e5117b10d, type: 3}
+    - target: {fileID: 1529642719462775204, guid: 9ea96d6d463ccb340a41f59515b5924b, type: 3}
+      propertyPath: sceneToLoadIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2723451564791179788, guid: 9ea96d6d463ccb340a41f59515b5924b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3329,6 +3385,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1830216314}
+    - target: {fileID: 3731831744114276981, guid: 9ea96d6d463ccb340a41f59515b5924b, type: 3}
+      propertyPath: historyPrefab
+      value: 
+      objectReference: {fileID: 2207346340193906242, guid: cb9b27896ef570349aea083e97041933, type: 3}
     - target: {fileID: 4251301809758517313, guid: 9ea96d6d463ccb340a41f59515b5924b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3449,6 +3509,7 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
+  - {fileID: 912109128}
   - {fileID: 1038785424}
   - {fileID: 1229214355}
   - {fileID: 1830216315}
