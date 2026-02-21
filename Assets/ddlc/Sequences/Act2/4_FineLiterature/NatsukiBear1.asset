@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: NatsukiBear1
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 7aab6213b77b81b4c8f41bcdd20957cd, type: 2}
+  - {fileID: 11400000, guid: 6a80be305344f1549848ee1855f52894, type: 2}
+  - {fileID: 11400000, guid: a0085917e77d1084a907e3c9603e0aeb, type: 2}
+  - {fileID: 11400000, guid: 103785df35f26af468aed18bae159d03, type: 2}
+  - {fileID: 11400000, guid: a901b55ec2895614096c97586a017687, type: 2}
+  - {fileID: 11400000, guid: 576eb80329231be4b884d2c74a5e67b1, type: 2}
+  - {fileID: 11400000, guid: 8d79df12d14cce74693f11e1dcf9ff80, type: 2}
+  - {fileID: 11400000, guid: 9bceeb79b677eb8469d8b938f53a5cf0, type: 2}
+  scriptedFlavorTexts:
+  - The bears bring their claws down from above.
+  - "The bears rapidly swing their claws at Natsuki.\t"
+  - "The bears swing at Natsuki with the force of a dragon.\t"
+  - "The bears start shedding while they swing at Natsuki.\t"
+  - The bears fling beehives at Natsuki?!?
+  - More beehives fall from above, releasing angry bees.
+  - The bears pick up the beehives from the floor, flinging them at Natsuki again.
+  - The bees now swarm at Natsuki angrily.
+  randomAttacks:
+  - {fileID: 11400000, guid: 7aab6213b77b81b4c8f41bcdd20957cd, type: 2}
+  - {fileID: 11400000, guid: 6a80be305344f1549848ee1855f52894, type: 2}
+  - {fileID: 11400000, guid: a0085917e77d1084a907e3c9603e0aeb, type: 2}
+  - {fileID: 11400000, guid: 103785df35f26af468aed18bae159d03, type: 2}
+  - {fileID: 11400000, guid: 5f90375df0f28c042bc93a924550e369, type: 2}
+  - {fileID: 11400000, guid: 9bceeb79b677eb8469d8b938f53a5cf0, type: 2}
+  randomFlavorTexts:
+  - The bears get back on their hind legs and bring their claws down.
+  - The bears rapidly swing their claws at Natsuki. Again.
+  - The bears coordinate their swings once more. Scoundrels...
+  - The bears start shedding again. (They should consider a barber.)
+  - The second bear pulls out a bow and starts shooting arrows... (What?!?)
+  - The angry swarm of bees charge back into battle. Those punks!
+  maxHealth: 150
+  visualInformation:
+  - {fileID: 21300000, guid: 9ea8c6ac08fd71e45864d403339f1b2f, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: 9925ce1506dbfb942ae405832e72a090, type: 3}
+  defeatText: Natsuki, through sheer determination, has managed to briefly repel
+    the bear's attacks.
+  nameText: Bear
+  blurbText: I sure hope there's no second bear placed conspicuously behind this
+    bear!
+  hurtedSound: {fileID: 8300000, guid: 12f46a82409aba740ab747b01855082f, type: 3}
