@@ -14,15 +14,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoFocusSpeaker: 1
   screens:
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Crap-!
+    ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
+    ScreenActions:
+    - rid: 4351268279254515729
+    - rid: 4351268279254515730
+    - rid: 4351268279254515731
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: After seemingly defeating the bears, Natsuki looks over them for a few
+      seconds to make sure they're really dead.
+    ScreenActions:
+    - rid: 4351268279254515732
+    - rid: 4351268279254515733
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: (... alright. Bears down...)
+    ScreenActions:
+    - rid: 4351268279254515734
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: With the coast seemingly clear, Natsuki sits down to rest after her hard-fought
+      battle.
+    ScreenActions:
+    - rid: 4351268279254515736
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Haaaahh...
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 4351268279254515737
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 4351268279254515738
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: (... did I seriously just take down two bears all by myself?)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Ha!
+    ScreenActions:
+    - rid: 4351268279254515739
+    - rid: 4351268279254515745
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Take that, weird black-armor man!
+    ScreenActions:
+    - rid: 4351268279254515740
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Wait 'til the others hear about this, they're gonna be so surprised!
+    ScreenActions:
+    - rid: 4351268279254515741
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: (I should probably also ask about the weird gem I got when I get back.)
+    ScreenActions:
+    - rid: 4351268279254515742
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Natsuki has been resting for a few more minutes to recuperate.
+    ScreenActions:
+    - rid: 4351268279254515743
+    - rid: 4351268279254515744
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: With her rest finished, Natsuki gets up and starts heading back to Jorrvaskr
+      to get paid.
+    ScreenActions:
+    - rid: 4351268279254515746
+    - rid: 4351268279254515747
+    - rid: 4351268279254515748
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 0315c7a550ef4784bb748dc669fb3812, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -33,4 +100,233 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4351268279254515729
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 11400000, guid: c65ea5477bf06fa4ab1f14fc62c6d387, type: 2}
+    - rid: 4351268279254515730
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: ad5ac629158c6194990b78c283c19236
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 4351268279254515731
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeTime: 0.5
+    - rid: 4351268279254515732
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - scowl
+        - EMPTY
+    - rid: 4351268279254515733
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 4351268279254515734
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - closedEyeFrustratedSpeak
+    - rid: 4351268279254515736
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 0, y: -100, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        loopOnScreen: 0
+    - rid: 4351268279254515737
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - closedEyeBlank
+    - rid: 4351268279254515738
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - blank
+    - rid: 4351268279254515739
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - cheesing
+    - rid: 4351268279254515740
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - grinSpeak
+    - rid: 4351268279254515741
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - cheesing
+    - rid: 4351268279254515742
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - speak
+    - rid: 4351268279254515743
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - closedEyeBlank
+    - rid: 4351268279254515744
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 1c327810218af634da5ec0eb1967b901
+          m_SubObjectName: falkreathbearden
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 4351268279254515745
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: e82cf2abd98ac45439666764a84213a5
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 4351268279254515746
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 4351268279254515747
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeTime: 1
+    - rid: 4351268279254515748
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 0, y: 100, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        loopOnScreen: 0

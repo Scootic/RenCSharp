@@ -281,6 +281,7 @@ MonoBehaviour:
       as they rush her down.
     ScreenActions:
     - rid: 4351268260154179720
+    - rid: 4351268279254515728
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -585,17 +586,17 @@ MonoBehaviour:
       data:
         actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
         visualSpriteIndexes:
-        - skySmug
-        - skySmug
-        - closedEyeFrustratedSpeak
+        - skyDown
+        - skyUp
+        - concernSpeak
     - rid: 4351268260154179687
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
         visualSpriteIndexes:
-        - skySmug
-        - skySmug
-        - grumpyBlush
+        - skyDown
+        - skyDown
+        - lookAwayGrin
     - rid: 4351268260154179688
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -611,7 +612,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - terror
+        - lookAwaySad
     - rid: 4351268260154179690
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -619,7 +620,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - lookAwayGrimace
+        - lookAwayGrin
     - rid: 4351268260154179691
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -635,7 +636,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - speak
+        - shockSurprise
     - rid: 4351268260154179693
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1024,3 +1025,10 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - '><Shock'
+    - rid: 4351268279254515728
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerAbilities
+        flagValue: 8
+        increment: 0
+        persistent: 0

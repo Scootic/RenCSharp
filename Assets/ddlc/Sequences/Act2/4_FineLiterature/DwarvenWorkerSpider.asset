@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: DwarvenWorkerSpider
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 08e06b607a95bf64a96a28ed6cc27b95, type: 2}
+  - {fileID: 11400000, guid: 662e18d10c0513044ba8348e539ca077, type: 2}
+  - {fileID: 11400000, guid: e1c395359ecef33409a478e033e00c40, type: 2}
+  - {fileID: 11400000, guid: c37001227603c5f45b3b6391146db75b, type: 2}
+  scriptedFlavorTexts:
+  - "The Worker Spider stabs at you.\t"
+  - The Worker Spider stabs at you, with multiple legs at once.
+  - The Worker Spider fires big bolts of lightning from above.
+  - The Worker Spider charges up and fires beams of electricity.
+  randomAttacks:
+  - {fileID: 11400000, guid: 08e06b607a95bf64a96a28ed6cc27b95, type: 2}
+  - {fileID: 11400000, guid: c37001227603c5f45b3b6391146db75b, type: 2}
+  - {fileID: 11400000, guid: e1c395359ecef33409a478e033e00c40, type: 2}
+  - {fileID: 11400000, guid: 19d9226ef92e0cb42990ce4ebfa0fe7f, type: 2}
+  randomFlavorTexts:
+  - The Worker Spider stabs at you. Again.
+  - The Worker Spider charges up and fires beams of electricity. Again.
+  - The Worker Spider fires big bolts of lightning from above. Again.
+  - The Worker Spider begins firing beams of lightning around randomly.
+  maxHealth: 50
+  visualInformation:
+  - {fileID: 21300000, guid: 2d3c65305b2a12448b33cd935058a523, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: ebb3162c71efe8f4fab0114ab8abf4f3, type: 3}
+  defeatText: Spider down!
+  nameText: Dwarven Worker Spider
+  blurbText: Friggin' clankers...
+  hurtedSound: {fileID: 8300000, guid: fdb08f2201a864b4ebb5750215a7e9f3, type: 3}
