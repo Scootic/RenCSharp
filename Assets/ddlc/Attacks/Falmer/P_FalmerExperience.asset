@@ -10,32 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
-  m_Name: D_HomingArrows
+  m_Name: P_FalmerExperience
   m_EditorClassIdentifier: 
-  arenaDimensions: {x: 600, y: 400}
+  arenaDimensions: {x: 600, y: 350}
   controlType:
-    rid: 9079474705638883490
-  attackDuration: 8
-  secondsPerProjectileSpawn: 1
-  projectilesThatSpawn:
-  - {fileID: 8335507302958493363, guid: 9bc93140c61cfd94daf99be7de3f6cfb, type: 3}
-  spawnPoints:
-  - {x: -800, y: 600, z: 0}
-  - {x: 800, y: 600, z: 0}
-  - {x: -800, y: -600, z: 0}
-  - {x: 800, y: -600, z: 0}
-  initialDirections:
-  - {x: 1, y: -1, z: 0}
-  - {x: -1, y: -1, z: 0}
-  - {x: 1, y: 1, z: 0}
-  - {x: -1, y: 1, z: 0}
-  indexes: 00000000000000000000000000000000
+    rid: 4351268308096122885
+  attackDuration: 5
+  secondsPerProjectileSpawn: 0.5
+  projectilesPerSpawn: 1
+  projectilesThatSpawn: []
+  spawnPoints: []
+  initialDirections: []
+  indexes: 
   projectileSpawnPositionMethod: 1
   projectileIndexMethod: 1
   references:
     version: 2
     RefIds:
-    - rid: 9079474705638883490
+    - rid: 4351268308096122885
       type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
       data:
         speed: 500
