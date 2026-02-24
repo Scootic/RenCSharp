@@ -12,14 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
   m_Name: BowFalmer
   m_EditorClassIdentifier: 
-  scriptedAttacks: []
-  scriptedFlavorTexts: []
-  randomAttacks: []
-  randomFlavorTexts: []
-  maxHealth: 10
-  visualInformation: []
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 0e0bc57c81905404ea717cdcb96b2652, type: 2}
+  - {fileID: 11400000, guid: 8f0f852e613a46e49bc6f2175e4356f5, type: 2}
+  - {fileID: 11400000, guid: 2c1e2a85586e7ac46885409dd67c9e72, type: 2}
+  - {fileID: 11400000, guid: 514f05a660a7e404fb072bb828e88891, type: 2}
+  - {fileID: 11400000, guid: e4473d445c24c4e4eb6d1a2c84d0ebf5, type: 2}
+  scriptedFlavorTexts:
+  - The Falmer carefully aims his bow at you.
+  - The Falmer loads strange arrows into his bow...?
+  - The Falmers fires bursts of the splitting arrows.
+  - '{mc} attempts to close the distance, in response the Falmer draws his sword.'
+  - The Falmer now swings his sword and fires splitting arrows from point-blank.
+  randomAttacks:
+  - {fileID: 11400000, guid: 0e0bc57c81905404ea717cdcb96b2652, type: 2}
+  - {fileID: 11400000, guid: 8f0f852e613a46e49bc6f2175e4356f5, type: 2}
+  - {fileID: 11400000, guid: 2c1e2a85586e7ac46885409dd67c9e72, type: 2}
+  randomFlavorTexts:
+  - "The Falmers aims his bow carefully. Again.\t"
+  - The Falmers loads up splitting arrows. Again.
+  - The Falmer fires bursts of splitting arrows. Again.
+  maxHealth: 70
+  visualInformation:
+  - {fileID: 21300000, guid: 4ad729e397fcd534aa6619945c906428, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
-  defeatText: 
-  nameText: 
-  blurbText: 
-  hurtedSound: {fileID: 0}
+  defeatText: Together, Monika and {mc} defeat the Falmer.
+  nameText: Falmer Archer
+  blurbText: My mans forgot his poison at home. :(
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}

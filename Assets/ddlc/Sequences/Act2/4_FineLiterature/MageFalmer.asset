@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: MageFalmer
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: e84685673c5339640b91fb763a12ac3a, type: 2}
+  - {fileID: 11400000, guid: 69f2c1d8825741343b688134817a0356, type: 2}
+  - {fileID: 11400000, guid: ee42b33fd1ae4314283ac1171dc11b8e, type: 2}
+  - {fileID: 11400000, guid: bc58e7acc2ea59f4bba2b51629ecca84, type: 2}
+  - {fileID: 11400000, guid: 5ebf70a7cabde7042b62e5cd3cea6c07, type: 2}
+  - {fileID: 11400000, guid: ca75ad51561948c46bdf66cf7dcd83c9, type: 2}
+  scriptedFlavorTexts:
+  - The Falmer flings her ice spikes all around.
+  - The Falmer fires denser ice spikes?
+  - The Falmer fires more of those splitting ice spikes.
+  - The Falmer, frustated that her strategy has yet to bear fruit, flings out three
+    splitting spikes at a time.
+  - The Falmer starts raining ice spikes from above.
+  - The Falmer starts mixing her ice spikes with flowing beams of frost.
+  randomAttacks:
+  - {fileID: 11400000, guid: 5ebf70a7cabde7042b62e5cd3cea6c07, type: 2}
+  - {fileID: 11400000, guid: bc58e7acc2ea59f4bba2b51629ecca84, type: 2}
+  - {fileID: 11400000, guid: ca75ad51561948c46bdf66cf7dcd83c9, type: 2}
+  randomFlavorTexts:
+  - The Falmer rains ice from above. Again.
+  - The Falmer fires splitting spikes. Again.
+  - The Falmer mixes her ice spikes with flowing beams of frost. Again.
+  maxHealth: 70
+  visualInformation:
+  - {fileID: 21300000, guid: a5808712783b718418884f020292f46f, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
+  defeatText: Mage down... hopefully now we can take a minute to take a break...
+  nameText: Falmer Mage
+  blurbText: This punk figured out how to make spikes instead of just snowflakes?!?
+    Good god!
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
