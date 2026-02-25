@@ -113,7 +113,8 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (Those other elves? What's their deal, anyway?)
-    ScreenActions: []
+    ScreenActions:
+    - rid: 4351268349337141355
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: (They've been blind and kind of feral for millennia, thanks to be forced
       to eat some funky mushrooms by the Dwemer.)
@@ -225,7 +226,8 @@ MonoBehaviour:
     - rid: 4351268331346460683
   - speaker: {fileID: 0}
     dialog: <Speed=20>OH SHI</Speed>-
-    ScreenActions: []
+    ScreenActions:
+    - rid: 4351268349337141361
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: <NoiseText=3,1>AAAAAAAAAaaaaaaahh</NoiseText>!!!
     ScreenActions:
@@ -742,7 +744,7 @@ MonoBehaviour:
     - rid: 4351268331346460687
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        localMotionOffset: {x: 0, y: 300, z: 0}
+        localMotionOffset: {x: 0, y: 800, z: 0}
         motionDuration: 1
         motionPathX:
           serializedVersion: 2
@@ -801,7 +803,7 @@ MonoBehaviour:
     - rid: 4351268331346460690
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        localMotionOffset: {x: 0, y: 200, z: 0}
+        localMotionOffset: {x: 0, y: 100, z: 0}
         motionDuration: 1
         motionPathX:
           serializedVersion: 2
@@ -860,7 +862,7 @@ MonoBehaviour:
     - rid: 4351268331346460693
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        localMotionOffset: {x: 0, y: 700, z: 0}
+        localMotionOffset: {x: 0, y: 300, z: 0}
         motionDuration: 1
         motionPathX:
           serializedVersion: 2
@@ -1046,3 +1048,22 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         loopOnScreen: 0
+    - rid: 4351268349337141355
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive
+    - rid: 4351268349337141361
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0

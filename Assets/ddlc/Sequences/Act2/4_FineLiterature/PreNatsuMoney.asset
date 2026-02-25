@@ -41,12 +41,21 @@ MonoBehaviour:
     dialog: Yeah! There were two!
     ScreenActions:
     - rid: 4351268331346460778
-  - speaker: {fileID: 0}
-    dialog: 
+  - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+    dialog: So you took down two bears all by yourself?
+    ScreenActions:
+    - rid: 4351268349337141248
+  - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+    dialog: Impressive. Here's the pay.
+    ScreenActions:
+    - rid: 4351268349337141249
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Yeah...
     ScreenActions: []
-  - speaker: {fileID: 0}
-    dialog: 
-    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Natsuki takes the 100 septims that she earned.
+    ScreenActions:
+    - rid: 4351268349337141250
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 9f76206c9d0e69c498aa3c0e1182973f, type: 2}
@@ -186,3 +195,26 @@ MonoBehaviour:
         - skySmug
         - skySmug
         - '><Shock'
+    - rid: 4351268349337141248
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - scowl
+    - rid: 4351268349337141249
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwaySad
+    - rid: 4351268349337141250
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: Gold
+        flagValue: 100
+        increment: 1
+        persistent: 0

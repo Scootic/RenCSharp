@@ -12,22 +12,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
   m_Name: P_FalmerExperience
   m_EditorClassIdentifier: 
-  arenaDimensions: {x: 600, y: 350}
+  arenaDimensions: {x: 600, y: 400}
   controlType:
-    rid: 4351268308096122885
-  attackDuration: 5
-  secondsPerProjectileSpawn: 0.5
+    rid: 4351268349337141356
+  attackDuration: 12
+  secondsPerProjectileSpawn: 1
   projectilesPerSpawn: 1
-  projectilesThatSpawn: []
-  spawnPoints: []
-  initialDirections: []
-  indexes: 
-  projectileSpawnPositionMethod: 1
-  projectileIndexMethod: 1
+  projectilesThatSpawn:
+  - {fileID: 4082723905301835762, guid: 0aca558d04c8aed439bd064d213fbc2e, type: 3}
+  - {fileID: 8172461649669550382, guid: 78415358310e8ef419e8630b8755e543, type: 3}
+  - {fileID: 8204135625514222407, guid: 0f3444684f274b848b653e2f7f28fc79, type: 3}
+  spawnPoints:
+  - {x: -450, y: -200, z: 0}
+  - {x: -400, y: -100, z: 0}
+  - {x: -200, y: 300, z: 0}
+  - {x: 0, y: 300, z: 0}
+  - {x: 200, y: 300, z: 0}
+  - {x: 450, y: 200, z: 0}
+  - {x: 400, y: -100, z: 0}
+  - {x: 200, y: 300, z: 0}
+  - {x: 0, y: 300, z: 0}
+  - {x: -200, y: 300, z: 0}
+  initialDirections:
+  - {x: 0, y: 1, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  indexes: 00000000020000000100000001000000010000000000000002000000010000000100000001000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
   references:
     version: 2
     RefIds:
-    - rid: 4351268308096122885
-      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+    - rid: 4351268349337141356
+      type: {class: Platformer, ns: RenCSharp.Combat.Player, asm: Player}
       data:
         speed: 500
+        gravityForce: 600
+        jumpForce: 500
+        groundedDistance: 26
+        jumpcd: 0.2
+        jumpMask:
+          serializedVersion: 2
+          m_Bits: 8
