@@ -12,10 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
   m_Name: Dwarvencenturion
   m_EditorClassIdentifier: 
-  scriptedAttacks: []
-  scriptedFlavorTexts: []
-  randomAttacks: []
-  randomFlavorTexts: []
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 2a60305dd2f9a5446916e6f0005dde23, type: 2}
+  - {fileID: 11400000, guid: 1ad237473fa8e254b9dde72be58e59ba, type: 2}
+  - {fileID: 11400000, guid: 3f4c3f47cadbe564d917837c7e097970, type: 2}
+  - {fileID: 11400000, guid: e680cbbbaf880304f8356327239c6c78, type: 2}
+  - {fileID: 11400000, guid: b3a6753b7eacd414a85b9f65a5201c6e, type: 2}
+  - {fileID: 11400000, guid: 7c0289bfa83cc0a479fc3d11af8f6524, type: 2}
+  - {fileID: 11400000, guid: dbdf2d90cde29ef4b948cb6a7e51260f, type: 2}
+  scriptedFlavorTexts:
+  - The Centurion swings its mallet arm.
+  - The Centurion releases large gusts of heated steam.
+  - The Centurion releases steam and swings its mallet at the same time.
+  - The Centurion stabs with its spear arm.
+  - The Centurion uses its height to stab with its spear arm from above.
+  - The Centurion releases small gusts of heated steam from above.
+  - The Centurion releases denser gusts of heated steam.
+  randomAttacks:
+  - {fileID: 11400000, guid: 7c0289bfa83cc0a479fc3d11af8f6524, type: 2}
+  - {fileID: 11400000, guid: 3f4c3f47cadbe564d917837c7e097970, type: 2}
+  - {fileID: 11400000, guid: e680cbbbaf880304f8356327239c6c78, type: 2}
+  - {fileID: 11400000, guid: 2a60305dd2f9a5446916e6f0005dde23, type: 2}
+  - {fileID: 11400000, guid: dbdf2d90cde29ef4b948cb6a7e51260f, type: 2}
+  - {fileID: 11400000, guid: b3a6753b7eacd414a85b9f65a5201c6e, type: 2}
+  randomFlavorTexts:
+  - The Centurion rains down steam. Again.
+  - The Centurion swings his mallet and releases large gusts of steam. Again.
+  - The Centurion stabs with its spear arm. Not from above. Again...
+  - The Centurion swings his mallet arm again. No steam this time!
+  - The Centurion releases dense gusts of steam. Again.
+  - The Centurion stabs with its spear arm. From above. Again...
   maxHealth: 200
   visualInformation:
   - {fileID: 21300000, guid: 70cb95c4b2e90894793e886591581926, type: 3}

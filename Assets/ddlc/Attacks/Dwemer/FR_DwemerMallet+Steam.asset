@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: FR_DwemerMallet+Steam
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 550, y: 550}
+  controlType:
+    rid: 4351268372525613063
+  attackDuration: 11
+  secondsPerProjectileSpawn: 1.2
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 4082723905301835762, guid: b7d25a4de3f64b04fb3024bb32caebed, type: 3}
+  - {fileID: 6106508995416417585, guid: 473fc00ecbfeed546b53b7e5f693f506, type: 3}
+  - {fileID: 0}
+  spawnPoints:
+  - {x: -400, y: 400, z: 0}
+  - {x: -400, y: 200, z: 0}
+  - {x: -400, y: -200, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 400, y: -400, z: 0}
+  - {x: 400, y: 100, z: 0}
+  - {x: 400, y: -300, z: 0}
+  - {x: 0, y: 0, z: 0}
+  initialDirections:
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: -0.5, z: 0}
+  - {x: 1, y: 0.2, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: -1, y: -0.2, z: 0}
+  - {x: -1, y: 0.5, z: 0}
+  - {x: 0, y: 0, z: 0}
+  indexes: 0000000001000000010000000200000000000000010000000100000002000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: 4351268372525613063
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 550

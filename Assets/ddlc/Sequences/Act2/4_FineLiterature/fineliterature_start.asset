@@ -20,6 +20,7 @@ MonoBehaviour:
     - rid: 4351268099428974760
     - rid: 4351268099428974761
     - rid: 4351268099428974795
+    - rid: 4351268372525613129
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (Hey, {mc}!)
     ScreenActions:
@@ -107,3 +108,10 @@ MonoBehaviour:
       type: {class: AutoSave_Screen, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         fileName: '!AutoSave_Act2_Episode4'
+    - rid: 4351268372525613129
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: MonikaDMG
+        flagValue: 25
+        increment: 0
+        persistent: 0
