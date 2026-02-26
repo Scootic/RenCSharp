@@ -10,19 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 796d7531eefdf5e46944c1548e8439ef, type: 3}
-  m_Name: Eorland
+  m_Name: Aela
   m_EditorClassIdentifier: 
-  actorName: Eorlund Graymane
-  actorPrefab: {fileID: 823591662591807127, guid: 71228ce2b2d40334aa31bf6926f5e874, type: 3}
+  actorName: Aela the Huntress
+  actorPrefab: {fileID: 823591662591807127, guid: 60dd9fd1af2854b42aa0a7da09978674, type: 3}
   actorFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   textboxColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
   visuals:
   - layer:
-    - {fileID: 21300000, guid: 18b72db41f297524cbcb763f112b844a, type: 3}
+    - {fileID: 21300000, guid: 93199d71ee85a654fb1fe6578e8c0da6, type: 3}
+    - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
     visualIDs:
     - default
+    - EMPTY
+  - layer:
+    - {fileID: 21300000, guid: 4f21ae59216f6384c8cee33758d4df96, type: 3}
+    - {fileID: 21300000, guid: 50d9b37fe3370cd49a5c63c7803e6df6, type: 3}
+    visualIDs:
+    - werewolf
+    - EMPTY
   myself:
-    m_AssetGUID: 257fa6872c2d2f24f900979e35fb64cc
+    m_AssetGUID: 6f47b2f061a0a3249992cdd21d6995ed
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
