@@ -13,8 +13,7 @@ namespace RenCSharp.Combat.Enemies
 
         private float eval;
         private float t;
-        private readonly Vector3[] boundingPositions = new Vector3[4];
-        private Vector3 arcDir;
+        private Vector3[] boundingPositions = new Vector3[4];
 
         protected override void OnEnable()
         {
@@ -25,23 +24,8 @@ namespace RenCSharp.Combat.Enemies
         public override void UpdateMoveDir(Vector3 v3)
         {
             moveDir = v3;
-            arcDir = Vector3.Cross(moveDir, Vector3.forward);
+            boundingPositions = BoundingBezierPositions.BoundingPositions4(curveType, transform.position, moveDir, distanceFromSpawn, arcHeight);
 
-            switch (curveType) 
-            {
-                case BezierCurveType.SimpleArc:
-                    boundingPositions[0] = transform.position;
-                    boundingPositions[3] = boundingPositions[0] + moveDir * distanceFromSpawn;
-                    boundingPositions[1] = boundingPositions[0] + arcDir * arcHeight;
-                    boundingPositions[2] = boundingPositions[3] + arcDir * arcHeight;
-                    break;
-                case BezierCurveType.SCurve:
-                    boundingPositions[0] = transform.position;
-                    boundingPositions[1] = boundingPositions[0] + arcDir * arcHeight;
-                    boundingPositions[2] = boundingPositions[0] + moveDir * distanceFromSpawn;
-                    boundingPositions[3] = boundingPositions[2] + arcDir * arcHeight;
-                    break;
-            }
             //Debug.Log("Boomerang Positions: Array - " + boundingPositions[0] + "\n" + boundingPositions[1] + "\n"
             //    + boundingPositions[2] + "\n" + boundingPositions[3] + "\narcDir: " + arcDir); 
         }
