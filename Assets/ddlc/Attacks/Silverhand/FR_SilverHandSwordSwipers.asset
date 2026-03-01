@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arenaDimensions: {x: 550, y: 550}
   controlType:
-    rid: 4351267917689782421
+    rid: 4351268438874521653
   attackDuration: 13
   secondsPerProjectileSpawn: 1.5
   projectilesPerSpawn: 1
@@ -44,32 +44,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 4351267917689782421
-      type: {class: Dodge, ns: RenCSharp.Combat.Player, asm: Player}
+    - rid: 4351268438874521653
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
       data:
-        dodgeCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0.0041656494
-            value: 0.0023498535
-            inSlope: 4.075216
-            outSlope: 4.075216
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.030295314
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: -3.8557904
-            outSlope: -3.8557904
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.034478404
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        distanceFromCenter: 250
-        timeToDodge: 0.75
+        speed: 550

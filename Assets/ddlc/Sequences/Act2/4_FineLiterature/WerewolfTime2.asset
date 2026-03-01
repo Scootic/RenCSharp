@@ -202,7 +202,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4351268418678685848
     - rid: 4351268418678685849
-  - speaker: {fileID: 0}
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: Aela and Natsuki encounter a couple of Silver Hand members heading deeper
       into the fort, presumably to aid in the fight against Skjor.
     ScreenActions: []
@@ -562,7 +562,7 @@ MonoBehaviour:
     - rid: 4351268418678685813
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        flagID: PlayerDMG
+        flagID: PlayerDamage
         flagValue: 15
         increment: 0
         persistent: 0

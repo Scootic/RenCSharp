@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 namespace RenCSharp
 {
@@ -54,6 +55,13 @@ namespace RenCSharp
                 Debug.Log("Removed object of name: " + name);
             } else Debug.LogWarning("No active gameobject of name: " + name);
         }
+
+        public static IEnumerator RemoveObjectOverTime(string name, float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            RemoveObject(name);
+        }
+
         /// <summary>
         /// Very dangerous. Only should be used OnDisable for SM or sum thang;
         /// </summary>
