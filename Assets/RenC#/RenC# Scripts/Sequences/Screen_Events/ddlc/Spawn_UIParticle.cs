@@ -28,7 +28,6 @@ namespace RenCSharp.Sequences
 
             if (overrideParticles)
             {
-                particles.CopyValuesThroughReflection(overridingParticles);
                 particles.CopyParticleSystem(overridingParticles);
                 guh.GetComponent<UIParticle>().RefreshParticles();
             }

@@ -258,6 +258,7 @@ MonoBehaviour:
     dialog: Farkas transforms into his werewolf form, to try and even the odds...
     ScreenActions:
     - rid: 4351267988772749481
+    - rid: 4351268438874521936
   - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
     dialog: <SineText=5>Awooo</SineText>!
     ScreenActions: []
@@ -774,3 +775,12 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
+    - rid: 4351268438874521936
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 300, y: 0, z: 0}
+        fellaToSpawnPrefab: {fileID: 8048661423279849746, guid: 4b8ee4975bf03bd4e89ddc8b6eafe91c, type: 3}
+        particlesName: particles
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles: {fileID: 8678079892012431702, guid: 33224b01cbd98b045a3cd8a8a2b69dfb, type: 3}

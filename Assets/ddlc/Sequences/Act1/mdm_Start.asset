@@ -30,7 +30,6 @@ MonoBehaviour:
     - rid: 9079475089592287312
     - rid: 9079475098267418675
     - rid: 8612954484556955709
-    - rid: 4351268438874521884
   - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
     dialog: <font="glitchfont">That's the first impression we're going to give our
       player?
@@ -67,15 +66,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 4351268438874521884
-      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        spawnPosition: {x: 0, y: 0, z: 0}
-        fellaToSpawnPrefab: {fileID: 8048661423279849746, guid: 4b8ee4975bf03bd4e89ddc8b6eafe91c, type: 3}
-        particlesName: particles
-        deleteOnScreenProgression: 1
-        overrideParticles: 1
-        overridingParticles: {fileID: 8678079892012431702, guid: 33224b01cbd98b045a3cd8a8a2b69dfb, type: 3}
     - rid: 8612954484556955709
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:

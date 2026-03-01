@@ -4,6 +4,9 @@ using System.Linq;
 using System;
 namespace RenCSharp
 {
+    /// <summary>
+    /// Provides various ways to duplicate values from one component onto another.
+    /// </summary>
     public static class ComponentCopier
     {
         /// <summary>
@@ -20,7 +23,7 @@ namespace RenCSharp
             return destination;
         }
         /// <summary>
-        /// copies a component.
+        /// copies a generic component.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="destination"></param>
@@ -60,7 +63,13 @@ namespace RenCSharp
 
             return destination as T;
         }
-
+        /// <summary>
+        /// copies a generic struct
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="destination"></param>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static T CopyStructValuesThroughReflection<T>(this T destination, T source) where T : struct
         {
             Type type = typeof(T);

@@ -294,6 +294,7 @@ MonoBehaviour:
       ingesting a portion of Aela's blood.
     ScreenActions:
     - rid: 4351268372525613272
+    - rid: 4351268438874521934
   - speaker: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
     dialog: By the Nine, look at what you fools have done-!
     ScreenActions: []
@@ -427,6 +428,7 @@ MonoBehaviour:
       Aela transforms into her werewolf form.
     ScreenActions:
     - rid: 4351268399126675472
+    - rid: 4351268438874521932
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -1831,3 +1833,21 @@ MonoBehaviour:
         visualSpriteIndexes:
         - EMPTY
         - werewolf
+    - rid: 4351268438874521932
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 300, y: 0, z: 0}
+        fellaToSpawnPrefab: {fileID: 8048661423279849746, guid: 4b8ee4975bf03bd4e89ddc8b6eafe91c, type: 3}
+        particlesName: particles
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles: {fileID: 8678079892012431702, guid: 33224b01cbd98b045a3cd8a8a2b69dfb, type: 3}
+    - rid: 4351268438874521934
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab: {fileID: 8048661423279849746, guid: 4b8ee4975bf03bd4e89ddc8b6eafe91c, type: 3}
+        particlesName: particles
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles: {fileID: 8678079892012431702, guid: 2040158375c6cad40a5322f2b0d936d3, type: 3}
