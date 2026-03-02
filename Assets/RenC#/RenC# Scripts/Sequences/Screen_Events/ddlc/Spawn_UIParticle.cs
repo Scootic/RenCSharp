@@ -8,6 +8,7 @@ namespace RenCSharp.Sequences
         [SerializeField, Tooltip("Local space. Should be same values as actor positions, if that helps.")] private Vector3 spawnPosition = Vector3.zero;
         [SerializeField] private UIParticle fellaToSpawnPrefab;
         [SerializeField, Tooltip("name of GameObject spawned by Object_Factory")] private string particlesName = "particles";
+        [SerializeField, Tooltip("The object that will be parent of particles")] private string placeToSpawnName = "Overlay";
         [SerializeField, Tooltip("You should probably leave this on. If your particles loop and this is false, you should use Remove_NamedObject")] private bool deleteOnScreenProgression = true;
         [Header("Override Particles")]
         [SerializeField] private bool overrideParticles = false;
@@ -17,7 +18,7 @@ namespace RenCSharp.Sequences
 
         public override void DoEvent()
         {
-            if (!Object_Factory.TryGetObject("Overlay", out GameObject go)) { Debug.LogError("can't find overlay object in scene. no spawn particles!"); return; }
+            if (!Object_Factory.TryGetObject(placeToSpawnName, out GameObject go)) { Debug.LogError("can't find desired object in scene. no spawning particles!"); return; }
             
             placeToSpawn = go.transform;
             GameObject guh = Object_Factory.SpawnObject(fellaToSpawnPrefab.gameObject, particlesName, placeToSpawn);
@@ -29,7 +30,12 @@ namespace RenCSharp.Sequences
             if (overrideParticles)
             {
                 particles.CopyParticleSystem(overridingParticles);
-                guh.GetComponent<UIParticle>().RefreshParticles();
+                var particleRenderer = particlechild.GetComponent<ParticleSystemRenderer>();
+                particleRenderer.CopyValuesThroughReflection(overridingParticles.GetComponent<ParticleSystemRenderer>()); //??????????????
+                UIParticle uip = guh.GetComponent<UIParticle>();
+                //uip.ma
+                uip.RefreshParticles();
+               
             }
 
             if (!particles.main.loop) Script_Manager.SM.StartCoroutine(Object_Factory.RemoveObjectOverTime(particlesName, particles.main.duration));

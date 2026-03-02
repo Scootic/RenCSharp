@@ -295,6 +295,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4351268372525613272
     - rid: 4351268438874521934
+    - rid: 268099459762618368
   - speaker: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
     dialog: By the Nine, look at what you fools have done-!
     ScreenActions: []
@@ -429,6 +430,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4351268399126675472
     - rid: 4351268438874521932
+    - rid: 268099459762618369
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -446,6 +448,26 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 268099459762618368
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 7005aac9cf1f8074fb728afbd3cac263, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 268099459762618369
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 7005aac9cf1f8074fb728afbd3cac263, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
     - rid: 4351268372525613200
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1839,6 +1861,7 @@ MonoBehaviour:
         spawnPosition: {x: 300, y: 0, z: 0}
         fellaToSpawnPrefab: {fileID: 8048661423279849746, guid: 4b8ee4975bf03bd4e89ddc8b6eafe91c, type: 3}
         particlesName: particles
+        placeToSpawnName: Overlay
         deleteOnScreenProgression: 1
         overrideParticles: 1
         overridingParticles: {fileID: 8678079892012431702, guid: 33224b01cbd98b045a3cd8a8a2b69dfb, type: 3}
@@ -1848,6 +1871,7 @@ MonoBehaviour:
         spawnPosition: {x: 0, y: 0, z: 0}
         fellaToSpawnPrefab: {fileID: 8048661423279849746, guid: 4b8ee4975bf03bd4e89ddc8b6eafe91c, type: 3}
         particlesName: particles
+        placeToSpawnName: Overlay
         deleteOnScreenProgression: 1
         overrideParticles: 1
-        overridingParticles: {fileID: 8678079892012431702, guid: 2040158375c6cad40a5322f2b0d936d3, type: 3}
+        overridingParticles: {fileID: 8678079892012431702, guid: e4ab7e04d7bac574399bfd81f56005a9, type: 3}

@@ -360,8 +360,8 @@ MonoBehaviour:
     dialog: ... I'm very upset.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: <Speed=0.75><SineText=3>Natsuki</SineText>, <i>sweetie</i>,</Speed> if
-      you really wanted to me stop...
+    dialog: <SineText=3>Natsuki</SineText>, <i>sweetie</i>, if you really wanted
+      to me stop...
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: YOU <i>SHOULD</i> HAVE JUST <NoiseText=3,1>SAID SO</NoiseText>!
@@ -401,6 +401,7 @@ MonoBehaviour:
     - rid: 9079474884650467450
     - rid: 9079474884650467451
     - rid: 9079474951791575134
+    - rid: 268099459762618464
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Yuri!
     ScreenActions: []
@@ -1032,6 +1033,16 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 268099459762618464
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: -600, y: 0, z: 0}
+        fellaToSpawnPrefab: {fileID: 8048661423279849746, guid: 4b8ee4975bf03bd4e89ddc8b6eafe91c, type: 3}
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles: {fileID: 8678079892012431702, guid: f7dd5f9fe26a3994192a16cae0aafee6, type: 3}
     - rid: 9079474884650467328
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

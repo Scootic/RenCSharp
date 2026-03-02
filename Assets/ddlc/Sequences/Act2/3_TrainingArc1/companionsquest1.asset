@@ -330,7 +330,8 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: As the armed men try to attack Farkas, he transforms into his werewolf
       form.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 268099459762618371
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: (Oh god...)
     ScreenActions: []
@@ -533,6 +534,16 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 268099459762618371
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 7005aac9cf1f8074fb728afbd3cac263, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
     - rid: 4351267874930426006
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:

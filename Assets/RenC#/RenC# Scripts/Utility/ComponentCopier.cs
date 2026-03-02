@@ -42,15 +42,21 @@ namespace RenCSharp
 
             foreach(PropertyInfo property in propertyInfos)
             {
-                if (property.CanWrite)
+                if (property.CanWrite && property.CanRead)
                 {
                     try
                     {
+                        if (property.Name == "materials" || property.Name == "material")
+                        {
+                            Debug.LogWarning("cannot access materials from prefabs, so safety measure says no can do!");
+                            continue;
+                        }
                         property.SetValue(destination, property.GetValue(source, null), null);
                     }
-                    catch
+                    catch(Exception ex)
                     {
                         //????
+                        Debug.LogError($"can't set that '{property.Name}' value, dingleberry! {ex.Message}");
                     }
                 }
             }
@@ -83,7 +89,7 @@ namespace RenCSharp
 
             foreach(PropertyInfo property in propertyInfos)
             {
-                if (property.CanWrite)
+                if (property.CanWrite && property.CanRead)
                 {
                     try
                     {
