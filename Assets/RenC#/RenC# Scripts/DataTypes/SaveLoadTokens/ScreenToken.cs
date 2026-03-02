@@ -7,6 +7,7 @@ namespace RenCSharp
     public struct ScreenToken 
     {
         public List<ActorToken> ActiveActors;
+        public List<ParticleToken> ActiveParticles;
         public string MusicAssetKey;
         public string[] BackgroundAssetKeys, OverlayAssetKeys, BackgroundSubobjectKeys, OverlaySubobjectKeys;
         public float BackgroundSPF, OverlaySPF;

@@ -1,6 +1,7 @@
 using EXPERIMENTAL;
 using RenCSharp.Actors;
 using RenCSharp.Sequences;
+using RenCSharp.Tags;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,6 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI; //:)
-using RenCSharp.Tags;
 namespace RenCSharp
 {
     /// <summary>
@@ -65,6 +65,7 @@ namespace RenCSharp
         private Coroutine textRoutine;
         private Sequences.Screen curScreen;
         private List<Button> curButtons;
+        private List<ParticleToken> activeParticles = new();
 
         public static Script_Manager SM;
         public static Action ProgressScreenEvent, EndOfAllSequencesEvent;
@@ -95,13 +96,18 @@ namespace RenCSharp
             //the event bus!
             Event_Bus.AddFloatEvent("TextSpeed", TextSpeed);
             Event_Bus.AddFloatEvent("LingerTime", TextAutoHang);
+
             Event_Bus.AddVoidEvent("PauseSequence", PauseSequence);
             Event_Bus.AddVoidEvent("UnpauseSequence", UnpauseSequence);
-            Event_Bus.AddDoubleObjEvent("SMSpeed", SetSpeed);
+            
             Event_Bus.AddSingleObjEvent("OverrideScreen", OverrideScreen);
-            Event_Bus.AddDoubleObjEvent("SpawnPlayerButtons", SpawnPlayerButtons);
+            Event_Bus.AddSingleObjEvent("AddParticleToList", AddUIParticleToList);
+            Event_Bus.AddSingleObjEvent("RemoveParticleFromList", RemoveUIParticleFromList);
             Event_Bus.AddSingleObjEvent("AssignPlayerButtonBehavior", AssignButtonBehavior);
 
+            Event_Bus.AddDoubleObjEvent("SMSpeed", SetSpeed);
+            Event_Bus.AddDoubleObjEvent("SpawnPlayerButtons", SpawnPlayerButtons);
+            
             EndOfAllSequencesEvent += Application.Quit; //TEMPORARY THING
             SequencePausedEvent += ToggleDialogUI;
             curButtons = new();
@@ -128,6 +134,8 @@ namespace RenCSharp
             Event_Bus.TryRemoveFloatEvent("TextSpeed");
             Event_Bus.TryRemoveDoubleObjEvent("SMSpeed");
             Event_Bus.TryRemoveDoubleObjEvent("SpawnPlayerButtons");
+            Event_Bus.TryRemoveDoubleObjEvent("AddParticleToList");
+            Event_Bus.TryRemoveDoubleObjEvent("RemoveParticleFromList");
             Event_Bus.TryRemoveSingleObjEvent("OverrideScreen");
             Event_Bus.TryRemoveSingleObjEvent("AssignPlayerButtonBehavior");
         }
@@ -435,23 +443,19 @@ namespace RenCSharp
             {
                 if (Object_Factory.TryGetObject(actor.ActorName, out GameObject go))
                 {
-                    ActorToken newt = new();
                     UI_Element uie = go.GetComponent<UI_Element>();
-                    newt.XPos = go.transform.position.x;
-                    newt.YPos = go.transform.position.y;
-                    newt.ZPos = go.transform.position.z;
                     List<int> visualIndexes = new();
                     for (int i = 0; i < uie.Images.Length; i++)
                     {
                         visualIndexes.Add(actor.Visuals[i].layer.IndexOf(uie.Images[i].sprite)); //HIDEOUS
                     }
-                    newt.VisualIndexes = visualIndexes.ToArray();
-                    newt.ActorAsset = actor.Myself.AssetGUID;
+                    ActorToken newt = new(go.transform.position, actor.Myself.AssetGUID, visualIndexes.ToArray());
                     Debug.Log("ActorToken I'm adding to list: \n" + newt.ToString());
                     actorTokens.Add(newt);
                 }
             }
 
+            st.ActiveParticles = activeParticles;
             st.ActiveActors = actorTokens;
             manToSave.ScreenInformation = st;
             menuBase.SetActive(false);
@@ -530,6 +534,27 @@ namespace RenCSharp
                 }
             }
 
+            activeParticles.Clear();
+            try
+            {
+                foreach (ParticleToken pt in std.ActiveParticles)
+                {
+                    Debug.Log("Loading a particle object");
+                    if (!Object_Factory.TryGetObject(pt.TransformOwner, out GameObject guh))
+                    {
+                        Debug.LogError("couldn't find transform parent for: " + pt.ParticleName + ". Desired transform: " + pt.TransformOwner);
+                    }
+
+                    Object_Factory.SpawnParticleObject(true, pt.ParticleName, guh.transform, pt.UIParticleGUID, pt.ParticleSystemGUIDs[0]);
+
+                    activeParticles.Add(pt);
+                }
+            }
+            catch(NullReferenceException ex)
+            {
+                Debug.LogWarning($"Save Data ({sd.FileName}) doesn't contain a valid ParticleToken list. Darn! Message: {ex.Message}");
+            }
+
             SequenceAsset.WaitForCompletion();
             if (SequenceAsset.Status == AsyncOperationStatus.Succeeded) currentSequence = (Sequence)SequenceAsset.Result;
             else SequenceAsset.Release();
@@ -538,6 +563,22 @@ namespace RenCSharp
 
             Event_Bus.TryFireVoidEvent("LoadedSave");
         }
+
+        private void AddUIParticleToList(object tokenToAdd)
+        {
+            activeParticles.Add((ParticleToken)tokenToAdd);
+        }
+
+        private void RemoveUIParticleFromList(object tokenToRemove)
+        {
+            if (!activeParticles.Contains((ParticleToken)tokenToRemove)) 
+            {
+                Debug.LogWarning("cannot remove a particle token that's not in the list!");
+                return;
+            }
+            activeParticles.Remove((ParticleToken)tokenToRemove);
+        }
+
         #endregion
         #region JuiceStuff
         private IEnumerator ScaleActor(bool up, float scaleTime) //used if autoSpeakerFocus is true in a sequence

@@ -1,6 +1,9 @@
-using UnityEngine;
+using Coffee.UIExtensions;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 namespace RenCSharp
 {
     /// <summary>
@@ -34,6 +37,62 @@ namespace RenCSharp
             
             return t;
         }
+        /// <summary>
+        /// Specific method for spawning particle objects, because they have more going on.
+        /// </summary>
+        /// <param name="overrideParticles">Decides whether or not to bother with the subParticleAsset</param>
+        /// <param name="name">The name the new obj will have</param>
+        /// <param name="parent">Transform parent.</param>
+        /// <param name="UIPartiGUID">Asset GUID for the UIParticle Obj</param>
+        /// <param name="subPartiGUID">Asset GUID for the ParticleSystem Obj that will override existing one.</param>
+        /// <returns></returns>
+        public static async Awaitable<GameObject> SpawnParticleObject(bool overrideParticles, string name, Transform parent, string UIPartiGUID, string subPartiGUID)
+        {
+            await Awaitable.MainThreadAsync();
+            AsyncOperationHandle UIParticleObjHandle = Addressables.LoadAssetAsync<GameObject>(UIPartiGUID);
+            await UIParticleObjHandle.Task;
+
+            if(UIParticleObjHandle.Status == AsyncOperationStatus.Failed) 
+            {
+                Debug.LogError("Problem loading UIParticleObject: " + UIPartiGUID);
+                UIParticleObjHandle.Release();
+                return null;
+            }
+
+            GameObject uiParticleObj = GameObject.Instantiate(UIParticleObjHandle.Result as GameObject, parent);
+            UIParticleObjHandle.Release();
+            uiParticleObj.name = name;
+
+            GameObject particlechild = uiParticleObj.transform.GetChild(0).gameObject;
+            ParticleSystem ogParticleSystem = particlechild.GetComponent<ParticleSystem>();
+
+            if (overrideParticles)
+            {
+                AsyncOperationHandle subParticleObjHandle = Addressables.LoadAssetAsync<GameObject>(subPartiGUID);
+                await subParticleObjHandle.Task;
+                if(subParticleObjHandle.Status == AsyncOperationStatus.Failed)
+                {
+                    Debug.LogError("Problem loading subparticles: " + subPartiGUID + ", still spawning in the UIParticleObj");
+                }
+                else
+                {
+                    GameObject subPartyFab = subParticleObjHandle.Result as GameObject;
+                    ParticleSystem ps = subPartyFab.GetComponent<ParticleSystem>();
+                    ogParticleSystem.CopyParticleSystem(ps);
+                    ParticleSystemRenderer psRender = ogParticleSystem.GetComponent<ParticleSystemRenderer>();
+                    psRender.CopyValuesThroughReflection(ps.GetComponent<ParticleSystemRenderer>());
+                    UIParticle uip = uiParticleObj.GetComponent<UIParticle>();
+                    uip.RefreshParticles();
+                }
+                subParticleObjHandle.Release();
+            }
+
+            if (!ogParticleSystem.main.loop) RemoveObjectOverTimeAsync(name, ogParticleSystem.main.duration); //don't await this, just start ts!
+            ogParticleSystem.Play();
+
+            activeGameObjects.Add(name, uiParticleObj);
+            return uiParticleObj;
+        }
 
         public static async Awaitable<GameObject> SpawnObjectAsync(GameObject prefab, string name, Transform parent = null)
         {
@@ -51,6 +110,10 @@ namespace RenCSharp
             {
                 GameObject t = activeGameObjects[name];
                 activeGameObjects.Remove(name);
+                if(t.TryGetComponent(out IRemovableObject iroh))
+                {
+                    iroh.OnRemove();
+                }
                 GameObject.Destroy(t);
                 Debug.Log("Removed object of name: " + name);
             } else Debug.LogWarning("No active gameobject of name: " + name);
@@ -62,15 +125,22 @@ namespace RenCSharp
             RemoveObject(name);
         }
 
+        public static async Awaitable RemoveObjectOverTimeAsync(string name, float seconds)
+        {
+            await Awaitable.WaitForSecondsAsync(seconds);
+            RemoveObject(name);
+        }
+
         /// <summary>
         /// Very dangerous. Only should be used OnDisable for SM or sum thang;
         /// </summary>
         public static void ScrubDictionary()
         {
-            foreach(KeyValuePair<string,GameObject> kvp in activeGameObjects)
+            foreach(KeyValuePair<string, GameObject> kvp in activeGameObjects)
             {
                 GameObject.Destroy(kvp.Value);
             }
+
             activeGameObjects = new Dictionary<string, GameObject>();
         }
     }

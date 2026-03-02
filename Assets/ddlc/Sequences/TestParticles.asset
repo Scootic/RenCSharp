@@ -45,6 +45,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 268099459762618461
     - rid: 268099459762618462
+    - rid: 268099482212892672
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -103,12 +104,22 @@ MonoBehaviour:
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         spawnPosition: {x: 0, y: 0, z: 0}
-        fellaToSpawnPrefab: {fileID: 8048661423279849746, guid: 4b8ee4975bf03bd4e89ddc8b6eafe91c, type: 3}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         particlesName: particles
         placeToSpawnName: Overlay
         deleteOnScreenProgression: 1
         overrideParticles: 1
-        overridingParticles: {fileID: 8678079892012431702, guid: 33224b01cbd98b045a3cd8a8a2b69dfb, type: 3}
+        overridingParticles:
+          m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
     - rid: 268099459762618445
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -129,12 +140,22 @@ MonoBehaviour:
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         spawnPosition: {x: 0, y: 0, z: 0}
-        fellaToSpawnPrefab: {fileID: 8048661423279849746, guid: 4b8ee4975bf03bd4e89ddc8b6eafe91c, type: 3}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         particlesName: particles
         placeToSpawnName: Overlay
         deleteOnScreenProgression: 1
         overrideParticles: 1
-        overridingParticles: {fileID: 8678079892012431702, guid: e4ab7e04d7bac574399bfd81f56005a9, type: 3}
+        overridingParticles:
+          m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
     - rid: 268099459762618448
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -144,22 +165,42 @@ MonoBehaviour:
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         spawnPosition: {x: 0, y: 0, z: 0}
-        fellaToSpawnPrefab: {fileID: 8048661423279849746, guid: 4b8ee4975bf03bd4e89ddc8b6eafe91c, type: 3}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         particlesName: particles
         placeToSpawnName: Overlay
         deleteOnScreenProgression: 1
         overrideParticles: 1
-        overridingParticles: {fileID: 8678079892012431702, guid: e09e4dd2a4e5b03498503515d1e13133, type: 3}
+        overridingParticles:
+          m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
     - rid: 268099459762618454
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         spawnPosition: {x: 0, y: 0, z: 0}
-        fellaToSpawnPrefab: {fileID: 8048661423279849746, guid: 4b8ee4975bf03bd4e89ddc8b6eafe91c, type: 3}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         particlesName: particles
         placeToSpawnName: Overlay
         deleteOnScreenProgression: 1
         overrideParticles: 1
-        overridingParticles: {fileID: 8678079892012431702, guid: 1352fece545877c488fd22a30953a20b, type: 3}
+        overridingParticles:
+          m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
     - rid: 268099459762618461
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -175,9 +216,62 @@ MonoBehaviour:
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         spawnPosition: {x: 0, y: 0, z: 0}
-        fellaToSpawnPrefab: {fileID: 8048661423279849746, guid: 4b8ee4975bf03bd4e89ddc8b6eafe91c, type: 3}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         particlesName: particles
         placeToSpawnName: Overlay
         deleteOnScreenProgression: 1
         overrideParticles: 1
-        overridingParticles: {fileID: 8678079892012431702, guid: f7dd5f9fe26a3994192a16cae0aafee6, type: 3}
+        overridingParticles:
+          m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 268099482212892672
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 0, y: -900, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        loopOnScreen: 0
