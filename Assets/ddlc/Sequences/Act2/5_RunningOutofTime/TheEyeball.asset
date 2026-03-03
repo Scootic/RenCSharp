@@ -63,6 +63,10 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
+    ScreenActions:
+    - rid: 268099482212892770
+  - speaker: {fileID: 0}
+    dialog: 
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
@@ -81,6 +85,18 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 268099482212892770
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
     - rid: 4351268438874521965
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:

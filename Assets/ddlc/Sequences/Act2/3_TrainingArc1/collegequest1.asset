@@ -427,6 +427,7 @@ MonoBehaviour:
     dialog: Sayori raises her ward, putting all of her energy into maintaining it.
     ScreenActions:
     - rid: 4351267943501267111
+    - rid: 268099482212892768
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: When can I stop, Mr. Tolfdir-?
     ScreenActions: []
@@ -443,6 +444,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4351267943501267113
     - rid: 4351267943501267114
+    - rid: 268099482212892769
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: ({mc} did say that the college leadership was a bit incompetent, perhaps
       this is what he meant by that...)
@@ -825,6 +827,30 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 268099482212892768
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Sayori
+        deleteOnScreenProgression: 0
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 88849fe1990b4cb4a97e478961d5165d
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 268099482212892769
+      type: {class: Remove_NamedObject, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        objectName: particles
     - rid: 4351267917689782439
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
