@@ -58,6 +58,7 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 4351268147175358678
+    - rid: 268099503569240126
   - speaker: {fileID: 11400000, guid: f59cc5badd24f6b43bbc333ef7a7d689, type: 2}
     dialog: Come on in, just stoked the fire-
     ScreenActions:
@@ -695,6 +696,10 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 268099503569240126
+      type: {class: Remove_NamedObject, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        objectName: snow
     - rid: 4351268147175358671
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

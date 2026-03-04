@@ -48,6 +48,7 @@ MonoBehaviour:
     - rid: 4351268055900487810
     - rid: 4351268055900487833
     - rid: 4351268055900487834
+    - rid: 268099503569240065
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Oh! It's one of those word walls!
     ScreenActions:
@@ -136,6 +137,10 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 268099503569240065
+      type: {class: Remove_NamedObject, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        objectName: magnus
     - rid: 4351268055900487803
       type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -201,7 +206,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - grumpySpeak
+        - pout
     - rid: 4351268055900487809
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:

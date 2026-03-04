@@ -190,6 +190,7 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 4351268147175358541
+    - rid: 268099503569240123
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: (... did she leave the campus entirely?!?)
     ScreenActions:
@@ -297,6 +298,7 @@ MonoBehaviour:
     - rid: 4351268147175358563
     - rid: 4351268147175358564
     - rid: 4351268147175358565
+    - rid: 268099503569240124
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Oh, look there, it's Windhelm!
     ScreenActions: []
@@ -358,6 +360,7 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 4351268147175358568
+    - rid: 268099503569240125
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Oh, look {mc}, there's the sign pointing toward-
     ScreenActions:
@@ -397,6 +400,50 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 268099503569240123
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        particlesName: snow
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 0
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: e09e4dd2a4e5b03498503515d1e13133
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+    - rid: 268099503569240124
+      type: {class: Remove_NamedObject, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        objectName: snow
+    - rid: 268099503569240125
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        particlesName: snow
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 0
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: e09e4dd2a4e5b03498503515d1e13133
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
     - rid: 4351268125698687082
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:

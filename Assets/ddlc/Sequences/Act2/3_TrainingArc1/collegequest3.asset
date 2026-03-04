@@ -289,6 +289,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4351268055900487680
     - rid: 4351268055900487681
+    - rid: 268099503569240118
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: As the three of them walk closer to the strange glowy orb, they notice
       a particularly ornate draugr sitting on a throne before it.
@@ -325,6 +326,7 @@ MonoBehaviour:
     - rid: 4351268055900487689
     - rid: 4351268055900487690
     - rid: 4351268055900487692
+    - rid: 268099503569240119
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: Sayori-!
     ScreenActions: []
@@ -369,6 +371,46 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 268099503569240118
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: magnus
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 0
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 5bce021102562724386e2d66609d982d
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 268099503569240119
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 400, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: f7dd5f9fe26a3994192a16cae0aafee6
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
     - rid: 4351267988772749487
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -398,7 +440,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - sighSpeak
+        - lookAwayGrin
     - rid: 4351267988772749491
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -406,7 +448,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyUp
         - skyUp
-        - fear
+        - sighSpeak
     - rid: 4351267988772749492
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -422,7 +464,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - scowl
+        - pitySmile
     - rid: 4351267988772749494
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -430,7 +472,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - grumpySpeak
+        - lookAwaySmile
     - rid: 4351267988772749495
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
