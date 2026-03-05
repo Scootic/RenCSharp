@@ -1,0 +1,627 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: Labyrinth1
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099523943333916
+    - rid: 268099523943333917
+    - rid: 268099523943333918
+    - rid: 268099523943333919
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: You've been to Labyrinthian before, Mr. Aren?
+    ScreenActions:
+    - rid: 268099523943333920
+    - rid: 268099523943333921
+    - rid: 268099523943333922
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: Yes, and it was one of my greatest regrets.
+    ScreenActions:
+    - rid: 268099523943333923
+    - rid: 268099523943333924
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: How so?
+    ScreenActions:
+    - rid: 268099523943333925
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: Once me and a group of mages devled into the depths to find the power
+      buried within.
+    ScreenActions:
+    - rid: 268099523943333926
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: I was the only survivor.
+    ScreenActions:
+    - rid: 268099523943333928
+    - rid: 268099523943333929
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099523943333930
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: You're sure that it is safe for us to be here with you?
+    ScreenActions:
+    - rid: 268099523943333927
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: Like I said, my power has grown immensely since I was last here.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: Besides, the two of you managed to make it through Saarthal fine.
+    ScreenActions:
+    - rid: 268099523943333931
+    - rid: 268099523943333932
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: Even though this journey will probably be more challenging than that,
+      I <i>am</i> stronger than Tolfdir.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Six ghostly figures appear before the entrance to Labyrinthian.
+    ScreenActions:
+    - rid: 268099523943333933
+    - rid: 268099523943333934
+    - rid: 268099523943333935
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>Come on, we're finally here! Let's not waste any more time!</SineText>
+    ScreenActions:
+    - rid: 268099523943333936
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>Are we truly sure this is a good idea?</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>We'll be back at the College before anyone knows we're gone.</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>You would care about that, since you're the Arch-Mage's favorite!</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>Don't forget, this whole idea was Atmah's to begin with!</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>Let's just get inside, see what's in there.</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: The ghosts walk into the sealed entrance door, vanishing back into thin
+      air.
+    ScreenActions:
+    - rid: 268099523943333937
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Who were they?
+    ScreenActions:
+    - rid: 268099523943333939
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: And why did one of them sound like you, Mr. Aren...
+    ScreenActions:
+    - rid: 268099523943333938
+    - rid: 268099523943333940
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 268099523943333995
+    - rid: 268099523943333996
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: They seemed to be reflections of my friends; of my first trip down there.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Savos attaches the torc to the door, opening it.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: After entering the structure, the ghosts appear again.
+    ScreenActions:
+    - rid: 268099523943333997
+    - rid: 268099523943333998
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>I can't believe we're doing this.</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>Can you imagine the looks on their faces when we come back?</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 268099523943333999
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>You keep talking like you're sure we'll find something useful
+      in here.</SineText>
+    ScreenActions:
+    - rid: 268099523943334000
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>Given the history of this place, it's more than likely there's
+      still some amount of power here.</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>Enchanted weapons, tomes of ancient knowledge, Shalidor's
+      secrets themselves- who knows what we could find!</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>And what if... What if there are things guarding this place?</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>Against six College-trained mages? I think we'll be fine.</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: The ghostly reflections disappear once more.
+    ScreenActions:
+    - rid: 268099523943334001
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 268099523943334002
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: There were things guarding this place.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: We weren't fine.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: The three of them enter a wide open room, with a strange patch of dirt
+      in the center.
+    ScreenActions:
+    - rid: 268099523943334003
+    - rid: 268099523943334004
+    - rid: 268099523943334005
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Savos seems to remember something about this room from his first visit...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: Quick, raise your hands, there's going to be a-!
+    ScreenActions:
+    - rid: 268099523943334006
+    - rid: 268099523943334007
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: A skeletal dragon emerges from the dirt patch!
+    ScreenActions:
+    - rid: 268099523943334008
+    - rid: 268099523943334009
+    - rid: 268099523943334010
+    - rid: 268099523943334011
+    - rid: 268099523943334012
+    - rid: 268099523943334014
+    - rid: 268099523943334015
+    - rid: 268099523943334016
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099523943334013
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 0}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: 48c38529a803ed44faa786eb29319081
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099523943333916
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 05a05d43ce3caf54bb66fa61b71eb60d
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 3
+        setToSameTime: 0
+    - rid: 268099523943333917
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 2807721579f9c7e4b9abe5c53ed0b8c7
+          m_SubObjectName: labrinth1
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 3
+    - rid: 268099523943333918
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeTime: 0.5
+    - rid: 268099523943333919
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+        fadeTime: 0.5
+    - rid: 268099523943333920
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -400, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+        - EMPTY
+    - rid: 268099523943333921
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - surpriseSpeak
+        - EMPTY
+    - rid: 268099523943333922
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 400, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 268099523943333923
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - shockSurprise
+    - rid: 268099523943333924
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - sadWorry
+    - rid: 268099523943333925
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - concernSpeak
+    - rid: 268099523943333926
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - concern
+    - rid: 268099523943333927
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - lookAwayShock
+    - rid: 268099523943333928
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - shock
+    - rid: 268099523943333929
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwaySad
+    - rid: 268099523943333930
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: b7536bc5a8b94284287782dabbada7a6
+          m_SubObjectName: labrinth2
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 268099523943333931
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - pondering
+    - rid: 268099523943333932
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - focus
+    - rid: 268099523943333933
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - shockSurprise
+    - rid: 268099523943333934
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive
+    - rid: 268099523943333935
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099523943333936
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: d4614ec2fe36af74ba902539659e3adb
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099523943333937
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099523943333938
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwayPitySpeak
+    - rid: 268099523943333939
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyDown
+        - surpriseSpeak
+    - rid: 268099523943333940
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - surprise
+    - rid: 268099523943333995
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - sadWorry
+    - rid: 268099523943333996
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - concern
+    - rid: 268099523943333997
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 46f60ac1baedaef4a91dd3afd1c07c45
+          m_SubObjectName: labrinth3
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 268099523943333998
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: d4614ec2fe36af74ba902539659e3adb
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099523943333999
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwaySad
+    - rid: 268099523943334000
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - concern
+    - rid: 268099523943334001
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099523943334002
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 5a93fc8ae631b124cadb995783767fee
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099523943334003
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 033541990ff7bde4396741960d79e7c1
+          m_SubObjectName: labrinth4
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 268099523943334004
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwaySad
+    - rid: 268099523943334005
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwayPitySpeak
+    - rid: 268099523943334006
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - shock
+    - rid: 268099523943334007
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - shock
+    - rid: 268099523943334008
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: ad5ac629158c6194990b78c283c19236
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099523943334009
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - fear
+    - rid: 268099523943334010
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - '><Shock'
+    - rid: 268099523943334011
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 35
+        increment: 0
+        persistent: 0
+    - rid: 268099523943334012
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerAbilities
+        flagValue: 5
+        increment: 0
+        persistent: 0
+    - rid: 268099523943334013
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 0}
+    - rid: 268099523943334014
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerDamage
+        flagValue: 10
+        increment: 0
+        persistent: 0
+    - rid: 268099523943334015
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: YuriDMG
+        flagValue: 10
+        increment: 1
+        persistent: 0
+    - rid: 268099523943334016
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: SayoriHeal
+        flagValue: 10
+        increment: 1
+        persistent: 0
