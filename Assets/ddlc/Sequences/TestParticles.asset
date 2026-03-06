@@ -68,6 +68,11 @@ MonoBehaviour:
     ScreenActions:
     - rid: 268099551663226948
   - speaker: {fileID: 0}
+    dialog: morokei dialog particles
+    ScreenActions:
+    - rid: 268099556554833975
+    - rid: 268099556554833978
+  - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
@@ -450,3 +455,28 @@ MonoBehaviour:
         stopOnScreenProgress: 1
         loopDuration: 1
         baseVolume: 1
+    - rid: 268099556554833975
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: moro
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: c84adf2b3a3277544aa6bc247015e338
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 268099556554833978
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 5dbdbe635e2cd084781e20280212a995, type: 2}
+        fadeTime: 0

@@ -111,16 +111,20 @@ namespace RenCSharp
             return destination;
         }
         /// <summary>
-        /// Goes through every single sub module and reflects it.
+        /// Goes through every single sub module and reflects it, because the ParticleSystem component is actually really evil.
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="src"></param>
         /// <returns></returns>
         public static ParticleSystem CopyParticleSystem(this ParticleSystem destination, ParticleSystem src)
         {
-            //ParticleSystem.
             destination.main.CopyStructValuesThroughReflection(src.main);
+            //the emission module is particularly buns?!?!?
             destination.emission.CopyStructValuesThroughReflection(src.emission);
+            ParticleSystem.Burst[] veryStupidTempArray = new ParticleSystem.Burst[src.emission.burstCount];
+            src.emission.GetBursts(veryStupidTempArray);
+            destination.emission.SetBursts(veryStupidTempArray);
+
             destination.shape.CopyStructValuesThroughReflection(src.shape);
             destination.velocityOverLifetime.CopyStructValuesThroughReflection(src.velocityOverLifetime);
             destination.limitVelocityOverLifetime.CopyStructValuesThroughReflection(src.limitVelocityOverLifetime);
@@ -129,7 +133,7 @@ namespace RenCSharp
             destination.forceOverLifetime.CopyStructValuesThroughReflection(src.forceOverLifetime);
             destination.colorOverLifetime.CopyStructValuesThroughReflection(src.colorOverLifetime);
             destination.colorBySpeed.CopyStructValuesThroughReflection(src.colorBySpeed);
-            destination.sizeOverLifetime.CopyStructValuesThroughReflection (src.sizeOverLifetime);
+            destination.sizeOverLifetime.CopyStructValuesThroughReflection(src.sizeOverLifetime);
             destination.sizeBySpeed.CopyStructValuesThroughReflection(src.sizeBySpeed);
             destination.rotationOverLifetime.CopyStructValuesThroughReflection(src.rotationOverLifetime);
             destination.rotationBySpeed.CopyStructValuesThroughReflection(src.rotationBySpeed);

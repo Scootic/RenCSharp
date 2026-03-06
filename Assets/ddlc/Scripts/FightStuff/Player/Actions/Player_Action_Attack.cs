@@ -12,6 +12,8 @@ namespace RenCSharp.Combat.Player
         [SerializeField] private Sprite[] playerAttackAnimFrames;
         [SerializeField] private Animated_Image_Handler playerAttackFab;
         [SerializeField] private AudioClip attackSound;
+        [SerializeField] private float attackDamage;
+        [SerializeField, Tooltip("Disable if you want to manually set attack damage for debug/cheating purposes.")] private bool grabAttackDamageFromFlags = true;
         private Animated_Image_Handler curPAttack;
 
         public override IEnumerator ActionResult()
@@ -20,7 +22,7 @@ namespace RenCSharp.Combat.Player
             {
                 float divTwo = playerAttackAnimationDuration * 0.5f;
                 float secondsPerFrame = playerAttackAnimationDuration / (float)playerAttackAnimFrames.Length;
-                Debug.Log("Player Attacked!");
+                //Debug.Log("Player Attacked!");
                 curPAttack = Object_Factory.SpawnObject(playerAttackFab.gameObject, "PlayerAttack", go.transform).GetComponent<Animated_Image_Handler>();
                 curPAttack.ReceiveAnimationInformation(playerAttackAnimFrames, secondsPerFrame);
 
@@ -28,14 +30,14 @@ namespace RenCSharp.Combat.Player
                 Textbox_String.JumpToEndOfTextbox = true;
 
                 yield return new WaitForSeconds(divTwo);
-                float pDamage = (float)Flag_Manager.GetFlag("PlayerDamage");
-                Event_Bus.TryFireDoubleObjEvent("EnemyTakeDamage", (object)pDamage, (object)false);
+                if(grabAttackDamageFromFlags) attackDamage = (float)Flag_Manager.GetFlag("PlayerDamage");
+                Event_Bus.TryFireDoubleObjEvent("EnemyTakeDamage", (object)attackDamage, (object)false);
                 yield return new WaitForSeconds(divTwo);
                 Object_Factory.RemoveObject("PlayerAttack");
             }
             else
             {
-                Debug.LogWarning("Player Attack Action couldn't find an enemy to hit!");
+                Debug.LogWarning("Player Attack Action couldn't find an enemy to hit! Frick!");
             }
         }
     }
