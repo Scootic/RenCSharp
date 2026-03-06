@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.AddressableAssets;
 namespace RenCSharp.Combat.Enemies
 {
     [CreateAssetMenu(menuName = "New Enemy")]
@@ -17,6 +17,8 @@ namespace RenCSharp.Combat.Enemies
         [SerializeField] private EnemyObject enemyPrefab;
         [SerializeField, TextArea(3, 5)] private string defeatText, nameText, blurbText;
         [SerializeField] private AudioClip hurtedSound;
+        [SerializeField] private AssetReference uiParticleObjFab;
+        [SerializeField] private AssetReference hitParticleObjFab;
 
         private void OnValidate()
         {
@@ -43,6 +45,8 @@ namespace RenCSharp.Combat.Enemies
         public string NameText => nameText;
         public string DefeatText => defeatText;
         public string BlurbText => blurbText;
+        public string UIParticleGUID => uiParticleObjFab.AssetGUID;
+        public string HitParticlePrefabGUID => hitParticleObjFab.AssetGUID;
         public AudioClip HurtedSound => hurtedSound;
         public EnemyObject EnemyPrefab => enemyPrefab;
     }

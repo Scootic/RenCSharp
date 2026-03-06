@@ -58,6 +58,16 @@ MonoBehaviour:
     - rid: 268099482212892765
     - rid: 268099482212892766
   - speaker: {fileID: 0}
+    dialog: bloodspray
+    ScreenActions:
+    - rid: 268099551663226944
+    - rid: 268099551663226945
+    - rid: 268099551663226950
+  - speaker: {fileID: 0}
+    dialog: spark particles
+    ScreenActions:
+    - rid: 268099551663226948
+  - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
@@ -382,3 +392,61 @@ MonoBehaviour:
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 0
+    - rid: 268099551663226944
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 5dbdbe635e2cd084781e20280212a995, type: 2}
+        fadeInTime: 0
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - innkeeper
+    - rid: 268099551663226945
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 5c1c468a2868c7d4fb619d948854ab27
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 268099551663226948
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: a828b8e1bcbcd14489dacfe2cbcebd46
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 268099551663226950
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1

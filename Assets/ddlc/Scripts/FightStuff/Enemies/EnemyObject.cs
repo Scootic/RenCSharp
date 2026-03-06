@@ -38,6 +38,10 @@ namespace RenCSharp.Combat.Enemies
             float xDist = Random.Range(0, maxDistFromOG);
             float yDist = Random.Range(0, maxDistFromOG);
             Vector3 newPos = ogPos + new Vector3(rollPos.x * xDist, rollPos.y * yDist, 0);
+
+            Vector3 particleSpawnPos = transform.localPosition + Noise_Helper.SineNoiseVector(0, Noise_Helper.TAU) * 5f; //hard code for now?
+            Object_Factory.SpawnParticleObject(true, "enemyhurtparticles" + curHealth, transform.parent, meSo.UIParticleGUID, meSo.HitParticlePrefabGUID);
+
             foreach (Image i in uie.Images)
             {
                 i.color = Color.red;

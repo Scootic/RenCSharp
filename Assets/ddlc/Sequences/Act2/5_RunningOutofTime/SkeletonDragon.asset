@@ -13,25 +13,53 @@ MonoBehaviour:
   m_Name: SkeletonDragon
   m_EditorClassIdentifier: 
   scriptedAttacks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 0db7db01988fe954cae774365eb51a76, type: 2}
+  - {fileID: 11400000, guid: fc8799e23544bc74cb83216cdf6d0f98, type: 2}
+  - {fileID: 11400000, guid: a075b0b21c81f73479c6d835f1cbc470, type: 2}
+  - {fileID: 11400000, guid: b427f9afc07da3b42a45c31adeec9ff4, type: 2}
+  - {fileID: 11400000, guid: 7bbad59e87da8e844b37ccc3d91d6255, type: 2}
+  - {fileID: 11400000, guid: f2a426d8daf5b70468756909ade42944, type: 2}
+  - {fileID: 11400000, guid: adc7e818458bc7d40b93befff9c24661, type: 2}
   scriptedFlavorTexts:
-  - null
-  - null
-  - null
-  - null
-  - null
-  randomAttacks: []
-  randomFlavorTexts: []
+  - The skeletal dragon slashes at Yuri.
+  - The skeletal dragon slashes once more, with greater fury.
+  - The skeletal dragon tries to bite at Sayori.
+  - The skeletal dragon tries to bite at Sayori once more.
+  - The skeletal dragon unleashes fire breath.
+  - The skeletal dragon unleashes ice breath.
+  - The skeletal dragon flings snow from the side.
+  randomAttacks:
+  - {fileID: 11400000, guid: b427f9afc07da3b42a45c31adeec9ff4, type: 2}
+  - {fileID: 11400000, guid: fc8799e23544bc74cb83216cdf6d0f98, type: 2}
+  - {fileID: 11400000, guid: 7620dc894f2699a46b2d4662c93fcacb, type: 2}
+  - {fileID: 11400000, guid: e2554851ad7a7f14291f9ed278585dbf, type: 2}
+  - {fileID: 11400000, guid: ff5045f6373d90d4cb95b94810a9a2cb, type: 2}
+  - {fileID: 11400000, guid: adc7e818458bc7d40b93befff9c24661, type: 2}
+  randomFlavorTexts:
+  - "The skeletal dragon bites at Sayori. Again.\t"
+  - The skeletal dragon slashes at Yuri. Again.
+  - The skeletal dragon unleashes multiple streams of fire.
+  - The skeletal dragon spews large bursts of fire.
+  - The skeletal dragon unleashes frost from all around the three of them.
+  - The skeletal dragon flings snow from the side. Again.
   maxHealth: 200
   visualInformation:
-  - {fileID: 0}
+  - {fileID: 21300000, guid: d4f94134e212de341a5d6789f17cec3a, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: 8297a0d78344aeb4fadd8d391be3fffe, type: 3}
   defeatText: With Savos doing the bulk of the work, the three of them defeat the
     skeletal dragon.
   nameText: Skeletal Dragon
   blurbText: Discount Durnehviir!
   hurtedSound: {fileID: 8300000, guid: 283867f29d9f03a488734d08744fd7c4, type: 3}
+  uiParticleObjFab:
+    m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  hitParticleObjFab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
