@@ -130,7 +130,7 @@ namespace RenCSharp
                     {
                         int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i);
                         TMP_CharacterInfo c = textBox.textInfo.characterInfo[goodI];
-                        Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
+                        stu.Invoke((object)c);
                     }
                     i++;
                 }
