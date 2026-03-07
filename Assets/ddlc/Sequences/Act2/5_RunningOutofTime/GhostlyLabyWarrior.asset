@@ -16,21 +16,22 @@ MonoBehaviour:
   scriptedFlavorTexts: []
   randomAttacks: []
   randomFlavorTexts: []
-  maxHealth: 10
-  visualInformation: []
+  maxHealth: 70
+  visualInformation:
+  - {fileID: 0}
   enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
-  defeatText: 
-  nameText: 
-  blurbText: 
-  hurtedSound: {fileID: 0}
+  defeatText: Through its defeat in combat, the blue bastard has been banished.
+  nameText: Spectral Draugr
+  blurbText: <color=blue>Eiffel 95</color>
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
   uiParticleObjFab:
-    m_AssetGUID: 
+    m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   hitParticleObjFab:
-    m_AssetGUID: 
+    m_AssetGUID: 586645bc207e93043a89cea085902e03
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
