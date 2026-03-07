@@ -306,7 +306,7 @@ namespace RenCSharp
                 speakerNameBox.color = curActor.TextboxColor;
                 dialogBox.color = curActor.TextboxColor;
                 dialogField.font = curActor.ActorFont;
-                speakerNameField.text = curActor.ActorName;
+                speakerNameField.text = TagParser.CleanOutTags(curActor.ActorName,false);
                 if(curActor.ActorName == playerTag) speakerNameField.text = playerName; 
                 if (currentSequence.AutoFocusSpeaker && !prevActorIscurSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so
             }

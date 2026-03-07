@@ -410,12 +410,84 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 268099556554833993
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: The group of ghosts appear once more, with one fewer member than last
+      time.
+    ScreenActions:
+    - rid: 268099571011551286
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>Just a minute, please.</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>Come on, we can't stop now. We have to keep moving!</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>Where's Elvali? She was right behind me...</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>Dead. Something grabbed her from behind. Gone before I could
+      do anything.</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>This is insanity! We never should have come here...</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>You're right. This is all my fault... Shoud we turn around,
+      head back?</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>I don't think going back is a good idea.</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>Going back would be the end of all of us. We keep pushing
+      forward, and we'll make it. We will!</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: a01a9f9af2cb54445b0c607b34bca89e, type: 2}
+    dialog: <SineText=1>Come on, you can make it. Let's go.</SineText>
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 268099571011551287
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Mr. Aren? Are you okay?
+    ScreenActions:
+    - rid: 268099571011551289
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: ... it wasn't easy being the only one who made it out.
+    ScreenActions:
+    - rid: 268099571011551290
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: Especially because Hafnar and Atmah had to-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: I can still remember the looks on their faces as I-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: Did what I had to.
+    ScreenActions:
+    - rid: 268099571011551291
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: So, while it's been hard to see my old friends' faces again...
+    ScreenActions:
+    - rid: 268099571011551292
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: I have the chance to bring them the closure they've been waiting for.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: The closure that they deserve...
+    ScreenActions:
+    - rid: 268099571011551293
+    - rid: 268099571011551294
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 2d6ba061131299b4c90d645e73bd299b, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -1038,7 +1110,7 @@ MonoBehaviour:
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         songAsset:
-          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_AssetGUID: 05a05d43ce3caf54bb66fa61b71eb60d
           m_SubObjectName: 
           m_SubObjectGUID: 
           m_SubObjectType: 
@@ -1286,3 +1358,79 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 1
+    - rid: 268099571011551286
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: d4614ec2fe36af74ba902539659e3adb
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099571011551287
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 242eec1aaa8c1fd41832783905b45d54
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099571011551289
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - concernSpeak
+    - rid: 268099571011551290
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - concern2
+    - rid: 268099571011551291
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 0
+        setToSameTime: 0
+    - rid: 268099571011551292
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 242eec1aaa8c1fd41832783905b45d54
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099571011551293
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwayPity
+    - rid: 268099571011551294
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwaySad
