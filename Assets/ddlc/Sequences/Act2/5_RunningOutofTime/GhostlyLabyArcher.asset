@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: GhostlyLabyArcher
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 67d093841c0dba741bd09815f5d2136b, type: 2}
+  - {fileID: 11400000, guid: 89525b695b2f6de4c8ed7fb48dc71f84, type: 2}
+  - {fileID: 11400000, guid: 4ad759dbf1f0aec4f8fbf6c414999fcc, type: 2}
+  - {fileID: 11400000, guid: d9376ed2875c23b459af01ee9dd6ef9c, type: 2}
+  - {fileID: 11400000, guid: d907c447458686b47bc5dd08b8bec0fd, type: 2}
+  scriptedFlavorTexts:
+  - The spectral archer fires three bursts of arrows.
+  - The spectral archer fires cardinal arrows at Sayori, whose foot is stuck in the
+    grate.
+  - The spectral archer fires homing arrows.
+  - The spectral archer fires two bursts of arrows.
+  - The spectral archer rains down arrows from above.
+  randomAttacks:
+  - {fileID: 11400000, guid: 67d093841c0dba741bd09815f5d2136b, type: 2}
+  - {fileID: 11400000, guid: 89525b695b2f6de4c8ed7fb48dc71f84, type: 2}
+  - {fileID: 11400000, guid: 4ad759dbf1f0aec4f8fbf6c414999fcc, type: 2}
+  - {fileID: 11400000, guid: d9376ed2875c23b459af01ee9dd6ef9c, type: 2}
+  - {fileID: 11400000, guid: d907c447458686b47bc5dd08b8bec0fd, type: 2}
+  randomFlavorTexts:
+  - The spectral archers fires three bursts of arrows. Again.
+  - The spectral archer fires cardinal arrows at Sayori, whose foot is struck in
+    the grate. She should really consider watching where she steps...
+  - The spectral archers fires homing arrows. Again.
+  - The spectral archer fires two bursts of arrows. Again.
+  - The spectral archer rains down arrows from above. Again.
+  maxHealth: 70
+  visualInformation:
+  - {fileID: 21300000, guid: bc9952f2575d4b84fbfa0d2ba9824f13, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
+  defeatText: Through its defeat in combat, the second blue bastard has been banished.
+  nameText: Spectral Archer
+  blurbText: <color=blue>Eiffel 95 2</color>
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
+  uiParticleObjFab:
+    m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  hitParticleObjFab:
+    m_AssetGUID: 586645bc207e93043a89cea085902e03
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

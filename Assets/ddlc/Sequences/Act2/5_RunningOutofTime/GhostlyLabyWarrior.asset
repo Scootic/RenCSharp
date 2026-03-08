@@ -12,13 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
   m_Name: GhostlyLabyWarrior
   m_EditorClassIdentifier: 
-  scriptedAttacks: []
-  scriptedFlavorTexts: []
-  randomAttacks: []
-  randomFlavorTexts: []
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 0660f09af5558354296148a589fe50d5, type: 2}
+  - {fileID: 11400000, guid: b0a17b16e74b17b49818d5fc07882327, type: 2}
+  - {fileID: 11400000, guid: f62196695a12367429d3d20b9bc9c52d, type: 2}
+  - {fileID: 11400000, guid: 0e664923ad9069c488f66f67fe26edf9, type: 2}
+  scriptedFlavorTexts:
+  - The spectral draugr slashes at the legs, then stabs toward the head from the
+    side.
+  - The spectral draugr stabs down from above.
+  - The spectral draugr slashes from above and below, then from the sides.
+  - The spectral draugr stabs randomly.
+  randomAttacks:
+  - {fileID: 11400000, guid: 0660f09af5558354296148a589fe50d5, type: 2}
+  - {fileID: 11400000, guid: 0e664923ad9069c488f66f67fe26edf9, type: 2}
+  - {fileID: 11400000, guid: f62196695a12367429d3d20b9bc9c52d, type: 2}
+  - {fileID: 11400000, guid: b0a17b16e74b17b49818d5fc07882327, type: 2}
+  randomFlavorTexts:
+  - The spectral druagr slashes at the legs, then stabs toward the head from the
+    side. Again.
+  - The spectral draugr stabs randomly.
+  - The spectral draugr slashes from above and below, then from the sides. Again.
+  - The spectral druagr stabs down from above. Again.
   maxHealth: 70
   visualInformation:
-  - {fileID: 0}
+  - {fileID: 21300000, guid: ce9bdfbdbcffb0348bc942f3c142df3f, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
   defeatText: Through its defeat in combat, the blue bastard has been banished.
   nameText: Spectral Draugr
