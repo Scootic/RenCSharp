@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -14,9 +15,7 @@ namespace RenCSharp.Sequences
     public class Sequence : ScriptableObject
     {
         [SerializeField] private bool autoFocusSpeaker;
-
         [SerializeField] private Screen[] screens;
-
         [SerializeField] private Player_Choice[] playerChoices;
         [SerializeField] private AssetReference myself;
 

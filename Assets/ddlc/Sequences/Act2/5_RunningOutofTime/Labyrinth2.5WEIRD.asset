@@ -54,10 +54,37 @@ MonoBehaviour:
     - rid: 268099597357023384
   - speaker: {fileID: 0}
     dialog: 
+    ScreenActions:
+    - rid: 268099618523054080
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099618523054152
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099618523054173
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099618523054178
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099618523054179
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099618523054180
+  - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+    dialog: Let's continue.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 89091bae765cb334f85fe6adf2a21d0d, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -73,18 +100,6 @@ MonoBehaviour:
       type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         possibleScreens:
-        - conditions:
-          - flagToCheck: WeirdRoute
-            operation: 0
-            desiredValue: 0
-            persistent: 0
-            bitWise: 0
-          resultingScreen:
-            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-            dialog: Who said that?!?
-            ScreenActions:
-            - rid: 268099597357023367
-            - rid: 268099597357023368
         - conditions:
           - flagToCheck: WeirdRoute
             operation: 0
@@ -108,6 +123,18 @@ MonoBehaviour:
             dialog: Oh no...
             ScreenActions:
             - rid: 268099597357023370
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: Who said that?!?
+            ScreenActions:
+            - rid: 268099597357023367
+            - rid: 268099597357023368
     - rid: 268099597357023366
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -155,17 +182,6 @@ MonoBehaviour:
         - conditions:
           - flagToCheck: WeirdRoute
             operation: 0
-            desiredValue: 0
-            persistent: 0
-            bitWise: 0
-          resultingScreen:
-            speaker: {fileID: 11400000, guid: 99c1c9ab1bd810549a65874b102351c3, type: 2}
-            dialog: A friend, Sayori! Just raise a ward!
-            ScreenActions:
-            - rid: 268099597357023374
-        - conditions:
-          - flagToCheck: WeirdRoute
-            operation: 0
             desiredValue: 3
             persistent: 0
             bitWise: 1
@@ -185,6 +201,17 @@ MonoBehaviour:
             dialog: 'I''m not scary, I swear! Now, what is scary, is what''ll happen
               if you don''t raise that ward! '
             ScreenActions: []
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 99c1c9ab1bd810549a65874b102351c3, type: 2}
+            dialog: A friend, Sayori! Just raise a ward!
+            ScreenActions:
+            - rid: 268099597357023374
     - rid: 268099597357023374
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -281,3 +308,337 @@ MonoBehaviour:
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
+    - rid: 268099618523054080
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 3
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+            dialog: Sayori, did that voice possess you too, just now?
+            ScreenActions:
+            - rid: 268099618523054166
+            - rid: 268099618523054167
+            - rid: 268099618523054170
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: (That must've been the "voice" that possessed {mc}.)
+            ScreenActions:
+            - rid: 268099618523054168
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: Hey, who said that?
+            ScreenActions:
+            - rid: 268099618523054164
+            - rid: 268099618523054165
+    - rid: 268099618523054152
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 3
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: Yep. I can see what the two of you meant by not hearing the voice,
+              ehehe...
+            ScreenActions:
+            - rid: 268099618523054169
+            - rid: 268099618523054171
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: (I'll have to talk to him about it when we see him again.)
+            ScreenActions:
+            - rid: 268099618523054172
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+            dialog: Someone said something? I didn't hear anything, is Morokei communicating
+              with you directly?
+            ScreenActions: []
+    - rid: 268099618523054164
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - shockSurprise
+    - rid: 268099618523054165
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099618523054166
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwaySad
+    - rid: 268099618523054167
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 242eec1aaa8c1fd41832783905b45d54
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099618523054168
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwaySad
+    - rid: 268099618523054169
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwayGrin
+    - rid: 268099618523054170
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - pitySpeak
+    - rid: 268099618523054171
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - sadWorry
+    - rid: 268099618523054172
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - concern2
+    - rid: 268099618523054173
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 3
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+            dialog: What? The both of you have experienced possession before?
+            ScreenActions:
+            - rid: 268099618523054174
+            - rid: 268099618523054175
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 0}
+            dialog: 
+            ScreenActions: []
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: I don't think it's Morokei, the voice sounded like- actually
+              the voice didn't have a sound.
+            ScreenActions:
+            - rid: 268099618523054176
+            - rid: 268099618523054177
+    - rid: 268099618523054174
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - surprise
+    - rid: 268099618523054175
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive
+    - rid: 268099618523054176
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - focus
+    - rid: 268099618523054177
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive
+    - rid: 268099618523054178
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 3
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: Yep. Does that sort of thing happen often?
+            ScreenActions: []
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 0}
+            dialog: 
+            ScreenActions: []
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+            dialog: That's... very strange. All recorded instances of possession
+              either have total unconsciousness of the recepient, or-
+            ScreenActions: []
+    - rid: 268099618523054179
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 3
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+            dialog: It's happened before, but it doesn't happen often. Especially
+              not in subtle ways.
+            ScreenActions: []
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 0}
+            dialog: 
+            ScreenActions: []
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+            dialog: Or having a voice audible by the host, and sometimes others as
+              well.
+            ScreenActions: []
+    - rid: 268099618523054180
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 3
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+            dialog: We'll have to look into that too once we return to the college.
+              Anyway-
+            ScreenActions: []
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 0}
+            dialog: 
+            ScreenActions: []
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
+            dialog: ... weird! Anyway-
+            ScreenActions: []

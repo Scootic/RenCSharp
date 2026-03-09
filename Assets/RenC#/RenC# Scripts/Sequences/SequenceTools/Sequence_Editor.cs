@@ -157,7 +157,14 @@ namespace RenCSharp.Sequences
                     Debug.Log("Done replacing " + _target.name + "'s deprecated events! Replaced: " + replaced + " events.");
                 }
             }
+
+            EditorGUI.BeginChangeCheck();
             base.OnInspectorGUI();
+            if (EditorGUI.EndChangeCheck())
+            {
+                serializedObject.ApplyModifiedProperties();
+                serializedObject.Update();
+            }
         }
     }
 
