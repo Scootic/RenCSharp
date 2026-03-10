@@ -28,9 +28,11 @@ MonoBehaviour:
     dialog: (I still feel pretty tired, so it must be around morning...)
     ScreenActions:
     - rid: 268099503569240228
+    - rid: 268099640005492822
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: (...)
-    ScreenActions: []
+    ScreenActions:
+    - rid: 268099640005492824
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: (Guess I should actually go report Skjor's death back to Jorrvaskr now...)
     ScreenActions:
@@ -1318,3 +1320,41 @@ MonoBehaviour:
         - skyDown
         - skySmug
         - smile2
+    - rid: 268099640005492822
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 4
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+            dialog: (Ack! My head's killing me!)
+            ScreenActions:
+            - rid: 268099640005492823
+    - rid: 268099640005492823
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - '><Shock'
+    - rid: 268099640005492824
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 4
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+            dialog: Natsuki lays down for a few more minutes, until her migraine
+              subsides.
+            ScreenActions: []

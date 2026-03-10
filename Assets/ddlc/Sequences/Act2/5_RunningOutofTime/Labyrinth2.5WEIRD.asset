@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoFocusSpeaker: 1
   screens:
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Wha-?
+    ScreenActions:
+    - rid: 268099640005492801
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 268099597357023382
     - rid: 268099597357023365
   - speaker: {fileID: 0}
-    dialog: 
+    dialog: .
     ScreenActions:
     - rid: 268099597357023371
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
@@ -53,19 +56,19 @@ MonoBehaviour:
     - rid: 268099597357023381
     - rid: 268099597357023384
   - speaker: {fileID: 0}
-    dialog: 
+    dialog: ..
     ScreenActions:
     - rid: 268099618523054080
   - speaker: {fileID: 0}
-    dialog: 
+    dialog: .
     ScreenActions:
     - rid: 268099618523054152
   - speaker: {fileID: 0}
-    dialog: 
+    dialog: .
     ScreenActions:
     - rid: 268099618523054173
   - speaker: {fileID: 0}
-    dialog: 
+    dialog: .
     ScreenActions:
     - rid: 268099618523054178
   - speaker: {fileID: 0}
@@ -110,8 +113,9 @@ MonoBehaviour:
             speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
             dialog: AAAH!!! THE VOICE CAME FOR ME TOO!
             ScreenActions:
-            - rid: 268099597357023366
+            - rid: 268099640005492798
             - rid: 268099597357023369
+            - rid: 268099597357023366
         - conditions:
           - flagToCheck: WeirdRoute
             operation: 0
@@ -123,6 +127,7 @@ MonoBehaviour:
             dialog: Oh no...
             ScreenActions:
             - rid: 268099597357023370
+            - rid: 268099640005492799
         - conditions:
           - flagToCheck: WeirdRoute
             operation: 0
@@ -133,8 +138,9 @@ MonoBehaviour:
             speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
             dialog: Who said that?!?
             ScreenActions:
-            - rid: 268099597357023367
+            - rid: 268099640005492800
             - rid: 268099597357023368
+            - rid: 268099597357023367
     - rid: 268099597357023366
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -286,17 +292,6 @@ MonoBehaviour:
       type: {class: Remove_NamedObject, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         objectName: ward
-    - rid: 268099597357023382
-      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        songAsset:
-          m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
-          m_SubObjectName: 
-          m_SubObjectGUID: 
-          m_SubObjectType: 
-          m_EditorAssetChanged: 0
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 268099597357023384
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -549,7 +544,8 @@ MonoBehaviour:
           resultingScreen:
             speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
             dialog: Yep. Does that sort of thing happen often?
-            ScreenActions: []
+            ScreenActions:
+            - rid: 268099640005492830
         - conditions:
           - flagToCheck: WeirdRoute
             operation: 0
@@ -585,7 +581,8 @@ MonoBehaviour:
             speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
             dialog: It's happened before, but it doesn't happen often. Especially
               not in subtle ways.
-            ScreenActions: []
+            ScreenActions:
+            - rid: 268099640005492831
         - conditions:
           - flagToCheck: WeirdRoute
             operation: 0
@@ -642,3 +639,60 @@ MonoBehaviour:
             speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
             dialog: ... weird! Anyway-
             ScreenActions: []
+    - rid: 268099640005492798
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099640005492799
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099640005492800
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099640005492801
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - shockSurprise
+    - rid: 268099640005492830
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - concernSpeak
+    - rid: 268099640005492831
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwaySad
