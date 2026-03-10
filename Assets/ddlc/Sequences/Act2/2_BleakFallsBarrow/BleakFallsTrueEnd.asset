@@ -70,10 +70,12 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: Questions for later.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 268099640005492736
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: (Psst, {mc}, are you awake?)
-    ScreenActions: []
+    ScreenActions:
+    - rid: 268099640005492737
   - speaker: {fileID: 0}
     dialog: I roll over in bed to look at the door, finding a singular Sayori.
     ScreenActions:
@@ -108,6 +110,7 @@ MonoBehaviour:
     dialog: (Fine. What's up?)
     ScreenActions:
     - rid: 9079475070362714169
+    - rid: 268099640005492738
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: (Um-)
     ScreenActions:
@@ -173,6 +176,7 @@ MonoBehaviour:
     dialog: (Stop thinking whatever mean thing you're thinking right now!)
     ScreenActions:
     - rid: 9079475070362714179
+    - rid: 268099640005492739
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: (Wha-?!?)
     ScreenActions: []
@@ -249,7 +253,8 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: (... I wanted to talk to <i>you</i>...)
-    ScreenActions: []
+    ScreenActions:
+    - rid: 268099640005492740
   - speaker: {fileID: 0}
     dialog: ...
     ScreenActions: []
@@ -335,6 +340,7 @@ MonoBehaviour:
     dialog: ...
     ScreenActions:
     - rid: 9079475070362714195
+    - rid: 268099640005492742
   - speaker: {fileID: 0}
     dialog: Did that just happen?!?
     ScreenActions: []
@@ -342,7 +348,7 @@ MonoBehaviour:
     dialog: Good going, Sayori, now I really can't sleep!
     ScreenActions: []
   - speaker: {fileID: 0}
-    dialog: <SineText=4>...</SineText>
+    dialog: <SineText=4>...!</SineText>
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: ... I just had a <NoiseText=1,0.5>bad</NoiseText> thought...
@@ -367,6 +373,72 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 268099640005492736
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099640005492737
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 0af9dd82a7bc5994990bd52cb54e6a11
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 268099640005492738
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: a5e67aa0a36f9a74a8236a126620bcbe
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 2
+        setToSameTime: 1
+    - rid: 268099640005492739
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 0af9dd82a7bc5994990bd52cb54e6a11
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 2
+        setToSameTime: 1
+    - rid: 268099640005492740
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 270816adc61064a4ea84976685025c76
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 2
+        setToSameTime: 1
+    - rid: 268099640005492742
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 0af9dd82a7bc5994990bd52cb54e6a11
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 2
+        setToSameTime: 1
     - rid: 9079475045585125651
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

@@ -61,7 +61,24 @@ namespace RenCSharp.Combat.Enemies
         protected override void OnTriggerEnter(Collider other)
         {
             receiver = other.GetComponent<IDamage>();
-            if (!damageOverTime && receiver != null) receiver.TakeDamage(baseDamage, false);
+            bool actuallyTakeDamage = true;
+            if (!damageOverTime && receiver != null)
+            {
+                if (hitType != ProjectileHitType.Normal)
+                {
+                    Rigidbody rb = other.GetComponent<Rigidbody>();
+                    switch (hitType)
+                    {
+                        case ProjectileHitType.StayStill:
+                            actuallyTakeDamage = rb.angularVelocity != Vector3.zero;
+                            break;
+                        case ProjectileHitType.StayMoving:
+                            actuallyTakeDamage = rb.angularVelocity == Vector3.zero;
+                            break;
+                    }
+                }
+                if (actuallyTakeDamage) receiver.TakeDamage(baseDamage, false);
+            }
             if (destroyOnHit && receiver != null)
             {
                 Object_Pooling.Despawn(gameObject);

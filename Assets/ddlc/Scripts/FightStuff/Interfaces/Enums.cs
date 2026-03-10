@@ -1,6 +1,16 @@
 using UnityEngine;
 namespace RenCSharp.Combat.Interfaces
 {
+    /// <summary>
+    /// Normal to get hit normally. Stay still to avoid getting hit if still. Stay moving to avoid getting hit if moving.
+    /// </summary>
+    public enum ProjectileHitType
+    {
+        Normal,
+        StayStill,
+        StayMoving
+    }
+
     public enum AttackSpawnSelectionMethod
     {
         TrueRandom,
