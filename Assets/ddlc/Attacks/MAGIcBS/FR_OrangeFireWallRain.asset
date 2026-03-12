@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: FR_OrangeFireWallRain
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 550, y: 400}
+  controlType:
+    rid: 268099663653503059
+  attackDuration: 11
+  secondsPerProjectileSpawn: 3
+  projectilesPerSpawn: 4
+  projectilesThatSpawn:
+  - {fileID: 4247805767152981636, guid: d57feeca9d568294d8662ccea0a89a68, type: 3}
+  - {fileID: 4247805767152981636, guid: 8b368502527e21e468649345382ce30b, type: 3}
+  spawnPoints:
+  - {x: -300, y: 500, z: 0}
+  - {x: -100, y: 510, z: 0}
+  - {x: 100, y: 500, z: 0}
+  - {x: 300, y: 490, z: 0}
+  - {x: -300, y: 490, z: 0}
+  - {x: -100, y: 510, z: 0}
+  - {x: 100, y: 500, z: 0}
+  - {x: 300, y: 500, z: 0}
+  - {x: -300, y: 510, z: 0}
+  - {x: -100, y: 500, z: 0}
+  - {x: 100, y: 490, z: 0}
+  - {x: 300, y: 500, z: 0}
+  - {x: -300, y: 500, z: 0}
+  - {x: -100, y: 500, z: 0}
+  - {x: 100, y: 490, z: 0}
+  - {x: 300, y: 510, z: 0}
+  initialDirections:
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  indexes: 01000000000000000000000000000000000000000000000001000000000000000000000001000000000000000000000000000000000000000000000001000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099663653503059
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 550

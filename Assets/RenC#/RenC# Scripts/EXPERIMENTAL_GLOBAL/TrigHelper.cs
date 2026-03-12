@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using Unity.Burst;
 using Unity.Collections;
 using UnityEngine;
@@ -9,6 +7,16 @@ namespace EXPERIMENTAL
     public static class TrigHelper
     {
         public const float TAU = Mathf.PI * 2;
+        /// <summary>
+        /// Decides if two vectors are approximate by comparing their x,y,z with Mathf.Approx
+        /// </summary>
+        /// <param name="a">vector 1</param>
+        /// <param name="b">vector 2</param>
+        /// <returns>Whether or not the vectors are mathf approximate</returns>
+        public static bool ApproxVector3(Vector3 a, Vector3 b)
+        {
+            return (Mathf.Approximately(a.x, b.x) && Mathf.Approximately(a.y, b.y) && Mathf.Approximately(a.z, b.z));
+        }
 
         /// <summary>
         /// Do trig bullstuff to get a quaternion out of a vec2. For bottom facing sprite type things. (projectiles).

@@ -66,14 +66,14 @@ namespace RenCSharp.Combat.Enemies
             {
                 if (hitType != ProjectileHitType.Normal)
                 {
-                    Rigidbody rb = other.GetComponent<Rigidbody>();
+                    receiverRB = other.GetComponent<Rigidbody>();
                     switch (hitType)
                     {
                         case ProjectileHitType.StayStill:
-                            actuallyTakeDamage = rb.angularVelocity != Vector3.zero;
+                            actuallyTakeDamage = !Mathf.Approximately(receiverRB.linearVelocity.magnitude, 0f);
                             break;
                         case ProjectileHitType.StayMoving:
-                            actuallyTakeDamage = rb.angularVelocity == Vector3.zero;
+                            actuallyTakeDamage = Mathf.Approximately(receiverRB.linearVelocity.magnitude, 0f);
                             break;
                     }
                 }

@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: Morokei2
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: f62196695a12367429d3d20b9bc9c52d, type: 2}
+  scriptedFlavorTexts:
+  - With the most powerful of his magic sealed away, Morokei is forced to rely on
+    summons, summoning an undead ally to slash at the pair.
+  randomAttacks:
+  - {fileID: 11400000, guid: b0a17b16e74b17b49818d5fc07882327, type: 2}
+  - {fileID: 11400000, guid: 2e6cd78710fe2884f96124b0f0e853ca, type: 2}
+  - {fileID: 11400000, guid: 0660f09af5558354296148a589fe50d5, type: 2}
+  - {fileID: 11400000, guid: d9376ed2875c23b459af01ee9dd6ef9c, type: 2}
+  - {fileID: 11400000, guid: fff82e52152fa054db1294d0a7ba36b8, type: 2}
+  - {fileID: 11400000, guid: c5ce081ffc191354a9563e3d6cfee3ef, type: 2}
+  - {fileID: 11400000, guid: 69f2c1d8825741343b688134817a0356, type: 2}
+  - {fileID: 11400000, guid: 6de8e039534381e4c95a8c711cbeada9, type: 2}
+  - {fileID: 11400000, guid: 7620dc894f2699a46b2d4662c93fcacb, type: 2}
+  - {fileID: 11400000, guid: a4244c4dae955b6418be12fca2420d0d, type: 2}
+  randomFlavorTexts:
+  - Morokei summons a spectral swordsman to stab toward the two of them.
+  - Morokei summons an undead ally wielding a great-axe, who flings it toward both
+    of them.
+  - Morokei summons a spectral swordsman who stabs his sword directly at the dynamic
+    duo.
+  - Morokei summons an undead ally who fires arrows in pairs of two.
+  - Morokei summons an undead ally who grasps directly at Yuri and Sayori.
+  - Morokei summons an undead ally who slashes his great-axe toward the pair.
+  - Morokei summons an undead ally who flings splitting ice spikes at them.
+  - Morokei summons an undead ally who unleashes a small blizzard upon the battlefield.
+  - Morokei summons an undead ally who unleashes great beams of fire, attempting
+    to flambe Yuri and Sayori.
+  - Morokei summons an ambidexterous undead ally who flings both frost and flame
+    at Sayori and Yuri.
+  maxHealth: 100
+  visualInformation:
+  - {fileID: 21300000, guid: eb5dc2ee0e51f8c468319a767d0e705c, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
+  defeatText: Morokei succumbs to his weakened state, turning into a pile of ash
+    with only the Staff of Magnus and his mask remaining.
+  nameText: Morokei
+  blurbText: Yeah, this self-sacrifice plot point is a <i>little</i> contrived. I
+    do think how I handled it was pretty interesting, though!
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
+  uiParticleObjFab:
+    m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  hitParticleObjFab:
+    m_AssetGUID: 5c1c468a2868c7d4fb619d948854ab27
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1

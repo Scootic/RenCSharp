@@ -25,6 +25,7 @@ namespace RenCSharp.Combat.Enemies
         protected Color endC;
         protected Collider myCol;
         protected Coroutine spawnInRoutine;
+        protected Rigidbody receiverRB;
         public float Lifetime => lifetime;
         public float SpawnSoundVol => spawnSoundVol;
         public AudioClip SpawnSound => spawnSound;
@@ -73,25 +74,23 @@ namespace RenCSharp.Combat.Enemies
         protected virtual void OnTriggerEnter(Collider other)
         {
             receiver = other.GetComponent<IDamage>();
+            receiverRB = other.GetComponent<Rigidbody>();
             bool actuallyTakeDamage = true;
             if (!damageOverTime && receiver != null)
             {
-                if (hitType != ProjectileHitType.Normal)
+                switch (hitType)
                 {
-                    Rigidbody rb = other.GetComponent<Rigidbody>();
-                    switch (hitType)
-                    {
-                        case ProjectileHitType.StayStill:
-                            actuallyTakeDamage = rb.angularVelocity != Vector3.zero;
-                            break;
-                        case ProjectileHitType.StayMoving:
-                            actuallyTakeDamage = rb.angularVelocity == Vector3.zero;
-                            break;
-                    }
+                    case ProjectileHitType.StayStill:
+                        actuallyTakeDamage = !Mathf.Approximately(receiverRB.linearVelocity.magnitude, 0f);
+                        break;
+                    case ProjectileHitType.StayMoving:
+                        actuallyTakeDamage = Mathf.Approximately(receiverRB.linearVelocity.magnitude, 0f);
+                        break;
                 }
+
                 if (actuallyTakeDamage) receiver.TakeDamage(baseDamage, false);
             }
-            if (destroyOnHit && !BehindWall(other))
+            if (destroyOnHit && !BehindWall(other) && actuallyTakeDamage)
             {
                 Object_Pooling.Despawn(gameObject, false);
             }
@@ -101,7 +100,21 @@ namespace RenCSharp.Combat.Enemies
         protected virtual void OnTriggerStay(Collider other)
         {
             if (!damageOverTime) return;
-            if(receiver != null) receiver.TakeDamage(baseDamage * Time.deltaTime, true);
+            if (receiver != null && receiverRB != null) 
+            {
+                bool actuallyTakeDamage = true;
+                switch (hitType)
+                {
+                    case ProjectileHitType.StayStill:
+                        actuallyTakeDamage = !Mathf.Approximately(receiverRB.linearVelocity.magnitude, 0f);
+                        break;
+                    case ProjectileHitType.StayMoving:
+                        actuallyTakeDamage = Mathf.Approximately(receiverRB.linearVelocity.magnitude, 0f);
+                        break;
+                }
+                
+                if(actuallyTakeDamage) receiver.TakeDamage(baseDamage * Time.deltaTime, true); 
+            }
         }
 
         //hopefully no overlapping other triggers nonsense?

@@ -13,6 +13,7 @@ namespace RenCSharp.Combat.Player
         [SerializeField] private Animated_Image_Handler playerAttackFab;
         [SerializeField] private AudioClip attackSound;
         [SerializeField] private float attackDamage;
+        [SerializeField] private string playerDamageFlag = "PlayerDamage";
         [SerializeField, Tooltip("Disable if you want to manually set attack damage for debug/cheating purposes.")] private bool grabAttackDamageFromFlags = true;
         private Animated_Image_Handler curPAttack;
 
@@ -30,7 +31,7 @@ namespace RenCSharp.Combat.Player
                 Textbox_String.JumpToEndOfTextbox = true;
 
                 yield return new WaitForSeconds(divTwo);
-                if(grabAttackDamageFromFlags) attackDamage = (float)Flag_Manager.GetFlag("PlayerDamage");
+                if(grabAttackDamageFromFlags) attackDamage = (float)Flag_Manager.GetFlag(playerDamageFlag);
                 Event_Bus.TryFireDoubleObjEvent("EnemyTakeDamage", (object)attackDamage, (object)false);
                 yield return new WaitForSeconds(divTwo);
                 Object_Factory.RemoveObject("PlayerAttack");
