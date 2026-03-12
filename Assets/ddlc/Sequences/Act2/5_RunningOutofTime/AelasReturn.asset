@@ -12,15 +12,858 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
   m_Name: AelasReturn
   m_EditorClassIdentifier: 
-  autoFocusSpeaker: 0
-  screens: []
-  playerChoices: []
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099682247639185
+    - rid: 268099682247639186
+    - rid: 268099682247639188
+    - rid: 268099682247639189
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: When working with Dwemer metal, you must heat the forge to be hotter
+      than it would be when working with steel.
+    ScreenActions:
+    - rid: 268099682247639190
+    - rid: 268099682247639191
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Eorlund uses the bellows mechanism to pump more air into the Skyforge.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Once it has heated up, you can begin the melting process.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Eorlund places all of the scrap that {mc} and Monika gave him into the
+      forge.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: I'm not entire sure what sort of forging techniques the Dwarves used
+      to accomplish this, but-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Most pieces of Dwemer scrap metal have hollow places within them, meaning
+      that you'll get out less ingots than you would expect just from looking at
+      it.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: So how many ingots should expect from all of this?
+    ScreenActions:
+    - rid: 268099682247639192
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Hm. I'd wager about twelve pieces.
+    ScreenActions:
+    - rid: 268099682247639193
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099682247639194
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Contrary to his prediction, the forge only bears eleven ingots.
+    ScreenActions:
+    - rid: 268099682247639195
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: So, for a sword, we'll need one of these ingots...
+    ScreenActions:
+    - rid: 268099682247639196
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: A steel ingot...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: An iron ingot...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: And a handful of leather strips for the bindings.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Wait, what's the steel and iron for?
+    ScreenActions:
+    - rid: 268099682247639197
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Two reasons, mostly.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: First, when refined, Dwarven metal alone becomes excessively heavy, so
+      alloying helps make it more ergonomic.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Second, the alloying helps make the metal more malleable for us.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: This ingots weren't made for our methods of smithing, so we have to adapt
+      it somewhat.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Alright. You want me to cut up some leather strips for you?
+    ScreenActions:
+    - rid: 268099682247639198
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: That'd be good. I'll introduce the ingots to the forge while you do that.
+    ScreenActions:
+    - rid: 268099682247639199
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Natsuki does as she said she would, slicing up some leather that they
+      hand on hand into strips.
+    ScreenActions:
+    - rid: 268099682247639200
+    - rid: 268099682247639201
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: These good, Eorlund?
+    ScreenActions:
+    - rid: 268099682247639202
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Eorlund gives Natsuki's work a glance over to see if it's good.
+    ScreenActions:
+    - rid: 268099682247639203
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Aye, those should do-
+    ScreenActions:
+    - rid: 268099682247639204
+  - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+    dialog: Shield-Sister. Aela's back.
+    ScreenActions:
+    - rid: 268099682247639205
+    - rid: 268099682247639207
+    - rid: 268099682247639208
+  - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+    dialog: Kodlak wants you to talk with us downstairs.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: ... yeah.
+    ScreenActions:
+    - rid: 268099682247639209
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: I'm leaving the strips by the shields, Eorlund.
+    ScreenActions:
+    - rid: 268099682247639210
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Of course. Farewell, Shield-Sister.
+    ScreenActions:
+    - rid: 268099682247639214
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099682247639211
+    - rid: 268099682247639212
+    - rid: 268099682247639213
+    - rid: 268099682247639215
+  - speaker: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
+    dialog: Ah. We're all here. We can now begin.
+    ScreenActions:
+    - rid: 268099682247639216
+    - rid: 268099682247639217
+    - rid: 268099682247639221
+    - rid: 268099682247639222
+  - speaker: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
+    dialog: Aela. What have you been doing while you were gone.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: Avenging Skjor, as justice demands.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
+    dialog: ... of course. However, the specifics that you are choosing not to mention
+      are important.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+    dialog: We were under the assumption that you were targetting Silver Hand leadership
+      and murdering them. Is this true?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: Yes.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: A brief period of awkward silence hangs in the air.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
+    dialog: ... how-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
+    dialog: How far did you go?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: ... I've butchered the Silver Hand at the Valtheim Towers and Lost Knife
+      Hideout.
+    ScreenActions:
+    - rid: 268099682247639224
+  - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+    dialog: All in a day? Did you bring a Shield-Sibling?
+    ScreenActions:
+    - rid: 268099682247639226
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: No, I hunted alone.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: I was careful not to make the same mistake Skjor did; I avoided direct
+      confrontation with groups if possible.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+    dialog: If that's the case, why have you returned now?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+    dialog: The both of us know there are more than three Silver Hand sects in Skyrim,
+      including the one you wiped out at Gallow's Rock.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+    dialog: So why stop after two?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: I was spotted after I took care of the leader at the Valtheim Towers.
+    ScreenActions:
+    - rid: 268099682247639227
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Is that bad?
+    ScreenActions:
+    - rid: 268099682247639228
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+    dialog: Shield-Sister, if they spotted Aela, that means they'll know a Companion
+      was behind the killings-
+    ScreenActions:
+    - rid: 268099682247639229
+    - rid: 268099682247639230
+  - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+    dialog: They'll believe we are intentionally escalating; trying to wipe them
+      out.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+    dialog: If they think they're cornered, they'll lash out with the tenacity of
+      the wounded animals they are.
+    ScreenActions:
+    - rid: 268099682247639231
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: That's bad...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
+    dialog: Indeed.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
+    dialog: This is why it is best not to let your passions control you; the long-term
+      consequences can be dire.
+    ScreenActions:
+    - rid: 268099682247639232
+    - rid: 268099682247639234
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: No matter! We shall merely finish what I started and put them all to
+      the sword!
+    ScreenActions:
+    - rid: 268099682247639233
+  - speaker: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
+    dialog: Aela, everyone here knows that they have significantly more manpower
+      than us.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
+    dialog: Your bold crusade is more foolish than noble.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: One of ours is worth twenty of theirs!
+    ScreenActions:
+    - rid: 268099682247639235
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: If we were to just-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Suddenly, sounds of fight could be heard from upstairs.
+    ScreenActions:
+    - rid: 268099682247639236
+    - rid: 268099682247639237
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: That sounds way more intense than the stuff Athis and Njada get up too...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
+    dialog: Aela, you <NoiseText=3,1>fool</NoiseText>!
+    ScreenActions:
+    - rid: 268099682247639238
+  - speaker: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
+    dialog: To arms, Companions! We need to defend Jorrvaskr!
+    ScreenActions:
+    - rid: 268099682247639239
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Everyone moves upstairs to join in the fight.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: The five Companions encounter their fellows already locked in battle
+      with hordes of Silver Hand.
+    ScreenActions:
+    - rid: 268099682247639240
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099682247639244
+    - rid: 268099682247639245
+    - rid: 268099682247639242
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099682247639246
+    - rid: 268099682247639247
+    - rid: 268099682247639248
+    - rid: 268099682247639249
+    - rid: 268099682247639250
+    - rid: 268099682247639251
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 0}
+    requireCondition: 0
+    conditions: []
   myself:
-    m_AssetGUID: 
+    m_AssetGUID: c5148c97d1825514ab5c325d2840e659
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 268099682247639185
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 8ba741664c007464ab8997c87a7a111a
+          m_SubObjectName: whiterun_skyrforge
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 3
+    - rid: 268099682247639186
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 07169a44e565b2e46a97c1e0d18c4997
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 3
+        setToSameTime: 0
+    - rid: 268099682247639188
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeTime: 0.5
+    - rid: 268099682247639189
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeTime: 0.5
+    - rid: 268099682247639190
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 268099682247639191
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - inquisitive
+        - ears
+    - rid: 268099682247639192
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skyDown
+        - speak
+    - rid: 268099682247639193
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive
+    - rid: 268099682247639194
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 8ba741664c007464ab8997c87a7a111a
+          m_SubObjectName: whiterun_skyrforge
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 268099682247639195
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 268099682247639196
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - blank
+    - rid: 268099682247639197
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive
+    - rid: 268099682247639198
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - blank
+    - rid: 268099682247639199
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - smile
+    - rid: 268099682247639200
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 8ba741664c007464ab8997c87a7a111a
+          m_SubObjectName: whiterun_skyrforge
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 268099682247639201
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - smile2
+    - rid: 268099682247639202
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - speak
+    - rid: 268099682247639203
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - blank
+    - rid: 268099682247639204
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - smile
+    - rid: 268099682247639205
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099682247639207
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -700, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+        - EMPTY
+    - rid: 268099682247639208
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - blank
+    - rid: 268099682247639209
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - scowl
+    - rid: 268099682247639210
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - speak
+    - rid: 268099682247639211
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: cdd448717f16d76429cf69b2d3551ad2
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099682247639212
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+        fadeTime: 0.5
+    - rid: 268099682247639213
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 9057fc732bae54f40a78ced1780c2edc
+          m_SubObjectName: whiterun_jorrvaskrkodlakroom
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 268099682247639214
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 268099682247639215
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - scowl
+    - rid: 268099682247639216
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 400, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+        - EMPTY
+    - rid: 268099682247639217
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 800, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 268099682247639221
+      type: {class: Group_Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        motionOffset: {x: 300, y: 0, z: 0}
+        motionDuration: 1
+        xCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        yCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        zCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        targets:
+        - {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        - {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+        loopOnScreen: 0
+    - rid: 268099682247639222
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -800, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 268099682247639224
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - concernBlush
+    - rid: 268099682247639226
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skyDown
+        - scowl
+    - rid: 268099682247639227
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099682247639228
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - speak
+    - rid: 268099682247639229
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 4a717978c2527d648be93e6fda5e3af7
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099682247639230
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skyDown
+        - concernBlush
+    - rid: 268099682247639231
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwaySad
+    - rid: 268099682247639232
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: cdd448717f16d76429cf69b2d3551ad2
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099682247639233
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - scowl
+    - rid: 268099682247639234
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - lookAwayGrin
+    - rid: 268099682247639235
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - bored
+    - rid: 268099682247639236
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - speak
+    - rid: 268099682247639237
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099682247639238
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099682247639239
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - scowl
+    - rid: 268099682247639240
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 97c464fa57dd7324a839112fb3136665
+          m_SubObjectName: whiterun_jorrvaskrinside
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 268099682247639242
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 4
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 0}
+            dialog: 
+            ScreenActions:
+            - rid: 268099682247639243
+    - rid: 268099682247639243
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerDamage
+        flagValue: 15
+        increment: 0
+        persistent: 0
+    - rid: 268099682247639244
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerAbilites
+        flagValue: 8
+        increment: 0
+        persistent: 0
+    - rid: 268099682247639245
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 35
+        increment: 0
+        persistent: 0
+    - rid: 268099682247639246
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+        fadeTime: 0.5
+    - rid: 268099682247639247
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+        fadeTime: 0.5
+    - rid: 268099682247639248
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeTime: 0.5
+    - rid: 268099682247639249
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+        fadeTime: 0.5
+    - rid: 268099682247639250
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: bb5b825b0be0b62428004be39a77cc24, type: 2}
+        fadeTime: 0.5
+    - rid: 268099682247639251
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 11400000, guid: a6ac154500d68cd4bac59362aad7edf7, type: 2}
