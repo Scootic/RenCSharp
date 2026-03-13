@@ -12,25 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
   m_Name: Jorrvaskr_Silverhand1
   m_EditorClassIdentifier: 
-  scriptedAttacks: []
-  scriptedFlavorTexts: []
-  randomAttacks: []
-  randomFlavorTexts: []
-  maxHealth: 10
-  visualInformation: []
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 49e13050f225238458711000418a50db, type: 2}
+  - {fileID: 11400000, guid: bfa25e5f433294348ab313578a7d1583, type: 2}
+  - {fileID: 11400000, guid: 9bcbcfd7d5c8c334dbb36e1c78124fb4, type: 2}
+  - {fileID: 11400000, guid: 32fd944dc6183e14f9b3e32708665ca1, type: 2}
+  scriptedFlavorTexts:
+  - The Silver Hand alternates between slashing at Natsuki's head and legs.
+  - A shield is flung towards Natsuki, which she uses to block the Silver Hand's
+    sword.
+  - The Silver Hand stabs at Natsuki, angling down from the side.
+  - The Silver Hand slashes downward from above.
+  randomAttacks:
+  - {fileID: 11400000, guid: 7ad539507af698b4f9f0a14a7e8edbae, type: 2}
+  - {fileID: 11400000, guid: 9d6c428a49ab0db4f82866d5da7ca360, type: 2}
+  - {fileID: 11400000, guid: bfa25e5f433294348ab313578a7d1583, type: 2}
+  - {fileID: 11400000, guid: 32fd944dc6183e14f9b3e32708665ca1, type: 2}
+  randomFlavorTexts:
+  - The Silver Hand slashes at Natsuki, attempting to predict where she'll dodge.
+  - The Silver Hand stabs at Natsuki while strafing around her.
+  - Natsuki uses her shield to block. Again.
+  - The Silver Hand slashes downward from above. Again.
+  maxHealth: 50
+  visualInformation:
+  - {fileID: 21300000, guid: 096b8c3cc93b09845916c4ae73b373fa, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
-  defeatText: 
-  nameText: 
-  blurbText: 
-  hurtedSound: {fileID: 0}
+  defeatText: One down, more to go.
+  nameText: Silver Hand
+  blurbText: Looks familiar...
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
   uiParticleObjFab:
-    m_AssetGUID: 
+    m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   hitParticleObjFab:
-    m_AssetGUID: 
+    m_AssetGUID: 5c1c468a2868c7d4fb619d948854ab27
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
