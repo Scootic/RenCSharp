@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8204080492186913528}
   - component: {fileID: 8266305171280315681}
   - component: {fileID: 1534405015989188444}
-  - component: {fileID: 4247805767152981636}
+  - component: {fileID: 1362190058676983102}
   m_Layer: 6
   m_Name: BigBlueFireProj
   m_TagString: Untagged
@@ -126,7 +126,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 200, y: 200, z: 50}
   m_Center: {x: 0, y: -25, z: 0}
---- !u!114 &4247805767152981636
+--- !u!114 &1362190058676983102
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,9 +135,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7609347526362195393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da129c2f52b210439ed0f8520f3c215, type: 3}
+  m_Script: {fileID: 11500000, guid: 006f482684a4f2b4daf69f8001b5dbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementType:
+    rid: 268099750562628556
+  despawnType:
+    rid: 268099750562628592
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 3
@@ -148,10 +152,20 @@ MonoBehaviour:
   spawnSound: {fileID: 8300000, guid: 7938deb51c5114f40a13688a269a0017, type: 3}
   sprite: {fileID: 8204080492186913528}
   hitType: 1
-  explosionDirs:
-  - {x: -1, y: 1, z: 0}
-  - {x: 1, y: 1, z: 0}
-  - {x: -1, y: -1, z: 0}
-  - {x: 1, y: -1, z: 0}
-  subProjectile: {fileID: 8204135625514222407, guid: 5d464d6418012024db116c39364c024c, type: 3}
-  localExplosionDirections: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099750562628556
+      type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        speed: 500
+    - rid: 268099750562628592
+      type: {class: Explode_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        explosionDirs:
+        - {x: -1, y: 1, z: 0}
+        - {x: 1, y: 1, z: 0}
+        - {x: -1, y: -1, z: 0}
+        - {x: 1, y: -1, z: 0}
+        subProjectile: {fileID: 8204135625514222407, guid: 5d464d6418012024db116c39364c024c, type: 3}
+        localExplosionDirections: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2711639654553654952}
   - component: {fileID: 512394676569696241}
   - component: {fileID: 8204080492186913528}
-  - component: {fileID: 7586754211825127322}
+  - component: {fileID: 2936334863505164406}
   - component: {fileID: 8266305171280315681}
   - component: {fileID: 1534405015989188444}
   m_Layer: 6
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7586754211825127322
+--- !u!114 &2936334863505164406
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,9 +87,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7609347526362195393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da129c2f52b210439ed0f8520f3c215, type: 3}
+  m_Script: {fileID: 11500000, guid: 006f482684a4f2b4daf69f8001b5dbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementType:
+    rid: 268099755542839574
+  despawnType:
+    rid: 268099755542839586
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 2
@@ -99,11 +103,22 @@ MonoBehaviour:
   colliderEnableTime: 0.1
   spawnSound: {fileID: 8300000, guid: e97588fde909d0b4bb98405f325fdac3, type: 3}
   sprite: {fileID: 8204080492186913528}
-  explosionDirs:
-  - {x: -0.2, y: -1, z: 0}
-  - {x: 0.2, y: -1, z: 0}
-  subProjectile: {fileID: 8204135625514222407, guid: 97cae80db8860e24dbed6a6ce14d94be, type: 3}
-  localExplosionDirections: 1
+  hitType: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099755542839574
+      type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        speed: 150
+    - rid: 268099755542839586
+      type: {class: Explode_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        explosionDirs:
+        - {x: -0.2, y: -1, z: 0}
+        - {x: 0.2, y: -1, z: 0}
+        subProjectile: {fileID: 8204135625514222407, guid: 97cae80db8860e24dbed6a6ce14d94be, type: 3}
+        localExplosionDirections: 1
 --- !u!54 &8266305171280315681
 Rigidbody:
   m_ObjectHideFlags: 0

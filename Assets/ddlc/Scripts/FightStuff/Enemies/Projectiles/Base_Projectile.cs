@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using EXPERIMENTAL;
 using UnityEngine.UI;
@@ -9,10 +10,18 @@ namespace RenCSharp.Combat.Enemies
     public class Base_Projectile : MonoBehaviour, IDespawn
     {
         [Header("Base Projectile")]
+        [Header("Movement")]
+        [SerializeReference] protected Projectile_MovementType movementType = new StraightLine_Projectile_MovementType();
+        [Header("On Hit")]
+        [SerializeReference] protected List<Projectile_OnHitEffect> onHitEffects = new();
+        [Header("On Despawn")]
+        [SerializeReference] protected Projectile_DespawnType despawnType = new Empty_Projectile_DespawnType();
+        [Header("On Update")]
+        [SerializeReference] protected List<Projectile_CustomUpdate> updateTypes = new(); 
+        [Header("Stats")]
         [SerializeField] protected bool damageOverTime = false;
         [SerializeField] protected bool destroyOnHit = true;
         [SerializeField, Min(0.1f)] protected float baseDamage = 1;
-        [SerializeField, Min(0.1f)] protected float moveSpeed = 500;
         [SerializeField, Min(0.15f)] protected float lifetime = 10;
         [SerializeField, Range(0, 1)] protected float spawnSoundVol = 1;
         [SerializeField, Min(0.1f)] protected float colliderEnableTime = 0.1f;
@@ -25,7 +34,7 @@ namespace RenCSharp.Combat.Enemies
         protected Color endC;
         protected Collider myCol;
         protected Coroutine spawnInRoutine;
-        protected Rigidbody receiverRB;
+        protected Rigidbody receiverRB, myRB;
         public float Lifetime => lifetime;
         public float SpawnSoundVol => spawnSoundVol;
         public AudioClip SpawnSound => spawnSound;
@@ -35,14 +44,17 @@ namespace RenCSharp.Combat.Enemies
         /// <param name="v3">Something, probably player position</param>
         public virtual void UpdateMoveDir(Vector3 v3)
         {
-            moveDir = v3;
-            transform.rotation = TrigHelper.GetQuaternion(v3);
+            movementType.UpdateMoveDir(v3);
         }
 
         protected virtual void OnEnable()
         {
+            movementType.SetProjectileTransform = transform;
             myCol = GetComponent<Collider>();
+            myRB = GetComponent<Rigidbody>();
+            movementType.SetProjectileRigidbody = myRB;
             if (sprite == null) sprite = GetComponentInChildren<Image>();
+            if (despawnType == null) despawnType = new Empty_Projectile_DespawnType();
             spawnInRoutine = StartCoroutine(EnableTriggerOverTime());
         }
 
@@ -68,7 +80,12 @@ namespace RenCSharp.Combat.Enemies
         //Handle movements
         protected virtual void Update()
         {
-            transform.position += moveDir * moveSpeed * Time.deltaTime;
+            movementType.MovementBehavior();
+            if (updateTypes.Count <= 0) return;
+            foreach(Projectile_CustomUpdate pcu in updateTypes)
+            {
+                pcu.UpdateBehavior();
+            }
         }
         //Set up the procedures to take damage
         protected virtual void OnTriggerEnter(Collider other)
@@ -89,6 +106,14 @@ namespace RenCSharp.Combat.Enemies
                 }
 
                 if (actuallyTakeDamage) receiver.TakeDamage(baseDamage, false);
+
+                if(onHitEffects.Count > 0)
+                {
+                    foreach(Projectile_OnHitEffect hitE in onHitEffects)
+                    {
+                        hitE.OnHit(other);
+                    }
+                }
             }
             if (destroyOnHit && !BehindWall(other) && actuallyTakeDamage)
             {
@@ -134,9 +159,15 @@ namespace RenCSharp.Combat.Enemies
 
         public virtual void OnDespawn(bool playerTurn)
         {
+            despawnType.OnDespawn(playerTurn, transform);
             StopCoroutine(spawnInRoutine);
             transform.localScale = endScale;
             sprite.color = endC;
+        }
+
+        public void OnValidate()
+        {
+            
         }
     }
 }

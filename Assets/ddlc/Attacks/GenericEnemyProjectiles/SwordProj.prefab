@@ -90,6 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006f482684a4f2b4daf69f8001b5dbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementType:
+    rid: 268099750562627665
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 3
@@ -99,6 +101,14 @@ MonoBehaviour:
   colliderEnableTime: 0.1
   spawnSound: {fileID: 8300000, guid: b40532dff090cf84b8986386702391a1, type: 3}
   sprite: {fileID: 8204080492186913528}
+  hitType: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099750562627665
+      type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        speed: 500
 --- !u!54 &-2506182205116807624
 Rigidbody:
   m_ObjectHideFlags: 0

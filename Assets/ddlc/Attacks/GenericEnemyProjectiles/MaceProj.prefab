@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2711639654553654952}
   - component: {fileID: 512394676569696241}
   - component: {fileID: 8204080492186913528}
-  - component: {fileID: 8238751090672788180}
+  - component: {fileID: 6086333736105796336}
   - component: {fileID: -2506182205116807624}
   - component: {fileID: -1317450562956184785}
   - component: {fileID: 5761082792419645901}
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8238751090672788180
+--- !u!114 &6086333736105796336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,21 +88,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 7609347526362195393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82e02c6ff7134a24898787f5e338918f, type: 3}
+  m_Script: {fileID: 11500000, guid: 006f482684a4f2b4daf69f8001b5dbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementType:
+    rid: 268099759930081395
+  onHitEffects:
+  - rid: 268099759930081404
+  despawnType:
+    rid: 268099760321986602
+  updateTypes: []
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 4
-  moveSpeed: 500
-  lifetime: 10
+  lifetime: 5
   spawnSoundVol: 0.4
   colliderEnableTime: 0.1
   spawnSound: {fileID: 8300000, guid: b40532dff090cf84b8986386702391a1, type: 3}
   sprite: {fileID: 8204080492186913528}
-  bounces: 3
-  reboundStrength: 2
-  ignoreMass: 1
+  hitType: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099759930081395
+      type: {class: Physics_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        speed: 500
+        ignoreMass: 1
+    - rid: 268099759930081404
+      type: {class: Bounce_Projectile_OnHitEffect, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        projectileTransform: {fileID: 2711639654553654952}
+        projectileRigidbody: {fileID: -2506182205116807624}
+        projectile: {fileID: 6086333736105796336}
+        reboundStrength: 2
+    - rid: 268099760321986602
+      type: {class: ResetRB_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        rb: {fileID: -2506182205116807624}
 --- !u!54 &-2506182205116807624
 Rigidbody:
   m_ObjectHideFlags: 0

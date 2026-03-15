@@ -1,0 +1,46 @@
+using EXPERIMENTAL;
+using RenCSharp.Combat.Interfaces;
+using UnityEngine;
+
+namespace RenCSharp.Combat.Enemies
+{
+    public class BezierKurve_Projectile_MovementType : Projectile_MovementType
+    {
+        [SerializeField, Tooltip("How far the boomerang will go, along lifespan duration.")] private float distanceFromSpawn;
+        [SerializeField] private float arcHeight = 300f;
+        [SerializeField, Min(0), Tooltip("Should be the same as projectile lifetime, probably.")] private float travelDuration = 10;
+        [SerializeField] private AnimationCurve animateBezCurve;
+        [SerializeField] private BezierCurveType curveType = BezierCurveType.SimpleArc;
+
+        private float eval;
+        private float t;
+        private Vector3[] boundingPositions = new Vector3[4];
+
+        public override void UpdateMoveDir(Vector3 v3)
+        {
+            moveDir = v3;
+            boundingPositions = BoundingBezierPositions.BoundingPositions4(curveType, projectileTransform.position, moveDir, distanceFromSpawn, arcHeight);
+            t = 0;
+        }
+
+        public override void MovementBehavior()
+        {
+            t += Time.deltaTime;
+            eval = t / travelDuration;
+            Vector3 prevPos = projectileTransform.position;
+            projectileTransform.position = TrigHelper.BezPos(boundingPositions, eval);
+            Vector3 dirToFramePos = projectileTransform.position - prevPos;
+            if (dirToFramePos != Vector3.zero) projectileTransform.rotation = TrigHelper.GetQuaternion(dirToFramePos);
+        }
+
+        public override string ToString()
+        {
+            return "Bezier Curve";
+        }
+
+        public override void OnEditorValidate()
+        {
+            return;
+        }
+    }
+}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8204080492186913528}
   - component: {fileID: 8266305171280315681}
   - component: {fileID: 1534405015989188444}
-  - component: {fileID: 4247805767152981636}
+  - component: {fileID: 5625920853357948886}
   m_Layer: 6
   m_Name: BigZapperProj
   m_TagString: Untagged
@@ -126,7 +126,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 200, y: 237.9, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4247805767152981636
+--- !u!114 &5625920853357948886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,9 +135,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7609347526362195393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da129c2f52b210439ed0f8520f3c215, type: 3}
+  m_Script: {fileID: 11500000, guid: 006f482684a4f2b4daf69f8001b5dbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementType:
+    rid: 268099755542839470
+  despawnType:
+    rid: 268099755542839474
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 4
@@ -147,12 +151,23 @@ MonoBehaviour:
   colliderEnableTime: 0.2
   spawnSound: {fileID: 8300000, guid: 56027e9b62786544ab9a50b8c054eae6, type: 3}
   sprite: {fileID: 8204080492186913528}
-  explosionDirs:
-  - {x: 0, y: 1, z: 0}
-  - {x: 0.6, y: 0.6, z: 0}
-  - {x: -0.6, y: 0.6, z: 0}
-  - {x: 0.6, y: -0.6, z: 0}
-  - {x: -0.6, y: -0.6, z: 0}
-  - {x: 0, y: -1, z: 0}
-  subProjectile: {fileID: 8204135625514222407, guid: aec9f388c89681f42a965d6c963bba56, type: 3}
-  localExplosionDirections: 1
+  hitType: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099755542839470
+      type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        speed: 500
+    - rid: 268099755542839474
+      type: {class: Explode_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        explosionDirs:
+        - {x: 0, y: 1, z: 0}
+        - {x: 0.6, y: 0.6, z: 0}
+        - {x: -0.6, y: 0.6, z: 0}
+        - {x: 0.6, y: -0.6, z: 0}
+        - {x: -0.6, y: -0.6, z: 0}
+        - {x: 0, y: -1, z: 0}
+        subProjectile: {fileID: 8204135625514222407, guid: aec9f388c89681f42a965d6c963bba56, type: 3}
+        localExplosionDirections: 1

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8204080492186913528}
   - component: {fileID: 8266305171280315681}
   - component: {fileID: 1534405015989188444}
-  - component: {fileID: 4247805767152981636}
+  - component: {fileID: 8633083501479860174}
   m_Layer: 6
   m_Name: MeteorProj
   m_TagString: Untagged
@@ -126,7 +126,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 140, y: 150, z: 50}
   m_Center: {x: 0, y: -20, z: 0}
---- !u!114 &4247805767152981636
+--- !u!114 &8633083501479860174
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,9 +135,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7609347526362195393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da129c2f52b210439ed0f8520f3c215, type: 3}
+  m_Script: {fileID: 11500000, guid: 006f482684a4f2b4daf69f8001b5dbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementType:
+    rid: 268099750562628160
+  despawnType:
+    rid: 268099750562628164
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 3
@@ -147,13 +151,24 @@ MonoBehaviour:
   colliderEnableTime: 0.1
   spawnSound: {fileID: 8300000, guid: 7938deb51c5114f40a13688a269a0017, type: 3}
   sprite: {fileID: 8204080492186913528}
-  explosionDirs:
-  - {x: -500, y: 600, z: 0}
-  - {x: 500, y: 600, z: 0}
-  - {x: -250, y: 600, z: 0}
-  - {x: 250, y: 600, z: 0}
-  - {x: 0, y: 600, z: 0}
-  - {x: 125, y: 600, z: 0}
-  - {x: -125, y: 600, z: 0}
-  subProjectile: {fileID: 6207858323002561796, guid: 90349a2f45368a541b49bf6956ecb0f5, type: 3}
-  localExplosionDirections: 0
+  hitType: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099750562628160
+      type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        speed: 500
+    - rid: 268099750562628164
+      type: {class: Explode_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        explosionDirs:
+        - {x: -500, y: 600, z: 0}
+        - {x: 500, y: 600, z: 0}
+        - {x: 250, y: 600, z: 0}
+        - {x: -250, y: 600, z: 0}
+        - {x: 0, y: 600, z: 0}
+        - {x: 125, y: 600, z: 0}
+        - {x: -125, y: 600, z: 0}
+        subProjectile: {fileID: 6207858323002561796, guid: 90349a2f45368a541b49bf6956ecb0f5, type: 3}
+        localExplosionDirections: 0

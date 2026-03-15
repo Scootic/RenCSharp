@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8204080492186913528}
   - component: {fileID: 8266305171280315681}
   - component: {fileID: 1534405015989188444}
-  - component: {fileID: 2459800887355253899}
+  - component: {fileID: 4197117482452204180}
   m_Layer: 6
   m_Name: SmallSineFireProj
   m_TagString: Untagged
@@ -126,7 +126,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 75, y: 46.13, z: 50}
   m_Center: {x: 0, y: -13.7, z: 0}
---- !u!114 &2459800887355253899
+--- !u!114 &4197117482452204180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,17 +135,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 7609347526362195393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e3e1c255b1eec8478f9c08d8a7ebbd7, type: 3}
+  m_Script: {fileID: 11500000, guid: 006f482684a4f2b4daf69f8001b5dbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementType:
+    rid: 268099750562627707
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 2
-  moveSpeed: 550
+  moveSpeed: 500
   lifetime: 10
   spawnSoundVol: 0.1
   colliderEnableTime: 0.1
   spawnSound: {fileID: 8300000, guid: 12b00ffefa349f645b4598c39384fc11, type: 3}
   sprite: {fileID: 8204080492186913528}
-  frequency: 5
-  amplitude: 0.5
+  hitType: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099750562627707
+      type: {class: SineWave_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        speed: 550
+        frequency: 5
+        amplitude: 0.5

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8204080492186913528}
   - component: {fileID: 8266305171280315681}
   - component: {fileID: 1534405015989188444}
-  - component: {fileID: 2459800887355253899}
+  - component: {fileID: 324360323229231021}
   m_Layer: 6
   m_Name: MagnusSineProj
   m_TagString: Untagged
@@ -127,7 +127,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 44.7, y: 71.47, z: 50}
   m_Center: {x: -1.6, y: -0.3, z: 0}
---- !u!114 &2459800887355253899
+--- !u!114 &324360323229231021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,21 +136,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 7609347526362195393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e3e1c255b1eec8478f9c08d8a7ebbd7, type: 3}
+  m_Script: {fileID: 11500000, guid: 006f482684a4f2b4daf69f8001b5dbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementType:
+    rid: 268099750562627697
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 2
-  moveSpeed: 350
+  moveSpeed: 500
   lifetime: 10
   spawnSoundVol: 0.3
   colliderEnableTime: 0.1
   spawnSound: {fileID: 8300000, guid: b40532dff090cf84b8986386702391a1, type: 3}
   sprite: {fileID: 439865040803929543}
   hitType: 0
-  frequency: 3
-  amplitude: 0.75
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099750562627697
+      type: {class: SineWave_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        speed: 350
+        frequency: 3
+        amplitude: 0.75
 --- !u!1 &8164681206085499733
 GameObject:
   m_ObjectHideFlags: 0

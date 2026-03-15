@@ -87,19 +87,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 7609347526362195393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2604468c77b7f6469f369d228dc3878, type: 3}
+  m_Script: {fileID: 11500000, guid: 006f482684a4f2b4daf69f8001b5dbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementType:
+    rid: 268099750562627675
+  onHitEffects: []
+  despawnType:
+    rid: 268099759930081970
+  updateTypes: []
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 4
-  moveSpeed: 600
+  moveSpeed: 500
   lifetime: 10
   spawnSoundVol: 0.4
   colliderEnableTime: 0.15
   spawnSound: {fileID: 8300000, guid: b40532dff090cf84b8986386702391a1, type: 3}
   sprite: {fileID: 8204080492186913528}
-  homeStrength: 1.5
+  hitType: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099750562627675
+      type: {class: HomingAttack_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        speed: 600
+        homingStrength: 1.5
+    - rid: 268099759930081970
+      type: {class: Empty_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data: 
 --- !u!54 &-2506182205116807624
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2711639654553654952}
   - component: {fileID: 512394676569696241}
   - component: {fileID: 8204080492186913528}
-  - component: {fileID: 128513404515447281}
+  - component: {fileID: 2432903894704187141}
   - component: {fileID: -2506182205116807624}
   - component: {fileID: -1317450562956184785}
   m_Layer: 6
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &128513404515447281
+--- !u!114 &2432903894704187141
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,25 +87,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 7609347526362195393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da129c2f52b210439ed0f8520f3c215, type: 3}
+  m_Script: {fileID: 11500000, guid: 006f482684a4f2b4daf69f8001b5dbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementType:
+    rid: 268099750562627894
+  onHitEffects: []
+  despawnType:
+    rid: 268099750562627924
+  updateTypes:
+  - rid: 268099759930081366
   damageOverTime: 1
   destroyOnHit: 0
   baseDamage: 7
-  moveSpeed: 100
+  moveSpeed: 500
   lifetime: 2
   spawnSoundVol: 0.5
   colliderEnableTime: 0.3
   spawnSound: {fileID: 8300000, guid: cdbfeedbac1ad9445b691f29dd5d07d2, type: 3}
   sprite: {fileID: 8204080492186913528}
-  explosionDirs:
-  - {x: -1, y: -1, z: 0}
-  - {x: 1, y: -1, z: 0}
-  - {x: 1, y: 1, z: 0}
-  - {x: -1, y: 1, z: 0}
-  subProjectile: {fileID: 2459800887355253899, guid: d35af848608358541965438a1ed49790, type: 3}
-  localExplosionDirections: 1
+  hitType: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099750562627894
+      type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        speed: 100
+    - rid: 268099750562627924
+      type: {class: Explode_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        explosionDirs:
+        - {x: -1, y: -1, z: 0}
+        - {x: 1, y: -1, z: 0}
+        - {x: 1, y: 1, z: 0}
+        - {x: -1, y: 1, z: 0}
+        subProjectile: {fileID: 7400598430934815875, guid: d35af848608358541965438a1ed49790, type: 3}
+        localExplosionDirections: 1
+    - rid: 268099759930081366
+      type: {class: Rotating_Projectile_CustomUpdate, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        guyToRotate: {fileID: 2711639654553654952}
+        rotationSpeed: 90
 --- !u!54 &-2506182205116807624
 Rigidbody:
   m_ObjectHideFlags: 0

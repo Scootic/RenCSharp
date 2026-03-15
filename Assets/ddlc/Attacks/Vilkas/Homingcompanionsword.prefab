@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2711639654553654952}
   - component: {fileID: 512394676569696241}
   - component: {fileID: 8204080492186913528}
-  - component: {fileID: 8335507302958493363}
+  - component: {fileID: 2793362521165959524}
   - component: {fileID: 8094239482754136957}
   - component: {fileID: -783756840232840153}
   m_Layer: 6
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8335507302958493363
+--- !u!114 &2793362521165959524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,19 +87,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 7609347526362195393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2604468c77b7f6469f369d228dc3878, type: 3}
+  m_Script: {fileID: 11500000, guid: 006f482684a4f2b4daf69f8001b5dbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementType:
+    rid: 268099750562627687
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 4
-  moveSpeed: 575
+  moveSpeed: 500
   lifetime: 15
   spawnSoundVol: 0.3
   colliderEnableTime: 0.5
   spawnSound: {fileID: 8300000, guid: b40532dff090cf84b8986386702391a1, type: 3}
   sprite: {fileID: 8204080492186913528}
-  homeStrength: 2.5
+  hitType: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099750562627687
+      type: {class: HomingAttack_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        speed: 575
+        homingStrength: 2.5
 --- !u!54 &8094239482754136957
 Rigidbody:
   m_ObjectHideFlags: 0
