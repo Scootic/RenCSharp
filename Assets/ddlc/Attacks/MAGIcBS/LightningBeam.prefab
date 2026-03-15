@@ -358,17 +358,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a39b6af85b912149b99ed80ae51c717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementType:
+    rid: 268099760321986627
+  onHitEffects: []
+  despawnType:
+    rid: 268099760321986628
+  updateTypes: []
   damageOverTime: 0
-  destroyOnHit: 1
+  destroyOnHit: 0
   baseDamage: 5
-  moveSpeed: 500
   lifetime: 2
   spawnSoundVol: 0.5
   colliderEnableTime: 1
   spawnSound: {fileID: 8300000, guid: a00237a59645fcd47b9fb4e5472d6141, type: 3}
   sprite: {fileID: 0}
+  hitType: 0
   beamElements: {fileID: 5318929957290242959}
   beamFullSound: {fileID: 8300000, guid: 56027e9b62786544ab9a50b8c054eae6, type: 3}
   beamSoundVol: 1
   emptyBeamC: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
   fullBeamC: {r: 1, g: 0, b: 0, a: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099760321986627
+      type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        speed: 500
+    - rid: 268099760321986628
+      type: {class: Empty_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data: 
