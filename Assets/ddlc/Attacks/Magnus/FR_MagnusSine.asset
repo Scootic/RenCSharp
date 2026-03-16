@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: FR_MagnusSine
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 400, y: 400}
+  controlType:
+    rid: 268099776712540784
+  attackDuration: 11
+  secondsPerProjectileSpawn: 0.7
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 324360323229231021, guid: e7ed8e782b33a694e9ca76ed5d42ad6e, type: 3}
+  spawnPoints:
+  - {x: 500, y: 0, z: 0}
+  - {x: 469.8463, y: 171.01007, z: 0}
+  - {x: 383.02222, y: 321.39383, z: 0}
+  - {x: 249.99998, y: 433.01273, z: 0}
+  - {x: 86.82405, y: 492.4039, z: 0}
+  - {x: -86.82415, y: 492.40387, z: 0}
+  - {x: -250.00003, y: 433.0127, z: 0}
+  - {x: -383.0223, y: 321.39374, z: 0}
+  - {x: -469.84634, y: 171.01001, z: 0}
+  - {x: -500, y: -0.00004371139, z: 0}
+  - {x: -469.84628, y: -171.0102, z: 0}
+  - {x: -383.02225, y: -321.3938, z: 0}
+  - {x: -249.99995, y: -433.01273, z: 0}
+  - {x: -86.824066, y: -492.4039, z: 0}
+  - {x: 86.82431, y: -492.40384, z: 0}
+  - {x: 249.99995, y: -433.01273, z: 0}
+  - {x: 383.0223, y: -321.3937, z: 0}
+  - {x: 469.84628, y: -171.01018, z: 0}
+  initialDirections:
+  - {x: -1, y: -0, z: 0}
+  - {x: -0.9396926, y: -0.34202015, z: 0}
+  - {x: -0.76604444, y: -0.64278764, z: 0}
+  - {x: -0.49999997, y: -0.86602545, z: 0}
+  - {x: -0.1736481, y: -0.9848078, z: 0}
+  - {x: 0.1736483, y: -0.9848077, z: 0}
+  - {x: 0.50000006, y: -0.8660254, z: 0}
+  - {x: 0.7660446, y: -0.64278746, z: 0}
+  - {x: 0.9396927, y: -0.34202, z: 0}
+  - {x: 1, y: 0.00000008742278, z: 0}
+  - {x: 0.93969256, y: 0.3420204, z: 0}
+  - {x: 0.7660445, y: 0.6427876, z: 0}
+  - {x: 0.4999999, y: 0.86602545, z: 0}
+  - {x: 0.17364813, y: 0.9848078, z: 0}
+  - {x: -0.17364863, y: 0.98480767, z: 0}
+  - {x: -0.4999999, y: 0.86602545, z: 0}
+  - {x: -0.7660446, y: 0.6427874, z: 0}
+  - {x: -0.93969256, y: 0.34202036, z: 0}
+  indexes: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  projectileSpawnPositionMethod: 3
+  projectileIndexMethod: 3
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099776712540784
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500

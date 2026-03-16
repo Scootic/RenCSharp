@@ -20,7 +20,7 @@ namespace RenCSharp.Combat.Enemies
         public override void MovementBehavior()
         {
             moveDir = ogMoveDir + amplitude * Mathf.Sin(frequency * Time.time) * parallelDir;
-            projectileTransform.rotation = TrigHelper.GetQuaternion(moveDir);
+            if(movementSetsRotation) projectileTransform.rotation = TrigHelper.GetQuaternion(moveDir);
             projectileTransform.position += moveDir * speed * Time.deltaTime;
         }
 

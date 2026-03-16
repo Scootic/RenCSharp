@@ -9,6 +9,16 @@ namespace RenCSharp.Combat.Enemies
             
         }
 
+        public override void OnEnable()
+        {
+            return;
+        }
+
+        public override void OnDespawn(bool playerTurn)
+        {
+            return;
+        }
+
         public override string ToString()
         {
             return "Empty";

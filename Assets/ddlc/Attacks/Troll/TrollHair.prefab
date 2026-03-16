@@ -99,7 +99,7 @@ MonoBehaviour:
     rid: 268099760321986617
   updateTypes: []
   damageOverTime: 0
-  destroyOnHit: 1
+  destroyOnHit: 0
   baseDamage: 1
   lifetime: 5
   spawnSoundVol: 0.2
@@ -114,6 +114,7 @@ MonoBehaviour:
       type: {class: Physics_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
         speed: 500
+        movementSetsRotation: 1
         ignoreMass: 1
     - rid: 268099759930081692
       type: {class: Bounce_Projectile_OnHitEffect, ns: RenCSharp.Combat.Enemies, asm: Enemies}

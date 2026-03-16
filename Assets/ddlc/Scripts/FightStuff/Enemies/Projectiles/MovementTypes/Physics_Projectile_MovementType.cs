@@ -14,7 +14,7 @@ namespace RenCSharp.Combat.Enemies
 
         public override void MovementBehavior()
         {
-            if (projectileRigidbody.linearVelocity == Vector3.zero) return;
+            if (projectileRigidbody.linearVelocity == Vector3.zero || !movementSetsRotation) return;
             projectileTransform.rotation = TrigHelper.GetQuaternion(projectileRigidbody.linearVelocity.normalized);
         }
 

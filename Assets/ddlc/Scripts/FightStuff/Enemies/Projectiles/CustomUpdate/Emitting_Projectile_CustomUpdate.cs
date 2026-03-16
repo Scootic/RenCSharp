@@ -71,7 +71,18 @@ namespace RenCSharp.Combat.Enemies
 
         public override void OnEditorValidate()
         {
-            
+            return;
+        }
+
+        public override void OnEnable()
+        {
+            return;
+        }
+
+        public override void OnDespawn(bool playerTurn)
+        {
+            lifeT = 0;
+            t = 0;
         }
     }
 }

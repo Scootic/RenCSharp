@@ -18,12 +18,13 @@ namespace RenCSharp.Combat.Enemies
         public virtual void UpdateMoveDir(Vector3 v3)
         {
             moveDir = v3;
-            projectileTransform.rotation = TrigHelper.GetQuaternion(moveDir);
+            if(movementSetsRotation) projectileTransform.rotation = TrigHelper.GetQuaternion(moveDir);
         }
 
         public Transform SetProjectileTransform { set { projectileTransform = value; } }
         public Rigidbody SetProjectileRigidbody { set { projectileRigidbody = value; } }
         [SerializeField] protected float speed = 500f;
+        [SerializeField, Tooltip("Decides if the movement type affects rotation ever.")] protected bool movementSetsRotation = true;
         protected Transform projectileTransform;
         protected Rigidbody projectileRigidbody;
         protected Vector3 moveDir;

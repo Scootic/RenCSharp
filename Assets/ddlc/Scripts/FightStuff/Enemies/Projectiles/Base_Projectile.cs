@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using EXPERIMENTAL;
 using UnityEngine.UI;
 using RenCSharp.Combat.Interfaces;
 namespace RenCSharp.Combat.Enemies
@@ -56,6 +55,11 @@ namespace RenCSharp.Combat.Enemies
             if (sprite == null) sprite = GetComponentInChildren<Image>();
             if (despawnType == null) despawnType = new Empty_Projectile_DespawnType();
             spawnInRoutine = StartCoroutine(EnableTriggerOverTime());
+            if (updateTypes.Count <= 0) return;
+            foreach(Projectile_CustomUpdate pcu in updateTypes)
+            {
+                pcu.OnEnable();
+            }
         }
 
         protected virtual IEnumerator EnableTriggerOverTime()
@@ -107,9 +111,9 @@ namespace RenCSharp.Combat.Enemies
 
                 if (actuallyTakeDamage) receiver.TakeDamage(baseDamage, false);
 
-                if(onHitEffects.Count > 0)
+                if (onHitEffects.Count > 0)
                 {
-                    foreach(Projectile_OnHitEffect hitE in onHitEffects)
+                    foreach (Projectile_OnHitEffect hitE in onHitEffects)
                     {
                         hitE.OnHit(other);
                     }
@@ -117,6 +121,13 @@ namespace RenCSharp.Combat.Enemies
             }
             if (destroyOnHit && !BehindWall(other) && actuallyTakeDamage)
             {
+                if (updateTypes.Count > 0)
+                {
+                    foreach (Projectile_CustomUpdate pcu in updateTypes)
+                    {
+                        pcu.OnDespawn(false);
+                    }
+                }
                 Object_Pooling.Despawn(gameObject, false);
             }
         }
@@ -159,6 +170,13 @@ namespace RenCSharp.Combat.Enemies
 
         public virtual void OnDespawn(bool playerTurn)
         {
+            if(updateTypes.Count > 0)
+            {
+                foreach(Projectile_CustomUpdate pcu in updateTypes)
+                {
+                    pcu.OnDespawn(playerTurn);
+                }
+            }
             despawnType.OnDespawn(playerTurn, transform);
             StopCoroutine(spawnInRoutine);
             transform.localScale = endScale;

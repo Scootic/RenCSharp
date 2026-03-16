@@ -137,26 +137,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementType:
     rid: 268099750562627693
+  onHitEffects: []
+  despawnType:
+    rid: 1000
+  updateTypes: []
   damageOverTime: 0
   destroyOnHit: 0
   baseDamage: 7
-  moveSpeed: 500
-  lifetime: 1.5
+  lifetime: 0.76
   spawnSoundVol: 0.4
-  colliderEnableTime: 0.45
+  colliderEnableTime: 0.1
   spawnSound: {fileID: 8300000, guid: b40532dff090cf84b8986386702391a1, type: 3}
   sprite: {fileID: 6633296226558677985}
   hitType: 0
   references:
     version: 2
     RefIds:
+    - rid: 1000
+      type: {class: Empty_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data: 
     - rid: 268099750562627693
       type: {class: BezierKurve_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
         speed: 500
+        movementSetsRotation: 1
         distanceFromSpawn: 800
         arcHeight: 400
-        travelDuration: 1.5
+        travelDuration: 0.75
         animateBezCurve:
           serializedVersion: 2
           m_Curve:

@@ -70,9 +70,23 @@ namespace RenCSharp.Combat.Enemies
                     }
                 }
                 if (actuallyTakeDamage) receiver.TakeDamage(baseDamage, false);
+                if (onHitEffects.Count > 0)
+                {
+                    foreach (Projectile_OnHitEffect hitE in onHitEffects)
+                    {
+                        hitE.OnHit(other);
+                    }
+                }
             }
             if (destroyOnHit && receiver != null)
             {
+                if (updateTypes.Count > 0)
+                {
+                    foreach (Projectile_CustomUpdate pcu in updateTypes)
+                    {
+                        pcu.OnDespawn(false);
+                    }
+                }
                 Object_Pooling.Despawn(gameObject);
             }
         }

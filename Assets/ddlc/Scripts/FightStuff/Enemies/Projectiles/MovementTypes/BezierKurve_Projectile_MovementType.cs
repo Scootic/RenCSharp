@@ -27,10 +27,14 @@ namespace RenCSharp.Combat.Enemies
         {
             t += Time.deltaTime;
             eval = t / travelDuration;
-            Vector3 prevPos = projectileTransform.position;
-            projectileTransform.position = TrigHelper.BezPos(boundingPositions, eval);
-            Vector3 dirToFramePos = projectileTransform.position - prevPos;
-            if (dirToFramePos != Vector3.zero) projectileTransform.rotation = TrigHelper.GetQuaternion(dirToFramePos);
+            Vector3 newPos = TrigHelper.BezPos(boundingPositions, eval);
+            if (movementSetsRotation)
+            {
+                Vector3 prevPos = projectileTransform.position;
+                Vector3 dirToFramePos = newPos - prevPos;
+                if (dirToFramePos != Vector3.zero) projectileTransform.rotation = TrigHelper.GetQuaternion(dirToFramePos);
+            }
+            projectileTransform.position = newPos;
         }
 
         public override string ToString()

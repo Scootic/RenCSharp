@@ -43,6 +43,27 @@ namespace EXPERIMENTAL
             Vector3 euler = new Vector3(0, 0, z);
             return Quaternion.Euler(euler);
         }
+
+        /// <summary>
+        /// Gets a point along a unit circle based on what percent. (Goes counter-clockwise.)
+        /// </summary>
+        /// <param name="perc"></param>
+        /// <param name="radius"></param>
+        /// <returns></returns>
+        public static Vector3 PercentAlongUnitCirclePoint(float perc, float radius = 1)
+        {
+            Vector3 fellaToReturn;
+            perc = Mathf.Clamp01(perc); //makes sure our percent value is a percent FR FR!
+            float radAngle = TAU * perc;
+
+            float xPos = Mathf.Cos(radAngle);
+            float yPos = Mathf.Sin(radAngle);
+
+            fellaToReturn = new Vector3(xPos * radius, yPos * radius, 0);
+
+            return fellaToReturn;
+        }
+
         /// <summary>
         /// Reflects a direction based on a normal
         /// </summary>

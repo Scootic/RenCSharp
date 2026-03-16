@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 150}
+  m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &512394676569696241
 CanvasRenderer:
@@ -124,8 +124,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 299.5, y: 132.36, z: 50}
-  m_Center: {x: 0, y: -10.8, z: 0}
+  m_Size: {x: 100, y: 30, z: 50}
+  m_Center: {x: 0, y: -10, z: 0}
 --- !u!114 &8190228511264376471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,10 +140,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementType:
     rid: 268099750562627696
+  onHitEffects: []
+  despawnType:
+    rid: 268099776712540471
+  updateTypes: []
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 4
-  moveSpeed: 500
   lifetime: 10
   spawnSoundVol: 0.3
   colliderEnableTime: 0.1
@@ -157,3 +160,7 @@ MonoBehaviour:
       type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
         speed: 500
+        movementSetsRotation: 1
+    - rid: 268099776712540471
+      type: {class: Empty_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data: 
