@@ -47,6 +47,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4351267964947792108
     - rid: 4351267964947792109
+    - rid: 268099795830177891
   - speaker: {fileID: 11400000, guid: e683e49275a2e914cb83757b791de99d, type: 2}
     dialog: Know that you have set in motion a chain of events that cannot be stopped.
     ScreenActions: []
@@ -73,6 +74,7 @@ MonoBehaviour:
     - rid: 4351267964947792111
     - rid: 4351267964947792113
     - rid: 4351267964947792114
+    - rid: 268099795830177892
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -182,6 +184,46 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 268099795830177891
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 0
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 181ed7327259839498d931272f5aebbe
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 268099795830177892
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 181ed7327259839498d931272f5aebbe
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
     - rid: 4351267964947792069
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:

@@ -90,21 +90,22 @@ MonoBehaviour:
       so she can focus on healing herself.
     ScreenActions:
     - rid: 268099729075732596
-    - rid: 268099729075732597
+    - rid: 268099795830177855
     - rid: 268099729075732598
     - rid: 268099729075732604
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: <NoiseText=0.5,1>I wonder what's the next challenge on our journey</NoiseText>!
+    dialog: <NoiseText=0.5,1>I wonder what's going to be the next challenge on our
+      journey</NoiseText>!
     ScreenActions:
-    - rid: 268099729075732606
-    - rid: 268099729075732608
+    - rid: 268099795830177862
+    - rid: 268099795830177861
     - rid: 268099729075732609
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: <NoiseText=0.5,1>Hopefully it's something {mc} hasn't seen before; it'd
       be more narratively satisfying that way</NoiseText>.
     ScreenActions:
-    - rid: 268099729075732607
-    - rid: 268099729075732610
+    - rid: 268099795830177860
+    - rid: 268099795830177859
     - rid: 268099729075732611
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Yuri, <i>what are you even talking about</i>?
@@ -145,14 +146,45 @@ MonoBehaviour:
     - rid: 268099729075732630
     - rid: 268099729075732631
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-    dialog: 
-    ScreenActions: []
+    dialog: Is that what you were talking about, Yuri?
+    ScreenActions:
+    - rid: 268099795830177864
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I- n-no, but I thought...
+    ScreenActions:
+    - rid: 268099795830177886
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Oh.
+    ScreenActions:
+    - rid: 268099795830177865
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Now that I'm thinking about it some more, that makes more sense.
+    ScreenActions:
+    - rid: 268099795830177866
+    - rid: 268099795830177867
+    - rid: 268099795830177868
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: It's not that we're just some characters in a story, we're real people
+      stuck in a story-bound world.
+    ScreenActions:
+    - rid: 268099795830177869
+    - rid: 268099795830177870
+  - speaker: {fileID: 11400000, guid: 251ab17588978ca44861c552397cfd18, type: 2}
+    dialog: Uh, what?
+    ScreenActions:
+    - rid: 268099795830177871
+    - rid: 268099795830177872
+  - speaker: {fileID: 11400000, guid: 251ab17588978ca44861c552397cfd18, type: 2}
+    dialog: Anyway, now that Ancano's gone, what should we do about the Eye?
+    ScreenActions:
+    - rid: 268099795830177876
+    - rid: 268099795830177877
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 980c54580ba539a4f959429907187bcd, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -230,9 +262,9 @@ MonoBehaviour:
       data:
         actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         visualSpriteIndexes:
+        - skyDown
         - skyUp
-        - skyUp
-        - yanJoy
+        - pitySmile
     - rid: 268099729075732573
       type: {class: Start_Single_Attack, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -309,9 +341,9 @@ MonoBehaviour:
       data:
         actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         visualSpriteIndexes:
-        - skyDown
         - skyUp
-        - concernSpeak
+        - skyUp
+        - focus
     - rid: 268099729075732585
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -326,8 +358,8 @@ MonoBehaviour:
         actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         visualSpriteIndexes:
         - skyDown
-        - skyUp
-        - cryConcern
+        - skyDown
+        - smile
     - rid: 268099729075732588
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -365,27 +397,18 @@ MonoBehaviour:
       data:
         actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         fadeInTime: 0.5
-        spawnOffset: {x: -300, y: -100, z: 0}
+        spawnOffset: {x: -400, y: -100, z: 0}
         visualSpriteIndexes:
         - skyDown
         - skyDown
         - lookAwaySad
-        - EMPTY
-    - rid: 268099729075732597
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - eyesClosedSmile
         - EMPTY
     - rid: 268099729075732598
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToSpawn: {fileID: 11400000, guid: 251ab17588978ca44861c552397cfd18, type: 2}
         fadeInTime: 0.5
-        spawnOffset: {x: 300, y: 0, z: 0}
+        spawnOffset: {x: 400, y: 0, z: 0}
         visualSpriteIndexes:
         - default
     - rid: 268099729075732604
@@ -410,30 +433,6 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
-    - rid: 268099729075732606
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-        visualSpriteIndexes:
-        - skyUp
-        - skyUp
-        - yanSmile
-    - rid: 268099729075732607
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - eyesClosedSmile
-    - rid: 268099729075732608
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        visualSpriteIndexes:
-        - skyUp
-        - skyUp
-        - focus
     - rid: 268099729075732609
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -444,14 +443,6 @@ MonoBehaviour:
         stopOnScreenProgress: 1
         loopDuration: 1
         baseVolume: 1
-    - rid: 268099729075732610
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - concern2
     - rid: 268099729075732611
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -594,3 +585,151 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - yanGasp
+    - rid: 268099795830177855
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - eyesClosedContent
+        - EMPTY
+    - rid: 268099795830177859
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - concern2
+    - rid: 268099795830177860
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - eyesClosedSmile
+    - rid: 268099795830177861
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - focus
+    - rid: 268099795830177862
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - yanSmile
+    - rid: 268099795830177864
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smileSpeak
+    - rid: 268099795830177865
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwayPity
+    - rid: 268099795830177866
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - pitySmile
+    - rid: 268099795830177867
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: e82cf2abd98ac45439666764a84213a5
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 268099795830177868
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 268099795830177869
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - eyesClosedContent
+    - rid: 268099795830177870
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - focus
+    - rid: 268099795830177871
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - shockSurprise
+    - rid: 268099795830177872
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwayPity
+    - rid: 268099795830177876
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - surprise
+    - rid: 268099795830177877
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive
+    - rid: 268099795830177886
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1

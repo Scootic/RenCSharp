@@ -73,6 +73,11 @@ MonoBehaviour:
     - rid: 268099556554833975
     - rid: 268099556554833978
   - speaker: {fileID: 0}
+    dialog: teleportathion partikles
+    ScreenActions:
+    - rid: 268099795830177887
+    - rid: 268099795830177888
+  - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
@@ -480,3 +485,31 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 5dbdbe635e2cd084781e20280212a995, type: 2}
         fadeTime: 0
+    - rid: 268099795830177887
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: e683e49275a2e914cb83757b791de99d, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 268099795830177888
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 181ed7327259839498d931272f5aebbe
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0

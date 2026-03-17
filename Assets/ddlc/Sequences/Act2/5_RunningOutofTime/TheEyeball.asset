@@ -316,6 +316,7 @@ MonoBehaviour:
     dialog: Nerien teleports away.
     ScreenActions:
     - rid: 268099503569240185
+    - rid: 268099795830177893
   - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
     dialog: ... strange.
     ScreenActions: []
@@ -1361,6 +1362,26 @@ MonoBehaviour:
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
+    - rid: 268099795830177893
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 0
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 181ed7327259839498d931272f5aebbe
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
     - rid: 4351268438874521965
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:

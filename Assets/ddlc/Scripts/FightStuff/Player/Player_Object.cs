@@ -55,6 +55,10 @@ namespace RenCSharp.Combat.Player
                 postResistance = value;
             }
         }
+        void OnEnable()
+        {
+            hurtSoundGood = true;
+        }
         void OnDisable()
         {
             invincible = false;
@@ -87,7 +91,7 @@ namespace RenCSharp.Combat.Player
             Debug.Log($"Damage Taken by {gameObject.name}: " + f);
             if (main)
             {
-                Event_Bus.TryFireFloatEvent("PlayerHealth", curHealth);
+                Event_Bus.TryFireFloatEvent("PlayerHealth", Mathf.Max(curHealth, 0));
                 Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
             }
 

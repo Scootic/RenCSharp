@@ -23,6 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 133f182293015a448934bd990a37d88f, type: 2}
   - {fileID: 11400000, guid: 9bed47854e319324fbd5111dc3c1e919, type: 2}
   - {fileID: 11400000, guid: d868aff4babe26c488a3d0299f88782b, type: 2}
+  - {fileID: 11400000, guid: 925c70fdaa26d464b8f0ab97620eb9ee, type: 2}
   scriptedFlavorTexts:
   - The very runes of the Eye of Magnus descend to attack Yuri.
   - A separate set of runes descend that split.
@@ -36,8 +37,22 @@ MonoBehaviour:
     energy.
   - Ancano forces out as much power as he can, unleashing every type of large rune.
   - As a result of the pressure Ancano just forced on the Eye, something bad happens.
-  randomAttacks: []
-  randomFlavorTexts: []
+  - Ancano has ran out of the power granted by the Eye of Magnus. He is now forced
+    to use his own magic, flinging fireballs at Yuri.
+  randomAttacks:
+  - {fileID: 11400000, guid: 925c70fdaa26d464b8f0ab97620eb9ee, type: 2}
+  - {fileID: 11400000, guid: e2554851ad7a7f14291f9ed278585dbf, type: 2}
+  - {fileID: 11400000, guid: adc7e818458bc7d40b93befff9c24661, type: 2}
+  - {fileID: 11400000, guid: 2618a909e43a93f458c150bcd90099c7, type: 2}
+  - {fileID: 11400000, guid: b8874015c459c1d4b94fc5a28ece5302, type: 2}
+  - {fileID: 11400000, guid: 3b2e0651f7b7ae549876522d820a34dc, type: 2}
+  randomFlavorTexts:
+  - Ancano flings down fire from above. Again.
+  - Ancano desperately releases as many fireballs as he can.
+  - Ancano flings pockets of frost at Yuri's sides.
+  - Ancano unleashes a torrent of cold.
+  - Ancano flings fireballs and fires lightning.
+  - Ancano releases lightning from his fingertips.
   maxHealth: 200
   visualInformation:
   - {fileID: 21300000, guid: 2f6c233e7b99484468e81bcbf6a32124, type: 3}

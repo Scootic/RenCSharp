@@ -77,12 +77,17 @@ MonoBehaviour:
     - rid: 268099729075732615
     - rid: 268099729075732616
     - rid: 268099729075732618
+  - speaker: {fileID: 11400000, guid: 251ab17588978ca44861c552397cfd18, type: 2}
+    dialog: But- hm. What should we do about this thing, anyway?
+    ScreenActions:
+    - rid: 268099795830177873
+    - rid: 268099795830177874
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 980c54580ba539a4f959429907187bcd, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -107,7 +112,7 @@ MonoBehaviour:
       data:
         actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         visualSpriteIndexes:
-        - skyDown
+        - default
         - skyUp
         - concernSpeak
     - rid: 268099729075732546
@@ -116,8 +121,8 @@ MonoBehaviour:
         actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         visualSpriteIndexes:
         - skyDown
-        - skyDown
-        - sadWorry
+        - skyUp
+        - pitySmile
     - rid: 268099729075732547
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -381,3 +386,19 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - pitySmile
+    - rid: 268099795830177873
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - surprise
+    - rid: 268099795830177874
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive

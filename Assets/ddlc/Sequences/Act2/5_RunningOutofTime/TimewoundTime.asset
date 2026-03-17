@@ -1,0 +1,761 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: TimewoundTime
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099795830177954
+    - rid: 268099795830177955
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: Welcome back, Dragonborn.
+    ScreenActions:
+    - rid: 268099795830177956
+    - rid: 268099795830177957
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Hey.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: 'Here''s that horn you were looking for:'
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I hand Arngeir the Horn of Jurgen Windcaller, which I had received from
+      Delphine two days ago.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: You gonna officially recognize me as dragonborn now, yeah?
+    ScreenActions:
+    - rid: 268099795830177958
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Didn't he <i>just</i> refer to you as Dragonborn, {mc}?)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: (Yeah, but there's also a ritual thing that they have to do.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (I see.)
+    ScreenActions:
+    - rid: 268099795830177959
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: Of course. Are you ready for us to greet you with the full strength of
+      our Thu'um?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Yep.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: Very well...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Arngeir and the other three Graybeards gather around me.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Here it comes...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 26cd9014ea059be4cadea176300763bb, type: 2}
+    dialog: lingr4 krosis sar1n strund5l, voth nid bal1n klov pr1n nau.
+    ScreenActions:
+    - rid: 268099795830177960
+    - rid: 268099795830177964
+  - speaker: {fileID: 11400000, guid: 26cd9014ea059be4cadea176300763bb, type: 2}
+    dialog: n1l th5mu, mu ofan n3 nu, dov4k3n, n1l sul9k do k1n, n1l sul9k do shor...
+    ScreenActions:
+    - rid: 268099795830177961
+  - speaker: {fileID: 11400000, guid: 26cd9014ea059be4cadea176300763bb, type: 2}
+    dialog: 4rk n1l sul9k do atmorasewuth.
+    ScreenActions:
+    - rid: 268099795830177962
+  - speaker: {fileID: 11400000, guid: 26cd9014ea059be4cadea176300763bb, type: 2}
+    dialog: myez nu ysm7, dov4sebrom. d4m1n dar rok.
+    ScreenActions:
+    - rid: 268099795830177963
+  - speaker: {fileID: 0}
+    dialog: ... ow...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: Few have been able to withstand the full strength of our voice.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: Welcome to High Hrothgar, Dragonborn.
+    ScreenActions:
+    - rid: 268099795830177965
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Yeah...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Anyway, I'd like to learn the words of power to clear the storms blocking
+      away the peak of the mountain.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: ... You do...?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: For what purpose?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Aside from a meeting with Paarthurnax, there's a time-wound with my name
+      on it.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: A... time-wound?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: And what could you possibly hope to gain from that?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: The opportunity to fulfill my purpose on Nirn.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: Your purpose...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: And what would that purpose be?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: To punish Alduin on Akatosh's behalf for abandoning <i>his</i> purpose.
+    ScreenActions:
+    - rid: 268099795830177966
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Alduin?)
+    ScreenActions:
+    - rid: 268099795830177967
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: (The big scary dragon I talked about a few days ago.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: (His title is "Eater of Worlds" for a reason; Alduin's purpose is basically
+      to end the world when it is time, so a new one can begin.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: (But, Alduin decided to shirk his duties and instead rule of the world
+      and dominate it.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: (Which, in a way, was convenient for those he would rule over, they get
+      to live their lives and their future generations too.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: (However, it's still against the will of the Divines, so the Last Dragonborn,
+      that's me, was granted the soul of a dragon to defeat Alduin for being a punk.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (So the Divines want the world to end? How would defeating Alduin even
+      do that?)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: (Well, defeating Alduin <i>doesn't</i> do that.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: (I'm only aware of two effects of Alduin's defeat:)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: (First, Alduin's plan to resurrect all the dragons and subjegate man
+      and mer is prevented.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: (Second, Alduin's soul goes... somewhere.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: (Despite being a dragon, his soul isn't absorbed when defeated.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: (It's theorized that his soul returns to be part of Akatosh, but that's
+      just conjecture.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: To act on behalf of the Divines, hm?
+    ScreenActions:
+    - rid: 268099795830177968
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: The dragonblood <i>is</i> tied directly with communion and cooperation
+      with Akatosh...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: Although, I suspect there's something you're not telling me.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: You're not wrong.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Dragonrend doesn't exactly fit well into your definition of the Way of
+      the Voice, does it?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: Dragonrend?!? Such a hateful and disgusting shout...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: About as hateful and disgusting as any other kind of weapon.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: And, like weapons, it can be wielded in the name of a righteous cause.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: ... indeed.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+    dialog: Very well, then. I shall teach you the words of power to clear the skies.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Arngeir transfers the knowledge to me.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Thank you.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Come on, Monika. We've got more mountain to climb.
+    ScreenActions:
+    - rid: 268099795830177969
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099795830177970
+    - rid: 268099795830177971
+    - rid: 268099795830177974
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Dragonrend, {mc}?
+    ScreenActions:
+    - rid: 268099795830177972
+    - rid: 268099795830177973
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: It's a shout that gives dragons a case of mortality.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: And also forces them to stop flying, which is ironically more helpful.
+    ScreenActions:
+    - rid: 268099795830177975
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: <font=dragonfont>lok v4 k8r</font>!
+    ScreenActions:
+    - rid: 268099795830177976
+    - rid: 268099795830177977
+  - speaker: {fileID: 0}
+    dialog: With the raging storms cleared away, we are free to progress further
+      up the mountain.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099795830177978
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: You said that everything <i>we</i> were doing was the main quest, right?
+    ScreenActions:
+    - rid: 268099795830177979
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Yep, why do you ask?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: The main quest is what you do to beat the game?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: ... kinda?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: In most RPGs, which is the kind of game Skyrim is, the game ends with
+      the main quest.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Skyrim doesn't really <i>end</i>, though.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Some people would argue that the DLC content (Dawnguard and Dragonborn)
+      continue from where the main quest ends off.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I don't really think that's the case for Dawnguard, since you can start
+      that questline before you defeat Alduin.
+    ScreenActions:
+    - rid: 268099795830177980
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: It's possible that the Dragonborn questline happens after Alduin's defeat,
+      because there's a unique line that plays if that's the case.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: But it's also possible to start that questline before Alduin's defeat
+      too, so...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: So there is no end to the game?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: There's no moment when you lose control and get sent to the credits or
+      something.
+    ScreenActions:
+    - rid: 268099795830177981
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: But there is technically a finite amount of content, so the game could
+      be considered over once you've seen it all.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: But that would take thousands of hours.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: And we're rushing through the main quest <i>just</i> to save the world?
+    ScreenActions:
+    - rid: 268099795830177982
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Excuse me?
+    ScreenActions:
+    - rid: 268099795830177983
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Do you think I have some sort of ulterior motive?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: No, it's just that you've been fixated on doing this ever since we split
+      up from the others.
+    ScreenActions:
+    - rid: 268099795830177984
+    - rid: 268099795830177990
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Partially to our detriment, I think.
+    ScreenActions:
+    - rid: 268099795830177985
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Our detriment, Monika?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099795830177987
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: '{mc}, I can see the bags under your eyes. They''ve only grown darker
+      over the past few days.'
+    ScreenActions:
+    - rid: 268099795830177989
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: So, why are you so stubborn?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: fe353be3531ff354ba6b6bbbc3d0b572, type: 2}
+    requireCondition: 1
+    conditions:
+    - flagToCheck: GoodMonika
+      operation: 3
+      desiredValue: 3
+      persistent: 0
+      bitWise: 0
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: 28953d3695f2d774a9f6ec14e8e6009e, type: 2}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: 8f251ab1bea86c74aa127d5fa9fdacc6
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099795830177954
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: db79f83e36eaea74c9b82466c109f18a
+          m_SubObjectName: highhrothgarmain
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 3
+    - rid: 268099795830177955
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 3f6c2ff2f829c274793d45271d8f9208
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 3
+        setToSameTime: 0
+    - rid: 268099795830177956
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 268099795830177957
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - smile
+        - EMPTY
+    - rid: 268099795830177958
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - inquisitive
+    - rid: 268099795830177959
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 268099795830177960
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 268099795830177961
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 268099795830177962
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 268099795830177963
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 268099795830177964
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive
+    - rid: 268099795830177965
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 268099795830177966
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - inquisitive
+    - rid: 268099795830177967
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 07169a44e565b2e46a97c1e0d18c4997
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099795830177968
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 3f6c2ff2f829c274793d45271d8f9208
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099795830177969
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - smile
+    - rid: 268099795830177970
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 0d58194cc6e815a408687457f872b613
+          m_SubObjectName: throatofworld1
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 268099795830177971
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
+        fadeTime: 0.5
+    - rid: 268099795830177972
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 300, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        loopOnScreen: 0
+    - rid: 268099795830177973
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive
+    - rid: 268099795830177974
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: d204716103d14b04786a1df20e8ecd22
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099795830177975
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smileSweat
+    - rid: 268099795830177976
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 268099795830177977
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 268099795830177978
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 1774222c1a708be4293c9329cf91308a
+          m_SubObjectName: throatofworld2
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 268099795830177979
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - inquisitive
+    - rid: 268099795830177980
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 9ca739a25c6bccd48b82413bbbfd969e
+          m_SubObjectName: throatofworld3
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 268099795830177981
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 515ff72ab5490274e852ba91faa1adc7
+          m_SubObjectName: throatofworld4
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 268099795830177982
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099795830177983
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - blank
+    - rid: 268099795830177984
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - blankSpeak
+    - rid: 268099795830177985
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smileSweat
+    - rid: 268099795830177987
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 3331939dde47fe342bc38b47e5a98a1a
+          m_SubObjectName: throatofworld5
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 268099795830177989
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - smile
+    - rid: 268099795830177990
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0

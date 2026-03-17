@@ -25,6 +25,7 @@ namespace RenCSharp.Sequences
             placeToSpawn = go.transform;
 
             GameObject guh = await Object_Factory.SpawnParticleObject(overrideParticles, particlesName, placeToSpawn, fellaToSpawnPrefab.AssetGUID, overridingParticles.AssetGUID);
+            guh.transform.localPosition = spawnPosition;
 
             string[] stoid = new string[1];
             stoid[0] = overridingParticles.AssetGUID;

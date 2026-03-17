@@ -16,11 +16,9 @@ namespace RenCSharp.Combat.Enemies
         private float t = 0;
         private int emIndex = 0;
         private int dir = 1;
-        private float lifeT = 0;
 
         public override void UpdateBehavior()
         {
-            lifeT += Time.deltaTime;
             t += Time.deltaTime;
             if(t >= timeToEmit)
             {
@@ -59,7 +57,7 @@ namespace RenCSharp.Combat.Enemies
                         Vector3 local = v.x * projectileTransform.right + v.y * projectileTransform.up;
                         bp.UpdateMoveDir(local);
                     }
-                    bp.StartCoroutine(Object_Pooling.DespawnOverTime(bp.gameObject, bp.Lifetime - lifeT));
+                    bp.StartCoroutine(Object_Pooling.DespawnOverTime(bp.gameObject, bp.Lifetime));
                 }
             }
         }
@@ -81,7 +79,6 @@ namespace RenCSharp.Combat.Enemies
 
         public override void OnDespawn(bool playerTurn)
         {
-            lifeT = 0;
             t = 0;
         }
     }
