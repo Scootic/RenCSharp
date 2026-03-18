@@ -46,6 +46,7 @@ MonoBehaviour:
     - rid: 268099459762618461
     - rid: 268099459762618462
     - rid: 268099482212892672
+    - rid: 268099819477139519
   - speaker: {fileID: 0}
     dialog: ward farticles
     ScreenActions:
@@ -67,16 +68,31 @@ MonoBehaviour:
     dialog: spark particles
     ScreenActions:
     - rid: 268099551663226948
+    - rid: 268099819477139521
   - speaker: {fileID: 0}
     dialog: morokei dialog particles
     ScreenActions:
     - rid: 268099556554833975
     - rid: 268099556554833978
+    - rid: 268099819477139520
   - speaker: {fileID: 0}
     dialog: teleportathion partikles
     ScreenActions:
     - rid: 268099795830177887
     - rid: 268099795830177888
+    - rid: 268099819477139517
+  - speaker: {fileID: 0}
+    dialog: really big landing particles
+    ScreenActions:
+    - rid: 268099819477139459
+    - rid: 268099819477139460
+    - rid: 268099819477139461
+    - rid: 268099819477139514
+  - speaker: {fileID: 0}
+    dialog: loading screen fog
+    ScreenActions:
+    - rid: 268099819477139577
+    - rid: 268099819477139579
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -509,6 +525,114 @@ MonoBehaviour:
         overrideParticles: 1
         overridingParticles:
           m_AssetGUID: 181ed7327259839498d931272f5aebbe
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 268099819477139459
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: e683e49275a2e914cb83757b791de99d, type: 2}
+        fadeTime: 0
+    - rid: 268099819477139460
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 0d41391b7f2d50840b7fc352caf0c9b6, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 268099819477139461
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 966bbe4754a6b8f47b107686d02d9918
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 268099819477139514
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 468aea67a488b4644baaa92bbdf4118c, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 268099819477139517
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 6256c7959eedf1a4c8d0871c2869f82f, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 268099819477139519
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 4a5153978164c7f4d888ef52ae8f516b, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 268099819477139520
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 268099819477139521
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: fdb08f2201a864b4ebb5750215a7e9f3, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 268099819477139577
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 0d41391b7f2d50840b7fc352caf0c9b6, type: 2}
+        fadeTime: 0
+    - rid: 268099819477139579
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 17ebe185743658340823e7383acb2441
           m_SubObjectName: 
           m_SubObjectGUID: 
           m_SubObjectType: 

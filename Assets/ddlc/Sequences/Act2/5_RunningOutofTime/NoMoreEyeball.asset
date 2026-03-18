@@ -29,6 +29,7 @@ MonoBehaviour:
     - rid: 268099795830177884
     - rid: 268099795830177885
     - rid: 268099795830177895
+    - rid: 268099819477139524
   - speaker: {fileID: 11400000, guid: e683e49275a2e914cb83757b791de99d, type: 2}
     dialog: We knew you would succeed, your victory here justifies our belief in
       you.
@@ -76,6 +77,8 @@ MonoBehaviour:
     - rid: 268099795830177910
     - rid: 268099795830177911
     - rid: 268099795830177912
+    - rid: 268099819477139525
+    - rid: 268099819477139583
   - speaker: {fileID: 11400000, guid: 251ab17588978ca44861c552397cfd18, type: 2}
     dialog: A shame. I would've preferred to study it more...
     ScreenActions:
@@ -861,3 +864,27 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         fadeTime: 0.5
+    - rid: 268099819477139524
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 6256c7959eedf1a4c8d0871c2869f82f, type: 3}
+        position: {x: -0.5, y: 0, z: 0.5}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 268099819477139525
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 6256c7959eedf1a4c8d0871c2869f82f, type: 3}
+        position: {x: -0.5, y: 0, z: 0.5}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 268099819477139583
+      type: {class: Remove_NamedObject, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        objectName: borealis
