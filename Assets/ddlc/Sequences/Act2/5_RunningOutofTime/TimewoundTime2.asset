@@ -425,7 +425,9 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: So we're <i>literally</i> in the game?!?
-    ScreenActions: []
+    ScreenActions:
+    - rid: 268099842819752084
+    - rid: 268099842819752085
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -1290,3 +1292,17 @@ MonoBehaviour:
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 0
+    - rid: 268099842819752084
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 35
+        increment: 0
+        persistent: 0
+    - rid: 268099842819752085
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerAbilities
+        flagValue: 2
+        increment: 0
+        persistent: 0

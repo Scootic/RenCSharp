@@ -15,15 +15,34 @@ MonoBehaviour:
   arenaDimensions: {x: 600, y: 350}
   controlType:
     rid: 268099842819752038
-  attackDuration: 5
-  secondsPerProjectileSpawn: 0.5
-  projectilesPerSpawn: 1
-  projectilesThatSpawn: []
-  spawnPoints: []
-  initialDirections: []
-  indexes: 
-  projectileSpawnPositionMethod: 1
-  projectileIndexMethod: 1
+  attackDuration: 60
+  secondsPerProjectileSpawn: 0.1
+  projectilesPerSpawn: 9
+  projectilesThatSpawn:
+  - {fileID: 9116785160976773730, guid: d57feeca9d568294d8662ccea0a89a68, type: 3}
+  spawnPoints:
+  - {x: -400, y: 500, z: 0}
+  - {x: -300, y: 500, z: 0}
+  - {x: -200, y: 500, z: 0}
+  - {x: -100, y: 500, z: 0}
+  - {x: 0, y: 500, z: 0}
+  - {x: 100, y: 500, z: 0}
+  - {x: 200, y: 500, z: 0}
+  - {x: 300, y: 500, z: 0}
+  - {x: 400, y: 500, z: 0}
+  initialDirections:
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  indexes: 000000000000000000000000000000000000000000000000000000000000000000000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
   references:
     version: 2
     RefIds:
