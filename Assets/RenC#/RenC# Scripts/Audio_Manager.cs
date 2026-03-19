@@ -131,7 +131,7 @@ namespace RenCSharp
         {
             AudioObjectCheck();
             
-            GameObject gaming = Instantiate(audioObject, position, Quaternion.identity); //Quaternion.identity is basically default for Quaternions
+            GameObject gaming = Object_Pooling.Spawn(audioObject, position, Quaternion.identity); //Quaternion.identity is basically default for Quaternions
             gaming.transform.SetParent(null); //prevent dumbass going away with despawning objects?
             sfxList.Add(gaming);
 
@@ -156,7 +156,7 @@ namespace RenCSharp
         {
             AudioObjectCheck();
 
-            GameObject gaming = Instantiate(audioObject, position, Quaternion.identity);
+            GameObject gaming = Object_Pooling.Spawn(audioObject, position, Quaternion.identity);
             gaming.transform.SetParent(null);
             sfxList.Add(gaming);
 
@@ -198,7 +198,7 @@ namespace RenCSharp
                 if (go.GetComponent<AudioSource>().clip == clipToRemove)
                 {
                     sfxList.Remove(go);
-                    Destroy(go);
+                    Object_Pooling.Despawn(go);
                     if (removeOnlyOne) return;
                 }
             }
@@ -210,7 +210,7 @@ namespace RenCSharp
         public void Stop3DSFX(GameObject goToRemove)
         {
             sfxList.Remove(goToRemove);
-            Destroy(goToRemove);
+            Object_Pooling.Despawn(goToRemove);
         }
         /// <summary>
         /// cleans up a 3d sfx from the sfxList
@@ -224,7 +224,7 @@ namespace RenCSharp
             if (sfxList.Contains(gaming))
             {
                 sfxList.Remove(gaming);
-                Destroy(gaming);
+                Object_Pooling.Despawn(gaming);
             }
         }
         #endregion

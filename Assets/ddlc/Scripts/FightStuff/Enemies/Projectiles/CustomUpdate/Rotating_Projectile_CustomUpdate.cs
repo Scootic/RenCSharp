@@ -21,7 +21,7 @@ namespace RenCSharp.Combat.Enemies
             guyToRotate.rotation = Quaternion.Euler(new Vector3(0, 0, rollAngle));
         }
 
-        public override void OnDespawn(bool playerTurn)
+        public override void OnRemove(bool playerTurn)
         {
             return;
         }

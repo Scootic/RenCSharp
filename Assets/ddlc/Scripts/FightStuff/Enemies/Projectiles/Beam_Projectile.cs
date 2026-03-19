@@ -45,7 +45,7 @@ namespace RenCSharp.Combat.Enemies
             beamElements.Images[3].enabled = false; //filler 2
         }
 
-        public override void OnDespawn(bool playerTurn)
+        public override void OnRemove(bool playerTurn)
         {
             StopCoroutine(spawnInRoutine);
         }
@@ -84,7 +84,7 @@ namespace RenCSharp.Combat.Enemies
                 {
                     foreach (Projectile_CustomUpdate pcu in updateTypes)
                     {
-                        pcu.OnDespawn(false);
+                        pcu.OnRemove(false);
                     }
                 }
                 Object_Pooling.Despawn(gameObject);

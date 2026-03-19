@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using RenCSharp.Combat.Interfaces;
+
 namespace RenCSharp.Combat.Enemies
 {
     [RequireComponent(typeof(Collider))]
-    public class Base_Projectile : MonoBehaviour, IDespawn
+    public class Base_Projectile : MonoBehaviour, IRemovableObject
     {
         [Header("Base Projectile")]
         [Header("Movement")]
@@ -125,7 +126,7 @@ namespace RenCSharp.Combat.Enemies
                 {
                     foreach (Projectile_CustomUpdate pcu in updateTypes)
                     {
-                        pcu.OnDespawn(false);
+                        pcu.OnRemove(false);
                     }
                 }
                 Object_Pooling.Despawn(gameObject, false);
@@ -168,13 +169,13 @@ namespace RenCSharp.Combat.Enemies
             return Vector3.Dot(hitcol.transform.up, dirToHitObj) > 0; //should only return true if locally above, which is to say behind the wall
         }
 
-        public virtual void OnDespawn(bool playerTurn)
+        public virtual void OnRemove(bool playerTurn)
         {
             if(updateTypes.Count > 0)
             {
                 foreach(Projectile_CustomUpdate pcu in updateTypes)
                 {
-                    pcu.OnDespawn(playerTurn);
+                    pcu.OnRemove(playerTurn);
                 }
             }
             despawnType.OnDespawn(playerTurn, transform);

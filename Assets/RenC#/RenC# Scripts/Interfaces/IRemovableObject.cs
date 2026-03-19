@@ -2,6 +2,6 @@ namespace RenCSharp
 {
     public interface IRemovableObject 
     {
-        public void OnRemove();
+        public void OnRemove(bool b = false);
     }
 }

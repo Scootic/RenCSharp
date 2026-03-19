@@ -14,7 +14,7 @@ namespace RenCSharp.Combat.Enemies
             return;
         }
 
-        public override void OnDespawn(bool playerTurn)
+        public override void OnRemove(bool playerTurn)
         {
             return;
         }
