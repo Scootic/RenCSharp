@@ -431,7 +431,25 @@ MonoBehaviour:
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: f2c3d62ca1e9a5342a79009b01b48898, type: 2}
+    requireCondition: 1
+    conditions:
+    - flagToCheck: WeirdRoute
+      operation: 0
+      desiredValue: 15
+      persistent: 0
+      bitWise: 0
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: a3db85edb51622f4daa8e025f01af0b7, type: 2}
+    requireCondition: 1
+    conditions:
+    - flagToCheck: WeirdRoute
+      operation: 0
+      desiredValue: 1
+      persistent: 0
+      bitWise: 1
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: faace5408cdcb81459732f2849d0a77f, type: 2}
     requireCondition: 0
     conditions: []
   myself:
