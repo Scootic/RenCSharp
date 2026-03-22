@@ -19,7 +19,6 @@ MonoBehaviour:
     ScreenActions:
     - rid: 268099884709838865
     - rid: 268099884709838866
-    - rid: 268099884709838873
   - speaker: {fileID: 0}
     dialog: ...
     ScreenActions: []
@@ -57,6 +56,109 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: But if he's {mc}, who am <i>I</i>?!?
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: No, no, no, you <i>are</i> {mc} just... you're just <i>another</i> {mc}.
+    ScreenActions:
+    - rid: 268099911722205184
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: <NoiseText=1,1>What does that even mean</NoiseText>?!?
+    ScreenActions:
+    - rid: 268099911722205185
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: You <i>just</i> said I replaced that other guy; <NoiseText=1,1>why, how</NoiseText>-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: <NoiseText=1,1>Screw it! When, what, and maybe even who are also good
+      questions to ask</NoiseText>!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: And why do <i>you</i> even know anything about this, anyway?!?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: That's uh... well...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: I actually tried asking you about it back when you first joined the club,
+      and a few times after too, but...
+    ScreenActions:
+    - rid: 268099911722205186
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: It's because none of this is real.
+    ScreenActions:
+    - rid: 268099911722205187
+    - rid: 268099911722205188
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Or, at the very least, you aren't.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: See, we're all characters from a game called Doki Doki Literature Club.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: It's a visual novel where-
+    ScreenActions:
+    - rid: 268099911722205190
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions:
+    - rid: 268099911722205191
+    - rid: 268099911722205192
+  - speaker: {fileID: 0}
+    dialog: Everyone. Everything. None of it is real?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: And Monika knows that, somehow?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... who is she, anyway?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: <i>I feel faint<i>...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I-if... if our lives are all just some game then...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Then...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: <Speed=2><NoiseText=3,1>You...</NoiseText></Speed>
+    ScreenActions:
+    - rid: 268099911722205205
+  - speaker: {fileID: 0}
+    dialog: It's <b>you</b>, isn't it?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: <b>You're</b> not just some voice...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: You're the player, aren't you?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: All of our lives, our struggles, tailor-made for <b>you</b>...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I would know.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... you know what?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Screw your fun.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I've got my own life to live.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Grk-
+    ScreenActions:
+    - rid: 268099911722205206
+    - rid: 268099911722205207
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -147,10 +249,108 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smileSweat
-    - rid: 268099884709838873
-      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 268099911722205184
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        flagID: mcidentitycrisis
-        flagValue: 1
-        increment: 0
-        persistent: 0
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyDown
+        - grinSweat
+    - rid: 268099911722205185
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - pitySmile
+    - rid: 268099911722205186
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smileSweat
+    - rid: 268099911722205187
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 0
+        setToSameTime: 0
+    - rid: 268099911722205188
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 268099911722205190
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyDown
+        - grin
+    - rid: 268099911722205191
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 793d42992907ede4bb938418a5761702
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099911722205192
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 7ae89b6f8c3126d4fa85dd1e398805c6
+          m_SubObjectName: vignet
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 268099911722205205
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268099911722205206
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: a67f3af0a88dfef4194e419ab633887d, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 268099911722205207
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - terror
