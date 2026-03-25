@@ -171,8 +171,7 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: ... Monika?
-    ScreenActions:
-    - rid: 268099884709838861
+    ScreenActions: []
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Yeah? What's up?
     ScreenActions:
@@ -495,17 +494,6 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - inquisitive
-    - rid: 268099884709838861
-      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        songAsset:
-          m_AssetGUID: 
-          m_SubObjectName: 
-          m_SubObjectGUID: 
-          m_SubObjectType: 
-          m_EditorAssetChanged: 0
-        fadeTime: 1
-        setToSameTime: 0
     - rid: 268099884709838862
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
