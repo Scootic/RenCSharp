@@ -49,8 +49,8 @@ namespace RenCSharp.Combat.Enemies
 
         protected override void Update()
         {
+            beamElements.Images[0].transform.position += Time.deltaTime * beamVisualTravelSpeed * Vector3.down;
             base.Update();
-            beamElements.Images[0].transform.position += Vector3.down * Time.deltaTime * beamVisualTravelSpeed;
         }
 
         public override void OnRemove(bool playerTurn)
