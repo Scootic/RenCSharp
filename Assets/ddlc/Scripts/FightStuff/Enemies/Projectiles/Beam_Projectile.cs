@@ -49,7 +49,7 @@ namespace RenCSharp.Combat.Enemies
 
         protected override void Update()
         {
-            beamElements.Images[0].transform.position += Time.deltaTime * beamVisualTravelSpeed * Vector3.down;
+            beamElements.Images[0].transform.localPosition += Time.deltaTime * beamVisualTravelSpeed * Vector3.down;
             base.Update();
         }
 
