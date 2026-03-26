@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: FR_RotatingFireBeam1
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 700, y: 700}
+  controlType:
+    rid: 268099999270699207
+  attackDuration: 15
+  secondsPerProjectileSpawn: 3.5
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 711264266446520143, guid: 5d7d502ce91a0244981b26d06b053ac8, type: 3}
+  - {fileID: 711264266446520143, guid: 3a4476d99aee3764896e1ad07a442ff7, type: 3}
+  spawnPoints:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  initialDirections:
+  - {x: 0, y: -1, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 1, z: 0}
+  - {x: 0.3, y: -1, z: 0}
+  - {x: 0.7, y: 1, z: 0}
+  - {x: -0.5, y: -1, z: 0}
+  indexes: 000000000100000000000000010000000000000001000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099999270699207
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 550

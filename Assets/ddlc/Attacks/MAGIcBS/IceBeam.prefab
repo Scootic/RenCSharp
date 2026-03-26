@@ -227,7 +227,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &6563492682720461145
+--- !u!1 &5113259403291246005
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,54 +235,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6522541212112276086}
-  - component: {fileID: 5052575351850937360}
-  - component: {fileID: 4055136989892562719}
-  - component: {fileID: 4821465263989290493}
-  - component: {fileID: 5318929957290242959}
-  - component: {fileID: 711264266446520143}
+  - component: {fileID: 2241807211561612157}
+  - component: {fileID: 7892513164602354424}
+  - component: {fileID: 6136561490354823658}
   m_Layer: 6
-  m_Name: IceBeam
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &6522541212112276086
+--- !u!224 &2241807211561612157
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6563492682720461145}
+  m_GameObject: {fileID: 5113259403291246005}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8852957316637544085}
-  m_Father: {fileID: 0}
+  m_Children: []
+  m_Father: {fileID: 6522541212112276086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 100}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 5000}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &5052575351850937360
+--- !u!222 &7892513164602354424
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6563492682720461145}
+  m_GameObject: {fileID: 5113259403291246005}
   m_CullTransparentMesh: 1
---- !u!114 &4055136989892562719
+--- !u!114 &6136561490354823658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6563492682720461145}
+  m_GameObject: {fileID: 5113259403291246005}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -306,6 +302,55 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.33
+--- !u!1 &6563492682720461145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6522541212112276086}
+  - component: {fileID: 5052575351850937360}
+  - component: {fileID: 4821465263989290493}
+  - component: {fileID: 5318929957290242959}
+  - component: {fileID: 711264266446520143}
+  m_Layer: 6
+  m_Name: IceBeam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6522541212112276086
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6563492682720461145}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2241807211561612157}
+  - {fileID: 8852957316637544085}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 100}
+  m_SizeDelta: {x: 100, y: 5000}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5052575351850937360
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6563492682720461145}
+  m_CullTransparentMesh: 1
 --- !u!65 &4821465263989290493
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -341,7 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texts: []
   images:
-  - {fileID: 4055136989892562719}
+  - {fileID: 6136561490354823658}
   - {fileID: 5400622440921540178}
   - {fileID: 8700721210395265210}
   - {fileID: 1040247592755620019}
@@ -376,6 +421,7 @@ MonoBehaviour:
   beamElements: {fileID: 5318929957290242959}
   beamFullSound: {fileID: 8300000, guid: 17af76ff76a7d1c419725ef1ffbcf27c, type: 3}
   beamSoundVol: 1
+  beamVisualTravelSpeed: 0
   emptyBeamC: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
   fullBeamC: {r: 1, g: 0, b: 0, a: 1}
   references:
@@ -385,6 +431,7 @@ MonoBehaviour:
       type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
         speed: 300
+        movementSetsRotation: 1
     - rid: 268099759930082147
       type: {class: Empty_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data: 

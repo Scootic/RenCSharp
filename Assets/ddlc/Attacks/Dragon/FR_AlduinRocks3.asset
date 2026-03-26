@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: FR_AlduinRocks3
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 600, y: 400}
+  controlType:
+    rid: 268099999270699237
+  attackDuration: 13
+  secondsPerProjectileSpawn: 0.8
+  projectilesPerSpawn: 3
+  projectilesThatSpawn:
+  - {fileID: 8633083501479860174, guid: eb5b9454954ca784abdad6299aab0949, type: 3}
+  - {fileID: 0}
+  spawnPoints:
+  - {x: -300, y: 400, z: 0}
+  - {x: -300, y: 400, z: 0}
+  - {x: -300, y: 400, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 100, y: 400, z: 0}
+  - {x: 100, y: 400, z: 0}
+  - {x: 100, y: 400, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 250, y: 400, z: 0}
+  - {x: 250, y: 400, z: 0}
+  - {x: 250, y: 400, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -200, y: 400, z: 0}
+  - {x: -200, y: 400, z: 0}
+  - {x: -200, y: 400, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  initialDirections:
+  - {x: 0, y: -1, z: 0}
+  - {x: 0.2, y: -1, z: 0}
+  - {x: 0.4, y: -1, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -0.3, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0.3, y: -1, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -0.2, y: -1, z: 0}
+  - {x: -0.4, y: -1, z: 0}
+  - {x: -0.6, y: -1, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0.1, y: -1, z: 0}
+  - {x: 0.4, y: -1, z: 0}
+  - {x: 0.7, y: -1, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  indexes: 000000000000000000000000010000000100000001000000000000000000000000000000010000000100000001000000000000000000000000000000010000000100000001000000000000000000000000000000010000000100000001000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: 268099999270699237
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 525

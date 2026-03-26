@@ -35,7 +35,78 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
+    ScreenActions:
+    - rid: 268099999270699008
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Oh. Hey, Monika.
+    ScreenActions:
+    - rid: 268099999270699009
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Is that stew as good as it smells?
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Yep!
+    ScreenActions:
+    - rid: 268099999270699010
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: What's in it, anyway?
+    ScreenActions:
+    - rid: 268099999270699011
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: It's got tomatoes, as you can probably tell by the color, leeks, and
+      garlic.
+    ScreenActions:
+    - rid: 268099999270699012
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Advanced tomato soup, eh?
+    ScreenActions:
+    - rid: 268099999270699013
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Can't go wrong with that, I guess...
+    ScreenActions:
+    - rid: 268099999270699014
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Hulda, could I get some of that stew, too?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 450344c00cea1104f9790b62b46ab3b1, type: 2}
+    dialog: Sure thing, that'll be 5 septims.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I hand over the gold and in return receive a bowl-full of...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Huh. You know, the ingredient line-up screams Italian, but obviously
+      the Nords are inspired by... well, the Norse.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Whatever the case, it tastes good so I can forgive the curious amalgamation
+      of cultures.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Mmm... yummy!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Oh yeah, I should probably ask Monika about that-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Monika, you're the captain of the guard here, right?
+    ScreenActions:
+    - rid: 268099999270699015
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Huh? Oh, yeah, that's right.
+    ScreenActions:
+    - rid: 268099999270699016
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Good, 'cause I'll need your help to trap a dragon in Dragonsreach.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Uh... how?
+    ScreenActions:
+    - rid: 268099999270699017
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268099999270699018
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -114,3 +185,98 @@ MonoBehaviour:
         fadeTime: 2
         endWithScreen: 1
         secondsPerFrame: 0.1
+    - rid: 268099999270699008
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: efe49f66cc55be14580ea08d29596b10
+          m_SubObjectName: whiteruninn1
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 268099999270699009
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 268099999270699010
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - closeEyeSmile
+    - rid: 268099999270699011
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 268099999270699012
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - grin
+    - rid: 268099999270699013
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 268099999270699014
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - closeEyeSmile
+    - rid: 268099999270699015
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive
+    - rid: 268099999270699016
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 268099999270699017
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smileSweat
+    - rid: 268099999270699018
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive

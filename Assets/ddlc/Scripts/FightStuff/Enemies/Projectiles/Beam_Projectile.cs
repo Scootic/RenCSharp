@@ -10,14 +10,16 @@ namespace RenCSharp.Combat.Enemies
         [SerializeField] private UI_Element beamElements;
         [SerializeField] private AudioClip beamFullSound;
         [SerializeField, Range(0,1)] private float beamSoundVol = 1;
+        [SerializeField, Tooltip("Applies to material offset's y.")] private float beamVisualTravelSpeed = 0;
         [SerializeField] private Color emptyBeamC = Color.black;
         [SerializeField] private Color fullBeamC = Color.red;
+
 
         protected override IEnumerator EnableTriggerOverTime()
         {
             float t = 0;
             float eval;
-            myCol.enabled = false; 
+            myCol.enabled = false;
             beamElements.Images[0].enabled = false; //main image
             beamElements.Images[1].enabled = true; //underlay
             beamElements.Images[2].enabled = true; //filler 1
@@ -43,6 +45,12 @@ namespace RenCSharp.Combat.Enemies
             beamElements.Images[1].enabled = false; //underlay
             beamElements.Images[2].enabled = false; //filler 1
             beamElements.Images[3].enabled = false; //filler 2
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            beamElements.Images[0].transform.position += Vector3.down * Time.deltaTime * beamVisualTravelSpeed;
         }
 
         public override void OnRemove(bool playerTurn)
