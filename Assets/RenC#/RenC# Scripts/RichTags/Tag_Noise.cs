@@ -13,8 +13,8 @@ namespace RenCSharp.Tags
         /// <summary>
         /// Fuggin' rando AF!!!!
         /// </summary>
-        /// <param name="text"></param>
-        /// <param name="maxDistance">!</param>
+        /// <param name="text">da text :)</param>
+        /// <param name="maxDistance">FLOAT maximum distance from origin (x and y individually)!</param>
         /// <param name="deviation">FLOAT the deviation from rolled positions that are within christ's domain</param>
         protected static void NoiseText(TextMeshProUGUI text, string maxDistance, string deviation)
         {
@@ -27,7 +27,7 @@ namespace RenCSharp.Tags
             }
             else
             {
-                Debug.LogWarning("NoiseText couldn't find a good max dist or deviation!");
+                Debug.LogWarning("NoiseText couldn't find a good max dist OR deviation!");
             }
         }
 
@@ -59,7 +59,7 @@ namespace RenCSharp.Tags
         private static void AddCharToNoiseList(object chara)
         {
             TMP_CharacterInfo c = (TMP_CharacterInfo)chara;
-            Debug.Log("Inputting char to list: " + c.character);
+            //Debug.Log("Inputting char to list: " + c.character);
             affectedNoiseChars.Add(c);
         }
 
@@ -72,7 +72,7 @@ namespace RenCSharp.Tags
                 text.ForceMeshUpdate();
                 Vector3[] verts = mesh.vertices;
 
-                Debug.Log("charListLength: " + affectedNoiseChars.Count);
+                //Debug.Log("charListLength: " + affectedNoiseChars.Count);
 
                 foreach(TMP_CharacterInfo c in affectedNoiseChars)
                 {

@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -441,7 +442,7 @@ namespace RenCSharp
 
             foreach (Actor actor in activeActors)
             {
-                if (Object_Factory.TryGetObject(actor.ActorName, out GameObject go))
+                if (Object_Factory.TryGetObject(actor.name, out GameObject go))
                 {
                     UI_Element uie = go.GetComponent<UI_Element>();
                     List<int> visualIndexes = new();
@@ -452,10 +453,30 @@ namespace RenCSharp
                     ActorToken newt = new(go.transform.position, actor.Myself.AssetGUID, visualIndexes.ToArray());
                     Debug.Log("ActorToken I'm adding to list: \n" + newt.ToString());
                     actorTokens.Add(newt);
+                }else if(Object_Factory.TryGetObject(actor.ActorName, out GameObject goo)) //back up, in case of silly shenaniganas
+                {
+                    UI_Element uie = goo.GetComponent<UI_Element>();
+                    List<int> visualIndexes = new();
+                    for (int i = 0; i < uie.Images.Length; i++)
+                    {
+                        visualIndexes.Add(actor.Visuals[i].layer.IndexOf(uie.Images[i].sprite));
+                        ActorToken newt = new(goo.transform.position, actor.Myself.AssetGUID, visualIndexes.ToArray());
+                        actorTokens.Add(newt);
+                    }
                 }
             }
 
             st.ActiveParticles = activeParticles;
+
+            string particleLog = "Adding particles to save data: \n";
+
+            foreach(ParticleToken pt in st.ActiveParticles) 
+            {
+                particleLog += $"Particle: {pt.ParticleName}\n";
+            }
+
+            Debug.Log(particleLog);
+
             st.ActiveActors = actorTokens;
             manToSave.ScreenInformation = st;
             menuBase.SetActive(false);
@@ -518,7 +539,7 @@ namespace RenCSharp
                 {
                     Actor guy = (Actor)ActorSO.Result;
                     activeActors.Add(guy);
-                    GameObject go = Object_Factory.SpawnObject(guy.ActorPrefab, guy.ActorName, actorHolder);
+                    GameObject go = Object_Factory.SpawnObject(guy.ActorPrefab, guy.name, actorHolder);
                     if (go == null) continue;
                     UI_Element uie = go.GetComponent<UI_Element>();
                     for (int i = 0; i < at.VisualIndexes.Length; i++)
@@ -534,20 +555,23 @@ namespace RenCSharp
                 }
             }
 
-            activeParticles.Clear();
+            activeParticles = new(); //reset the stored fraticles?????????????????
             try
             {
                 foreach (ParticleToken pt in std.ActiveParticles)
                 {
-                    Debug.Log("Loading a particle object");
+                    Debug.Log($"Loading a particle object: {pt.ParticleName}");
                     if (!Object_Factory.TryGetObject(pt.TransformOwner, out GameObject guh))
                     {
                         Debug.LogError("couldn't find transform parent for: " + pt.ParticleName + ". Desired transform: " + pt.TransformOwner);
+                        break;
                     }
 
-                    Object_Factory.SpawnParticleObject(true, pt.ParticleName, guh.transform, pt.UIParticleGUID, pt.ParticleSystemGUIDs[0]);
+                    Vector3 localPos = new Vector3(pt.XPos, pt.YPos, pt.ZPos);
+                    Debug.Log("Local position from particle save data: " + localPos);
+                    Object_Factory.SpawnParticleObject(true, pt.ParticleName, guh.transform, localPos, pt.UIParticleGUID, pt.ParticleSystemGUIDs[0]);
 
-                    activeParticles.Add(pt);
+                    AddUIParticleToList((object)pt);
                 }
             }
             catch(NullReferenceException ex)
@@ -566,17 +590,26 @@ namespace RenCSharp
 
         private void AddUIParticleToList(object tokenToAdd)
         {
-            activeParticles.Add((ParticleToken)tokenToAdd);
+            try
+            {
+                ParticleToken pt = (ParticleToken)tokenToAdd;
+                activeParticles.Add(pt);
+                Debug.Log($"Added particle {pt.ParticleName} to list.");
+            }catch(NullReferenceException) 
+            {
+                Debug.LogError("The particle you're trying to add to the list is some null garbage! Very sad...");
+            }
         }
 
         private void RemoveUIParticleFromList(object tokenToRemove)
         {
-            if (!activeParticles.Contains((ParticleToken)tokenToRemove)) 
+            ParticleToken pt = (ParticleToken)tokenToRemove;
+            if (!activeParticles.Contains(pt))
             {
-                Debug.LogWarning("cannot remove a particle token that's not in the list!");
+                Debug.LogWarning($"Particles {pt.ParticleName} not found in particle list. Obvs can't remove it!");
                 return;
             }
-            activeParticles.Remove((ParticleToken)tokenToRemove);
+            activeParticles.Remove(pt);
         }
 
         #endregion
@@ -585,7 +618,7 @@ namespace RenCSharp
         {
             float t;
             float eval;
-            if (!Object_Factory.TryGetObject(curActor.ActorName, out GameObject fella))
+            if (!Object_Factory.TryGetObject(curActor.name, out GameObject fella))
             {
                 yield break; //break out of routine if we can't find the gameobject we want
             }

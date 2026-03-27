@@ -23,13 +23,13 @@ namespace RenCSharp.Sequences
             actorObjs = new();
             foreach(Actor a in targets)
             {
-                if(Object_Factory.TryGetObject(a.ActorName, out GameObject t))
+                if(Object_Factory.TryGetObject(a.name, out GameObject t))
                 {
                     actorObjs.Add(t);
                 }
                 else
                 {
-                    Debug.LogWarning("couldn't find actor object for: " + a.ActorName);
+                    Debug.LogWarning("couldn't find actor object for: " + a.name);
                 }
             }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using static UnityEngine.ParticleSystem;
 namespace RenCSharp
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace RenCSharp
         /// <param name="UIPartiGUID">Asset GUID for the UIParticle Obj</param>
         /// <param name="subPartiGUID">Asset GUID for the ParticleSystem Obj that will override existing one.</param>
         /// <returns></returns>
-        public static async Awaitable<GameObject> SpawnParticleObject(bool overrideParticles, string name, Transform parent, string UIPartiGUID, string subPartiGUID)
+        public static async Awaitable<GameObject> SpawnParticleObject(bool overrideParticles, string name, Transform parent, Vector3 localPosition, string UIPartiGUID, string subPartiGUID)
         {
             await Awaitable.MainThreadAsync();
             AsyncOperationHandle UIParticleObjHandle = Addressables.LoadAssetAsync<GameObject>(UIPartiGUID);
@@ -89,6 +90,11 @@ namespace RenCSharp
 
             if (!ogParticleSystem.main.loop) RemoveObjectOverTimeAsync(name, ogParticleSystem.main.duration); //don't await this, just start ts!
             ogParticleSystem.Play();
+
+            uiParticleObj.transform.localPosition = localPosition;
+
+            ParticleToken pt = new(localPosition, UIPartiGUID, subPartiGUID, name, parent.name);
+            uiParticleObj.GetComponent<UIParticle_Helper>().SetMyParticleToken = pt;
 
             activeGameObjects.Add(name, uiParticleObj);
             return uiParticleObj;

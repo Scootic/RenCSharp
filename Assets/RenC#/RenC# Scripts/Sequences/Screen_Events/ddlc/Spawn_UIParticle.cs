@@ -16,7 +16,6 @@ namespace RenCSharp.Sequences
         [SerializeField] private AssetReference overridingParticles;
 
         private Transform placeToSpawn;
-        private ParticleToken pt;
 
         public override async void DoEvent()
         {
@@ -24,15 +23,9 @@ namespace RenCSharp.Sequences
             
             placeToSpawn = go.transform;
 
-            GameObject guh = await Object_Factory.SpawnParticleObject(overrideParticles, particlesName, placeToSpawn, fellaToSpawnPrefab.AssetGUID, overridingParticles.AssetGUID);
-            guh.transform.localPosition = spawnPosition;
+            GameObject guh = await Object_Factory.SpawnParticleObject(overrideParticles, particlesName, placeToSpawn, spawnPosition, fellaToSpawnPrefab.AssetGUID, overridingParticles.AssetGUID);
 
-            string[] stoid = new string[1];
-            stoid[0] = overridingParticles.AssetGUID;
-            pt = new(guh.transform.position, fellaToSpawnPrefab.AssetGUID, stoid, guh.name, placeToSpawnName);
-            Event_Bus.TryFireSingleObjEvent("AddParticleToList", (object)pt);
-
-            guh.GetComponent<UIParticle_Helper>().SetMyParticleToken = pt;
+            Event_Bus.TryFireSingleObjEvent("AddParticleToList", (object)guh.GetComponent<UIParticle_Helper>().GetMyParticleToken);
 
             if (deleteOnScreenProgression) Script_Manager.ProgressScreenEvent += PanicStop;
         }

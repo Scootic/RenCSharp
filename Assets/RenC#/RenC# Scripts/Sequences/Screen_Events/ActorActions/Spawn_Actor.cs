@@ -21,9 +21,9 @@ namespace RenCSharp.Sequences
         public override void DoEvent()
         {
             //don't spawn another of an actor that already exists. save/load moment?
-            if (Object_Factory.TryGetObject(actorToSpawn.ActorName, out GameObject go)) return;
+            if (Object_Factory.TryGetObject(actorToSpawn.name, out GameObject go)) return;
 
-            go = Object_Factory.SpawnObject(actorToSpawn.ActorPrefab, actorToSpawn.ActorName, Script_Manager.SM.ActorHolder);
+            go = Object_Factory.SpawnObject(actorToSpawn.ActorPrefab, actorToSpawn.name, Script_Manager.SM.ActorHolder);
             go.transform.position += spawnOffset;
             UI_Element uie = go.GetComponent<UI_Element>();
             Script_Manager.SM.activeActors.Add(actorToSpawn);

@@ -21,6 +21,7 @@ namespace RenCSharp.Combat.Enemies
             float eval;
             myCol.enabled = false;
             beamElements.Images[0].enabled = false; //main image
+            beamElements.Images[0].transform.localPosition = Vector3.zero;
             beamElements.Images[1].enabled = true; //underlay
             beamElements.Images[2].enabled = true; //filler 1
             beamElements.Images[3].enabled = true; //filler 2

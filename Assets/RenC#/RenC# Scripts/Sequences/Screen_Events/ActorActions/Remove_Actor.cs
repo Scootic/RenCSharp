@@ -18,7 +18,7 @@ namespace RenCSharp.Sequences
         private GameObject fellaToRemove;
         public override void DoEvent()
         {
-            if (!Object_Factory.TryGetObject(actorToRemove.ActorName, out fellaToRemove)) return;
+            if (!Object_Factory.TryGetObject(actorToRemove.name, out fellaToRemove)) return;
             Script_Manager.SM.activeActors.Remove(actorToRemove);
             List<Image> imgPo = new();
             Image img = fellaToRemove.transform.GetChild(0).GetComponent<Image>();
@@ -36,7 +36,7 @@ namespace RenCSharp.Sequences
             }
             else
             {
-                Debug.LogWarning("Did not find actor: " + actorToRemove.ActorName);
+                Debug.LogWarning("Did not find actor: " + actorToRemove.name);
             }
         }
 
@@ -54,13 +54,13 @@ namespace RenCSharp.Sequences
                 }
                 yield return null;
             }
-            Object_Factory.RemoveObject(actorToRemove.ActorName);
+            Object_Factory.RemoveObject(actorToRemove.name);
         }
 
         private void PanicStop()
         {
             if(fadeOut != null) Script_Manager.SM.StopCoroutine(fadeOut);
-            if (fellaToRemove != null) Object_Factory.RemoveObject(actorToRemove.ActorName);
+            if (fellaToRemove != null) Object_Factory.RemoveObject(actorToRemove.name);
         }
 
         public override string ToString()

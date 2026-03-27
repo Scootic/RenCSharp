@@ -22,7 +22,7 @@ namespace RenCSharp.Sequences
         protected bool valid;
         public override void DoEvent()
         {
-            if (Object_Factory.TryGetObject(target.ActorName, out actorObj))
+            if (Object_Factory.TryGetObject(target.name, out actorObj))
             {
                 ogPos = actorObj.transform.position;
                 desPos = ogPos + localMotionOffset;
@@ -33,7 +33,7 @@ namespace RenCSharp.Sequences
             }
             else
             {
-                Debug.LogWarning("couldn't find actor object: " + target.ActorName);
+                Debug.LogWarning("couldn't find actor object: " + target.name);
             }
         }
 

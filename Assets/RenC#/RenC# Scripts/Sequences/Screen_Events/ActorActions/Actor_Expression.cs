@@ -14,7 +14,7 @@ namespace RenCSharp.Sequences
             "Type in the light gray boxes for auto-fill.")] private string[] visualSpriteIndexes = new string[1];
         public override void DoEvent()
         {
-            if (Object_Factory.TryGetObject(actorToAlter.ActorName, out GameObject spawnt))
+            if (Object_Factory.TryGetObject(actorToAlter.name, out GameObject spawnt))
             {
                 UI_Element uie = spawnt.GetComponent<UI_Element>();
                 for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
@@ -23,7 +23,7 @@ namespace RenCSharp.Sequences
                     uie.Images[i].sprite = actorToAlter.Visuals[i].ReturnSprite(visualSpriteIndexes[i]);
                 }
             }
-            else Debug.LogWarning("couldn't find actor: " + actorToAlter.ActorName);
+            else Debug.LogWarning("couldn't find actor: " + actorToAlter.name);
         }
 
         public override string ToString()
