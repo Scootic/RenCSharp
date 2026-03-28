@@ -7,9 +7,10 @@ namespace RenCSharp.Combat.Player
         [Header("Ability Stats")]
         [SerializeField, Min(1)] protected float abilityCooldown = 2;
         [SerializeField, Tooltip("Handles whether or not an ability is unlocked by consulting the stupid " +
-            "flag_manager about it. Obviously, a bitwise operation, so please use binary ah numbers.")] protected int requiredBit = 0;
+        "flag_manager about it. Obviously, a bitwise operation, so please use binary ah numbers.")] protected int requiredBit = 0;
         [SerializeField, Tooltip("To be used by abilities that reference flags for certain values, like damage or resistances.")] protected string associatedTag;
         [SerializeField] protected bool firableOnSelect = false;
+        [SerializeField] protected bool debug = false;
         protected float t;
         protected bool validToFire;
 
@@ -26,7 +27,7 @@ namespace RenCSharp.Combat.Player
         {
             if (!PlayerTurn && Fighting && Current) 
             {
-                Debug.Log("doing ability update: " + gameObject.name + ", t: " + t);
+                if(debug) Debug.Log("doing ability update: " + gameObject.name + ", t: " + t);
                 t += Time.deltaTime;
                 if (t >= abilityCooldown) { t = abilityCooldown; validToFire = true; }
                 float perc = (float)t / (float)abilityCooldown;

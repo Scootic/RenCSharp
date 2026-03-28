@@ -28,7 +28,7 @@ namespace RenCSharp.Combat.Player
         {
             if(Grounded() && dir.y > 0.5f)
             {
-                Debug.Log("Player jumped");
+                //Debug.Log("Player jumped");
                 incd = true;
                 routine = playerObj.StartCoroutine(Jumpcd());
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange); //should update linvelo before we do below...?

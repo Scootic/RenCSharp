@@ -1,4 +1,3 @@
-using EXPERIMENTAL;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -24,8 +23,6 @@ namespace RenCSharp.Sequences
             placeToSpawn = go.transform;
 
             GameObject guh = await Object_Factory.SpawnParticleObject(overrideParticles, particlesName, placeToSpawn, spawnPosition, fellaToSpawnPrefab.AssetGUID, overridingParticles.AssetGUID);
-
-            Event_Bus.TryFireSingleObjEvent("AddParticleToList", (object)guh.GetComponent<UIParticle_Helper>().GetMyParticleToken);
 
             if (deleteOnScreenProgression) Script_Manager.ProgressScreenEvent += PanicStop;
         }

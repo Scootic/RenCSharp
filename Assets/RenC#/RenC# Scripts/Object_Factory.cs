@@ -1,10 +1,10 @@
 using Coffee.UIExtensions;
+using EXPERIMENTAL;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using static UnityEngine.ParticleSystem;
 namespace RenCSharp
 {
     /// <summary>
@@ -95,6 +95,7 @@ namespace RenCSharp
 
             ParticleToken pt = new(localPosition, UIPartiGUID, subPartiGUID, name, parent.name);
             uiParticleObj.GetComponent<UIParticle_Helper>().SetMyParticleToken = pt;
+            Event_Bus.TryFireSingleObjEvent("AddParticleToList", pt);
 
             activeGameObjects.Add(name, uiParticleObj);
             return uiParticleObj;
@@ -115,11 +116,11 @@ namespace RenCSharp
             if (activeGameObjects.ContainsKey(name))
             {
                 GameObject t = activeGameObjects[name];
-                activeGameObjects.Remove(name);
-                if(t.TryGetComponent(out IRemovableObject iroh))
+                if (t.TryGetComponent(out IRemovableObject iroh))
                 {
                     iroh.OnRemove();
                 }
+                activeGameObjects.Remove(name);
                 GameObject.Destroy(t);
                 Debug.Log("Removed object of name: " + name);
             } else Debug.LogWarning("No active gameobject of name: " + name);

@@ -9,6 +9,8 @@ namespace RenCSharp.Tags
     public class TagRoutineHandler : MonoBehaviour
     {
         public static TagRoutineHandler TRH;
+        [SerializeField] private bool debug = false;
+        public bool Debug => debug;
 
         private void Awake()
         {

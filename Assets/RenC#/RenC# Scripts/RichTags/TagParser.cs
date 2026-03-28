@@ -166,7 +166,7 @@ namespace RenCSharp.Tags
         /// <returns>True if we found a valid tag, false otherwise.</returns>
         public static bool Parse(string tag, bool fire = true)
         {
-            Debug.Log("Length of valid tag types: " + allTags.Length);
+            if(TagRoutineHandler.TRH.Debug) Debug.Log("Length of valid tag types: " + allTags.Length);
             string[] split = Regex.Split(tag, "[=,]"); //0 should be function name, 1+ is arguments
             List<object> splitNoFirst = new List<object>();
             for (int i = 1; i < split.Length; i++)
@@ -184,13 +184,13 @@ namespace RenCSharp.Tags
 
             if (!split[0].Contains("End")) splitNoFirst.Insert(0, currentTextMesh); //if it's an "End" function, we can assume no arguments are being passed in
 
-            Debug.Log("The split tag: " + split[0]);
+            if(TagRoutineHandler.TRH.Debug) Debug.Log("The split tag: " + split[0]);
             MethodInfo method;
 
             foreach(Type T in allTags) //check every single type to see if our method exists. probably suboptimal, but screw finding a better way.
             {
                 method = T.GetMethod(split[0], BindingFlags.NonPublic | BindingFlags.Static);
-                Debug.Log("This type (" + T.FullName + "), says method: " + method);
+                if(TagRoutineHandler.TRH.Debug) Debug.Log("This type (" + T.FullName + "), says method: " + method);
                 if(method != null) 
                 {
                     if(fire) method.Invoke(instance, splitNoFirst.ToArray()); //invoke on the instance obj?

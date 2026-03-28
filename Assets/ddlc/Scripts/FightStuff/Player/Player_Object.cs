@@ -13,7 +13,7 @@ namespace RenCSharp.Combat.Player
         [SerializeField] private float invincibilitySeconds = 0.25f;
         [SerializeField] private AudioSource hurtedSound;
         [SerializeField] private AnimationCurve invincibleCurve;
-        [SerializeField] private bool main = false;
+        [SerializeField] private bool main = false, debug = false;
         private bool invincible = false, hurtSoundGood = true;
         private float curHealth, preResistance = 0, postResistance;
 
@@ -88,7 +88,7 @@ namespace RenCSharp.Combat.Player
             //curHealth = Mathf.Max(curHealth, 0);
             curHealth = Mathf.Min(curHealth, maxHealth);
 
-            Debug.Log($"Damage Taken by {gameObject.name}: " + f);
+            if(debug)Debug.Log($"Damage Taken by {gameObject.name}: " + f);
             if (main)
             {
                 Event_Bus.TryFireFloatEvent("PlayerHealth", Mathf.Max(curHealth, 0));

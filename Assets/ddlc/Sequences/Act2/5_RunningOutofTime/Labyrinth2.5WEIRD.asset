@@ -81,7 +81,8 @@ MonoBehaviour:
     - rid: 268099618523054180
   - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
     dialog: Let's continue.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 268100043383767040
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -696,3 +697,10 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - lookAwaySad
+    - rid: 268100043383767040
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: WeirdRoute
+        flagValue: 8
+        increment: 1
+        persistent: 0

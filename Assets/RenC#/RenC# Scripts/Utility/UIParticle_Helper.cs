@@ -9,10 +9,9 @@ namespace RenCSharp
     {
         private ParticleToken me;
         public ParticleToken SetMyParticleToken { set { me = value; } }
-        public ParticleToken GetMyParticleToken => me;
         public void OnRemove(bool b = false)
         {
-            Event_Bus.TryFireSingleObjEvent("RemoveParticleFromList", me);
+            Event_Bus.TryFireSingleObjEvent("RemoveParticleFromList", (object)me);
         }
     }
 }

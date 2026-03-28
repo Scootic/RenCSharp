@@ -570,8 +570,6 @@ namespace RenCSharp
                     Vector3 localPos = new Vector3(pt.XPos, pt.YPos, pt.ZPos);
                     Debug.Log("Local position from particle save data: " + localPos);
                     Object_Factory.SpawnParticleObject(true, pt.ParticleName, guh.transform, localPos, pt.UIParticleGUID, pt.ParticleSystemGUIDs[0]);
-
-                    AddUIParticleToList((object)pt);
                 }
             }
             catch(NullReferenceException ex)
@@ -593,6 +591,7 @@ namespace RenCSharp
             try
             {
                 ParticleToken pt = (ParticleToken)tokenToAdd;
+                if (activeParticles.Contains(pt)) Debug.LogWarning($"Particle: {pt.ParticleName} already in list?!?! Very concerning...");
                 activeParticles.Add(pt);
                 Debug.Log($"Added particle {pt.ParticleName} to list.");
             }catch(NullReferenceException) 
@@ -609,6 +608,7 @@ namespace RenCSharp
                 Debug.LogWarning($"Particles {pt.ParticleName} not found in particle list. Obvs can't remove it!");
                 return;
             }
+            Debug.Log($"Removed particle: {pt.ParticleName} from particle list.");
             activeParticles.Remove(pt);
         }
 

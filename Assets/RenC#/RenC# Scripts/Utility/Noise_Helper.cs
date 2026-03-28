@@ -30,7 +30,7 @@ namespace RenCSharp
                 returner = new Vector3(Mathf.Cos(xRad), Mathf.Sin(xRad), Mathf.Sin(xRad));
             }
             
-            Debug.Log("Rolled Sine Noise Direction: " + returner);
+            //Debug.Log("Rolled Sine Noise Direction: " + returner);
 
             return returner;
         }
