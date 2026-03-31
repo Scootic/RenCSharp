@@ -12,7 +12,7 @@ namespace RenCSharp.Combat.Enemies
         private float t = 0;
         private float eval;
         private Vector3 offset = Vector3.zero;
-        public override void UpdateMoveDir(Vector3 v3)
+        public override void UpdateMoveDir(Vector3 v3, bool first = false)
         {
             t = clockwise ? orbitTravelTime : 0;
             base.UpdateMoveDir(v3);
@@ -31,7 +31,7 @@ namespace RenCSharp.Combat.Enemies
 
             if (movementSetsRotation)
             {
-                Vector3 oldPos = projectileTransform.position;
+                Vector3 oldPos = projectileTransform.localPosition;
                 Vector3 dirToFramePos = newPos - oldPos;
                 if(dirToFramePos != Vector3.zero) projectileTransform.rotation = TrigHelper.GetQuaternion(dirToFramePos);
             }

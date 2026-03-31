@@ -7,51 +7,67 @@ namespace RenCSharp.Combat.Enemies
     public class Beam_Projectile : Base_Projectile
     {
         [Header("Beam")]
-        [SerializeField] private UI_Element beamElements;
+        [SerializeField, Tooltip("UI Element containing 4 Images: 0 - the actual proj image, 1 - the backdrop, " +
+            "2 & 3 - fill up as collider progresses toward activation.")] private UI_Element beamVisualElements;
         [SerializeField] private AudioClip beamFullSound;
-        [SerializeField, Range(0,1)] private float beamSoundVol = 1;
-        [SerializeField, Tooltip("Applies to material offset's y.")] private float beamVisualTravelSpeed = 0;
+        [SerializeField, Range(0,1), Tooltip("Plays when collider is enabled.")] private float beamSoundVol = 1;
+        [SerializeField, Tooltip("Applies to the child that has the visual element.")] private float beamVisualTravelSpeed = 0;
         [SerializeField] private Color emptyBeamC = Color.black;
         [SerializeField] private Color fullBeamC = Color.red;
-
+        [Header("Update Behavior")]
+        [SerializeField, Tooltip("Do custom updates while the beam's collider is inactive.")] private bool customUpdateWhileInactive = true;
+        [SerializeField, Tooltip("Do custom updates while the beam's collider is active.")] private bool customUpdateWhileActive = true;
+        [SerializeField, Tooltip("Does the movement behavior while the beam's collider is inactive.")] private bool movementWhileInactive = true;
+        [SerializeField, Tooltip("Does the movement behavior while the beam's collider is active.")] private bool movementWhileActive = true;
 
         protected override IEnumerator EnableTriggerOverTime()
         {
             float t = 0;
             float eval;
             myCol.enabled = false;
-            beamElements.Images[0].enabled = false; //main image
-            beamElements.Images[0].transform.localPosition = Vector3.zero;
-            beamElements.Images[1].enabled = true; //underlay
-            beamElements.Images[2].enabled = true; //filler 1
-            beamElements.Images[3].enabled = true; //filler 2
+            beamVisualElements.Images[0].enabled = false; //main image
+            beamVisualElements.Images[0].transform.localPosition = Vector3.zero;
+            beamVisualElements.Images[1].enabled = true; //underlay
+            beamVisualElements.Images[2].enabled = true; //filler 1
+            beamVisualElements.Images[3].enabled = true; //filler 2
 
-            beamElements.Images[2].fillAmount = 0;
-            beamElements.Images[3].fillAmount = 0;
+            beamVisualElements.Images[2].fillAmount = 0;
+            beamVisualElements.Images[3].fillAmount = 0;
             while (t <= colliderEnableTime)
             {
                 t += Time.deltaTime;
                 eval = t / colliderEnableTime;
                 Color c = Color.Lerp(emptyBeamC, fullBeamC, eval);
-                beamElements.Images[2].fillAmount = eval;
-                beamElements.Images[2].color = c;
-                beamElements.Images[3].fillAmount = eval;
-                beamElements.Images[3].color = c;
+                beamVisualElements.Images[2].fillAmount = eval;
+                beamVisualElements.Images[2].color = c;
+                beamVisualElements.Images[3].fillAmount = eval;
+                beamVisualElements.Images[3].color = c;
                 yield return null;
             }
 
             myCol.enabled = true;
             Audio_Manager.AM.Play2DSFX(beamFullSound, 0.9f, 1.01f, beamSoundVol, false);
-            beamElements.Images[0].enabled = true; //main image
-            beamElements.Images[1].enabled = false; //underlay
-            beamElements.Images[2].enabled = false; //filler 1
-            beamElements.Images[3].enabled = false; //filler 2
+            beamVisualElements.Images[0].enabled = true; //main image
+            beamVisualElements.Images[1].enabled = false; //underlay
+            beamVisualElements.Images[2].enabled = false; //filler 1
+            beamVisualElements.Images[3].enabled = false; //filler 2
         }
 
         protected override void Update()
         {
-            beamElements.Images[0].transform.localPosition += Time.deltaTime * beamVisualTravelSpeed * Vector3.down;
-            base.Update();
+            beamVisualElements.Images[0].transform.localPosition += Time.deltaTime * beamVisualTravelSpeed * Vector3.down;
+            if ((movementWhileInactive && !myCol.enabled) || (movementWhileActive && myCol.enabled))
+            {
+                movementType.MovementBehavior();
+            }
+            if (updateTypes.Count <= 0) return;
+            if ((customUpdateWhileInactive && !myCol.enabled) || (customUpdateWhileActive && myCol.enabled))
+            {
+                foreach (Projectile_CustomUpdate pcu in updateTypes)
+                {
+                    pcu.UpdateBehavior();
+                }
+            }
         }
 
         public override void OnRemove(bool playerTurn)

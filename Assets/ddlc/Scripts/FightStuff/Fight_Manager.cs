@@ -201,7 +201,7 @@ namespace RenCSharp.Combat
                         Base_Projectile cur = Object_Pooling.Spawn(projToSpawn.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Base_Projectile>();
                         cur.transform.SetParent(playerHolder);
                         cur.transform.localPosition = spawnPosition;
-                        cur.UpdateMoveDir(ogProjDir);
+                        cur.UpdateMoveDir(ogProjDir, true);
                         Vector3 soundSpawnPos = Camera.main.transform.position + cur.transform.localPosition.normalized;
                         Audio_Manager.AM.Play3DSFX(cur.SpawnSound, soundSpawnPos, false, false, cur.SpawnSoundVol, 0.9f, 1.1f);
                         AddProjectileToList(cur.gameObject);

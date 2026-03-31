@@ -42,9 +42,9 @@ namespace RenCSharp.Combat.Enemies
         /// Sets the move direction that's used in update to change the projectile's position.
         /// </summary>
         /// <param name="v3">Something, probably player position</param>
-        public virtual void UpdateMoveDir(Vector3 v3)
+        public virtual void UpdateMoveDir(Vector3 v3, bool first = false)
         {
-            movementType.UpdateMoveDir(v3);
+            movementType.UpdateMoveDir(v3, first);
         }
 
         protected virtual void OnEnable()

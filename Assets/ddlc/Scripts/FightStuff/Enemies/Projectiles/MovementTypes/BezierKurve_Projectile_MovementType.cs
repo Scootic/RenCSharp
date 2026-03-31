@@ -16,7 +16,7 @@ namespace RenCSharp.Combat.Enemies
         private float t;
         private Vector3[] boundingPositions = new Vector3[4];
 
-        public override void UpdateMoveDir(Vector3 v3)
+        public override void UpdateMoveDir(Vector3 v3, bool first = false)
         {
             moveDir = v3;
             boundingPositions = BoundingBezierPositions.BoundingPositions4(curveType, projectileTransform.position, moveDir, distanceFromSpawn, arcHeight);

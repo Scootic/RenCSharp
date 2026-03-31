@@ -10,7 +10,7 @@ namespace RenCSharp.Combat.Enemies
         private Vector3 ogMoveDir;
         private Vector3 parallelDir;
 
-        public override void UpdateMoveDir(Vector3 v3)
+        public override void UpdateMoveDir(Vector3 v3, bool first = false)
         {
             projectileTransform.rotation = TrigHelper.GetQuaternion(v3);
             ogMoveDir = v3;

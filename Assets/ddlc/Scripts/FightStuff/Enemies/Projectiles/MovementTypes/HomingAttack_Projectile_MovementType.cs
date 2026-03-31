@@ -5,10 +5,14 @@ namespace RenCSharp.Combat.Enemies
 {
     public class HomingAttack_Projectile_MovementType : Projectile_MovementType
     {
-        [SerializeField, Min(0)] private float homingStrength = 1f;
+        [Header("Homing Settings")]
+        [SerializeField, Min(0), Tooltip("Ignored if careAboutAlignment is false.")] private float homingStrength = 1f;
+        [SerializeField, Tooltip("Makes the projectile home best when it is already facing player. (Also, home worse when not.)" +
+            "Set to false to avoid using dot prod math and instead home in perfectly.")] 
+        private bool careAboutAlignment = true;
         private Transform playerTransform;
 
-        public override void UpdateMoveDir(Vector3 v3)
+        public override void UpdateMoveDir(Vector3 v3, bool first = false)
         {
             base.UpdateMoveDir(v3);
             if (playerTransform != null) return;
@@ -22,9 +26,13 @@ namespace RenCSharp.Combat.Enemies
         {
             Vector3 dirToPlayer = playerTransform.position - projectileTransform.position;
             dirToPlayer.Normalize();
-            float dot = Vector3.Dot(moveDir, dirToPlayer);
-            Vector3 t = Vector3.Lerp(moveDir, dirToPlayer, homingStrength * Time.deltaTime * Mathf.Abs(dot));
-            t.Normalize();
+            Vector3 t = dirToPlayer;
+            if (careAboutAlignment)
+            {
+                float dot = Vector3.Dot(moveDir, dirToPlayer);
+                t = Vector3.Lerp(moveDir, dirToPlayer, homingStrength * Time.deltaTime * Mathf.Abs(dot));
+                t.Normalize();
+            }
             UpdateMoveDir(t);
             projectileTransform.position += moveDir * Time.deltaTime * speed;
         }

@@ -12,12 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
   m_Name: GlenmorilWitch1
   m_EditorClassIdentifier: 
-  scriptedAttacks: []
-  scriptedFlavorTexts: []
-  randomAttacks: []
-  randomFlavorTexts: []
+  scriptedAttacks:
+  - {fileID: 11400000, guid: a35d69f15abc28e47aa07e8fd1d627cb, type: 2}
+  - {fileID: 11400000, guid: ff5045f6373d90d4cb95b94810a9a2cb, type: 2}
+  - {fileID: 11400000, guid: 69f2c1d8825741343b688134817a0356, type: 2}
+  - {fileID: 11400000, guid: 6f80a6c6d8d3a784bb280e189103b9f5, type: 2}
+  - {fileID: 11400000, guid: b8874015c459c1d4b94fc5a28ece5302, type: 2}
+  scriptedFlavorTexts:
+  - The witch rains down blue fire from above.
+  - The witch surrounds Natsuki with bolts of frost.
+  - The witch fires splitting ice spikes at Natsuki.
+  - The witch drags multi-colored fire toward Natsuki.
+  - The witch launches beams of lightning and fireballs at Natsuki.
+  randomAttacks:
+  - {fileID: 11400000, guid: a6e1d4f2bd10ed54eb6ffba05eb7b3a7, type: 2}
+  - {fileID: 11400000, guid: f93816078f259d146a06b71108642986, type: 2}
+  - {fileID: 11400000, guid: 3b2e0651f7b7ae549876522d820a34dc, type: 2}
+  - {fileID: 11400000, guid: 5671754c767405848ac3dd29887cf92d, type: 2}
+  - {fileID: 11400000, guid: 854e87f27b9cc5b48b63917aab4324ae, type: 2}
+  randomFlavorTexts:
+  - The witch produces a small snow storm.
+  - The witch flings blue fire and smaller fireballs from the side.
+  - The witch unleashes a barrage of lightning.
+  - The witch flings orange fire and smaller fireballs from the side.
+  - The witch unleashes barrages of frost beams.
   maxHealth: 70
-  visualInformation: []
+  visualInformation:
+  - {fileID: 21300000, guid: 6a8c176029b044a42b60109255076a0e, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
   defeatText: The witch staggers back, recomposing herself to continue the fight.
   nameText: Glenmoril Witch

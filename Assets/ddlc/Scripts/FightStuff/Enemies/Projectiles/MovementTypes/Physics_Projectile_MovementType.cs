@@ -7,7 +7,7 @@ namespace RenCSharp.Combat.Enemies
     {
         [SerializeField] private bool ignoreMass = true;
 
-        public override void UpdateMoveDir(Vector3 v3)
+        public override void UpdateMoveDir(Vector3 v3, bool first = false)
         {
             projectileRigidbody.AddForce(v3, ignoreMass ? ForceMode.VelocityChange : ForceMode.Impulse);
         }

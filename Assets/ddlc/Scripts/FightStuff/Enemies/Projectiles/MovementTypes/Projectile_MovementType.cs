@@ -15,10 +15,10 @@ namespace RenCSharp.Combat.Enemies
 
         public abstract void OnEditorValidate();
 
-        public virtual void UpdateMoveDir(Vector3 v3)
+        public virtual void UpdateMoveDir(Vector3 v3, bool first = false)
         {
             moveDir = v3;
-            if(movementSetsRotation) projectileTransform.rotation = TrigHelper.GetQuaternion(moveDir);
+            if(movementSetsRotation || first) projectileTransform.rotation = TrigHelper.GetQuaternion(moveDir);
         }
 
         public Transform SetProjectileTransform { set { projectileTransform = value; } }

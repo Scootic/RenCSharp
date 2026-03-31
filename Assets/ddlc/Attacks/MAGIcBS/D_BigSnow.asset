@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: D_BigSnow
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 550, y: 550}
+  controlType:
+    rid: 268100115201786179
+  attackDuration: 13
+  secondsPerProjectileSpawn: 3
+  projectilesPerSpawn: 2
+  projectilesThatSpawn:
+  - {fileID: 2106449885013338605, guid: 74291f42c881664488d194d5e47aca51, type: 3}
+  - {fileID: 0}
+  spawnPoints:
+  - {x: 0, y: 400, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 200, y: 200, z: 0}
+  - {x: 200, y: 200, z: 0}
+  - {x: -400, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -300, y: 300, z: 0}
+  - {x: 300, y: -300, z: 0}
+  initialDirections:
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  indexes: 0000000001000000000000000000000000000000010000000000000000000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: 268100115201786179
+      type: {class: Dodge, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        dodgeCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0.0041656494
+            value: 0.0023498535
+            inSlope: 28.7177
+            outSlope: 28.7177
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.0042918078
+          - serializedVersion: 3
+            time: 0.11398773
+            value: 0.99561787
+            inSlope: 0.010484483
+            outSlope: 0.010484483
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.4124007
+          - serializedVersion: 3
+            time: 0.68702996
+            value: 0.77889293
+            inSlope: -1.0738964
+            outSlope: -1.0738964
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -1.3502456
+            outSlope: -1.3502456
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.09012877
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        distanceFromCenter: 250
+        timeToDodge: 2

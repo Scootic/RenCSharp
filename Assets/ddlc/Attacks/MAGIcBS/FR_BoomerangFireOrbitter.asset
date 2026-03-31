@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: FR_BoomerangFireOrbitter
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 400, y: 400}
+  controlType:
+    rid: 268100115201786156
+  attackDuration: 18.1
+  secondsPerProjectileSpawn: 6
+  projectilesPerSpawn: 2
+  projectilesThatSpawn:
+  - {fileID: 9116785160976773730, guid: 6287d3188f137ad41b1e9349de3211cf, type: 3}
+  spawnPoints:
+  - {x: 0, y: 0, z: 0}
+  initialDirections:
+  - {x: 0, y: 0, z: 0}
+  indexes: 00000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: 268100115201786156
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500

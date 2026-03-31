@@ -71,9 +71,80 @@ MonoBehaviour:
     ScreenActions:
     - rid: 268100094052532235
     - rid: 268100094052532236
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: The four arrive at a large central chamber, without any sign of the witches
+      being present in their cave.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Do you guys think that the witches might've know we were coming-?
+    ScreenActions:
+    - rid: 268100115201785856
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: As if on queue, they find themselves surrounded by various harmful magics.
+    ScreenActions:
+    - rid: 268100115201785857
+    - rid: 268100115201785858
+    - rid: 268100115201785860
+    - rid: 268100115201785932
   - speaker: {fileID: 0}
     dialog: 
+    ScreenActions:
+    - rid: 268100115201785861
+    - rid: 268100115201785862
+    - rid: 268100115201785863
+    - rid: 268100115201785864
+    - rid: 268100115201785865
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: The cowards reveal themselves!
+    ScreenActions:
+    - rid: 268100115201785928
+    - rid: 268100115201785929
+    - rid: 268100115201785930
+    - rid: 268100115201785931
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: The group takes stock of the situation, finding themselves surrounded
+      by five witches.
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+    dialog: Just about one for each of us...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: Not to worry, I can take on two.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: After a brief period of assigning the witches among the group, the Companions
+      dispurse to fight their witch.
+    ScreenActions:
+    - rid: 268100115201785939
+    - rid: 268100115201785940
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268100115201785933
+    - rid: 268100115201785934
+    - rid: 268100115201785935
+    - rid: 268100115201785936
+    - rid: 268100115201785938
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: With the brief reprieve she earned, Natsuki looks around to see how the
+      rest of the group is doing.
+    ScreenActions:
+    - rid: 268100115201785942
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Farkas and Vilkas seem to be just finishing off their fights, while Aela
+      is having a rough time with her fight.
+    ScreenActions:
+    - rid: 268100115201785943
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: The witch Natsuki's fighting has now recovered and is ready for round
+      two.
+    ScreenActions:
+    - rid: 268100115201785944
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268100115201785945
+    - rid: 268100115201785946
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -229,3 +300,195 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
+    - rid: 268100115201785856
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - speak
+    - rid: 268100115201785857
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - terror
+    - rid: 268100115201785858
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 35
+        increment: 0
+        persistent: 0
+    - rid: 268100115201785860
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268100115201785861
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeTime: 0.5
+    - rid: 268100115201785862
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+        fadeTime: 0.5
+    - rid: 268100115201785863
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+        fadeTime: 0.5
+    - rid: 268100115201785864
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+        fadeTime: 0.5
+    - rid: 268100115201785865
+      type: {class: Start_Single_Attack, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        attackToRunThrough: {fileID: 11400000, guid: 6f30f3d83f744514093d2530f524a3aa, type: 2}
+    - rid: 268100115201785928
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -600, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 268100115201785929
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -200, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+        - EMPTY
+    - rid: 268100115201785930
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 200, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - grimace
+        - ears
+    - rid: 268100115201785931
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 600, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+        - EMPTY
+    - rid: 268100115201785932
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerAbilities
+        flagValue: 4
+        increment: 0
+        persistent: 0
+    - rid: 268100115201785933
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeTime: 0.5
+    - rid: 268100115201785934
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+        fadeTime: 0.5
+    - rid: 268100115201785935
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+        fadeTime: 0.5
+    - rid: 268100115201785936
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+        fadeTime: 0.5
+    - rid: 268100115201785938
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 11400000, guid: 108d9c93a783c6e46a0af357387bb977, type: 2}
+    - rid: 268100115201785939
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 4
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+            dialog: After a brief period of assigning the witches among the group,
+              the Companions dispurse to fight their witch.
+            ScreenActions:
+            - rid: 268100115201785941
+    - rid: 268100115201785940
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerDamage
+        flagValue: 10
+        increment: 0
+        persistent: 0
+    - rid: 268100115201785941
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerDamage
+        flagValue: 15
+        increment: 0
+        persistent: 0
+    - rid: 268100115201785942
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - scowl
+        - ears
+    - rid: 268100115201785943
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - inquisitive
+    - rid: 268100115201785944
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - grimace
+    - rid: 268100115201785945
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeTime: 0.5
+    - rid: 268100115201785946
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 11400000, guid: 36f319b8d79b99044bee0eeb735ca724, type: 2}
