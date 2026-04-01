@@ -101,6 +101,7 @@ namespace RenCSharp.Combat
             playerObj = Object_Factory.SpawnObject(playerPrefab.gameObject, "PlayerObject", playerHolder);
             curPlayer = playerObj.GetComponent<Player_Object>();
             curPlayer.StartOfFight();
+            Flag_Manager.SetFlag("PlayerCurHealth", Mathf.Min(Flag_Manager.GetFlag("PlayerCurHealth"), Flag_Manager.GetFlag("PlayerMaxHealth"))); //make sure cur <= max
             Event_Bus.TryFireFloatEvent("PlayerHealth", (float)Flag_Manager.GetFlag("PlayerCurHealth"));
             Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (float)Flag_Manager.GetFlag("PlayerCurHealth") / (float)Flag_Manager.GetFlag("PlayerMaxHealth"));
             playerObj.SetActive(false);

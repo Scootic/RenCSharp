@@ -419,12 +419,16 @@ MonoBehaviour:
   spawnSound: {fileID: 8300000, guid: a00237a59645fcd47b9fb4e5472d6141, type: 3}
   sprite: {fileID: 4184520233299656872}
   hitType: 0
-  beamElements: {fileID: 5318929957290242959}
+  beamVisualElements: {fileID: 5318929957290242959}
   beamFullSound: {fileID: 8300000, guid: 7938deb51c5114f40a13688a269a0017, type: 3}
   beamSoundVol: 1
   beamVisualTravelSpeed: 500
   emptyBeamC: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
   fullBeamC: {r: 1, g: 0, b: 0, a: 1}
+  customUpdateWhileInactive: 1
+  customUpdateWhileActive: 1
+  movementWhileInactive: 1
+  movementWhileActive: 1
   references:
     version: 2
     RefIds:
