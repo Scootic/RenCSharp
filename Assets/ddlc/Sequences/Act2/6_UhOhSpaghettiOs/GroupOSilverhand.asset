@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: GroupOSilverhand
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 7e43699c174b16843b94d1cc10804f6e, type: 2}
+  - {fileID: 11400000, guid: 1bc2e19e888fbcb4a91b2445c8e264fb, type: 2}
+  - {fileID: 11400000, guid: e7c6152489b3f15419843421db29e35c, type: 2}
+  - {fileID: 11400000, guid: 49838c9fd25d70a40ba4a7563ed6234e, type: 2}
+  - {fileID: 11400000, guid: 75707b5d562c2c8459c3f5f5de092f07, type: 2}
+  scriptedFlavorTexts:
+  - The swordsman attempts to slash at the pink werewolf.
+  - The man-at-arms flings his mace at Natsuki's sides.
+  - The man-at-arms brings down his mace from above.
+  - The archer fires from above.
+  - The archer carefully aims their bow at Natsuki.
+  randomAttacks:
+  - {fileID: 11400000, guid: 75707b5d562c2c8459c3f5f5de092f07, type: 2}
+  - {fileID: 11400000, guid: 43b36ad354d91fa40b4f7b51ab903e40, type: 2}
+  - {fileID: 11400000, guid: 5f90375df0f28c042bc93a924550e369, type: 2}
+  - {fileID: 11400000, guid: 1a3fa6f672261d845a697a98581c52bf, type: 2}
+  - {fileID: 11400000, guid: 49e13050f225238458711000418a50db, type: 2}
+  randomFlavorTexts:
+  - The archer carefully aims their bow. Again.
+  - The archer fires arrows in bursts of three.
+  - The archer fires arrows at Natsuki's sides.
+  - The man-at-arms brings down his mace from above. Again.
+  - The swordsman alternates between flinging his sword at Natsuki's head and legs.
+  maxHealth: 100
+  visualInformation:
+  - {fileID: 21300000, guid: c6f5bb0efb73dd34cb4508235fcc89c3, type: 3}
+  - {fileID: 21300000, guid: 096b8c3cc93b09845916c4ae73b373fa, type: 3}
+  - {fileID: 21300000, guid: 838d511b718ce5647a1fa7f2c028a8fc, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: 3102afbbc9920304bb332f662fb9fd9c, type: 3}
+  defeatText: Natsuki's managed to clear the room.
+  nameText: Group of Silver Hand
+  blurbText: Diglett dig Diglett dig, trio trio trio!
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
+  uiParticleObjFab:
+    m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  hitParticleObjFab:
+    m_AssetGUID: 5c1c468a2868c7d4fb619d948854ab27
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
