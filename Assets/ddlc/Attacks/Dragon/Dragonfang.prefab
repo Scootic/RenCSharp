@@ -92,12 +92,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementType:
     rid: 268099750562627780
+  onHitEffects: []
   despawnType:
     rid: 268099750562627796
+  updateTypes: []
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 3
-  moveSpeed: 500
   lifetime: 1.25
   spawnSoundVol: 0.3
   colliderEnableTime: 0.333
@@ -111,6 +112,7 @@ MonoBehaviour:
       type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
         speed: 300
+        movementSetsRotation: 1
     - rid: 268099750562627796
       type: {class: Explode_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
@@ -120,7 +122,7 @@ MonoBehaviour:
         - {x: 1, y: -0.1, z: 0}
         - {x: -1, y: -0.1, z: 0}
         subProjectile: {fileID: 8204135625514222407, guid: ebe715091a91c51458dd95fc43dda76b, type: 3}
-        localExplosionDirections: 0
+        localExplosionDirections: 1
 --- !u!54 &8094239482754136957
 Rigidbody:
   m_ObjectHideFlags: 0
