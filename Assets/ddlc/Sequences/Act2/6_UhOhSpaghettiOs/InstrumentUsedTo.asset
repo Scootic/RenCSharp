@@ -20,7 +20,24 @@ MonoBehaviour:
     - rid: 4927988362429071448
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (Is that just a time thing? Or do you not like playing it anymore?)
-    ScreenActions: []
+    ScreenActions:
+    - rid: 4927988385720565772
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4927988385720565771
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4927988385720565773
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4927988385720565776
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4927988385720565779
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -49,3 +66,152 @@ MonoBehaviour:
         - 
         - skyDown
         - pitySmile
+    - rid: 4927988385720565771
+      type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        buttonNames:
+        - It's a time thing.
+        - It's not fun anymore.
+        flagsToAlter:
+        - garbage
+        - garbage
+        newFlagValues: 0000000001000000
+        increment: 0
+        persistent: 0
+    - rid: 4927988385720565772
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
+    - rid: 4927988385720565773
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (That sucks!)
+            ScreenActions:
+            - rid: 4927988385720565774
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (Honestly, I don't really get that.)
+            ScreenActions:
+            - rid: 4927988385720565775
+    - rid: 4927988385720565774
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - pout
+    - rid: 4927988385720565775
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - pitySmile
+    - rid: 4927988385720565776
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (I can empathize; I "remember" having very little time just for
+              myself back home.)
+            ScreenActions:
+            - rid: 4927988385720565778
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (The distance from my piano is certainly making the heart grow
+              fonder, ahaha...)
+            ScreenActions:
+            - rid: 4927988385720565777
+    - rid: 4927988385720565777
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smileSweat
+    - rid: 4927988385720565778
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smileSweat
+    - rid: 4927988385720565779
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (To be honest, I only started learning the piano after my epiphany.)
+            ScreenActions:
+            - rid: 4927988385720565780
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (But if you're not enjoying yourself, you probably shouldn't
+              force yourself to do it.)
+            ScreenActions:
+            - rid: 4927988385720565781
+    - rid: 4927988385720565780
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
+    - rid: 4927988385720565781
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
