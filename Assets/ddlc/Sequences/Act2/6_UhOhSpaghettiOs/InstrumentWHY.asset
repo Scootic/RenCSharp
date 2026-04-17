@@ -14,15 +14,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoFocusSpeaker: 1
   screens:
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Why?)
+    ScreenActions:
+    - rid: 4927988405324218372
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Do I really need an excuse to make small talk with you, ahaha...?)
+    ScreenActions:
+    - rid: 4927988405324218373
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Anyway, it's just something that's been at the back of my mind-)
+    ScreenActions:
+    - rid: 4927988405324218374
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Especially while going from place to place with {mc}.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (He really isn't that talktative to me, especially when <b>you're</b>
+      not around...)
+    ScreenActions:
+    - rid: 4927988405324218375
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (So, I've been thinking about how I wanted to finish the song I was working
+      on.)
+    ScreenActions:
+    - rid: 4927988405324218376
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Which, if I can be honest with <b>you</b>...)
+    ScreenActions:
+    - rid: 4927988405324218377
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (That song was the only <i>real</i> thing I had back home.)
+    ScreenActions:
+    - rid: 4927988405324218378
   - speaker: {fileID: 0}
     dialog: 
+    ScreenActions:
+    - rid: 4927988405324218379
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (...)
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Oh!)
+    ScreenActions:
+    - rid: 4927988405324218381
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (<b>You</b> think I'd be able to finish my song at that Bard's School,
+      or whatever {mc} called it?)
+    ScreenActions:
+    - rid: 4927988405324218383
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: db6adcfa1940b8641a333ede8b64c690, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -33,4 +79,100 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4927988405324218372
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
+    - rid: 4927988405324218373
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smileSweat
+    - rid: 4927988405324218374
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
+    - rid: 4927988405324218375
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smileSweat
+    - rid: 4927988405324218376
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
+    - rid: 4927988405324218377
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smileSweat
+    - rid: 4927988405324218378
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
+    - rid: 4927988405324218379
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: GoodMonika
+            operation: 3
+            desiredValue: 1
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (Well, it was the only thing that <i>felt</i> real to me at the
+              time, anyway...)
+            ScreenActions:
+            - rid: 4927988405324218380
+    - rid: 4927988405324218380
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - pity
+    - rid: 4927988405324218381
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shock
+    - rid: 4927988405324218383
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile

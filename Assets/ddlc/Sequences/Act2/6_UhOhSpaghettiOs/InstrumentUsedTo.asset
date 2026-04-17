@@ -38,15 +38,32 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 4927988385720565779
-  - speaker: {fileID: 0}
-    dialog: 
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Either way, I've been feeling the itch to play the piano again.)
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Which has been really bothering me, since I can't do it!)
+    ScreenActions:
+    - rid: 4927988405324218368
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Since, you know, we're in a world separate from pianos and all.)
+    ScreenActions:
+    - rid: 4927988405324218369
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Oh, hey-!)
+    ScreenActions:
+    - rid: 4927988405324218370
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Do you think that... Bard's School, or whatever {mc} called it, would
+      have a piano?)
+    ScreenActions:
+    - rid: 4927988405324218371
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: db6adcfa1940b8641a333ede8b64c690, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -119,7 +136,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - pout
+        - smileSweat
     - rid: 4927988385720565775
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -163,7 +180,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - smileSweat
+        - closeEyeSmile
     - rid: 4927988385720565778
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -171,7 +188,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - smileSweat
+        - blushSmile
     - rid: 4927988385720565779
       type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -195,7 +212,7 @@ MonoBehaviour:
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-            dialog: (But if you're not enjoying yourself, you probably shouldn't
+            dialog: (But, if you're not enjoying yourself, you probably shouldn't
               force yourself to do it.)
             ScreenActions:
             - rid: 4927988385720565781
@@ -214,4 +231,36 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
+        - closeEyeGrinSweat
+    - rid: 4927988405324218368
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
         - smile
+    - rid: 4927988405324218369
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - pout
+    - rid: 4927988405324218370
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
+    - rid: 4927988405324218371
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shock

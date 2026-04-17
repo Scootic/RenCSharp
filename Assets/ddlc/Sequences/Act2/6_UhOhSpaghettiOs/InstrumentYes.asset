@@ -23,10 +23,52 @@ MonoBehaviour:
     - rid: 4927988362429071447
   - speaker: {fileID: 0}
     dialog: 
+    ScreenActions:
+    - rid: 4927988405324218384
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4927988405324218387
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4927988405324218390
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4927988405324218393
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4927988405324218395
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (... all this music talk is making me want to finish the song I was working
+      on.)
+    ScreenActions:
+    - rid: 4927988405324218401
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Which is annoying since, you know, no pianos and all.)
+    ScreenActions:
+    - rid: 4927988405324218402
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Maybe I should pick up another instrument-?)
+    ScreenActions:
+    - rid: 4927988405324218403
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Oh!)
+    ScreenActions:
+    - rid: 4927988405324218404
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Maybe I could go to that Bard School {mc} was talking about a couple
+      of days ago.)
+    ScreenActions:
+    - rid: 4927988405324218405
+  - speaker: {fileID: 0}
+    dialog: 
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: db6adcfa1940b8641a333ede8b64c690, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -52,3 +94,276 @@ MonoBehaviour:
         newFlagValues: 000000000100000002000000
         increment: 0
         persistent: 0
+    - rid: 4927988405324218384
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (Wow...! That's actually incredible!)
+            ScreenActions:
+            - rid: 4927988405324218385
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (That's great!)
+            ScreenActions:
+            - rid: 4927988405324218386
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 2
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (Well, there's nothing wrong with that.)
+            ScreenActions: []
+    - rid: 4927988405324218385
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shock
+    - rid: 4927988405324218386
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - closeEyeSmile
+    - rid: 4927988405324218387
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (If I can be honest with <b>you</b>, I- uh...)
+            ScreenActions:
+            - rid: 4927988405324218389
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (I doubt I need to tell you the benefits of keeping it regular.)
+            ScreenActions:
+            - rid: 4927988405324218397
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 2
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (Sometimes life just wants to get in the way, doesn't it?)
+            ScreenActions:
+            - rid: 4927988405324218398
+    - rid: 4927988405324218389
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smileSweat
+    - rid: 4927988405324218390
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (When I was in middle school, I fantasized about marrying a musician-)
+            ScreenActions:
+            - rid: 4927988405324218391
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (But I <i>am</i> rooting for <b>you</b>. So keep at it!)
+            ScreenActions:
+            - rid: 4927988405324218400
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 2
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (No stranger to that, ahaha!)
+            ScreenActions:
+            - rid: 4927988405324218399
+    - rid: 4927988405324218391
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - blushSmile
+    - rid: 4927988405324218393
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (Someone who would write the most beautiful songs about their
+              love for me...)
+            ScreenActions:
+            - rid: 4927988405324218394
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 2
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (... which is something you already know, isn't it?)
+            ScreenActions:
+            - rid: 4927988405324218394
+    - rid: 4927988405324218394
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - closeEyeGrinSweat
+    - rid: 4927988405324218395
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+            dialog: (Not that I need you to do that! Just an old pipe dream coming
+              true, sort of.)
+            ScreenActions:
+            - rid: 4927988405324218396
+    - rid: 4927988405324218396
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
+    - rid: 4927988405324218397
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
+    - rid: 4927988405324218398
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - pitySmile
+    - rid: 4927988405324218399
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - closeEyeGrin
+    - rid: 4927988405324218400
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - closeEyeSmile
+    - rid: 4927988405324218401
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
+    - rid: 4927988405324218402
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - pout
+    - rid: 4927988405324218403
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
+    - rid: 4927988405324218404
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shock
+    - rid: 4927988405324218405
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
