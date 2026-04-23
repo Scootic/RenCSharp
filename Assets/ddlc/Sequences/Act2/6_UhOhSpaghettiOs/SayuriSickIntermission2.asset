@@ -102,6 +102,13 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4927988476395913299
     - rid: 4927988476395913300
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I'm looking for some...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: <i>Light</i> reading material.
+    ScreenActions:
+    - rid: 4927988544189497344
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -444,3 +451,11 @@ MonoBehaviour:
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
+    - rid: 4927988544189497344
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - lookAwayPity
