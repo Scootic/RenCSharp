@@ -19,8 +19,55 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4927988565371781159
     - rid: 4927988565371781160
+  - speaker: {fileID: 11400000, guid: d0c7e6e02081ef145a5f9d29590789ea, type: 2}
+    dialog: I will look for your return, or Alduin's.
+    ScreenActions:
+    - rid: 4927988590059192372
+    - rid: 4927988590059192373
+    - rid: 4927988590059192374
+    - rid: 4927988590059192377
   - speaker: {fileID: 0}
-    dialog: 
+    dialog: With his final scripted remarks out of the way, Odahviing flies off to...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Somewhere else, I guess.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: It's possible he's heading up to the Throat of the World, since he's
+      there for the ending sequence.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Not that it matters to me right now, I've a portal to enter.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: If I remember right, this place is a doozy, even for characters that
+      are properly leveled.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: And I'm pretty sure that if I <i>could</i> check, I would be seriously
+      underleveled.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Also, I'm still rocking the armor I got from Helgen.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: All in all? My odds are pretty bad.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: At least I know the level layout!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Since that's the only thing I've got going for me, I should probably
+      just try to book it past the enemies.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Except for the Dragon Priest waiting for me at the end...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Meh! I'll cross that bridge when I get there!
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
@@ -56,10 +103,38 @@ MonoBehaviour:
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         songAsset:
-          m_AssetGUID: 
+          m_AssetGUID: 4406b863816758a40be72f9c5b7b875c
           m_SubObjectName: 
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
+    - rid: 4927988590059192372
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerDamage
+        flagValue: 14
+        increment: 0
+        persistent: 0
+    - rid: 4927988590059192373
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerMaxHealth
+        flagValue: 40
+        increment: 0
+        persistent: 0
+    - rid: 4927988590059192374
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 40
+        increment: 0
+        persistent: 0
+    - rid: 4927988590059192377
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerAbilites
+        flagValue: 0
+        increment: 0
+        persistent: 0
