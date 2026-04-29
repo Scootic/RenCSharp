@@ -59,18 +59,14 @@ namespace RenCSharp.Combat.Player
             flickThroughMenu = true;
             StartCoroutine(FlickThroughMenu());     
             //we don' care 'bout y tf
-            if (guh.x >= 1)
-            {
-                curIndex++;
-                if (curIndex >= playerActions.Length) curIndex = 0;
-            }
-            else if(guh.x <= -1)
-            {
-                curIndex--;
-                if(curIndex < 0) curIndex = playerActions.Length - 1;
-            }
 
-            SelectAnAction(curIndex);
+            if (guh.x != 0) 
+            {
+                curIndex += (int)Mathf.Sign(guh.x); //?
+                if (curIndex >= playerActions.Length) curIndex = 0;
+                else if (curIndex < 0) curIndex = playerActions.Length - 1;
+                SelectAnAction(curIndex); 
+            }
         }
 
         private void SelectAnAction(int index)
