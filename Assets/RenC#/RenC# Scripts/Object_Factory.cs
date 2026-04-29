@@ -39,7 +39,7 @@ namespace RenCSharp
             return t;
         }
         /// <summary>
-        /// Specific method for spawning particle objects, because they have more going on.
+        /// Specific method for spawning particle objects, because they have more derangement going on.
         /// </summary>
         /// <param name="overrideParticles">Decides whether or not to bother with the subParticleAsset</param>
         /// <param name="name">The name the new obj will have</param>

@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
   m_Name: SkuldafnDraugrWight
   m_EditorClassIdentifier: 
-  scriptedAttacks: []
-  scriptedFlavorTexts: []
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 35f0d2fe2d1919f42afd8f29f590374e, type: 2}
+  - {fileID: 11400000, guid: 5326c054c74320f43bc313fa03abf7ef, type: 2}
+  scriptedFlavorTexts:
+  - The Draugr Wight flings his great-axe at {mc}.
+  - The Draugr Wight tries to fling his great-axe again, but {mc} raises his shield
+    to defend.
   randomAttacks: []
   randomFlavorTexts: []
   maxHealth: 140
