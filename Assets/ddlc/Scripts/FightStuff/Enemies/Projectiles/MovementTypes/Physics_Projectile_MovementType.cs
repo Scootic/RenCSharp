@@ -9,6 +9,7 @@ namespace RenCSharp.Combat.Enemies
 
         public override void UpdateMoveDir(Vector3 v3, bool first = false)
         {
+            projectileRigidbody.linearVelocity = Vector3.zero;
             projectileRigidbody.AddForce(v3, ignoreMass ? ForceMode.VelocityChange : ForceMode.Impulse);
         }
 

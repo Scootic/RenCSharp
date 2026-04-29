@@ -1,3 +1,4 @@
+using EXPERIMENTAL;
 using UnityEngine;
 
 namespace RenCSharp.Combat.Enemies
@@ -10,15 +11,23 @@ namespace RenCSharp.Combat.Enemies
         [SerializeField] private Transform projectileTransform;
         [SerializeField] private Rigidbody projectileRigidbody;
         [SerializeField] private Base_Projectile projectile;
+        [SerializeField] private float maxSpeed = 700f;
         [SerializeField, Min(0)] private float reboundStrength = 2;
+
         public override void OnHit(Collider other)
         {
-            Vector3 dirToOther = other.transform.position - projectileTransform.position;
+            if (!validOnHit) return;
+            validOnHit = false;
+            Vector3 dirToOther = other.ClosestPoint(projectileTransform.position) - projectileTransform.position;
             dirToOther.Normalize();
-            Physics.Raycast(projectileTransform.position, dirToOther, out RaycastHit shit, 5f);
-            Vector3 reflection = Vector3.Reflect(projectileRigidbody.linearVelocity, shit.normal);
+            Vector3 thogcross = Vector3.Cross(dirToOther, Vector3.forward);
+            Vector3 reflection = Vector3.Reflect(projectileRigidbody.linearVelocity, thogcross);
             reflection *= -1;
-            projectile.UpdateMoveDir(reflection * reboundStrength);
+            
+            Vector3 updatedForce = TrigHelper.ClampVector(reflection * reboundStrength, maxSpeed);
+            projectile.UpdateMoveDir(updatedForce);
+            Debug.Log("Phys Bounced, should set dir to: " + updatedForce);
+            projectile.StartCoroutine(HandleCooldown());
         }
 
         public override string ToString()

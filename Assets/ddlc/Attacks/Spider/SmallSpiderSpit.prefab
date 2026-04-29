@@ -119,9 +119,11 @@ MonoBehaviour:
     - rid: 268099759930081765
       type: {class: Bounce_Projectile_OnHitEffect, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
+        hitcooldown: 0.2
         projectileTransform: {fileID: 2711639654553654952}
         projectileRigidbody: {fileID: 8266305171280315681}
         projectile: {fileID: 6086380992110481451}
+        maxSpeed: 700
         reboundStrength: 1.5
     - rid: 268099760321986612
       type: {class: ResetRB_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}

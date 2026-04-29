@@ -98,6 +98,15 @@ namespace RenCSharp.Combat.Enemies
             receiver = other.GetComponent<IDamage>();
             receiverRB = other.GetComponent<Rigidbody>();
             bool actuallyTakeDamage = true;
+
+            if (onHitEffects.Count > 0) //on hit regardless of whether or not we hit a damageable object. maybe? physics matrix should prevent bs interactions
+            {
+                foreach (Projectile_OnHitEffect hitE in onHitEffects)
+                {
+                    hitE.OnHit(other);
+                }
+            }
+
             if (!damageOverTime && receiver != null)
             {
                 switch (hitType)
@@ -111,14 +120,6 @@ namespace RenCSharp.Combat.Enemies
                 }
 
                 if (actuallyTakeDamage) receiver.TakeDamage(baseDamage, false);
-
-                if (onHitEffects.Count > 0)
-                {
-                    foreach (Projectile_OnHitEffect hitE in onHitEffects)
-                    {
-                        hitE.OnHit(other);
-                    }
-                }
             }
             if (destroyOnHit && !BehindWall(other) && actuallyTakeDamage)
             {

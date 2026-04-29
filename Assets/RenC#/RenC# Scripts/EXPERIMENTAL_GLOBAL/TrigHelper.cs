@@ -4,9 +4,41 @@ using UnityEngine;
 using UnityEngine.Jobs;
 namespace EXPERIMENTAL
 {
-    public static class TrigHelper
+    public struct TrigHelper
     {
         public const float TAU = Mathf.PI * 2;
+        /// <summary>
+        /// clamps a given vector so that none of its component parts (x, y, or z) exceeds the given maximum value. accounts for negative values.
+        /// (ie. -850 gets clamped to -700 if your maxValue is 700)
+        /// </summary>
+        /// <param name="vectorToClamp"></param>
+        /// <param name="maximumValue"></param>
+        /// <returns>the clamped vector</returns>
+        public static Vector3 ClampVector(Vector3 vectorToClamp, float maximumValue)
+        {
+            float x = vectorToClamp.x >= 0 ? Mathf.Min(vectorToClamp.x, maximumValue) : Mathf.Max(vectorToClamp.x, maximumValue * -1);
+            float y = vectorToClamp.y >= 0 ? Mathf.Min(vectorToClamp.y, maximumValue) : Mathf.Max(vectorToClamp.y, maximumValue * -1);
+            float z = vectorToClamp.z >= 0 ? Mathf.Min(vectorToClamp.z, maximumValue) : Mathf.Max(vectorToClamp.z, maximumValue * -1);
+            return new Vector3(x, y, z);
+        }
+
+        /// <summary>
+        /// clamps a given vector so that none of its component parts (x, y, or z) exceeds the given maximum value. compares each individual axis.
+        /// accounts for negative values. (ie. -850 gets clamped to -700 if your max{Axis}Value is 700)
+        /// </summary>
+        /// <param name="vectorToClamp"></param>
+        /// <param name="maxX"></param>
+        /// <param name="maxY"></param>
+        /// <param name="maxZ"></param>
+        /// <returns>the clamped vector</returns>
+        public static Vector3 ClampVector(Vector3 vectorToClamp, float maxX, float maxY, float maxZ)
+        {
+            float x = vectorToClamp.x >= 0 ? Mathf.Min(vectorToClamp.x, maxX) : Mathf.Max(vectorToClamp.x, maxX * -1);
+            float y = vectorToClamp.y >= 0 ? Mathf.Min(vectorToClamp.y, maxY) : Mathf.Max(vectorToClamp.y, maxY * -1);
+            float z = vectorToClamp.z >= 0 ? Mathf.Min(vectorToClamp.z, maxZ) : Mathf.Max(vectorToClamp.z, maxZ * -1);
+            return new Vector3(x, y, z);
+        }
+
         /// <summary>
         /// Decides if two vectors are approximate by comparing their x,y,z with Mathf.Approx
         /// </summary>
@@ -25,6 +57,7 @@ namespace EXPERIMENTAL
         /// <returns>A quaternion with a euler angle z being relative and 0 x + 0 y.</returns>
         public static Quaternion GetQuaternion(Vector2 v2, float degreeOffset = 90)
         {
+            if(v2 == Vector2.zero) return Quaternion.identity; //bail out because the math won't be happy.
             v2.Normalize();
             float z = Mathf.Atan2(v2.y, v2.x) * Mathf.Rad2Deg + degreeOffset;
             Vector3 euler = new Vector3(0, 0, z);
@@ -38,7 +71,7 @@ namespace EXPERIMENTAL
         public static Quaternion GetQuaternion(Vector3 v3, float degreeOffset = 90)
         {
             if(v3 == Vector3.zero) return Quaternion.identity; //bail out because the math below won't be happy.
-            v3 /= v3.magnitude;
+            v3.Normalize();
             float z = Mathf.Atan2(v3.y, v3.x) * Mathf.Rad2Deg + degreeOffset;
             Vector3 euler = new Vector3(0, 0, z);
             return Quaternion.Euler(euler);
