@@ -16,7 +16,7 @@ MonoBehaviour:
   controlType:
     rid: 9079474705638883447
   attackDuration: 10
-  secondsPerProjectileSpawn: 0.8
+  secondsPerProjectileSpawn: 1
   projectilesPerSpawn: 1
   projectilesThatSpawn:
   - {fileID: 97924640858465715, guid: 4fb64d79356e9c34599ee783a1a9c736, type: 3}
@@ -43,34 +43,25 @@ MonoBehaviour:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 1.9879555
-            outSlope: 1.9879555
-            tangentMode: 34
+            time: 0.0041656494
+            value: 0.0023498535
+            inSlope: 5.775083
+            outSlope: 5.775083
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 0.5042113
-            value: 1.0023496
-            inSlope: -0.016886055
-            outSlope: -0.016886055
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
+            outWeight: 0.02145919
           - serializedVersion: 3
             time: 1
             value: 0
-            inSlope: -2.0217276
-            outSlope: -2.0217276
-            tangentMode: 34
+            inSlope: -1.3502456
+            outSlope: -1.3502456
+            tangentMode: 0
             weightedMode: 0
-            inWeight: 0.33333334
+            inWeight: 0.09012877
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
         distanceFromCenter: 250
-        timeToDodge: 0.6
+        timeToDodge: 0.65

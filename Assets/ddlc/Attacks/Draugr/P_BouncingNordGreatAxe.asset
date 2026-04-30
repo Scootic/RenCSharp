@@ -10,37 +10,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
-  m_Name: FR_BouncingNordGreatAxe
+  m_Name: P_BouncingNordGreatAxe
   m_EditorClassIdentifier: 
-  arenaDimensions: {x: 600, y: 450}
+  arenaDimensions: {x: 800, y: 400}
   controlType:
-    rid: 4927988677927502038
+    rid: 4927988699465252865
   attackDuration: 12
-  secondsPerProjectileSpawn: 2
+  secondsPerProjectileSpawn: 1.5
   projectilesPerSpawn: 1
   projectilesThatSpawn:
   - {fileID: 3702481003920381521, guid: 4d030d68b8f7b0243a4b255abe9dbade, type: 3}
   spawnPoints:
-  - {x: -300, y: 300, z: 0}
-  - {x: -100, y: 300, z: 0}
   - {x: -500, y: 300, z: 0}
-  - {x: 100, y: 300, z: 0}
-  - {x: 300, y: 300, z: 0}
+  - {x: -700, y: 300, z: 0}
   - {x: 500, y: 300, z: 0}
+  - {x: 200, y: 300, z: 0}
+  - {x: 0, y: 300, z: 0}
   initialDirections:
-  - {x: 10, y: -20, z: 0}
-  - {x: -10, y: -20, z: 0}
-  - {x: 25, y: -20, z: 0}
-  - {x: -10, y: -20, z: 0}
-  - {x: 10, y: -20, z: 0}
-  - {x: -25, y: -20, z: 0}
-  indexes: 000000000000000000000000000000000000000000000000
+  - {x: 500, y: 0, z: 0}
+  - {x: 500, y: 0, z: 0}
+  - {x: -500, y: 0, z: 0}
+  - {x: -500, y: 0, z: 0}
+  - {x: 500, y: 0, z: 0}
+  indexes: 0000000000000000000000000000000000000000
   projectileSpawnPositionMethod: 2
   projectileIndexMethod: 2
   references:
     version: 2
     RefIds:
-    - rid: 4927988677927502038
-      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+    - rid: 4927988699465252865
+      type: {class: Platformer, ns: RenCSharp.Combat.Player, asm: Player}
       data:
-        speed: 550
+        speed: 500
+        gravityForce: 600
+        jumpForce: 500
+        groundedDistance: 26
+        jumpcd: 0.2
+        jumpMask:
+          serializedVersion: 2
+          m_Bits: 8

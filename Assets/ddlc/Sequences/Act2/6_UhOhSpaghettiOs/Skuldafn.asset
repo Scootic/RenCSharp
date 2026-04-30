@@ -628,10 +628,117 @@ MonoBehaviour:
     - rid: 4927988656138616913
   - speaker: {fileID: 0}
     dialog: 
+    ScreenActions:
+    - rid: 4927988699465252921
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4927988699465252924
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4927988699465252925
+  - speaker: {fileID: 0}
+    dialog: Alright, now let's open that door...
+    ScreenActions:
+    - rid: 4927988699465252920
+  - speaker: {fileID: 0}
+    dialog: Oh yeah. A word wall.
+    ScreenActions:
+    - rid: 4927988699465252928
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: And lo, did mighty Heimverlund come from the brutal north, like a <SineText=5>storm</SineText>
+      of unbridled vengeance from Sovngarde itself.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Who the hell is Heimverlund?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Whatever, now I know the first part of Storm Call.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Not that it'll be of great use to me, since I don't have the dragon souls
+      to unlock it.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... Assuming I still need those?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: All the other shouts I've learned so far I've gotten straight from the
+      Graybeard's knowledge, so...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Huh.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Open air!
+    ScreenActions:
+    - rid: 4927988699465252929
+  - speaker: {fileID: 0}
+    dialog: A quick scan to my left and right for enemies...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: And we're good!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: The portal should be right to my left...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: There it is, just up these stairs...
+    ScreenActions:
+    - rid: 4927988699465252930
+  - speaker: {fileID: 0}
+    dialog: No point in sneaking here either, I probably wouldn't be able to move
+      fast enough before the Dragon Priest closes the portal.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Just have to get in there and throw hands-!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 1ebe6e9bf1abe00478080a385f267545, type: 2}
+    dialog: Alduin will reward me for your death!
+    ScreenActions:
+    - rid: 4927988699465252933
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4927988699465252934
+    - rid: 4927988699465252935
+  - speaker: {fileID: 0}
+    dialog: Dragon priest... down...
+    ScreenActions:
+    - rid: 4927988699465252936
+  - speaker: {fileID: 0}
+    dialog: Alright. Now all I have to do is stick his staff back into its place.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4927988699465252938
+    - rid: 4927988699465252939
+  - speaker: {fileID: 0}
+    dialog: ... wow...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: The seventh generation of consoles did not do this justice; it's mesmerizing...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I don't have the time to enjoy this, I've a World-Eater to slay.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Hopefully this won't feel too weird...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 4407f5dbc88877f4095b6244acddd6f7, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -1117,7 +1224,7 @@ MonoBehaviour:
     - rid: 4927988656138616912
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        enemyToLoad: {fileID: 0}
+        enemyToLoad: {fileID: 11400000, guid: e06277a3cbd486342ab8af117610ce7f, type: 2}
     - rid: 4927988656138616913
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1128,4 +1235,194 @@ MonoBehaviour:
           m_SubObjectType: 
           m_EditorAssetChanged: 0
         fadeTime: 1
+        setToSameTime: 0
+    - rid: 4927988699465252920
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 4406b863816758a40be72f9c5b7b875c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 4927988699465252921
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 4
+            desiredValue: 30
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 0}
+            dialog: Haaahh... I should probably take a break.
+            ScreenActions:
+            - rid: 4927988699465252922
+    - rid: 4927988699465252922
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 381a98c41c893784889ef0d98676af3c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 4927988699465252924
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 4
+            desiredValue: 30
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 0}
+            dialog: Sayori's not here to heal me, so I'll just have to rely on my
+              body's natural regeneration...
+            ScreenActions: []
+    - rid: 4927988699465252925
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 4
+            desiredValue: 30
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 0}
+            dialog: 
+            ScreenActions:
+            - rid: 4927988699465252926
+            - rid: 4927988699465252927
+    - rid: 4927988699465252926
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 10
+        increment: 1
+        persistent: 0
+    - rid: 4927988699465252927
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: bea427f5d6e0017448063cb9782cf2aa
+          m_SubObjectName: skuldafn12
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 2
+    - rid: 4927988699465252928
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 632e3ca0319da354097dc877b60f8909
+          m_SubObjectName: skuldafn13
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 4927988699465252929
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 4ce3b93ed54a81042aa178c700ee2ac2
+          m_SubObjectName: skuldafn14
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 4927988699465252930
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: c493f50027c3b0a4794d9008cedc653e
+          m_SubObjectName: skuldafn15
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 4927988699465252933
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 2c1cfa9272f51de4cb80a3b0ed335a80
+          m_SubObjectName: skuldafn16
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 4927988699465252934
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: ad5ac629158c6194990b78c283c19236
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 4927988699465252935
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 11400000, guid: b749ea92439fe224f917f01e67f1d989, type: 2}
+    - rid: 4927988699465252936
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 4927988699465252938
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 8277cd705b10b0f41a701c4036b488dd
+          m_SubObjectName: skuldafn17
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 1
+        fadeDuration: 2
+    - rid: 4927988699465252939
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: d4614ec2fe36af74ba902539659e3adb
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 2
         setToSameTime: 0

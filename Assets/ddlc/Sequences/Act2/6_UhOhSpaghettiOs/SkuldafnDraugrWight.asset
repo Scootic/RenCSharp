@@ -15,12 +15,31 @@ MonoBehaviour:
   scriptedAttacks:
   - {fileID: 11400000, guid: 35f0d2fe2d1919f42afd8f29f590374e, type: 2}
   - {fileID: 11400000, guid: 5326c054c74320f43bc313fa03abf7ef, type: 2}
+  - {fileID: 11400000, guid: c5ce081ffc191354a9563e3d6cfee3ef, type: 2}
+  - {fileID: 11400000, guid: 47f2913f6690f8544968b441f8c872d2, type: 2}
+  - {fileID: 11400000, guid: f84aff62337a98d4880cd640a886cc30, type: 2}
+  - {fileID: 11400000, guid: fbff7e89274d9384b872c17eda5523f0, type: 2}
   scriptedFlavorTexts:
   - The Draugr Wight flings his great-axe at {mc}.
   - The Draugr Wight tries to fling his great-axe again, but {mc} raises his shield
     to defend.
-  randomAttacks: []
-  randomFlavorTexts: []
+  - The Draugr Wight swings his great-axe at {mc}.
+  - The Draugr Wight corners {mc} to hit him with his great-axe.
+  - The Draugr Wight goes for {mc}'s ankles.
+  - The Draugr Wight throws his great-axe from above, letting gravity take it down
+    to {mc}.
+  randomAttacks:
+  - {fileID: 11400000, guid: 35f0d2fe2d1919f42afd8f29f590374e, type: 2}
+  - {fileID: 11400000, guid: 5326c054c74320f43bc313fa03abf7ef, type: 2}
+  - {fileID: 11400000, guid: fbff7e89274d9384b872c17eda5523f0, type: 2}
+  - {fileID: 11400000, guid: c5ce081ffc191354a9563e3d6cfee3ef, type: 2}
+  - {fileID: 11400000, guid: 3617b65b86c234e4db5ee73c8c7887f0, type: 2}
+  randomFlavorTexts:
+  - The Draugr Wight flings his great-axe at {mc}. Again.
+  - The Draugr Wight gets his great-axe blocked by {mc}'s shield. Again.
+  - The Draugr Wight relies on gravity to do the heavy lifting. Again.
+  - The Draugr Wight swings his great-axe at {mc}. Again.
+  - The Draugr Wight throws caution to the wind, attacking {mc} aggressively.
   maxHealth: 140
   visualInformation:
   - {fileID: 21300000, guid: 5fbe2698666b19948826863968762af4, type: 3}
