@@ -1,0 +1,196 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: Sovngarde
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: Huh.
+    ScreenActions:
+    - rid: 4927988726549708828
+    - rid: 4927988726549708829
+    - rid: 4927988726549708830
+    - rid: 4927988726549708831
+  - speaker: {fileID: 0}
+    dialog: Despite all of the snow, this place is actually pretty temperate.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Not sure whether to attribute that to this place being Nord heaven-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Or because Aetherius could be considered a place of pure and infinite
+      energy.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Since, you know, it's where magic comes from.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Guess I'll get moving...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Ah. The fog.
+    ScreenActions:
+    - rid: 4927988726549708832
+  - speaker: {fileID: 0}
+    dialog: I <i>could</i> get rid of this fog with the Clear Skies shout...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Or I could not do that!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: The NPCs that are lost in there complaining about not being to make their
+      way to Shor's Hall are a bunch of shmucks-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: You sort of just have to keep going straight from where you arrive.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... assuming the dead arrive at the same spot that I did.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Which may not be true now that I'm thinking about it...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Hrm.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Anyway, it should just be a nice and easy walk to the Whalebone Bridge-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Ah-!
+    ScreenActions:
+    - rid: 4927988726549708889
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: My nose...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Ah crap, is that blood!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Hopefully they have cotton balls at the Hall of Valor...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Tripping right onto my face not withstanding, the trek was as easy as
+      I remembered.
+    ScreenActions:
+    - rid: 4927988726549708890
+  - speaker: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+    dialog: What brings you, wayfarer grim, to wander here, in Sovngarde, souls-end,
+      Shor's gift to honored dead?
+    ScreenActions:
+    - rid: 4927988726549708891
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: There's this pesky World-Eater problem I'm sure you've heard of; I'm
+      here to deal with that.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 0}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: 11852c059a8d332409e6b2855f59d590
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 4927988726549708828
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: dee4a4aab01c02c4185431b6db502f44
+          m_SubObjectName: sovngarde1
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 1
+        fadeDuration: 3
+    - rid: 4927988726549708829
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 3f6c2ff2f829c274793d45271d8f9208
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 3
+        setToSameTime: 0
+    - rid: 4927988726549708830
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeTime: 0.5
+    - rid: 4927988726549708831
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 15749674ba4a7a9428fe9cc574046344, type: 2}
+        fadeTime: 0.5
+    - rid: 4927988726549708832
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: eea1d09a8a8451b4989d16dd308797b2
+          m_SubObjectName: sovngarde2
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 4927988726549708889
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: a67f3af0a88dfef4194e419ab633887d, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 4927988726549708890
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 44095e79ec3a2b24fad357a2863a39af
+          m_SubObjectName: sovngarde3
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 4927988726549708891
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default

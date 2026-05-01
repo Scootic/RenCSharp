@@ -1,5 +1,5 @@
+#if UNITY_EDITOR
 using UnityEditor;
-
 namespace RenCSharp.Combat.Enemies
 {
     [CustomPropertyDrawer(typeof(Projectile_OnHitEffect))]
@@ -11,3 +11,4 @@ namespace RenCSharp.Combat.Enemies
         }
     }
 }
+#endif
