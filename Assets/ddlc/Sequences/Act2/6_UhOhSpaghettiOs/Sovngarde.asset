@@ -99,6 +99,100 @@ MonoBehaviour:
     dialog: There's this pesky World-Eater problem I'm sure you've heard of; I'm
       here to deal with that.
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+    dialog: A fateful errand. No few have chafed to face the Worm since first he
+      set his soul-snare here at Sovngarde's threshold.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+    dialog: But Shor restrained our wrathful onslaught- perhaps, deep counseled,
+      your doom he foresaw.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Yeah, yeah.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Listen, I know that entrance to the Hall of Valor requires beating you
+      in combat-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: So can we skip the whole "by whose right do you seek entry" thing?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+    dialog: Special permissions must be granted for those who would dare enter Shor's
+      Hall while still belonging to life.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Haaahh...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Fine.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: <i>By right of blood. I am the dragonborn</i>.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Happy?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+    dialog: It has been too long since last I've faced a doom-driven hero of the
+      dragon blood.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Can we just fight now?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+    dialog: Very well.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Tsun draws his axe to give {mc} the warrior's test.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 1790118219413979188
+    - rid: 1790118219413979189
+    - rid: 1790118219413979190
+  - speaker: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+    dialog: You fought well. I find you worthy.
+    ScreenActions:
+    - rid: 1790118219413979240
+    - rid: 1790118219413979241
+  - speaker: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+    dialog: It is long since one of the living has entered here.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+    dialog: May Shor's favor follow you and your errand.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Tsun steps to the side, letting me walk across the Whalebone Bridge.
+    ScreenActions:
+    - rid: 1790118219413979242
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: It's a bit outrageous that over the course of the entirety of creation,
+      Shor has never invested in an <i>actual</i> bridge.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Whale skeletons aren't exactly made to be walked upon.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Managed to make it across-
+    ScreenActions:
+    - rid: 1790118219413979243
+    - rid: 1790118219413979244
+  - speaker: {fileID: 0}
+    dialog: Despite the best efforts of the skeleton trying to catch my ankles.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: No point in wasting anymore time, I've got to meet up with the ancient
+      Nords shown in the Elder Scroll.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 1790118219413979245
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -116,6 +210,119 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1790118219413979188
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+        fadeTime: 0.5
+    - rid: 1790118219413979189
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 11400000, guid: 5957c7e86b64b05438213a0ea66d6cf3, type: 2}
+    - rid: 1790118219413979190
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 1790118219413979240
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 3f6c2ff2f829c274793d45271d8f9208
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 1790118219413979241
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 1790118219413979242
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 300, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+        loopOnScreen: 0
+    - rid: 1790118219413979243
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+        fadeTime: 0.5
+    - rid: 1790118219413979244
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 69ffa7c912384b4428bc8ba648f4f7c5
+          m_SubObjectName: sovngarde4
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 1790118219413979245
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 061f66688fd47b64da35c5a4bc7d5bea
+          m_SubObjectName: sovngarde5
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
     - rid: 4927988726549708828
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:

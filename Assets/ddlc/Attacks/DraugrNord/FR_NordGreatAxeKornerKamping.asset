@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: FR_NordGreatAxeKornerKamping
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 500, y: 500}
+  controlType:
+    rid: 1790118219413979235
+  attackDuration: 24
+  secondsPerProjectileSpawn: 2
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 3702481003920381521, guid: 4d030d68b8f7b0243a4b255abe9dbade, type: 3}
+  - {fileID: 3702481003920381521, guid: 4becdf5fd4894674394fb2490232826b, type: 3}
+  spawnPoints:
+  - {x: 200, y: 200, z: 0}
+  - {x: 200, y: -200, z: 0}
+  - {x: -200, y: -200, z: 0}
+  - {x: -200, y: 200, z: 0}
+  - {x: 0, y: 500, z: 0}
+  - {x: 500, y: 0, z: 0}
+  - {x: 0, y: -500, z: 0}
+  - {x: -500, y: 0, z: 0}
+  - {x: -100, y: 400, z: 0}
+  - {x: 300, y: 400, z: 0}
+  - {x: 250, y: -100, z: 0}
+  - {x: -100, y: 300, z: 0}
+  initialDirections:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0.1, y: -1, z: 0}
+  - {x: -500, y: 100, z: 0}
+  - {x: -10, y: 500, z: 0}
+  - {x: 500, y: 50, z: 0}
+  - {x: 50, y: -100, z: 0}
+  - {x: -100, y: -50, z: 0}
+  - {x: -500, y: 0, z: 0}
+  - {x: -200, y: -50, z: 0}
+  indexes: 010000000100000001000000010000000000000000000000000000000000000000000000000000000000000000000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: 1790118219413979235
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500

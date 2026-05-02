@@ -38,6 +38,7 @@ namespace RenCSharp.Combat.Enemies
         public float Lifetime => lifetime;
         public float SpawnSoundVol => spawnSoundVol;
         public AudioClip SpawnSound => spawnSound;
+        public Vector3 GetMoveDir => moveDir;
         /// <summary>
         /// Sets the move direction that's used in update to change the projectile's position.
         /// </summary>
