@@ -139,10 +139,12 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Can we just fight now?
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118286917894200
   - speaker: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
     dialog: Very well.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118286917894201
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: Tsun draws his axe to give {mc} the warrior's test.
     ScreenActions: []
@@ -190,7 +192,7 @@ MonoBehaviour:
       Nords shown in the Elder Scroll.
     ScreenActions: []
   - speaker: {fileID: 0}
-    dialog: If was Gormlaith, where would I be standing around...
+    dialog: If I was Gormlaith, where would I be standing around...
     ScreenActions:
     - rid: 1790118219413979245
   - speaker: {fileID: 0}
@@ -355,8 +357,98 @@ MonoBehaviour:
     ScreenActions:
     - rid: 1790118269016604752
   - speaker: {fileID: 0}
-    dialog: 
+    dialog: '''Cause, you know, he''s been downright sundered.'
     ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: His body was split into two moons, his soul resides in the Shezzarines,
+      his heart's... somewhere, probably.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: And that's not even counting the deranged stuff like the dark heart.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: This is a <i>major</i> difference from the original story.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Hopefully nothing too extreme comes of this.
+    ScreenActions:
+    - rid: 1790118286917894252
+  - speaker: {fileID: 11400000, guid: b3a27c107ade02c48abd446b964760c6, type: 2}
+    dialog: ... shouting together, and then unsheathe our blades in desperate battle
+      with our black-winged foe.
+    ScreenActions:
+    - rid: 1790118286917894253
+  - speaker: {fileID: 0}
+    dialog: Ah right, time to spam Clear Skies.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: We really need to get our mileage out of the mandatory progression Shouts,
+      eh devs?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: <font=dragonfont>lok v4 k8r</font>!
+    ScreenActions:
+    - rid: 1790118286917894254
+  - speaker: {fileID: 11400000, guid: be7d4bf59e4126046aadb631d33a56c5, type: 2}
+    dialog: <font=dragonfont>lok v4 k8r</font>!
+    ScreenActions:
+    - rid: 1790118286917894255
+  - speaker: {fileID: 11400000, guid: 530167e172e34fd4bbbcf5df0eb05db4, type: 2}
+    dialog: <font=dragonfont>lok v4 k8r</font>!
+    ScreenActions:
+    - rid: 1790118286917894256
+  - speaker: {fileID: 11400000, guid: b3a27c107ade02c48abd446b964760c6, type: 2}
+    dialog: <font=dragonfont>lok v4 k8r</font>!
+    ScreenActions:
+    - rid: 1790118286917894257
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions:
+    - rid: 1790118286917894259
+  - speaker: {fileID: 0}
+    dialog: Is Alduin not going to come restore his mist-?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: c9971f7409084c140a7ff61c782e0c80, type: 2}
+    dialog: <font=dragonfont>z5 ni f1s g1ffesejul</font>.
+    ScreenActions:
+    - rid: 1790118286917894260
+  - speaker: {fileID: 0}
+    dialog: Oh, he's showing up early?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 530167e172e34fd4bbbcf5df0eb05db4, type: 2}
+    dialog: To battle, my friends! The fields will echo with the clamor of war, our
+      wills undaunted!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Should probably hit that big black bastard with a dose of dragonrend.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: <font=dragonfont>j8r z4 frul</font>!
+    ScreenActions:
+    - rid: 1790118286917894261
+  - speaker: {fileID: 11400000, guid: c9971f7409084c140a7ff61c782e0c80, type: 2}
+    dialog: Dovahkiin, you annoying Lir! <font=dragonfont>nu hin sil d3</font>!
+    ScreenActions:
+    - rid: 1790118286917894262
+    - rid: 1790118286917894263
+    - rid: 1790118286917894264
+    - rid: 1790118286917894265
+    - rid: 1790118286917894267
+  - speaker: {fileID: 0}
+    dialog: Time to take this overgrown lizard down!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 1790118286917894268
+    - rid: 1790118286917894269
+    - rid: 1790118286917894270
+    - rid: 1790118286917894271
+    - rid: 1790118286917894272
+    - rid: 1790118286917894273
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -492,7 +584,7 @@ MonoBehaviour:
       data:
         actorToSpawn: {fileID: 11400000, guid: be7d4bf59e4126046aadb631d33a56c5, type: 2}
         fadeInTime: 0.5
-        spawnOffset: {x: -300, y: 0, z: 0}
+        spawnOffset: {x: -350, y: 0, z: 0}
         visualSpriteIndexes:
         - default
     - rid: 1790118269016604673
@@ -508,7 +600,7 @@ MonoBehaviour:
       data:
         actorToSpawn: {fileID: 11400000, guid: 530167e172e34fd4bbbcf5df0eb05db4, type: 2}
         fadeInTime: 0.5
-        spawnOffset: {x: 300, y: 0, z: 0}
+        spawnOffset: {x: 350, y: 0, z: 0}
         visualSpriteIndexes:
         - default
     - rid: 1790118269016604676
@@ -643,8 +735,315 @@ MonoBehaviour:
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 1
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 1790118286917894200
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 4
+            desiredValue: 30
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 0}
+            dialog: I should probably rest a bit before fight Tsun.
+            ScreenActions: []
+    - rid: 1790118286917894201
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: PlayerCurHealth
+            operation: 4
+            desiredValue: 30
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+            dialog: Alright Tsun, I'm ready for you to test my worthiness.
+            ScreenActions:
+            - rid: 1790118286917894202
+            - rid: 1790118286917894203
+    - rid: 1790118286917894202
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 44095e79ec3a2b24fad357a2863a39af
+          m_SubObjectName: sovngarde3
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 1790118286917894203
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 10
+        increment: 1
+        persistent: 0
+    - rid: 1790118286917894252
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
+    - rid: 1790118286917894253
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 4406b863816758a40be72f9c5b7b875c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 1790118286917894254
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 1790118286917894255
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
+        position: {x: -1, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 1790118286917894256
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
+        position: {x: 1, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 1790118286917894257
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 1790118286917894259
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 5e861418926e83842888d17c23bd7cdd
+          m_SubObjectName: sovngardefight
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 1790118286917894260
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: dfabdf9e321262b478dd7cb54a783384, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 1790118286917894261
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 1790118286917894262
+      type: {class: Group_Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        motionOffset: {x: -600, y: 0, z: 0}
+        motionDuration: 1
+        xCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        yCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        zCurve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        targets:
+        - {fileID: 11400000, guid: 530167e172e34fd4bbbcf5df0eb05db4, type: 2}
+        - {fileID: 11400000, guid: b3a27c107ade02c48abd446b964760c6, type: 2}
+        - {fileID: 11400000, guid: be7d4bf59e4126046aadb631d33a56c5, type: 2}
+        loopOnScreen: 0
+    - rid: 1790118286917894263
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: c9971f7409084c140a7ff61c782e0c80, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 400, y: 500, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 1790118286917894264
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 400, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: lander
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 0
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 966bbe4754a6b8f47b107686d02d9918
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 1790118286917894265
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 468aea67a488b4644baaa92bbdf4118c, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 1790118286917894267
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 0, y: -500, z: 0}
+        motionDuration: 0.5
+        motionPathX:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: c9971f7409084c140a7ff61c782e0c80, type: 2}
+        loopOnScreen: 0
+    - rid: 1790118286917894268
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 79777a507b05caa428731b7dd39ad73c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 1790118286917894269
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 0}
+    - rid: 1790118286917894270
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: c9971f7409084c140a7ff61c782e0c80, type: 2}
+        fadeTime: 0.5
+    - rid: 1790118286917894271
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: b3a27c107ade02c48abd446b964760c6, type: 2}
+        fadeTime: 0.5
+    - rid: 1790118286917894272
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: be7d4bf59e4126046aadb631d33a56c5, type: 2}
+        fadeTime: 0.5
+    - rid: 1790118286917894273
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 530167e172e34fd4bbbcf5df0eb05db4, type: 2}
+        fadeTime: 0.5
     - rid: 4927988726549708828
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:

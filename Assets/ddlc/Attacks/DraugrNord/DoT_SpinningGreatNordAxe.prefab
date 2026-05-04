@@ -30,7 +30,7 @@ RectTransform:
   m_GameObject: {fileID: 7609347526362195393}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -92,8 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementType:
     rid: 268099755542840246
-  onHitEffects:
-  - rid: 1790118219413979223
+  onHitEffects: []
   despawnType:
     rid: 268099755542840247
   updateTypes:
@@ -124,15 +123,6 @@ MonoBehaviour:
         guyToRotate: {fileID: 2711639654553654952}
         rotationSpeed: 70
         rotationDeviation: 0
-    - rid: 1790118219413979223
-      type: {class: Bounce_Projectile_OnHitEffect, ns: RenCSharp.Combat.Enemies, asm: Enemies}
-      data:
-        hitcooldown: 0.2
-        projectileTransform: {fileID: 2711639654553654952}
-        projectileRigidbody: {fileID: 0}
-        projectile: {fileID: 3702481003920381521}
-        maxSpeed: 700
-        reboundStrength: 2
 --- !u!54 &-2506182205116807624
 Rigidbody:
   m_ObjectHideFlags: 0

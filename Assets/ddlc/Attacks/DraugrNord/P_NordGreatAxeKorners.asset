@@ -16,7 +16,7 @@ MonoBehaviour:
   controlType:
     rid: 4351267851529093190
   attackDuration: 12
-  secondsPerProjectileSpawn: 2
+  secondsPerProjectileSpawn: 2.25
   projectilesPerSpawn: 2
   projectilesThatSpawn:
   - {fileID: 3702481003920381521, guid: 0a5dba7599c2956458ac1501825c611f, type: 3}
@@ -30,13 +30,13 @@ MonoBehaviour:
   - {x: -500, y: -500, z: 0}
   - {x: -500, y: 100, z: 0}
   initialDirections:
-  - {x: 1, y: -1, z: 0}
+  - {x: 0.744, y: -0.744, z: 0}
   - {x: 0, y: -1, z: 0}
-  - {x: -1, y: -1, z: 0}
+  - {x: -0.744, y: -0.744, z: 0}
   - {x: -1, y: 0, z: 0}
-  - {x: -1, y: 1, z: 0}
+  - {x: -0.744, y: 0.744, z: 0}
   - {x: 0, y: 1, z: 0}
-  - {x: 1, y: 1, z: 0}
+  - {x: 0.744, y: 0.744, z: 0}
   - {x: 1, y: 0, z: 0}
   indexes: 0000000000000000000000000000000000000000000000000000000000000000
   projectileSpawnPositionMethod: 2

@@ -100,10 +100,9 @@ MonoBehaviour:
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 6
-  moveSpeed: 500
   lifetime: 15
   spawnSoundVol: 0.5
-  colliderEnableTime: 0.3
+  colliderEnableTime: 0.5
   spawnSound: {fileID: 8300000, guid: b40532dff090cf84b8986386702391a1, type: 3}
   sprite: {fileID: 8204080492186913528}
   hitType: 0
@@ -114,6 +113,7 @@ MonoBehaviour:
       type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
         speed: 400
+        movementSetsRotation: 1
     - rid: 268099755542840247
       type: {class: Empty_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data: 
@@ -122,6 +122,7 @@ MonoBehaviour:
       data:
         guyToRotate: {fileID: 2711639654553654952}
         rotationSpeed: 70
+        rotationDeviation: 0
 --- !u!54 &-2506182205116807624
 Rigidbody:
   m_ObjectHideFlags: 0
