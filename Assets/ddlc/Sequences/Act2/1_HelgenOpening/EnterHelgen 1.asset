@@ -24,6 +24,7 @@ MonoBehaviour:
     dialog: I am in a video game...
     ScreenActions:
     - rid: 9079475098267418847
+    - rid: 1790118269016604749
   - speaker: {fileID: 0}
     dialog: On the plus side, I'm pretty familiar with Skyrim, so I won't be completely
       lost.
@@ -278,6 +279,13 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1790118269016604749
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerResistance
+        flagValue: 0
+        increment: 0
+        persistent: 0
     - rid: 9079474591330205794
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -411,6 +419,7 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+        baseVolume: 1
     - rid: 9079474977939128412
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -420,6 +429,7 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+        baseVolume: 1
     - rid: 9079475089592287570
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
