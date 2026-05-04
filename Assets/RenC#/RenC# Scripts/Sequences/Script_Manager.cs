@@ -62,7 +62,6 @@ namespace RenCSharp
 
         private bool paused = false, saving = false, loaded = false;
         private History curHist;
-        private Coroutine textRoutine;
         private Sequences.Screen curScreen;
         private List<Button> curButtons;
         private List<ParticleToken> activeParticles = new();
@@ -149,7 +148,7 @@ namespace RenCSharp
             {
                 se.DoEvent();
             }
-            textRoutine = StartCoroutine(RunThroughScreen(screen));
+            StartCoroutine(RunThroughScreen(screen));
         }
 
         public void PauseSequence()
@@ -199,7 +198,7 @@ namespace RenCSharp
                     {
                         se.DoEvent();
                     }
-                    textRoutine = StartCoroutine(RunThroughScreen(curScreen)); 
+                    StartCoroutine(RunThroughScreen(curScreen)); 
                 }
                 else if (curScreenIndex > currentSequence.Screens.Length - 1)//final screen of the sequence
                 {
@@ -580,7 +579,7 @@ namespace RenCSharp
             if (SequenceAsset.Status == AsyncOperationStatus.Succeeded) currentSequence = (Sequence)SequenceAsset.Result;
             else SequenceAsset.Release();
             loaded = true;
-            textRoutine = StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
+            StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
 
             Event_Bus.TryFireVoidEvent("LoadedSave");
         }

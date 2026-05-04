@@ -14,12 +14,16 @@ namespace RenCSharp.Combat.Player
         [SerializeField] private AudioSource hurtedSound;
         [SerializeField] private AnimationCurve invincibleCurve;
         [SerializeField] private bool main = false, debug = false;
+        [SerializeField] private string playerResistanceFlag = "PlayerResistance";
         private bool invincible = false, hurtSoundGood = true;
-        private float curHealth, preResistance = 0, postResistance;
+        private float curHealth;
+        [Range(0,1)]private float preResistance = 0, postResistance = 0;
 
         public static Action BeforeDisablePlayerAction;
-
         public float CurrentHealth => curHealth;
+        public float Resistance() => postResistance;
+        public Vector3 GetPosition => transform.position;
+
         public void StartOfFight()
         {
             Event_Bus.TryRemoveDoubleObjEvent("SetPlayerResistance");
@@ -27,9 +31,9 @@ namespace RenCSharp.Combat.Player
             invincible = false;
             curHealth = Flag_Manager.GetFlag("PlayerCurHealth");
             Event_Bus.AddDoubleObjEvent("SetPlayerResistance", SetNewResistance);
-            //preResistance = (float)Flag_Manager.GetFlag("PlayerResistance") / 100f; important for future developments, but timing issue makes
+            preResistance = (float)Flag_Manager.GetFlag(playerResistanceFlag) / 100f; //important for future developments, but timing issue makes
             //defend option not work on the first turn. very strange.
-            //postResistance = preResistance;
+            postResistance = preResistance;
             Event_Bus.TryFireFloatEvent("PlayerHealth", curHealth);
             Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
         }
@@ -52,7 +56,7 @@ namespace RenCSharp.Combat.Player
             if(reset) postResistance = preResistance;
             else
             {
-                postResistance = value;
+                postResistance = preResistance + value;
             }
         }
         void OnEnable()
@@ -84,7 +88,7 @@ namespace RenCSharp.Combat.Player
             bool b = (bool)boolarg;
             if (invincible) return; //don't take damage if invincible. go figure!
 
-            curHealth -= f - (f * Resistance());
+            curHealth -= Mathf.Max(0.01f, f - (f * postResistance)); //makes sure that the player can't take negative damage, or just 0. cause that would be dumb
             //curHealth = Mathf.Max(curHealth, 0);
             curHealth = Mathf.Min(curHealth, maxHealth);
 
@@ -126,11 +130,6 @@ namespace RenCSharp.Combat.Player
             hurtSoundGood = true;
         }
 
-        public float Resistance()
-        {
-            return postResistance;
-        }
-
-        public Vector3 GetPosition => transform.position;
+        
     }
 }
