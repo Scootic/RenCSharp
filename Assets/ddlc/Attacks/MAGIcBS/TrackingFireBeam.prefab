@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 5318929957290242959}
   - component: {fileID: 711264266446520143}
   m_Layer: 6
-  m_Name: FireBeam
+  m_Name: TrackingFireBeam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementType:
-    rid: 268099759930082142
+    rid: 1790118286917894281
   onHitEffects: []
   despawnType:
     rid: 268099759930082143
@@ -424,18 +424,20 @@ MonoBehaviour:
   beamVisualTravelSpeed: 150
   emptyBeamC: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
   fullBeamC: {r: 1, g: 0, b: 0, a: 1}
-  customUpdateWhileInactive: 1
-  customUpdateWhileActive: 1
+  customUpdateWhileInactive: 0
+  customUpdateWhileActive: 0
   movementWhileInactive: 1
-  movementWhileActive: 1
+  movementWhileActive: 0
   references:
     version: 2
     RefIds:
-    - rid: 268099759930082142
-      type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
-      data:
-        speed: 300
-        movementSetsRotation: 1
     - rid: 268099759930082143
       type: {class: Empty_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data: 
+    - rid: 1790118286917894281
+      type: {class: HomingAttack_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data:
+        speed: 150
+        movementSetsRotation: 0
+        homingStrength: 1
+        careAboutAlignment: 1
