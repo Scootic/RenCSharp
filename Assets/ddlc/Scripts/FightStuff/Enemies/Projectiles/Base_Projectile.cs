@@ -17,7 +17,12 @@ namespace RenCSharp.Combat.Enemies
         [Header("On Despawn")]
         [SerializeReference] protected Projectile_DespawnType despawnType = new Empty_Projectile_DespawnType();
         [Header("On Update")]
-        [SerializeReference] protected List<Projectile_CustomUpdate> updateTypes = new(); 
+        [SerializeReference] protected List<Projectile_CustomUpdate> updateTypes = new();
+        [Header("Update Behavior")]
+        [SerializeField, Tooltip("Do custom updates while the projectile's collider is inactive.")] protected bool customUpdateWhileInactive = true;
+        [SerializeField, Tooltip("Do custom updates while the projectile's collider is active.")] protected bool customUpdateWhileActive = true;
+        [SerializeField, Tooltip("Does the movement behavior while the projectile's collider is inactive.")] protected bool movementWhileInactive = true;
+        [SerializeField, Tooltip("Does the movement behavior while the projectile's collider is active.")] protected bool movementWhileActive = true;
         [Header("Stats")]
         [SerializeField] protected bool damageOverTime = false;
         [SerializeField] protected bool destroyOnHit = true;
@@ -86,11 +91,14 @@ namespace RenCSharp.Combat.Enemies
         //Handle movements
         protected virtual void Update()
         {
-            movementType.MovementBehavior();
+            if((movementWhileActive && myCol.enabled) || (movementWhileInactive && !myCol.enabled)) movementType.MovementBehavior();
             if (updateTypes.Count <= 0) return;
-            foreach(Projectile_CustomUpdate pcu in updateTypes)
+            if ((customUpdateWhileActive && myCol.enabled) || (customUpdateWhileInactive && !myCol.enabled))
             {
-                pcu.UpdateBehavior();
+                foreach (Projectile_CustomUpdate pcu in updateTypes)
+                {
+                    pcu.UpdateBehavior();
+                }
             }
         }
         //Set up the procedures to take damage

@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: FR_FireBreathBulletHell
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 500, y: 500}
+  controlType:
+    rid: 1790118311490748416
+  attackDuration: 16
+  secondsPerProjectileSpawn: 1.75
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 8393662467995999843, guid: 2d1db5f830599d943913a7cc882f3223, type: 3}
+  - {fileID: 8190228511264376471, guid: 5a9589be4c92eab46ab68eeb9b03015c, type: 3}
+  spawnPoints:
+  - {x: 0, y: 500, z: 0}
+  - {x: 500, y: 500, z: 0}
+  - {x: -500, y: 500, z: 0}
+  - {x: 275, y: 500, z: 0}
+  - {x: 400, y: 200, z: 0}
+  - {x: -400, y: -200, z: 0}
+  - {x: -275, y: 500, z: 0}
+  - {x: -500, y: -500, z: 0}
+  - {x: 500, y: -500, z: 0}
+  initialDirections:
+  - {x: 0, y: -1, z: 0}
+  - {x: -0.1, y: -1, z: 0}
+  - {x: 0.1, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0.1, y: 1, z: 0}
+  - {x: -0.1, y: 1, z: 0}
+  indexes: 010000000000000000000000010000000000000000000000010000000000000000000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: 1790118311490748416
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500

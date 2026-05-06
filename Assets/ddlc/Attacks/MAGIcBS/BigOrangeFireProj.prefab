@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8204080492186913528}
   - component: {fileID: 8266305171280315681}
   - component: {fileID: 1534405015989188444}
-  - component: {fileID: 2847604442428780628}
+  - component: {fileID: 5175339368919919508}
   m_Layer: 6
-  m_Name: SineFireSpewer
+  m_Name: BigOrangeFireProj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 150}
+  m_SizeDelta: {x: 213.6, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &512394676569696241
 CanvasRenderer:
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.67058825, b: 0.20392157, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -124,9 +124,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 195.64, y: 119.3, z: 50}
-  m_Center: {x: 0, y: -16.1, z: 0}
---- !u!114 &2847604442428780628
+  m_Size: {x: 200, y: 200, z: 50}
+  m_Center: {x: 0, y: -25, z: 0}
+--- !u!114 &5175339368919919508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,45 +139,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementType:
-    rid: 268099759930081982
-  onHitEffects: []
+    rid: 268099755542839386
   despawnType:
-    rid: 268099759930081983
-  updateTypes:
-  - rid: 268099759930081990
-  customUpdateWhileInactive: 0
-  customUpdateWhileActive: 1
-  movementWhileInactive: 1
-  movementWhileActive: 1
-  damageOverTime: 1
-  destroyOnHit: 0
-  baseDamage: 20
-  lifetime: 3.5
-  spawnSoundVol: 0.3
+    rid: 268099755542839390
+  damageOverTime: 0
+  destroyOnHit: 1
+  baseDamage: 3
+  moveSpeed: 500
+  lifetime: 5
+  spawnSoundVol: 0.4
   colliderEnableTime: 0.2
   spawnSound: {fileID: 8300000, guid: 7938deb51c5114f40a13688a269a0017, type: 3}
   sprite: {fileID: 8204080492186913528}
-  hitType: 0
+  hitType: 2
   references:
     version: 2
     RefIds:
-    - rid: 268099759930081982
+    - rid: 268099755542839386
       type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
-        speed: 50
-        movementSetsRotation: 1
-    - rid: 268099759930081983
-      type: {class: Empty_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
-      data: 
-    - rid: 268099759930081990
-      type: {class: Emitting_Projectile_CustomUpdate, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+        speed: 500
+    - rid: 268099755542839390
+      type: {class: Explode_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
-        emissionDirs:
-        - {x: 0, y: -1, z: 0}
-        - {x: 0, y: -1, z: 0}
-        emitPerCycle: 1
-        timeToEmit: 0.1
-        projectileToEmit: {fileID: 4197117482452204180, guid: a7bc627006705ca44b80c272583c18bc, type: 3}
-        localEmissionDirs: 1
-        runThroughEmissionDirs: 2
-        projectileTransform: {fileID: 2711639654553654952}
+        explosionDirs:
+        - {x: -1, y: 1, z: 0}
+        - {x: 1, y: 1, z: 0}
+        - {x: -1, y: -1, z: 0}
+        - {x: 1, y: -1, z: 0}
+        subProjectile: {fileID: 8204135625514222407, guid: 13c632f083756cb47822b20e48aade01, type: 3}
+        localExplosionDirections: 0

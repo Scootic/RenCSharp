@@ -14,11 +14,7 @@ namespace RenCSharp.Combat.Enemies
         [SerializeField, Tooltip("Applies to the child that has the visual element.")] private float beamVisualTravelSpeed = 0;
         [SerializeField] private Color emptyBeamC = Color.black;
         [SerializeField] private Color fullBeamC = Color.red;
-        [Header("Update Behavior")]
-        [SerializeField, Tooltip("Do custom updates while the beam's collider is inactive.")] private bool customUpdateWhileInactive = true;
-        [SerializeField, Tooltip("Do custom updates while the beam's collider is active.")] private bool customUpdateWhileActive = true;
-        [SerializeField, Tooltip("Does the movement behavior while the beam's collider is inactive.")] private bool movementWhileInactive = true;
-        [SerializeField, Tooltip("Does the movement behavior while the beam's collider is active.")] private bool movementWhileActive = true;
+        
 
         protected override IEnumerator EnableTriggerOverTime()
         {

@@ -409,6 +409,10 @@ MonoBehaviour:
   despawnType:
     rid: 268099759930082143
   updateTypes: []
+  customUpdateWhileInactive: 0
+  customUpdateWhileActive: 0
+  movementWhileInactive: 1
+  movementWhileActive: 0
   damageOverTime: 0
   destroyOnHit: 0
   baseDamage: 7
@@ -424,10 +428,6 @@ MonoBehaviour:
   beamVisualTravelSpeed: 150
   emptyBeamC: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
   fullBeamC: {r: 1, g: 0, b: 0, a: 1}
-  customUpdateWhileInactive: 0
-  customUpdateWhileActive: 0
-  movementWhileInactive: 1
-  movementWhileActive: 0
   references:
     version: 2
     RefIds:
@@ -440,4 +440,4 @@ MonoBehaviour:
         speed: 150
         movementSetsRotation: 0
         homingStrength: 1
-        careAboutAlignment: 1
+        careAboutAlignment: 0
