@@ -303,8 +303,10 @@ namespace RenCSharp
             {
                 speakerNameBox.gameObject.SetActive(curActor.ActorName != "");
                 speakerNameBox.color = curActor.TextboxColor;
+                speakerNameBox.material = curActor.TextboxMaterial;
                 dialogBox.color = curActor.TextboxColor;
                 dialogField.font = curActor.ActorFont;
+                dialogBox.material = curActor.TextboxMaterial;
                 speakerNameField.text = TagParser.CleanOutTags(curActor.ActorName,false);
                 if(curActor.ActorName == playerTag) speakerNameField.text = playerName; 
                 if (currentSequence.AutoFocusSpeaker && !prevActorIscurSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so
@@ -312,9 +314,11 @@ namespace RenCSharp
             if(curActor == null) //if no actor assigned, assume it's narration, so no name to our dialog box
             {
                 speakerNameBox.color = defaultTextBoxColor;
+                speakerNameBox.material = null;
                 speakerNameBox.gameObject.SetActive(false);
                 dialogBox.color = defaultTextBoxColor;
                 dialogField.font = defaultFont;
+                dialogBox.material = null;
             }
 
             string amended = Regex.Replace(screen.Dialog, playerTag, playerName); //insert the player's custom name into dialog

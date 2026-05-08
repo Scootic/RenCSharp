@@ -21,10 +21,19 @@ MonoBehaviour:
     - rid: 268099459762618441
     - rid: 268099459762618442
   - speaker: {fileID: 0}
+    dialog: 'Alduin Explosion
+
+'
+    ScreenActions:
+    - rid: 1790118356285128771
+    - rid: 1790118356285128772
+    - rid: 1790118356285128773
+  - speaker: {fileID: 0}
     dialog: Werewolf Particles.
     ScreenActions:
     - rid: 268099459762618443
     - rid: 268099459762618444
+    - rid: 1790118356285128770
   - speaker: {fileID: 0}
     dialog: Pink Werewolf Particles.
     ScreenActions:
@@ -633,6 +642,49 @@ MonoBehaviour:
         overrideParticles: 1
         overridingParticles:
           m_AssetGUID: 17ebe185743658340823e7383acb2441
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 1790118356285128770
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: c9971f7409084c140a7ff61c782e0c80, type: 2}
+        fadeTime: 0
+    - rid: 1790118356285128771
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: c9971f7409084c140a7ff61c782e0c80, type: 2}
+        fadeInTime: 0
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 1790118356285128772
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: cef0af27bff21004da98e6dbfb340cf7, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 1790118356285128773
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: alduik
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 3209ee8a656cdff42adae8b1439b781a
           m_SubObjectName: 
           m_SubObjectGUID: 
           m_SubObjectType: 

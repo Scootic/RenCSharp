@@ -13,12 +13,15 @@ namespace RenCSharp.Actors
     [CreateAssetMenu(menuName = "New Actor")]
     public class Actor : ScriptableObject
     {
+        [Header("General")]
         [SerializeField] private string actorName;
         [SerializeField] private GameObject actorPrefab;
-        [SerializeField] private TMP_FontAsset actorFont;
-        [SerializeField] private Color textboxColor = Color.white;
         [SerializeField, Tooltip("2D Array. 0 is bottom layer, with each successive layer being on top of previous.")] private SpriteArray[] visuals;
         [SerializeField] private AssetReference myself;
+        [Header("Text Attributes")]
+        [SerializeField] private TMP_FontAsset actorFont;
+        [SerializeField] private Color textboxColor = Color.white;
+        [SerializeField] private Material textboxMaterial;
 
         public string ActorName => actorName;
         public AssetReference Myself => myself;
@@ -26,5 +29,6 @@ namespace RenCSharp.Actors
         public GameObject ActorPrefab => actorPrefab;
         public Color TextboxColor => textboxColor;
         public TMP_FontAsset ActorFont => actorFont;
+        public Material TextboxMaterial => textboxMaterial;
     }
 }
