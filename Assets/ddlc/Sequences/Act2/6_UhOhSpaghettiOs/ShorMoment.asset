@@ -12,15 +12,93 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
   m_Name: ShorMoment
   m_EditorClassIdentifier: 
-  autoFocusSpeaker: 0
-  screens: []
-  playerChoices: []
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: A fox?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: 'Is that not appropriate for the: "trickster god?"'
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Would you have preferred the vengeful paladin who's poured oceans of
+      blood?
+    ScreenActions:
+    - rid: 1790118403630956545
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Maybe you'd prefer my most visible form; my sundered body in the night
+      sky.
+    ScreenActions:
+    - rid: 1790118403630956546
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: 'Or perhaps you''d rather see my most vile incarnation: the demon who
+      tricked the spirits to be both limits and the limited.'
+    ScreenActions:
+    - rid: 1790118403630956548
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Th-the fox is fine...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Oh, were the others too intimidating?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Very well.
+    ScreenActions:
+    - rid: 1790118403630956549
+  - speaker: {fileID: 0}
+    dialog: Figures that an Aedra can read my mind...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Read your mind?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: 
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 0}
+    requireCondition: 0
+    conditions: []
   myself:
-    m_AssetGUID: 
+    m_AssetGUID: fe003600c1179414489626f0638209c6
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 1790118403630956545
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+        visualSpriteIndexes:
+        - EMPTY
+        - shezarr
+    - rid: 1790118403630956546
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+        visualSpriteIndexes:
+        - EMPTY
+        - EMPTY
+        - moons
+    - rid: 1790118403630956548
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+        visualSpriteIndexes:
+        - 
+        - lorkhan
+        - EMPTY
+    - rid: 1790118403630956549
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+        visualSpriteIndexes:
+        - fox
+        - EMPTY
+        - EMPTY

@@ -547,16 +547,18 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 1790118386653986821
+    - rid: 1790118403630956550
   - speaker: {fileID: 0}
-    dialog: 
+    dialog: ...
     ScreenActions:
     - rid: 1790118386653986822
+    - rid: 1790118403630956544
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: fe003600c1179414489626f0638209c6, type: 2}
     requireCondition: 0
     conditions: []
   myself:
@@ -1384,21 +1386,42 @@ MonoBehaviour:
       data:
         spawnPosition: {x: 0, y: 0, z: 0}
         fellaToSpawnPrefab:
-          m_AssetGUID: 
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
           m_SubObjectName: 
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 0
         particlesName: blackholeparticles
-        placeToSpawnName: Overlay
+        placeToSpawnName: Background
         deleteOnScreenProgression: 0
         overrideParticles: 1
         overridingParticles:
-          m_AssetGUID: 
+          m_AssetGUID: 28271ce762c8333419f89d47c52edce1
           m_SubObjectName: 
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 0
+    - rid: 1790118403630956544
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - fox
+        - EMPTY
+        - EMPTY
+    - rid: 1790118403630956550
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 9aa7f20888b2afe4fb008a3afb9e32f0
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0
     - rid: 4927988726549708828
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
