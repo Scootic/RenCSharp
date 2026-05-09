@@ -41,7 +41,15 @@ namespace RenCSharp.Sequences
         {
             float t = 0;
 
-            foreach (Image image in uie.Images) { image.color = CoolColors.transparent; }
+            foreach (Image image in uie.Images) 
+            {
+                try { image.color = CoolColors.transparent; }
+                catch (NullReferenceException nre)
+                {
+                    Debug.LogWarning($"Problem found with fading in actor: {actorToSpawn.name}. It's likely that the UI Element for the assigned" +
+                        " prefab has an empty image in its list. Null Reference Exception Message: " + nre.Message);
+                }
+            }
             while(t <= fadeInTime)
             {
                 t += Time.deltaTime;
@@ -55,7 +63,8 @@ namespace RenCSharp.Sequences
 
         private void PanicStop(UI_Element uie)
         {
-            Script_Manager.SM.StopCoroutine(fadeIn);
+            if(fadeIn != null) Script_Manager.SM.StopCoroutine(fadeIn);
+            if (uie == null) return; //?????
             foreach(Image image in uie.Images) { image.color = Color.white; }
         }
 
