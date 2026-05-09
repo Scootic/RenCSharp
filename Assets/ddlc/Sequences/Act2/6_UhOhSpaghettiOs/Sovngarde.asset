@@ -517,9 +517,40 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: WHAT?!?
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+    dialog: Merely head back into his Hall of Valor, there my lord will be waiting.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I-
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I guess I should...?
+    ScreenActions:
+    - rid: 1790118386653986816
+    - rid: 1790118386653986817
+    - rid: 1790118386653986818
+    - rid: 1790118386653986819
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions:
+    - rid: 1790118386653986820
+  - speaker: {fileID: 0}
+    dialog: His throne's still empty?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Uh-
+    ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118386653986821
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 1790118386653986822
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -1302,6 +1333,72 @@ MonoBehaviour:
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
+    - rid: 1790118386653986816
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 67745692676d04c4ba502c64a1dbfa23, type: 2}
+        fadeTime: 0.5
+    - rid: 1790118386653986817
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: be7d4bf59e4126046aadb631d33a56c5, type: 2}
+        fadeTime: 0.5
+    - rid: 1790118386653986818
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 530167e172e34fd4bbbcf5df0eb05db4, type: 2}
+        fadeTime: 0.5
+    - rid: 1790118386653986819
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: b3a27c107ade02c48abd446b964760c6, type: 2}
+        fadeTime: 0.5
+    - rid: 1790118386653986820
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 061f66688fd47b64da35c5a4bc7d5bea
+          m_SubObjectName: sovngarde5
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 1790118386653986821
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 1e39ac913664afa4e9b4756e5117b10d
+          m_SubObjectName: blackpng
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 1
+        fadeDuration: 2
+    - rid: 1790118386653986822
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: blackholeparticles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 0
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
     - rid: 4927988726549708828
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:

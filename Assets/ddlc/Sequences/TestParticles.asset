@@ -103,6 +103,10 @@ MonoBehaviour:
     - rid: 268099819477139577
     - rid: 268099819477139579
   - speaker: {fileID: 0}
+    dialog: blackhole
+    ScreenActions:
+    - rid: 1790118386653986823
+  - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
@@ -685,6 +689,26 @@ MonoBehaviour:
         overrideParticles: 1
         overridingParticles:
           m_AssetGUID: 3209ee8a656cdff42adae8b1439b781a
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 1790118386653986823
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 28271ce762c8333419f89d47c52edce1
           m_SubObjectName: 
           m_SubObjectGUID: 
           m_SubObjectType: 
