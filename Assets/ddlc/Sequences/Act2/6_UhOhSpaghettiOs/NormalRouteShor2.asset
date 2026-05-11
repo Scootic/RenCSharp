@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: NormalRouteShor2
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Would uh... a host be able to notice if it was...
+    ScreenActions:
+    - rid: 1790118406542327880
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Dominated?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Not really on their own, no.
+    ScreenActions:
+    - rid: 1790118406542327881
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: It essentially makes the host's soul dormant or unconscious while being
+      used fully-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: So the host would come out of the process feeling very confused.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: But, if other beings were around, they would probably be able to notice
+      the host acting uncanny.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Hm.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: a72f2dcbad90aec4a8444e6be532d7fa, type: 2}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: 3c772a5b405e5aa4d99a18575010136d
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 1790118406542327880
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - terrorSpeak
+    - rid: 1790118406542327881
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - terror

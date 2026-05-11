@@ -1,0 +1,700 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: ShorMoment2
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Ah, welcome back. I'm surprised you didn't show up when he did.
+    ScreenActions:
+    - rid: 1790118425451560960
+    - rid: 1790118425451560961
+    - rid: 1790118425451560965
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: '{mc} looks around, trying to find this person that Shor''s talking about.'
+    ScreenActions:
+    - rid: 1790118425451560966
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I don't see anybody, who are you talking to?
+    ScreenActions:
+    - rid: 1790118425451560962
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: I was busy. My attention and essence isn't spread across the whole world
+      like yours.
+    ScreenActions:
+    - rid: 1790118425451560963
+    - rid: 1790118425451560964
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 1790118425451560968
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Shor, put that thing back where we had it.
+    ScreenActions:
+    - rid: 1790118425451560971
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Okay, sure, just ignore me.
+    ScreenActions:
+    - rid: 1790118425451560972
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Come now, you would ask the god of freedom to go against his very nature?
+    ScreenActions:
+    - rid: 1790118425451560973
+    - rid: 1790118425451560975
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: ... Last time I work with a trickster god...
+    ScreenActions:
+    - rid: 1790118425451560976
+    - rid: 1790118425451560977
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: So this guy's the one you made that interface with?
+    ScreenActions:
+    - rid: 1790118425451560978
+    - rid: 1790118425451560979
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: That's right.
+    ScreenActions:
+    - rid: 1790118425451560980
+    - rid: 1790118425451560981
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Why is {mc} even here?!?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Because I brought him here.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Why?!? Now I have to wipe his memory when I send him back to Tamriel-
+    ScreenActions:
+    - rid: 1790118425451560983
+    - rid: 1790118425451560982
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: The Elder Scrolls dragging him to the void was annoying enough-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: ... I did warn you that the earthbones didn't like being bent, didn't
+      I?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: The harder you push on them, the harder they push back; as a piece of
+      Mundus myself, even I am forced to experience it involuntarily.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Haaahh...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: The pains of trying to be lore-friendly, even in the face of such a convoluted
+      cosmology.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Hey wait, if you made the interface, were you the one that dragged me
+      and my friends to Skyrim?
+    ScreenActions:
+    - rid: 1790118425451561036
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Yeah.
+    ScreenActions:
+    - rid: 1790118425451561037
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: I'm a bit surprised you have the... willingness to ask questions; I did
+      say that I'll be wiping your memory after this.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Of course I will! I have no idea what the hell is going on!
+    ScreenActions:
+    - rid: 1790118425451561038
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 1790118425451561039
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Maybe I should've just worked with the original {mc} after all-
+    ScreenActions:
+    - rid: 1790118425451561041
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Your extra autonomy might be too troublesome when combined with the very
+      world itself working against me.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: ... What?!?
+    ScreenActions:
+    - rid: 1790118425451561044
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 1790118425451561040
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 1790118425451561045
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: ... It's probably too late to backtrack on my MC choice now...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: All the effort it would take to re-insert the original {mc} into this
+      scenario would cause too much... pushback.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Scenario? What is this, some sort of simulation or something?!?
+    ScreenActions:
+    - rid: 1790118425451561047
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: No, I'm not taking the DDLC+ lore into account-
+    ScreenActions:
+    - rid: 1790118425451561048
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: But you wouldn't know about that, would you...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Oh, you meant as in a game?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Because that's true.
+    ScreenActions:
+    - rid: 1790118425451561049
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Oh god...
+    ScreenActions:
+    - rid: 1790118425451561050
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Ah boohoo~
+    ScreenActions:
+    - rid: 1790118425451561051
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: If you'd like, I can do the mindwipe now-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Get all of the existential baggage out of the way so you can get back
+      to being an unwilling chosen hero archetype.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 1790118425451561052
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 1790118425451561053
+    - rid: 1790118425451561054
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Did you just send him back to Tamriel...?
+    ScreenActions:
+    - rid: 1790118425451561055
+    - rid: 1790118425451561056
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Not personally, no.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Are your mind-wiping powers really determined by physical proximity?
+    ScreenActions:
+    - rid: 1790118425451561057
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: When it comes to interacting with this world, physical proximity might
+      be my only metric to know what sort of data I should be working with.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Your limits fascinate me.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: You would be fascinated by that, wouldn't you?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Now he's probably going to go tell the girls the truth-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: And while I am a bit curious to see how they'd react-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: If they all know, it would spiral beyond my ability to course-correct.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: I, for one, rather enjoy emergence.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: They might even find a way to overpower even your influence, which would
+      be quite interesting to see.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Bah. It'd be a real waste of my time if they get that far.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Why are you still here?!?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+    dialog: Go see what {mc}'s doing!
+    ScreenActions:
+    - rid: 1790118425451561068
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 1790118425451561058
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: d9d2f51ef715bee458b77d320675f769, type: 2}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: a72f2dcbad90aec4a8444e6be532d7fa
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 1790118425451560960
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 1790118425451560961
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
+    - rid: 1790118425451560962
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitiveSpeak
+    - rid: 1790118425451560963
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
+    - rid: 1790118425451560964
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 9d18ee034d9bea149886efe3a7a02057
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 1790118425451560965
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+        visualSpriteIndexes:
+        - 
+        - lorkhanSmile
+    - rid: 1790118425451560966
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+        visualSpriteIndexes:
+        - 
+        - lorkhan
+    - rid: 1790118425451560968
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 15
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+            dialog: Who was that?
+            ScreenActions:
+            - rid: 1790118425451560969
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 5
+            desiredValue: 15
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+            dialog: Hey, you're that voice that was in the loading screen place with
+              that other student!
+            ScreenActions:
+            - rid: 1790118425451560970
+    - rid: 1790118425451560969
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - terrorSpeak
+    - rid: 1790118425451560970
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grumpySpeak
+    - rid: 1790118425451560971
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grumpy
+    - rid: 1790118425451560972
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - bored
+    - rid: 1790118425451560973
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+        visualSpriteIndexes:
+        - 
+        - shezarr
+    - rid: 1790118425451560975
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grumpy
+    - rid: 1790118425451560976
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
+    - rid: 1790118425451560977
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+        visualSpriteIndexes:
+        - 
+        - lorkhanSmile
+    - rid: 1790118425451560978
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+        visualSpriteIndexes:
+        - 
+        - lorkhan
+    - rid: 1790118425451560979
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitiveSpeak
+    - rid: 1790118425451560980
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+        visualSpriteIndexes:
+        - fox
+        - EMPTY
+    - rid: 1790118425451560981
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grumpy
+    - rid: 1790118425451560982
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 15
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+            dialog: Why?!? Now I have to rewipe his memory when I send him back to
+              Tamriel-
+            ScreenActions: []
+    - rid: 1790118425451560983
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - terror
+    - rid: 1790118425451561036
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grumpySpeak
+    - rid: 1790118425451561037
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - scowl
+    - rid: 1790118425451561038
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - insaneShout
+    - rid: 1790118425451561039
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - insane
+    - rid: 1790118425451561040
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 1
+            desiredValue: 0
+            persistent: 0
+            bitWise: 0
+          - flagToCheck: WeirdRoute
+            operation: 5
+            desiredValue: 15
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+            dialog: What makes that other guy the real {mc}, anyway?!?
+            ScreenActions:
+            - rid: 1790118425451561043
+    - rid: 1790118425451561041
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - terror
+    - rid: 1790118425451561043
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - insaneSpeak
+    - rid: 1790118425451561044
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - terrorSpeak
+    - rid: 1790118425451561045
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 1
+            desiredValue: 0
+            persistent: 0
+            bitWise: 0
+          - flagToCheck: WeirdRoute
+            operation: 5
+            desiredValue: 15
+            persistent: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
+            dialog: 'It''s fairly simple: that other {mc} actually came from the
+              world of the literature club. I got you from elsewhere.'
+            ScreenActions:
+            - rid: 1790118425451561046
+    - rid: 1790118425451561046
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - terror
+    - rid: 1790118425451561047
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - insaneShout
+    - rid: 1790118425451561048
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - insane
+    - rid: 1790118425451561049
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - terror
+    - rid: 1790118425451561050
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - terrorSpeak
+    - rid: 1790118425451561051
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - insane
+    - rid: 1790118425451561052
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - terror
+    - rid: 1790118425451561053
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 0
+        setToSameTime: 0
+    - rid: 1790118425451561054
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        fadeTime: 0
+    - rid: 1790118425451561055
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 9aa7f20888b2afe4fb008a3afb9e32f0
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 1790118425451561056
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: -300, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+        loopOnScreen: 0
+    - rid: 1790118425451561057
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+        visualSpriteIndexes:
+        - EMPTY
+        - lorkhan
+    - rid: 1790118425451561058
+      type: {class: Remove_NamedObject, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        objectName: blackholeparticles
+    - rid: 1790118425451561068
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+        fadeTime: 0.5

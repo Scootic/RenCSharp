@@ -1,0 +1,230 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: WeirdRouteShor2
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I guess that explains the possessions...
+    ScreenActions:
+    - rid: 1790118406542327879
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Oh?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: I am happy to hear that my work is being used for its intended purpose.
+    ScreenActions:
+    - rid: 1790118406542327884
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: But I am a bit surprised that you were able to notice the experience,
+      but not the interface itself...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I had other people with me.
+    ScreenActions:
+    - rid: 1790118406542327882
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Interesting.
+    ScreenActions:
+    - rid: 1790118406542327885
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Was there anything your group noticed? For posterity.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 1790118406542327883
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 1790118406542327887
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 1790118406542327892
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 1790118406542327891
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 1790118406542327890
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: a72f2dcbad90aec4a8444e6be532d7fa, type: 2}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: c8e9a25c4f6c0504fa973f690c33a478
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 1790118406542327879
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - concern
+    - rid: 1790118406542327882
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grumpySpeak
+    - rid: 1790118406542327883
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+            dialog: I'm pretty sure it gave me a horrible case of diarrhea the day
+              after.
+            ScreenActions:
+            - rid: 1790118406542327886
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 5
+            desiredValue: 1
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+            dialog: Nothing I can recall off of the top of my head.
+            ScreenActions:
+            - rid: 1790118406542327886
+    - rid: 1790118406542327884
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - scowl
+    - rid: 1790118406542327885
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grumpy
+    - rid: 1790118406542327886
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grumpySpeak
+    - rid: 1790118406542327887
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+            dialog: That's...
+            ScreenActions:
+            - rid: 1790118406542327888
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 5
+            desiredValue: 1
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+            dialog: I see.
+            ScreenActions:
+            - rid: 1790118406542327889
+    - rid: 1790118406542327888
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - bored
+    - rid: 1790118406542327889
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grumpy
+    - rid: 1790118406542327890
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+            dialog: Or perhaps it isn't perfectly compatible with non-Aurbic beings.
+            ScreenActions: []
+    - rid: 1790118406542327891
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+            dialog: Perhaps the interface was not as universal as I had thought...
+            ScreenActions: []
+    - rid: 1790118406542327892
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: WeirdRoute
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            bitWise: 1
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+            dialog: An unexpected and problematic outcome.
+            ScreenActions: []
