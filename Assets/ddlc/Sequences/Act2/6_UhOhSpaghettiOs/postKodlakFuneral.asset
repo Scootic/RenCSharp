@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: postKodlakFuneral
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 1790118469574328341
+    - rid: 1790118469574328342
+    - rid: 1790118469574328343
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Who will start?
+    ScreenActions:
+    - rid: 1790118469574328344
+    - rid: 1790118469574328345
+    - rid: 1790118469574328346
+    - rid: 1790118469574328347
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: I'll do it.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: Before the ancient flame...
+    ScreenActions:
+    - rid: 1790118469574328348
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: We grieve.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: At this loss...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+    dialog: We weep.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+    dialog: For the fallen...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+    dialog: We shout.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+    dialog: And for ourselves...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+    dialog: (We take our leave.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: We take our leave.
+    ScreenActions:
+    - rid: 1790118469574328349
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: The Companions who gathered for Kodlak's funeral take one final brief
+      moment of respect before returning to their daily lives.
+    ScreenActions:
+    - rid: 1790118469574328351
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 0}
+    requireCondition: 0
+    conditions: []
+  myself:
+    m_AssetGUID: 3e1026a9303807c459a9b80b10cf19bf
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 1790118469574328341
+      type: {class: Remove_NamedObject, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        objectName: snow
+    - rid: 1790118469574328342
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 63856e1ac10661c41a9339bc19594687
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 3
+        setToSameTime: 0
+    - rid: 1790118469574328343
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 8ba741664c007464ab8997c87a7a111a
+          m_SubObjectName: whiterun_skyrforge
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 3
+    - rid: 1790118469574328344
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 600, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+        - EMPTY
+    - rid: 1790118469574328345
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 200, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 1790118469574328346
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -200, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+        - EMPTY
+    - rid: 1790118469574328347
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -600, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - concernBlush
+        - ears
+    - rid: 1790118469574328348
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: fire
+        placeToSpawnName: Background
+        deleteOnScreenProgression: 0
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: e4e3bc616c20fd74aa84a9b82f5a130e
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 1790118469574328349
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - concernSpeak
+    - rid: 1790118469574328351
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - concernBlush

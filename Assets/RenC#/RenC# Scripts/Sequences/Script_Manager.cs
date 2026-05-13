@@ -219,7 +219,7 @@ namespace RenCSharp
                         //spawn player choice buttons, and assign accordingly
                         foreach (Player_Choice pc in currentSequence.PlayerChoices)
                         {
-                            if (pc.RequireCondition && !pc.MetAllConditions()) continue; //don't display a choice if it hasn't met its conditions
+                            if (!pc.MetAllConditions()) continue; //don't display a choice if it hasn't met its conditions
 
                             amountOfButtons++;
                             buttonNames.Add(pc.ChoiceText);
@@ -233,7 +233,7 @@ namespace RenCSharp
                     {
                         foreach (Player_Choice pc in currentSequence.PlayerChoices)
                         {
-                            if (pc.RequireCondition && !pc.MetAllConditions()) continue; //keep going until we find the first sequence with met conditions
+                            if (!pc.MetAllConditions()) continue; //keep going until we find the first sequence with met conditions
                             LoadASequence(pc.ResultingSequence);
                             break; //bail out once we do find one that's good to load
                         }

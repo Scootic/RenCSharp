@@ -11,15 +11,14 @@ namespace RenCSharp.Sequences
     {
         [SerializeField] private string choiceText;
         [SerializeField] private Sequence resultingSequence;
-        [Header("Conditions")]
-        [SerializeField] private bool requireCondition;
-        [SerializeField] private FlagCondition[] conditions;
 
+        [Header("Conditions")]
+        [SerializeField] private FlagCondition[] conditions;
         public Sequence ResultingSequence => resultingSequence;
         public string ChoiceText => choiceText;
-        public bool RequireCondition => requireCondition;
         public bool MetAllConditions()
         {
+            if (conditions.Length == 0) return true;
             bool met = true;
 
             foreach(FlagCondition cond in conditions)
