@@ -583,6 +583,7 @@ namespace RenCSharp
             if (SequenceAsset.Status == AsyncOperationStatus.Succeeded) currentSequence = (Sequence)SequenceAsset.Result;
             else SequenceAsset.Release();
             loaded = true;
+            SetSpeed(0f, true); //makes sure to reset speed, in case the text is in the middle of some garbage.
             StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
 
             Event_Bus.TryFireVoidEvent("LoadedSave");
