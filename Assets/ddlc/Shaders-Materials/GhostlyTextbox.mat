@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WrigglingTextbox
+  m_Name: GhostlyTextbox
   m_Shader: {fileID: -6465566751694194690, guid: e50f61fc895b779419159363f849dd05, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -70,7 +70,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTexture:
-        m_Texture: {fileID: 2800000, guid: 916834dec6c938d4aa016c7d596d53c8, type: 3}
+        m_Texture: {fileID: 2800000, guid: b3e078db84fc20442935775794b9499f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -140,11 +140,11 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _cosStrength: 0.25
-    - _defaulthueoffset: 0.2
-    - _framecount: 180
-    - _hueadjustrange: 0.2
+    - _defaulthueoffset: 0
+    - _framecount: 6000
+    - _hueadjustrange: 0.05
     - _speed: 60
-    - _strength: 32
+    - _strength: 3
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseDirSpeed: {r: 0.7, g: 0.3, b: 0, a: 0}
@@ -156,7 +156,7 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _Vector3: {r: 0, g: 0, b: 0, a: 0}
-    - _normaltiling: {r: 1, g: 1, b: 0, a: 0}
+    - _normaltiling: {r: 0.25, g: 0.25, b: 0, a: 0}
     - _offset: {r: 0, g: 0, b: 0, a: 0}
     - _tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

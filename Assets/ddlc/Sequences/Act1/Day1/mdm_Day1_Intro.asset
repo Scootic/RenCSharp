@@ -15,45 +15,6 @@ MonoBehaviour:
   autoFocusSpeaker: 1
   screens:
   - speaker: {fileID: 0}
-    dialog: 
-    ScreenActions:
-    - rid: 9079475098267418687
-    - rid: 9079475089592287320
-    - rid: 9079475098267418688
-    - rid: 9079475110781911287
-  - speaker: {fileID: 11400000, guid: d7d90acd337545242978d965e5b6e6f5, type: 2}
-    dialog: Heeeeey!
-    ScreenActions:
-    - rid: 9079475098267418689
-  - speaker: {fileID: 0}
-    dialog: Who's yelling at me <i>this</i> early in the-
-    ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: Sayori?
-    ScreenActions: []
-  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-    dialog: Haaahh... Haaahh...
-    ScreenActions:
-    - rid: 8612954484556955724
-  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-    dialog: I overslept again!
-    ScreenActions: []
-  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-    dialog: But I caught you this time!
-    ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: It's not like I was running away from you. I take it you want to walk
-      to school with me?
-    ScreenActions:
-    - rid: 8612954484556955729
-  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-    dialog: Ehehe~ <SineText=4>Yeah</SineText>!
-    ScreenActions:
-    - rid: 8612954484556955730
-  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: Sounds good. Let's get going.
-    ScreenActions: []
-  - speaker: {fileID: 0}
     dialog: We start making our way to school, with the streets becoming filled with
       students as we get closer and closer.
     ScreenActions:
@@ -113,8 +74,8 @@ MonoBehaviour:
     ScreenActions:
     - rid: 8612954484556955742
   - speaker: {fileID: 0}
-    dialog: 'Actually, I might have to. Allen''s in the Robotics Club, and the other
-      two are also preoccupied. '
+    dialog: 'Actually, since Allen''s in the Robotics Club, and the other two''s
+      after-schools are also preoccupied... '
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Dang it! I might have to join a club after all.
@@ -130,7 +91,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 3304bcf5952c99c4db68e21abc947a54, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: f09e712c2f16f134eb18153159ba85b5
@@ -141,34 +101,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 8612954484556955724
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        fadeInTime: 0.5
-        spawnOffset: {x: 0, y: 0, z: 0}
-        visualSpriteIndexes:
-        - uniUp
-        - uniUp
-        - '><Shock'
-        - EMPTY
-    - rid: 8612954484556955729
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        visualSpriteIndexes:
-        - uniDown
-        - uniDown
-        - smile
-        - EMPTY
-    - rid: 8612954484556955730
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        visualSpriteIndexes:
-        - uniDown
-        - uniDown
-        - contentGrin
     - rid: 8612954484556955732
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -273,58 +205,6 @@ MonoBehaviour:
         - uniUp
         - uniUp
         - contentGrin
-    - rid: 9079475089592287320
-      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        songAsset:
-          m_AssetGUID: ba13accb8b1fe3b47bb3401b0a6229b8
-          m_SubObjectName: 
-          m_SubObjectGUID: 
-          m_SubObjectType: 
-          m_EditorAssetChanged: 0
-        fadeTime: 2
-        setToSameTime: 0
-    - rid: 9079475098267418687
-      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        newBG:
-        - m_AssetGUID: 36f7c6032a374db4a968c0e1236322e1
-          m_SubObjectName: street
-          m_SubObjectGUID: 
-          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_EditorAssetChanged: 1
-        secondsPerFrame: 0.1
-        fadeTransition: 0
-        fadeDuration: 4
-    - rid: 9079475098267418688
-      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - m_AssetGUID: 1e39ac913664afa4e9b4756e5117b10d
-          m_SubObjectName: blackpng
-          m_SubObjectGUID: 
-          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_EditorAssetChanged: 1
-        overlayText: 'Act 1 - Day 1: "You was at Da Club"'
-        fadeTime: 2
-        endWithScreen: 1
-        secondsPerFrame: 0.1
-    - rid: 9079475098267418689
-      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        imagesToSet:
-        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
-          m_SubObjectName: emptypng
-          m_SubObjectGUID: 
-          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_EditorAssetChanged: 1
-        overlayText: 
-        fadeTime: 2
-        endWithScreen: 1
-        secondsPerFrame: 0.1
     - rid: 9079475098267418690
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -338,7 +218,3 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 2
-    - rid: 9079475110781911287
-      type: {class: AutoSave_Screen, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        fileName: '!AutoSave_Act1_Day1'

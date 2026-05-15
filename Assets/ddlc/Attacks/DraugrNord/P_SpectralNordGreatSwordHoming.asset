@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: P_SpectralNordGreatSwordHoming
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 700, y: 450}
+  controlType:
+    rid: 1790118514879889595
+  attackDuration: 12
+  secondsPerProjectileSpawn: 1.5
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 9155078751024145261, guid: b5809f2ae136afa4bba0f982f02fb9ab, type: 3}
+  - {fileID: 8204135625514222407, guid: 0f3444684f274b848b653e2f7f28fc79, type: 3}
+  spawnPoints:
+  - {x: 0, y: -125, z: 0}
+  - {x: 400, y: 500, z: 0}
+  - {x: -400, y: 500, z: 0}
+  - {x: -800, y: 0, z: 0}
+  - {x: 800, y: 0, z: 0}
+  - {x: 600, y: 500, z: 0}
+  - {x: -400, y: -225, z: 0}
+  - {x: -600, y: 500, z: 0}
+  - {x: 400, y: -225, z: 0}
+  initialDirections:
+  - {x: -0.00001, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  indexes: 010000000000000000000000000000000000000000000000000000000000000000000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: 1790118514879889595
+      type: {class: Platformer, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500
+        gravityForce: 600
+        jumpForce: 500
+        groundedDistance: 26
+        jumpcd: 0.2
+        jumpMask:
+          serializedVersion: 2
+          m_Bits: 8

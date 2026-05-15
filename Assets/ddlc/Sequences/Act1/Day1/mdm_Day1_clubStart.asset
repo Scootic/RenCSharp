@@ -57,7 +57,7 @@ MonoBehaviour:
     dialog: Sayori always says nice things about you.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: Oh, hello. Sayori, you're talking about me behind my ba-
+    dialog: Oh, hello. (Sayori, you're talking about me behind my ba-)
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: c3dd8de5b66462c489c46f09a84b83a5, type: 2}
     dialog: Seriously? You brought a boy?
@@ -69,8 +69,8 @@ MonoBehaviour:
     ScreenActions:
     - rid: 8612954489503350879
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: Wow, ok, I literally just got here. I swear if one more person interrupts
-      me-
+    dialog: Wow, ok, I literally <i>just</i> got here. I swear if one more person
+      interrupts me-
     ScreenActions:
     - rid: 8612954489503350880
   - speaker: {fileID: 11400000, guid: cd908b1d4341a3a499ce3d9070013ac2, type: 2}
@@ -80,7 +80,7 @@ MonoBehaviour:
     - rid: 8612954489503350882
     - rid: 8612954489503350883
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: Gah!
+    dialog: <NoiseText=1,1>Gah</NoiseText>!
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: cd908b1d4341a3a499ce3d9070013ac2, type: 2}
     dialog: Welcome to the club!
@@ -101,8 +101,8 @@ MonoBehaviour:
     dialog: I point at Sayori.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: That maniac told you guys I'd be coming today, without telling ME that
-      I'd be coming today.
+    dialog: That maniac told you guys I'd be coming today, without telling <i>me</i>
+      that I'd be coming today.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Who're you calling a maniac, meanie!
@@ -122,7 +122,7 @@ MonoBehaviour:
     - rid: 8612954489503350905
   - speaker: {fileID: 11400000, guid: cd908b1d4341a3a499ce3d9070013ac2, type: 2}
     dialog: Now, now, Natsuki we don't know that for sure. I doubt {mc} would come
-      JUST for cupcakes, right {mc}?
+      <i>just</i> for cupcakes, right {mc}?
     ScreenActions:
     - rid: 8612954489503350906
     - rid: 8612954489503350907
@@ -180,8 +180,8 @@ MonoBehaviour:
     ScreenActions:
     - rid: 8612954489503350925
   - speaker: {fileID: 0}
-    dialog: If you'd believe it, I was never too concerned with the esoteric social
-      rankings of teenage life. It just seems like a waste of time, personally.
+    dialog: If you'd believe it, I'm not too concerned with the esoteric social rankings
+      of teenage life. It just seems like a waste of time, personally.
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: Not that I have anything against "extroverts" or whatever, it's just
@@ -195,14 +195,14 @@ MonoBehaviour:
     - rid: 8612954507180769349
     - rid: 8612954507180769350
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: So, what's on the agenda for today?
+    dialog: ... So, what's on the agenda for today?
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Cupcake time!
     ScreenActions:
     - rid: 8612954507180769351
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-    dialog: Come sit down {mc}! We made room for you at the table, so you can sit
+    dialog: Come sit down, {mc}! We made room for you at the table, so you can sit
       next to me or Monika.
     ScreenActions:
     - rid: 8612954507180769352
@@ -220,7 +220,7 @@ MonoBehaviour:
     - rid: 8612954507180769356
     - rid: 8612954507180769357
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: Then, how about I make some tea aswell?
+    dialog: Then, how about I make some tea as well?
     ScreenActions:
     - rid: 8612954507180769358
   - speaker: {fileID: 0}
@@ -250,7 +250,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 8612954507180769363
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: No! Give me another minute, please!!!
+    dialog: <NoiseText=1,0.5>No</NoiseText>! Give me another minute, <NoiseText=3,1>please</NoiseText>!!!
     ScreenActions:
     - rid: 8612954507180769364
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
@@ -258,7 +258,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 8612954507180769365
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: I don't have a napkin. Could I have one please?
+    dialog: I don't have a napkin. Could I have one please~?
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: We do a lil' trolling.
@@ -275,7 +275,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 8612954507180769405
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-    dialog: Uwooooah!
+    dialog: <SineText=5>Uwooooah</SineText>!
     ScreenActions:
     - rid: 8612954507180769406
     - rid: 8612954507180769407
@@ -325,7 +325,7 @@ MonoBehaviour:
     - rid: 8612954507180769415
     - rid: 8612954507180769416
   - speaker: {fileID: 0}
-    dialog: Huh. She's gotten slow! It took longer than a second for her to finish
+    dialog: Huh, she's gotten slow! It took longer than a second for her to finish
       her cupcake.
     ScreenActions: []
   - speaker: {fileID: 0}
@@ -381,7 +381,7 @@ MonoBehaviour:
     dialog: Nothing...
     ScreenActions: []
   - speaker: {fileID: 0}
-    dialog: You baka.
+    dialog: You <i>baka</i>...
     ScreenActions:
     - rid: 8612954507180769437
   - speaker: {fileID: 0}
@@ -820,7 +820,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: de6c4c10be8439e4fba72a0551eebac4, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 993c959d6380590458c69d4002df6a99
@@ -845,6 +844,7 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+        baseVolume: 1
     - rid: 8612954489503350871
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1620,6 +1620,7 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+        baseVolume: 1
     - rid: 8612954507180769448
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
