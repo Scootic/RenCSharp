@@ -20,6 +20,7 @@ namespace RenCSharp
         private AudioSource leMusic, newBGM; //stores the background music
 
         private int sfxIndex = 0; //Store the current sfx index
+        private int realSFXSize;
         private bool enteringBGM = false; //used to see if we are currently doing a BGM fade transition.
         private Coroutine bgmRoutine; //stores the current bgm transition coroutine incase we need to stop it preemptively
         private string songAssetGUID; //keeps track of asset guid that'll be passed to save/load
@@ -36,6 +37,7 @@ namespace RenCSharp
             sfxSources = new AudioSource[sfxAmount]; //set the size of the audiosources array
 
             leMusic = gameObject.AddComponent<AudioSource>();//create new audio source, make it the bgm
+            realSFXSize = 64 - sfxAmount - 2; //64 is hard-set max real voices value, minus 2D sfx amount, minus 2 sources for fading music tracks.
 
             for (int i = 0; i < sfxAmount; i++) //for size of array, add a new audio source, and put it into the correct index of the array
             {
@@ -130,6 +132,7 @@ namespace RenCSharp
         public void Play3DSFX(AudioSource ThingToPlay, Vector3 position, bool environmental = false, bool loop = false, float vol = 1, float minRand = 1, float maxRand = 1)
         {
             AudioObjectCheck();
+            RemoveOldest3DSFXCheck();
             
             GameObject gaming = Object_Pooling.Spawn(audioObject, position, Quaternion.identity); //Quaternion.identity is basically default for Quaternions
             gaming.transform.SetParent(null); //prevent dumbass going away with despawning objects?
@@ -155,6 +158,7 @@ namespace RenCSharp
         public void Play3DSFX(AudioClip clipToPlay, Vector3 position, bool environmental = false, bool loop = false, float vol = 1, float minRand = 1, float maxRand = 1)
         {
             AudioObjectCheck();
+            RemoveOldest3DSFXCheck();
 
             GameObject gaming = Object_Pooling.Spawn(audioObject, position, Quaternion.identity);
             gaming.transform.SetParent(null);
@@ -186,6 +190,17 @@ namespace RenCSharp
                 audioObject.AddComponent<AudioSource>();
             }
         }
+
+        void RemoveOldest3DSFXCheck() 
+        {
+            if (sfxList.Count > realSFXSize)
+            {
+                GameObject go = sfxList[0];
+                sfxList.RemoveAt(0);
+                Object_Pooling.Despawn(go);
+            }
+        }
+
         /// <summary>
         /// Removes a 3DSFX from scene
         /// </summary>

@@ -10,21 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
-  m_Name: P_HomingNordSpectralArrow
+  m_Name: P_HomingNordSpectralArrow 2
   m_EditorClassIdentifier: 
   arenaDimensions: {x: 600, y: 400}
   controlType:
     rid: 1790118514879889660
-  attackDuration: 11
-  secondsPerProjectileSpawn: 1.4
+  attackDuration: 12
+  secondsPerProjectileSpawn: 1.8
   projectilesPerSpawn: 1
   projectilesThatSpawn:
   - {fileID: 5314778614514171858, guid: 8ce7410a373b3e24a9e87040c4545172, type: 3}
-  spawnPoints: []
-  initialDirections: []
-  indexes: 
-  projectileSpawnPositionMethod: 2
-  projectileIndexMethod: 2
+  spawnPoints:
+  - {x: -600, y: 300, z: 0}
+  - {x: -600, y: 200, z: 0}
+  - {x: 600, y: -400, z: 0}
+  - {x: 600, y: -300, z: 0}
+  - {x: 600, y: 400, z: 0}
+  - {x: -600, y: 400, z: 0}
+  - {x: -600, y: -400, z: 0}
+  - {x: 600, y: -400, z: 0}
+  initialDirections:
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  indexes: 0000000000000000000000000000000000000000000000000000000000000000
+  projectileSpawnPositionMethod: 1
+  projectileIndexMethod: 1
   references:
     version: 2
     RefIds:
