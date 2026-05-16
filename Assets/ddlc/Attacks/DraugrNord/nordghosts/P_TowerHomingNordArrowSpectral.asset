@@ -15,32 +15,38 @@ MonoBehaviour:
   arenaDimensions: {x: 300, y: 900}
   controlType:
     rid: 1790118219413979196
-  attackDuration: 10
-  secondsPerProjectileSpawn: 1.33
+  attackDuration: 15
+  secondsPerProjectileSpawn: 1.3
   projectilesPerSpawn: 1
   projectilesThatSpawn:
   - {fileID: 0}
   - {fileID: 8204135625514222407, guid: 68b69437aba7fb44ca7d3573081c839e, type: 3}
-  - {fileID: 3702481003920381521, guid: 4becdf5fd4894674394fb2490232826b, type: 3}
+  - {fileID: 5314778614514171858, guid: 8ce7410a373b3e24a9e87040c4545172, type: 3}
   spawnPoints:
-  - {x: 0, y: -450, z: 0}
+  - {x: -600, y: -450, z: 0}
   - {x: -100, y: -250, z: 0}
+  - {x: 600, y: -250, z: 0}
   - {x: 100, y: -100, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: -100, y: -100, z: 0}
+  - {x: -600, y: -200, z: 0}
   - {x: -100, y: 50, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 100, y: 50, z: 0}
+  - {x: 600, y: -100, z: 0}
   initialDirections:
-  - {x: 0, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
   - {x: 0, y: -0.2, z: 0}
-  - {x: 0, y: -0.2, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: -0.2, z: 0}
+  - {x: -1, y: 0, z: 0}
   - {x: 0, y: -0.2, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: -0.2, z: 0}
-  indexes: 0200000001000000010000000000000001000000010000000000000001000000
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: -0.2, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: -0.2, z: 0}
+  - {x: -1, y: 0, z: 0}
+  indexes: 0200000001000000020000000100000000000000010000000200000001000000000000000100000002000000
   projectileSpawnPositionMethod: 2
   projectileIndexMethod: 2
   references:
