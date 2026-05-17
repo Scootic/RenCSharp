@@ -14,16 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actorName: Kodlak
   actorPrefab: {fileID: 823591662591807127, guid: 71228ce2b2d40334aa31bf6926f5e874, type: 3}
-  actorFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  textboxColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
   visuals:
   - layer:
-    - {fileID: 21300000, guid: ff427418084d4ec43a34ee7f0a299558, type: 3}
+    - {fileID: 2016769424, guid: c89145fef485df548ae09249bbbdce7b, type: 3}
+    - {fileID: 1916545230, guid: c89145fef485df548ae09249bbbdce7b, type: 3}
     visualIDs:
     - default
+    - ghost
   myself:
     m_AssetGUID: bb5b825b0be0b62428004be39a77cc24
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  actorFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  textboxColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+  textboxMaterial: {fileID: 0}

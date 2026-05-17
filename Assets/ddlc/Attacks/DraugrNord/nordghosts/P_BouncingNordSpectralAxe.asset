@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: P_BouncingNordSpectralAxe
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 600, y: 400}
+  controlType:
+    rid: 1790118559174885438
+  attackDuration: 11
+  secondsPerProjectileSpawn: 0.9
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 3702481003920381521, guid: 1fdbbbc36fc05f546b64a82b3831180d, type: 3}
+  spawnPoints:
+  - {x: -500, y: 600, z: 0}
+  - {x: -400, y: 600, z: 0}
+  - {x: -300, y: 600, z: 0}
+  - {x: -200, y: 600, z: 0}
+  - {x: -100, y: 600, z: 0}
+  - {x: 0, y: 600, z: 0}
+  - {x: 100, y: 600, z: 0}
+  - {x: 200, y: 600, z: 0}
+  - {x: 300, y: 600, z: 0}
+  - {x: 400, y: 600, z: 0}
+  - {x: 500, y: 600, z: 0}
+  initialDirections:
+  - {x: 80, y: -300, z: 0}
+  - {x: 1, y: -300, z: 0}
+  - {x: -125, y: -300, z: 0}
+  - {x: 150, y: -300, z: 0}
+  - {x: -100, y: -300, z: 0}
+  - {x: 25, y: -300, z: 0}
+  - {x: 150, y: -300, z: 0}
+  - {x: -80, y: -300, z: 0}
+  - {x: -100, y: -300, z: 0}
+  - {x: 0, y: -300, z: 0}
+  - {x: -50, y: -300, z: 0}
+  indexes: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  projectileSpawnPositionMethod: 1
+  projectileIndexMethod: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 1790118559174885438
+      type: {class: Platformer, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500
+        gravityForce: 600
+        jumpForce: 500
+        groundedDistance: 26
+        jumpcd: 0.2
+        jumpMask:
+          serializedVersion: 2
+          m_Bits: 8

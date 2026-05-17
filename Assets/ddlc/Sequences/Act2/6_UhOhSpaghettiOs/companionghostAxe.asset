@@ -13,23 +13,25 @@ MonoBehaviour:
   m_Name: companionghostAxe
   m_EditorClassIdentifier: 
   scriptedAttacks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 3fa8cc27eb52fe8459cab31addc82f47, type: 2}
+  - {fileID: 11400000, guid: 3c76c435fc321be42b6b28b69e124546, type: 2}
+  - {fileID: 11400000, guid: 37209b4816a629d43a9a0677ea250822, type: 2}
+  - {fileID: 11400000, guid: b0787e91762c3504fa5c190265ef7cce, type: 2}
   scriptedFlavorTexts:
-  - null
-  - null
-  - null
-  - null
+  - The ghost flings his axe at Natsuki, which rebounds off of the walls.
+  - The ghost throws his axe at Natsuki, recalling it back to himself through the
+    air.
+  - Natsuki manages to find herself in a tight space, which the ghost takes as an
+    opportunity to throw his axe at her.
+  - The ghost flings his axe at Natsuki from above, rebounding off of the floor.
   randomAttacks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: b0787e91762c3504fa5c190265ef7cce, type: 2}
+  - {fileID: 11400000, guid: 3fa8cc27eb52fe8459cab31addc82f47, type: 2}
+  - {fileID: 11400000, guid: 37209b4816a629d43a9a0677ea250822, type: 2}
   randomFlavorTexts:
-  - null
-  - null
-  - null
+  - The ghost flings his axe from above. Again.
+  - The ghost flings his axe at Natsuki, which rebounds off of the walls. Again.
+  - The ghost throws his axe at a cornered Natsuki. Again.
   maxHealth: 100
   visualInformation:
   - {fileID: 21300000, guid: 76ee361eee9ae3a4e856a249887a0271, type: 3}
@@ -37,7 +39,7 @@ MonoBehaviour:
   defeatText: The spirit is dispelled back to whence it came. Again again.
   nameText: Companion Ghost
   blurbText: One has to wonder if the ghosts of the deer killed to make these ghosts'
-    armor ever seek revenge...
+    armor ever sought revenge...
   hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
   uiParticleObjFab:
     m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c

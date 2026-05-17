@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: FR_WolfSlashRaw
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 500, y: 500}
+  controlType:
+    rid: 1790118559174885550
+  attackDuration: 11
+  secondsPerProjectileSpawn: 0.8
+  projectilesPerSpawn: 2
+  projectilesThatSpawn:
+  - {fileID: 213815781660960663, guid: 086fc7b2170ef46438176f056a52ad21, type: 3}
+  spawnPoints:
+  - {x: -250, y: 500, z: 0}
+  - {x: -200, y: 500, z: 0}
+  - {x: -150, y: 500, z: 0}
+  - {x: -100, y: 500, z: 0}
+  - {x: -50, y: 500, z: 0}
+  - {x: 0, y: 500, z: 0}
+  - {x: 50, y: 500, z: 0}
+  - {x: 100, y: 500, z: 0}
+  - {x: 150, y: 500, z: 0}
+  - {x: 200, y: 500, z: 0}
+  - {x: 250, y: 500, z: 0}
+  - {x: -500, y: -250, z: 0}
+  - {x: -500, y: -200, z: 0}
+  - {x: -500, y: -150, z: 0}
+  - {x: -500, y: -100, z: 0}
+  - {x: -500, y: -50, z: 0}
+  - {x: -500, y: 0, z: 0}
+  - {x: -500, y: 50, z: 0}
+  - {x: -500, y: 100, z: 0}
+  - {x: -500, y: 150, z: 0}
+  - {x: -500, y: 200, z: 0}
+  - {x: -500, y: 250, z: 0}
+  initialDirections:
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  indexes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  projectileSpawnPositionMethod: 1
+  projectileIndexMethod: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 1790118559174885550
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 550
