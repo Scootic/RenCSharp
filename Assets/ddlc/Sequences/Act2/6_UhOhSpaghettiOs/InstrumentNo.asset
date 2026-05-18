@@ -90,7 +90,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: db6adcfa1940b8641a333ede8b64c690, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 328f12cf0f6050a409b145e68a76f259
@@ -107,16 +106,16 @@ MonoBehaviour:
         actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         visualSpriteIndexes:
         - 
-        - skyUp
-        - shock
+        - 
+        - blankSpeak
     - rid: 4927988362429071450
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         visualSpriteIndexes:
-        - 
-        - 
-        - smile
+        - skySmug
+        - skySmug
+        - closedEyeFrustratedSpeak
     - rid: 4927988362429071451
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -124,15 +123,15 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - smug
+        - terrorSpeak
     - rid: 4927988362429071452
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         visualSpriteIndexes:
         - 
-        - skyDown
-        - smile
+        - 
+        - terror
     - rid: 4927988362429071453
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

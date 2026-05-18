@@ -186,7 +186,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: ba63dbeccfd069847bb0781138e7efd2, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 1d2e97cf0ed2b3b47b57671872ca586f
@@ -228,10 +227,10 @@ MonoBehaviour:
         fadeInTime: 0.5
         spawnOffset: {x: 0, y: 0, z: 0}
         visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - smile
-        - EMPTY
+        - skySmug
+        - skySmug
+        - closedEyeFrustratedSpeak
+        - ears
     - rid: 268100043383767209
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
