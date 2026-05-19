@@ -88,7 +88,7 @@ MonoBehaviour:
     dialog: You were trying to cross the border, right?
     ScreenActions: []
   - speaker: {fileID: 0}
-    dialog: I try to pinch myself, but my hands are bound...
+    dialog: I try to pinch myself, <i>but my hands are bound</i>...
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
     dialog: Walked right into that imperial ambush, same as us, and that thief over
@@ -119,7 +119,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: b4c6e4c64da7c764bb84fd44f7e71080, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: dae1bab78bea42a4eb3571821384b854
