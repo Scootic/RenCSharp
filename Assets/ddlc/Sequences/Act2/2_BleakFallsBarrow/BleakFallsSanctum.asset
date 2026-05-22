@@ -319,7 +319,8 @@ MonoBehaviour:
     - rid: 9079474951791575114
   - speaker: {fileID: 0}
     dialog: The Draugr Overlord recovers from our onslaught, leans back, and-
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552507045
   - speaker: {fileID: 11400000, guid: a28c7bf68c4fd8649a26f5576848dacc, type: 2}
     dialog: Good sir, you are very disrespectful!
     ScreenActions: []
@@ -902,7 +903,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 0509fc1364743134c83d8590d8f07a72, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: ddccc05a73b46ab4b9e13e794b187db9
@@ -913,6 +913,13 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1790118673552507045
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: SayoriHeal
+        flagValue: 10
+        increment: 0
+        persistent: 0
     - rid: 9079474908378955926
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

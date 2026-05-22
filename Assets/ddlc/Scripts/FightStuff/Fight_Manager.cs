@@ -7,6 +7,7 @@ using UnityEngine;
 using RenCSharp.Combat.Enemies;
 using RenCSharp.Combat.Interfaces;
 using RenCSharp.Combat.Player;
+using UnityEngine.UI;
 namespace RenCSharp.Combat
 {
     public sealed class Fight_Manager : MonoBehaviour
@@ -27,6 +28,15 @@ namespace RenCSharp.Combat
         [SerializeField, Tooltip("For handling direction text is launched in."), Range(-360,360)] private float minDeg = 0;
         [SerializeField, Tooltip("For handling direction text is launched in."), Range(-360,360)] private float maxDeg = 180;
         [SerializeField] private UI_Element enemyDamageNumber;
+        [Header("Player Action cosmetics")]
+        [SerializeField] private AnimationCurve buttonRevealCurve;
+        [SerializeField] private float buttonRevealTime = 0.5f;
+        [SerializeField] private float playerHealthBarRevealYPos; //when buttons are revealed
+        [SerializeField] private float playerHealthBarHiddenYPos; //when buttons are hidden
+        [SerializeField] private float buttonRevealedYPos;
+        [SerializeField] private float buttonHiddenYPos;
+        [SerializeField] private Transform playerHealthBarHolder;
+        [SerializeField] private Image[] playerActionButtonsToReveal;
 
         private int curAttackIndex;
         private int prevAttackPosRoll, dir;
@@ -49,11 +59,13 @@ namespace RenCSharp.Combat
         private void OnEnable()
         {
             Event_Bus.AddFloatEvent("EnemyDamageNumber", SpawnEnemyDamageNumber);
+            Event_Bus.AddFloatEvent("UpdateFMButtonRevealTime", UpdateButtonRevealTime);
         }
 
         private void OnDisable()
         {
             Event_Bus.TryRemoveFloatEvent("EnemyDamageNumber");
+            Event_Bus.TryRemoveFloatEvent("UpdateFMButtonRevealTime");
             //below two get added in bulksetup()
             Event_Bus.TryRemoveSingleObjEvent("AddAProjectile");
             Event_Bus.TryRemoveBoolEvent("EndAFight");
@@ -65,6 +77,7 @@ namespace RenCSharp.Combat
             BulkSetUp();
             playerTurn = true;
             abilityHolder.SetActive(true);
+            buttonRevealTime = PlayerPrefs.GetFloat("FMButtonRevealTime", buttonRevealTime); //default to in inspector value if not changed?
             singleAttack = false;
             passedScript = false;
             Textbox_String.PauseTextbox(true);
@@ -318,6 +331,8 @@ namespace RenCSharp.Combat
             flavorTextRoutine = StartCoroutine(Textbox_String.RunThroughText(combatTextbox, WithinScriptedAttacks() ? 
                 curEnemy.MySO.ScriptedFlavorTexts[curAttackIndex] : curEnemy.MySO.RandomFlavorTexts[curAttackIndex]));
 
+            yield return RevealPlayerActionsAnim(true);
+
             pah.StartPlayerTurn();
 
             while (playerTurn && fighting)
@@ -326,11 +341,75 @@ namespace RenCSharp.Combat
                 else
                 {
                     yield return pah.CurrentPlayerAction.ActionResult();
+                    yield return RevealPlayerActionsAnim(false);
                     pah.EndPlayerTurn();
                     playerTurn = false;
                 }
             }
         }
+
+        private IEnumerator RevealPlayerActionsAnim(bool reveal) 
+        {
+            float t = reveal ? 0 : buttonRevealTime;
+
+            if (reveal) 
+            {
+                foreach(Image img in playerActionButtonsToReveal)
+                {
+                    //default to fully active in-case player sets times to instant.
+                    img.gameObject.SetActive(true);
+                    img.color = Color.white;
+                    Vector3 pos = img.transform.localPosition;
+                    pos = new Vector3(pos.x, buttonRevealedYPos, pos.z);
+                    img.transform.localPosition = pos;
+                }
+                Vector3 pos2 = playerHealthBarHolder.transform.localPosition;
+                pos2 = new Vector3(pos2.x, playerHealthBarRevealYPos, pos2.z);
+                playerHealthBarHolder.localPosition = pos2;
+            }
+
+            while (t <= buttonRevealTime && t >= 0 && buttonRevealTime != 0)
+            {
+                t += reveal ? Time.deltaTime : -Time.deltaTime;
+                float perc = buttonRevealCurve.Evaluate(t / buttonRevealTime);
+                foreach (Image img in playerActionButtonsToReveal)
+                {
+                    img.color = Color.Lerp(CoolColors.transparent, Color.white, perc);
+                    Vector3 pos = img.transform.localPosition;
+                    pos = new Vector3(pos.x, Mathf.Lerp(buttonHiddenYPos, buttonRevealedYPos, perc), pos.z);
+                    img.transform.localPosition = pos;
+                }
+
+                Vector3 pos2 = playerHealthBarHolder.transform.localPosition;
+                pos2 = new Vector3(pos2.x, Mathf.Lerp(playerHealthBarHiddenYPos, playerHealthBarRevealYPos, perc), pos2.z);
+                playerHealthBarHolder.transform.localPosition = pos2;
+
+                yield return null;
+            }
+
+            if (!reveal)
+            {
+                //default to fully inactive incase the player has reveal time set to instant
+                foreach (Image img in playerActionButtonsToReveal)
+                {
+                    img.color = CoolColors.transparent;
+                    img.gameObject.SetActive(false);
+                    Vector3 pos = img.transform.localPosition;
+                    pos = new Vector3(pos.x, buttonHiddenYPos,pos.z);
+                    img.transform.localPosition = pos;
+                }
+
+                Vector3 pos2 = playerHealthBarHolder.transform.localPosition;
+                pos2 = new Vector3(pos2.x, playerHealthBarHiddenYPos, pos2.z);
+                playerHealthBarHolder.transform.localPosition = pos2;
+            }
+        }
+
+        private void UpdateButtonRevealTime(float value)
+        {
+            buttonRevealTime = value;
+        }
+
         #endregion
         void SpawnEnemyDamageNumber(float damageTaken)
         {

@@ -39,23 +39,28 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 89f7d0b97106b6448939eb57dd9aa235, type: 2}
     dialog: There are only two entrances to the cave, captain, the one we are looking
       at, and the one that leads to the overlook.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552506989
   - speaker: {fileID: 11400000, guid: 89f7d0b97106b6448939eb57dd9aa235, type: 2}
     dialog: Of course, escaping through the overlook would just mean jumping to your
       death...
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: I see, so there isn't anything stopping us from starving them out?
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552506990
   - speaker: {fileID: 11400000, guid: 89f7d0b97106b6448939eb57dd9aa235, type: 2}
     dialog: (... other than honor, no...)
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552506992
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Did you say something?
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552506991
   - speaker: {fileID: 11400000, guid: 89f7d0b97106b6448939eb57dd9aa235, type: 2}
     dialog: No, captain.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552506993
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Uh, Monika?
     ScreenActions:
@@ -76,10 +81,12 @@ MonoBehaviour:
     dialog: Sayori, do you find it hard to concentrate when you're hungry?
     ScreenActions:
     - rid: 9079475089592287555
+    - rid: 1790118673552506994
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: ...
     ScreenActions:
     - rid: 9079474795981832292
+    - rid: 1790118673552506995
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: ... you're not talking about my snacking habits, are you?
     ScreenActions: []
@@ -158,19 +165,23 @@ MonoBehaviour:
     - rid: 9079474795981832305
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Monika, how do you know so much about fights and stuff?
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552506996
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Well, that's because I'm captain of the guard!
     ScreenActions:
     - rid: 9079474795981832306
+    - rid: 1790118673552506997
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (But, seriously, I really don't know that much, ahaha...)
     ScreenActions:
     - rid: 9079474795981832307
+    - rid: 1790118673552506998
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (I'm just doing what I think sounds about right, based on what I remember
       from history class...)
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552506999
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: ...
     ScreenActions: []
@@ -187,6 +198,7 @@ MonoBehaviour:
     dialog: ...
     ScreenActions:
     - rid: 9079474795981832314
+    - rid: 1790118673552507000
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -199,6 +211,7 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 9079474795981832318
+    - rid: 1790118673552507001
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: ...
     ScreenActions: []
@@ -396,10 +409,13 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: <font=futura>Monika points toward Whiterun, which is deeply visible from
       here.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552507003
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: ... alright. I don't want to be on this cliff anymore...
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552507002
+    - rid: 1790118673552507004
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: You heard her, Sayori! We're heading for Whiterun.
     ScreenActions:
@@ -418,7 +434,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 91ebe2d05f8c0934091cfccb7afeb4a4, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 8f080f3ed8d1bc641a948a485a03625e
@@ -429,10 +444,138 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 9079474795981832281
+    - rid: 1790118673552506989
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - blank
+    - rid: 1790118673552506990
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - blankSpeak
+    - rid: 1790118673552506991
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - sternSpeak
+    - rid: 1790118673552506992
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - blank
+    - rid: 1790118673552506993
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - stern
+    - rid: 1790118673552506994
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - grin
+    - rid: 1790118673552506995
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
+    - rid: 1790118673552506996
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - surpriseSpeak
+    - rid: 1790118673552506997
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
+    - rid: 1790118673552506998
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - pitySmile
+    - rid: 1790118673552506999
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - pitySmile
+    - rid: 1790118673552507000
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
+    - rid: 1790118673552507001
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - blank
+    - rid: 1790118673552507002
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - lookAwaySad
+    - rid: 1790118673552507003
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - 
+        - smile
+    - rid: 1790118673552507004
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - 
+        - 
+    - rid: 9079474795981832281
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         visualSpriteIndexes:
         - skyUp
         - skyUp
@@ -604,7 +747,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - pitySmile
+        - grinSweat
     - rid: 9079474795981832312
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -612,7 +755,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - pitySmile
+        - content
     - rid: 9079474795981832313
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -620,7 +763,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyUp
         - skyUp
-        - content
+        - contentGrin
     - rid: 9079474795981832314
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -708,7 +851,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - blankSpeak
+        - shock
     - rid: 9079474795981832323
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1082,7 +1225,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - lookAwaySad
+        - blank
     - rid: 9079474795981832363
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

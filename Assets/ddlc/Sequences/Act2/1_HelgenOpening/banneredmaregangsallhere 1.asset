@@ -48,10 +48,12 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: Um, I wasn't doing anything strange either, I just got ready for bed,
       went to sleep, and woke up in Farengar's room.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552507006
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Sayori?
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552507007
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Uh... I don't <i>think</i> I did anything weird either, I just woke up
       in the Temple of Kenny.
@@ -391,13 +393,16 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Probably because, oh I don't know, we don't know what's happening and
       we're scared!
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552507008
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: I'm just trying to help-
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552507009
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Yeah, well, you should've-
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552507010
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: SHUT <NoiseText=3,1>UP</NoiseText>, NATSUKI!
     ScreenActions:
@@ -521,9 +526,11 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: 'Because, Natsuki: we''re all scared.'
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552507011
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: I don't have the right to judge you good or bad, we're all in this together.
+    dialog: I don't have the right to judge you as good or bad, 'cause we're all
+      in this together.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Hey, you wanna read some-
@@ -593,7 +600,8 @@ MonoBehaviour:
     - rid: 9079474820206559350
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: I've got this big, dumb hammer.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552507012
   - speaker: {fileID: 0}
     dialog: How did I not notice her hammer? It's taller than her!
     ScreenActions: []
@@ -655,7 +663,7 @@ MonoBehaviour:
     dialog: Well, Yuri, how does it feel to use magic?
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: Like the very essence of aetherius is coursing through me...
+    dialog: Like the very essence of Aetherius is coursing through me...
     ScreenActions:
     - rid: 9079474820206559355
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
@@ -1144,7 +1152,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 5eb94b297ca7f9f42a8b9306790476d3, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: b0c4f5a3018ea0b4baec67472e0f1b2a
@@ -1155,6 +1162,61 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1790118673552507006
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitiveSpeak
+    - rid: 1790118673552507007
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
+    - rid: 1790118673552507008
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - closedEyeFrustratedSpeak
+    - rid: 1790118673552507009
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grimace
+    - rid: 1790118673552507010
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grumpySpeak2
+    - rid: 1790118673552507011
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - lookAwaySad
+    - rid: 1790118673552507012
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
     - rid: 9079474820206559285
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1162,7 +1224,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - closeEyeFrown
+        - inquisitive
     - rid: 9079474820206559286
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

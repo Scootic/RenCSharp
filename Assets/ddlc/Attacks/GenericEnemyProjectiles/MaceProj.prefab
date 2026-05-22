@@ -98,6 +98,10 @@ MonoBehaviour:
   despawnType:
     rid: 268099760321986602
   updateTypes: []
+  customUpdateWhileInactive: 1
+  customUpdateWhileActive: 1
+  movementWhileInactive: 1
+  movementWhileActive: 1
   damageOverTime: 0
   destroyOnHit: 0
   baseDamage: 4
@@ -119,7 +123,7 @@ MonoBehaviour:
     - rid: 268099759930081404
       type: {class: Bounce_Projectile_OnHitEffect, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
-        hitcooldown: 0.2
+        hitcooldown: 0.15
         projectileTransform: {fileID: 2711639654553654952}
         projectileRigidbody: {fileID: -2506182205116807624}
         projectile: {fileID: 6086333736105796336}

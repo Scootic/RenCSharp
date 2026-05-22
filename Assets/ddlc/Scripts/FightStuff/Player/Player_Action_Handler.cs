@@ -36,6 +36,10 @@ namespace RenCSharp.Combat.Player
         public void StartFight()
         {
             curAbility = null;
+            foreach (Player_Action pa in playerActions)
+            {
+                pa.gameObject.SetActive(false);
+            }
         }
 
         public void EndFight()
@@ -55,7 +59,7 @@ namespace RenCSharp.Combat.Player
 
         private void ScrollThroughActions(Vector2 guh)
         {
-            if (flickThroughMenu == true || !curAction.gameObject.activeInHierarchy) return;
+            if (flickThroughMenu || !curAction.gameObject.activeInHierarchy) return;
             flickThroughMenu = true;
             StartCoroutine(FlickThroughMenu());     
             //we don' care 'bout y tf
@@ -80,6 +84,7 @@ namespace RenCSharp.Combat.Player
         private void LockInAction()
         {
             lockedIn = true;
+            
             Player_Input.Movement -= ScrollThroughActions;
             Player_Input.Attack -= LockInAction;
         }

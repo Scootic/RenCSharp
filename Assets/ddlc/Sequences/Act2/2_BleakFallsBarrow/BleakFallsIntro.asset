@@ -275,9 +275,11 @@ MonoBehaviour:
       and-
     ScreenActions:
     - rid: 9079474842872840296
+    - rid: 1790118673552507013
   - speaker: {fileID: 0}
     dialog: Tango down.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118673552507014
   - speaker: {fileID: 0}
     dialog: Stealth archer wins again!
     ScreenActions: []
@@ -540,7 +542,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: e63c920dcb3d6a54f829c47b17a5e80a, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 5eb94b297ca7f9f42a8b9306790476d3
@@ -551,6 +552,26 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1790118673552507013
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 0870b8a3e6ad3fb4e81793692c20e863, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 1790118673552507014
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: a9cf81a1e296f0341b286752e451c7ad, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+        baseVolume: 1
     - rid: 9079474820206559450
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -787,6 +808,7 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+        baseVolume: 1
     - rid: 9079474842872840259
       type: {class: Stop_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -801,6 +823,7 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+        baseVolume: 1
     - rid: 9079474842872840261
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -810,6 +833,7 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+        baseVolume: 1
     - rid: 9079474842872840262
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:

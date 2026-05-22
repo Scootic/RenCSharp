@@ -95,6 +95,11 @@ namespace RenCSharp.Combat.Player
             if (flickThrough) return;
             flickThrough = true;
             StartCoroutine(FlickThrough());
+            if (curAbilityIndex < 0 || curAbilityIndex >= abilitySpriters.Length) 
+            {
+                Debug.LogWarning("Player had a really fucked up ability index, setting it back to 0.");
+                curAbilityIndex = 0;
+            }
             abilitySpriters[curAbilityIndex].Images[0].sprite = ogSprites[curAbilityIndex];
 
             if (v2.x >= 1)

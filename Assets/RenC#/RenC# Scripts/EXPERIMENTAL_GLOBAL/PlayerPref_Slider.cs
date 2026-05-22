@@ -21,7 +21,7 @@ namespace EXPERIMENTAL
         public void UpdatePref(float f)
         {
             PlayerPrefs.SetFloat(playerPrefRef, f);
-            Event_Bus.TryFireFloatEvent(UpdateReferenceActionName, f);
+            Event_Bus.TryFireFloatEvent(UpdateReferenceActionName, f); //tries to fire a relevant event to immediately change a value to affect gameplay
         }
     }
 }

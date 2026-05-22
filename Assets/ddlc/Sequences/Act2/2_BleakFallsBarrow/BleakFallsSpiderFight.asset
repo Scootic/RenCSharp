@@ -24,6 +24,7 @@ MonoBehaviour:
     - rid: 9079474864314122436
     - rid: 9079475137338146920
     - rid: 9079475137338146921
+    - rid: 1790118673552507044
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -48,6 +49,7 @@ MonoBehaviour:
     dialog: 
     ScreenActions:
     - rid: 9079474864314122419
+    - rid: 1790118673552507017
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -55,7 +57,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 8fa5b0e467aa8ea4291edf16363b49f5, type: 2}
-    requireCondition: 1
     conditions:
     - flagToCheck: garbage
       operation: 0
@@ -64,7 +65,6 @@ MonoBehaviour:
       bitWise: 0
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: f1b267c24069b814db2d0293e835e647, type: 2}
-    requireCondition: 1
     conditions:
     - flagToCheck: garbage
       operation: 0
@@ -80,6 +80,20 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1790118673552507017
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: CombatTut
+        flagValue: 2
+        increment: 0
+        persistent: 1
+    - rid: 1790118673552507044
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: SayoriHEAL
+        flagValue: 10
+        increment: 0
+        persistent: 0
     - rid: 9079474864314122410
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -163,7 +177,7 @@ MonoBehaviour:
           - flagToCheck: CombatTut
             operation: 2
             desiredValue: 2
-            persistent: 0
+            persistent: 1
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
@@ -178,7 +192,7 @@ MonoBehaviour:
           - flagToCheck: CombatTut
             operation: 2
             desiredValue: 2
-            persistent: 0
+            persistent: 1
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
@@ -194,7 +208,7 @@ MonoBehaviour:
           - flagToCheck: CombatTut
             operation: 2
             desiredValue: 2
-            persistent: 0
+            persistent: 1
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
