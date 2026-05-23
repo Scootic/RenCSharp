@@ -25,10 +25,10 @@ namespace RenCSharp.Combat.Player
             if (!validToFire || PlayerTurn) return;
             Debug.Log("Sayori Heal Fired!");
             skill = (float)Flag_Manager.GetFlag(associatedTag);
-            if(Object_Factory.TryGetObject("PlayerObject", out GameObject go))
+            if(Object_Factory.TryGetObject("PlayerObject", out GameObject go) && go.TryGetComponent(out Player_Object po)) //weird that we need both?
             {
                 healing = true;
-                lambDelegate = delegate { Panic(go.GetComponent<Player_Object>()); };
+                lambDelegate = delegate { Panic(po); };
                 Player_Object.BeforeDisablePlayerAction += lambDelegate;
                 curHeal = Object_Factory.SpawnObject(healFab.gameObject, "HealAnim", go.transform).GetComponent<Animated_Image_Handler>();
                 float SPF = healAnimationDuration / (float)healSprites.Length;

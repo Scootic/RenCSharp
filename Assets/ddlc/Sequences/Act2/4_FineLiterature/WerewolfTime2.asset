@@ -274,6 +274,7 @@ MonoBehaviour:
       beast form.
     ScreenActions:
     - rid: 4351268418678685863
+    - rid: 1790118692274307150
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -331,7 +332,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: f10056d1926788f49b290f48b18db2bf, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 058eb17121b43c74ea3694d958eea841
@@ -342,6 +342,40 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1790118692274307148
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerAbilities
+        flagValue: 8
+        increment: 0
+        persistent: 0
+    - rid: 1790118692274307149
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 35
+        increment: 0
+        persistent: 0
+    - rid: 1790118692274307150
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 300, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 0
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 107c6035021c99f42be36c66b334c35b
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
     - rid: 4351268418678685787
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -540,7 +574,7 @@ MonoBehaviour:
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         flagID: PlayerAbilities
-        flagValue: 4
+        flagValue: 8
         increment: 0
         persistent: 0
     - rid: 4351268418678685812
@@ -559,6 +593,8 @@ MonoBehaviour:
               In response, Natsuki draws her enhanced warhammer.
             ScreenActions:
             - rid: 4351268418678685813
+            - rid: 1790118692274307148
+            - rid: 1790118692274307149
     - rid: 4351268418678685813
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:

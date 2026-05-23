@@ -20,6 +20,10 @@ namespace RenCSharp.Combat.Player
         [Range(0,1)]private float preResistance = 0, postResistance = 0;
 
         public static Action BeforeDisablePlayerAction;
+        /// <summary>
+        /// only happens on valid hit
+        /// </summary>
+        public Action CustomOnHitStuff; 
         public float CurrentHealth => curHealth;
         public float Resistance() => postResistance;
         public Vector3 GetPosition => transform.position;
@@ -86,10 +90,13 @@ namespace RenCSharp.Combat.Player
         {
             float f = (float)floatarg;
             bool b = (bool)boolarg;
-            if (invincible) return; //don't take damage if invincible. go figure!
+            if (invincible && f > 0) return; //don't take damage if invincible. go figure!
 
-            curHealth -= Mathf.Max(0.01f, f - (f * postResistance)); //makes sure that the player can't take negative damage, or just 0. cause that would be dumb
-            //curHealth = Mathf.Max(curHealth, 0);
+            CustomOnHitStuff?.Invoke();
+
+            if (f <= 0) curHealth -= f; //don't resist negative values, they heal you
+            else curHealth -= Mathf.Max(0.01f, f - (f * postResistance));
+
             curHealth = Mathf.Min(curHealth, maxHealth);
 
             if(debug)Debug.Log($"Damage Taken by {gameObject.name}: " + f);
@@ -117,7 +124,7 @@ namespace RenCSharp.Combat.Player
                 StartCoroutine(HurtSoundHandle());
             }
 
-            if (!b && !invincible && f > 0) //only worry about IFrames if the damage is bulk, not over time
+            if (!b && !invincible && f >= 0) //only worry about IFrames if the damage is bulk, not over time
             {
                 invincible = true;
                 StartCoroutine(IFrames());
@@ -129,7 +136,5 @@ namespace RenCSharp.Combat.Player
             yield return new WaitForSeconds(invincibilitySeconds - 0.01f);
             hurtSoundGood = true;
         }
-
-        
     }
 }

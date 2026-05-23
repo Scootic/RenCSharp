@@ -49,9 +49,11 @@ MonoBehaviour:
     - rid: 4351267964947792109
     - rid: 268099795830177891
     - rid: 268099819477139522
+    - rid: 1790118692274307135
   - speaker: {fileID: 11400000, guid: e683e49275a2e914cb83757b791de99d, type: 2}
     dialog: Know that you have set in motion a chain of events that cannot be stopped.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118692274307136
   - speaker: {fileID: 11400000, guid: e683e49275a2e914cb83757b791de99d, type: 2}
     dialog: Judgement has not been passed, as you had no way of knowing.
     ScreenActions: []
@@ -175,7 +177,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: d6c82b4bc661f83458dfe94d6a31dddc, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: e94726fdebb9f5545bc166c474d0ce4f
@@ -246,6 +247,22 @@ MonoBehaviour:
         stopOnScreenProgress: 0
         loopDuration: 1
         baseVolume: 1
+    - rid: 1790118692274307135
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shock
+    - rid: 1790118692274307136
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - surprise
     - rid: 4351267964947792069
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -266,7 +283,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyUp
         - skyUp
-        - fear
+        - terror
     - rid: 4351267964947792103
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -296,7 +313,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyUp
-        - scowl
+        - concernSpeak
     - rid: 4351267964947792106
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -304,7 +321,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - grumpySpeak
+        - lookAwaySad
     - rid: 4351267964947792108
       type: {class: Group_Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:

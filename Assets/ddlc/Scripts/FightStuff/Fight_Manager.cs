@@ -94,6 +94,9 @@ namespace RenCSharp.Combat
             playerTurn = false;
             BulkSetUp();
             combatTextbox.text = "";
+            Vector3 locPos = playerHealthBarHolder.localPosition;
+            locPos = new Vector3(locPos.x, playerHealthBarHiddenYPos, locPos.z);
+            playerHealthBarHolder.localPosition = locPos;
             StartCoroutine(RunThroughAttack(ea));
         }
 

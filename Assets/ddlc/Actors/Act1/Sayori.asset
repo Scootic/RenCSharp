@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actorName: Sayori
   actorPrefab: {fileID: 6412444810326792212, guid: dd6942293de0ed34ca69e9ac071c4da5, type: 3}
-  actorFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  textboxColor: {r: 0.23113209, g: 0.7574913, b: 1, a: 1}
   visuals:
   - layer:
     - {fileID: -1260515399, guid: 37a31370083f07e45a6e4cf5b6f0ebc1, type: 3}
@@ -84,6 +82,7 @@ MonoBehaviour:
     - {fileID: -1262892486, guid: 553af781e023c704f83dae4da7b71d19, type: 3}
     - {fileID: 949738953, guid: 553af781e023c704f83dae4da7b71d19, type: 3}
     - {fileID: 1847692925, guid: 553af781e023c704f83dae4da7b71d19, type: 3}
+    - {fileID: -19720261, guid: 553af781e023c704f83dae4da7b71d19, type: 3}
     visualIDs:
     - smile
     - surprise
@@ -119,6 +118,7 @@ MonoBehaviour:
     - sick
     - sickSpeak
     - sickSmile
+    - closeEyeSad
   - layer:
     - {fileID: 137044427, guid: 313d71f8e5177bb41b602d0c52cc84bc, type: 3}
     - {fileID: 1838305779, guid: 313d71f8e5177bb41b602d0c52cc84bc, type: 3}
@@ -137,3 +137,6 @@ MonoBehaviour:
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  actorFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  textboxColor: {r: 0.23113209, g: 0.7574913, b: 1, a: 1}
+  textboxMaterial: {fileID: 0}

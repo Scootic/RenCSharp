@@ -47,7 +47,8 @@ MonoBehaviour:
     - rid: 9079474951791575251
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: That's not-
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118692274307130
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: I'm just worried.
     ScreenActions:
@@ -875,7 +876,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: c767094c1756e0c418dfe8263060a244, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 0509fc1364743134c83d8590d8f07a72
@@ -886,6 +886,14 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1790118692274307130
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grumpySpeak
     - rid: 9079474951791575243
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -923,7 +931,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skySmug
-        - lookAwaySad
+        - concernBlush
     - rid: 9079474951791575247
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -955,7 +963,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - lookAwayGrin
+        - grinSweat
     - rid: 9079474951791575251
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -963,7 +971,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - grinSweat
+        - inquisitive
     - rid: 9079474951791575252
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

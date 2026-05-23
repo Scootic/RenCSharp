@@ -1,6 +1,7 @@
 using EXPERIMENTAL;
 using UnityEngine;
 using System;
+using RenCSharp.Combat.Interfaces;
 namespace RenCSharp.Combat.Player
 {
     public class Natsuki_Spin : Player_Ability
@@ -27,8 +28,12 @@ namespace RenCSharp.Combat.Player
                 int value = Flag_Manager.GetFlag(associatedTag);
                 validToFire = false;
                 activeShield = Object_Factory.SpawnObject(hammerFab, "NatsukiShield", go.transform); //will override previous with a new shield???
-                activeShield.GetComponent<Player_Object>().ManualSetHealths(value, value);
+                Player_Object shield = activeShield.GetComponent<Player_Object>();
+                IDamage playerIDamage = go.GetComponent<IDamage>();
+                shield.ManualSetHealths(value, value);
+                shield.CustomOnHitStuff += delegate { playerIDamage?.TakeDamage((object)0f, (object)false); };
                 activeShield.GetComponent<Animated_Image_Handler>().ReceiveAnimationInformation(animationFrames, secondsPerFrame);
+                playerIDamage.TakeDamage((object)0f, (object)false); //make player take 0 damage to give IFrames
                 Audio_Manager.AM.Play2DSFX(spawnShieldSFX, minPitch, maxPitch);
             }
         }

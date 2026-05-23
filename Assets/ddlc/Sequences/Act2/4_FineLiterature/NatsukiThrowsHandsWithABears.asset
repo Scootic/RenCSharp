@@ -310,11 +310,9 @@ MonoBehaviour:
   playerChoices:
   - choiceText: ...
     resultingSequence: {fileID: 11400000, guid: 3a9376497f41f15449f8e77ad844b168, type: 2}
-    requireCondition: 0
     conditions: []
   - choiceText: Use the Soul Gem!
     resultingSequence: {fileID: 11400000, guid: 4bc92839e64ca0746803ae48c34b5895, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 7bfcb920d98da504880811fe169a8626
@@ -587,7 +585,7 @@ MonoBehaviour:
         actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
         visualSpriteIndexes:
         - skyDown
-        - skyUp
+        - skySmug
         - concernSpeak
     - rid: 4351268260154179687
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}

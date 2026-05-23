@@ -317,6 +317,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 268099503569240185
     - rid: 268099795830177893
+    - rid: 1790118692274307151
   - speaker: {fileID: 11400000, guid: 5dd903fc51212df42958a6834f3e050b, type: 2}
     dialog: ... strange.
     ScreenActions: []
@@ -472,7 +473,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 9fd33a504bf292344822ec706a5d3211, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: aacbf707c90f67049aafef5d01b0dbbb
@@ -952,12 +952,12 @@ MonoBehaviour:
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         songAsset:
-          m_AssetGUID: 35cba3ca908d70d48a8a042cf6323f5c
+          m_AssetGUID: d4614ec2fe36af74ba902539659e3adb
           m_SubObjectName: 
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 0
-        fadeTime: 1
+        fadeTime: 2
         setToSameTime: 0
     - rid: 268099503569240174
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
@@ -1382,6 +1382,16 @@ MonoBehaviour:
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 0
+    - rid: 1790118692274307151
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 6256c7959eedf1a4c8d0871c2869f82f, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+        baseVolume: 1
     - rid: 4351268438874521965
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
