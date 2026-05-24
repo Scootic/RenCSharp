@@ -11,10 +11,10 @@ namespace RenCSharp
     {
         [SerializeField] private string flagToCheck;
         [SerializeField, Tooltip("The found flag value is the left side of the operation.")] private ConditionalOperator operation;
-        [SerializeField] private int desiredValue;
-        [SerializeField] private bool persistent;
+        [SerializeField, Tooltip("The right side of the operation.")] private int desiredValue;
+        [SerializeField, Tooltip("Decides which pool of flags to check, true for persistent, false for per save file.")] private bool persistent;
         [Header("BITWISE")]
-        [SerializeField, Tooltip("Decides if you're comparing bits. Only cares about equalling.")] private bool bitWise;
+        [SerializeField, Tooltip("Decides if you're comparing bits. Only supports the equals and notequals operators.")] private bool bitWise;
 
         public bool ConditionMet()
         {
@@ -53,10 +53,10 @@ namespace RenCSharp
                         if ((foundVal & desiredValue) == desiredValue) met = true;
                         break;
                     case ConditionalOperator.NotEqual:
-                        if ((foundVal & desiredValue) != desiredValue) met = true;
+                        if ((foundVal & desiredValue) != desiredValue) met = true; 
                         break;
                     default:
-                        Debug.LogWarning("Only Equals and NotEqual operations are supported for bitwise flag conditions");
+                        Debug.LogWarning("Only Equals and NotEqual operations are supported for bitwise flag conditions, you colossal dingleberry. Returning false.");
                         break;
 
                 }
