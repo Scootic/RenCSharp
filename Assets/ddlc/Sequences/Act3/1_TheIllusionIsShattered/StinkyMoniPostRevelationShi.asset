@@ -82,7 +82,8 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (I, uh... didn't know you felt that way...)
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118740072857611
   - speaker: {fileID: 11400000, guid: 99c1c9ab1bd810549a65874b102351c3, type: 2}
     dialog: It was at the back of my head for a while now, but, at this point, you've
       gone too far.
@@ -103,7 +104,7 @@ MonoBehaviour:
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: ca10e58bc36035a438174734a17c9e75, type: 2}
     conditions: []
   myself:
     m_AssetGUID: cc4b8d863916af44bbf7e86fe8c59e4f
@@ -140,7 +141,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - pitySmile
+        - sternSweat
     - rid: 1790118714061095217
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -148,7 +149,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - pout
+        - closeEyeFrown
     - rid: 1790118714061095218
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -156,7 +157,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - inquisitive
+        - pity
     - rid: 1790118714061095219
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -164,7 +165,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - blank
+        - sternSweat
     - rid: 1790118714061095220
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -180,7 +181,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - sternSweat
+        - pity
     - rid: 1790118714061095222
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -188,7 +189,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - smileSweat
+        - closeEyeGrinSweat
     - rid: 1790118714061095223
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -196,7 +197,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - inquisitive
+        - pitySmile
     - rid: 1790118714061095224
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -204,7 +205,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - sternSweat
+        - smileSweat
     - rid: 1790118714061095225
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -236,3 +237,11 @@ MonoBehaviour:
         - 
         - 
         - sternSweat
+    - rid: 1790118740072857611
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - pity
