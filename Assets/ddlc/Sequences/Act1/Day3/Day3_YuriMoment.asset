@@ -497,7 +497,7 @@ MonoBehaviour:
     dialog: Alright, you wanna head out?
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: Yes, I'll see you tomorrow, right {mc}?
+    dialog: Yes. I'll see you tomorrow, right {mc}?
     ScreenActions:
     - rid: 9079475098267418778
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
@@ -524,7 +524,7 @@ MonoBehaviour:
     dialog: And I thought things were complicated just after we shared poems...
     ScreenActions: []
   - speaker: {fileID: 0}
-    dialog: How naive I was.
+    dialog: <i>How naive I was</i>...
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: ...
@@ -536,7 +536,7 @@ MonoBehaviour:
     dialog: Since <i>they</i> are using their poems to reveal their hearts...
     ScreenActions: []
   - speaker: {fileID: 0}
-    dialog: I'll try and do the same...
+    dialog: I'll try to do the same...
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
@@ -544,7 +544,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 0cd477df3c89bb542b484566e2d022a5, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 6278996368ca862489c89434eb641423
@@ -856,3 +855,4 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+        baseVolume: 1

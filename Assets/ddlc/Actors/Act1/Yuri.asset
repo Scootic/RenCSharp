@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actorName: Yuri
   actorPrefab: {fileID: 3981740039383699421, guid: ca812a9761d97a74297eeeb15cb53239, type: 3}
-  actorFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  textboxColor: {r: 0.4440464, g: 0.23064259, b: 0.6886792, a: 1}
   visuals:
   - layer:
     - {fileID: -1919632906, guid: d2434300e8636d148a2edaa8abc2f731, type: 3}
@@ -95,6 +93,7 @@ MonoBehaviour:
     - {fileID: -2099367942, guid: 28ffcc0687d763a4ca8c87ae756845e5, type: 3}
     - {fileID: -84337958, guid: 28ffcc0687d763a4ca8c87ae756845e5, type: 3}
     - {fileID: -867451651, guid: 28ffcc0687d763a4ca8c87ae756845e5, type: 3}
+    - {fileID: -384144114, guid: 28ffcc0687d763a4ca8c87ae756845e5, type: 3}
     visualIDs:
     - smile
     - smileSpeak
@@ -139,6 +138,7 @@ MonoBehaviour:
     - weirdRoute
     - drool
     - sadcry
+    - blank
   - layer:
     - {fileID: -2064458901, guid: 666c47b9e4b2a314eb3a92f5be41e374, type: 3}
     - {fileID: -1396551678, guid: 666c47b9e4b2a314eb3a92f5be41e374, type: 3}
@@ -155,3 +155,6 @@ MonoBehaviour:
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  actorFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  textboxColor: {r: 0.4440464, g: 0.23064259, b: 0.6886792, a: 1}
+  textboxMaterial: {fileID: 0}
