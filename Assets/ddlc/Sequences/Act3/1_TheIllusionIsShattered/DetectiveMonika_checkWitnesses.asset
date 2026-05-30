@@ -126,7 +126,8 @@ MonoBehaviour:
     - rid: 1790118809755189429
   - speaker: {fileID: 11400000, guid: 22aab3b38c65db143b4c5ee394c09b04, type: 2}
     dialog: No, I was much more focused on getting my well-earned rest for the night.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118857467756600
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (So all we know about our prime suspect is that she is a Dunmer woman
       who recently left Whiterun...)
@@ -579,3 +580,11 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 0.5
+    - rid: 1790118857467756600
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - pity

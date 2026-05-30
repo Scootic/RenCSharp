@@ -140,7 +140,8 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: 'We''re still left with two questions: who this Dunmer woman, and what
       did Anoriath find on his hunt?'
-    ScreenActions: []
+    ScreenActions:
+    - rid: 1790118857467756603
   - speaker: {fileID: 11400000, guid: 89f7d0b97106b6448939eb57dd9aa235, type: 2}
     dialog: Do you think we should investigate the area Elrindir mentioned, southwest
       of Riverwood?
@@ -162,7 +163,7 @@ MonoBehaviour:
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 34d59dded10f83d41876026e4bef2c81, type: 2}
     conditions: []
   myself:
     m_AssetGUID: c155314a660c4654aa5258dd188d397e
@@ -519,3 +520,11 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 89f7d0b97106b6448939eb57dd9aa235, type: 2}
         fadeTime: 0.5
+    - rid: 1790118857467756603
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - sternSpeak
