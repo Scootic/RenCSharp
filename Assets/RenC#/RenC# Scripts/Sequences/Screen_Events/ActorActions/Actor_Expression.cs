@@ -1,6 +1,7 @@
 using UnityEngine;
 using RenCSharp.Actors;
 using System;
+using System.Runtime.Serialization;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -9,9 +10,10 @@ namespace RenCSharp.Sequences
     [Serializable]
     public class Actor_Expression : Screen_Event
     {
-        [SerializeField] private Actor actorToAlter;
+        [SerializeField, HideInInspector]private Actor actorToAlter;
         [SerializeField,Tooltip("Reference the strings you put in the actor SO. Empty to skip layer." +
-            "Type in the light gray boxes for auto-fill.")] private string[] visualSpriteIndexes = new string[1];
+            "Type in the light gray boxes for auto-fill."), HideInInspector] private string[] visualSpriteIndexes = new string[1];
+
         public override void DoEvent()
         {
             if (Object_Factory.TryGetObject(actorToAlter.name, out GameObject spawnt))
@@ -29,6 +31,13 @@ namespace RenCSharp.Sequences
         public override string ToString()
         {
             return "Actor/Change Actor Expression";
+        }
+
+        [OnSerialized] private void OnValidateActor() //automatically sizes your list to be the size your actor needs.
+        {
+            if (actorToAlter == null) return;
+
+            visualSpriteIndexes = new string[actorToAlter.Visuals.Length];
         }
     }
 }

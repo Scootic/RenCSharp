@@ -12,10 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
   m_Name: TheYuriBandit
   m_EditorClassIdentifier: 
-  scriptedAttacks: []
-  scriptedFlavorTexts: []
-  randomAttacks: []
-  randomFlavorTexts: []
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 49838c9fd25d70a40ba4a7563ed6234e, type: 2}
+  - {fileID: 11400000, guid: 43b36ad354d91fa40b4f7b51ab903e40, type: 2}
+  - {fileID: 11400000, guid: 5b8929e6d2fb11a4083046e6c2558f39, type: 2}
+  scriptedFlavorTexts:
+  - The bandit fires her bow at Yuri.
+  - The bandit loads up three arrows to fire at Yuri.
+  - The bandit fires arrows at Yuri, who has found her ankle stuck in-between some
+    rocks.
+  randomAttacks:
+  - {fileID: 11400000, guid: 5f90375df0f28c042bc93a924550e369, type: 2}
+  - {fileID: 11400000, guid: a88292a9726d0a24690674c33d7cd787, type: 2}
+  randomFlavorTexts:
+  - The bandit fires arrows at Yuri. Again.
+  - The bandit fires a bunch of arrows at Yuri. Wow.
   maxHealth: 35
   visualInformation:
   - {fileID: 21300000, guid: c6f5bb0efb73dd34cb4508235fcc89c3, type: 3}

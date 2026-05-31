@@ -12,11 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
   m_Name: Weylin
   m_EditorClassIdentifier: 
-  scriptedAttacks: []
-  scriptedFlavorTexts: []
-  randomAttacks: []
-  randomFlavorTexts: []
-  maxHealth: 75
+  scriptedAttacks:
+  - {fileID: 11400000, guid: e2fb324865b8eb84a8dd83a725175f8f, type: 2}
+  - {fileID: 11400000, guid: f42cbf272d0110746a35dcbe564b0761, type: 2}
+  - {fileID: 11400000, guid: 11b6ed766680cb946b27fe26539f6a76, type: 2}
+  - {fileID: 11400000, guid: 70d614841e2832b4b93ae28bcdb42993, type: 2}
+  scriptedFlavorTexts:
+  - Weylin slashes wildly at Yuri with his dagger.
+  - Weylin tries to stab down at Yuri.
+  - Weylin slashes wildly at Yuri once more.
+  - Weylin tries to stab at Yuri's ankles and from above.
+  randomAttacks:
+  - {fileID: 11400000, guid: c74eb1079eae9ef408008475ab54f76f, type: 2}
+  - {fileID: 11400000, guid: e2fb324865b8eb84a8dd83a725175f8f, type: 2}
+  - {fileID: 11400000, guid: 70d614841e2832b4b93ae28bcdb42993, type: 2}
+  randomFlavorTexts:
+  - Weylin attempts to restrain Yuri while stabbing her.
+  - Weylin slashes wildly at Yuri with his dagger. Again.
+  - Weylin tries to stab at Yuri's ankles and from above. Again.
+  maxHealth: 60
   visualInformation:
   - {fileID: 21300000, guid: 7670faf4b78e94342994b5fb0f45110e, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: 3474d1de875dc0a408fabd5060391b0e, type: 3}

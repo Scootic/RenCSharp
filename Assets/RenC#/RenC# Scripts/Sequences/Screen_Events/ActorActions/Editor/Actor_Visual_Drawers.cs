@@ -31,12 +31,28 @@ namespace RenCSharp.Sequences
             EditorGUI.PropertyField(spawnRect, spawnOffset, new GUIContent("SpawnOffset"), true);
             EditorGUI.PropertyField(fadeInRect, fadeInTime, new GUIContent("FadeInTime"), true);
             EditorGUI.PropertyField(sprinRect, sprindexArray, new GUIContent("Visual Sprite Indexes"), true);
+
+            EditorGUI.BeginChangeCheck();
              //Debug.Log("Assigned actor: " + assignedActor.ActorName);
             if (assignedActor != null)
             {
+                if (sprindexArray.arraySize != assignedActor.Visuals.Length)
+                {
+                    int oldSize = sprindexArray.arraySize;
+                    sprindexArray.arraySize = assignedActor.Visuals.Length;
+                    if (oldSize < sprindexArray.arraySize)
+                    {
+                        int i = sprindexArray.arraySize - 1;
+                        while (i >= oldSize)
+                        {
+                            sprindexArray.GetArrayElementAtIndex(i).stringValue = "";
+                            i--;
+                        }
+                    }
+                }
+
                 for (int i = 0; i < sprindexArray.arraySize; i++)
                 {
-                    if (i >= assignedActor.Visuals.Length) break;
                     string[] src = assignedActor.Visuals[i].visualIDs.ToArray();
                     Rect justAfterArray = new Rect(sprinRect.x, sprinRect.y + (EditorGUIUtility.singleLineHeight * (i + 1) + EditorGUIUtility.standardVerticalSpacing * (i + 1)), newR.width, EditorGUIUtility.singleLineHeight);
                     //string log = "Exising IDs: ";
@@ -48,8 +64,8 @@ namespace RenCSharp.Sequences
                     sprindexArray.GetArrayElementAtIndex(i).stringValue = 
                         EditorExtend.TextFieldAutoComplete(justAfterArray, sprindexArray.GetArrayElementAtIndex(i).stringValue, src, 10);
                 }
-            } 
-            
+            }
+            EditorGUI.EndChangeCheck();
             EditorGUI.EndProperty();
         }
 
@@ -80,11 +96,28 @@ namespace RenCSharp.Sequences
             EditorGUI.PropertyField(actRect, actorProperty, new GUIContent("Actor to Alter"), true);
             EditorGUI.PropertyField(sprinRect, sprindexArray, new GUIContent("Visual Sprite Indexes"), true);
 
+            EditorGUI.BeginChangeCheck();
+
             if (actorToAlter != null)
             {
+                if (sprindexArray.arraySize != actorToAlter.Visuals.Length)
+                {
+                    int oldSize = sprindexArray.arraySize;
+                    sprindexArray.arraySize = actorToAlter.Visuals.Length;
+                    if (oldSize < sprindexArray.arraySize)
+                    {
+                        int i = sprindexArray.arraySize - 1;
+                        while (i >= oldSize)
+                        {
+                            sprindexArray.GetArrayElementAtIndex(i).stringValue = ""; //clear out newly generated values to not be dupes (which is bad!)
+                            i--;
+                        }
+                    }
+                }
+
                 for (int i = 0; i < sprindexArray.arraySize; i++)
                 {
-                    if (i >= actorToAlter.Visuals.Length) break; //don't do shit if there's no visual there
+                    //if (i >= actorToAlter.Visuals.Length) break; //don't do shit if there's no visual there
                     string[] src = actorToAlter.Visuals[i].visualIDs.ToArray();
                     Rect justAfterArray = new Rect(sprinRect.x, sprinRect.y + (EditorGUIUtility.singleLineHeight * (i + 1) + EditorGUIUtility.standardVerticalSpacing * (i + 1)), newR.width, EditorGUIUtility.singleLineHeight);
                     //string log = "Exising IDs: ";
@@ -97,6 +130,8 @@ namespace RenCSharp.Sequences
                         EditorExtend.TextFieldAutoComplete(justAfterArray, sprindexArray.GetArrayElementAtIndex(i).stringValue, src, 10);
                 }
             }
+
+            EditorGUI.EndChangeCheck();
 
             EditorGUI.EndProperty();
         }
