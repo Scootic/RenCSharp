@@ -14,7 +14,7 @@ namespace RenCSharp.Sequences
             Rect dDownRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
             DropDownMenu(dDownRect, property);
             Rect newR = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, position.height);
-            EditorGUI.PropertyField(newR, property, new GUIContent(property.type + " DON'T OPEN ME"), true);
+            EditorGUI.PropertyField(newR, property, new GUIContent("Spawn Actor"), true);
             
             SerializedProperty spawnOffset = property.FindPropertyRelative("spawnOffset");
             SerializedProperty fadeInTime = property.FindPropertyRelative("fadeInTime");
@@ -53,6 +53,7 @@ namespace RenCSharp.Sequences
 
                 for (int i = 0; i < sprindexArray.arraySize; i++)
                 {
+                    string stringAtI = sprindexArray.GetArrayElementAtIndex(i).stringValue;
                     string[] src = assignedActor.Visuals[i].visualIDs.ToArray();
                     Rect justAfterArray = new Rect(sprinRect.x, sprinRect.y + (EditorGUIUtility.singleLineHeight * (i + 1) + EditorGUIUtility.standardVerticalSpacing * (i + 1)), newR.width, EditorGUIUtility.singleLineHeight);
                     //string log = "Exising IDs: ";
@@ -62,7 +63,7 @@ namespace RenCSharp.Sequences
                     //}
                     //Debug.Log(log);
                     sprindexArray.GetArrayElementAtIndex(i).stringValue = 
-                        EditorExtend.TextFieldAutoComplete(justAfterArray, sprindexArray.GetArrayElementAtIndex(i).stringValue, src, 10);
+                        EditorExtend.TextFieldAutoComplete(justAfterArray, stringAtI, src, 10);
                 }
             }
             EditorGUI.EndChangeCheck();
@@ -84,7 +85,7 @@ namespace RenCSharp.Sequences
             Rect dDownRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
             DropDownMenu(dDownRect, property);
             Rect newR = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, position.height);
-            EditorGUI.PropertyField(newR, property, new GUIContent(property.type + "DONT OPEN ME"), true);
+            EditorGUI.PropertyField(newR, property, new GUIContent("Change Actor Expression"), true);
 
             SerializedProperty actorProperty = property.FindPropertyRelative("actorToAlter");
             SerializedProperty sprindexArray = property.FindPropertyRelative("visualSpriteIndexes");
@@ -117,17 +118,12 @@ namespace RenCSharp.Sequences
 
                 for (int i = 0; i < sprindexArray.arraySize; i++)
                 {
-                    //if (i >= actorToAlter.Visuals.Length) break; //don't do shit if there's no visual there
+                    string stringAtI = sprindexArray.GetArrayElementAtIndex(i).stringValue;
                     string[] src = actorToAlter.Visuals[i].visualIDs.ToArray();
-                    Rect justAfterArray = new Rect(sprinRect.x, sprinRect.y + (EditorGUIUtility.singleLineHeight * (i + 1) + EditorGUIUtility.standardVerticalSpacing * (i + 1)), newR.width, EditorGUIUtility.singleLineHeight);
-                    //string log = "Exising IDs: ";
-                    //foreach (string s in src) 
-                    //{
-                    //    log += s + ", ";
-                    //}
-                    //Debug.Log(log);
+                    Rect justAfterArray = new Rect(sprinRect.x, sprinRect.y + (EditorGUIUtility.singleLineHeight * (i + 1) + 
+                        EditorGUIUtility.standardVerticalSpacing * (i + 1)), newR.width, EditorGUIUtility.singleLineHeight);
                     sprindexArray.GetArrayElementAtIndex(i).stringValue =
-                        EditorExtend.TextFieldAutoComplete(justAfterArray, sprindexArray.GetArrayElementAtIndex(i).stringValue, src, 10);
+                        EditorExtend.TextFieldAutoComplete(justAfterArray, stringAtI, src, 10);
                 }
             }
 

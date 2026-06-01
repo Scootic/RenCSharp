@@ -12,29 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
   m_Name: D_WeylinDaggerStab
   m_EditorClassIdentifier: 
-  arenaDimensions: {x: 500, y: 500}
+  arenaDimensions: {x: 550, y: 550}
   controlType:
     rid: 1790118876029648983
-  attackDuration: 12
-  secondsPerProjectileSpawn: 0.75
+  attackDuration: 13
+  secondsPerProjectileSpawn: 1.2
   projectilesPerSpawn: 2
   projectilesThatSpawn:
   - {fileID: 8204135625514222407, guid: b313d58a951b20a46a3320b9f125341a, type: 3}
   - {fileID: 0}
   spawnPoints:
-  - {x: 0, y: 400, z: 0}
-  - {x: 150, y: 400, z: 0}
-  - {x: -400, y: 150, z: 0}
-  - {x: 400, y: -150, z: 0}
-  - {x: 300, y: 300, z: 0}
-  - {x: -300, y: 300, z: 0}
-  - {x: 400, y: 0, z: 0}
-  - {x: 400, y: -150, z: 0}
-  - {x: 150, y: -400, z: 0}
-  - {x: -150, y: -400, z: 0}
-  - {x: 0, y: 400, z: 0}
-  - {x: -300, y: -300, z: 0}
-  - {x: -400, y: 0, z: 0}
+  - {x: 0, y: 450, z: 0}
+  - {x: 150, y: 450, z: 0}
+  - {x: -450, y: 150, z: 0}
+  - {x: 450, y: -150, z: 0}
+  - {x: 400, y: 400, z: 0}
+  - {x: -400, y: 400, z: 0}
+  - {x: 450, y: 0, z: 0}
+  - {x: 450, y: -150, z: 0}
+  - {x: 150, y: -450, z: 0}
+  - {x: -150, y: -450, z: 0}
+  - {x: 0, y: 450, z: 0}
+  - {x: -400, y: -400, z: 0}
+  - {x: -450, y: 0, z: 0}
   - {x: -400, y: -150, z: 0}
   initialDirections:
   - {x: 0, y: -1, z: 0}
@@ -52,8 +52,8 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0}
   - {x: 1, y: 0, z: 0}
   indexes: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  projectileSpawnPositionMethod: 1
-  projectileIndexMethod: 1
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
   references:
     version: 2
     RefIds:
@@ -66,12 +66,30 @@ MonoBehaviour:
           - serializedVersion: 3
             time: 0.0041656494
             value: 0.0023498535
-            inSlope: 5.775083
-            outSlope: 5.775083
+            inSlope: 28.7177
+            outSlope: 28.7177
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
-            outWeight: 0.02145919
+            outWeight: 0.0042918078
+          - serializedVersion: 3
+            time: 0.11398773
+            value: 0.99561787
+            inSlope: 0.010484483
+            outSlope: 0.010484483
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.4124007
+          - serializedVersion: 3
+            time: 0.68702996
+            value: 0.77889293
+            inSlope: -1.0738964
+            outSlope: -1.0738964
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
           - serializedVersion: 3
             time: 1
             value: 0
@@ -85,4 +103,4 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         distanceFromCenter: 250
-        timeToDodge: 0.5
+        timeToDodge: 0.8

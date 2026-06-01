@@ -16,22 +16,22 @@ MonoBehaviour:
   controlType:
     rid: 1790118900062748676
   attackDuration: 11
-  secondsPerProjectileSpawn: 0.5
+  secondsPerProjectileSpawn: 0.8
   projectilesPerSpawn: 1
   projectilesThatSpawn:
   - {fileID: 8204135625514222407, guid: b313d58a951b20a46a3320b9f125341a, type: 3}
   spawnPoints:
-  - {x: -400, y: -175, z: 0}
-  - {x: 400, y: -175, z: 0}
-  - {x: -250, y: 300, z: 0}
-  - {x: -125, y: 300, z: 0}
-  - {x: 0, y: 300, z: 0}
-  - {x: 125, y: 300, z: 0}
-  - {x: 250, y: 300, z: 0}
-  - {x: -300, y: 300, z: 0}
-  - {x: 300, y: 300, z: 0}
-  - {x: 75, y: 300, z: 0}
-  - {x: -75, y: 300, z: 0}
+  - {x: -500, y: -175, z: 0}
+  - {x: 500, y: -175, z: 0}
+  - {x: -250, y: 450, z: 0}
+  - {x: -125, y: 450, z: 0}
+  - {x: 0, y: 450, z: 0}
+  - {x: 125, y: 450, z: 0}
+  - {x: 250, y: 450, z: 0}
+  - {x: -300, y: 450, z: 0}
+  - {x: 300, y: 450, z: 0}
+  - {x: 75, y: 450, z: 0}
+  - {x: -75, y: 450, z: 0}
   initialDirections:
   - {x: 1, y: 0, z: 0}
   - {x: -1, y: 0, z: 0}
@@ -53,7 +53,7 @@ MonoBehaviour:
     - rid: 1790118900062748676
       type: {class: Platformer, ns: RenCSharp.Combat.Player, asm: Player}
       data:
-        speed: 500
+        speed: 550
         gravityForce: 600
         jumpForce: 500
         groundedDistance: 26

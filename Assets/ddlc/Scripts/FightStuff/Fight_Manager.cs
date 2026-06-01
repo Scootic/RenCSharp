@@ -1,4 +1,3 @@
-
 using EXPERIMENTAL;
 using System.Collections.Generic;
 using System.Collections;
@@ -28,7 +27,7 @@ namespace RenCSharp.Combat
         [SerializeField, Tooltip("For handling direction text is launched in."), Range(-360,360)] private float minDeg = 0;
         [SerializeField, Tooltip("For handling direction text is launched in."), Range(-360,360)] private float maxDeg = 180;
         [SerializeField] private UI_Element enemyDamageNumber;
-        [Header("Player Action cosmetics")]
+        [Header("Player Action cosmetics")] //without a doubt, the stupidest shit
         [SerializeField] private AnimationCurve buttonRevealCurve;
         [SerializeField] private float buttonRevealTime = 0.5f;
         [SerializeField] private float playerHealthBarRevealYPos; //when buttons are revealed
