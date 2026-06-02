@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb803caf01c84fa44b54a37efe497554, type: 3}
+  m_Name: FR_GhostMaceDropper
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 500, y: 400}
+  controlType:
+    rid: 4972359955741933659
+  attackDuration: 11
+  secondsPerProjectileSpawn: 0.8
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 6086333736105796336, guid: 743498d66a5ea774ab15835e903e0d26, type: 3}
+  spawnPoints:
+  - {x: 300, y: 600, z: 0}
+  - {x: 250, y: 600, z: 0}
+  - {x: 200, y: 600, z: 0}
+  - {x: 150, y: 600, z: 0}
+  - {x: 100, y: 600, z: 0}
+  - {x: 50, y: 600, z: 0}
+  - {x: 0, y: 600, z: 0}
+  - {x: -50, y: 600, z: 0}
+  - {x: -100, y: 600, z: 0}
+  - {x: -150, y: 600, z: 0}
+  - {x: -200, y: 600, z: 0}
+  - {x: -250, y: 600, z: 0}
+  - {x: -300, y: 600, z: 0}
+  initialDirections:
+  - {x: -0.3, y: -1, z: 0}
+  - {x: -0.15, y: -1, z: 0}
+  - {x: -0.34, y: -1, z: 0}
+  - {x: -0.12, y: -1, z: 0}
+  - {x: -0.28, y: -1, z: 0}
+  - {x: -0.16, y: -1, z: 0}
+  - {x: 0.1, y: -1, z: 0}
+  - {x: 0.28, y: -1, z: 0}
+  - {x: 0.19, y: -1, z: 0}
+  - {x: 0.12, y: -1, z: 0}
+  - {x: 0.13, y: -1, z: 0}
+  - {x: 0.18, y: -1, z: 0}
+  - {x: 0.3, y: -1, z: 0}
+  indexes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  projectileSpawnPositionMethod: 1
+  projectileIndexMethod: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 4972359955741933659
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500

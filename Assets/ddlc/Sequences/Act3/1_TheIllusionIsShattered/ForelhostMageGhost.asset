@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: ForelhostMageGhost
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 216818edf4728154e83a9014615944c1, type: 2}
+  - {fileID: 11400000, guid: b8874015c459c1d4b94fc5a28ece5302, type: 2}
+  - {fileID: 11400000, guid: a6e1d4f2bd10ed54eb6ffba05eb7b3a7, type: 2}
+  - {fileID: 11400000, guid: adc7e818458bc7d40b93befff9c24661, type: 2}
+  - {fileID: 11400000, guid: 3d9da7de098aa994e93341a016668cca, type: 2}
+  scriptedFlavorTexts:
+  - The ghost launches fireballs that curve toward Natsuki.
+  - The ghost throws out fireballs along with bolts of lightning.
+  - The ghost rains down snow upon the group.
+  - The ghost flings snow from the sides.
+  - The ghost carefully aims lightning strikes at Natsuki.
+  randomAttacks:
+  - {fileID: 11400000, guid: b7aee316496b1e1419c2963231f0edfa, type: 2}
+  - {fileID: 11400000, guid: 3b2e0651f7b7ae549876522d820a34dc, type: 2}
+  - {fileID: 11400000, guid: 2618a909e43a93f458c150bcd90099c7, type: 2}
+  - {fileID: 11400000, guid: 925c70fdaa26d464b8f0ab97620eb9ee, type: 2}
+  randomFlavorTexts:
+  - The ghost launches curving fireballs and jolts of electricity at Natsuki, who
+    tries to block them.
+  - The ghost fires bolts of lightning at Natsuki without care.
+  - The ghost unleashes a small snowstorm at the the group.
+  - The ghost rains from above.
+  maxHealth: 105
+  visualInformation:
+  - {fileID: 21300000, guid: 16bb1f8e0282b61458ccb1c7d468a601, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
+  defeatText: The ghost dissapates back into thin air.
+  nameText: Dragon Cultist
+  blurbText: Surely the other three should be helping with this fight, yeah?
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
+  uiParticleObjFab:
+    m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  hitParticleObjFab:
+    m_AssetGUID: 586645bc207e93043a89cea085902e03
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: ForelhostMaceGhost
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 2a48cd6efccbaa943a673a9921c070e5, type: 2}
+  - {fileID: 11400000, guid: d6b99905ca2638d47864652c4995f920, type: 2}
+  - {fileID: 11400000, guid: 6c1785067f08c8643899e9babe23bcec, type: 2}
+  - {fileID: 11400000, guid: ff915af22e8af0842906b3f93947d8eb, type: 2}
+  - {fileID: 11400000, guid: ff915af22e8af0842906b3f93947d8eb, type: 2}
+  scriptedFlavorTexts:
+  - The ghost brings down his mace toward Natsuki from above.
+  - The ghost attempts to fling his mace at Natsuki, which she tries to block.
+  - The ghost arcs his mace toward Natsuki from above.
+  - The ghost swings his mace at Natsuki.
+  - The ghost swings his mace at Natsuki. Again.
+  randomAttacks:
+  - {fileID: 11400000, guid: ff915af22e8af0842906b3f93947d8eb, type: 2}
+  - {fileID: 11400000, guid: d6b99905ca2638d47864652c4995f920, type: 2}
+  - {fileID: 11400000, guid: 6c1785067f08c8643899e9babe23bcec, type: 2}
+  randomFlavorTexts:
+  - The ghost swings his mace at Natsuki. Again, again.
+  - The ghost attempts to fling his mace at Natsuki, which she tries to block. Again.
+  - The ghost arcs his mace toward Natsuki from above. Again.
+  maxHealth: 105
+  visualInformation:
+  - {fileID: 21300000, guid: ba7f4ceb5118afb4e98b5bb4d5f37fbb, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
+  defeatText: The ghost dissapates back into thin air.
+  nameText: Dragon Cultist
+  blurbText: Natsuki's crusade against ghosts was actually unintentional.
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
+  uiParticleObjFab:
+    m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  hitParticleObjFab:
+    m_AssetGUID: 586645bc207e93043a89cea085902e03
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
