@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: ThalmorJusticiar
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 371d3873fc8d68b4e8f5641a5236a3d2, type: 2}
+  - {fileID: 11400000, guid: 436e7a4a972210b439c990cdea0ceb6f, type: 2}
+  - {fileID: 11400000, guid: 4d1be29e26363b24a8d231b116fd2f37, type: 2}
+  - {fileID: 11400000, guid: 1492311af4f0eff4591a7cb96370329e, type: 2}
+  - {fileID: 11400000, guid: b93157bbf27a7a4408fd27b94710a844, type: 2}
+  - {fileID: 11400000, guid: 9b8ae7e55925d664dad1765503d5fef0, type: 2}
+  - {fileID: 11400000, guid: fa4f703bb534e7a4e9ddab89ce990af3, type: 2}
+  scriptedFlavorTexts:
+  - The Thalmor Justiciar slashes his blade at Natsuki.
+  - The Thalmor Justiciar bonks Natsuki on the head, briefly numbing her, and slashes
+    at her again.
+  - The archer Justiciar fires homing arrows at the numbed Natsuki.
+  - Two other Justiciar's coordinate their efforts against Natsuki, firing bolts
+    of lightning and splitting arrows at her.
+  - The archer Justiciar fires splitting arrows at Natsuki.
+  - The archer Justiciar coordinates with the Justiciar Natsuki's currently fighting,
+    firing splitting arrows while the other slashes at Natsuki.
+  - The archer Justiciar fires homing arrows at Natsuki.
+  randomAttacks:
+  - {fileID: 11400000, guid: fa4f703bb534e7a4e9ddab89ce990af3, type: 2}
+  - {fileID: 11400000, guid: 436e7a4a972210b439c990cdea0ceb6f, type: 2}
+  - {fileID: 11400000, guid: 371d3873fc8d68b4e8f5641a5236a3d2, type: 2}
+  randomFlavorTexts:
+  - The archer Justiciar fires homing arrows at Natsuki. Again.
+  - The Thalmor Justiciar bonks Natsuki on the head to numb her before slashing at
+    her. Again.
+  - The Thalmor Justiciar slashes his blade at Natsuki. Again.
+  maxHealth: 150
+  visualInformation:
+  - {fileID: 21300000, guid: 3ff288d475462684a940f903b0374867, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: 3474d1de875dc0a408fabd5060391b0e, type: 3}
+  defeatText: Natsuki defeats the Justiciar she was occupied with and looks around
+    to find that most of the Thalmor now lie dead.
+  nameText: Thalmor Justiciar
+  blurbText: Elf Nazi?!? Who could have foreseen this?!? (Play Skyrim yourself, and
+    you too can predict how the plot unfolds!)
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
+  uiParticleObjFab:
+    m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  hitParticleObjFab:
+    m_AssetGUID: 5c1c468a2868c7d4fb619d948854ab27
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
