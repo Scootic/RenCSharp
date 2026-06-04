@@ -21,6 +21,10 @@ MonoBehaviour:
     - rid: 1790118603885641769
     - rid: 1790118603885641772
     - rid: 1790118603885641773
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4972359999284838481
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: '{mc}! I''m heading out!'
     ScreenActions:
@@ -525,9 +529,6 @@ MonoBehaviour:
     ScreenActions:
     - rid: 1790118649019236564
     - rid: 1790118649019236592
-  - speaker: {fileID: 0}
-    dialog: 
-    ScreenActions: []
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 9573f844bbcef8f448284546ec1c6efd, type: 2}
@@ -643,6 +644,7 @@ MonoBehaviour:
         - 
         - 
         - blank
+        - 
     - rid: 1790118603885641779
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -775,6 +777,7 @@ MonoBehaviour:
         - 
         - 
         - smileSweat
+        - 
     - rid: 1790118634811555902
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1350,6 +1353,7 @@ MonoBehaviour:
         - 
         - 
         - smile
+        - 
     - rid: 1790118649019236434
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1865,6 +1869,7 @@ MonoBehaviour:
         - 
         - 
         - pitySmile
+        - 
     - rid: 1790118649019236469
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1873,6 +1878,7 @@ MonoBehaviour:
         - 
         - 
         - lookAwaySmile
+        - 
     - rid: 1790118649019236470
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1881,6 +1887,7 @@ MonoBehaviour:
         - 
         - 
         - smile
+        - 
     - rid: 1790118649019236471
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1889,6 +1896,7 @@ MonoBehaviour:
         - 
         - 
         - eyesClosedContent
+        - 
     - rid: 1790118649019236472
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1897,6 +1905,7 @@ MonoBehaviour:
         - 
         - 
         - smile
+        - 
     - rid: 1790118649019236473
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1905,6 +1914,7 @@ MonoBehaviour:
         - 
         - 
         - smile
+        - 
     - rid: 1790118649019236474
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1924,6 +1934,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 1790118649019236476
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1932,6 +1943,7 @@ MonoBehaviour:
         - 
         - 
         - content
+        - 
     - rid: 1790118649019236477
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1940,6 +1952,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile2
+        - 
     - rid: 1790118649019236478
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1948,6 +1961,7 @@ MonoBehaviour:
         - 
         - 
         - grinSpeak
+        - 
     - rid: 1790118649019236479
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1956,6 +1970,7 @@ MonoBehaviour:
         - 
         - 
         - smile
+        - 
     - rid: 1790118649019236480
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1964,6 +1979,7 @@ MonoBehaviour:
         - 
         - 
         - focus
+        - 
     - rid: 1790118649019236481
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1972,6 +1988,7 @@ MonoBehaviour:
         - 
         - skyUp
         - surpriseSpeak
+        - 
     - rid: 1790118649019236482
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1980,6 +1997,7 @@ MonoBehaviour:
         - 
         - 
         - inquisitive
+        - 
     - rid: 1790118649019236483
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1988,6 +2006,7 @@ MonoBehaviour:
         - 
         - 
         - blank
+        - 
     - rid: 1790118649019236484
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2218,6 +2237,7 @@ MonoBehaviour:
         - 
         - 
         - smile
+        - 
     - rid: 1790118649019236511
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2226,6 +2246,7 @@ MonoBehaviour:
         - 
         - skyUp
         - stern
+        - 
     - rid: 1790118649019236512
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2234,6 +2255,7 @@ MonoBehaviour:
         - 
         - 
         - lookAwaySad
+        - 
     - rid: 1790118649019236513
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2242,6 +2264,7 @@ MonoBehaviour:
         - 
         - 
         - grumpySpeak
+        - 
     - rid: 1790118649019236514
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2250,6 +2273,7 @@ MonoBehaviour:
         - 
         - 
         - inquisitive
+        - 
     - rid: 1790118649019236515
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2344,6 +2368,7 @@ MonoBehaviour:
         - 
         - 
         - closedEyeFrustratedSpeak
+        - 
     - rid: 1790118649019236518
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2352,6 +2377,7 @@ MonoBehaviour:
         - 
         - 
         - eyesClosedContent
+        - 
     - rid: 1790118649019236519
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2360,6 +2386,7 @@ MonoBehaviour:
         - 
         - 
         - inquisitive
+        - 
     - rid: 1790118649019236520
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2368,6 +2395,7 @@ MonoBehaviour:
         - 
         - 
         - grumpySpeak2
+        - 
     - rid: 1790118649019236521
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2389,6 +2417,7 @@ MonoBehaviour:
         - 
         - 
         - pitySmile
+        - 
     - rid: 1790118649019236523
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2397,6 +2426,7 @@ MonoBehaviour:
         - 
         - 
         - pitySmile
+        - 
     - rid: 1790118649019236524
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2405,6 +2435,7 @@ MonoBehaviour:
         - 
         - 
         - scowl
+        - 
     - rid: 1790118649019236525
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2413,6 +2444,7 @@ MonoBehaviour:
         - 
         - 
         - bored
+        - 
     - rid: 1790118649019236527
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2421,6 +2453,7 @@ MonoBehaviour:
         - 
         - 
         - lookAwayPity
+        - 
     - rid: 1790118649019236528
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2442,6 +2475,7 @@ MonoBehaviour:
         - skySmug
         - skySmug
         - closedEyeFrustratedSpeak
+        - 
     - rid: 1790118649019236530
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2450,6 +2484,7 @@ MonoBehaviour:
         - 
         - 
         - smile
+        - 
     - rid: 1790118649019236531
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2458,6 +2493,7 @@ MonoBehaviour:
         - 
         - 
         - lookAwaySmile
+        - 
     - rid: 1790118649019236532
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2466,6 +2502,7 @@ MonoBehaviour:
         - 
         - 
         - grimaceBlush
+        - 
     - rid: 1790118649019236533
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2487,6 +2524,7 @@ MonoBehaviour:
         - 
         - 
         - grumpySpeak2
+        - 
     - rid: 1790118649019236535
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2562,6 +2600,7 @@ MonoBehaviour:
         - 
         - 
         - lookAwayPitySpeak
+        - 
     - rid: 1790118649019236543
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2570,6 +2609,7 @@ MonoBehaviour:
         - 
         - 
         - concernSpeak
+        - 
     - rid: 1790118649019236544
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2578,6 +2618,7 @@ MonoBehaviour:
         - 
         - skyDown
         - inquisitive
+        - 
     - rid: 1790118649019236545
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2586,6 +2627,7 @@ MonoBehaviour:
         - 
         - 
         - speak
+        - 
     - rid: 1790118649019236546
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2594,6 +2636,7 @@ MonoBehaviour:
         - 
         - 
         - sadWorry
+        - 
     - rid: 1790118649019236547
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2602,6 +2645,7 @@ MonoBehaviour:
         - 
         - 
         - lookAwaySad
+        - 
     - rid: 1790118649019236548
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2623,6 +2667,7 @@ MonoBehaviour:
         - 
         - 
         - speak
+        - 
     - rid: 1790118649019236550
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2631,6 +2676,7 @@ MonoBehaviour:
         - 
         - 
         - inquisitive
+        - 
     - rid: 1790118649019236551
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2639,6 +2685,7 @@ MonoBehaviour:
         - 
         - 
         - inquisitiveSpeak
+        - 
     - rid: 1790118649019236552
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2647,6 +2694,7 @@ MonoBehaviour:
         - 
         - 
         - blank
+        - 
     - rid: 1790118649019236553
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2655,6 +2703,7 @@ MonoBehaviour:
         - 
         - 
         - speak
+        - 
     - rid: 1790118649019236554
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2663,6 +2712,7 @@ MonoBehaviour:
         - 
         - 
         - inquisitive
+        - 
     - rid: 1790118649019236555
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2684,6 +2734,7 @@ MonoBehaviour:
         - 
         - 
         - smileSpeak
+        - 
     - rid: 1790118649019236557
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2692,6 +2743,7 @@ MonoBehaviour:
         - 
         - 
         - blank
+        - 
     - rid: 1790118649019236558
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2700,6 +2752,7 @@ MonoBehaviour:
         - 
         - 
         - lookAwaySpeak
+        - 
     - rid: 1790118649019236559
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2708,6 +2761,7 @@ MonoBehaviour:
         - 
         - 
         - eyesClosedSmile
+        - 
     - rid: 1790118649019236560
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2716,6 +2770,7 @@ MonoBehaviour:
         - 
         - 
         - blank
+        - 
     - rid: 1790118649019236561
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2724,6 +2779,7 @@ MonoBehaviour:
         - 
         - 
         - smile
+        - 
     - rid: 1790118649019236562
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2765,6 +2821,7 @@ MonoBehaviour:
         - 
         - 
         - speak
+        - 
     - rid: 1790118649019236566
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2773,6 +2830,7 @@ MonoBehaviour:
         - 
         - 
         - lookAwayGrin
+        - 
     - rid: 1790118649019236567
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2781,6 +2839,7 @@ MonoBehaviour:
         - 
         - 
         - inquisitive
+        - 
     - rid: 1790118649019236568
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2789,6 +2848,7 @@ MonoBehaviour:
         - 
         - 
         - smile
+        - 
     - rid: 1790118649019236569
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2797,6 +2857,7 @@ MonoBehaviour:
         - 
         - 
         - concern2
+        - 
     - rid: 1790118649019236570
       type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2806,6 +2867,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
@@ -2817,6 +2879,7 @@ MonoBehaviour:
             operation: 1
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
@@ -2859,3 +2922,26 @@ MonoBehaviour:
         - 
         - blank
         - 
+    - rid: 4972359999284838481
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: MainMenuState
+            operation: 4
+            desiredValue: 2
+            persistent: 1
+            debugResult: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 0}
+            dialog: 
+            ScreenActions:
+            - rid: 4972359999284838482
+    - rid: 4972359999284838482
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: MainMenuState
+        flagValue: 3
+        increment: 0
+        persistent: 1

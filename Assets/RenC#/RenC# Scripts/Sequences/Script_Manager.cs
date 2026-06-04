@@ -56,11 +56,14 @@ namespace RenCSharp
         [SerializeField, Tooltip("In seconds."), Min(0)] private float autoFocusScaleDuration = 0.25f;
         [SerializeField, Tooltip("Handled by SaveData. Only viewable for debug purposes.")] private string playerName = "Guy"; //probably should be handled by an save data
         [SerializeField, Tooltip("This will be string that is replaced by inputted player name.")] private string playerTag = "{MC}";
-        [SerializeField] private bool auto = false;
         [SerializeField, Tooltip("How long the SM will linger on a screen while on auto.")] private float lingerTime = 0.5f;
         [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero.")] private byte historyLength = 10;
 
-        private bool paused = false, saving = false, loaded = false;
+        [Header("Debug")]
+        [SerializeField] private bool paused = false;
+        [SerializeField] private bool auto = false;
+        [SerializeField] private bool saving = false;
+        [SerializeField] private bool loaded = false;
         private History curHist;
         private Sequences.Screen curScreen;
         private List<Button> curButtons;
@@ -583,7 +586,8 @@ namespace RenCSharp
             if (SequenceAsset.Status == AsyncOperationStatus.Succeeded) currentSequence = (Sequence)SequenceAsset.Result;
             else SequenceAsset.Release();
             loaded = true;
-            SetSpeed(0f, true); //makes sure to reset speed, in case the text is in the middle of some garbage.
+            SetSpeed(PlayerPrefs.GetFloat("TextSpeed", textSpeed), false); //makes sure to reset speed, in case the text is in the middle of some garbage.
+            Textbox_String.PauseTextbox(false);
             StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
 
             Event_Bus.TryFireVoidEvent("LoadedSave");

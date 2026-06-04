@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace RenCSharp.Menus
@@ -6,8 +7,7 @@ namespace RenCSharp.Menus
     {
         public static Menu_Manager MM;
         private Menu_Base curMenu;
-        [SerializeField] private Menu_Base[] allMenus;
-        [SerializeField] private GameObject menusParent;
+        [SerializeField] private MenusContainer[] menus;
 
         private void Awake()
         {
@@ -19,20 +19,34 @@ namespace RenCSharp.Menus
         {
             curMenu = null;
         }
-
-        public void OpenAMenu(int index)
+        /// <summary>
+        /// Absolutely Bonkers BS. the tens space decides which menu container, the ones space decides which menu base to doo doo
+        /// </summary>
+        /// <param name="superIndex"></param>
+        public void OpenAMenu(int superIndex)
         {
-            menusParent.SetActive(true);
+            int menuIndex = superIndex % 10;
+            int containerIndex = (superIndex - menuIndex) / 10;
+            menus[containerIndex].MenuParent.SetActive(true);
             if(Script_Manager.SM != null) Script_Manager.SM.PauseSequence();
             if (curMenu != null) curMenu.OnMenuClose();
-            curMenu = allMenus[index];
+            curMenu = menus[containerIndex].AllMenus[menuIndex];
             curMenu.OnMenuOpen();
         }
 
         public void CloseMenus()
         {
             if(Script_Manager.SM != null) Script_Manager.SM.UnpauseSequence();
-            menusParent.SetActive(false);
+            foreach(MenusContainer mc in menus)
+            {
+                mc.MenuParent.SetActive(false);
+            }
+        }
+        [Serializable]
+        private struct MenusContainer 
+        {
+            public GameObject MenuParent;
+            public Menu_Base[] AllMenus;
         }
     }
 }

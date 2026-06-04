@@ -9,6 +9,7 @@ namespace RenCSharp
     public class String_Data_From_Menu : MonoBehaviour
     {
         [SerializeField] private string eventName;
+        [SerializeField] private string defaultString;
         private string passValue;
         void OnEnable()
         {
@@ -23,6 +24,7 @@ namespace RenCSharp
         // Update is called once per frame
         void Update()
         {
+            if (passValue == null) passValue = defaultString;
             if(Event_Bus.TryFireStringEvent(eventName, passValue)) Destroy(gameObject);
         }
     }

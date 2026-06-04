@@ -11,6 +11,7 @@ namespace RenCSharp.Menus
         [SerializeField] private Sprite defaultImage;
         [Header("Main Menu Scene Loading")]
         [SerializeField] private Simple_Scene_Loader ssl;
+        [SerializeField] private GameObject saveDataCarrierPrefab;
         [SerializeField] private byte sceneToLoadIndex = 2;
         private int activeDatas = 0;
         private string fileName = "SaveData";
@@ -92,7 +93,7 @@ namespace RenCSharp.Menus
                 }
                 Debug.Log("Loading from Menu");
                 //we're on main menu doin' stuff
-                SaveData_From_Main_Menu sdfmm = Object_Factory.SpawnObject(new GameObject(), "SL").AddComponent<SaveData_From_Main_Menu>();
+                SaveData_From_Main_Menu sdfmm = Object_Factory.SpawnObject(saveDataCarrierPrefab, "SL").GetComponent<SaveData_From_Main_Menu>();
                 sdfmm.SD = sd;
                 DontDestroyOnLoad(sdfmm.gameObject);
                 ssl.LoadAnScene(sceneToLoadIndex);

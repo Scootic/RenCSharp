@@ -20,6 +20,10 @@ MonoBehaviour:
     - rid: 9079475098267418728
     - rid: 9079475098267418729
     - rid: 9079475110781911288
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4972359999284838477
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: <Speed=1>Grh...</Speed> what time is it?
     ScreenActions:
@@ -123,7 +127,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 7914ffa16480d2d4f955b7837bded96b, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 5c0cc3d5f2d29d541aa8c3e598f5b7ca
@@ -134,6 +137,28 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 4972359999284838477
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: MainMenuState
+            operation: 0
+            desiredValue: 0
+            persistent: 1
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 0}
+            dialog: 
+            ScreenActions:
+            - rid: 4972359999284838478
+    - rid: 4972359999284838478
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: MainMenuState
+        flagValue: 1
+        increment: 0
+        persistent: 1
     - rid: 9079475089592287347
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -272,3 +297,4 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+        baseVolume: 1

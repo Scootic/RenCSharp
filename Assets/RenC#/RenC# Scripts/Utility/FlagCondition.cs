@@ -13,6 +13,7 @@ namespace RenCSharp
         [SerializeField, Tooltip("The found flag value is the left side of the operation.")] private ConditionalOperator operation;
         [SerializeField, Tooltip("The right side of the operation.")] private int desiredValue;
         [SerializeField, Tooltip("Decides which pool of flags to check, true for persistent, false for per save file.")] private bool persistent;
+        [SerializeField] private bool debugResult;
         [Header("BITWISE")]
         [SerializeField, Tooltip("Decides if you're comparing bits. Only supports the equals and notequals operators.")] private bool bitWise;
 
@@ -61,6 +62,8 @@ namespace RenCSharp
 
                 }
             }
+
+            if (debugResult) Debug.Log($"Flag ({flagToCheck})'s value is: {foundVal}. This meets my condition? -> {met}.");
 
             return met;
         }

@@ -135,6 +135,7 @@ MonoBehaviour:
     - rid: 4972359976905081035
     - rid: 4972359976905081036
     - rid: 4972359976905081042
+    - rid: 4972359999284838476
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: ...
     ScreenActions:
@@ -1061,3 +1062,8 @@ MonoBehaviour:
           m_EditorAssetChanged: 1
         fadeTime: 2
         setToSameTime: 0
+    - rid: 4972359999284838476
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: e9e25ab63e1eda4459300fa1e62cc430, type: 2}
+        fadeTime: 0.5
