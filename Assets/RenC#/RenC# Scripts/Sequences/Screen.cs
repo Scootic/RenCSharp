@@ -18,6 +18,5 @@ namespace RenCSharp.Sequences
         [SerializeReference] public List<Screen_Event> ScreenActions;
         public Actor Speaker => speaker;
         public string Dialog => dialog;
-
     }
 }

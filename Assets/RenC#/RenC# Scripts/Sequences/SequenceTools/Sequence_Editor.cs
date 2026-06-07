@@ -1,8 +1,10 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.UIElements;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -22,6 +24,7 @@ namespace RenCSharp.Sequences
     public class Sequence_Editor : Editor
     {
         private Sequence _target;
+
         public override void OnInspectorGUI()
         {
             if(GUILayout.Button("Calculate Sequence Length")) 
@@ -158,10 +161,9 @@ namespace RenCSharp.Sequences
                 }
             }
 
-            if(_target == null) _target = target as Sequence;
-
             EditorGUI.BeginChangeCheck();
             base.OnInspectorGUI();
+
             if (EditorGUI.EndChangeCheck())
             {
                 serializedObject.ApplyModifiedProperties();
