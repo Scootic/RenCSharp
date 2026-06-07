@@ -8,8 +8,8 @@ namespace RenCSharp.Sequences
     public class Player_Button_Flag : Screen_Event
     {
         [Header("Stinky Arrays")]
-        [SerializeField] private List<string> buttonNames;
-        [SerializeField] private List<string> flagsToAlter;
+        [SerializeField] private string[] buttonNames;
+        [SerializeField] private string[] flagsToAlter;
         [SerializeField] private int[] newFlagValues;
         [Header("Flag Alter Type")]
         [SerializeField] private bool increment;
@@ -18,11 +18,11 @@ namespace RenCSharp.Sequences
         public override void DoEvent()
         {
             //spawn X buttons, and give them text corresponding to buttonNames
-            Event_Bus.TryFireDoubleObjEvent("SpawnPlayerButtons", (object)buttonNames.Count, (object)buttonNames);
+            Event_Bus.TryFireDoubleObjEvent("SpawnPlayerButtons", (object)buttonNames.Length, (object)buttonNames);
 
             List<Action> actions = new();
             //set up the actions to do stuff to flags when a button is chosen
-            for (int i = 0; i < flagsToAlter.Count; i++)
+            for (int i = 0; i < flagsToAlter.Length; i++)
             {
                 string flagID = flagsToAlter[i];
                 int newValue = newFlagValues[i];

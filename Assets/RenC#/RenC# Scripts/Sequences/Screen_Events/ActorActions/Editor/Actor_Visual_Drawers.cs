@@ -7,6 +7,12 @@ namespace RenCSharp.Sequences
     [CustomPropertyDrawer(typeof(Spawn_Actor))]
     public class Spawn_Actor_Drawer : Screen_Event_Drawer
     {
+        SerializedProperty spawnOffset = null;
+        SerializedProperty fadeInTime;
+        SerializedProperty sprindexArray;
+        SerializedProperty actorProperty;
+        Actor assignedActor;
+
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             EditorGUI.BeginProperty(position, label, property);
@@ -15,12 +21,17 @@ namespace RenCSharp.Sequences
             DropDownMenu(dDownRect, property);
             Rect newR = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, position.height);
             EditorGUI.PropertyField(newR, property, new GUIContent("Spawn Actor"), true);
-            
-            SerializedProperty spawnOffset = property.FindPropertyRelative("spawnOffset");
-            SerializedProperty fadeInTime = property.FindPropertyRelative("fadeInTime");
-            SerializedProperty sprindexArray = property.FindPropertyRelative("visualSpriteIndexes");
-            SerializedProperty actorProperty = property.FindPropertyRelative("actorToSpawn");
-            Actor assignedActor = actorProperty.objectReferenceValue as Actor;
+
+            if (spawnOffset == null)
+            {
+                spawnOffset = property.FindPropertyRelative("spawnOffset");
+                fadeInTime = property.FindPropertyRelative("fadeInTime");
+                sprindexArray = property.FindPropertyRelative("visualSpriteIndexes");
+                actorProperty = property.FindPropertyRelative("actorToSpawn");
+            }
+            assignedActor = actorProperty?.objectReferenceValue as Actor;
+
+            EditorGUI.BeginChangeCheck();
 
             Rect actRect = new Rect(newR.x, newR.y + (EditorGUIUtility.singleLineHeight * 1), newR.width, EditorGUIUtility.singleLineHeight * 2);
             Rect spawnRect = new Rect(newR.x, newR.y + (EditorGUIUtility.singleLineHeight * 2.5f), newR.width, EditorGUIUtility.singleLineHeight * 2);
@@ -32,7 +43,6 @@ namespace RenCSharp.Sequences
             EditorGUI.PropertyField(fadeInRect, fadeInTime, new GUIContent("FadeInTime"), true);
             EditorGUI.PropertyField(sprinRect, sprindexArray, new GUIContent("Visual Sprite Indexes"), true);
 
-            EditorGUI.BeginChangeCheck();
              //Debug.Log("Assigned actor: " + assignedActor.ActorName);
             if (assignedActor != null)
             {
@@ -78,6 +88,9 @@ namespace RenCSharp.Sequences
     [CustomPropertyDrawer(typeof(Actor_Expression))]
     public class Actor_Expression_Drawer : Screen_Event_Drawer
     {
+        SerializedProperty actorProperty = null;
+        SerializedProperty sprindexArray;
+        Actor actorToAlter;
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             EditorGUI.BeginProperty(position, label, property);
@@ -87,9 +100,14 @@ namespace RenCSharp.Sequences
             Rect newR = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, position.height);
             EditorGUI.PropertyField(newR, property, new GUIContent("Change Actor Expression"), true);
 
-            SerializedProperty actorProperty = property.FindPropertyRelative("actorToAlter");
-            SerializedProperty sprindexArray = property.FindPropertyRelative("visualSpriteIndexes");
-            Actor actorToAlter = actorProperty.objectReferenceValue as Actor;
+            if (actorProperty == null)
+            {
+                actorProperty = property.FindPropertyRelative("actorToAlter");
+                sprindexArray = property.FindPropertyRelative("visualSpriteIndexes");
+                actorToAlter = actorProperty.objectReferenceValue as Actor;
+            }
+            EditorGUI.BeginChangeCheck();
+
             //if(actorToAlter != null) Debug.Log(actorToAlter.ActorName);
             Rect actRect = new Rect(newR.x, newR.y + EditorGUIUtility.singleLineHeight, newR.width, EditorGUIUtility.singleLineHeight * 2);
             Rect sprinRect = new Rect(newR.x, newR.y + (EditorGUIUtility.singleLineHeight * 2.5f), newR.width, EditorGUIUtility.singleLineHeight * 2);
@@ -97,8 +115,7 @@ namespace RenCSharp.Sequences
             EditorGUI.PropertyField(actRect, actorProperty, new GUIContent("Actor to Alter"), true);
             EditorGUI.PropertyField(sprinRect, sprindexArray, new GUIContent("Visual Sprite Indexes"), true);
 
-            EditorGUI.BeginChangeCheck();
-
+            
             if (actorToAlter != null)
             {
                 if (sprindexArray.arraySize != actorToAlter.Visuals.Length)

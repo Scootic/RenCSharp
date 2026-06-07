@@ -24,7 +24,7 @@ namespace RenCSharp.Sequences
         private Sequence _target;
         public override void OnInspectorGUI()
         {
-            if (GUILayout.Button("Calculate Sequence Length")) 
+            if(GUILayout.Button("Calculate Sequence Length")) 
             {
                 int totalScreens = 0;
                 int wordcount = 0;
@@ -157,6 +157,8 @@ namespace RenCSharp.Sequences
                     Debug.Log("Done replacing " + _target.name + "'s deprecated events! Replaced: " + replaced + " events.");
                 }
             }
+
+            if(_target == null) _target = target as Sequence;
 
             EditorGUI.BeginChangeCheck();
             base.OnInspectorGUI();

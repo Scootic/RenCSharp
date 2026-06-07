@@ -263,6 +263,10 @@ namespace RenCSharp
             {
                 Button b = Object_Factory.SpawnObject(playerchoicePrefab.gameObject, "Button"+i, playerchoiceHolder).GetComponent<Button>();
                 b.GetComponentInChildren<TextMeshProUGUI>().text = buttonTexts[i];
+                if (b.TryGetComponent(out PlayerButton_Scaler pbs))
+                {
+                    pbs.ScaleButton();
+                }
                 curButtons.Add(b);
             }
         }

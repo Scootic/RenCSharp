@@ -7,6 +7,8 @@ namespace RenCSharp.Combat.Player
     public class Natsuki_Spin : Player_Ability
     {
         [SerializeField, Tooltip("Needs a player_object and animated image handler")] private GameObject hammerFab;
+
+        [Header("Animation")]
         [SerializeField] private Sprite[] animationFrames;
         [SerializeField] private float secondsPerFrame = 0.1f;
 
@@ -22,6 +24,7 @@ namespace RenCSharp.Combat.Player
             if (!validToFire || PlayerTurn || activeShield != null) return;
             if(Object_Factory.TryGetObject("PlayerObject", out GameObject go))
             {
+                if (!go.activeInHierarchy) return; //stop! don't spawn grossly!
                 t = 0;
                 Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", t);
                 Event_Bus.AddBoolEvent("EndAFight", GetRidOfShieldFR);
