@@ -11,7 +11,7 @@ namespace RenCSharp.Sequences
     /// even if there's no dialog. This can be used for doing things without any dialog, or as an empty after certain dialog.
     /// </summary>
     [Serializable]
-    public class Screen 
+    public class Screen
     {
         [SerializeField] private Actor speaker;
         [SerializeField, TextArea(3,7)] private string dialog;
