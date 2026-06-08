@@ -14,6 +14,20 @@ namespace RenCSharp.Sequences
     [CustomPropertyDrawer(typeof(Screen_Event))]
     public class Screen_Event_Drawer : PolymorphicPropertyDrawer<Screen_Event>
     {
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            EditorGUI.BeginProperty(position, label, property);
+            EditorGUI.BeginChangeCheck();
+            EditorGUI.PropertyField(position, property, true);
+            if (EditorGUI.EndChangeCheck() && !EditorGUIUtility.editingTextField)
+            {
+                
+                Debug.Log($"SErializing the Screener! {DropDownMenuName()}");
+                property.serializedObject.ApplyModifiedProperties();
+            }
+            EditorGUI.EndProperty();
+        }
+
         protected override string DropDownMenuName()
         {
             return "Select Screen Event Type";
@@ -24,6 +38,18 @@ namespace RenCSharp.Sequences
     public class Sequence_Editor : Editor
     {
         private Sequence _target;
+        private SerializedProperty _autoFocusSpeaker;
+        private SerializedProperty _screens;
+        private SerializedProperty _playerChoices;
+        private SerializedProperty _myself;
+
+        private void OnEnable()
+        {
+            _autoFocusSpeaker = serializedObject.FindProperty("autoFocusSpeaker");
+            _screens = serializedObject.FindProperty("screens");
+            _playerChoices = serializedObject.FindProperty("playerChoices");
+            _myself = serializedObject.FindProperty("myself");
+        }
 
         public override void OnInspectorGUI()
         {
@@ -161,68 +187,92 @@ namespace RenCSharp.Sequences
                 }
             }
 
-            EditorGUI.BeginChangeCheck();
-            base.OnInspectorGUI();
+            EditorGUILayout.PropertyField(_autoFocusSpeaker);
+            EditorGUILayout.PropertyField(_myself);
+            EditorGUILayout.PropertyField(_screens);
+            EditorGUILayout.PropertyField(_playerChoices);
+        }
 
-            if (EditorGUI.EndChangeCheck())
-            {
-                serializedObject.ApplyModifiedProperties();
-                serializedObject.Update();
-            }
+        private void OnDisable()
+        {
+            Debug.Log("Serualized The sequence on disabb0");
+            serializedObject.ApplyModifiedProperties();
+            serializedObject.Update();
         }
     }
 
+    public class Sequence_EditorWindow : EditorWindow
+    {
+        private static Sequence manToEdit = null;
 
+        private SerializedProperty _autoFocusSpeaker = null;
+        private SerializedProperty _myself = null;
+        private SerializedProperty _screens = null;
+        private SerializedProperty _playerChoices = null;
+        private SerializedObject _so = null;
 
-    /// <summary>
-    /// Unique EditorWindow just to add specific screen events to a screen. Why? The Unity inspector was not built for polymorphism. FML.
-    /// </summary>
-    //public class Sequence_Editor : EditorWindow
-    //{
+        private bool autoFocus;
+        private AssetReference myself;
+        private Screen[] screens;
+        private Player_Choice[] playerChoices;
 
+        private float screenScrollValue;
+        private float playerScrollValue;
 
-    //private Vector2 scrollPos;
-    //[Min(0), Tooltip("The screen that will receive the new screen action.")]private int screenIndex = 0;
-    //Sequence manToEdit = null;
+        [MenuItem("Window/Sequence Editor")]
+        public static void ShowWindow()
+        {
+            GetWindow(typeof(Sequence_EditorWindow));
+        }
 
-    // [MenuItem("Window/Sequence Editor")]
-    // public static void ShowWindow()
-    // {
-    //     allSubs = childrenOfSE.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(Screen_Event))).ToArray();
-    //     GetWindow(typeof(Sequence_Editor));
-    // }
+        public static void ShowWindow(Sequence givenSequence)
+        {
+            GetWindow(typeof(Sequence_EditorWindow));
+            manToEdit = givenSequence;
+        }
 
-    // private void OnEnable()
-    // {
-    //      titleContent = new GUIContent("Sequence Editor");
-    // }
+        private void OnEnable()
+        {
+            titleContent = new GUIContent("Sequence Editor");
+        }
 
-    //  private void OnGUI()
-    //   {
-    //     GUILayout.Label("Sequence Data");
-    //      manToEdit = (Sequence) EditorGUILayout.ObjectField("Sequence", manToEdit, typeof(Sequence), false);
-    //      screenIndex = EditorGUILayout.IntField("Screen Index", screenIndex);
-    //      scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
-    //freak the hell out
-    //      if (allSubs == null) 
-    //     GUILayout.Label("Screen Actions");
-    //     foreach (Type stupid in allSubs)
-    //     {
-    //        Screen_Event sumba = Activator.CreateInstance(stupid) as Screen_Event;
-    //        if (EditorGUILayout.LinkButton(sumba.ToString()))
-    //         {
-    //            if(screenIndex < manToEdit.Screens.Length)
-    //             {
-    //                 manToEdit.Screens[screenIndex].ScreenActions.Add(sumba);
-    //               }
-    //           else
-    //            {
-    //               Debug.LogWarning("Screen Index too large, you dingus!");
-    //          }
-    //       }
-    //   }
-    //       EditorGUILayout.EndScrollView();
-    //  }
+        private void OnDisable()
+        {
+            if (_so == null) return;
+            _so.ApplyModifiedProperties();
+            _so.Update();
+        }
+
+        private void OnGUI()
+        {
+            GUILayout.Label("Sequence Data");
+            EditorGUI.BeginChangeCheck();
+            manToEdit = (Sequence)EditorGUILayout.ObjectField("Sequence", manToEdit, typeof(Sequence), false);
+            if (manToEdit == null) return;
+            if(_autoFocusSpeaker == null || EditorGUI.EndChangeCheck()) //should fire whenever the sequence field changes
+            {
+                _so = new SerializedObject(manToEdit);
+                _autoFocusSpeaker = _so.FindProperty("autoFocusSpeaker");
+                _myself = _so.FindProperty("myself");
+                _screens = _so.FindProperty("screens");
+                _playerChoices = _so.FindProperty("playerChoices");
+
+                autoFocus = manToEdit.AutoFocusSpeaker;
+                myself = manToEdit.Myself;
+                screens = manToEdit.Screens;
+                playerChoices = manToEdit.PlayerChoices;
+            }
+            autoFocus = EditorGUILayout.Toggle(autoFocus, "Auto Focus Speaker");
+            EditorGUILayout.PropertyField(_myself);
+            screenScrollValue = EditorGUILayout.BeginScrollView(new Vector2(0f, screenScrollValue)).y;
+            Debug.Log($"Screen scroll value: {screenScrollValue}");
+            //screens = (Screen[])EditorGUILayout.ObjectField(screens, typeof(Screen[]));
+            EditorGUILayout.EndScrollView();
+            playerScrollValue = EditorGUILayout.BeginScrollView(new Vector2(0f, playerScrollValue)).y;
+            EditorGUILayout.ObjectField(_playerChoices);
+            EditorGUILayout.EndScrollView();
+        }
+    }
 
     ///old method below where buttons were spawned directly in Sequence inspectorGUI, rather than in their own window
 
@@ -261,7 +311,7 @@ namespace RenCSharp.Sequences
             }
         }
     }*/
-    //}
+    
 
 }
 #endif

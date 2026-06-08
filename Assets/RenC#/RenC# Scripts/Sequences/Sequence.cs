@@ -15,15 +15,18 @@ namespace RenCSharp.Sequences
     public class Sequence : ScriptableObject
     {
         [SerializeField] private bool autoFocusSpeaker;
-        [SerializeField] private Screen[] screens;
-        [SerializeField] private Player_Choice[] playerChoices;
+        [SerializeField] private Screen[] screens = new Screen[2];
+        [SerializeField] private Player_Choice[] playerChoices = new Player_Choice[1];
         [SerializeField] private AssetReference myself;
 
         public bool AutoFocusSpeaker => autoFocusSpeaker;
+        public bool SetAutoFocusSpeaker { set { autoFocusSpeaker = value; } }
         public AssetReference Myself => myself;
+        public AssetReference SetMyself { set { myself = value; } }
         public Screen[] Screens => screens;
+        public Screen[] SetScreens { set { screens = value; } }
         public Player_Choice[] PlayerChoices => playerChoices;
-
+        public Player_Choice[] SetPlayerChoices { set { playerChoices = value; } }
         public override string ToString()
         {
             return "Sequence";
