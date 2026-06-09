@@ -22,13 +22,11 @@ namespace RenCSharp.Sequences
             Rect newR = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, position.height);
             EditorGUI.PropertyField(newR, property, new GUIContent("Spawn Actor"), true);
 
-            if (spawnOffset == null)
-            {
-                spawnOffset = property.FindPropertyRelative("spawnOffset");
-                fadeInTime = property.FindPropertyRelative("fadeInTime");
-                sprindexArray = property.FindPropertyRelative("visualSpriteIndexes");
-                actorProperty = property.FindPropertyRelative("actorToSpawn");
-            }
+            spawnOffset = property.FindPropertyRelative("spawnOffset");
+            fadeInTime = property.FindPropertyRelative("fadeInTime");
+            sprindexArray = property.FindPropertyRelative("visualSpriteIndexes");
+            actorProperty = property.FindPropertyRelative("actorToSpawn");
+
             assignedActor = actorProperty?.objectReferenceValue as Actor;
 
             EditorGUI.BeginChangeCheck();
@@ -100,12 +98,11 @@ namespace RenCSharp.Sequences
             Rect newR = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, position.height);
             EditorGUI.PropertyField(newR, property, new GUIContent("Change Actor Expression"), true);
 
-            if (actorProperty == null)
-            {
-                actorProperty = property.FindPropertyRelative("actorToAlter");
-                sprindexArray = property.FindPropertyRelative("visualSpriteIndexes");
-                actorToAlter = actorProperty.objectReferenceValue as Actor;
-            }
+
+            actorProperty = property.FindPropertyRelative("actorToAlter");
+            sprindexArray = property.FindPropertyRelative("visualSpriteIndexes");
+            actorToAlter = actorProperty.objectReferenceValue as Actor;
+
             EditorGUI.BeginChangeCheck();
 
             //if(actorToAlter != null) Debug.Log(actorToAlter.ActorName);
