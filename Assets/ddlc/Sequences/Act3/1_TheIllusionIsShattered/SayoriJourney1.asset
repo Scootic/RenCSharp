@@ -296,7 +296,80 @@ MonoBehaviour:
     - rid: 4972360072031371325
   - speaker: {fileID: 0}
     dialog: 
+    ScreenActions:
+    - rid: 4972360123630747651
+    - rid: 4972360123630747652
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: (Ooh... a cute little village!)
+    ScreenActions:
+    - rid: 4972360123630747653
+  - speaker: {fileID: 11400000, guid: 60ea9b9b32e080545889c83175fb2aa1, type: 2}
+    dialog: You rotten child! You broke the spade <NoiseText=3,1>again</NoiseText>?!?
+    ScreenActions:
+    - rid: 4972360123630747654
+  - speaker: {fileID: 11400000, guid: ab7d101875574da4aaab44bf5b30f3f7, type: 2}
+    dialog: Father, it- it was already wobbly-
+    ScreenActions:
+    - rid: 4972360123630747655
+  - speaker: {fileID: 11400000, guid: 60ea9b9b32e080545889c83175fb2aa1, type: 2}
+    dialog: Don't you talk back to me!
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Lemkil smacks the daughter who allegedly broke the spade across the face.
+    ScreenActions:
+    - rid: 4972360123630747656
+    - rid: 4972360123630747657
+  - speaker: {fileID: 11400000, guid: ab7d101875574da4aaab44bf5b30f3f7, type: 2}
+    dialog: Ow-!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: There was another girl with them, who ran off to a building- maybe her
+      house?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 60ea9b9b32e080545889c83175fb2aa1, type: 2}
+    dialog: Worthless daughters of mine...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: (...)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: (Nevermind. Not cute.)
+    ScreenActions:
+    - rid: 4972360123630747658
+    - rid: 4972360123630747659
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4972360123630747660
+    - rid: 4972360123630747661
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: (Phew...)
+    ScreenActions:
+    - rid: 4972360123630747662
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: (My feet haven't recovered since when I left Winterhold! They're so sore!)
+    ScreenActions:
+    - rid: 4972360123630747663
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4972360123630747664
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4972360123630747665
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4972360123630747669
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4972360123630747673
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: (Eh? What's going on here?)
+    ScreenActions:
+    - rid: 4972360123630747674
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -1495,9 +1568,34 @@ MonoBehaviour:
             debugResult: 0
             bitWise: 0
           resultingScreen:
-            speaker: {fileID: 0}
-            dialog: 
-            ScreenActions: []
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: (Oh! Well, I'm happy we could be there for you...)
+            ScreenActions:
+            - rid: 4972360123630747648
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 4
+            persistent: 0
+            debugResult: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: (I'm... not sure how to feel about that.)
+            ScreenActions:
+            - rid: 4972360123630747649
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 5
+            persistent: 0
+            debugResult: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: (That's nice, I guess.)
+            ScreenActions:
+            - rid: 4972360123630747650
     - rid: 4972360072031371326
       type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1505,7 +1603,6 @@ MonoBehaviour:
         - All of you were there for me in a tough time of my life.
         - All of you are so well-written, I think of you as people.
         - All of you remind me of real people I care about, so I care about you too.
-        - 
         flagsToAlter:
         - garbage
         - garbage
@@ -1521,4 +1618,302 @@ MonoBehaviour:
         - 
         - 
         - lookAwayGrin
+        - 
+    - rid: 4972360123630747648
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shockSurprise
+        - 
+    - rid: 4972360123630747649
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - surprise
+        - 
+    - rid: 4972360123630747650
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
+        - 
+    - rid: 4972360123630747651
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - surprise
+        - 
+    - rid: 4972360123630747652
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 1ff8febce318b784f9c338cbb1dc0976
+          m_SubObjectName: tosolitude3
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 4972360123630747653
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shockSurprise
+        - 
+    - rid: 4972360123630747654
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - focus
+        - 
+    - rid: 4972360123630747655
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - concern2
+        - 
+    - rid: 4972360123630747656
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - terror
+        - 
+    - rid: 4972360123630747657
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 0
+        setToSameTime: 0
+    - rid: 4972360123630747658
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - cryConcern
+        - 
+    - rid: 4972360123630747659
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: feeada3eec1077e46ac720749659a790
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 4972360123630747660
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - concern2
+        - 
+    - rid: 4972360123630747661
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 60d4538381cf9634c9da6843e40f8a31
+          m_SubObjectName: tosolitude4
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 4972360123630747662
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - drool
+        - 
+    - rid: 4972360123630747663
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - '><Shock'
+        - 
+    - rid: 4972360123630747664
+      type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        buttonNames:
+        - Suck it up, buttercup.
+        - C'mon, this is for {mc}.
+        - Then take a break.
+        flagsToAlter:
+        - garbage
+        - garbage
+        - garbage
+        newFlagValues: 010000000200000003000000
+        increment: 0
+        persistent: 0
+    - rid: 4972360123630747665
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 0
+            persistent: 0
+            debugResult: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: (... meanie.)
+            ScreenActions:
+            - rid: 4972360123630747666
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 1
+            persistent: 0
+            debugResult: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: (... you're right! I don't have time to complain!)
+            ScreenActions:
+            - rid: 4972360123630747667
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 2
+            persistent: 0
+            debugResult: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: (... okay!)
+            ScreenActions:
+            - rid: 4972360123630747668
+    - rid: 4972360123630747666
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - pout
+        - 
+    - rid: 4972360123630747667
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - focus
+        - 
+    - rid: 4972360123630747668
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - content
+        - 
+    - rid: 4972360123630747669
+      type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        possibleScreens:
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 2
+            persistent: 0
+            debugResult: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: (Alright, I should be able to walk some more...)
+            ScreenActions:
+            - rid: 4972360123630747671
+            - rid: 4972360123630747672
+    - rid: 4972360123630747671
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 60d4538381cf9634c9da6843e40f8a31
+          m_SubObjectName: tosolitude4
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 4972360123630747672
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
+        - 
+    - rid: 4972360123630747673
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 3a8d90996e0d8cb4c8eab9f33a0d0433
+          m_SubObjectName: tosolitude5
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 4972360123630747674
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - shockSurprise
         - 
