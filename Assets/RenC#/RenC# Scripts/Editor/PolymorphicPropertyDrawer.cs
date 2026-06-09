@@ -22,7 +22,7 @@ namespace RenCSharp
         protected static Assembly typeAssembly = Assembly.GetAssembly(typeof(T));
         protected static Type[] allTChildren;
         protected abstract string DropDownMenuName();
-        [SerializeReference] protected SerializedProperty m_SE = null;
+        [SerializeReference] protected SerializedProperty m_SE;
 
         /// <summary>
         /// By default, will render the property drawer one line below a childType selector dropdown menu.
