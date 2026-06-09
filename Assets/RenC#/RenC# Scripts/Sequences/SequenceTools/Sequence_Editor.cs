@@ -210,15 +210,13 @@ namespace RenCSharp.Sequences
         private SerializedProperty _screens = null;
         private SerializedProperty _playerChoices = null;
         private SerializedObject _so = null;
-        private SerializedProperty[] _displayedScreens;
 
         private bool autoFocus;
-        private string stupid = "";
+        private AssetReference myself;
+        private Screen[] screens;
+        private Player_Choice[] playerChoices;
 
-        private int screensScrollLength;
-        private int screensToShowAtOnce = 5;
         private float screenScrollValue;
-        private float screenScrollPerc;
         private float playerScrollValue;
 
         [MenuItem("Window/Sequence Editor")]
@@ -256,46 +254,22 @@ namespace RenCSharp.Sequences
                 _so = new SerializedObject(manToEdit);
                 _autoFocusSpeaker = _so.FindProperty("autoFocusSpeaker");
                 _myself = _so.FindProperty("myself");
-                _screens = _so.FindProperty("screens").Copy();
-                _playerChoices = _so.FindProperty("playerChoices").Copy();
-                screensScrollLength = _screens.arraySize * 300;
+                _screens = _so.FindProperty("screens");
+                _playerChoices = _so.FindProperty("playerChoices");
+
                 autoFocus = manToEdit.AutoFocusSpeaker;
-                _displayedScreens = new SerializedProperty[screensToShowAtOnce];
+                myself = manToEdit.Myself;
+                screens = manToEdit.Screens;
+                playerChoices = manToEdit.PlayerChoices;
             }
-            autoFocus = EditorGUILayout.Toggle("Auto Focus Speaker", autoFocus);
-            stupid = EditorGUILayout.TextField(stupid);
-            EditorGUI.BeginChangeCheck();
-            screensToShowAtOnce = EditorGUILayout.IntField("Screens to Show At Once", screensToShowAtOnce);
-            if (EditorGUI.EndChangeCheck())
-            {
-                _displayedScreens = new SerializedProperty[screensToShowAtOnce];
-            }
+            autoFocus = EditorGUILayout.Toggle(autoFocus, "Auto Focus Speaker");
             EditorGUILayout.PropertyField(_myself);
             screenScrollValue = EditorGUILayout.BeginScrollView(new Vector2(0f, screenScrollValue)).y;
-            
-            if (_screens != null)
-            {
-                screenScrollPerc = screenScrollValue / (float)screensScrollLength;
-                Debug.Log($"Screen scroll value: {screenScrollValue}. Screen scroll length: {screensScrollLength}. Perc: {screenScrollPerc * 100f}%.");
-                //Instead of displaying a full array all at once, only show the screens we want.
-                int rootIndex = Mathf.FloorToInt(screenScrollPerc * (_screens.arraySize - 1));
-                for (int i = 0; i < screensToShowAtOnce; i++)
-                {
-                    int desIndex = rootIndex + i;
-                    if (desIndex >= _screens.arraySize) break;
-                    _displayedScreens[i] = _screens.GetArrayElementAtIndex(desIndex);
-                    EditorGUILayout.PropertyField(_displayedScreens[i], true);
-                }
-                //EditorGUILayout.PropertyField(_screens)
-                ///use ^^ for bs test mergenceries
-            }
+            Debug.Log($"Screen scroll value: {screenScrollValue}");
+            //screens = (Screen[])EditorGUILayout.ObjectField(screens, typeof(Screen[]));
             EditorGUILayout.EndScrollView();
-            if(EditorGUILayout.LinkButton("Add A Screen"))
-            {
-                _screens.InsertArrayElementAtIndex(_screens.arraySize);
-            }
             playerScrollValue = EditorGUILayout.BeginScrollView(new Vector2(0f, playerScrollValue)).y;
-            EditorGUILayout.PropertyField(_playerChoices, true);
+            EditorGUILayout.ObjectField(_playerChoices);
             EditorGUILayout.EndScrollView();
         }
     }
