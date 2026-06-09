@@ -1,5 +1,4 @@
 #if UNITY_EDITOR
-using RenCSharp.Actors;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -13,19 +12,6 @@ namespace RenCSharp.Sequences
     [CustomPropertyDrawer(typeof(Screen_Event))]
     public class Screen_Event_Drawer : PolymorphicPropertyDrawer<Screen_Event>
     {
-        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-        {
-            EditorGUI.BeginProperty(position, label, property);
-            EditorGUI.BeginChangeCheck();
-            EditorGUI.PropertyField(position, property, true);
-            if (EditorGUI.EndChangeCheck() && !EditorGUIUtility.editingTextField)
-            {
-                
-                Debug.Log($"SErializing the Screener! {DropDownMenuName()}");
-                property.serializedObject.ApplyModifiedProperties();
-            }
-            EditorGUI.EndProperty();
-        }
 
         protected override string DropDownMenuName()
         {
@@ -179,7 +165,7 @@ namespace RenCSharp.Sequences
 
         private void OnDisable()
         {
-            Debug.Log("Serualized The sequence on disabb0");
+            //extra make sure this boy saved fr fr
             serializedObject.ApplyModifiedProperties();
             serializedObject.Update();
         }
