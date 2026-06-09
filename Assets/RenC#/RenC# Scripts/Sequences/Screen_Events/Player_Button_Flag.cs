@@ -1,6 +1,7 @@
 using EXPERIMENTAL;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RenCSharp.Sequences
@@ -18,7 +19,7 @@ namespace RenCSharp.Sequences
         public override void DoEvent()
         {
             //spawn X buttons, and give them text corresponding to buttonNames
-            Event_Bus.TryFireDoubleObjEvent("SpawnPlayerButtons", (object)buttonNames.Length, (object)buttonNames);
+            Event_Bus.TryFireDoubleObjEvent("SpawnPlayerButtons", (object)buttonNames.Length, (object)buttonNames.ToList());
 
             List<Action> actions = new();
             //set up the actions to do stuff to flags when a button is chosen

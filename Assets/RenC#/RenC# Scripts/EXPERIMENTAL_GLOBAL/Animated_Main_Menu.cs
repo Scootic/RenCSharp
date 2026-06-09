@@ -9,10 +9,10 @@ namespace EXPERIMENTAL
     public sealed class Animated_Main_Menu : MonoBehaviour
     {
         [SerializeField, Tooltip("In seconds.")] private float minTime = 5, maxTime = 10;
-        [SerializeField,Min(1), Tooltip("Set to be the same as how many possible states you have, probably.")] private int animatorIntRange;
+        [SerializeField, Min(0)] private int animatorMinRollInclusive = 0;
+        [SerializeField,Min(1)] private int animatorMaxRollExclusive = 5;
         [SerializeField] private string animatorIntParameterName, animatorTriggerParameterName;
         private float desTime, t;
-        private int prevRoll;
         private Animator me;
         
         void Start()
@@ -20,7 +20,6 @@ namespace EXPERIMENTAL
             me = GetComponent<Animator>();
             desTime = Random.Range(minTime, maxTime);
             t = 0;
-            prevRoll = animatorIntRange;
         }
 
         
@@ -31,9 +30,7 @@ namespace EXPERIMENTAL
             {
                 t = 0;
                 desTime = Random .Range(minTime, maxTime);
-                int roll = Random.Range(0, animatorIntRange);
-                while (roll == prevRoll) roll = Random.Range(0, animatorIntRange);
-                prevRoll = roll;
+                int roll = RandomHelper.NoRepeatRoll("mainmenuanimator", animatorMinRollInclusive, animatorMaxRollExclusive);
                 me.SetInteger(animatorIntParameterName, roll);
                 me.SetTrigger(animatorTriggerParameterName);
             }

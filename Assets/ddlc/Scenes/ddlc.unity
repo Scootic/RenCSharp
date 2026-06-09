@@ -4039,10 +4039,10 @@ RectTransform:
   - {fileID: 1159330256}
   m_Father: {fileID: 1423157131}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2, y: 0.5}
-  m_AnchorMax: {x: 0.2, y: 0.5}
-  m_AnchoredPosition: {x: -116.50012, y: 186.99991}
-  m_SizeDelta: {x: 279.56006, y: 102.65828}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -635, y: 187}
+  m_SizeDelta: {x: 280, y: 103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &696893494
 MonoBehaviour:
@@ -4091,11 +4091,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 696893492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Script: {fileID: 11500000, guid: b9dd0d75fa906d34b94dfb348148a4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AspectMode: 0
-  m_AspectRatio: 2.72321
+  textComponent: {fileID: 1159330257}
+  me: {fileID: 696893493}
+  textRect: {fileID: 1159330256}
+  autoSizeTextIfPartialScaling: 1
+  minCharCount: 8
+  maxCharCount: 15
+  minSizeDelta: {x: 280, y: 103}
+  maxSizeDelta: {x: 460, y: 103}
+  localTextRectDeltaOffset: {x: -60, y: -40}
+  lerpPosition: 1
+  minPosition: {x: -635, y: 187, z: 0}
+  maxPosition: {x: -560, y: 187, z: 0}
 --- !u!1 &737545513
 GameObject:
   m_ObjectHideFlags: 0
@@ -4896,6 +4906,7 @@ MonoBehaviour:
   speakerNameField: {fileID: 1159330257}
   dialogField: {fileID: 1087768674}
   speakerNameBox: {fileID: 696893494}
+  speakerNameBoxScaler: {fileID: 696893496}
   dialogBox: {fileID: 1423157132}
   defaultTextBoxColor: {r: 0.11372549, g: 0.36862746, b: 0.20784314, a: 1}
   defaultFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4939,9 +4950,12 @@ MonoBehaviour:
   autoFocusScaleDuration: 0.25
   playerName: My Dude
   playerTag: '{mc}'
-  auto: 0
   lingerTime: 0.75
   historyLength: 10
+  paused: 0
+  auto: 0
+  saving: 0
+  loaded: 0
 --- !u!4 &1038785424
 Transform:
   m_ObjectHideFlags: 0
@@ -5593,10 +5607,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 696893493}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -55.700012, y: -42.94}
+  m_SizeDelta: {x: 350, y: 63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1159330257
 MonoBehaviour:
@@ -5618,7 +5632,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Name Text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5645,12 +5659,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.45
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

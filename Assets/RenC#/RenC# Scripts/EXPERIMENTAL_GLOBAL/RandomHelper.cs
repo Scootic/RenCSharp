@@ -30,6 +30,25 @@ namespace EXPERIMENTAL
             }
             return roll;
         }
+
+        public static int NoRepeatRoll(string id, int minInclusive, int maxExclusive)
+        {
+            if (minInclusive - maxExclusive == 1) return minInclusive;
+            int roll = Random.Range(minInclusive, maxExclusive);
+            if (prevIRolls.ContainsKey(id))
+            {
+                while(roll == prevIRolls[id])
+                {
+                    roll = Random.Range(minInclusive, maxExclusive);
+                }
+            }
+            else
+            {
+                prevIRolls.Add(id, roll);
+            }
+            return roll;
+        }
+
         /// <summary>
         /// Rolls a float that will be different than the previous float rolled under a string index.
         /// </summary>

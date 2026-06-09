@@ -27,6 +27,7 @@ namespace RenCSharp
         [SerializeField] private TextMeshProUGUI speakerNameField;
         [SerializeField] private TextMeshProUGUI dialogField;
         [SerializeField] private Image speakerNameBox;
+        [SerializeField] private TextHolder_Scaler speakerNameBoxScaler;
         [SerializeField] private Image dialogBox;
         [SerializeField, Tooltip("Decides the color of the textboxes if there's no actor in a screen.")] private Color defaultTextBoxColor = Color.white;
         [SerializeField] private TMP_FontAsset defaultFont;
@@ -263,9 +264,9 @@ namespace RenCSharp
             {
                 Button b = Object_Factory.SpawnObject(playerchoicePrefab.gameObject, "Button"+i, playerchoiceHolder).GetComponent<Button>();
                 b.GetComponentInChildren<TextMeshProUGUI>().text = buttonTexts[i];
-                if (b.TryGetComponent(out PlayerButton_Scaler pbs))
+                if (b.TryGetComponent(out TextHolder_Scaler ths))
                 {
-                    pbs.ScaleButton();
+                    ths.ScaleTextHolder();
                 }
                 curButtons.Add(b);
             }
@@ -315,7 +316,8 @@ namespace RenCSharp
                 dialogField.font = curActor.ActorFont;
                 dialogBox.material = curActor.TextboxMaterial;
                 speakerNameField.text = TagParser.CleanOutTags(curActor.ActorName,false);
-                if(curActor.ActorName == playerTag) speakerNameField.text = playerName; 
+                speakerNameField.text = Textbox_String.ReplaceableText(speakerNameField.text);
+                speakerNameBoxScaler.ScaleTextHolder();
                 if (currentSequence.AutoFocusSpeaker && !prevActorIscurSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so
             }
             if(curActor == null) //if no actor assigned, assume it's narration, so no name to our dialog box
