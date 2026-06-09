@@ -1,9 +1,10 @@
 #if UNITY_EDITOR
-using RenCSharp.Actors;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.UIElements;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -37,6 +38,18 @@ namespace RenCSharp.Sequences
     public class Sequence_Editor : Editor
     {
         private Sequence _target;
+        private SerializedProperty _autoFocusSpeaker;
+        private SerializedProperty _screens;
+        private SerializedProperty _playerChoices;
+        private SerializedProperty _myself;
+
+        private void OnEnable()
+        {
+            _autoFocusSpeaker = serializedObject.FindProperty("autoFocusSpeaker");
+            _screens = serializedObject.FindProperty("screens");
+            _playerChoices = serializedObject.FindProperty("playerChoices");
+            _myself = serializedObject.FindProperty("myself");
+        }
 
         public override void OnInspectorGUI()
         {
@@ -174,7 +187,10 @@ namespace RenCSharp.Sequences
                 }
             }
 
-            base.OnInspectorGUI();
+            EditorGUILayout.PropertyField(_autoFocusSpeaker);
+            EditorGUILayout.PropertyField(_myself);
+            EditorGUILayout.PropertyField(_screens);
+            EditorGUILayout.PropertyField(_playerChoices);
         }
 
         private void OnDisable()
@@ -184,32 +200,26 @@ namespace RenCSharp.Sequences
             serializedObject.Update();
         }
     }
-    /// <summary>
-    /// completely evil hunk of junk that is bad and not good!
-    /// </summary>
-    /*
+
     public class Sequence_EditorWindow : EditorWindow
     {
         private static Sequence manToEdit = null;
 
+        private SerializedProperty _autoFocusSpeaker = null;
         private SerializedProperty _myself = null;
+        private SerializedProperty _screens = null;
         private SerializedProperty _playerChoices = null;
-        private SerializedProperty _screensProperty = null;
-        private SerializedProperty _screenEventProperty = null;
         private SerializedObject _so = null;
-        private Screen[] _screens;
-
-        private Screen[] _displayedScreens;
+        private SerializedProperty[] _displayedScreens;
 
         private bool autoFocus;
+        private string stupid = "";
 
         private int screensScrollLength;
         private int screensToShowAtOnce = 5;
-        private int rootIndex, desIndex;
         private float screenScrollValue;
         private float screenScrollPerc;
         private float playerScrollValue;
-        private Vector2 screenScroll;
 
         [MenuItem("Window/Sequence Editor")]
         public static void ShowWindow()
@@ -241,74 +251,54 @@ namespace RenCSharp.Sequences
             EditorGUI.BeginChangeCheck();
             manToEdit = (Sequence)EditorGUILayout.ObjectField("Sequence", manToEdit, typeof(Sequence), false);
             if (manToEdit == null) return;
-            if(_myself == null || EditorGUI.EndChangeCheck()) //should fire whenever the sequence field changes
+            if(_autoFocusSpeaker == null || EditorGUI.EndChangeCheck()) //should fire whenever the sequence field changes
             {
                 _so = new SerializedObject(manToEdit);
+                _autoFocusSpeaker = _so.FindProperty("autoFocusSpeaker");
                 _myself = _so.FindProperty("myself");
-                _screensProperty = _so.FindProperty("screens").Copy();
-                _screens = new Screen[_screensProperty.arraySize];
-                for (int i = 0; i < _screensProperty.arraySize; i++)
-                {
-                    _screens[i] = _screensProperty.GetArrayElementAtIndex(i).boxedValue as Screen;
-                }
+                _screens = _so.FindProperty("screens").Copy();
                 _playerChoices = _so.FindProperty("playerChoices").Copy();
-                screensScrollLength = _screens.Length * 300;
+                screensScrollLength = _screens.arraySize * 300;
                 autoFocus = manToEdit.AutoFocusSpeaker;
-                _displayedScreens = new Screen[screensToShowAtOnce];
+                _displayedScreens = new SerializedProperty[screensToShowAtOnce];
             }
+            autoFocus = EditorGUILayout.Toggle("Auto Focus Speaker", autoFocus);
+            stupid = EditorGUILayout.TextField(stupid);
             EditorGUI.BeginChangeCheck();
             screensToShowAtOnce = EditorGUILayout.IntField("Screens to Show At Once", screensToShowAtOnce);
             if (EditorGUI.EndChangeCheck())
             {
-                _displayedScreens = new Screen[screensToShowAtOnce];
+                _displayedScreens = new SerializedProperty[screensToShowAtOnce];
             }
-            EditorGUILayout.Space();
-            autoFocus = EditorGUILayout.Toggle("Auto Focus Speaker", autoFocus);
             EditorGUILayout.PropertyField(_myself);
-            EditorGUILayout.BeginVertical(GUILayout.MaxWidth(500f));
-            screenScroll = EditorGUILayout.BeginScrollView(screenScroll);
+            screenScrollValue = EditorGUILayout.BeginScrollView(new Vector2(0f, screenScrollValue)).y;
+            
             if (_screens != null)
             {
-                EditorGUI.BeginChangeCheck();
-                screenScrollValue = EditorGUILayout.Slider(screenScrollValue, 0, screensScrollLength);
-
-                    screenScrollPerc = screenScrollValue / (float)screensScrollLength;
-                    //Instead of displaying a full array all at once, only show the screens we want.
-                    rootIndex = Mathf.FloorToInt(screenScrollPerc * (_screens.Length - 1));
-                    for (int i = 0; i < screensToShowAtOnce; i++)
-                    {
-                        desIndex = rootIndex + i;
-                        if (desIndex >= _screens.Length) break;
-                        _displayedScreens[i] = _screens[desIndex];
-                        EditorGUILayout.LabelField("Screen " + desIndex);
-                        _screens[desIndex].SetSpeaker = (Actor)EditorGUILayout.ObjectField("Speaker", _screens[desIndex].Speaker, typeof(Actor), false);
-                        _screens[desIndex].SetDialog = EditorGUILayout.TextArea(_screens[desIndex].Dialog, GUILayout.MinHeight(40f));
-
-                        _screenEventProperty = _screensProperty.GetArrayElementAtIndex(desIndex).FindPropertyRelative("ScreenActions");
-
-                        EditorGUILayout.PropertyField(_screenEventProperty); //since it's the property, don't need to set, it will serialize?
-                    }
-                
+                screenScrollPerc = screenScrollValue / (float)screensScrollLength;
+                Debug.Log($"Screen scroll value: {screenScrollValue}. Screen scroll length: {screensScrollLength}. Perc: {screenScrollPerc * 100f}%.");
+                //Instead of displaying a full array all at once, only show the screens we want.
+                int rootIndex = Mathf.FloorToInt(screenScrollPerc * (_screens.arraySize - 1));
+                for (int i = 0; i < screensToShowAtOnce; i++)
+                {
+                    int desIndex = rootIndex + i;
+                    if (desIndex >= _screens.arraySize) break;
+                    _displayedScreens[i] = _screens.GetArrayElementAtIndex(desIndex);
+                    EditorGUILayout.PropertyField(_displayedScreens[i], true);
+                }
                 //EditorGUILayout.PropertyField(_screens)
                 ///use ^^ for bs test mergenceries
             }
             EditorGUILayout.EndScrollView();
-            EditorGUILayout.EndVertical();
             if(EditorGUILayout.LinkButton("Add A Screen"))
             {
-                Screen[] newArray = new Screen[_screens.Length + 1];
-                for(int i = 0; i < _screens.Length; i++)
-                {
-                    newArray[i] = _screens[i];
-                }
-                newArray[_screens.Length] = new Screen();
-                _screens = newArray;
+                _screens.InsertArrayElementAtIndex(_screens.arraySize);
             }
             playerScrollValue = EditorGUILayout.BeginScrollView(new Vector2(0f, playerScrollValue)).y;
             EditorGUILayout.PropertyField(_playerChoices, true);
             EditorGUILayout.EndScrollView();
         }
-    }*/
+    }
 
     ///old method below where buttons were spawned directly in Sequence inspectorGUI, rather than in their own window
 

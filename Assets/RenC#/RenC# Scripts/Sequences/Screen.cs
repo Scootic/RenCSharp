@@ -1,7 +1,7 @@
 using RenCSharp.Actors;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -14,11 +14,9 @@ namespace RenCSharp.Sequences
     public class Screen
     {
         [SerializeField] private Actor speaker;
-        [SerializeField, TextArea(3, 7)] private string dialog;
+        [SerializeField, TextArea(3,7)] private string dialog;
         [SerializeReference] public List<Screen_Event> ScreenActions;
         public Actor Speaker => speaker;
-        public Actor SetSpeaker { set { speaker = value; } }
         public string Dialog => dialog;
-        public string SetDialog {set {dialog = value;} }
     }
 }
