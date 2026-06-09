@@ -23,15 +23,15 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: (Let's see... if I were {mc}, where would I be?)
     ScreenActions:
-    - rid: 4972360072031371375
+    - rid: 4972360025000116262
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: (...)
     ScreenActions:
-    - rid: 4972360072031371368
+    - rid: 4972360025000116265
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: (I don't know!)
     ScreenActions:
-    - rid: 4972360072031371372
+    - rid: 4972360025000116263
   - speaker: {fileID: 11400000, guid: 99c1c9ab1bd810549a65874b102351c3, type: 2}
     dialog: You could try asking a guard if they saw {mc}?
     ScreenActions: []
@@ -342,6 +342,26 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
+    - rid: 4972360025000116262
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - focus
+        - EMPTY
+    - rid: 4972360025000116263
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - '><Shock'
+        - 
     - rid: 4972360025000116264
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -385,6 +405,15 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         loopOnScreen: 0
+    - rid: 4972360025000116265
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - 
+        - 
     - rid: 4972360025000116266
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1469,28 +1498,6 @@ MonoBehaviour:
             speaker: {fileID: 0}
             dialog: 
             ScreenActions: []
-        - conditions:
-          - flagToCheck: garbage
-            operation: 0
-            desiredValue: 4
-            persistent: 0
-            debugResult: 0
-            bitWise: 0
-          resultingScreen:
-            speaker: {fileID: 0}
-            dialog: 
-            ScreenActions: []
-        - conditions:
-          - flagToCheck: garbage
-            operation: 0
-            desiredValue: 5
-            persistent: 0
-            debugResult: 0
-            bitWise: 0
-          resultingScreen:
-            speaker: {fileID: 0}
-            dialog: 
-            ScreenActions: []
     - rid: 4972360072031371326
       type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1498,6 +1505,7 @@ MonoBehaviour:
         - All of you were there for me in a tough time of my life.
         - All of you are so well-written, I think of you as people.
         - All of you remind me of real people I care about, so I care about you too.
+        - 
         flagsToAlter:
         - garbage
         - garbage
@@ -1514,32 +1522,3 @@ MonoBehaviour:
         - 
         - lookAwayGrin
         - 
-    - rid: 4972360072031371368
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - 
-        - 
-    - rid: 4972360072031371372
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        visualSpriteIndexes:
-        - 
-        - 
-        - '><Shock'
-        - 
-    - rid: 4972360072031371375
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        fadeInTime: 0.5
-        spawnOffset: {x: 0, y: 0, z: 0}
-        visualSpriteIndexes:
-        - skyUp
-        - skyUp
-        - focus
-        - EMPTY
