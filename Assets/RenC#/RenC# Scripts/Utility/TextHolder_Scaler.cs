@@ -25,7 +25,7 @@ namespace RenCSharp
         public void ScaleTextHolder()
         {
             int foundcharcount = textComponent.text.Length; //might include hidden chars? maybe not too bad a problem.
-            Debug.Log($"Found charcount for textholder {gameObject.name}: {foundcharcount}");
+            //Debug.Log($"Found charcount for textholder {gameObject.name}: {foundcharcount}");
             if (foundcharcount < minCharCount)
             {
                 me.sizeDelta = minSizeDelta;
@@ -48,7 +48,7 @@ namespace RenCSharp
 
             textRect.sizeDelta = me.sizeDelta + localTextRectDeltaOffset;
             textRect.localPosition = Vector3.zero; //extra make sure
-            Debug.Log($"New Text Rect SizeDelta for {gameObject.name}: {textRect.sizeDelta} ({me.sizeDelta} + {localTextRectDeltaOffset})");
+            //Debug.Log($"New Text Rect SizeDelta for {gameObject.name}: {textRect.sizeDelta} ({me.sizeDelta} + {localTextRectDeltaOffset})");
 
         }
     }
