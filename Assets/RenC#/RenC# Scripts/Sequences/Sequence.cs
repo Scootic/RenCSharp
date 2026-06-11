@@ -15,8 +15,8 @@ namespace RenCSharp.Sequences
     public class Sequence : ScriptableObject
     {
         [SerializeField] private bool autoFocusSpeaker;
-        [SerializeField] private Screen[] screens;
-        [SerializeField] private Player_Choice[] playerChoices;
+        [SerializeField] private Screen[] screens = new Screen[2];
+        [SerializeField] private Player_Choice[] playerChoices = new Player_Choice[1];
         [SerializeField] private AssetReference myself;
 
         public bool AutoFocusSpeaker => autoFocusSpeaker;
