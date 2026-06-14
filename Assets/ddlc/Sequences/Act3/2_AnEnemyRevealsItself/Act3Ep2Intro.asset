@@ -713,7 +713,7 @@ MonoBehaviour:
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-            dialog: (You don't even have enough confidence to lead me along...)
+            dialog: (<b>You</b> don't even have enough confidence to lead me along...)
             ScreenActions:
             - rid: 4972360184803623009
     - rid: 4972360184803623007
@@ -769,7 +769,7 @@ MonoBehaviour:
         actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         visualSpriteIndexes:
         - 
-        - 
+        - skyDown
         - terror
         - 
     - rid: 4972360184803623014
@@ -803,7 +803,7 @@ MonoBehaviour:
         fadeInTime: 0.5
         spawnOffset: {x: -400, y: 0, z: 0}
         visualSpriteIndexes:
-        - default
+        - happy
     - rid: 4972360184803623019
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
