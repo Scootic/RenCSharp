@@ -11,13 +11,16 @@ namespace RenCSharp.Sequences
     /// even if there's no dialog. This can be used for doing things without any dialog, or as an empty after certain dialog.
     /// </summary>
     [Serializable]
-    public class Screen 
+    public struct Screen 
     {
         [SerializeField] private Actor speaker;
         [SerializeField, TextArea(3,7)] private string dialog;
         [SerializeReference] public List<Screen_Event> ScreenActions;
         public Actor Speaker => speaker;
         public string Dialog => dialog;
+
+        public Actor SetSpeaker { set { speaker = value; } }
+        public string SetDialog { set { dialog = value; } } 
 
     }
 }

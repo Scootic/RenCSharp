@@ -1,6 +1,8 @@
 #if UNITY_EDITOR
+using RenCSharp.Actors;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -183,6 +185,35 @@ namespace RenCSharp.Sequences
             }
         }
     }
+    [UxmlElement]
+    public partial class ScreenVisualElement : VisualElement
+    {
+       [UxmlAttribute] public Screen Screen { get; set; } = new Screen();
+    }
+
+    public class ScreenConverter : UxmlAttributeConverter<Screen>
+    {
+        static string ValueToString(object obj) => Convert.ToString(obj, CultureInfo.InvariantCulture);
+
+        public override Screen FromString(string value)
+        {
+            Screen s = new Screen();
+            object[] objects = value.Split('|');
+            s.SetSpeaker = (Actor)Convert.ChangeType(objects[0], typeof(Actor), CultureInfo.InvariantCulture);
+            s.SetDialog = objects[1] as string;
+            s.ScreenActions = (List<Screen_Event>)Convert.ChangeType(objects[2], typeof(List<Screen_Event>), CultureInfo.InvariantCulture);
+            return s;
+       }
+
+        public override string ToString(Screen s)
+        {
+            string format = "";
+            format += ValueToString(s.Speaker + "|");
+            format += s.Dialog + "|";
+            format += ValueToString(s.ScreenActions);
+            return format;
+        }
+    }
 
     public class ScreenUITKField : BaseField<Screen>
     {
@@ -214,6 +245,15 @@ namespace RenCSharp.Sequences
             //ContentElement.Add(ScreenEventsField);
         }
 
+        public Screen SetValue
+        {
+            set
+            {
+                ActorField.value = value.Speaker;
+                DialogField.value = value.Dialog;
+            }
+        }
+
         public void SetCustomLabel(VisualElement customLabel)
         {
             labelElement.Clear();
@@ -240,6 +280,7 @@ namespace RenCSharp.Sequences
         private Toggle autoSpeakerToggle;
         private PropertyField myAssetRefField;
         private ScreenUITKField field;
+        private ListView screenScrollView;
 
         private readonly string _filePath = "Assets/RenC#/RenC# Scripts/Sequences/SequenceTools/Sequence_EditorWindow.uxml";
 
@@ -271,16 +312,35 @@ namespace RenCSharp.Sequences
             SerializedObject so = new SerializedObject(_target);
 
             autoSpeakerToggle.value = _target.AutoFocusSpeaker;
-            Debug.Log("The stinking ref field: " + myAssetRefField);
             myAssetRefField.BindProperty(so.FindProperty("myself"));
 
-            field.value = _target.Screens[0];
+            InitScreenListView();
+
+            field.SetValue = _target.Screens[0];
         }
 
         private void ReserializeSequence()
         {
             if (_target == null) return;
             _target.SetAFS = autoSpeakerToggle.value;
+        }
+
+        private void InitScreenListView()
+        {
+            if (_target != null)
+            {
+                screenScrollView.itemsSource = _target.Screens;
+                screenScrollView.makeItem = () => new ScreenVisualElement();
+                screenScrollView.bindItem = (VisualElement e, int index) =>
+                {
+                    ScreenVisualElement sve = e as ScreenVisualElement;
+                    if (sve != null)
+                    {
+                        sve.Screen = _target.Screens[index];
+                    }
+                };
+                screenScrollView.selectionType = SelectionType.Single;
+            }
         }
 
         public void CreateGUI()
@@ -303,11 +363,12 @@ namespace RenCSharp.Sequences
             autoSpeakerToggle = root.Q<Toggle>("autoFocusSpeaker");
             myAssetRefField = root.Q<PropertyField>("myself");
 
-            ListView screenScrollView = root.Q<ListView>("screenListView"); //WHAT IN THE actual FUcK
+            screenScrollView = root.Q<ListView>("screenListView"); //WHAT IN THE actual FUcK
 
+            InitScreenListView();
+            
             field = new ScreenUITKField("First Screen", new Screen());
             root.Add(field);
-
             rootVisualElement.Add(root);
         }
     }
