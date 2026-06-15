@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <uie:ObjectField label="Sequence to Edit" type="RenCSharp.Sequences.Sequence, Sequences" data-source-path="_target" binding-path="_target" name="_target" style="background-color: rgba(0, 0, 0, 0.38); color: rgb(255, 255, 255);" />
+    <ui:Label text="My Asset Reference" name="Label" style="background-color: rgba(10, 152, 0, 0); height: 36px; justify-content: flex-start; align-content: flex-start; align-self: auto; align-items: stretch; -unity-text-align: upper-left; white-space: normal;">
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 445px; left: 143px;">
+            <uie:PropertyField name="myself" data-source-path="myself" binding-path="myself" />
+        </ui:VisualElement>
+    </ui:Label>
+    <ui:Toggle label="Auto-Focus Speaker" name="autoFocusSpeaker" data-source-path="autoFocusSpeaker" binding-path="autoFocusSpeaker" />
+    <ui:ListView name="screenListView" data-source-path="screenListView" binding-path="screenListView" style="background-color: rgba(0, 0, 0, 0.3);" />
+</ui:UXML>

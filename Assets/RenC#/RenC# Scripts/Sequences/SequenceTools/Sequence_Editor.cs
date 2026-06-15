@@ -1,8 +1,11 @@
 #if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.UIElements;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -12,6 +15,17 @@ namespace RenCSharp.Sequences
     [CustomPropertyDrawer(typeof(Screen_Event))]
     public class Screen_Event_Drawer : PolymorphicPropertyDrawer<Screen_Event>
     {
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            VisualElement container = new VisualElement();
+            container.AddToClassList("unity-base-field");
+            container.AddToClassList("unity-base-field__aligned");
+            PropertyField stinker = new PropertyField();
+            stinker.BindProperty(property);
+            container.Add(stinker);
+            return container;
+        }
+
         protected override string DropDownMenuName()
         {
             return "Select Screen Event Type";
@@ -30,7 +44,7 @@ namespace RenCSharp.Sequences
                 int wordcount = 0;
                 long totalChars = 0;
 
-                foreach(Object obj in targets)
+                foreach(UnityEngine.Object obj in targets)
                 {
                     _target = (Sequence)obj;
                     totalScreens += _target.Screens.Length;
@@ -76,7 +90,7 @@ namespace RenCSharp.Sequences
             
             if(GUILayout.Button("Replace Deprecated Events")) //pretty please update to include things you want to replace en masse
             {
-                foreach (Object obj in targets)
+                foreach (UnityEngine.Object obj in targets)
                 {
                     _target = (Sequence)obj;
                     int replaced = 0;
@@ -170,15 +184,137 @@ namespace RenCSharp.Sequences
         }
     }
 
+    public class ScreenUITKField : BaseField<Screen>
+    {
+        private readonly VisualElement ContentElement;
+        private readonly ObjectField ActorField;
+        private readonly TextField DialogField;
+        private readonly PropertyField ScreenEventsField;
+
+        public ScreenUITKField(string labelText, Screen s) : base(labelText, new VisualElement())
+        {
+            ContentElement = this.Q<VisualElement>(className: inputUssClassName);
+            ContentElement.style.flexDirection = FlexDirection.Column;
+            AddToClassList(alignedFieldUssClassName);
+            labelElement.style.marginBottom = 1;
+
+            ActorField = new ObjectField();
+            ActorField.label = "Speaker:";
+            ActorField.value = s.Speaker;
+            ContentElement.Add(ActorField);
+
+            DialogField = new TextField();
+            DialogField.label = "Dialog:";
+            DialogField.value = s.Dialog;
+            ContentElement.Add(DialogField);
+
+            //ScreenEventsField = new PropertyField();
+            //ScreenEventsField.label = "Screen Actions:";
+            //ScreenEventsField.BindProperty();
+            //ContentElement.Add(ScreenEventsField);
+        }
+
+        public void SetCustomLabel(VisualElement customLabel)
+        {
+            labelElement.Clear();
+            labelElement.Add(customLabel);
+        }
+
+        public void SetCustomContent(VisualElement customContent)
+        {
+            ContentElement.Clear();
+            ContentElement.Add(customContent);
+        }
+    }
 
 
     /// <summary>
     /// Unique EditorWindow just to add specific screen events to a screen. Why? The Unity inspector was not built for polymorphism. FML.
     /// </summary>
-    //public class Sequence_Editor : EditorWindow
+    public class Sequence_EditorWindow : EditorWindow
+    {
+        [SerializeField] private static VisualTreeAsset _treeAsset = default;
+        [SerializeField] private static Sequence _target;
+
+        private ObjectField targetSequenceField;
+        private Toggle autoSpeakerToggle;
+        private PropertyField myAssetRefField;
+        private ScreenUITKField field;
+
+        private readonly string _filePath = "Assets/RenC#/RenC# Scripts/Sequences/SequenceTools/Sequence_EditorWindow.uxml";
+
+        [MenuItem("Window/Sequence Editor")]
+        public static void OpenWindow()
+        {
+            EditorWindow guh = GetWindow<Sequence_EditorWindow>();
+            guh.titleContent = new GUIContent("Sequence Editor");
+        }
+
+        public static void OpenWindow(Sequence newTarget)
+        {
+            _target = newTarget;
+            OpenWindow();
+        }
+
+        private void OnDestroy()
+        {
+            //reserialize the stinkin' sequence
+            ReserializeSequence();
+        }
+
+        private void NewSequenceSelected(ChangeEvent<UnityEngine.Object> changeEvent)
+        {
+            Debug.Log("Swapping out sequence!");
+            _target = changeEvent.newValue as Sequence;
+            //change the stinking thing to display new stuff!
+
+            SerializedObject so = new SerializedObject(_target);
+
+            autoSpeakerToggle.value = _target.AutoFocusSpeaker;
+            Debug.Log("The stinking ref field: " + myAssetRefField);
+            myAssetRefField.BindProperty(so.FindProperty("myself"));
+
+            field.value = _target.Screens[0];
+        }
+
+        private void ReserializeSequence()
+        {
+            if (_target == null) return;
+            _target.SetAFS = autoSpeakerToggle.value;
+        }
+
+        public void CreateGUI()
+        {
+            try
+            {
+                _treeAsset = AssetDatabase.LoadAssetAtPath(_filePath, typeof(VisualTreeAsset)) as VisualTreeAsset;
+            }
+            catch (NullReferenceException)
+            {
+                Debug.LogError($"Couldn't find a .uxml file at: {_filePath}. Either you moved or deleted it. Sucks to be you!");
+                return;
+            }
+            Debug.Log("Found the tree asset!");
+            VisualElement root = _treeAsset.CloneTree();
+
+            targetSequenceField = root.Q<ObjectField>("_target");
+            targetSequenceField.RegisterValueChangedCallback(NewSequenceSelected);
+
+            autoSpeakerToggle = root.Q<Toggle>("autoFocusSpeaker");
+            myAssetRefField = root.Q<PropertyField>("myself");
+
+            ListView screenScrollView = root.Q<ListView>("screenListView"); //WHAT IN THE actual FUcK
+
+            field = new ScreenUITKField("First Screen", new Screen());
+            root.Add(field);
+
+            rootVisualElement.Add(root);
+        }
+    }
+
+    ///old garbage window that tries to segment the Screen array to save on redraws. Doesn't friggin' work. I'm blaming
+    ///serialization???
     //{
-
-
     //private Vector2 scrollPos;
     //[Min(0), Tooltip("The screen that will receive the new screen action.")]private int screenIndex = 0;
     //Sequence manToEdit = null;

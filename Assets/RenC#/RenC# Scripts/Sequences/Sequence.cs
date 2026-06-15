@@ -24,6 +24,11 @@ namespace RenCSharp.Sequences
         public Screen[] Screens => screens;
         public Player_Choice[] PlayerChoices => playerChoices;
 
+        public bool SetAFS { set { autoFocusSpeaker = value; } }
+        public AssetReference SetMyAssetRef { set { myself = value; } }
+        public Player_Choice[] SetPlayerChoices { set { playerChoices = value; } }
+        public Screen[] SetScreens { set { screens = value; } }
+
         public override string ToString()
         {
             return "Sequence";
