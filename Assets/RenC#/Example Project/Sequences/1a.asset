@@ -21,9 +21,12 @@ MonoBehaviour:
     - rid: 4972360274241126860
     - rid: 4972360274241126857
   - speaker: {fileID: 0}
-    dialog: 
+    dialog: dipthong
     ScreenActions:
-    - rid: 4972360274241126725
+    - rid: 4972360282577043510
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -40,11 +43,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 4972360274241126725
-      type: {class: Stop_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        clipToStop: {fileID: 0}
-        is3D: 0
     - rid: 4972360274241126853
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -66,3 +64,23 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 0}
+    - rid: 4972360282577043510
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 0
+        overridingParticles:
+          m_AssetGUID: 
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
