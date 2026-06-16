@@ -2,7 +2,6 @@ using RenCSharp.Actors;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Device;
 namespace RenCSharp.Sequences
 {
     /// <summary>

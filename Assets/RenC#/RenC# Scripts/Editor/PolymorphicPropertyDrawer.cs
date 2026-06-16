@@ -25,13 +25,16 @@ namespace RenCSharp
         protected static Assembly typeAssembly = Assembly.GetAssembly(typeof(T));
         protected static Type[] allTChildren;
         protected static List<string> typeToStrings;
+        protected abstract string DropDownMenuName();
+        [SerializeReference] protected SerializedProperty m_SE; //only used by IMGUI chicanery
+
+        //below only used by UIToolkit chicanery
         protected VisualElement container;
         protected DropdownField polymorphDropDown;
         protected PropertyField polymorphPropertyField;
         protected string newVal;
         protected int typeIndex;
-        protected abstract string DropDownMenuName();
-        [SerializeReference] protected SerializedProperty m_SE;
+        
 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         { 

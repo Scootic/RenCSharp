@@ -408,7 +408,8 @@ namespace RenCSharp.Sequences
                     {
                         if (index >= _target.Screens.Length) return;
                         //Debug.Log("Screens Property: " + screensProp);
-                        SerializedProperty screenActionsProp = screensProp.GetArrayElementAtIndex(index).FindPropertyRelative("ScreenActions");
+                        SerializedProperty screenProp = screensProp.GetArrayElementAtIndex(index);
+                        SerializedProperty screenActionsProp = screenProp.FindPropertyRelative("ScreenActions");
                         //Debug.Log($"Screen Action Property at: {index}" + screenActionsProp);
                         screenField.SetValue = _target.Screens[index];
                         screenField.SetScreenEventsProperty = screenActionsProp;
