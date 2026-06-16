@@ -9,10 +9,12 @@ namespace RenCSharp.Sequences
     [CustomPropertyDrawer(typeof(Screen))]
     public class Screen_Drawer : PropertyDrawer
     {
-        //public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        //{
-        //    
-        //}
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            ScreenUITKField theField = new ScreenUITKField(property.name, (Screen)property.boxedValue);
+            theField.SetScreenEventsProperty = property.FindPropertyRelative("ScreenActions");
+            return theField;
+        }
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {

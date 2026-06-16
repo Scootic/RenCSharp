@@ -12,21 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
   m_Name: 1a
   m_EditorClassIdentifier: 
-  autoFocusSpeaker: 1
+  autoFocusSpeaker: 0
   screens:
   - speaker: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
     dialog: You see? Dummy.
     ScreenActions:
-    - rid: 8612954348509724881
-    - rid: 8612954348509725123
+    - rid: 4972360274241126853
+    - rid: 4972360274241126860
+    - rid: 4972360274241126857
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
-    - rid: 9079475099098677353
+    - rid: 4972360274241126725
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 8747cf3008a6b5b499ac9acabec6bec5, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 53305b8d8a3ec194d8e9c3ad40d3e34d
@@ -37,74 +40,29 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 8612954348509724881
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 4972360274241126725
+      type: {class: Stop_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        actorToAlter: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
-        visualSpriteIndexes:
-        - default
-        - joy
-    - rid: 8612954348509725123
-      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+        clipToStop: {fileID: 0}
+        is3D: 0
+    - rid: 4972360274241126853
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        localMotionOffset: {x: 0, y: 100, z: 0}
-        motionDuration: 0.5
-        motionPathX:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        motionPathY:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2.051282
-            outSlope: 2.051282
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 0.4875
-            value: 1
-            inSlope: 0.050031185
-            outSlope: 0.050031185
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: -1.9512196
-            outSlope: -1.9512196
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        motionPathZ:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        target: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
-        loopOnScreen: 1
-    - rid: 9079475099098677353
+        sfxToPlay: {fileID: 0}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+        baseVolume: 1
+    - rid: 4972360274241126857
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        newBG:
-        - m_AssetGUID: 99a6132652ac424438484748116a7f01
-          m_SubObjectName: whitepng
-          m_SubObjectGUID: 
-          m_SubObjectType: 
-          m_EditorAssetChanged: 0
+        newBG: []
         secondsPerFrame: 0.1
-        fadeTransition: 1
+        fadeTransition: 0
         fadeDuration: 1
+    - rid: 4972360274241126860
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 0}

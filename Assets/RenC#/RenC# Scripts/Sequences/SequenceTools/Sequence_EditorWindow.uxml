@@ -1,10 +1,17 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
-    <uie:ObjectField label="Sequence to Edit" type="RenCSharp.Sequences.Sequence, Sequences" data-source-path="_target" binding-path="_target" name="_target" style="background-color: rgba(0, 0, 0, 0.38); color: rgb(255, 255, 255);" />
-    <ui:Label text="My Asset Reference" name="Label" style="background-color: rgba(10, 152, 0, 0); height: 36px; justify-content: flex-start; align-content: flex-start; align-self: auto; align-items: stretch; -unity-text-align: upper-left; white-space: normal;">
+    <uie:ObjectField label="Sequence to Edit:" type="RenCSharp.Sequences.Sequence, Sequences" data-source-path="_target" binding-path="_target" name="_target" style="background-color: rgba(0, 0, 0, 0.4); color: rgb(255, 255, 255);" />
+    <ui:Label text="My Asset Reference:" name="Label" style="background-color: rgba(10, 152, 0, 0); height: 36px; justify-content: flex-start; align-content: flex-start; align-self: auto; align-items: stretch; -unity-text-align: upper-left; white-space: normal;">
         <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 445px; left: 143px;">
             <uie:PropertyField name="myself" data-source-path="myself" binding-path="myself" />
         </ui:VisualElement>
     </ui:Label>
-    <ui:Toggle label="Auto-Focus Speaker" name="autoFocusSpeaker" data-source-path="autoFocusSpeaker" binding-path="autoFocusSpeaker" />
+    <ui:Toggle label="Auto-Focus Speaker:" name="autoFocusSpeaker" data-source-path="autoFocusSpeaker" binding-path="autoFocusSpeaker" />
     <ui:ListView name="screenListView" data-source-path="screenListView" binding-path="screenListView" virtualization-method="DynamicHeight" reorderable="true" fixed-item-height="30" style="background-color: rgba(0, 0, 0, 0.3); bottom: auto; height: 600px;" />
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.4); height: 50px; width: 600px; bottom: auto; flex-direction: row;">
+        <ui:Label text="Screen Controls:" />
+        <ui:Button text="Add a Screen" name="addAScreen" data-source-path="addAScreen" binding-path="addAScreen" style="white-space: normal;" />
+        <ui:Button text="Remove Last Screen" name="removeLastScreen" data-source-path="removeLastScreen" binding-path="removeLastScreen" style="white-space: normal;" />
+        <ui:Button text="Replace Deprecated Events" name="replaceDeprecatedEvents" data-source-path="replaceDeprecatedEvents" binding-path="replaceDeprecatedEvents" style="width: 178px; white-space: normal;" />
+    </ui:VisualElement>
+    <ui:ListView name="playerChoiceListView" data-source-path="playerChoiceListView" binding-path="playerChoiceListView" virtualization-method="DynamicHeight" style="background-color: rgba(0, 0, 0, 0.3); height: 150px;" />
 </ui:UXML>

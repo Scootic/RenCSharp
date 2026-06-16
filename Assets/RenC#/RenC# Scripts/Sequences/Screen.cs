@@ -1,7 +1,8 @@
 using RenCSharp.Actors;
 using System;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Device;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -11,16 +12,15 @@ namespace RenCSharp.Sequences
     /// even if there's no dialog. This can be used for doing things without any dialog, or as an empty after certain dialog.
     /// </summary>
     [Serializable]
-    public struct Screen 
+    public class Screen
     {
-        [SerializeField] private Actor speaker;
-        [SerializeField, TextArea(3,7)] private string dialog;
-        [SerializeReference] public List<Screen_Event> ScreenActions;
+        [SerializeField] private Actor speaker = null;
+        [SerializeField, TextArea(3, 7)] private string dialog = "";
+        [SerializeReference] public List<Screen_Event> ScreenActions = new();
         public Actor Speaker => speaker;
         public string Dialog => dialog;
 
         public Actor SetSpeaker { set { speaker = value; } }
-        public string SetDialog { set { dialog = value; } } 
-
+        public string SetDialog { set { dialog = value; } }
     }
 }

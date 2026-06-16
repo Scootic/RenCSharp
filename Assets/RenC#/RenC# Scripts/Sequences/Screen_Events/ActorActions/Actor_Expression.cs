@@ -10,9 +10,9 @@ namespace RenCSharp.Sequences
     [Serializable]
     public class Actor_Expression : Screen_Event
     {
-        [SerializeField, HideInInspector]private Actor actorToAlter;
+        [SerializeField]private Actor actorToAlter;
         [SerializeField,Tooltip("Reference the strings you put in the actor SO. Empty to skip layer." +
-            "Type in the light gray boxes for auto-fill."), HideInInspector] private string[] visualSpriteIndexes = new string[1];
+            "Type in the light gray boxes for auto-fill.")] private string[] visualSpriteIndexes = new string[1];
 
         public override void DoEvent()
         {

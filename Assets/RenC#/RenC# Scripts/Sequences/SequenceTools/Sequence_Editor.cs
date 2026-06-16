@@ -17,17 +17,6 @@ namespace RenCSharp.Sequences
     [CustomPropertyDrawer(typeof(Screen_Event))]
     public class Screen_Event_Drawer : PolymorphicPropertyDrawer<Screen_Event>
     {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            VisualElement container = new VisualElement();
-            container.AddToClassList("unity-base-field");
-            container.AddToClassList("unity-base-field__aligned");
-            PropertyField stinker = new PropertyField();
-            stinker.BindProperty(property);
-            container.Add(stinker);
-            return container;
-        }
-
         protected override string DropDownMenuName()
         {
             return "Select Screen Event Type";
@@ -40,7 +29,9 @@ namespace RenCSharp.Sequences
         private Sequence _target;
         public override void OnInspectorGUI()
         {
-            if(GUILayout.Button("Calculate Sequence Length")) 
+            if (_target == null) _target = target as Sequence;
+
+            if (GUILayout.Button("Calculate Sequence Length")) 
             {
                 int totalScreens = 0;
                 int wordcount = 0;
@@ -116,7 +107,7 @@ namespace RenCSharp.Sequences
                                 newVent.SetSongAsset = new AssetReference(guid);
                                 replaced++;
                             }
-                            else if(vent.ToString() == "Deprecated/Set Overlay Image")
+                            else if (vent.ToString() == "Deprecated/Set Overlay Image")
                             {
                                 Debug.Log("Replacing Set Overlay...");
                                 Set_Overlay oldVent = vent as Set_Overlay;
@@ -129,7 +120,7 @@ namespace RenCSharp.Sequences
 
                                 List<Sprite> sprungles = oldVent.GetImagesToSet;
                                 List<AssetReferenceSprite> leRefs = new();
-                                foreach(Sprite spr in sprungles) //get shiz set up!
+                                foreach (Sprite spr in sprungles) //get shiz set up!
                                 {
                                     string johnson = AssetDatabase.GetAssetPath(spr);
                                     Debug.Log("Asset Path for sprite? " + johnson);
@@ -143,7 +134,7 @@ namespace RenCSharp.Sequences
                                 s.ScreenActions[j] = newVent;
                                 replaced++;
                             }
-                            else if(vent.ToString() == "Deprecated/Fade Transition")
+                            else if (vent.ToString() == "Deprecated/Fade Transition")
                             {
                                 Debug.Log("Replacing Fade Transition...");
                                 Fade_Transition oldVent = vent as Fade_Transition;
@@ -174,7 +165,11 @@ namespace RenCSharp.Sequences
                 }
             }
 
-            if(_target == null) _target = target as Sequence;
+            if(GUILayout.Button("Open in Sequence Editor"))
+            {
+                Sequence_EditorWindow.OpenWindow(_target);
+                Sequence_EditorWindow.SetTarget = _target;
+            }
 
             EditorGUI.BeginChangeCheck();
             base.OnInspectorGUI();
@@ -185,13 +180,8 @@ namespace RenCSharp.Sequences
             }
         }
     }
-    [UxmlElement]
-    public partial class ScreenVisualElement : VisualElement
-    {
-       [UxmlAttribute] public Screen Screen { get; set; } = new Screen();
-    }
 
-    public class ScreenConverter : UxmlAttributeConverter<Screen>
+    public class ScreenConverter : UxmlAttributeConverter<Screen> //not sure if i even need this?
     {
         static string ValueToString(object obj) => Convert.ToString(obj, CultureInfo.InvariantCulture);
 
@@ -220,7 +210,8 @@ namespace RenCSharp.Sequences
         private readonly VisualElement ContentElement;
         private readonly ObjectField ActorField;
         private readonly TextField DialogField;
-        private readonly PropertyField ScreenEventsField;
+        private readonly PropertyField ScreenEventsField; //really sad. Maybe a converter just to turn this boy to uxml?
+        private readonly VisualElement GapSpace;
 
         public ScreenUITKField(string labelText, Screen s) : base(labelText, new VisualElement())
         {
@@ -231,18 +222,54 @@ namespace RenCSharp.Sequences
 
             ActorField = new ObjectField();
             ActorField.label = "Speaker:";
+            ActorField.objectType = typeof(Actor);
             ActorField.value = s.Speaker;
             ContentElement.Add(ActorField);
 
             DialogField = new TextField();
             DialogField.label = "Dialog:";
-            DialogField.value = s.Dialog;
+            DialogField.SetVerticalScrollerVisibility(ScrollerVisibility.Auto); //???
+            DialogField.style.whiteSpace = WhiteSpace.Normal;
+            DialogField.multiline = true;
             ContentElement.Add(DialogField);
 
-            //ScreenEventsField = new PropertyField();
-            //ScreenEventsField.label = "Screen Actions:";
-            //ScreenEventsField.BindProperty();
-            //ContentElement.Add(ScreenEventsField);
+            ScreenEventsField = new PropertyField();
+            ScreenEventsField.label = "Screen Actions:";
+            ContentElement.Add(ScreenEventsField);
+
+            GapSpace = new VisualElement();
+            GapSpace.style.height = 20;
+            ContentElement.Add(GapSpace);
+        }
+
+        public ScreenUITKField(string labelText) : base(labelText, new VisualElement())
+        {
+            ContentElement = this.Q<VisualElement>(className: inputUssClassName);
+            ContentElement.style.flexDirection = FlexDirection.Column;
+            AddToClassList(alignedFieldUssClassName);
+            labelElement.style.marginBottom = 1;
+
+            ActorField = new ObjectField();
+            ActorField.objectType = typeof(Actor);
+            ActorField.label = "Speaker:";
+            ActorField.value = null;
+            ContentElement.Add(ActorField);
+
+            DialogField = new TextField();
+            DialogField.SetVerticalScrollerVisibility(ScrollerVisibility.Auto);
+            DialogField.style.whiteSpace = WhiteSpace.Normal;
+            DialogField.label = "Dialog:";
+            DialogField.value = "";
+            DialogField.multiline = true;
+            ContentElement.Add(DialogField);
+
+            ScreenEventsField = new PropertyField();
+            ScreenEventsField.label = "Screen Actions:";
+            ContentElement.Add(ScreenEventsField);
+
+            GapSpace = new VisualElement();
+            GapSpace.style.height = 20;
+            ContentElement.Add(GapSpace);
         }
 
         public Screen SetValue
@@ -251,6 +278,37 @@ namespace RenCSharp.Sequences
             {
                 ActorField.value = value.Speaker;
                 DialogField.value = value.Dialog;
+            }
+        }
+
+        public Actor GetActor
+        {
+            get
+            {
+                return ActorField.value as Actor;
+            }
+        }
+
+        public string GetDialog
+        {
+            get
+            {
+                return DialogField.value;
+            }
+        }
+
+        public SerializedProperty SetScreenEventsProperty
+        {
+            set 
+            {
+                if (value != null)
+                {
+                    ScreenEventsField.BindProperty(value);
+                }
+                else
+                {
+                    Debug.LogError("SetScreenEventsProperty was passed a null property!");
+                }
             }
         }
 
@@ -275,20 +333,23 @@ namespace RenCSharp.Sequences
     {
         [SerializeField] private static VisualTreeAsset _treeAsset = default;
         [SerializeField] private static Sequence _target;
+        private static EditorWindow me;
+        public static Sequence SetTarget { set { _target = value; } }
 
         private ObjectField targetSequenceField;
         private Toggle autoSpeakerToggle;
         private PropertyField myAssetRefField;
-        private ScreenUITKField field;
         private ListView screenScrollView;
+        private Button addScreenButton, removeLastScreenButton, replaceDeprecatedEventsButton;
+        private Action ExtractTheScreens;
 
         private readonly string _filePath = "Assets/RenC#/RenC# Scripts/Sequences/SequenceTools/Sequence_EditorWindow.uxml";
 
         [MenuItem("Window/Sequence Editor")]
         public static void OpenWindow()
         {
-            EditorWindow guh = GetWindow<Sequence_EditorWindow>();
-            guh.titleContent = new GUIContent("Sequence Editor");
+            me = GetWindow<Sequence_EditorWindow>();
+            me.titleContent = new GUIContent("Sequence Editor");
         }
 
         public static void OpenWindow(Sequence newTarget)
@@ -301,11 +362,16 @@ namespace RenCSharp.Sequences
         {
             //reserialize the stinkin' sequence
             ReserializeSequence();
+            _target = null;
+            targetSequenceField = null;
+            autoSpeakerToggle = null;
+            myAssetRefField = null;
+            screenScrollView = null;
         }
 
         private void NewSequenceSelected(ChangeEvent<UnityEngine.Object> changeEvent)
         {
-            Debug.Log("Swapping out sequence!");
+            Debug.Log("Editor Window: Swapping out sequence!");
             _target = changeEvent.newValue as Sequence;
             //change the stinking thing to display new stuff!
 
@@ -315,28 +381,43 @@ namespace RenCSharp.Sequences
             myAssetRefField.BindProperty(so.FindProperty("myself"));
 
             InitScreenListView();
-
-            field.SetValue = _target.Screens[0];
         }
 
         private void ReserializeSequence()
         {
             if (_target == null) return;
             _target.SetAFS = autoSpeakerToggle.value;
+            ExtractTheScreens?.Invoke();
+            //don't need to set the assetref, since it's a bound serialized property???
+            EditorUtility.SetDirty(_target);
         }
 
         private void InitScreenListView()
         {
             if (_target != null)
             {
+                SerializedObject so = new SerializedObject(_target);
+                SerializedProperty screensProp = so.FindProperty("screens");
+                screenScrollView.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
                 screenScrollView.itemsSource = _target.Screens;
-                screenScrollView.makeItem = () => new ScreenVisualElement();
+                screenScrollView.makeItem = () => new ScreenUITKField("Screen");
                 screenScrollView.bindItem = (VisualElement e, int index) =>
                 {
-                    ScreenVisualElement sve = e as ScreenVisualElement;
-                    if (sve != null)
+                    ScreenUITKField screenField = e as ScreenUITKField;
+                    if (screenField != null)
                     {
-                        sve.Screen = _target.Screens[index];
+                        if (index >= _target.Screens.Length) return;
+                        //Debug.Log("Screens Property: " + screensProp);
+                        SerializedProperty screenActionsProp = screensProp.GetArrayElementAtIndex(index).FindPropertyRelative("ScreenActions");
+                        //Debug.Log($"Screen Action Property at: {index}" + screenActionsProp);
+                        screenField.SetValue = _target.Screens[index];
+                        screenField.SetScreenEventsProperty = screenActionsProp;
+                        screenField.SetCustomLabel(new Label($"Screen {index}"));
+                        ExtractTheScreens += delegate
+                        {
+                            _target.Screens[index].SetSpeaker = screenField.GetActor;
+                            _target.Screens[index].SetDialog = screenField.GetDialog;
+                        };
                     }
                 };
                 screenScrollView.selectionType = SelectionType.Single;
@@ -354,21 +435,130 @@ namespace RenCSharp.Sequences
                 Debug.LogError($"Couldn't find a .uxml file at: {_filePath}. Either you moved or deleted it. Sucks to be you!");
                 return;
             }
-            Debug.Log("Found the tree asset!");
+            //Debug.Log("Found the tree asset!");
             VisualElement root = _treeAsset.CloneTree();
-
+            ExtractTheScreens = null;
             targetSequenceField = root.Q<ObjectField>("_target");
+            targetSequenceField.value = _target;
             targetSequenceField.RegisterValueChangedCallback(NewSequenceSelected);
 
             autoSpeakerToggle = root.Q<Toggle>("autoFocusSpeaker");
+            if(_target != null)autoSpeakerToggle.value = _target.AutoFocusSpeaker;
+
             myAssetRefField = root.Q<PropertyField>("myself");
 
             screenScrollView = root.Q<ListView>("screenListView"); //WHAT IN THE actual FUcK
 
+            addScreenButton = root.Q<Button>("addAScreen");
+            addScreenButton.clicked += delegate
+            {
+                if (_target == null) return;
+                Screen[] temp = new Screen[_target.Screens.Length + 1];
+                for(int i = 0; i < _target.Screens.Length; i++)
+                {
+                    temp[i] = _target.Screens[i];
+                }
+                temp[_target.Screens.Length] = new Screen();
+                _target.SetScreens = temp;
+                InitScreenListView();
+            };
+
+            removeLastScreenButton = root.Q<Button>("removeLastScreen");
+            removeLastScreenButton.clicked += delegate
+            {
+                if (_target == null) return;
+                Screen[] temp = new Screen[_target.Screens.Length - 1];
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    temp[i] = _target.Screens[i];
+                }
+                _target.SetScreens = temp;
+                InitScreenListView();
+            };
+
+            replaceDeprecatedEventsButton = root.Q<Button>("replaceDeprecatedEvents");
+            replaceDeprecatedEventsButton.clicked += delegate
+            {
+                if (_target == null) return;
+                int replaced = 0;
+                for (int i = 0; i < _target.Screens.Length; i++) //run through every single screen
+                {
+                    Screen s = _target.Screens[i];
+                    for (int j = 0; j < s.ScreenActions.Count; j++)
+                    {
+                        Screen_Event vent = s.ScreenActions[j];
+                        if (vent.ToString() == "Deprecated/Play Music Track")
+                        {
+                            Debug.Log("Replacing BGM Play...");
+                            Play_BGM bgmVent = vent as Play_BGM;
+                            Play_BGMAsset newVent = new Play_BGMAsset();
+
+                            newVent.SetFadeTime = bgmVent.FadeTime;
+                            newVent.SetToSameTime = bgmVent.SetToSameTime;
+                            s.ScreenActions[j] = newVent;
+                            string johnson = AssetDatabase.GetAssetPath(bgmVent.Song);
+                            string guid = AssetDatabase.AssetPathToGUID(johnson);
+                            newVent.SetSongAsset = new AssetReference(guid);
+                            replaced++;
+                        }
+                        else if (vent.ToString() == "Deprecated/Set Overlay Image")
+                        {
+                            Debug.Log("Replacing Set Overlay...");
+                            Set_Overlay oldVent = vent as Set_Overlay;
+                            Set_OverlayAsset newVent = new Set_OverlayAsset();
+
+                            newVent.SetOverlayText = oldVent.GetOverlayText;
+                            newVent.SetSecondsPerFrame = oldVent.GetSecondsPerFrame;
+                            newVent.SetEndWithScreen = oldVent.GetEndWithScreen;
+                            newVent.SetFadeTime = oldVent.GetFadeTime;
+
+                            List<Sprite> sprungles = oldVent.GetImagesToSet;
+                            List<AssetReferenceSprite> leRefs = new();
+                            foreach (Sprite spr in sprungles) //get shiz set up!
+                            {
+                                string johnson = AssetDatabase.GetAssetPath(spr);
+                                Debug.Log("Asset Path for sprite? " + johnson);
+                                string guid = AssetDatabase.AssetPathToGUID(johnson);
+                                AssetReferenceSprite stupid = new AssetReferenceSprite(guid);
+                                stupid.SubObjectName = spr.name; //?
+                                leRefs.Add(stupid);
+
+                            }
+                            newVent.SetImagesToSet = leRefs;
+                            s.ScreenActions[j] = newVent;
+                            replaced++;
+                        }
+                        else if (vent.ToString() == "Deprecated/Fade Transition")
+                        {
+                            Debug.Log("Replacing Fade Transition...");
+                            Fade_Transition oldVent = vent as Fade_Transition;
+                            Fade_TransitionAsset newVent = new Fade_TransitionAsset();
+
+                            newVent.SetFadeTransition = oldVent.GetFadeTransition;
+                            newVent.SetFadeDuration = oldVent.GetFadeDuration;
+                            newVent.SetSecondsPerFrame = oldVent.GetSecondsPerFrame;
+
+                            Sprite[] dingus = oldVent.GetNewBG;
+                            List<AssetReferenceSprite> leRefs = new();
+                            foreach (Sprite spr in dingus)
+                            {
+                                string johnson = AssetDatabase.GetAssetPath(spr);
+                                string guid = AssetDatabase.AssetPathToGUID(johnson);
+                                AssetReferenceSprite stupid = new AssetReferenceSprite(guid);
+                                stupid.SubObjectName = spr.name;
+                                leRefs.Add(stupid);
+                            }
+                            newVent.SetNewBG = leRefs;
+                            s.ScreenActions[j] = newVent;
+                            replaced++;
+                        }
+                    }
+                    Debug.Log("Replaced " + replaced + " deprecated screen events.");
+                    InitScreenListView();
+                }
+            };
+
             InitScreenListView();
-            
-            field = new ScreenUITKField("First Screen", new Screen());
-            root.Add(field);
             rootVisualElement.Add(root);
         }
     }

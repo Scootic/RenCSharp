@@ -4,6 +4,9 @@ using UnityEditor;
 using UnityEngine;
 using System.Linq;
 using System.Reflection;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
+using System.Collections.Generic;
 namespace RenCSharp
 {
     ///Author: Scootic Rowlann
@@ -21,8 +24,61 @@ namespace RenCSharp
         /// </summary>
         protected static Assembly typeAssembly = Assembly.GetAssembly(typeof(T));
         protected static Type[] allTChildren;
+        protected static List<string> typeToStrings;
+        protected VisualElement container;
+        protected DropdownField polymorphDropDown;
+        protected PropertyField polymorphPropertyField;
+        protected string newVal;
+        protected int typeIndex;
         protected abstract string DropDownMenuName();
         [SerializeReference] protected SerializedProperty m_SE;
+
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        { 
+            if (allTChildren == null)
+            {
+                allTChildren = typeAssembly.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(T))).ToArray(); //might be gross calling this every time a polymorph drawer is made
+                typeToStrings = new List<string>(); //ToString()s, not really names
+                foreach (Type t in allTChildren)
+                {
+                    T instance = (T)Activator.CreateInstance(t);
+                    typeToStrings.Add(instance.ToString());
+                }
+                typeToStrings.Add(DropDownMenuName());
+            }
+
+            container = new VisualElement();
+            container.style.flexDirection = FlexDirection.Column;
+
+            T propertyValue = property.boxedValue as T;
+            int indexOfcur = typeToStrings.Count - 1;
+            if (propertyValue != null) indexOfcur = typeToStrings.IndexOf(propertyValue.ToString());
+
+            container.AddToClassList("unity-base-field");
+            container.AddToClassList("unity-base-field__aligned");
+
+            polymorphDropDown = new DropdownField(typeToStrings, indexOfcur);
+            polymorphPropertyField = new PropertyField();
+            polymorphDropDown.RegisterValueChangedCallback(evt =>
+            {
+                newVal = evt.newValue;
+                typeIndex = typeToStrings.IndexOf(newVal);
+                if (typeIndex == typeToStrings.Count - 1) return;
+                property.managedReferenceValue = (T)Activator.CreateInstance(allTChildren[typeIndex]);
+                property.serializedObject.ApplyModifiedProperties();
+                Debug.Log("New value: " + newVal + " Index: " + typeIndex);
+                Debug.Log("stinkerlabel: " + polymorphPropertyField.label);
+                Debug.Log("polymorphvalue: " + polymorphDropDown.value);
+            });
+
+            container.Add(polymorphDropDown);
+
+            polymorphPropertyField.label = propertyValue != null ? propertyValue.ToString() : DropDownMenuName();
+            polymorphPropertyField.BindProperty(property);
+            container.Add(polymorphPropertyField);
+
+            return container;
+        }
 
         /// <summary>
         /// By default, will render the property drawer one line below a childType selector dropdown menu.

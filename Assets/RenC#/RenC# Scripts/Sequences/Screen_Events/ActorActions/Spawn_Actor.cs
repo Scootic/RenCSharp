@@ -2,7 +2,6 @@ using UnityEngine;
 using RenCSharp.Actors;
 using UnityEngine.UI;
 using System;
-using System.Collections.Generic;
 using System.Collections;
 namespace RenCSharp.Sequences
 {
@@ -13,10 +12,10 @@ namespace RenCSharp.Sequences
     [Serializable]
     public class Spawn_Actor : Screen_Event
     {
-        [SerializeField, HideInInspector] private Actor actorToSpawn;
-        [SerializeField, HideInInspector, Tooltip("For coroutine to make the actor fade in. 0 for instantaneous spawning."), Min(0)] private float fadeInTime = 0.5f;
-        [SerializeField, HideInInspector] private Vector3 spawnOffset = Vector3.zero;
-        [SerializeField, HideInInspector, Tooltip("Type in the light gray boxes.")] private string[] visualSpriteIndexes = new string[1];
+        [SerializeField] private Actor actorToSpawn;
+        [SerializeField,Tooltip("For coroutine to make the actor fade in. 0 for instantaneous spawning."), Min(0)] private float fadeInTime = 0.5f;
+        [SerializeField] private Vector3 spawnOffset = Vector3.zero;
+        [SerializeField, Tooltip("Type in the light gray boxes.")] private string[] visualSpriteIndexes = new string[1];
         private Coroutine fadeIn;
         public override void DoEvent()
         {
