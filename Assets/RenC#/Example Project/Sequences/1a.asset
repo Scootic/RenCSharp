@@ -12,18 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
   m_Name: 1a
   m_EditorClassIdentifier: 
-  autoFocusSpeaker: 0
+  autoFocusSpeaker: 1
   screens:
-  - speaker: {fileID: 11400000, guid: 7d26efebe9acec443a6d029f2a75e8e9, type: 2}
-    dialog: You see? Dummy.
+  - speaker: {fileID: 0}
+    dialog: 
     ScreenActions:
     - rid: 4972360274241126853
     - rid: 4972360274241126860
     - rid: 4972360274241126857
   - speaker: {fileID: 0}
-    dialog: dipthong
+    dialog: 
     ScreenActions:
     - rid: 4972360282577043510
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 4972360294898860097
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -84,3 +91,9 @@ MonoBehaviour:
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 0
+    - rid: 4972360294898860097
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+        visualSpriteIndexes:
+        - 

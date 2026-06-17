@@ -34,7 +34,6 @@ namespace RenCSharp
         protected PropertyField polymorphPropertyField;
         protected string newVal;
         protected int typeIndex;
-        
 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         { 
@@ -69,9 +68,6 @@ namespace RenCSharp
                 if (typeIndex == typeToStrings.Count - 1) return;
                 property.managedReferenceValue = (T)Activator.CreateInstance(allTChildren[typeIndex]);
                 property.serializedObject.ApplyModifiedProperties();
-                Debug.Log("New value: " + newVal + " Index: " + typeIndex);
-                Debug.Log("stinkerlabel: " + polymorphPropertyField.label);
-                Debug.Log("polymorphvalue: " + polymorphDropDown.value);
             });
 
             container.Add(polymorphDropDown);

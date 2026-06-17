@@ -16,6 +16,12 @@ namespace RenCSharp.Sequences
         [SerializeField] private FlagCondition[] conditions;
         public Sequence ResultingSequence => resultingSequence;
         public string ChoiceText => choiceText;
+        public FlagCondition[] Conditions => conditions;
+
+        public Sequence SetResultingSequence { set {  resultingSequence = value; } }
+        public string SetChoiceText { set { choiceText = value; } }
+        public FlagCondition[] SetConditions { set  { conditions = value; } }
+
         public bool MetAllConditions()
         {
             if (conditions.Length == 0) return true;

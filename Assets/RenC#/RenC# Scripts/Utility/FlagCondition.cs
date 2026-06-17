@@ -16,7 +16,43 @@ namespace RenCSharp
         [SerializeField] private bool debugResult;
         [Header("BITWISE")]
         [SerializeField, Tooltip("Decides if you're comparing bits. Only supports the equals and notequals operators.")] private bool bitWise;
+        #region Properties
+        public string FlagToCheckProperty
+        {
+            get { return flagToCheck;  }
+            set { flagToCheck = value; }
+        }
 
+        public ConditionalOperator Operation
+        {
+            get { return operation; }
+            set { operation = value; }
+        }
+
+        public int DesiredValue
+        {
+            get { return desiredValue; }
+            set { desiredValue = value; }
+        }
+
+        public bool DebugResult
+        {
+            get { return debugResult; }
+            set { debugResult = value; }
+        }
+
+        public bool Persistent
+        {
+            get { return persistent; }
+            set { persistent = value; }
+        }
+
+        public bool BitWise
+        {
+            get { return  bitWise; }
+            set { bitWise = value; }
+        }
+        #endregion
         public bool ConditionMet()
         {
             bool met = false;

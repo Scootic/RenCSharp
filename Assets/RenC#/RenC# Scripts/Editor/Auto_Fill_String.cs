@@ -9,7 +9,7 @@ namespace RenCSharp
     {
         #region Text AutoComplete
         /// <summary>The internal struct used for AutoComplete (Editor)</summary>
-        private struct EditorAutoCompleteParams
+        public struct EditorAutoCompleteParams
         {
             public const string FieldTag = "AutoCompleteField";
             public static readonly Color FancyColor = new Color(.6f, .6f, .7f);
