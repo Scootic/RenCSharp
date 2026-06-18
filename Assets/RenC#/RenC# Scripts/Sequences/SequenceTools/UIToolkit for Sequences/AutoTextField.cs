@@ -28,7 +28,7 @@ namespace RenCSharp.Sequences
             inputField = new();
             inputField.AddToClassList(inputFieldClassName);
             ContentElement.Add(inputField);
-            inputField.style.minWidth = 250f;
+            inputField.style.minWidth = 100f;
             inputField.RegisterValueChangedCallback(evt => OnKeyInput(evt.newValue));
 
             dropdownField = new();
@@ -40,7 +40,7 @@ namespace RenCSharp.Sequences
                 this.value = evt.newValue;
             });
             ContentElement.Add(dropdownField);
-            dropdownField.style.minWidth = 250f;
+            dropdownField.style.minWidth = 100f;
         }
 
         public AutoTextField(string labelText, List<string>autoText) : base(labelText, new VisualElement())
@@ -55,7 +55,7 @@ namespace RenCSharp.Sequences
             inputField = new();
             inputField.AddToClassList(inputFieldClassName);
             ContentElement.Add(inputField);
-            inputField.style.minWidth = 250f;
+            inputField.style.minWidth = 100f;
             inputField.RegisterValueChangedCallback(evt => OnKeyInput(evt.newValue));
 
             dropdownField = new();
@@ -67,7 +67,7 @@ namespace RenCSharp.Sequences
                 this.value = evt.newValue;
             });
             ContentElement.Add(dropdownField);
-            dropdownField.style.minWidth = 250f;
+            dropdownField.style.minWidth = 100f;
         }
 
         public void OnKeyInput(string newVal)
@@ -128,9 +128,10 @@ namespace RenCSharp.Sequences
             }
 
             bool prevVis = dropdownField.visible;
-            dropdownField.visible = cacheList.Count > 0 || newVal == "";
+            dropdownField.visible = cacheList.Count > 0 || newVal != "";
             dropdownField.enabledSelf = dropdownField.visible;
             if(prevVis != dropdownField.visible) ContentElement.MarkDirtyRepaint(); //repaint if the visibility changed.
+            cacheList.Reverse();
             dropdownField.choices = cacheList;
         }
     }

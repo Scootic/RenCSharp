@@ -2,6 +2,7 @@
     <ui:VisualElement name="the-sequence-to-edit-zone" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.4); white-space: normal; flex-direction: row;">
         <uie:ObjectField label="Sequence to Edit:" type="RenCSharp.Sequences.Sequence, Sequences" data-source-path="_target" binding-path="_target" name="_target" style="background-color: rgba(0, 0, 0, 0); color: rgb(255, 255, 255); width: 457px;" />
         <ui:Button text="Save Changes" binding-path="saveSequence" name="saveSequence" data-source-path="saveSequence" style="width: auto;" />
+        <ui:IntegerField label="Autosave Time:" value="2" tooltip="The amount of time it takes for the sequence to be automatically reserialized, in minutes." binding-path="autoSaveTime" data-source-path="autoSaveTime" name="autoSaveTime" />
     </ui:VisualElement>
     <ui:Label text="My Asset Reference:" name="Label" style="background-color: rgba(10, 152, 0, 0); height: 36px; justify-content: flex-start; align-content: flex-start; align-self: auto; align-items: stretch; -unity-text-align: upper-left; white-space: normal;">
         <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 445px; left: 143px;">
@@ -9,19 +10,19 @@
         </ui:VisualElement>
     </ui:Label>
     <ui:Toggle label="Auto-Focus Speaker:" name="autoFocusSpeaker" data-source-path="autoFocusSpeaker" binding-path="autoFocusSpeaker" />
-    <ui:VisualElement name="screencontrols" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.4); height: auto; width: auto; bottom: auto; flex-direction: row; flex-wrap: nowrap;">
+    <ui:ListView name="screenListView" data-source-path="screenListView" binding-path="screenListView" virtualization-method="DynamicHeight" reorderable="true" fixed-item-height="30" style="background-color: rgba(0, 0, 0, 0.3); bottom: auto; height: 600px;" />
+    <ui:VisualElement name="screencontrols" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.4); height: 50px; width: auto; bottom: auto; flex-direction: row; flex-wrap: nowrap;">
         <ui:Label text="Screen Controls:" />
         <ui:Button text="Re-initialize the Screen List" name="reinitList" data-source-path="reinitList" binding-path="reinitList" style="white-space: normal; width: 135px;" />
         <ui:Button text="Add a Screen" name="addAScreen" data-source-path="addAScreen" binding-path="addAScreen" style="white-space: normal; width: 100px;" />
         <ui:Button text="Remove Last Screen" name="removeLastScreen" data-source-path="removeLastScreen" binding-path="removeLastScreen" style="white-space: normal; width: 105px;" />
         <ui:Button text="Replace Deprecated Events" name="replaceDeprecatedEvents" data-source-path="replaceDeprecatedEvents" binding-path="replaceDeprecatedEvents" style="width: 155px; white-space: normal;" />
     </ui:VisualElement>
-    <ui:ListView name="screenListView" data-source-path="screenListView" binding-path="screenListView" virtualization-method="DynamicHeight" reorderable="true" fixed-item-height="30" style="background-color: rgba(0, 0, 0, 0.3); bottom: auto; height: 600px;" />
-    <ui:VisualElement name="player-choices-controls" style="flex-grow: 1; height: auto; background-color: rgba(0, 0, 0, 0.4); flex-direction: row;">
-        <ui:Label text="Player Choice Controls:" />
-        <ui:Button text="Re-initialize the Player Choice List" name="reinitpcList" data-source-path="reinitpcList" binding-path="reinitpcList" style="white-space: normal; width: 135px;" />
-        <ui:Button text="Add a Player Choice" name="addApc" data-source-path="addApc" binding-path="addApc" style="white-space: normal; width: 100px;" />
-        <ui:Button text="Remove Last Player Choice" name="removeLastpc" data-source-path="removeLastpc" binding-path="removeLastpc" style="white-space: normal; width: 105px;" />
-    </ui:VisualElement>
     <ui:ListView name="playerChoiceListView" data-source-path="playerChoiceListView" binding-path="playerChoiceListView" virtualization-method="DynamicHeight" reorderable="true" fixed-item-height="30" style="background-color: rgba(0, 0, 0, 0.3); height: 150px;" />
+    <ui:VisualElement name="player-choices-controls" style="flex-grow: 1; height: 50px; background-color: rgba(0, 0, 0, 0.4); flex-direction: row;">
+        <ui:Label text="Player Choice Controls:" />
+        <ui:Button text="Re-initialize the Player Choice List" name="reinitpcList" data-source-path="reinitpcList" binding-path="reinitpcList" style="white-space: normal; width: 145px;" />
+        <ui:Button text="Add a Player Choice" name="addApc" data-source-path="addApc" binding-path="addApc" style="white-space: normal; width: 110px;" />
+        <ui:Button text="Remove Last Player Choice" name="removeLastpc" data-source-path="removeLastpc" binding-path="removeLastpc" style="white-space: normal; width: 120px;" />
+    </ui:VisualElement>
 </ui:UXML>

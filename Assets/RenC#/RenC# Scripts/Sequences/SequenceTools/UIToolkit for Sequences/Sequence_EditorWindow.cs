@@ -1,18 +1,20 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.Device;
 using UnityEngine.UIElements;
 
 namespace RenCSharp.Sequences
 {
     /// <summary>
-    /// Unique EditorWindow just to add specific screen events to a screen. Why? The Unity inspector was not built for polymorphism. FML.
+    /// Unique EditorWindow that exists because ScriptableObjects/Monobehaviors that have large arrays of strings
+    /// run poorly when just using IMGUI. Every sequence has a potentially large array of strings with more stuff attached too,
+    /// so editing it can get pretty slow, especially when conditional screens enter the mix. IMGUI Inspector still exists,
+    /// purely as a way to verify that the editorwindow didn't make any unwanted changes.
     /// </summary>
     public class Sequence_EditorWindow : EditorWindow
     {
@@ -30,6 +32,8 @@ namespace RenCSharp.Sequences
         private Button addScreenButton, removeLastScreenButton, replaceDeprecatedEventsButton, reinitListButton;
         private Button addPcButton, removeLastPcButton, reinitPcButton;
         private Button saveSequenceButton;
+        private IntegerField timeToAutoSaveField;
+        private float curT, timeToAutoSave = 120f;
 
         private readonly string _filePath = "Assets/RenC#/RenC# Scripts/Sequences/SequenceTools/UIToolkit for Sequences/Sequence_EditorWindow.uxml";
 
@@ -62,6 +66,7 @@ namespace RenCSharp.Sequences
             Debug.Log("Editor Window: Swapping out sequence!");
             ReserializeSequence();
             _target = changeEvent.newValue as Sequence;
+            curT = 0;
             //change the stinking thing to display new stuff!
 
             SerializedObject so = new SerializedObject(_target);
@@ -190,11 +195,19 @@ namespace RenCSharp.Sequences
                 Debug.LogError($"Couldn't find VisualTreeAsset at: {_filePath}. Either you moved or deleted it. Too bad!");
                 return;
             }
+            curT = 0;
             AllTheExtractScreens = new();
             AllTheExtractPlayerChoices = new();
             targetSequenceField = root.Q<ObjectField>("_target");
             targetSequenceField.value = _target;
             targetSequenceField.RegisterValueChangedCallback(NewSequenceSelected);
+
+            timeToAutoSaveField = root.Q<IntegerField>("autoSaveTime");
+            timeToAutoSaveField.value = Mathf.RoundToInt(timeToAutoSave / 60f);
+            timeToAutoSaveField.RegisterValueChangedCallback(evt =>
+            {
+                timeToAutoSave = evt.newValue * 60; //convert from minutes in field to seconds in code.
+            });
 
             autoSpeakerToggle = root.Q<Toggle>("autoFocusSpeaker");
             if (_target != null) autoSpeakerToggle.value = _target.AutoFocusSpeaker;
@@ -219,6 +232,7 @@ namespace RenCSharp.Sequences
             addScreenButton.clicked += delegate
             {
                 if (_target == null) return;
+                ReserializeSequence();
                 Screen[] temp = new Screen[_target.Screens.Length + 1];
                 for (int i = 0; i < _target.Screens.Length; i++)
                 {
@@ -331,6 +345,7 @@ namespace RenCSharp.Sequences
             addPcButton.clicked += delegate
             {
                 if (_target == null) return;
+                ReserializeSequence();
                 Player_Choice[] temp = new Player_Choice[_target.PlayerChoices.Length + 1];
                 for(int i = 0; i < _target.PlayerChoices.Length; i++)
                 {
@@ -339,6 +354,7 @@ namespace RenCSharp.Sequences
                 temp[_target.PlayerChoices.Length] = new Player_Choice();
                 _target.SetPlayerChoices = temp;
                 InitPlayerChoiceListView();
+                
             };
 
             removeLastPcButton = root.Q<Button>("removeLastpc");
@@ -364,13 +380,14 @@ namespace RenCSharp.Sequences
             InitScreenListView();
             InitPlayerChoiceListView();
 
+            Debug.Log("AutoSave duration: " + timeToAutoSave);
             rootVisualElement.Add(root);
         }
 
         private void OnGUI()
-        {
+        { 
             Event cur = Event.current;
-            if (cur.type != EventType.KeyDown || !cur.control) return;
+            if (cur.type != EventType.KeyDown || !cur.control) return; //only include events when ctrl is held down.
 
             switch (cur.keyCode)
             {
@@ -383,6 +400,20 @@ namespace RenCSharp.Sequences
                     InitScreenListView();
                     InitPlayerChoiceListView();
                     break;
+            }
+        }
+
+        private void OnInspectorUpdate()
+        {
+            if (_target == null) return;
+
+            curT += 0.15f;
+            //Debug.Log("curT: " + curT);
+            if (curT >= timeToAutoSave && timeToAutoSave >= 0)
+            {
+                curT = 0;
+                Debug.Log("Auto-saving sequence: " + _target.name);
+                ReserializeSequence();
             }
         }
     }
