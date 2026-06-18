@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+using System;
 namespace RenCSharp.Sequences
 {
     [UxmlElement]
@@ -15,6 +15,8 @@ namespace RenCSharp.Sequences
         private readonly TextField DialogField;
         private readonly PropertyField ScreenEventsField; //really sad. Maybe a converter just to turn this boy to uxml?
         private readonly VisualElement StartGapSpace, EndGapSpace;
+
+        public Action extractScreenAction;
 
         public ScreenUITKField() : this(null) { }
 
@@ -134,7 +136,7 @@ namespace RenCSharp.Sequences
                 if (value != null)
                 {
                     ScreenEventsField.BindProperty(value);
-                    value.isExpanded = false; //default to closed when spawning into the element
+                    value.isExpanded = false; //default to closed when spawning into the element?
                 }
                 else
                 {

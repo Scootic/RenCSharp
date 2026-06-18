@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -96,17 +97,18 @@ namespace RenCSharp.Sequences
                     if (screenField != null)
                     {
                         if (index >= _target.Screens.Length) return;
+                        int storedIndex = index;
                         //Debug.Log("Screens Index: " + index);
-                        SerializedProperty screenProp = screensProp.GetArrayElementAtIndex(index);
+                        SerializedProperty screenProp = screensProp.GetArrayElementAtIndex(storedIndex);
                         SerializedProperty screenActionsProp = screenProp.FindPropertyRelative("ScreenActions");
                         //Debug.Log($"Screen Action Property at: {index}" + screenActionsProp);
-                        screenField.SetValue = _target.Screens[index];
+                        screenField.SetValue = _target.Screens[storedIndex];
                         screenField.SetScreenEventsProperty = screenActionsProp;
-                        screenField.SetCustomLabel(new Label($"Screen {index}"));
+                        screenField.SetCustomLabel(new Label($"Screen {storedIndex}"));
                         ExtractTheScreens += delegate
                         {
-                            _target.Screens[index].SetSpeaker = screenField.GetActor;
-                            _target.Screens[index].SetDialog = screenField.GetDialog;
+                            _target.Screens[storedIndex].SetSpeaker = screenField.GetActor;
+                            _target.Screens[storedIndex].SetDialog = screenField.GetDialog;
                         };
                     }
                 };
@@ -114,12 +116,13 @@ namespace RenCSharp.Sequences
                 {
                     ScreenUITKField screenField = e as ScreenUITKField;
                     screenField.Q<PropertyField>().Unbind();
+                    int storedIndex = index;
                     if (screenField != null)
                     {
                         ExtractTheScreens -= delegate
                         {
-                            _target.Screens[index].SetSpeaker = screenField.GetActor;
-                            _target.Screens[index].SetDialog = screenField.GetDialog;
+                            _target.Screens[storedIndex].SetSpeaker = screenField.GetActor;
+                            _target.Screens[storedIndex].SetDialog = screenField.GetDialog;
                         };
                     }
                 };
@@ -142,12 +145,13 @@ namespace RenCSharp.Sequences
                     PlayerChoiceUITKField pcField = e as PlayerChoiceUITKField;
                     if (pcField != null)
                     {
-                        pcField.SetPlayerChoice = _target.PlayerChoices[index];
-                        pcField.SetConditionsProperty = playerchoicesProp.GetArrayElementAtIndex(index).FindPropertyRelative("conditions");
+                        int storedIndex = index;
+                        pcField.SetPlayerChoice = _target.PlayerChoices[storedIndex];
+                        pcField.SetConditionsProperty = playerchoicesProp.GetArrayElementAtIndex(storedIndex).FindPropertyRelative("conditions");
                         ExtractPlayerChoices += delegate
                         {
-                            _target.PlayerChoices[index].SetChoiceText = pcField.GetChoiceText;
-                            _target.PlayerChoices[index].SetResultingSequence = pcField.GetResultingSequence;
+                            _target.PlayerChoices[storedIndex].SetChoiceText = pcField.GetChoiceText;
+                            _target.PlayerChoices[storedIndex].SetResultingSequence = pcField.GetResultingSequence;
                         };
                     }
                 };
@@ -156,11 +160,12 @@ namespace RenCSharp.Sequences
                     PlayerChoiceUITKField pcField = e as PlayerChoiceUITKField;
                     if (pcField != null)
                     {
+                        int storedIndex = index;
                         pcField.Q<PropertyField>().Unbind();
                         ExtractPlayerChoices -= delegate
                         {
-                            _target.PlayerChoices[index].SetChoiceText = pcField.GetChoiceText;
-                            _target.PlayerChoices[index].SetResultingSequence = pcField.GetResultingSequence;
+                            _target.PlayerChoices[storedIndex].SetChoiceText = pcField.GetChoiceText;
+                            _target.PlayerChoices[storedIndex].SetResultingSequence = pcField.GetResultingSequence;
                         };
                     }
                 };
