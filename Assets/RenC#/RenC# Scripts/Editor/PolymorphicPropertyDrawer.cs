@@ -32,11 +32,24 @@ namespace RenCSharp
         protected VisualElement container;
         protected DropdownField polymorphDropDown;
         protected PropertyField polymorphPropertyField;
+        protected T propertyValue;
         protected string newVal;
         protected int typeIndex;
 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         { 
+            SetDropDownUITK(property);
+            polymorphPropertyField = new PropertyField();
+
+            polymorphPropertyField.label = propertyValue != null ? propertyValue.ToString() : DropDownMenuName();
+            polymorphPropertyField.BindProperty(property);
+            container.Add(polymorphPropertyField);
+
+            return container;
+        }
+
+        protected void SetDropDownUITK(SerializedProperty mySP)
+        {
             if (allTChildren == null)
             {
                 allTChildren = typeAssembly.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(T))).ToArray(); //might be gross calling this every time a polymorph drawer is made
@@ -52,7 +65,7 @@ namespace RenCSharp
             container = new VisualElement();
             container.style.flexDirection = FlexDirection.Column;
 
-            T propertyValue = property.boxedValue as T;
+            propertyValue = mySP.boxedValue as T;
             int indexOfcur = typeToStrings.Count - 1;
             if (propertyValue != null) indexOfcur = typeToStrings.IndexOf(propertyValue.ToString());
 
@@ -60,23 +73,17 @@ namespace RenCSharp
             container.AddToClassList("unity-base-field__aligned");
 
             polymorphDropDown = new DropdownField(typeToStrings, indexOfcur);
-            polymorphPropertyField = new PropertyField();
+
             polymorphDropDown.RegisterValueChangedCallback(evt =>
             {
                 newVal = evt.newValue;
                 typeIndex = typeToStrings.IndexOf(newVal);
                 if (typeIndex == typeToStrings.Count - 1) return;
-                property.managedReferenceValue = (T)Activator.CreateInstance(allTChildren[typeIndex]);
-                property.serializedObject.ApplyModifiedProperties();
+                mySP.managedReferenceValue = (T)Activator.CreateInstance(allTChildren[typeIndex]);
+                mySP.serializedObject.ApplyModifiedProperties();
             });
 
             container.Add(polymorphDropDown);
-
-            polymorphPropertyField.label = propertyValue != null ? propertyValue.ToString() : DropDownMenuName();
-            polymorphPropertyField.BindProperty(property);
-            container.Add(polymorphPropertyField);
-
-            return container;
         }
 
         /// <summary>

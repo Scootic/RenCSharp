@@ -166,12 +166,18 @@ namespace RenCSharp.Sequences
                 Sequence_EditorWindow.SetTarget = _target;
             }
 
+            GUILayout.Label("It is highly recommended that you use the Sequence Editor Window instead of directly" +
+                " editing\nthe sequence in the inspector. The Editor Window is more performant in situations with large\n" +
+                "screen counts. Additionally, certain Editor Window functions don't function 'perfectly' when\nworking " +
+                "with screens made in the inspector. You are still able to access the inspector to verify\nthat everything appears " +
+                "to be in order.");
+
             EditorGUI.BeginChangeCheck();
             base.OnInspectorGUI();
             if (EditorGUI.EndChangeCheck())
             {
                 serializedObject.ApplyModifiedProperties();
-                serializedObject.Update();
+                serializedObject.Update(); //?
             }
         }
     }

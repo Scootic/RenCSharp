@@ -7,13 +7,16 @@ using UnityEngine.UIElements;
 
 namespace RenCSharp.Sequences
 {
-    public class ScreenUITKField : BaseField<Screen>
+    [UxmlElement]
+    public partial class ScreenUITKField : BaseField<Screen>
     {
         private readonly VisualElement ContentElement;
         private readonly ObjectField ActorField;
         private readonly TextField DialogField;
         private readonly PropertyField ScreenEventsField; //really sad. Maybe a converter just to turn this boy to uxml?
         private readonly VisualElement GapSpace;
+
+        public ScreenUITKField() : this(null) { }
 
         public ScreenUITKField(string labelText, Screen s) : base(labelText, new VisualElement())
         {

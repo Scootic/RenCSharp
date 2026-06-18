@@ -1,17 +1,131 @@
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEditor.UIElements;
 using RenCSharp.Actors;
 namespace RenCSharp.Sequences
 {
     [CustomPropertyDrawer(typeof(Spawn_Actor))]
-    public class Spawn_Actor_Drawer : Screen_Event_Drawer
+    public class Spawn_Actor_Drawer : Screen_Event_Drawer //tweaking sometimes, but not the other one?!?
     {
-        SerializedProperty spawnOffset = null;
-        SerializedProperty fadeInTime;
-        SerializedProperty sprindexArray;
-        SerializedProperty actorProperty;
-        Actor assignedActor;
+        private SerializedProperty spawnOffset = null;
+        private SerializedProperty fadeInTime;
+        private SerializedProperty sprindexArray;
+        private SerializedProperty actorProperty;
+        private Actor assignedActor;
+
+        private ObjectField actorField;
+        private FloatField fadeInTimeField;
+        private Vector3Field spawnOffsetField;
+        private AutoTextField[] autoTextFields;
+        private static SerializedObject theSequence;
+        private bool atfExists = false;
+
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            SetDropDownUITK(property);
+            atfExists = false;
+
+            actorProperty = property.FindPropertyRelative("actorToSpawn");
+            theSequence = actorProperty.serializedObject;
+            actorField = new ObjectField("Actor:");
+            actorField.objectType = typeof(Actor);
+            actorField.value = actorProperty.boxedValue as Object;
+            assignedActor = actorField.value as Actor; //?
+            container.Add(actorField);
+
+            spawnOffset = property.FindPropertyRelative("spawnOffset");
+            spawnOffsetField = new Vector3Field("Spawn Offset:");
+            spawnOffsetField.tooltip = "Spawn Offset in local space.";
+            spawnOffsetField.value = spawnOffset.vector3Value;
+            container.Add(spawnOffsetField);
+            spawnOffsetField.RegisterValueChangedCallback(evt =>
+            {
+                spawnOffset.vector3Value = evt.newValue;
+                Debug.Log($"evtNewVal: {evt.newValue} | spawnOffsetValue: {spawnOffset.vector3Value}");
+                theSequence.ApplyModifiedProperties();
+            });
+            
+            fadeInTime = property.FindPropertyRelative("fadeInTime");
+            fadeInTimeField = new FloatField("Fade in Time:");
+            fadeInTimeField.tooltip = "Time in seconds it takes for the actor to fade in.";
+            fadeInTimeField.value = fadeInTime.floatValue;
+            container.Add(fadeInTimeField);
+            fadeInTimeField.RegisterValueChangedCallback(evt =>
+            {
+                fadeInTime.floatValue = evt.newValue;
+                theSequence.ApplyModifiedProperties();
+            });
+            
+
+            sprindexArray = property.FindPropertyRelative("visualSpriteIndexes");
+            //this last one works?!?
+            actorField.RegisterValueChangedCallback(evt =>
+            {
+                actorProperty.boxedValue = evt.newValue;
+                SetAutoTextFields(evt.newValue, property);
+            });
+            if (actorField.value != null)
+            {
+                SetAutoTextFields(actorField.value, property);
+            }
+
+            return container;
+        }
+
+        private void SetAutoTextFields(Object obj, SerializedProperty sp)
+        {
+            assignedActor = obj as Actor;
+            actorProperty = sp.FindPropertyRelative("actorToSpawn");
+            actorProperty.boxedValue = assignedActor;
+            sprindexArray = sp.FindPropertyRelative("visualSpriteIndexes");
+            if (atfExists)
+            {
+                foreach (AutoTextField atf in autoTextFields)
+                {
+                    container.Remove(atf);
+                }
+            }
+
+            autoTextFields = new AutoTextField[assignedActor.Visuals.Length];
+            atfExists = true;
+
+            if (sprindexArray.arraySize != assignedActor.Visuals.Length)
+            {
+                int oldSize = sprindexArray.arraySize;
+                sprindexArray.arraySize = assignedActor.Visuals.Length;
+                if (oldSize < sprindexArray.arraySize)
+                {
+                    int i = sprindexArray.arraySize - 1;
+                    while (i >= oldSize)
+                    {
+                        sprindexArray.GetArrayElementAtIndex(i).stringValue = "";
+                        i--;
+                    }
+                }
+            }
+
+            for (int i = 0; i < autoTextFields.Length; i++)
+            {
+                int disposeI = i;
+                autoTextFields[disposeI] = new AutoTextField($"Visual Index {disposeI}:", assignedActor.Visuals[disposeI].visualIDs);
+                string stValue = sprindexArray.GetArrayElementAtIndex(disposeI).stringValue;
+                if (stValue != null)
+                {
+                    autoTextFields[disposeI].GetInputField.value = stValue;
+                    autoTextFields[disposeI].GetDropdownField.value = stValue;
+                }
+                autoTextFields[disposeI].RegisterValueChangedCallback(evt =>
+                {
+                    if (disposeI >= sprindexArray.arraySize) return;
+                    sprindexArray.GetArrayElementAtIndex(disposeI).stringValue = evt.newValue;
+                    theSequence.ApplyModifiedProperties();
+                });
+                container.Add(autoTextFields[disposeI]);
+            }
+            theSequence.ApplyModifiedProperties();
+        }
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -86,9 +200,92 @@ namespace RenCSharp.Sequences
     [CustomPropertyDrawer(typeof(Actor_Expression))]
     public class Actor_Expression_Drawer : Screen_Event_Drawer
     {
-        SerializedProperty actorProperty = null;
-        SerializedProperty sprindexArray;
-        Actor actorToAlter;
+        private SerializedProperty actorProperty = null;
+        private SerializedProperty sprindexArray;
+        private Actor actorToAlter;
+
+        private ObjectField actorField;
+        private AutoTextField[] autoTextFields;
+        private bool atfExists = false;
+
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            SetDropDownUITK(property);
+            atfExists = false;
+
+            actorProperty = property.FindPropertyRelative("actorToAlter");
+            actorField = new ObjectField("Actor:");
+            actorField.objectType = typeof(Actor);
+            actorField.value = actorProperty.boxedValue as Object;
+            container.Add(actorField);
+
+            sprindexArray = property.FindPropertyRelative("visualSpriteIndexes");
+            actorField.RegisterValueChangedCallback(evt =>
+            {
+                actorProperty.boxedValue = evt.newValue;
+                SetAutoTextFields(evt.newValue, property);
+            });
+            if (actorField.value != null)
+            {
+                SetAutoTextFields(actorField.value, property);
+            }
+
+            return container;
+        }
+
+        private void SetAutoTextFields(Object obj, SerializedProperty sp)
+        {
+            actorToAlter = obj as Actor;
+            actorProperty = sp.FindPropertyRelative("actorToAlter");
+            actorProperty.boxedValue = actorToAlter;
+            sprindexArray = sp.FindPropertyRelative("visualSpriteIndexes");
+            if (atfExists)
+            {
+                foreach (AutoTextField atf in autoTextFields)
+                {
+                    container.Remove(atf);
+                }
+            }
+
+            autoTextFields = new AutoTextField[actorToAlter.Visuals.Length];
+            atfExists = true;
+
+            if (sprindexArray.arraySize != actorToAlter.Visuals.Length)
+            {
+                int oldSize = sprindexArray.arraySize;
+                sprindexArray.arraySize = actorToAlter.Visuals.Length;
+                if (oldSize < sprindexArray.arraySize)
+                {
+                    int i = sprindexArray.arraySize - 1;
+                    while (i >= oldSize)
+                    {
+                        sprindexArray.GetArrayElementAtIndex(i).stringValue = "";
+                        i--;
+                    }
+                }
+            }
+
+            for (int i = 0; i < autoTextFields.Length; i++)
+            {
+                int disposeI = i;
+                autoTextFields[disposeI] = new AutoTextField($"Visual Index {disposeI}:", actorToAlter.Visuals[disposeI].visualIDs);
+                string stValue = sprindexArray.GetArrayElementAtIndex(disposeI).stringValue;
+                if (stValue != null)
+                {
+                    autoTextFields[disposeI].GetInputField.value = stValue;
+                    autoTextFields[disposeI].GetDropdownField.value = stValue;
+                }
+                autoTextFields[disposeI].RegisterValueChangedCallback(evt =>
+                {
+                    if (disposeI >= sprindexArray.arraySize) return;
+                    sprindexArray.GetArrayElementAtIndex(disposeI).stringValue = evt.newValue;
+                    sprindexArray.serializedObject.ApplyModifiedProperties();
+                });
+                container.Add(autoTextFields[disposeI]);
+            }
+            actorProperty.serializedObject.ApplyModifiedProperties();
+        }
+
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             EditorGUI.BeginProperty(position, label, property);

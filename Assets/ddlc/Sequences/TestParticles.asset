@@ -21,11 +21,9 @@ MonoBehaviour:
     - rid: 268099459762618441
     - rid: 268099459762618442
   - speaker: {fileID: 0}
-    dialog: 'Alduin Explosion
-
-'
+    dialog: Alduin Explosion
     ScreenActions:
-    - rid: 1790118356285128771
+    - rid: 4972360321156514047
     - rid: 1790118356285128772
     - rid: 1790118356285128773
   - speaker: {fileID: 0}
@@ -52,7 +50,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Landing particles.
     ScreenActions:
-    - rid: 268099459762618461
+    - rid: 4972360321156514058
     - rid: 268099459762618462
     - rid: 268099482212892672
     - rid: 268099819477139519
@@ -188,11 +186,11 @@ MonoBehaviour:
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-        fadeInTime: 0
+        fadeInTime: 0.5
         spawnOffset: {x: 0, y: 0, z: 0}
         visualSpriteIndexes:
         - EMPTY
-        - EMPTY
+        - uniUp
         - EMPTY
         - werewolfHappy
     - rid: 268099459762618447
@@ -260,17 +258,6 @@ MonoBehaviour:
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 0
-    - rid: 268099459762618461
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        fadeInTime: 0
-        spawnOffset: {x: 0, y: 0, z: 0}
-        visualSpriteIndexes:
-        - uniUp
-        - uniUp
-        - shockSurprise
-        - EMPTY
     - rid: 268099459762618462
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -385,6 +372,7 @@ MonoBehaviour:
         - skyUp
         - skyDown
         - focus
+        - 
     - rid: 268099482212892762
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -549,11 +537,11 @@ MonoBehaviour:
     - rid: 268099819477139460
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        actorToSpawn: {fileID: 11400000, guid: 0d41391b7f2d50840b7fc352caf0c9b6, type: 2}
+        actorToSpawn: {fileID: 11400000, guid: 0ad912a4f92445545a2225f1d74898be, type: 2}
         fadeInTime: 0.5
         spawnOffset: {x: 0, y: 0, z: 0}
         visualSpriteIndexes:
-        - default
+        - uniUp
     - rid: 268099819477139461
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -654,14 +642,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: c9971f7409084c140a7ff61c782e0c80, type: 2}
         fadeTime: 0
-    - rid: 1790118356285128771
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: c9971f7409084c140a7ff61c782e0c80, type: 2}
-        fadeInTime: 0
-        spawnOffset: {x: 0, y: 0, z: 0}
-        visualSpriteIndexes:
-        - default
     - rid: 1790118356285128772
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -712,3 +692,22 @@ MonoBehaviour:
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 0
+    - rid: 4972360321156514047
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: c9971f7409084c140a7ff61c782e0c80, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 4972360321156514058
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeInTime: 4.01
+        spawnOffset: {x: 7.91, y: 5.83, z: -2.92}
+        visualSpriteIndexes:
+        - uniUp
+        - uniUp
+        - shockSurprise
+        - EMPTY

@@ -5,7 +5,6 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.Device;
 using UnityEngine.UIElements;
 
 namespace RenCSharp.Sequences
@@ -17,7 +16,7 @@ namespace RenCSharp.Sequences
     {
         [SerializeField] private static VisualTreeAsset _treeAsset = default;
         [SerializeField] private static Sequence _target;
-        private static EditorWindow me;
+        private static Sequence_EditorWindow SEW;
         public static Sequence SetTarget { set { _target = value; } }
 
         private ObjectField targetSequenceField;
@@ -34,8 +33,8 @@ namespace RenCSharp.Sequences
         [MenuItem("Window/Sequence Editor")]
         public static void OpenWindow()
         {
-            me = GetWindow<Sequence_EditorWindow>();
-            me.titleContent = new GUIContent("Sequence Editor");
+            SEW = GetWindow<Sequence_EditorWindow>();
+            SEW.titleContent = new GUIContent("Sequence Editor");
         }
 
         public static void OpenWindow(Sequence newTarget)
@@ -97,7 +96,7 @@ namespace RenCSharp.Sequences
                     if (screenField != null)
                     {
                         if (index >= _target.Screens.Length) return;
-                        Debug.Log("Screens Index: " + index);
+                        //Debug.Log("Screens Index: " + index);
                         SerializedProperty screenProp = screensProp.GetArrayElementAtIndex(index);
                         SerializedProperty screenActionsProp = screenProp.FindPropertyRelative("ScreenActions");
                         //Debug.Log($"Screen Action Property at: {index}" + screenActionsProp);
@@ -121,7 +120,6 @@ namespace RenCSharp.Sequences
             {
                 SerializedObject so = new SerializedObject(_target);
                 SerializedProperty playerchoicesProp = so.FindProperty("playerChoices");
-                Debug.Log("Playerchoices prop: " + playerchoicesProp);
                 playerchoiceScrollView.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
 
                 playerchoiceScrollView.itemsSource = _target.PlayerChoices;
@@ -131,7 +129,6 @@ namespace RenCSharp.Sequences
                     PlayerChoiceUITKField pcField = e as PlayerChoiceUITKField;
                     if (pcField != null)
                     {
-                        Debug.Log("Player choice Index: " + index);
                         pcField.SetPlayerChoice = _target.PlayerChoices[index];
                         pcField.SetConditionsProperty = playerchoicesProp.GetArrayElementAtIndex(index).FindPropertyRelative("conditions");
                         ExtractPlayerChoices += delegate
@@ -176,12 +173,12 @@ namespace RenCSharp.Sequences
 
             reinitListButton = root.Q<Button>("reinitList");
             reinitListButton.tooltip = "Re-initializes the screen list. Use this if your list is bugging out visually. " +
-            "You will probably need to do this after using the add screen button. (EVEN THOUGH THAT BUTTON ALSO REINITS THE LIST?!?)";
+            "You will probably need to do this after using the add screen button. (EVEN THOUGH THAT BUTTON ALSO REINITS THE LIST?!?) Hotkey: ctrl+r";
             reinitListButton.clicked += InitScreenListView;
 
             saveSequenceButton = root.Q<Button>("saveSequence");
             saveSequenceButton.tooltip = "Reserializes the target sequence, saving changes you've made in this editor window to the sequence object. "
-            + "Changes made to the sequence SHOULD automatically be saved, but if you don't trust that: here you go.";
+            + "Changes made to the sequence SHOULD automatically be saved, but if you don't trust that: here you go. Hotkey: ctrl+s";
             saveSequenceButton.clicked += ReserializeSequence;
 
             addScreenButton = root.Q<Button>("addAScreen");
@@ -326,7 +323,7 @@ namespace RenCSharp.Sequences
             };
 
             reinitPcButton = root.Q<Button>("reinitpcList");
-            reinitPcButton.tooltip = "Re-initializes the player choice list. Similar in fuction to reinit screen list button.";
+            reinitPcButton.tooltip = "Re-initializes the player choice list. Similar in fuction to reinit screen list button. Hotkey: ctrl+r (This hotkey will do both player choice list and screen list.)";
             reinitPcButton.clicked += InitPlayerChoiceListView;
 
             playerchoiceScrollView = root.Q<ListView>("playerChoiceListView");
@@ -335,6 +332,25 @@ namespace RenCSharp.Sequences
             InitPlayerChoiceListView();
 
             rootVisualElement.Add(root);
+        }
+
+        private void OnGUI()
+        {
+            Event cur = Event.current;
+            if (cur.type != EventType.KeyDown || !cur.control) return;
+
+            switch (cur.keyCode)
+            {
+                case KeyCode.S:
+                    Debug.Log("Saving changes to sequence.");
+                    ReserializeSequence();
+                    break;
+                case KeyCode.R:
+                    Debug.Log("Re-initializing screen and player choice lists.");
+                    InitScreenListView();
+                    InitPlayerChoiceListView();
+                    break;
+            }
         }
     }
 }

@@ -1,110 +1,137 @@
 #if UNITY_EDITOR
-using UnityEngine;
-using UnityEngine.UIElements;
 using System.Collections.Generic;
-using System.Linq;
+using UnityEngine.UIElements;
 namespace RenCSharp.Sequences
 {
     [UxmlElement]
-    public class AutoTextField : BaseField<string>
+    public partial class AutoTextField : BaseField<string>
     {
+        private static List<string> cacheList;
         private readonly VisualElement ContentElement;
         private readonly TextField inputField;
+        public TextField GetInputField { get { return inputField; } }
         private readonly DropdownField dropdownField;
+        public DropdownField GetDropdownField { get { return dropdownField; } }
         private readonly List<string> validAutoText;
 
-        public AutoTextField(string labelText, string[] autoText) : base(labelText, new VisualElement())
+        private const string inputFieldClassName = "autotextfield__input-text";
+        private const string dropdownFieldClassName = "autotextfield__input-dropdown";
+
+        public AutoTextField() : this(null) { }
+
+        public AutoTextField(string labelText) : base(labelText, new VisualElement())
         {
-            validAutoText = autoText.ToList();
-
-            AddToClassList(ussClassName);
-
             ContentElement = this.Q<VisualElement>(className: inputUssClassName);
+            ContentElement.style.flexDirection = FlexDirection.Row;
+            AddToClassList(alignedFieldUssClassName);
 
             inputField = new();
-            inputField.AddToClassList("autotextfield__input-text");
+            inputField.AddToClassList(inputFieldClassName);
             ContentElement.Add(inputField);
+            inputField.style.minWidth = 250f;
+            inputField.RegisterValueChangedCallback(evt => OnKeyInput(evt.newValue));
 
             dropdownField = new();
-            dropdownField.AddToClassList("autotextfield__input-dropdown");
+            dropdownField.AddToClassList(dropdownFieldClassName);
+            dropdownField.RegisterCallback<ChangeEvent<string>>(evt =>
+            {
+                dropdownField.value = evt.newValue;
+                inputField.value = evt.newValue;
+                this.value = evt.newValue;
+            });
+            ContentElement.Add(dropdownField);
+            dropdownField.style.minWidth = 250f;
+        }
+
+        public AutoTextField(string labelText, List<string>autoText) : base(labelText, new VisualElement())
+        {
+            validAutoText = autoText;
+
+            AddToClassList(alignedFieldUssClassName);
+
+            ContentElement = this.Q<VisualElement>(className: inputUssClassName);
+            ContentElement.style.flexDirection = FlexDirection.Row;
+
+            inputField = new();
+            inputField.AddToClassList(inputFieldClassName);
+            ContentElement.Add(inputField);
+            inputField.style.minWidth = 250f;
+            inputField.RegisterValueChangedCallback(evt => OnKeyInput(evt.newValue));
+
+            dropdownField = new();
+            dropdownField.AddToClassList(dropdownFieldClassName);
             dropdownField.RegisterCallback<ChangeEvent<string>>(evt => 
             {
                 dropdownField.value = evt.newValue;
                 inputField.value = evt.newValue;
+                this.value = evt.newValue;
             });
             ContentElement.Add(dropdownField);
-
-            RegisterCallback<KeyDownEvent>(evt => OnKeyInput(evt));
+            dropdownField.style.minWidth = 250f;
         }
 
-        private static void OnKeyInput(KeyDownEvent evt)
+        public void OnKeyInput(string newVal)
         {
-            AutoTextField container = evt.currentTarget as AutoTextField;
-            TextField inputField = container.inputField;
+            inputField.value = newVal;
+            dropdownField.value = newVal;
+            value = newVal;
+            if (validAutoText == null) return;
 
-            if (evt.keyCode == KeyCode.Backspace)
-            {
-                inputField.value.Remove(inputField.value.Length - 1);
-            }
-            else if(evt.keyCode == KeyCode.Escape || evt.keyCode == KeyCode.Return)
-            {
-                evt.StopPropagation();
-                return;
-            }
-            else
-            {
-                inputField.value += evt.character;
-            }
-
-            if (inputField.value.Length <= 0) return;
-
-            DropdownField dropdownField = container.dropdownField;
-
-            List<string> copyOfSource = new List<string>(new HashSet<string>(container.validAutoText)); 
-            EditorExtend.EditorAutoCompleteParams.CacheCheckList = new List<string>(10); //max shown is 10
+            List<string> copyOfSource = new List<string>(new HashSet<string>(validAutoText));
+            cacheList = new List<string>(); //max shown is 7?
+            dropdownField.choices = cacheList;
             int validAutoTextLength = copyOfSource.Count;
 
-            for (int i = 0; i < validAutoTextLength && i < EditorExtend.EditorAutoCompleteParams.CacheCheckList.Count; i++)
+            if (newVal.Length > 0)
             {
-                if (copyOfSource[i].ToLower().StartsWith(evt.character.ToString().ToLower()))
+
+                for (int i = 0; i < validAutoTextLength && i < copyOfSource.Count; i++)
                 {
-                    EditorExtend.EditorAutoCompleteParams.CacheCheckList.Add(container.validAutoText[i]);
-                    copyOfSource.RemoveAt(i);
-                    validAutoTextLength--;
-                    i--;
-                }
-            }
-            if (EditorExtend.EditorAutoCompleteParams.CacheCheckList.Count == 0) //do it again?
-            {
-                for (int i = 0; i < validAutoTextLength && i < EditorExtend.EditorAutoCompleteParams.CacheCheckList.Count; i++)
-                {
-                    if (copyOfSource[i].ToLower().StartsWith(evt.character.ToString().ToLower()))
+                    if (copyOfSource[i].ToLower().StartsWith(newVal.ToLower()[0])) //if it starts with the same letter
                     {
-                        EditorExtend.EditorAutoCompleteParams.CacheCheckList.Add(container.validAutoText[i]);
+                        cacheList.Add(copyOfSource[i]);
                         copyOfSource.RemoveAt(i);
                         validAutoTextLength--;
                         i--;
                     }
                 }
-            }
-            if (EditorExtend.EditorAutoCompleteParams.CacheCheckList.Count < 10)
-            {
-                string keywords = inputField.value.ToLower();
-                for (int i = 0; i < validAutoTextLength && i < EditorExtend.EditorAutoCompleteParams.CacheCheckList.Count; i++)
+                if (cacheList.Count == 0) //do it again?
                 {
-                    int distance = StringExtend.LevenshteinDistance(copyOfSource[i], keywords, false);
-                    bool closeEnough = (int)(copyOfSource.Count * 0.5f) > distance;
-                    if (closeEnough)
+                    for (int i = 0; i < validAutoTextLength && i < copyOfSource.Count; i++)
                     {
-                        EditorExtend.EditorAutoCompleteParams.CacheCheckList.Add(container.validAutoText[i]);
-                        copyOfSource.RemoveAt(i);
-                        validAutoTextLength--;
-                        i--;
+                        if (copyOfSource[i].ToLower().StartsWith(newVal.ToLower()[0])) //if it starts with the same letter
+                        {
+                            cacheList.Add(copyOfSource[i]);
+                            copyOfSource.RemoveAt(i);
+                            validAutoTextLength--;
+                            i--;
+                        }
+                    }
+                }
+                if (cacheList.Count < 7 && cacheList.Count < copyOfSource.Count)
+                {
+                    string keywords = inputField.value.ToLower();
+                    for (int i = 0; i < validAutoTextLength && i < cacheList.Count; i++)
+                    {
+                        int distance = StringExtend.LevenshteinDistance(copyOfSource[i], keywords, false);
+                        bool closeEnough = (int)(copyOfSource.Count * 0.5f) > distance;
+                        //Debug.Log($"levenshtein close enough at {i}?: " + closeEnough);
+                        if (closeEnough)
+                        {
+                            cacheList.Add(copyOfSource[i]);
+                            copyOfSource.RemoveAt(i);
+                            validAutoTextLength--;
+                            i--;
+                        }
                     }
                 }
             }
 
-            dropdownField.choices = EditorExtend.EditorAutoCompleteParams.CacheCheckList;
+            bool prevVis = dropdownField.visible;
+            dropdownField.visible = cacheList.Count > 0 || newVal == "";
+            dropdownField.enabledSelf = dropdownField.visible;
+            if(prevVis != dropdownField.visible) ContentElement.MarkDirtyRepaint(); //repaint if the visibility changed.
+            dropdownField.choices = cacheList;
         }
     }
 }
