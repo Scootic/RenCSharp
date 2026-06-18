@@ -19,6 +19,8 @@ namespace RenCSharp.Sequences
         [SerializeField] private static VisualTreeAsset _treeAsset = default;
         [SerializeField] private static Sequence _target;
         private static Sequence_EditorWindow SEW;
+        private static Dictionary<int, Action> AllTheExtractScreens;
+        private static Dictionary<int, Action> AllTheExtractPlayerChoices;
         public static Sequence SetTarget { set { _target = value; } }
 
         private ObjectField targetSequenceField;
@@ -28,7 +30,6 @@ namespace RenCSharp.Sequences
         private Button addScreenButton, removeLastScreenButton, replaceDeprecatedEventsButton, reinitListButton;
         private Button addPcButton, removeLastPcButton, reinitPcButton;
         private Button saveSequenceButton;
-        private Action ExtractTheScreens, ExtractPlayerChoices;
 
         private readonly string _filePath = "Assets/RenC#/RenC# Scripts/Sequences/SequenceTools/UIToolkit for Sequences/Sequence_EditorWindow.uxml";
 
@@ -64,8 +65,8 @@ namespace RenCSharp.Sequences
             //change the stinking thing to display new stuff!
 
             SerializedObject so = new SerializedObject(_target);
-            ExtractTheScreens = null;
-            ExtractPlayerChoices = null;
+            AllTheExtractScreens = new();
+            AllTheExtractPlayerChoices = null;
             autoSpeakerToggle.value = _target.AutoFocusSpeaker;
             myAssetRefField.BindProperty(so.FindProperty("myself"));
 
@@ -77,8 +78,14 @@ namespace RenCSharp.Sequences
         {
             if (_target == null) { Debug.LogWarning("There is no sequence to reserialize (save)."); return; }
             _target.SetAFS = autoSpeakerToggle.value;
-            ExtractPlayerChoices?.Invoke();
-            ExtractTheScreens?.Invoke();
+            foreach(KeyValuePair<int, Action> kvp in AllTheExtractPlayerChoices)
+            {
+                kvp.Value?.Invoke();
+            }
+            foreach(KeyValuePair<int, Action> kvp in AllTheExtractScreens)
+            {
+                kvp.Value?.Invoke();
+            }
             //don't need to set the assetref, since it's a bound serialized property???
             EditorUtility.SetDirty(_target);
         }
@@ -106,11 +113,12 @@ namespace RenCSharp.Sequences
                         screenField.SetValue = _target.Screens[storedIndex];
                         screenField.SetScreenEventsProperty = screenActionsProp;
                         screenField.SetCustomLabel(new Label($"Screen {storedIndex}"));
-                        ExtractTheScreens += delegate
+                        Action extract = delegate
                         {
                             _target.Screens[storedIndex].SetSpeaker = screenField.GetActor;
                             _target.Screens[storedIndex].SetDialog = screenField.GetDialog;
                         };
+                        AllTheExtractScreens.Add(storedIndex, extract);
                     }
                 };
                 screenScrollView.unbindItem = (VisualElement e, int index) =>
@@ -120,11 +128,7 @@ namespace RenCSharp.Sequences
                     int storedIndex = index;
                     if (screenField != null)
                     {
-                        ExtractTheScreens -= delegate
-                        {
-                            _target.Screens[storedIndex].SetSpeaker = screenField.GetActor;
-                            _target.Screens[storedIndex].SetDialog = screenField.GetDialog;
-                        };
+                        AllTheExtractScreens.Remove(storedIndex);
                     }
                 };
                 screenScrollView.selectionType = SelectionType.Single;
@@ -149,11 +153,12 @@ namespace RenCSharp.Sequences
                         int storedIndex = index;
                         pcField.SetPlayerChoice = _target.PlayerChoices[storedIndex];
                         pcField.SetConditionsProperty = playerchoicesProp.GetArrayElementAtIndex(storedIndex).FindPropertyRelative("conditions");
-                        ExtractPlayerChoices += delegate
+                        Action extractpc = delegate
                         {
                             _target.PlayerChoices[storedIndex].SetChoiceText = pcField.GetChoiceText;
                             _target.PlayerChoices[storedIndex].SetResultingSequence = pcField.GetResultingSequence;
                         };
+                        AllTheExtractPlayerChoices.Add(storedIndex, extractpc);
                     }
                 };
                 playerchoiceScrollView.unbindItem = (VisualElement e, int index) =>
@@ -163,11 +168,7 @@ namespace RenCSharp.Sequences
                     {
                         int storedIndex = index;
                         pcField.Q<PropertyField>().Unbind();
-                        ExtractPlayerChoices -= delegate
-                        {
-                            _target.PlayerChoices[storedIndex].SetChoiceText = pcField.GetChoiceText;
-                            _target.PlayerChoices[storedIndex].SetResultingSequence = pcField.GetResultingSequence;
-                        };
+                        AllTheExtractPlayerChoices.Remove(storedIndex);
                     }
                 };
 
@@ -189,8 +190,8 @@ namespace RenCSharp.Sequences
                 Debug.LogError($"Couldn't find VisualTreeAsset at: {_filePath}. Either you moved or deleted it. Too bad!");
                 return;
             }
-            ExtractTheScreens = null;
-            ExtractPlayerChoices = null;
+            AllTheExtractScreens = new();
+            AllTheExtractPlayerChoices = new();
             targetSequenceField = root.Q<ObjectField>("_target");
             targetSequenceField.value = _target;
             targetSequenceField.RegisterValueChangedCallback(NewSequenceSelected);
