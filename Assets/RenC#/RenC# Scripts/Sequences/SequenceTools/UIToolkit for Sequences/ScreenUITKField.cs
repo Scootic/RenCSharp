@@ -14,7 +14,7 @@ namespace RenCSharp.Sequences
         private readonly ObjectField ActorField;
         private readonly TextField DialogField;
         private readonly PropertyField ScreenEventsField; //really sad. Maybe a converter just to turn this boy to uxml?
-        private readonly VisualElement GapSpace;
+        private readonly VisualElement StartGapSpace, EndGapSpace;
 
         public ScreenUITKField() : this(null) { }
 
@@ -22,41 +22,63 @@ namespace RenCSharp.Sequences
         {
             ContentElement = this.Q<VisualElement>(className: inputUssClassName);
             ContentElement.style.flexDirection = FlexDirection.Column;
+            ContentElement.style.backgroundColor = CoolColors.slightTransWhiteGUI;
+            ContentElement.style.color = CoolColors.slightTransWhiteGUI;
             AddToClassList(alignedFieldUssClassName);
             labelElement.style.marginBottom = 1;
+
+            StartGapSpace = new VisualElement();
+            StartGapSpace.style.height = 10;
+            StartGapSpace.style.color = CoolColors._75PercentBlack;
+            StartGapSpace.style.backgroundColor = CoolColors._75PercentBlack;
+            ContentElement.Add(StartGapSpace);
 
             ActorField = new ObjectField();
             ActorField.label = "Speaker:";
             ActorField.objectType = typeof(Actor);
             ActorField.value = s.Speaker;
+            ActorField.Q<Label>().style.color = Color.white;
             ContentElement.Add(ActorField);
 
             DialogField = new TextField();
             DialogField.label = "Dialog:";
+            DialogField.Q<Label>().style.color = Color.white;
             DialogField.SetVerticalScrollerVisibility(ScrollerVisibility.Auto); //???
             DialogField.style.whiteSpace = WhiteSpace.Normal;
             DialogField.multiline = true;
+            DialogField.style.color = Color.white;
             ContentElement.Add(DialogField);
 
             ScreenEventsField = new PropertyField();
             ScreenEventsField.label = "Screen Actions:";
+            ScreenEventsField.style.color = Color.white;
             ContentElement.Add(ScreenEventsField);
 
-            GapSpace = new VisualElement();
-            GapSpace.style.height = 20;
-            ContentElement.Add(GapSpace);
+            EndGapSpace = new VisualElement();
+            EndGapSpace.style.height = 20;
+            ContentElement.Add(EndGapSpace);
         }
 
         public ScreenUITKField(string labelText) : base(labelText, new VisualElement())
         {
             ContentElement = this.Q<VisualElement>(className: inputUssClassName);
             ContentElement.style.flexDirection = FlexDirection.Column;
+            ContentElement.style.backgroundColor = CoolColors.slightTransWhiteGUI;
+            ContentElement.style.color = CoolColors.slightTransWhiteGUI;
             AddToClassList(alignedFieldUssClassName);
             labelElement.style.marginBottom = 1;
+
+            StartGapSpace = new();
+            StartGapSpace.style.height = 10;
+            StartGapSpace.style.color = CoolColors._75PercentBlack;
+            StartGapSpace.style.backgroundColor = CoolColors._75PercentBlack;
+            ContentElement.Add(StartGapSpace);
 
             ActorField = new ObjectField();
             ActorField.objectType = typeof(Actor);
             ActorField.label = "Speaker:";
+            ActorField.Q<Label>().style.color = Color.white;
+            ActorField.style.color = Color.white;
             ActorField.value = null;
             ContentElement.Add(ActorField);
 
@@ -64,17 +86,20 @@ namespace RenCSharp.Sequences
             DialogField.SetVerticalScrollerVisibility(ScrollerVisibility.Auto);
             DialogField.style.whiteSpace = WhiteSpace.Normal;
             DialogField.label = "Dialog:";
+            DialogField.Q<Label>().style.color = Color.white;
             DialogField.value = "";
+            DialogField.style.color = Color.white;
             DialogField.multiline = true;
             ContentElement.Add(DialogField);
 
             ScreenEventsField = new PropertyField();
             ScreenEventsField.label = "Screen Actions:";
+            ScreenEventsField.style.color = Color.white;
             ContentElement.Add(ScreenEventsField);
 
-            GapSpace = new VisualElement();
-            GapSpace.style.height = 20;
-            ContentElement.Add(GapSpace);
+            EndGapSpace = new VisualElement();
+            EndGapSpace.style.height = 20;
+            ContentElement.Add(EndGapSpace);
         }
 
         public Screen SetValue
