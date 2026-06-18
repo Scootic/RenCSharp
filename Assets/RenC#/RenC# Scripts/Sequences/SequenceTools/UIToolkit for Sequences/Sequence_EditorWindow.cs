@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Device;
 using UnityEngine.UIElements;
 
 namespace RenCSharp.Sequences
