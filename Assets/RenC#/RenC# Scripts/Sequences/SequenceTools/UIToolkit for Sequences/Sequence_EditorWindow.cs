@@ -110,6 +110,19 @@ namespace RenCSharp.Sequences
                         };
                     }
                 };
+                screenScrollView.unbindItem = (VisualElement e, int index) =>
+                {
+                    ScreenUITKField screenField = e as ScreenUITKField;
+                    screenField.Q<PropertyField>().Unbind();
+                    if (screenField != null)
+                    {
+                        ExtractTheScreens -= delegate
+                        {
+                            _target.Screens[index].SetSpeaker = screenField.GetActor;
+                            _target.Screens[index].SetDialog = screenField.GetDialog;
+                        };
+                    }
+                };
                 screenScrollView.selectionType = SelectionType.Single;
             }
         }
@@ -132,6 +145,19 @@ namespace RenCSharp.Sequences
                         pcField.SetPlayerChoice = _target.PlayerChoices[index];
                         pcField.SetConditionsProperty = playerchoicesProp.GetArrayElementAtIndex(index).FindPropertyRelative("conditions");
                         ExtractPlayerChoices += delegate
+                        {
+                            _target.PlayerChoices[index].SetChoiceText = pcField.GetChoiceText;
+                            _target.PlayerChoices[index].SetResultingSequence = pcField.GetResultingSequence;
+                        };
+                    }
+                };
+                playerchoiceScrollView.unbindItem = (VisualElement e, int index) =>
+                {
+                    PlayerChoiceUITKField pcField = e as PlayerChoiceUITKField;
+                    if (pcField != null)
+                    {
+                        pcField.Q<PropertyField>().Unbind();
+                        ExtractPlayerChoices -= delegate
                         {
                             _target.PlayerChoices[index].SetChoiceText = pcField.GetChoiceText;
                             _target.PlayerChoices[index].SetResultingSequence = pcField.GetResultingSequence;

@@ -134,6 +134,7 @@ namespace RenCSharp.Sequences
                 if (value != null)
                 {
                     ScreenEventsField.BindProperty(value);
+                    value.isExpanded = false; //default to closed when spawning into the element
                 }
                 else
                 {
