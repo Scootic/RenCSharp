@@ -32,7 +32,9 @@ namespace RenCSharp.Sequences
         private Button addPcButton, removeLastPcButton, reinitPcButton;
         private Button saveSequenceButton;
         private IntegerField timeToAutoSaveField;
+        private GradientField screenListCosmeticField;
         private float curT, timeToAutoSave = 120f;
+        private Gradient screenListGradient;
 
         private readonly string _filePath = "Assets/RenC#/RenC# Scripts/Sequences/SequenceTools/UIToolkit for Sequences/Sequence_EditorWindow.uxml";
 
@@ -110,12 +112,15 @@ namespace RenCSharp.Sequences
                     {
                         if (index >= _target.Screens.Length) return;
                         int storedIndex = index;
+                        float perc = (float)storedIndex / _target.Screens.Length; 
                         //Debug.Log("Screens Index: " + index);
                         SerializedProperty screenProp = screensProp.GetArrayElementAtIndex(storedIndex);
                         SerializedProperty screenActionsProp = screenProp.FindPropertyRelative("ScreenActions");
                         //Debug.Log($"Screen Action Property at: {index}" + screenActionsProp);
                         screenField.SetValue = _target.Screens[storedIndex];
                         screenField.SetScreenEventsProperty = screenActionsProp;
+                        screenField.style.color = screenListGradient.Evaluate(perc);
+                        screenField.style.backgroundColor = screenListGradient.Evaluate(perc);
                         screenField.SetCustomLabel(new Label($"Screen {storedIndex}"));
                         Action extract = delegate
                         {
@@ -199,6 +204,15 @@ namespace RenCSharp.Sequences
             targetSequenceField = root.Q<ObjectField>("_target");
             targetSequenceField.value = _target;
             targetSequenceField.RegisterValueChangedCallback(NewSequenceSelected);
+
+            screenListCosmeticField = root.Q<GradientField>("screenListCosmetic");
+            if(screenListGradient != null) screenListCosmeticField.value = screenListGradient;
+            screenListCosmeticField.RegisterValueChangedCallback((evt) =>
+            {
+                screenListGradient = evt.newValue;
+                InitScreenListView();
+            });
+            screenListGradient = screenListCosmeticField.value;
 
             timeToAutoSaveField = root.Q<IntegerField>("autoSaveTime");
             timeToAutoSaveField.value = Mathf.RoundToInt(timeToAutoSave / 60f);

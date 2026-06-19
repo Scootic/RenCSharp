@@ -1,6 +1,5 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine.UIElements;
 namespace RenCSharp.Sequences
 {
@@ -38,7 +37,7 @@ namespace RenCSharp.Sequences
             {
                 dropdownField.value = evt.newValue;
                 inputField.value = evt.newValue;
-                this.value = evt.newValue;
+                value = evt.newValue;
             });
             ContentElement.Add(dropdownField);
             dropdownField.style.minWidth = 100f;
@@ -65,7 +64,7 @@ namespace RenCSharp.Sequences
             {
                 dropdownField.value = evt.newValue;
                 inputField.value = evt.newValue;
-                this.value = evt.newValue;
+                value = evt.newValue;
             });
             ContentElement.Add(dropdownField);
             dropdownField.style.minWidth = 100f;
@@ -97,7 +96,7 @@ namespace RenCSharp.Sequences
                     }
                 }
 
-                if (cacheList.Count < 7)
+                if (cacheList.Count < 7) //if the includes list doesn't fill up the max amount
                 {
                     string keywords = inputField.value.ToLower();
                     for (int i = 0; i < validAutoTextLength && i < cacheList.Count; i++)
@@ -105,7 +104,6 @@ namespace RenCSharp.Sequences
                         if (cacheList.Count >= 7) break;
                         int distance = StringExtend.LevenshteinDistance(copyOfSource[i], keywords, false);
                         bool closeEnough = (copyOfSource.Count * 0.5f) > distance;
-                        //Debug.Log($"levenshtein close enough at {i}?: " + closeEnough);
                         if (closeEnough)
                         {
                             cacheList.Add(copyOfSource[i]);
@@ -133,7 +131,7 @@ namespace RenCSharp.Sequences
             dropdownField.visible = cacheList.Count > 2 && newVal != "";
             dropdownField.enabledSelf = dropdownField.visible;
             if(prevVis != dropdownField.visible) ContentElement.MarkDirtyRepaint(); //repaint if the visibility changed.
-            cacheList.Reverse();
+            //cacheList.Reverse(); Reverse based on the position of the expanded menu to the button?
             dropdownField.choices = cacheList;
         }
     }
