@@ -4,7 +4,9 @@ namespace RenCSharp
 {
     public static class Animation_Helper 
     {
-        public static readonly AnimationCurve EaseOut = new AnimationCurve(easeOutKeyframes);
+        private static AnimationCurve easeOut = new AnimationCurve(easeOutKeyframes);
+
+        public static AnimationCurve EaseOut => easeOut;
 
         private static readonly Keyframe[] easeOutKeyframes =
         {
