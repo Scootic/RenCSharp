@@ -1,7 +1,6 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -185,7 +184,6 @@ namespace RenCSharp.Sequences
         {
             _treeAsset = AssetDatabase.LoadAssetAtPath(_filePath, typeof(VisualTreeAsset)) as VisualTreeAsset;
             VisualElement root;
-            //Debug.Log("Found the tree asset!");
             try
             {
                 root = _treeAsset.CloneTree();
@@ -380,7 +378,7 @@ namespace RenCSharp.Sequences
             InitScreenListView();
             InitPlayerChoiceListView();
 
-            Debug.Log("AutoSave duration: " + timeToAutoSave);
+            //Debug.Log("AutoSave duration: " + timeToAutoSave);
             rootVisualElement.Add(root);
         }
 
@@ -392,7 +390,7 @@ namespace RenCSharp.Sequences
             switch (cur.keyCode)
             {
                 case KeyCode.S:
-                    Debug.Log("Saving changes to sequence.");
+                    Debug.Log($"Saving changes to sequence: {_target.name}.");
                     ReserializeSequence();
                     break;
                 case KeyCode.R:

@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.UIElements;
 namespace RenCSharp.Sequences
 {
@@ -82,12 +83,12 @@ namespace RenCSharp.Sequences
             dropdownField.choices = cacheList;
             int validAutoTextLength = copyOfSource.Count;
 
-            if (newVal.Length > 0)
+            if (newVal.Length >= 3) //require a string that's at least three letters long before we care.
             {
-
                 for (int i = 0; i < validAutoTextLength && i < copyOfSource.Count; i++)
                 {
-                    if (copyOfSource[i].ToLower().StartsWith(newVal.ToLower()[0])) //if it starts with the same letter
+                    if (cacheList.Count >= 7) break;
+                    if (copyOfSource[i].ToLower().Contains(newVal.ToLower())) //if it includes
                     {
                         cacheList.Add(copyOfSource[i]);
                         copyOfSource.RemoveAt(i);
@@ -95,11 +96,17 @@ namespace RenCSharp.Sequences
                         i--;
                     }
                 }
-                if (cacheList.Count == 0) //do it again?
+
+                if (cacheList.Count < 7)
                 {
-                    for (int i = 0; i < validAutoTextLength && i < copyOfSource.Count; i++)
+                    string keywords = inputField.value.ToLower();
+                    for (int i = 0; i < validAutoTextLength && i < cacheList.Count; i++)
                     {
-                        if (copyOfSource[i].ToLower().StartsWith(newVal.ToLower()[0])) //if it starts with the same letter
+                        if (cacheList.Count >= 7) break;
+                        int distance = StringExtend.LevenshteinDistance(copyOfSource[i], keywords, false);
+                        bool closeEnough = (copyOfSource.Count * 0.5f) > distance;
+                        //Debug.Log($"levenshtein close enough at {i}?: " + closeEnough);
+                        if (closeEnough)
                         {
                             cacheList.Add(copyOfSource[i]);
                             copyOfSource.RemoveAt(i);
@@ -107,16 +114,11 @@ namespace RenCSharp.Sequences
                             i--;
                         }
                     }
-                }
-                if (cacheList.Count < 7 && cacheList.Count < copyOfSource.Count)
-                {
-                    string keywords = inputField.value.ToLower();
-                    for (int i = 0; i < validAutoTextLength && i < cacheList.Count; i++)
+
+                    for (int i = 0; i < validAutoTextLength && i < copyOfSource.Count; i++)
                     {
-                        int distance = StringExtend.LevenshteinDistance(copyOfSource[i], keywords, false);
-                        bool closeEnough = (int)(copyOfSource.Count * 0.5f) > distance;
-                        //Debug.Log($"levenshtein close enough at {i}?: " + closeEnough);
-                        if (closeEnough)
+                        if (cacheList.Count >= 7) break;
+                        if (copyOfSource[i].ToLower().StartsWith(newVal.ToLower()[0])) //if it starts with the same letter
                         {
                             cacheList.Add(copyOfSource[i]);
                             copyOfSource.RemoveAt(i);
@@ -128,7 +130,7 @@ namespace RenCSharp.Sequences
             }
 
             bool prevVis = dropdownField.visible;
-            dropdownField.visible = cacheList.Count > 0 || newVal != "";
+            dropdownField.visible = cacheList.Count > 2 && newVal != "";
             dropdownField.enabledSelf = dropdownField.visible;
             if(prevVis != dropdownField.visible) ContentElement.MarkDirtyRepaint(); //repaint if the visibility changed.
             cacheList.Reverse();

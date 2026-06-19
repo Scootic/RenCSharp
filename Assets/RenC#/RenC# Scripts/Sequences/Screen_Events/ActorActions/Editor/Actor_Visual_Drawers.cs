@@ -114,6 +114,7 @@ namespace RenCSharp.Sequences
                 if (stValue != null)
                 {
                     autoTextFields[disposeI].GetInputField.value = stValue;
+                    autoTextFields[disposeI].OnKeyInput(stValue);
                     autoTextFields[disposeI].GetDropdownField.value = stValue;
                 }
                 autoTextFields[disposeI].RegisterValueChangedCallback(evt =>
@@ -273,6 +274,7 @@ namespace RenCSharp.Sequences
                 if (stValue != null)
                 {
                     autoTextFields[disposeI].GetInputField.value = stValue;
+                    autoTextFields[disposeI].OnKeyInput(stValue);
                     autoTextFields[disposeI].GetDropdownField.value = stValue;
                 }
                 autoTextFields[disposeI].RegisterValueChangedCallback(evt =>
