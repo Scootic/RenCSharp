@@ -138,8 +138,8 @@ MonoBehaviour:
       none the wiser, only being seen by Jenassa while leaving the city.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: 'We''re still left with two questions: who this Dunmer woman, and what
-      did Anoriath find on his hunt?'
+    dialog: 'We''re still left with two questions: who was this Dunmer woman, and
+      what did Anoriath find on his hunt?'
     ScreenActions:
     - rid: 1790118857467756603
   - speaker: {fileID: 11400000, guid: 89f7d0b97106b6448939eb57dd9aa235, type: 2}
@@ -222,6 +222,7 @@ MonoBehaviour:
         - 
         - 
         - blank
+        - 
     - rid: 1790118809755189461
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -337,6 +338,7 @@ MonoBehaviour:
         - 
         - 
         - blankSpeak
+        - 
     - rid: 1790118809755189466
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -345,6 +347,7 @@ MonoBehaviour:
         - 
         - 
         - blank
+        - 
     - rid: 1790118809755189467
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -353,6 +356,7 @@ MonoBehaviour:
         - 
         - 
         - blankSpeak
+        - 
     - rid: 1790118809755189468
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -361,6 +365,7 @@ MonoBehaviour:
         - 
         - 
         - inquisitive
+        - 
     - rid: 1790118809755189469
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -369,6 +374,7 @@ MonoBehaviour:
         - 
         - 
         - blankSpeak
+        - 
     - rid: 1790118809755189470
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -377,6 +383,7 @@ MonoBehaviour:
         - 
         - 
         - blank
+        - 
     - rid: 1790118809755189471
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -385,6 +392,7 @@ MonoBehaviour:
         - 
         - 
         - smile
+        - 
     - rid: 1790118809755189473
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -497,6 +505,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - blankSpeak
+        - 
     - rid: 1790118809755189478
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -505,6 +514,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - blank
+        - 
     - rid: 1790118809755189479
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -513,6 +523,7 @@ MonoBehaviour:
         - 
         - 
         - smile
+        - 
     - rid: 1790118809755189480
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -531,3 +542,4 @@ MonoBehaviour:
         - 
         - 
         - sternSpeak
+        - 

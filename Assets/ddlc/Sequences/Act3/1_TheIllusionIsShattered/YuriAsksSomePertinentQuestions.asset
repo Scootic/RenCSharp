@@ -23,7 +23,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: Haaahh... haaahh...
     ScreenActions:
-    - rid: 1790118740072857653
+    - rid: 4972360366678081734
     - rid: 1790118740072857654
     - rid: 1790118740072857655
     - rid: 1790118740072857656
@@ -277,17 +277,6 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
-    - rid: 1790118740072857653
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-        fadeInTime: 0.5
-        spawnOffset: {x: 0, y: 0, z: 0}
-        visualSpriteIndexes:
-        - skyDown
-        - skyUp
-        - blank
-        - EMPTY
     - rid: 1790118740072857654
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -411,7 +400,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - depressed
+        - pondering
         - EMPTY
     - rid: 1790118740072857660
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
@@ -1161,3 +1150,14 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         fadeTime: 0.5
+    - rid: 4972360366678081734
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - eyesClosedSigh
+        - EMPTY

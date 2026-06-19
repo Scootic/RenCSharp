@@ -115,6 +115,47 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
     dialog: That would be thanks to the Dwemer.
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: 'When the Dwemer took in the Falmer, they did so under one condition:'
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: That the Falmer would eat a certain species of mushroom.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: To the Falmer, who didn't know about the mushroom's particular properties,
+      this was an easy price to pay.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: That mushroom was incredibly toxic, causing the Falmer who ate it to
+      gradually go blind.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: We're still not sure <i>why</i> the Dwemer did this; we do know that
+      the Falmer served the Dwemer as servants and slaves-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: But surely a blind slave would provide less value than one that can see,
+      no?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: 'Personally, I believe the simplest explanation: the Dwemer wanted to
+      guarantee that their servant population would never leave or try to rebel against
+      their rule.'
+    ScreenActions:
+    - rid: 4972360366678081682
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: But there are some other, more fringe theories; like that the Falmer
+      were blinded so that their sense of hearing could be amplified-
+    ScreenActions:
+    - rid: 4972360366678081683
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: So that they would be more in-tune to the Tonal Architecture that was
+      the backbone of Dwemer innovations and society.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: Of course, this is merely conjecture- as is often the case with theories
+      about the Dwemer.
+    ScreenActions: []
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 0}
@@ -269,4 +310,22 @@ MonoBehaviour:
         - 
         - 
         - sadWorry
+        - 
+    - rid: 4972360366678081682
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - lookAwayPitySpeak
+        - 
+    - rid: 4972360366678081683
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
         - 

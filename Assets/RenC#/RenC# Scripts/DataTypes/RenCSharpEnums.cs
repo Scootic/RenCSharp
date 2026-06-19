@@ -13,4 +13,12 @@ namespace RenCSharp
         LessThanEquals,
         NotEqual
     }
+
+    [Serializable]
+    public enum ScreenShakeType
+    {
+        Horizontal,
+        Vertical,
+        BothAxis
+    }
 }

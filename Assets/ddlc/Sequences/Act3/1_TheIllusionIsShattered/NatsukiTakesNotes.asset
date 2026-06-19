@@ -22,7 +22,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: (I guess this is my room now, huh...)
     ScreenActions:
-    - rid: 1790118786062614616
+    - rid: 4972360366678081733
   - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
     dialog: Take a seat, we might as well be comfortable during your instruction.
     ScreenActions:
@@ -493,17 +493,6 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
-    - rid: 1790118786062614616
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-        fadeInTime: 0.5
-        spawnOffset: {x: 0, y: 0, z: 0}
-        visualSpriteIndexes:
-        - skyDown
-        - skyUp
-        - blank
-        - EMPTY
     - rid: 1790118786062614617
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1435,3 +1424,14 @@ MonoBehaviour:
         - 
         - 
         - scowl
+    - rid: 4972360366678081733
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - grimaceBlush
+        - ears
