@@ -397,7 +397,7 @@ MonoBehaviour:
     - rid: 9079475098267418967
     - rid: 9079474951791575139
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-    dialog: Uwaaaah!
+    dialog: <NoiseText=1,1,>Uwaaaah</NoiseText>!
     ScreenActions:
     - rid: 9079475089592287511
     - rid: 9079474951791575141
@@ -916,6 +916,7 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - lookAwayGrin
+        - 
     - rid: 9079474908378955927
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -924,6 +925,7 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - inquisitive
+        - 
     - rid: 9079474908378955928
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -932,6 +934,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 9079474908378955930
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -940,6 +943,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 9079474908378955931
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1020,6 +1024,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - focus
+        - 
     - rid: 9079474908378955945
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1028,6 +1033,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smileSpeak
+        - 
     - rid: 9079474908378955946
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1172,6 +1178,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - '><Shock'
+        - 
     - rid: 9079474934013755455
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1180,6 +1187,7 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - stern
+        - 
     - rid: 9079474934013755463
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1280,6 +1288,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - cryWeep
+        - 
     - rid: 9079474951791575133
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1288,6 +1297,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - terror
+        - 
     - rid: 9079474951791575136
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1306,6 +1316,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - terror
+        - 
     - rid: 9079474951791575141
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1314,6 +1325,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - sternSweat
+        - 
     - rid: 9079474951791575142
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1322,6 +1334,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - lookAwaySad
+        - 
     - rid: 9079474951791575143
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1330,6 +1343,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - lookAwayShock
+        - 
     - rid: 9079474951791575144
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1338,6 +1352,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smileSweat
+        - 
     - rid: 9079474951791575145
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1346,6 +1361,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - crySad
+        - 
     - rid: 9079474951791575146
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1359,25 +1375,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1397,6 +1395,7 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - sternSpeak
+        - 
     - rid: 9079474951791575148
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1405,6 +1404,7 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - stern
+        - 
     - rid: 9079474951791575149
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1413,6 +1413,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - lookAwayGrin
+        - 
     - rid: 9079474951791575150
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1421,6 +1422,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - sternSpeak
+        - 
     - rid: 9079474951791575151
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1429,6 +1431,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - concernBlush
+        - 
     - rid: 9079474951791575152
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1437,6 +1440,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - sadWorry
+        - 
     - rid: 9079474951791575153
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1450,25 +1454,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1493,25 +1479,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1536,25 +1504,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1579,25 +1529,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1622,25 +1554,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1665,25 +1579,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1703,6 +1599,7 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - closeEyeFrown
+        - 
     - rid: 9079474951791575160
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1711,6 +1608,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - grin
+        - 
     - rid: 9079474951791575162
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1724,25 +1622,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1762,6 +1642,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 9079474951791575164
       type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1790,6 +1671,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - closeEyeGrin
+        - 
     - rid: 9079474951791575167
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1798,6 +1680,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - grin
+        - 
     - rid: 9079474951791575168
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1806,6 +1689,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - speak
+        - 
     - rid: 9079474951791575169
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1814,6 +1698,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - closeEyeSmile
+        - 
     - rid: 9079474951791575170
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1822,6 +1707,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - lookAwaySad
+        - 
     - rid: 9079474951791575171
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1835,34 +1721,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.5032537
-            value: 1.0020247
-            inSlope: 0.057828907
-            outSlope: 0.057828907
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.3944982
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1887,34 +1746,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.49345914
-            value: 1.0037248
-            inSlope: 0.019735355
-            outSlope: 0.019735355
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.3824797
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1939,34 +1771,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.50168526
-            value: 0.99066126
-            inSlope: 0.0003471413
-            outSlope: 0.0003471413
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.6749155
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1991,25 +1796,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -2042,25 +1829,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -2088,6 +1857,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - lookAwaySad
+        - 
     - rid: 9079474951791575184
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2096,6 +1866,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - lookAwayPity
+        - 
     - rid: 9079474951791575185
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2104,6 +1875,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 9079474951791575186
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2112,6 +1884,7 @@ MonoBehaviour:
         - skySmug
         - skySmug
         - lookAwayGrimace
+        - 
     - rid: 9079474951791575187
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2120,6 +1893,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smileSweat
+        - 
     - rid: 9079474951791575190
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2128,6 +1902,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 9079474951791575191
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2136,6 +1911,7 @@ MonoBehaviour:
         - skySmug
         - skySmug
         - '><Shock'
+        - 
     - rid: 9079474951791575193
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2144,6 +1920,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smileSweat
+        - 
     - rid: 9079474951791575194
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2152,6 +1929,7 @@ MonoBehaviour:
         - skySmug
         - skySmug
         - grimace
+        - 
     - rid: 9079474951791575195
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2160,6 +1938,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - grinSweat
+        - 
     - rid: 9079474951791575196
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2168,6 +1947,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - pitySmile
+        - 
     - rid: 9079474951791575197
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2218,6 +1998,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - yanFear
+        - 
     - rid: 9079474951791575208
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2226,6 +2007,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - lookAwaySad
+        - 
     - rid: 9079474951791575210
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2234,6 +2016,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - sighSpeak
+        - 
     - rid: 9079474951791575211
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2242,6 +2025,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - pitySmile
+        - 
     - rid: 9079474951791575212
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2250,6 +2034,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - pitySmile
+        - 
     - rid: 9079474951791575213
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2258,6 +2043,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - lookAwayGrin
+        - 
     - rid: 9079474951791575214
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2266,6 +2052,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - focus
+        - 
     - rid: 9079474951791575215
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2274,6 +2061,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - pitySmile
+        - 
     - rid: 9079474951791575216
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2282,6 +2070,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - lookAwayPity
+        - 
     - rid: 9079474951791575217
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2290,6 +2079,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - smileSpeak
+        - 
     - rid: 9079474951791575218
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2298,6 +2088,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - pitySmile
+        - 
     - rid: 9079474951791575219
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2306,6 +2097,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - pitySmile
+        - 
     - rid: 9079474951791575221
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2314,6 +2106,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - shock
+        - 
     - rid: 9079474951791575222
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2322,6 +2115,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - shock
+        - 
     - rid: 9079474951791575225
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2330,6 +2124,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - concern
+        - 
     - rid: 9079474951791575226
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2338,6 +2133,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - sadWorry
+        - 
     - rid: 9079474951791575227
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2346,6 +2142,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - fear
+        - 
     - rid: 9079474951791575228
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

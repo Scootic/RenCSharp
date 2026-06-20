@@ -200,6 +200,7 @@ MonoBehaviour:
     dialog: Jesus-
     ScreenActions:
     - rid: 9079475098267418872
+    - rid: 4972360384702578765
   - speaker: {fileID: 0}
     dialog: Oh right, the ceiling caving in here was a scripted event in the game.
     ScreenActions: []
@@ -513,6 +514,16 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 4972360384702578765
+      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxToPlay: {fileID: 8300000, guid: 468aea67a488b4644baaa92bbdf4118c, type: 3}
+        position: {x: 0, y: 0, z: 0}
+        environmental: 0
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+        baseVolume: 1
     - rid: 9079474599036452922
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -539,25 +550,7 @@ MonoBehaviour:
         motionDuration: 1
         motionPathX:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -582,25 +575,7 @@ MonoBehaviour:
         motionDuration: 1
         motionPathX:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 2
-            outSlope: 2
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -648,6 +623,7 @@ MonoBehaviour:
             operation: 3
             desiredValue: 10
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 0}
@@ -659,6 +635,7 @@ MonoBehaviour:
             operation: 2
             desiredValue: 10
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 0}
@@ -684,6 +661,7 @@ MonoBehaviour:
             operation: 2
             desiredValue: 10
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: e5c06fc500010bb4992b4b645db3d074, type: 2}
@@ -707,6 +685,7 @@ MonoBehaviour:
             operation: 2
             desiredValue: 10
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 0}
@@ -722,6 +701,7 @@ MonoBehaviour:
             operation: 2
             desiredValue: 10
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 0}

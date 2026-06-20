@@ -50,18 +50,15 @@ namespace RenCSharp
 
         protected void SetDropDownUITK(SerializedProperty mySP)
         {
-            if (allTChildren == null)
+            allTChildren = typeAssembly.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(T))).ToArray(); //might be gross calling this every time a polymorph drawer is made
+            typeToStrings = new List<string>(); //ToString()s, not really names
+            foreach (Type t in allTChildren)
             {
-                allTChildren = typeAssembly.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(T))).ToArray(); //might be gross calling this every time a polymorph drawer is made
-                typeToStrings = new List<string>(); //ToString()s, not really names
-                foreach (Type t in allTChildren)
-                {
-                    T instance = (T)Activator.CreateInstance(t);
-                    typeToStrings.Add(instance.ToString());
-                }
-                typeToStrings.Add(DropDownMenuName());
+                T instance = (T)Activator.CreateInstance(t);
+                typeToStrings.Add(instance.ToString());
             }
-
+            typeToStrings.Add(DropDownMenuName());
+           
             container = new VisualElement();
             container.style.flexDirection = FlexDirection.Column;
 
