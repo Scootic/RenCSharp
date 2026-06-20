@@ -12,9 +12,9 @@ namespace RenCSharp.Sequences
     {
         [SerializeField] protected Vector3 localMotionOffset;
         [SerializeField, Min(0.01f)] protected float motionDuration = 1;
-        [SerializeField] protected AnimationCurve motionPathX;
-        [SerializeField] protected AnimationCurve motionPathY;
-        [SerializeField] protected AnimationCurve motionPathZ; 
+        [SerializeField] protected AnimationCurve motionPathX = Animation_Helper.EaseOut;
+        [SerializeField] protected AnimationCurve motionPathY = Animation_Helper.EaseOut;
+        [SerializeField] protected AnimationCurve motionPathZ = Animation_Helper.EaseOut;
         [SerializeField] private Actor target;
         [SerializeField] protected bool loopOnScreen = false;
         protected float t, eval, dir = 1;

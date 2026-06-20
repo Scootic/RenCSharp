@@ -8,9 +8,9 @@ namespace RenCSharp.Sequences
     {
         [SerializeField] private Vector3 motionOffset;
         [SerializeField] private float motionDuration;
-        [SerializeField] private AnimationCurve xCurve;
-        [SerializeField] private AnimationCurve yCurve;
-        [SerializeField] private AnimationCurve zCurve;
+        [SerializeField] private AnimationCurve xCurve = Animation_Helper.EaseOut;
+        [SerializeField] private AnimationCurve yCurve = Animation_Helper.EaseOut;
+        [SerializeField] private AnimationCurve zCurve = Animation_Helper.EaseOut;
         [SerializeField] private Actor[] targets;
         [SerializeField] private bool loopOnScreen;
 
