@@ -109,7 +109,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 7c18603a2e6d6714fa1fd954ecdf16b7, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: f4dba16a15692124e8c58cad81334542
@@ -128,6 +127,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - sternSpeak
+        - 
     - rid: 9079474864314122420
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -216,6 +216,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - pitySmile
+        - 
     - rid: 9079474864314122431
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -224,6 +225,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - sternSpeak
+        - 
     - rid: 9079474864314122438
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:

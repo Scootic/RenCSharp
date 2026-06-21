@@ -160,7 +160,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: e94726fdebb9f5545bc166c474d0ce4f, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: acd6c190ea758bb49891a100c0db7834
@@ -208,6 +207,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - fear
+        - 
     - rid: 4351267964947792067
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -216,6 +216,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - sighSpeak
+        - 
     - rid: 4351267964947792068
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -414,6 +415,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: 99c1c9ab1bd810549a65874b102351c3, type: 2}
@@ -424,6 +426,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 1
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: 99c1c9ab1bd810549a65874b102351c3, type: 2}
@@ -438,6 +441,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: 99c1c9ab1bd810549a65874b102351c3, type: 2}
@@ -448,6 +452,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 1
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
@@ -463,6 +468,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 1
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: 99c1c9ab1bd810549a65874b102351c3, type: 2}

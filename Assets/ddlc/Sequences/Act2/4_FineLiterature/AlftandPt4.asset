@@ -549,7 +549,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 0989abe986e6b8649a962a38b302665f, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 801ce0a512b6e8e41a9a1cf1932191ae
@@ -604,6 +603,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 4351268349337141426
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -612,6 +612,7 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - inquisitive
+        - 
     - rid: 4351268349337141427
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -620,6 +621,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smileSweat
+        - 
     - rid: 4351268349337141428
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -641,6 +643,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 4351268349337141430
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -696,6 +699,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - closeEyeFrown
+        - 
     - rid: 4351268349337141437
       type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -717,6 +721,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
@@ -728,6 +733,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 1
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
@@ -862,6 +868,7 @@ MonoBehaviour:
             operation: 1
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 0}
@@ -1177,6 +1184,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - inquisitive
+        - 
     - rid: 4351268372525613167
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1228,6 +1236,7 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - smile
+        - 
     - rid: 4351268372525613169
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1236,6 +1245,7 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - smileSweat
+        - 
     - rid: 4351268372525613170
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1429,6 +1439,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
@@ -1440,6 +1451,7 @@ MonoBehaviour:
             operation: 1
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
@@ -1487,6 +1499,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - closeEyeSmile
+        - 
     - rid: 4351268372525613197
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1549,3 +1562,4 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - closeEyeFrown
+        - 

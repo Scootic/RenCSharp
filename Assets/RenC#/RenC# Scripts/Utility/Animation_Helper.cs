@@ -7,18 +7,32 @@ namespace RenCSharp
     /// </summary>
     public struct Animation_Helper 
     {
+        //have to use the silly return a copy thing; if you don't, since it's static, changes made in inspector will affect
+        //all anim curves that equal the static reference.
+        /// <summary>
+        /// logarithmic type curve from 0 to 1
+        /// </summary>
+        /// <returns></returns>
         private static AnimationCurve EaseOutCurve()
         {
             AnimationCurve toReturn = new AnimationCurve();
             toReturn.CopyFrom(new AnimationCurve(EaseOut1(), EaseOut2()));
             return toReturn;
         }
+        /// <summary>
+        /// initial burst, before slowing down to zero
+        /// </summary>
+        /// <returns></returns>
         private static AnimationCurve EarlyPeakToZeroCurve()
         {
             AnimationCurve toReturn = new AnimationCurve();
             toReturn.CopyFrom(new AnimationCurve(EarlyPeak1(), EarlyPeak2()));
             return toReturn;
         }
+        /// <summary>
+        /// oscillates rapidly between max and max negative, before winding down back to zero.
+        /// </summary>
+        /// <returns></returns>
         private static AnimationCurve JostleCurve()
         {
             AnimationCurve toReturn = new AnimationCurve();

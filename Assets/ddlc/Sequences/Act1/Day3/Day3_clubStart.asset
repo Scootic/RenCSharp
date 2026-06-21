@@ -125,6 +125,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9142197581518209140
     - rid: 9142197581518209141
+    - rid: 4972360390599770175
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Gah-!
     ScreenActions: []
@@ -728,7 +729,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 2a63530f2c75c9c4aad28fc98a5887f1, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 661b6ea2e436fa44eababa16270b2104
@@ -739,6 +739,85 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 4972360390599770175
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: -50, y: 0, z: 0}
+        motionDuration: 0.4
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0.0041656494
+            value: 0.0023498535
+            inSlope: 5.775083
+            outSlope: 5.775083
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.02145919
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -1.3502456
+            outSlope: -1.3502456
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.09012877
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        loopOnScreen: 0
     - rid: 9079475089592287379
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -960,6 +1039,7 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - content
+        - 
     - rid: 9142197581518209132
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -968,6 +1048,7 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - pitySmile
+        - 
     - rid: 9142197581518209133
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -976,6 +1057,7 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - lookAwayGrin
+        - 
     - rid: 9142197581518209134
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1011,6 +1093,7 @@ MonoBehaviour:
         - uniUp
         - uniUp
         - shock
+        - 
     - rid: 9142197581518209138
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1037,6 +1120,7 @@ MonoBehaviour:
         - uniUp
         - uniUp
         - '><Shock'
+        - 
     - rid: 9142197581518209141
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1046,6 +1130,7 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+        baseVolume: 1
     - rid: 9142197581518209142
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1054,6 +1139,7 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - crySad
+        - 
     - rid: 9142197581518209143
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1062,6 +1148,7 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - angrySpeak
+        - 
     - rid: 9142197581518209144
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1070,6 +1157,7 @@ MonoBehaviour:
         - uniUp
         - uniUp
         - focus
+        - 
     - rid: 9142197581518209145
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1078,6 +1166,7 @@ MonoBehaviour:
         - uniUp
         - uniUp
         - shock
+        - 
     - rid: 9142197581518209146
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1086,6 +1175,7 @@ MonoBehaviour:
         - uniDown
         - uniUp
         - contentGrin
+        - 
     - rid: 9142197581518209147
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1105,6 +1195,7 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - focus
+        - 
     - rid: 9142197581518209149
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1113,6 +1204,7 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - grinSpeak
+        - 
     - rid: 9142197581518209150
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1121,6 +1213,7 @@ MonoBehaviour:
         - uniUp
         - uniUp
         - shock
+        - 
     - rid: 9142197581518209151
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1129,6 +1222,7 @@ MonoBehaviour:
         - uniUp
         - uniUp
         - contentGrin
+        - 
     - rid: 9142197581518209152
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1279,6 +1373,7 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+        baseVolume: 1
     - rid: 9142197581518209170
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1296,6 +1391,7 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+        baseVolume: 1
     - rid: 9142197581518209179
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1653,6 +1749,7 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+        baseVolume: 1
     - rid: 9142197581518209228
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

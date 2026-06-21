@@ -79,7 +79,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: e94726fdebb9f5545bc166c474d0ce4f, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 1cf5d0def9a5e01488956939f79ad2ef
@@ -141,6 +140,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - inquisitive
+        - 
     - rid: 4351267964947792056
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -149,6 +149,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - shockSurprise
+        - 
     - rid: 4351267964947792057
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -403,6 +404,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - surprise
+        - 
     - rid: 4351267964947792075
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -411,3 +413,4 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - inquisitive
+        - 

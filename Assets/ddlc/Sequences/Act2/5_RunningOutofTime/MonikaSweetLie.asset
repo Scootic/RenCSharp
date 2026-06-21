@@ -129,7 +129,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: c7bb9e52eba745f4eb7945d5832020e3, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 403aa232a44ed3145af128cfc39b323c
@@ -148,6 +147,7 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - inquisitive
+        - 
     - rid: 268099980525568001
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -156,6 +156,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - blankSpeak
+        - 
     - rid: 268099980525568002
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

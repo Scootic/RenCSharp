@@ -25,7 +25,7 @@ MonoBehaviour:
     dialog: You think they'll let us bring in Meeko?
     ScreenActions:
     - rid: 4972360225885257816
-    - rid: 4972360225885257817
+    - rid: 4972360390599770199
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: I dunno, probably-
     ScreenActions:
@@ -473,7 +473,7 @@ MonoBehaviour:
     - rid: 4972360225885257997
     - rid: 4972360225885257998
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: (God...)
+    dialog: (<NoiseText=1,1>God</NoiseText>...)
     ScreenActions:
     - rid: 4972360225885257999
     - rid: 4972360225885258000
@@ -735,7 +735,7 @@ MonoBehaviour:
     - rid: 4972360342771335439
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 477bdb6b44ad5dd43bce688de97709e9, type: 2}
     conditions: []
   myself:
     m_AssetGUID: 33a33d8befbbb524aa98e0172e8c1559
@@ -797,15 +797,6 @@ MonoBehaviour:
         - 
         - focus
         - 
-    - rid: 4972360225885257817
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-        visualSpriteIndexes:
-        - 
-        - 
-        - lookAwayGrin
-        - 
     - rid: 4972360225885257818
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -848,7 +839,7 @@ MonoBehaviour:
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToSpawn: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-        fadeInTime: 0.5
+        fadeInTime: 1
         spawnOffset: {x: -700, y: 0, z: 0}
         visualSpriteIndexes:
         - skyDown
@@ -3529,4 +3520,13 @@ MonoBehaviour:
         - 
         - 
         - lookAwayMelancholySpeak
+        - 
+    - rid: 4972360390599770199
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
         - 

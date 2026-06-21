@@ -80,7 +80,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 499896c8e842a174097d72e8adc63840, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 235908efc6ee702418d06592956b2653
@@ -123,6 +122,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - sighSpeak
+        - 
     - rid: 9079475250346852543
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -131,6 +131,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - fear
+        - 
     - rid: 9079475250346852544
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -152,6 +153,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - grumpySpeak
+        - 
     - rid: 9079475250346852546
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -160,6 +162,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smileSweat
+        - 
     - rid: 9079475250346852547
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -168,6 +171,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - grinSweat
+        - 
     - rid: 9079475250346852548
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -176,6 +180,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 9079475250346852549
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:

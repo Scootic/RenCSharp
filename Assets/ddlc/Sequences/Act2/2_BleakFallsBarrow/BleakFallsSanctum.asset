@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoFocusSpeaker: 1
   screens:
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 0}
+    dialog: 
     ScreenActions:
     - rid: 9079475098267418961
-  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Uh, {mc}? How much further do we have to go?
     ScreenActions:
     - rid: 9079474908378955926
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: We <i>should</i> be over halfway there. So not too much longer.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: '{mc}, how many times have you been in this place before?'
@@ -39,16 +39,16 @@ MonoBehaviour:
     dialog: Kind of surprised no one asked that sooner...
     ScreenActions:
     - rid: 9079474908378955928
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 0}
+    dialog: After a couple more minutes of dungeoneering, we encounter the claw door.
     ScreenActions:
     - rid: 9079474908378955930
     - rid: 9079475098267418962
-  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: This door is what we need the claw for.
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Why does it have a bunch of animals on it?
     ScreenActions:
     - rid: 9079474908378955931
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
@@ -64,15 +64,16 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Why <i>don't</i> these doors use the dragon language?
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: That way you could have an actual password that the people the dragons
+      intend to unseal these places would know, but no one else would.
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Is there something important behind this door?
     ScreenActions:
     - rid: 9079474908378955932
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Well, yeah. The Dragonstone. That thing we came here for.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: But you can find these kinds of doors in basically every single Nordic
@@ -89,14 +90,15 @@ MonoBehaviour:
       don't care about that nearly as much as the other stuff I mentioned.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+    dialog: So how do we open this thing?
     ScreenActions:
     - rid: 9079474908378955933
-  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Well, we make the symbols above the claw hole match the symbols on the
+      claw itself.
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Wait, so why even have this symbol-matching nonsense?
     ScreenActions:
     - rid: 9079474908378955934
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
@@ -112,14 +114,17 @@ MonoBehaviour:
     dialog: I appreciate that you noticed that.
     ScreenActions:
     - rid: 9079474908378955935
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: So I'm pretty sure the real reason it's like that is because the game
+      designers wanted a cool puzzle-
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: And there isn't really a reason to use the in-game menus to examine an
+      object-
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: So they decided to give that "neat but pointless" feature a gameplay
+      purpose.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Lorewise, it's because the claw doors aren't meant to keep people out,
@@ -136,16 +141,16 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: So yeah, it is kind of dumb.
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Anyway, let's get this door open, shall we?
     ScreenActions:
     - rid: 9079474908378955938
     - rid: 9079474908378955939
-  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+  - speaker: {fileID: 0}
+    dialog: I successfully spin the right combination, and open the claw door.
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 0}
+    dialog: 
     ScreenActions:
     - rid: 9079475098267418963
     - rid: 9079475089592287506
@@ -163,14 +168,16 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Or a big dragon skeleton head falls on you?
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Some poison darts come from the wall, but that's about it.
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: And I'm pretty sure it's possible to just sit in a corner or something
+      where you can't be hit by them...
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: You'd probably make a better designer for these traps than the ancient
+      Nords, Sayori.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Really?
@@ -185,14 +192,14 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Yeah?
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Isn't that really insecure as far as passwords go?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Sure, but the claw makes it pointless, as Natsuki said earlier, anyway.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
-    ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+    dialog: I guess you're right-
     ScreenActions:
     - rid: 9079474908378955946
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
@@ -211,18 +218,18 @@ MonoBehaviour:
     dialog: No...
     ScreenActions:
     - rid: 9079474908378955948
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: They just startled me, that's all!
     ScreenActions:
     - rid: 9079474908378955949
-  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Uh... alright.
     ScreenActions:
     - rid: 9079474908378955953
     - rid: 9079474908378955954
     - rid: 9079474908378955955
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: So? Where's this Dragonstone?
     ScreenActions:
     - rid: 9079474934013755392
     - rid: 9079474934013755393
@@ -238,16 +245,16 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: ... I guess you're right.
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 0}
+    dialog: We make our way to the heart of the sanctum.
     ScreenActions:
     - rid: 9079474934013755445
-  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+  - speaker: {fileID: 0}
+    dialog: 
     ScreenActions:
     - rid: 9079475098267418964
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: I don't see any draugr over here...
     ScreenActions:
     - rid: 9079474934013755447
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
@@ -263,15 +270,15 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: The coffin opens when the player character learns the word of power...
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Hold on, let me stare at this wall for a bit.
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Wha-?
     ScreenActions:
     - rid: 9079474934013755449
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 0}
+    dialog: I stare at the word wall, hoping to find... something.
     ScreenActions:
     - rid: 9079475089592287507
   - speaker: {fileID: 0}
@@ -287,19 +294,20 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: ...
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 0}
+    dialog: Huh, I didn't know that's what it-
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+  - speaker: {fileID: 0}
+    dialog: The coffin behind me bursts open; the Draugr Overlord seems to have noticed
+      my impecable literacy.
     ScreenActions:
     - rid: 9079475089592287508
     - rid: 9079474934013755452
     - rid: 9079474934013755453
     - rid: 9079474934013755454
     - rid: 9079474934013755455
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 0}
+    dialog: Time to give this punk the business! Hopefully!
     ScreenActions:
     - rid: 9079474934013755463
     - rid: 9079474934013755464
@@ -319,21 +327,22 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: ... what?
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 11400000, guid: a28c7bf68c4fd8649a26f5576848dacc, type: 2}
+    dialog: fus ro <NoiseText=3,1>d4</NoiseText>!
     ScreenActions:
     - rid: 9079474951791575116
-  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+  - speaker: {fileID: 0}
+    dialog: Hey, I know what this one means!
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 0}
+    dialog: The blue wave force comes crashing towards me, I try to get out of the-
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Grk-!
     ScreenActions:
     - rid: 9079475098267418965
     - rid: 9079474951791575127
+    - rid: 4972360390599770165
   - speaker: {fileID: 0}
     dialog: It <SineText=3>seems</SineText> that my <SineText=10>head</SineText>
       has been shoved into a rock!
@@ -344,14 +353,14 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: '{mc}!'
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 0}
+    dialog: Oh <SineText=2>goody</SineText>!
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+  - speaker: {fileID: 0}
+    dialog: That there <SineText=6>boneman</SineText> wishes to begin round 2.
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 0}
+    dialog: So be it, ho ho!
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: 
@@ -374,15 +383,16 @@ MonoBehaviour:
     dialog: Oh, our dear <SineText=4>Sayori is try</SineText>ing to give me a <SineText=3>hug</SineText>!
       <SineText=20>Marvelous</SineText>!
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
-    ScreenActions: []
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+    dialog: Uh, Sayori, are you healing him or wha-?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: I'm <NoiseText=3,1>trying, okay</NoiseText>?!?
     ScreenActions:
     - rid: 9079474951791575132
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Oh, <SineText=4>Sayori</SineText>, you <i>always</i> do a marvelous job
+      <SineText=5>with your</SineText> hugs, why <SineText=7>I just feel dandy</SineText>!
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: In <SineText=2>fact</SineText>-!
@@ -397,7 +407,7 @@ MonoBehaviour:
     - rid: 9079475098267418967
     - rid: 9079474951791575139
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-    dialog: <NoiseText=1,1,>Uwaaaah</NoiseText>!
+    dialog: <NoiseText=1,1>Uwaaaah</NoiseText>!
     ScreenActions:
     - rid: 9079475089592287511
     - rid: 9079474951791575141
@@ -407,17 +417,18 @@ MonoBehaviour:
     dialog: Here, Sayori, let me check his pulse...
     ScreenActions:
     - rid: 9079474951791575144
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Sayori sniffles, but lets Monika get close to {mc}.
     ScreenActions:
     - rid: 9079474951791575145
     - rid: 9079474951791575146
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+    dialog: Alright, let's see here...
     ScreenActions:
     - rid: 9079474951791575147
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Monika places her fingers on {mc}'s wrist after taking off his hand's
+      protection.
     ScreenActions:
     - rid: 9079474951791575148
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
@@ -441,17 +452,18 @@ MonoBehaviour:
     - rid: 9079474951791575153
     - rid: 9079474951791575154
     - rid: 9079474951791575155
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
-    ScreenActions: []
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+    dialog: Thank you~!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Once {mc}'s shirt is off (heh) the other three girls stand back up.
     ScreenActions:
     - rid: 9079474951791575156
     - rid: 9079474951791575157
     - rid: 9079474951791575158
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: With his supple chest now exposed, Monika places her ear onto {mc}'s
+      chest; about where his heart should be.
     ScreenActions:
     - rid: 9079474951791575159
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
@@ -473,13 +485,13 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9079474951791575163
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+    dialog: BPM?
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+    dialog: Beats per minute, Natsuki.
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: W-what should we d-d-do, Monika?
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Well-!
@@ -494,15 +506,15 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (There any healers there or something?)
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 0}
+    dialog: 
     ScreenActions:
     - rid: 9079474951791575164
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+    dialog: (Hmm. Getting him to a bed is probably a good idea...)
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Okay, everyone!
     ScreenActions:
     - rid: 9079474951791575166
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
@@ -519,15 +531,16 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: Where will we be taking him?
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Back to Riverwood; there should be an inn there where he can get the
+      rest he needs to recover.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+    dialog: C'mon Sayori, Yuri. No time like the present!
     ScreenActions:
     - rid: 9079474951791575169
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: The three girls reach down and start carrying {mc}.
     ScreenActions:
     - rid: 9079474951791575170
     - rid: 9079474951791575171
@@ -549,8 +562,8 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9079474951791575176
     - rid: 9079474951791575177
-  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: ...
+  - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    dialog: Monika, do you really think he's going to be okay?
     ScreenActions:
     - rid: 9079475098267418968
     - rid: 9079474951791575183
@@ -558,10 +571,10 @@ MonoBehaviour:
     - rid: 9079474951791575185
     - rid: 9079474951791575186
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Don't look at me like that, ahaha...
+    dialog: Ah, I'm sure he'll be fine.
     ScreenActions: []
-  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: U-um, do you think we can, maybe, head over to our right and-
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Probably.
     ScreenActions:
     - rid: 9079474951791575187
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
@@ -893,7 +906,7 @@ MonoBehaviour:
     resultingSequence: {fileID: 11400000, guid: 0509fc1364743134c83d8590d8f07a72, type: 2}
     conditions: []
   myself:
-    m_AssetGUID: ddccc05a73b46ab4b9e13e794b187db9
+    m_AssetGUID: 6a40e7e234fab84408c3a607da514305
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
@@ -908,6 +921,214 @@ MonoBehaviour:
         flagValue: 10
         increment: 0
         persistent: 0
+    - rid: 4972360390599770165
+      type: {class: Screen_Shake, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        screenShakeType: 0
+        xAxis:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.05
+            value: 1
+            inSlope: 0.05
+            outSlope: 0.05
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.15
+            value: -1
+            inSlope: -0.01
+            outSlope: -0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 1
+          - serializedVersion: 3
+            time: 0.3
+            value: 1
+            inSlope: -0.003
+            outSlope: -0.003
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.8
+            outWeight: 0.5
+          - serializedVersion: 3
+            time: 0.4
+            value: -1
+            inSlope: 0.03
+            outSlope: 0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 0.45
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.62
+            inSlope: 0.01
+            outSlope: 0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.7
+            value: -0.5
+            inSlope: -0.04
+            outSlope: -0.04
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.85
+            value: 0.2
+            inSlope: -0.1
+            outSlope: -0.1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -0.03
+            outSlope: -0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        yAxis:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.05
+            value: 1
+            inSlope: 0.05
+            outSlope: 0.05
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.15
+            value: -1
+            inSlope: -0.01
+            outSlope: -0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 1
+          - serializedVersion: 3
+            time: 0.3
+            value: 1
+            inSlope: -0.003
+            outSlope: -0.003
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.8
+            outWeight: 0.5
+          - serializedVersion: 3
+            time: 0.4
+            value: -1
+            inSlope: 0.03
+            outSlope: 0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 0.45
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.62
+            inSlope: 0.01
+            outSlope: 0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.7
+            value: -0.5
+            inSlope: -0.04
+            outSlope: -0.04
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.85
+            value: 0.2
+            inSlope: -0.1
+            outSlope: -0.1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -0.03
+            outSlope: -0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        xOffset: 40
+        yOffset: -40
+        duration: 0.3
+        scaleUp: 0
+        multiplyOffsetByMaxSize: 0
+        maxSize: {x: 1.1, y: 1.1, z: 1.1}
+        scaleCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 5.77
+            outSlope: 5.77
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.02
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -1.35
+            outSlope: -1.35
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.02
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
     - rid: 9079474908378955926
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -952,6 +1173,7 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - inquisitive
+        - 
     - rid: 9079474908378955932
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -960,6 +1182,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - inquisitive
+        - 
     - rid: 9079474908378955933
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -968,6 +1191,7 @@ MonoBehaviour:
         - skyDown
         - skySmug
         - inquisitive
+        - 
     - rid: 9079474908378955934
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -984,6 +1208,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - scowl
+        - 
     - rid: 9079474908378955937
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -992,6 +1217,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - grumpySpeak
+        - 
     - rid: 9079474908378955938
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1000,6 +1226,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 9079474908378955939
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1008,6 +1235,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 9079474908378955942
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1016,6 +1244,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - surpriseSpeak
+        - 
     - rid: 9079474908378955943
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1024,7 +1253,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - focus
-        - 
     - rid: 9079474908378955945
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1033,7 +1261,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smileSpeak
-        - 
     - rid: 9079474908378955946
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1042,6 +1269,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smileSweat
+        - 
     - rid: 9079474908378955947
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1050,6 +1278,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - '><Shock'
+        - 
     - rid: 9079474908378955948
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1058,6 +1287,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - lookAwayGrin
+        - 
     - rid: 9079474908378955949
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1074,6 +1304,7 @@ MonoBehaviour:
         - skySmug
         - skySmug
         - cheesing
+        - 
     - rid: 9079474908378955951
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1082,6 +1313,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - lookAwaySmile
+        - 
     - rid: 9079474908378955953
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1114,6 +1346,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 9079474934013755393
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1122,6 +1355,7 @@ MonoBehaviour:
         - skyDown
         - skySmug
         - grinSpeak
+        - 
     - rid: 9079474934013755445
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1130,6 +1364,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 9079474934013755447
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1154,6 +1389,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - focus
+        - 
     - rid: 9079474934013755452
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1162,6 +1398,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - shock
+        - 
     - rid: 9079474934013755453
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1170,6 +1407,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - grimace
+        - 
     - rid: 9079474934013755454
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1277,7 +1515,7 @@ MonoBehaviour:
         position: {x: 0, y: 0, z: 0}
         environmental: 0
         loop: 0
-        stopOnScreenProgress: 1
+        stopOnScreenProgress: 0
         loopDuration: 1
         baseVolume: 1
     - rid: 9079474951791575132
@@ -1375,7 +1613,25 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1454,7 +1710,25 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1479,7 +1753,25 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1504,7 +1796,25 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1529,7 +1839,25 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1554,7 +1882,25 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1579,7 +1925,25 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1622,7 +1986,25 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1698,7 +2080,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - closeEyeSmile
-        - 
     - rid: 9079474951791575170
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1707,7 +2088,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - lookAwaySad
-        - 
     - rid: 9079474951791575171
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1721,7 +2101,34 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.5032537
+            value: 1.0020247
+            inSlope: 0.057828907
+            outSlope: 0.057828907
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.3944982
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1746,7 +2153,34 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.49345914
+            value: 1.0037248
+            inSlope: 0.019735355
+            outSlope: 0.019735355
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.3824797
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1771,7 +2205,34 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.50168526
+            value: 0.99066126
+            inSlope: 0.0003471413
+            outSlope: 0.0003471413
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.6749155
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1796,7 +2257,25 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1816,6 +2295,7 @@ MonoBehaviour:
         - skySmug
         - skySmug
         - '><Shock'
+        - 
     - rid: 9079474951791575176
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1829,7 +2309,25 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1849,6 +2347,7 @@ MonoBehaviour:
         - skySmug
         - skySmug
         - grimaceBlush
+        - 
     - rid: 9079474951791575183
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1998,7 +2497,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - yanFear
-        - 
     - rid: 9079474951791575208
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2007,7 +2505,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - lookAwaySad
-        - 
     - rid: 9079474951791575210
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2016,7 +2513,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - sighSpeak
-        - 
     - rid: 9079474951791575211
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2070,7 +2566,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - lookAwayPity
-        - 
     - rid: 9079474951791575217
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2079,7 +2574,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - smileSpeak
-        - 
     - rid: 9079474951791575218
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2088,7 +2582,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - pitySmile
-        - 
     - rid: 9079474951791575219
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2097,7 +2590,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - pitySmile
-        - 
     - rid: 9079474951791575221
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2106,7 +2598,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - shock
-        - 
     - rid: 9079474951791575222
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2115,7 +2606,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - shock
-        - 
     - rid: 9079474951791575225
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2124,7 +2614,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - concern
-        - 
     - rid: 9079474951791575226
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2133,7 +2622,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - sadWorry
-        - 
     - rid: 9079474951791575227
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2142,7 +2630,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - fear
-        - 
     - rid: 9079474951791575228
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2183,6 +2670,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - lookAwaySad
+        - 
     - rid: 9079474951791575234
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2200,6 +2688,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - lookAwaySmile
+        - 
     - rid: 9079474951791575236
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:

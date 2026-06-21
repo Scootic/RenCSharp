@@ -156,6 +156,80 @@ MonoBehaviour:
     dialog: Of course, this is merely conjecture- as is often the case with theories
       about the Dwemer.
     ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: Anyway, the next thing I need your help with is-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: (A Thalmor-?)
+    ScreenActions:
+    - rid: 4972360390599770201
+    - rid: 4972360390599770202
+    - rid: 4972360390599770203
+    - rid: 4972360390599770204
+    - rid: 4972360390599770205
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: O-Ondolemar, do you need something?
+    ScreenActions:
+    - rid: 4972360390599770206
+  - speaker: {fileID: 11400000, guid: 7d80eed2ca09b7d47be584961af25467, type: 2}
+    dialog: Hm. New apprentice?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: That's right, I figured I'd finally grant my nephew's wish-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 7d80eed2ca09b7d47be584961af25467, type: 2}
+    dialog: You. What's your name?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: M-m-me?
+    ScreenActions:
+    - rid: 4972360390599770207
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: M-my name is Y-Yuri...
+    ScreenActions:
+    - rid: 4972360390599770208
+  - speaker: {fileID: 11400000, guid: 7d80eed2ca09b7d47be584961af25467, type: 2}
+    dialog: Hm? You have no reason to be scared of me-
+    ScreenActions:
+    - rid: 4972360390599770209
+  - speaker: {fileID: 11400000, guid: 7d80eed2ca09b7d47be584961af25467, type: 2}
+    dialog: Unless there's something you are better off confessing now?
+    ScreenActions:
+    - rid: 4972360390599770210
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: N-n-no...
+    ScreenActions:
+    - rid: 4972360390599770211
+  - speaker: {fileID: 11400000, guid: 7d80eed2ca09b7d47be584961af25467, type: 2}
+    dialog: ... very well.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 7d80eed2ca09b7d47be584961af25467, type: 2}
+    dialog: Calcelmo, where did you find this nervous wreck?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: She said she came from Winterhold-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 7d80eed2ca09b7d47be584961af25467, type: 2}
+    dialog: Winterhold...?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 7d80eed2ca09b7d47be584961af25467, type: 2}
+    dialog: Well then, Yuri, you wouldn't know what happened to Ancano, would you?
+    ScreenActions:
+    - rid: 4972360390599770212
+  - speaker: {fileID: 11400000, guid: 7d80eed2ca09b7d47be584961af25467, type: 2}
+    dialog: I'm sure you've seen him around; he's our ambassador to your college.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 7d80eed2ca09b7d47be584961af25467, type: 2}
+    dialog: I ask because Elenwyn hasn't received any communications from him recently.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: H-he... uhh...
+    ScreenActions:
+    - rid: 4972360390599770213
+  - speaker: {fileID: 11400000, guid: 7d80eed2ca09b7d47be584961af25467, type: 2}
+    dialog: He? He what? Spit it out, girl.
+    ScreenActions:
+    - rid: 4972360390599770215
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 0}
@@ -328,4 +402,271 @@ MonoBehaviour:
         - 
         - 
         - inquisitive
+        - 
+    - rid: 4972360390599770201
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 4972360390599770202
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: -300, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+        loopOnScreen: 0
+    - rid: 4972360390599770203
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: -100, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        loopOnScreen: 0
+    - rid: 4972360390599770204
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 7d80eed2ca09b7d47be584961af25467, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 400, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 4972360390599770205
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shock
+        - 
+    - rid: 4972360390599770206
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - sadWorry
+        - 
+    - rid: 4972360390599770207
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - fear
+        - 
+    - rid: 4972360390599770208
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - EMPTY
+        - EMPTY
+        - shyLookAway
+        - skyHairPlay
+    - rid: 4972360390599770209
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shySmile
+        - 
+    - rid: 4972360390599770210
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shySurprise
+        - 
+    - rid: 4972360390599770211
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shyRegret
+        - 
+    - rid: 4972360390599770212
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shySurprise
+        - 
+    - rid: 4972360390599770213
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shyLookAway
+        - 
+    - rid: 4972360390599770215
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shyRegret
         - 
