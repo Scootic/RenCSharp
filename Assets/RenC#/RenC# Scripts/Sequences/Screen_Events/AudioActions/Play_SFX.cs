@@ -52,7 +52,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Play Sound Effect";
+            return "Audio/Play Sound Effect";
         }
     }
 }

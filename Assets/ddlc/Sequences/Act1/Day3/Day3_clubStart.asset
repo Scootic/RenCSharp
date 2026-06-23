@@ -305,6 +305,8 @@ MonoBehaviour:
     - rid: 9142197581518209166
     - rid: 9079475098267418752
     - rid: 9142197581518209168
+    - rid: 4972360430703869975
+    - rid: 4972360430703870076
   - speaker: {fileID: 11400000, guid: 4a985df939eb0fd4f9c8d331bc68198d, type: 2}
     dialog: Hey, {mc}!
     ScreenActions:
@@ -363,6 +365,8 @@ MonoBehaviour:
     - rid: 9142197581518209177
     - rid: 9079475098267418753
     - rid: 9142197581518209179
+    - rid: 4972360430703869976
+    - rid: 4972360430703870075
   - speaker: {fileID: 0}
     dialog: <Speed=1><i>I know what I must do.</Speed></i>
     ScreenActions:
@@ -818,6 +822,100 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         loopOnScreen: 0
+    - rid: 4972360430703869975
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: c71db348a6937494eae8b123a8fdf539
+          m_SubObjectName: whitevignet
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        overlayText: 
+        fadeTime: 4
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 4972360430703869976
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
+          m_SubObjectName: emptypng
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        overlayText: 
+        fadeTime: 4
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 4972360430703870075
+      type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        nameOfObject: Background
+        newColor: {r: 1, g: 1, b: 1, a: 1}
+        newHueDegree: 0
+        newSaturation: 1
+        newContrast: 1
+        lerpDuration: 1
+        lerpCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 4972360430703870076
+      type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        nameOfObject: Background
+        newColor: {r: 1, g: 1, b: 1, a: 1}
+        newHueDegree: 0
+        newSaturation: 0.8
+        newContrast: 1.1
+        lerpDuration: 1
+        lerpCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
     - rid: 9079475089592287379
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:

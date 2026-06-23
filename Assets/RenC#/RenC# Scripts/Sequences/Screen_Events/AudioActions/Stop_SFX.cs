@@ -18,7 +18,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Stop Looping Sound Effect";
+            return "Audio/Stop Looping Sound Effect";
         }
     }
 }

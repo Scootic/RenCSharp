@@ -65,7 +65,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Fade Transition";
+            return "Scene/Fade Transition";
         }
     }
 }

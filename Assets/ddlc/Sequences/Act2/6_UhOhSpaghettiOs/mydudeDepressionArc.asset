@@ -25,6 +25,7 @@ MonoBehaviour:
     - rid: 1790118425451561061
     - rid: 1790118425451561062
     - rid: 1790118425451561069
+    - rid: 4972360430703870073
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: The dragon cutscene is already done, if that's why you're here.
     ScreenActions:
@@ -76,6 +77,7 @@ MonoBehaviour:
     - rid: 1790118425451561079
     - rid: 1790118425451561081
     - rid: 1790118425451561085
+    - rid: 4972360430703870074
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (-nothing over here either-)
     ScreenActions:
@@ -301,6 +303,7 @@ MonoBehaviour:
         - 
         - 
         - depressed
+        - 
     - rid: 1790118425451561071
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -408,6 +411,7 @@ MonoBehaviour:
         - 
         - skyUp
         - grin
+        - 
     - rid: 1790118425451561085
       type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -429,6 +433,7 @@ MonoBehaviour:
         - 
         - 
         - smile
+        - 
     - rid: 1790118425451561088
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -786,3 +791,69 @@ MonoBehaviour:
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 0
+    - rid: 4972360430703870073
+      type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        nameOfObject: Background
+        newColor: {r: 1, g: 1, b: 1, a: 1}
+        newHueDegree: 10
+        newSaturation: 1.1
+        newContrast: 0.5
+        lerpDuration: 1
+        lerpCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 4972360430703870074
+      type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        nameOfObject: Background
+        newColor: {r: 1, g: 1, b: 1, a: 1}
+        newHueDegree: 0
+        newSaturation: 1
+        newContrast: 1
+        lerpDuration: 1
+        lerpCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4

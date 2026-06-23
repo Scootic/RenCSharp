@@ -240,12 +240,12 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4972360411925446658
   - speaker: {fileID: 11400000, guid: 7d80eed2ca09b7d47be584961af25467, type: 2}
-    dialog: And your college did not immediately report this?!?
+    dialog: And the College of Winterhold did not immediately report this?!?
     ScreenActions:
     - rid: 4972360411925446659
     - rid: 4972360411925446660
   - speaker: {fileID: 11400000, guid: 7d80eed2ca09b7d47be584961af25467, type: 2}
-    dialog: I assure you, your college <i>will</i> answer for this transgression.
+    dialog: (I swear, that college <i>will</i> answer for this transgression.)
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: Ondolemar storms off in a huff.
@@ -317,12 +317,82 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4972360411925446679
   - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
-    dialog: Probably the same reason the levitation spell was banned by the guild-
+    dialog: 'Probably the same reason the levitation spell was banned by the guild:'
     ScreenActions:
     - rid: 4972360411925446680
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: 'In the month of Evening Star, of the 421st year of the Third era- '
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: All of the households of the Imperial City reported their Saturalia gifts
+      stolen.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: (Saturalia?)
+    ScreenActions:
+    - rid: 4972360430703869952
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: 'Investigations into the matter suggested that the Gray Fox, a notorious
+      thief bearing Nocturnal''s Cowl was responsible:'
+    ScreenActions:
+    - rid: 4972360430703869953
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: A few eye-witnesses claimied that they saw the man putting their gifts
+      into a large red sack-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: Before using levitation magic to float away in the snowy night.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: The public outcry was immense, they wanted justice against the Fox Who
+      Stole Saturalia.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: Of course, if the Gray Fox was so easy to catch, the gifts would never
+      have been stolen.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: So, as a way to try to calm the public by making some response, Emperor
+      Uriel Septim VII banned levitation.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: This seemingly sated the public outrage.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: Wait, what does any of that have to do with the banning of the mark spell?
+    ScreenActions:
+    - rid: 4972360430703869954
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: 'The banning of mark likely shared the same <i>core</i> cause as the
+      banning of levitation:'
+    ScreenActions:
+    - rid: 4972360430703869955
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: As a way to mitigate public outrage through a quick and simple measure.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: Personal teleportation had already become relatively obscure as of the
+      Third era-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: So the ban was simple to implement and had little negative economic impacts.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    dialog: I see...
+    ScreenActions:
+    - rid: 4972360430703869956
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: That said, the scholar in me would like to see a personal warping curio
+      in action.
+    ScreenActions:
+    - rid: 4972360430703869957
+  - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
+    dialog: Come over here, I'll help you use my enchanting table.
+    ScreenActions:
+    - rid: 4972360430703869958
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 4c15a414af5dad94b92ebe35239c6135, type: 2}
     conditions: []
   myself:
     m_AssetGUID: 477bdb6b44ad5dd43bce688de97709e9
@@ -1132,4 +1202,67 @@ MonoBehaviour:
         - 
         - 
         - inquisitive
+        - 
+    - rid: 4972360430703869952
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - lookAwayPity
+        - 
+    - rid: 4972360430703869953
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
+        - 
+    - rid: 4972360430703869954
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - ponderingSpeak
+        - 
+    - rid: 4972360430703869955
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
+        - 
+    - rid: 4972360430703869956
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - ponderingSpeak
+        - 
+    - rid: 4972360430703869957
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - blank
+        - 
+    - rid: 4972360430703869958
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile
         - 

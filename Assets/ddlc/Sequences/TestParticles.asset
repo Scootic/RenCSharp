@@ -20,6 +20,22 @@ MonoBehaviour:
     - rid: 268099459762618440
     - rid: 268099459762618441
     - rid: 268099459762618442
+  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
+    dialog: Rain from sky particles.
+    ScreenActions:
+    - rid: 268099459762618454
+    - rid: 4972360430703870061
+  - speaker: {fileID: 11400000, guid: e7ff2676adccfc34da5aff61a79ac81e, type: 2}
+    dialog: Heavy rain from sky particles
+    ScreenActions:
+    - rid: 4972360430703870041
+    - rid: 4972360430703870062
+  - speaker: {fileID: 0}
+    dialog: Snow from sky particles.
+    ScreenActions:
+    - rid: 268099459762618448
+    - rid: 268099459762618451
+    - rid: 4972360430703870070
   - speaker: {fileID: 0}
     dialog: Alduin Explosion
     ScreenActions:
@@ -27,6 +43,7 @@ MonoBehaviour:
     - rid: 1790118356285128772
     - rid: 1790118356285128773
     - rid: 4972360384702578762
+    - rid: 4972360430703870063
   - speaker: {fileID: 0}
     dialog: Werewolf Particles.
     ScreenActions:
@@ -39,15 +56,6 @@ MonoBehaviour:
     - rid: 268099459762618445
     - rid: 268099459762618446
     - rid: 268099459762618447
-  - speaker: {fileID: 0}
-    dialog: Snow from sky particles.
-    ScreenActions:
-    - rid: 268099459762618448
-    - rid: 268099459762618451
-  - speaker: {fileID: 0}
-    dialog: Rain from sky particles.
-    ScreenActions:
-    - rid: 268099459762618454
   - speaker: {fileID: 0}
     dialog: Landing particles.
     ScreenActions:
@@ -896,6 +904,158 @@ MonoBehaviour:
             weightedMode: 0
             inWeight: 0
             outWeight: 0.02
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 4972360430703870041
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 66714805f57c1ce4db4255f94712134d
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 4972360430703870061
+      type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        nameOfObject: Background
+        newColor: {r: 1, g: 1, b: 1, a: 1}
+        newHueDegree: 0
+        newSaturation: 0.8
+        newContrast: 0.8
+        lerpDuration: 1
+        lerpCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 4972360430703870062
+      type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        nameOfObject: Background
+        newColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
+        newHueDegree: 0
+        newSaturation: 0.5
+        newContrast: 0.8
+        lerpDuration: 1
+        lerpCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 4972360430703870063
+      type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        nameOfObject: Background
+        newColor: {r: 1, g: 1, b: 1, a: 1}
+        newHueDegree: 0
+        newSaturation: 1
+        newContrast: 1
+        lerpDuration: 0.15
+        lerpCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 4972360430703870070
+      type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        nameOfObject: Background
+        newColor: {r: 1, g: 1, b: 1, a: 1}
+        newHueDegree: 10
+        newSaturation: 1.1
+        newContrast: 0.5
+        lerpDuration: 1
+        lerpCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4

@@ -59,6 +59,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4351268147175358678
     - rid: 268099503569240126
+    - rid: 4972360430703870072
   - speaker: {fileID: 11400000, guid: f59cc5badd24f6b43bbc333ef7a7d689, type: 2}
     dialog: Come on in, just stoked the fire-
     ScreenActions:
@@ -667,25 +668,24 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 045c7ae76e9a85f448479aeb261354d0, type: 2}
-    requireCondition: 1
     conditions:
     - flagToCheck: WeirdRoute
       operation: 0
       desiredValue: 3
       persistent: 0
+      debugResult: 0
       bitWise: 0
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: f81cad40630c45d4da3d2f1008725ee1, type: 2}
-    requireCondition: 1
     conditions:
     - flagToCheck: WeirdRoute
       operation: 0
       desiredValue: 2
       persistent: 0
+      debugResult: 0
       bitWise: 1
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 67b7e5ba2570ded4394a65ed1e838281, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 7b737ea4f92bc524eba452057334cfb7
@@ -708,6 +708,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - pity
+        - 
     - rid: 4351268147175358672
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -716,6 +717,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - concern
+        - 
     - rid: 4351268147175358673
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -892,6 +894,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - closeEyeGrinSweat
+        - 
     - rid: 4351268147175358686
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -900,6 +903,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - shock
+        - 
     - rid: 4351268147175358687
       type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -909,6 +913,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 2
             persistent: 0
+            debugResult: 0
             bitWise: 1
           resultingScreen:
             speaker: {fileID: 11400000, guid: f59cc5badd24f6b43bbc333ef7a7d689, type: 2}
@@ -920,6 +925,7 @@ MonoBehaviour:
             operation: 5
             desiredValue: 2
             persistent: 0
+            debugResult: 0
             bitWise: 1
           resultingScreen:
             speaker: {fileID: 11400000, guid: f59cc5badd24f6b43bbc333ef7a7d689, type: 2}
@@ -934,6 +940,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - shockSurprise
+        - 
     - rid: 4351268147175358689
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -942,6 +949,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smileSweat
+        - 
     - rid: 4351268147175358690
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -950,6 +958,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - concern
+        - 
     - rid: 4351268147175358691
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1207,6 +1216,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
@@ -1218,6 +1228,7 @@ MonoBehaviour:
             operation: 1
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
@@ -2159,6 +2170,7 @@ MonoBehaviour:
             operation: 3
             desiredValue: 2
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 0}
@@ -2241,3 +2253,36 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - concern
+    - rid: 4972360430703870072
+      type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        nameOfObject: Background
+        newColor: {r: 1, g: 1, b: 1, a: 1}
+        newHueDegree: 0
+        newSaturation: 1
+        newContrast: 1
+        lerpDuration: 1
+        lerpCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4

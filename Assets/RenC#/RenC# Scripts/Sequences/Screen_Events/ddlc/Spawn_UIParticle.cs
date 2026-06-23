@@ -36,7 +36,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Spawn Particles Object";
+            return "DDLC/Spawn Particles Object";
         }
     }
 }

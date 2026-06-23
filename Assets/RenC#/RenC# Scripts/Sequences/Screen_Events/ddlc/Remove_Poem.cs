@@ -25,7 +25,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Remove Poem";
+            return "DDLC/Remove Poem";
         }
     }
 }

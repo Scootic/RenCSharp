@@ -60,7 +60,7 @@ namespace RenCSharp.Sequences
 
         private void PanicStop()
         {
-            Script_Manager.SM.StopCoroutine(shaker);
+            if(shaker != null) Script_Manager.SM.StopCoroutine(shaker);
             if (bgTrans != null)
             {
                 bgTrans.localPosition = Vector3.zero;
@@ -71,7 +71,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Screen Shake";
+            return "Scene/Screen Shake";
         }
     }
 }

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System;
-
 namespace RenCSharp
 {
     [Serializable]
@@ -11,5 +10,6 @@ namespace RenCSharp
         public string MusicAssetKey;
         public string[] BackgroundAssetKeys, OverlayAssetKeys, BackgroundSubobjectKeys, OverlaySubobjectKeys;
         public float BackgroundSPF, OverlaySPF;
+        public float[] BackgroundHSC, OverlayHSC, BackgroundColor, OverlayColor;
     }
 }

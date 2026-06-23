@@ -17,7 +17,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Play Music Track";
+            return "Audio/Play Music Track";
         }
         public AssetReference SetSongAsset { set { songAsset = value; } }
 

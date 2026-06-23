@@ -10,10 +10,10 @@ using UnityEngine.UIElements;
 namespace RenCSharp.Sequences
 {
     /// <summary>
-    /// Unique EditorWindow that exists because ScriptableObjects/Monobehaviors that have large arrays of strings
+    /// Unique EditorWindow for Sequences that exists because ScriptableObjects/Monobehaviors that have large arrays of strings
     /// run poorly when just using IMGUI. Every sequence has a potentially large array of strings with more stuff attached too,
     /// so editing it can get pretty slow, especially when conditional screens enter the mix. IMGUI Inspector still exists,
-    /// purely as a way to verify that the editorwindow didn't make any unwanted changes.
+    /// purely as a way to verify that the EditorWindow didn't make any unwanted changes, or that it didn't apply desired changes.
     /// </summary>
     public class Sequence_EditorWindow : EditorWindow
     {
@@ -60,6 +60,8 @@ namespace RenCSharp.Sequences
             autoSpeakerToggle = null;
             myAssetRefField = null;
             screenScrollView = null;
+            AllTheExtractScreens = new();
+            AllTheExtractPlayerChoices = new();
         }
 
         private void NewSequenceSelected(ChangeEvent<UnityEngine.Object> changeEvent)
@@ -72,7 +74,7 @@ namespace RenCSharp.Sequences
 
             SerializedObject so = new SerializedObject(_target);
             AllTheExtractScreens = new();
-            AllTheExtractPlayerChoices = null;
+            AllTheExtractPlayerChoices = new();
             autoSpeakerToggle.value = _target.AutoFocusSpeaker;
             myAssetRefField.BindProperty(so.FindProperty("myself"));
 
@@ -392,7 +394,6 @@ namespace RenCSharp.Sequences
             InitScreenListView();
             InitPlayerChoiceListView();
 
-            //Debug.Log("AutoSave duration: " + timeToAutoSave);
             rootVisualElement.Add(root);
         }
 

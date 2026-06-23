@@ -86,7 +86,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Set Overlay Image";
+            return "Scene/Set Overlay Image";
         }
     }
 }

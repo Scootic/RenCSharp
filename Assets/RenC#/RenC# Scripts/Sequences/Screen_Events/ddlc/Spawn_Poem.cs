@@ -29,7 +29,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Spawn Poem";
+            return "DDLC/Spawn Poem";
         }
     }
 }

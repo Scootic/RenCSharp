@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEngine.UIElements;
+using UnityEngine;
 namespace RenCSharp.Sequences
 {
     [UxmlElement]
@@ -75,9 +76,9 @@ namespace RenCSharp.Sequences
             inputField.value = newVal;
             dropdownField.value = newVal;
             value = newVal;
-            if (validAutoText == null) return;
+            if (validAutoText == null) { Debug.LogWarning($"{this.name} AutoTextField doesn't have a valid auto text list."); return; }
 
-            List<string> copyOfSource = new List<string>(new HashSet<string>(validAutoText));
+            List<string> copyOfSource = new(new HashSet<string>(validAutoText));
             cacheList = new List<string>(); //max shown is 7?
             dropdownField.choices = cacheList;
             int validAutoTextLength = copyOfSource.Count;
@@ -96,7 +97,7 @@ namespace RenCSharp.Sequences
                     }
                 }
 
-                if (cacheList.Count < 7) //if the includes list doesn't fill up the max amount
+                if (cacheList.Count < 7 && cacheList.Count < validAutoText.Count) //if the includes list doesn't fill up the max amount
                 {
                     string keywords = inputField.value.ToLower();
                     for (int i = 0; i < validAutoTextLength && i < cacheList.Count; i++)
@@ -128,7 +129,7 @@ namespace RenCSharp.Sequences
             }
 
             bool prevVis = dropdownField.visible;
-            dropdownField.visible = cacheList.Count > 2 && newVal != "";
+            dropdownField.visible = cacheList.Count > 0 && newVal != "";
             dropdownField.enabledSelf = dropdownField.visible;
             if(prevVis != dropdownField.visible) ContentElement.MarkDirtyRepaint(); //repaint if the visibility changed.
             //cacheList.Reverse(); Reverse based on the position of the expanded menu to the button?

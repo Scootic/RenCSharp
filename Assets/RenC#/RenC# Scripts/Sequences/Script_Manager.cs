@@ -437,6 +437,19 @@ namespace RenCSharp
                 st.BackgroundAssetKeys = aih.SpriteAssetGUIDs;
                 st.BackgroundSubobjectKeys = aih.SubObjectGUIDs;
                 st.BackgroundSPF = aih.SecondsPerFrame;
+                float[] bghsc = new float[3];
+                Image bgI = bg.GetComponent<Image>();
+                Material stinker = bgI.material;
+                bghsc[0] = stinker.GetFloat("_hue");
+                bghsc[1] = stinker.GetFloat("_sat");
+                bghsc[2] = stinker.GetFloat("_con");
+                st.BackgroundHSC = bghsc;
+                float[] bgcolor = new float[4];
+                bgcolor[0] = bgI.color.r;
+                bgcolor[1] = bgI.color.b;
+                bgcolor[2] = bgI.color.g;
+                bgcolor[3] = bgI.color.a;
+                st.BackgroundColor = bgcolor;
             }
             //save overlay data
             if(Object_Factory.TryGetObject("Overlay", out GameObject ov))
@@ -445,6 +458,19 @@ namespace RenCSharp
                 st.OverlayAssetKeys = aih.SpriteAssetGUIDs;
                 st.OverlaySubobjectKeys = aih.SubObjectGUIDs;
                 st.OverlaySPF = aih.SecondsPerFrame;
+                float[] ovhsc = new float[3];
+                Image ovI = ov.GetComponent<Image>();
+                Material stinker = ovI.material;
+                ovhsc[0] = stinker.GetFloat("_hue");
+                ovhsc[1] = stinker.GetFloat("_sat");
+                ovhsc[2] = stinker.GetFloat("_con");
+                st.OverlayHSC = ovhsc;
+                float[] ovcolor = new float[4];
+                ovcolor[0] = ovI.color.r;
+                ovcolor[1] = ovI.color.g;
+                ovcolor[2] = ovI.color.b;
+                ovcolor[3] = ovI.color.a;
+                st.OverlayColor = ovcolor;
             }
 
             st.MusicAssetKey = Audio_Manager.AM.SongAssetGUID;
@@ -476,7 +502,7 @@ namespace RenCSharp
                     }
                 }
             }
-
+            //handle particles
             st.ActiveParticles = activeParticles;
 
             string particleLog = "Adding particles to save data: \n";
@@ -509,8 +535,9 @@ namespace RenCSharp
 
         public void LoadShit(SaveData sd)
         {
-            //stop all deranged nonsense!
+            //stop all deranged nonsense on the SM!
             StopAllCoroutines();
+            //go through every single GO spawned by Object_Factory, and banish them.
             Object_Factory.ScrubDictionary();
 
             Animated_Image_Handler ov = Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Animated_Image_Handler>();
@@ -531,8 +558,75 @@ namespace RenCSharp
             ScreenToken std = sd.ScreenInformation;
             AsyncOperationHandle SequenceAsset;
 
+            //handle overlay and background
             ov.ReceiveAnimationInformation(std.OverlayAssetKeys, std.OverlaySubobjectKeys,std.OverlaySPF);
             bg.ReceiveAnimationInformation(std.BackgroundAssetKeys, std.BackgroundSubobjectKeys,std.BackgroundSPF);
+
+            Image ovI = ov.Image;
+            Material ovStinker = new Material(ovI.material);
+            ovI.material = ovStinker;
+            if(std.OverlayHSC != null)
+            {
+                ovStinker.SetFloat("_hue", std.OverlayHSC[0]);
+                ovStinker.SetFloat("_sat", std.OverlayHSC[1]);
+                ovStinker.SetFloat("_con", std.OverlayHSC[2]);
+            }
+            else
+            {
+                Debug.LogWarning($"Save data: {sd.FileName} doesn't have an overlay hsc array. Default values should still apply.");
+                try
+                {
+                    ovStinker.SetFloat("_hue", 0);
+                    ovStinker.SetFloat("_sat", 1);
+                    ovStinker.SetFloat("_con", 1);
+                }
+                catch
+                {
+                    Debug.LogError("Overlay object doesn't have the HSC Shader?");
+                }
+            }
+            if(std.OverlayColor != null)
+            {
+                ovI.color = new Color(std.OverlayColor[0], std.OverlayColor[1], std.OverlayColor[2], std.OverlayColor[3]);
+            }
+            else
+            {
+                Debug.LogWarning($"Save data: {sd.FileName} doesn't have an overlay color array. Defaulting to white.");
+                ovI.color = Color.white;
+            }
+
+            Image bgI = bg.Image;
+            Material bgStinker = new Material(bgI.material);
+            bgI.material = bgStinker;
+            if(std.BackgroundHSC != null)
+            {
+                bgStinker.SetFloat("_hue", std.BackgroundHSC[0]);
+                bgStinker.SetFloat("_sat", std.BackgroundHSC[1]);
+                bgStinker.SetFloat("_con", std.BackgroundHSC[2]);
+            }
+            else
+            {
+                Debug.LogWarning($"Save data: {sd.FileName} doesn't have a background hsc array. Default values should still apply.");
+                try
+                {
+                    bgStinker.SetFloat("_hue", 0);
+                    bgStinker.SetFloat("_sat", 1);
+                    bgStinker.SetFloat("_con", 1);
+                }
+                catch
+                {
+                    Debug.LogError("Background object doesn't have the HSC Shader?");
+                }
+            }
+            if(std.BackgroundColor != null)
+            {
+                bgI.color = new Color(std.BackgroundColor[0], std.BackgroundColor[1], std.BackgroundColor[2], std.BackgroundColor[3]);
+            }
+            else
+            {
+                Debug.LogWarning($"Save data: {sd.FileName} doesn't have a background color array. Defaulting to white.");
+                bgI.color = Color.white;
+            }
 
             Audio_Manager.AM.PlayBGM(std.MusicAssetKey, 1); //i doubt it would matter if everything else starts happening before bgm call ends
 
