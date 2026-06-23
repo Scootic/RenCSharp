@@ -16,6 +16,9 @@ MonoBehaviour:
   screens:
   - speaker: {fileID: 0}
     dialog: 
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
     ScreenActions:
     - rid: 4972360430703869959
     - rid: 4972360430703869960
@@ -59,12 +62,20 @@ MonoBehaviour:
     - rid: 4972360430703870038
     - rid: 4972360430703870039
     - rid: 4972360430703870091
-  - speaker: {fileID: 0}
-    dialog: 
-    ScreenActions: []
-  - speaker: {fileID: 0}
-    dialog: 
-    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: ({mc} picked a <i>real</i> good time to go wandering...)
+    ScreenActions:
+    - rid: 4972360459354374144
+  - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    dialog: Oh-
+    ScreenActions:
+    - rid: 4972360459354374145
+    - rid: 4972360459354374146
+    - rid: 4972360459354374147
+  - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
+    dialog: Ah. Here's the rain I smelled earlier.
+    ScreenActions:
+    - rid: 4972360459354374148
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
@@ -314,3 +325,83 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+    - rid: 4972360459354374144
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - lookAwaySad
+        - 
+    - rid: 4972360459354374145
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - speak
+        - 
+    - rid: 4972360459354374146
+      type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        nameOfObject: Background
+        newColor: {r: 1, g: 1, b: 1, a: 1}
+        newHueDegree: 0
+        newSaturation: 0.8
+        newContrast: 0.8
+        lerpDuration: 1
+        lerpCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 4972360459354374147
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: rain
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 0
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 1352fece545877c488fd22a30953a20b
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+    - rid: 4972360459354374148
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - blank
+        - 
