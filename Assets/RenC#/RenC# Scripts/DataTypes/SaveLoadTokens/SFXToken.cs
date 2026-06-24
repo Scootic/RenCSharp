@@ -8,7 +8,7 @@ namespace RenCSharp
     [Serializable]
     public struct SFXToken
     {
-        public string SFXAddress;
+        public string SFXAddress, SFXName; //dunno if even actually used sfxname for anything :)
         public float xPos, yPos, zPos;
         public float localVolume;
     }

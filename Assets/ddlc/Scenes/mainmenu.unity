@@ -821,7 +821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxAmount: 20
   audioObject: {fileID: 0}
-  sfxList: []
+  soundTestSFX: {fileID: 8300000, guid: 10044a09e9701344eb0955734d7c46d1, type: 3}
 --- !u!4 &212637622
 Transform:
   m_ObjectHideFlags: 0
@@ -3192,7 +3192,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minTime: 8
   maxTime: 15
-  animatorIntRange: 5
+  animatorMinRollInclusive: 0
+  animatorMaxRollExclusive: 5
   animatorIntParameterName: who
   animatorTriggerParameterName: fire
 --- !u!1 &1160701713
@@ -4378,7 +4379,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minTime: 8
   maxTime: 15
-  animatorIntRange: 5
+  animatorMinRollInclusive: 0
+  animatorMaxRollExclusive: 5
   animatorIntParameterName: who
   animatorTriggerParameterName: fire
 --- !u!95 &1587997316
@@ -4548,6 +4550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventName: PlayerName
   defaultString: My Dude
+  activeDuration: 0.5
 --- !u!4 &1607326171
 Transform:
   m_ObjectHideFlags: 0

@@ -825,7 +825,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: -!
     ScreenActions:
-    - rid: 4972360225885257798
+    - rid: 4972360475574796554
     - rid: 4972360225885257799
     - rid: 4972360390599770198
   - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
@@ -933,17 +933,17 @@ MonoBehaviour:
       data:
         actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
         visualSpriteIndexes:
-        - 
-        - 
-        - inquisitiveSpeak
-        - 
+        - skyDown
+        - skyDown
+        - blank
+        - EMPTY
     - rid: 4972360213072445446
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         visualSpriteIndexes:
-        - 
-        - 
+        - default
+        - EMPTY
         - concern2
         - 
     - rid: 4972360213072445447
@@ -3125,16 +3125,6 @@ MonoBehaviour:
         - skyDown
         - ponderingSpeak
         - 
-    - rid: 4972360225885257798
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 4f09cc94363340d459ef2681fc443d19, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4972360225885257799
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -3562,3 +3552,17 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+    - rid: 4972360475574796554
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 4f09cc94363340d459ef2681fc443d19
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1

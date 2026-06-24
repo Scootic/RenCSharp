@@ -67,23 +67,23 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 26cd9014ea059be4cadea176300763bb, type: 2}
     dialog: lingr4 krosis sar1n strund5l, voth nid bal1n klov pr1n nau.
     ScreenActions:
-    - rid: 268099795830177960
+    - rid: 4972360475574796460
     - rid: 268099795830177964
     - rid: 4972360390599770181
   - speaker: {fileID: 11400000, guid: 26cd9014ea059be4cadea176300763bb, type: 2}
     dialog: n1l th5mu, mu ofan n3 nu, dov4k3n, n1l sul9k do k1n, n1l sul9k do shor...
     ScreenActions:
-    - rid: 268099795830177961
+    - rid: 4972360475574796461
     - rid: 4972360390599770182
   - speaker: {fileID: 11400000, guid: 26cd9014ea059be4cadea176300763bb, type: 2}
     dialog: 4rk n1l sul9k do atmorasewuth.
     ScreenActions:
-    - rid: 268099795830177962
+    - rid: 4972360475574796462
     - rid: 4972360390599770183
   - speaker: {fileID: 11400000, guid: 26cd9014ea059be4cadea176300763bb, type: 2}
     dialog: myez nu ysm7, dov4sebrom. d4m1n dar rok.
     ScreenActions:
-    - rid: 268099795830177963
+    - rid: 4972360475574796463
     - rid: 4972360390599770184
   - speaker: {fileID: 0}
     dialog: ... ow...
@@ -242,7 +242,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: <font=dragonfont>lok v4 k8r</font>!
     ScreenActions:
-    - rid: 268099795830177976
+    - rid: 4972360475574796464
     - rid: 268099795830177977
   - speaker: {fileID: 0}
     dialog: With the raging storms cleared away, we are free to progress further
@@ -432,46 +432,6 @@ MonoBehaviour:
         - skyDown
         - smile
         - 
-    - rid: 268099795830177960
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
-    - rid: 268099795830177961
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
-    - rid: 268099795830177962
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
-    - rid: 268099795830177963
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 268099795830177964
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -634,16 +594,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smileSweat
-    - rid: 268099795830177976
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 268099795830177977
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1598,3 +1548,73 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+    - rid: 4972360475574796460
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796461
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796462
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796463
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796464
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1

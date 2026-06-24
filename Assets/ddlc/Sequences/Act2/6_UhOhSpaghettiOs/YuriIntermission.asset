@@ -98,7 +98,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: Yuri casts the Mark spell (with both of her hands, of course).
     ScreenActions:
-    - rid: 4927988726549708816
+    - rid: 4972360475574796484
     - rid: 4927988726549708817
     - rid: 4927988726549708818
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
@@ -115,7 +115,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4927988726549708821
     - rid: 4927988726549708822
-    - rid: 4927988726549708823
+    - rid: 4972360475574796485
     - rid: 4927988726549708825
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: Haaaahh... haaaahh...
@@ -140,7 +140,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 11852c059a8d332409e6b2855f59d590, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 4407f5dbc88877f4095b6244acddd6f7
@@ -373,16 +372,6 @@ MonoBehaviour:
         - 
         - 
         - pondering
-    - rid: 4927988726549708816
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: b40532dff090cf84b8986386702391a1, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4927988726549708817
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -548,16 +537,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - eyesClosedSigh
-    - rid: 4927988726549708823
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 6256c7959eedf1a4c8d0871c2869f82f, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4927988726549708825
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -594,3 +573,31 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - lookAwayPity
+    - rid: 4972360475574796484
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: b40532dff090cf84b8986386702391a1
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+    - rid: 4972360475574796485
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 6256c7959eedf1a4c8d0871c2869f82f
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1

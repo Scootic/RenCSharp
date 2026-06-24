@@ -110,7 +110,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: e9e25ab63e1eda4459300fa1e62cc430, type: 2}
     dialog: Oof-!
     ScreenActions:
-    - rid: 4972359976905081027
+    - rid: 4972360475574796519
     - rid: 4972359976905081028
   - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
     dialog: This just some power play? White-Gold not good enough for you fools?
@@ -134,7 +134,7 @@ MonoBehaviour:
     - rid: 4972359976905081034
     - rid: 4972359976905081035
     - rid: 4972359976905081036
-    - rid: 4972359976905081042
+    - rid: 4972360475574796520
     - rid: 4972359999284838476
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: ...
@@ -239,9 +239,9 @@ MonoBehaviour:
         actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
         visualSpriteIndexes:
         - skyDown
-        - 
+        - skyUp
         - blank
-        - 
+        - EMPTY
     - rid: 4972359976905080883
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -561,16 +561,6 @@ MonoBehaviour:
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
-    - rid: 4972359976905081027
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
-        position: {x: -1, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4972359976905081028
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -918,16 +908,6 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
         loopOnScreen: 0
-    - rid: 4972359976905081042
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
-        position: {x: -1, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4972359976905081043
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1067,3 +1047,31 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: e9e25ab63e1eda4459300fa1e62cc430, type: 2}
         fadeTime: 0.5
+    - rid: 4972360475574796519
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: e3f9c8208d46092408268e8459362a27
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: -1, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+    - rid: 4972360475574796520
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: e3f9c8208d46092408268e8459362a27
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: -1, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1

@@ -207,7 +207,7 @@ MonoBehaviour:
     dialog: As instructed, Sayori uses the Staff of Magnus to dispel the barrier
       produced by Ancano's chicanery.
     ScreenActions:
-    - rid: 268099729075732516
+    - rid: 4972360475574796439
   - speaker: {fileID: 11400000, guid: 251ab17588978ca44861c552397cfd18, type: 2}
     dialog: Alright! Let's get in there and stop Ancano while we have the chance!
     ScreenActions:
@@ -243,7 +243,7 @@ MonoBehaviour:
     dialog: Sayori begins blasting the Eye of Magnus with the power of the Staff.
     ScreenActions:
     - rid: 268099729075732528
-    - rid: 268099729075732529
+    - rid: 4972360475574796440
   - speaker: {fileID: 11400000, guid: 3a4fe2bf30f193641a10aa95dbb7f4df, type: 2}
     dialog: Ack! What are you-
     ScreenActions: []
@@ -266,7 +266,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 268099729075732530
     - rid: 268099729075732531
-    - rid: 268099729075732532
+    - rid: 4972360475574796441
     - rid: 268099729075732533
     - rid: 268099729075732535
     - rid: 268099729075732536
@@ -308,16 +308,15 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: c9245460cdad09b42833c55cfcb89407, type: 2}
-    requireCondition: 0
     conditions:
     - flagToCheck: WeirdRoute
       operation: 0
       desiredValue: 2
       persistent: 0
+      debugResult: 0
       bitWise: 1
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 43fb51ae6a69a854ab94383b757c2dd5, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 5f8d5995319797046b021efdbfcfcf2c
@@ -397,6 +396,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - inquisitiveSpeak
+        - 
     - rid: 268099706744733793
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -941,16 +941,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - angry
-    - rid: 268099729075732516
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 56027e9b62786544ab9a50b8c054eae6, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 268099729075732517
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1078,16 +1068,6 @@ MonoBehaviour:
         - skyUp
         - skyDown
         - focus
-    - rid: 268099729075732529
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 56027e9b62786544ab9a50b8c054eae6, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 268099729075732530
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1104,16 +1084,6 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - fear
-    - rid: 268099729075732532
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: e97588fde909d0b4bb98405f325fdac3, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 268099729075732533
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1258,3 +1228,45 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - sadcry
+    - rid: 4972360475574796439
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 56027e9b62786544ab9a50b8c054eae6
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796440
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 56027e9b62786544ab9a50b8c054eae6
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+    - rid: 4972360475574796441
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: e97588fde909d0b4bb98405f325fdac3
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1

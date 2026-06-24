@@ -343,11 +343,11 @@ MonoBehaviour:
     dialog: Aela quickly pulls her bow back, firing it at a spider that thinks he's
       being sneaky.
     ScreenActions:
-    - rid: 1790118539274485845
+    - rid: 4972360475574796508
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: Killing it in a single shot.
     ScreenActions:
-    - rid: 1790118539274485846
+    - rid: 4972360475574796509
   - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
     dialog: I don't get it- they're very easy to deal with; why be afraid?
     ScreenActions: []
@@ -1578,26 +1578,6 @@ MonoBehaviour:
         - 
         - 
         - inquisitive
-    - rid: 1790118539274485845
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 0870b8a3e6ad3fb4e81793692c20e863, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
-    - rid: 1790118539274485846
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: a9cf81a1e296f0341b286752e451c7ad, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 1790118539274485847
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2244,3 +2224,31 @@ MonoBehaviour:
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
+    - rid: 4972360475574796508
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 0870b8a3e6ad3fb4e81793692c20e863
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796509
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: a9cf81a1e296f0341b286752e451c7ad
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1

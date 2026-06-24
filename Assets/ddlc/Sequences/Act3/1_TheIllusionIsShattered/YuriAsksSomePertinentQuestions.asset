@@ -25,7 +25,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4972360366678081734
     - rid: 1790118740072857654
-    - rid: 1790118740072857655
+    - rid: 4972360475574796533
     - rid: 1790118740072857656
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: (While still tiring, it seems that the distance doesn't impact the strain
@@ -320,16 +320,6 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         loopOnScreen: 0
-    - rid: 1790118740072857655
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 6256c7959eedf1a4c8d0871c2869f82f, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 1790118740072857656
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1161,3 +1151,17 @@ MonoBehaviour:
         - skyUp
         - eyesClosedSigh
         - EMPTY
+    - rid: 4972360475574796533
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 6256c7959eedf1a4c8d0871c2869f82f
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1

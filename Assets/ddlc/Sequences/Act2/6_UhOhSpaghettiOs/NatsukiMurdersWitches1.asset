@@ -170,7 +170,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: Aela takes down one of the witches and turns to the one witch remaining.
     ScreenActions:
-    - rid: 268100135178469492
+    - rid: 4972360475574796510
   - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
     dialog: Lucky me, I get an audience to bear witness to my glory in battle!
     ScreenActions: []
@@ -206,7 +206,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 268100135178469386
     - rid: 268100135178469387
-    - rid: 268100135178469484
+    - rid: 4972360475574796511
     - rid: 268100135178469488
   - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
     dialog: What have you done-?!?
@@ -215,20 +215,20 @@ MonoBehaviour:
     dialog: Brother-!
     ScreenActions:
     - rid: 268100135178469388
-    - rid: 268100135178469485
+    - rid: 4972360475574796512
     - rid: 268100135178469489
   - speaker: {fileID: 11400000, guid: f3bfbce50e06cf14e9490ea551e14f87, type: 2}
     dialog: Good riddance.
     ScreenActions:
     - rid: 268100135178469389
-    - rid: 268100135178469486
+    - rid: 4972360475574796513
     - rid: 268100135178469490
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
     - rid: 268100135178469390
     - rid: 268100135178469392
-    - rid: 268100135178469487
+    - rid: 4972360475574796514
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: ...
     ScreenActions: []
@@ -294,7 +294,7 @@ MonoBehaviour:
     dialog: And that something was to use her beast blood, despite her prejudices.
     ScreenActions:
     - rid: 268100135178469407
-    - rid: 268100135178469408
+    - rid: 4972360475574796515
     - rid: 268100135178469409
     - rid: 268100135178469410
     - rid: 268100135178469411
@@ -748,6 +748,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 4
             persistent: 0
+            debugResult: 0
             bitWise: 1
           resultingScreen:
             speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
@@ -1126,16 +1127,6 @@ MonoBehaviour:
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
-    - rid: 268100135178469408
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 7005aac9cf1f8074fb728afbd3cac263, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 268100135178469409
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1218,46 +1209,6 @@ MonoBehaviour:
         flagValue: 10
         increment: 1
         persistent: 0
-    - rid: 268100135178469484
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 6256c7959eedf1a4c8d0871c2869f82f, type: 3}
-        position: {x: 1, y: 0, z: 0.5}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
-    - rid: 268100135178469485
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 6256c7959eedf1a4c8d0871c2869f82f, type: 3}
-        position: {x: -1, y: 0, z: 0.5}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
-    - rid: 268100135178469486
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 6256c7959eedf1a4c8d0871c2869f82f, type: 3}
-        position: {x: -0.5, y: 0, z: 0.5}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
-    - rid: 268100135178469487
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 6256c7959eedf1a4c8d0871c2869f82f, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 268100135178469488
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1318,16 +1269,6 @@ MonoBehaviour:
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 1
-    - rid: 268100135178469492
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4927988066573615104
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1566,3 +1507,87 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
+    - rid: 4972360475574796510
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: e3f9c8208d46092408268e8459362a27
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796511
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 6256c7959eedf1a4c8d0871c2869f82f
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 1, y: 0, z: 0.5}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+    - rid: 4972360475574796512
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 6256c7959eedf1a4c8d0871c2869f82f
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: -1, y: 0, z: 0.5}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+    - rid: 4972360475574796513
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 6256c7959eedf1a4c8d0871c2869f82f
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: -0.5, y: 0, z: 0.5}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+    - rid: 4972360475574796514
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 6256c7959eedf1a4c8d0871c2869f82f
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+    - rid: 4972360475574796515
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 7005aac9cf1f8074fb728afbd3cac263
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1

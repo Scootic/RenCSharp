@@ -56,7 +56,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 89091bae765cb334f85fe6adf2a21d0d, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: cf6a13be86b87df4b8cd031f21ff697a
@@ -75,6 +74,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - fear
+        - 
     - rid: 268099597357023357
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -83,6 +83,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - '><Shock'
+        - 
     - rid: 268099597357023358
       type: {class: Start_Single_Attack, ns: RenCSharp.Sequences, asm: Sequences}
       data:

@@ -154,7 +154,7 @@ MonoBehaviour:
     dialog: Yuri summons her dagger to do battle with the bandit.
     ScreenActions:
     - rid: 1790118876029648901
-    - rid: 1790118876029648902
+    - rid: 4972360475574796522
   - speaker: {fileID: 11400000, guid: 4ad5dd808ad82574db508b579bfc59b8, type: 2}
     dialog: (Ah shite, a wizard-?)
     ScreenActions: []
@@ -1259,16 +1259,6 @@ MonoBehaviour:
         - skyUp
         - angry
         - 
-    - rid: 1790118876029648902
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 99f7a8dde4a22ed4997ef1f651a8ced2, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 0.33
     - rid: 1790118876029648903
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -3100,3 +3090,17 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
         fadeTime: 0.5
+    - rid: 4972360475574796522
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 99f7a8dde4a22ed4997ef1f651a8ced2
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 0.33
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1

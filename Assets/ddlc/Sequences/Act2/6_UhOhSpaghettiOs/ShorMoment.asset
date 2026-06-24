@@ -232,7 +232,7 @@ MonoBehaviour:
     - rid: 1790118406542327872
     - rid: 1790118406542327873
     - rid: 1790118406542327874
-    - rid: 1790118406542327875
+    - rid: 4972360475574796486
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: ... is... is that...?
     ScreenActions:
@@ -469,16 +469,6 @@ MonoBehaviour:
         - EMPTY
         - lorkhan
         - 
-    - rid: 1790118406542327875
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: a67f3af0a88dfef4194e419ab633887d, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 1790118406542327876
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -498,3 +488,17 @@ MonoBehaviour:
         - 
         - 
         - terror
+    - rid: 4972360475574796486
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: a67f3af0a88dfef4194e419ab633887d
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1

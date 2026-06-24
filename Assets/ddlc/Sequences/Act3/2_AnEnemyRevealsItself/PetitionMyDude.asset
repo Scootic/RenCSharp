@@ -165,7 +165,7 @@ MonoBehaviour:
     - rid: 4972360184803623075
     - rid: 4972360184803623072
     - rid: 4972360184803623073
-    - rid: 4972360184803623074
+    - rid: 4972360475574796551
     - rid: 4972360390599770186
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: With a course set, {mc} starts charging towards Northwatch using the
@@ -184,7 +184,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 1bd6accf6dbd3524db9455d6502d5d09, type: 2}
     dialog: Woof!
     ScreenActions:
-    - rid: 4972360205905428483
+    - rid: 4972360475574796552
     - rid: 4972360205905428484
     - rid: 4972360205905428485
     - rid: 4972360205905428486
@@ -251,7 +251,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: <font=dragonfont>wuld n4 kest</font>!
     ScreenActions:
-    - rid: 4972360205905428563
+    - rid: 4972360475574796553
     - rid: 4972360205905428564
     - rid: 4972360205905428565
     - rid: 4972360205905428566
@@ -323,9 +323,9 @@ MonoBehaviour:
       data:
         actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
         visualSpriteIndexes:
-        - skySmug
-        - skySmug
-        - woodenMaskAngry
+        - skyDown
+        - skyDown
+        - blank
         - EMPTY
     - rid: 4972360184803623036
       type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
@@ -710,16 +710,6 @@ MonoBehaviour:
         - 
         - insaneShout
         - 
-    - rid: 4972360184803623074
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4972360184803623075
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -827,16 +817,6 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: 1bd6accf6dbd3524db9455d6502d5d09, type: 2}
         loopOnScreen: 0
-    - rid: 4972360205905428483
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4972360205905428484
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1201,16 +1181,6 @@ MonoBehaviour:
         - 
         - scowl
         - 
-    - rid: 4972360205905428563
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4972360205905428564
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1746,3 +1716,45 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+    - rid: 4972360475574796551
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+    - rid: 4972360475574796552
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+    - rid: 4972360475574796553
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1

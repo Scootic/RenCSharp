@@ -356,7 +356,7 @@ MonoBehaviour:
     dialog: Savos melts the ice wall blocking the door using a concentrated burst
       of flames.
     ScreenActions:
-    - rid: 268099551663226996
+    - rid: 4972360475574796458
     - rid: 268099551663226997
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: As the ice wall melts, the ice spirit itself attempts to slay the foolish
@@ -377,7 +377,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: d64100fc3c084684aa842f277fcb2790, type: 2}
     dialog: <font=dragonfont>wo m9z w4 d3 vul jun1r</font>?
     ScreenActions:
-    - rid: 268099556554833973
+    - rid: 4972360475574796459
     - rid: 268099556554833974
     - rid: 268099556554833986
     - rid: 268099556554833987
@@ -1211,16 +1211,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - surprise
-    - rid: 268099551663226996
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 7938deb51c5114f40a13688a269a0017, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 268099551663226997
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1261,16 +1251,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - surprise
-    - rid: 268099556554833973
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 268099556554833974
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1433,3 +1413,31 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - lookAwaySad
+    - rid: 4972360475574796458
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 7938deb51c5114f40a13688a269a0017
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796459
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1

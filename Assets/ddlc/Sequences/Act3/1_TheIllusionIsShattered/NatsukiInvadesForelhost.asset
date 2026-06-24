@@ -486,7 +486,7 @@ MonoBehaviour:
     dialog: I think I'll refrain from using the blood...
     ScreenActions:
     - rid: 4972359955741933773
-    - rid: 4972359955741933775
+    - rid: 4972360475574796523
     - rid: 4972359955741933776
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: With her bloodlust fully unleashed, Aela charges directly into battle,
@@ -514,7 +514,7 @@ MonoBehaviour:
     dialog: Thanks to Natsuki's distraction, the brothers are able to dismember the
       archer, with Natsuki using Wuuthrad to make a massive hole in their chest.
     ScreenActions:
-    - rid: 4972359955741933783
+    - rid: 4972360475574796524
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -570,7 +570,7 @@ MonoBehaviour:
     dialog: It was quite gruesome.
     ScreenActions:
     - rid: 4972359955741933799
-    - rid: 4972359955741933800
+    - rid: 4972360475574796525
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -876,9 +876,9 @@ MonoBehaviour:
         spawnOffset: {x: -200, y: 0, z: 0}
         visualSpriteIndexes:
         - skyDown
-        - skyDown
-        - speak
-        - ears
+        - skyUp
+        - blank
+        - EMPTY
     - rid: 1790118900062748858
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1889,16 +1889,6 @@ MonoBehaviour:
         visualSpriteIndexes:
         - EMPTY
         - werewolf
-    - rid: 4972359955741933775
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 7005aac9cf1f8074fb728afbd3cac263, type: 3}
-        position: {x: -1, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4972359955741933776
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1992,16 +1982,6 @@ MonoBehaviour:
         - 
         - grimace
         - 
-    - rid: 4972359955741933783
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4972359955741933784
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2206,16 +2186,6 @@ MonoBehaviour:
         - 
         - lookAwaySad
         - 
-    - rid: 4972359955741933800
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4972359955741933801
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -3110,3 +3080,45 @@ MonoBehaviour:
         - 
         - blank
         - 
+    - rid: 4972360475574796523
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 7005aac9cf1f8074fb728afbd3cac263
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: -1, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+    - rid: 4972360475574796524
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: e3f9c8208d46092408268e8459362a27
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+    - rid: 4972360475574796525
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: e3f9c8208d46092408268e8459362a27
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1

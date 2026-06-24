@@ -794,7 +794,7 @@ MonoBehaviour:
     - rid: 1790118714061095167
     - rid: 1790118714061095166
     - rid: 1790118714061095169
-    - rid: 1790118714061095170
+    - rid: 4972360475574796521
     - rid: 1790118714061095171
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: I guess it's just you and me, Natsuki.
@@ -4695,16 +4695,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         fadeTime: 0.5
-    - rid: 1790118714061095170
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 6256c7959eedf1a4c8d0871c2869f82f, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 1790118714061095171
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -5049,3 +5039,17 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 1
+    - rid: 4972360475574796521
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 6256c7959eedf1a4c8d0871c2869f82f
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1

@@ -26,10 +26,10 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: The four Companions are now on their way back to Jorrvaskr from Riften.
     ScreenActions:
-    - rid: 4972360430703869967
     - rid: 4972360430703869970
     - rid: 4972360430703869972
     - rid: 4972360430703869965
+    - rid: 4972360475574796558
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -72,6 +72,7 @@ MonoBehaviour:
     - rid: 4972360459354374145
     - rid: 4972360459354374146
     - rid: 4972360459354374147
+    - rid: 4972360475574796555
   - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
     dialog: Ah. Here's the rain I smelled earlier.
     ScreenActions:
@@ -128,20 +129,9 @@ MonoBehaviour:
       data:
         actorToSpawn: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
         fadeInTime: 0.5
-        spawnOffset: {x: -200, y: 0, z: 0}
+        spawnOffset: {x: 600, y: 0, z: 0}
         visualSpriteIndexes:
         - default
-    - rid: 4972360430703869967
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-        fadeInTime: 0.5
-        spawnOffset: {x: -600, y: 0, z: 0}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - blank
-        - EMPTY
     - rid: 4972360430703869970
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -405,3 +395,28 @@ MonoBehaviour:
         - 
         - blank
         - 
+    - rid: 4972360475574796555
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 9209035fece81204babf59d7ff28814f
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 1
+        stopOnScreenProgress: 0
+        loopDuration: 0
+    - rid: 4972360475574796558
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -200, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - blank
+        - ears
