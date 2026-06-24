@@ -16,11 +16,12 @@ namespace RenCSharp
         [SerializeField, Range(1, 20)] private int sfxAmount = 20; //dictates how many sound effects we can have at once
         [SerializeField] private GameObject audioObject; //prefab for 3D sfx
         private AudioSource[] sfxSources; //stores 2D sfx
-        [SerializeField] private List<GameObject> sfxList = new List<GameObject>(); //stores 3D sfx
+        [SerializeField] private List<GameObject> sfxList = new(); //stores 3D sfx
         private AudioSource leMusic, newBGM; //stores the background music
+        [SerializeField] private List<SFXToken> loopingSFXAddresses = new();
 
         private int sfxIndex = 0; //Store the current sfx index
-        private int realSFXSize;
+        private int realSFXSize; //?
         private bool enteringBGM = false; //used to see if we are currently doing a BGM fade transition.
         private Coroutine bgmRoutine; //stores the current bgm transition coroutine incase we need to stop it preemptively
         private string songAssetGUID; //keeps track of asset guid that'll be passed to save/load
@@ -31,6 +32,7 @@ namespace RenCSharp
         public float ESFXVol => esfxVolMult;
         public AudioClip CurrentBGM => leMusic.clip;
         public string SongAssetGUID => songAssetGUID;
+        public List<SFXToken> GetLoopingSFXGUIDs => loopingSFXAddresses;
 
         private void InitSFX()
         {
@@ -77,10 +79,11 @@ namespace RenCSharp
         /// <param name="maxRand">the highest pitch it can randomly be</param>
         /// <param name="volume">volume multiplier based on settings</param>
         /// <param name="environmental">whether or not to use environmental or regular sound settings</param>
-        public void Play2DSFX(AudioClip clipToPlay, float minRand = 1, float maxRand = 1, float volume = 1, bool environmental = false)
+        public void Play2DSFX(AudioClip clipToPlay, float minRand = 1, float maxRand = 1, float volume = 1, bool environmental = false, bool loop = false)
         {
             sfxSources[sfxIndex].clip = clipToPlay; //tell the current audio source to load x clip
             sfxSources[sfxIndex].volume = volume * (environmental ? esfxVolMult : sfxVolMult);
+            sfxSources[sfxIndex].loop = loop;
             sfxSources[sfxIndex].pitch = Random.Range(minRand, maxRand);
             sfxSources[sfxIndex].Play(); //tell the current audio source to play
 
@@ -91,6 +94,81 @@ namespace RenCSharp
                 sfxIndex = 0; //reset index if true
             }
         }
+
+        public async Awaitable Play2DSFX(AssetReference sfxToPlay, float minRand = 1, float maxRand = 1, float volume = 1, bool environmental = false, bool loop = false)
+        {
+            if (sfxToPlay.IsValid())
+            {
+                AudioClip sfxer = sfxToPlay.OperationHandle.Result as AudioClip;
+
+                if (environmental && loop)
+                {
+                    SFXToken toAdd = new SFXToken();
+                    toAdd.SFXAddress = sfxToPlay.AssetGUID;
+                    toAdd.yPos = 0;
+                    toAdd.zPos = 0;
+                    toAdd.xPos = 0;
+                    toAdd.localVolume = volume;
+                    loopingSFXAddresses.Add(toAdd);
+                }
+
+                Play2DSFX(sfxer, minRand, maxRand, volume, environmental, loop);
+
+                return;
+            }
+
+            AsyncOperationHandle sfxHandle = sfxToPlay.LoadAssetAsync<AudioClip>();
+            await sfxHandle.Task;
+
+            if (sfxHandle.Status == AsyncOperationStatus.Failed)
+            {
+                Debug.LogError("Failed to load sfx asset: " + sfxToPlay.Asset.name);
+                Addressables.Release(sfxHandle);
+                return;
+            }
+
+            AudioClip sfx = sfxHandle.Result as AudioClip;
+
+            if (environmental && loop)
+            {
+                SFXToken toAdd = new SFXToken();
+                toAdd.SFXAddress = sfxToPlay.AssetGUID;
+                toAdd.yPos = 0;
+                toAdd.zPos = 0;
+                toAdd.xPos = 0;
+                toAdd.localVolume = volume;
+                loopingSFXAddresses.Add(toAdd);
+            }
+
+            Play2DSFX(sfx, minRand, maxRand, volume, environmental, loop);
+        }
+
+        public async Awaitable Play2DSFX(string sfxGUID, float minRand = 1, float maxRand = 1, float volume = 1, bool environmental = false, bool loop = false)
+        {
+            AsyncOperationHandle stinker = Addressables.LoadAssetAsync<AudioClip>(sfxGUID);
+            await stinker.Task;
+
+            if(stinker.Status == AsyncOperationStatus.Failed)
+            {
+                Debug.LogError("couldnae load sfx to play at: " + sfxGUID);
+                Addressables.Release(stinker);
+                return;
+            }
+
+            AudioClip man = stinker.Result as AudioClip;
+
+            SFXToken toAdd = new();
+            toAdd.xPos = 0;
+            toAdd.yPos = 0;
+            toAdd.zPos = 0;
+            toAdd.SFXAddress = sfxGUID;
+            toAdd.localVolume = volume;
+            loopingSFXAddresses.Add(toAdd);
+
+            Play2DSFX(man, minRand, maxRand, volume, environmental, loop);
+        }
+
+
         /// <summary>
         /// Plays a random 2D sfx from an array of sounds, without repeating the previous one.
         /// </summary>
@@ -116,6 +194,38 @@ namespace RenCSharp
                     if (onlyStopOne) return;
                 }
             }
+        }
+
+        public async Awaitable Stop2DSFX(AssetReference sfxToStop, bool onlyStopOne = true)
+        {
+            for(int i = loopingSFXAddresses.Count - 1; i > -1 ;i--)
+            {
+                if (loopingSFXAddresses[i].SFXAddress == sfxToStop.AssetGUID)
+                {
+                    loopingSFXAddresses.RemoveAt(i);
+                    if(onlyStopOne) break;
+                }
+            }
+
+            if (sfxToStop.IsValid())
+            {
+                AudioClip c = sfxToStop.OperationHandle.Result as AudioClip;
+                Stop2DSFX(c, onlyStopOne);
+                return;
+            }
+
+            AsyncOperationHandle handle = sfxToStop.LoadAssetAsync<AudioClip>();
+            await handle.Task;
+
+            if(handle.Status == AsyncOperationStatus.Failed)
+            {
+                Debug.LogError("Failed to stop SFX: " + sfxToStop.Asset);
+                Addressables.Release(handle);
+                return;
+            }
+
+            AudioClip sfx = handle.Result as AudioClip;
+            Stop2DSFX(sfx, onlyStopOne);
         }
 
         public bool AlreadyPlaying2DSFX(AudioClip clipToCheck)
@@ -181,6 +291,78 @@ namespace RenCSharp
             if(!loop) StartCoroutine(BleanUp(gaming, temp.clip.length));
         }
 
+        public async Awaitable Play3DSFX(AssetReference sfxToPlay, Vector3 position, float minRand = 1, float maxRand = 1, float volume = 1, bool environmental = false, bool loop = false)
+        {
+            if (sfxToPlay.IsValid())
+            {
+                AudioClip sfxer = sfxToPlay.OperationHandle.Result as AudioClip;
+
+                if (environmental && loop)
+                {
+                    SFXToken toAdd = new SFXToken();
+                    toAdd.SFXAddress = sfxToPlay.AssetGUID;
+                    toAdd.yPos = position.y;
+                    toAdd.zPos = position.z;
+                    toAdd.xPos = position.x;
+                    toAdd.localVolume = volume;
+                    loopingSFXAddresses.Add(toAdd);
+                }
+
+                Play3DSFX(sfxer, position, environmental, loop, volume, minRand, maxRand);
+
+                return;
+            }
+
+            AsyncOperationHandle sfxHandle = sfxToPlay.LoadAssetAsync<AudioClip>();
+            await sfxHandle.Task;
+
+            if (sfxHandle.Status == AsyncOperationStatus.Failed)
+            {
+                Debug.LogError("Failed to load sfx asset: " + sfxToPlay.Asset.name);
+                Addressables.Release(sfxHandle);
+                return;
+            }
+
+            AudioClip sfx = sfxHandle.Result as AudioClip;
+
+            if (environmental && loop)
+            {
+                SFXToken toAdd = new SFXToken();
+                toAdd.SFXAddress = sfxToPlay.AssetGUID;
+                toAdd.yPos = position.y;
+                toAdd.zPos = position.x;
+                toAdd.xPos = position.z;
+                toAdd.localVolume = volume;
+                loopingSFXAddresses.Add(toAdd);
+            }
+
+            Play3DSFX(sfx, position, environmental, loop, minRand, maxRand);
+        }
+
+        public async Awaitable Play3DSFX(string sfxGUID, Vector3 position, float minRand = 1, float maxRand = 1, float volume = 1, bool environmental = false, bool loop = true)
+        {
+            AsyncOperationHandle loadSFX = Addressables.LoadAssetAsync<AudioClip>(sfxGUID);
+            await loadSFX.Task;
+
+            if(loadSFX.Status == AsyncOperationStatus.Failed)
+            {
+                Debug.LogError("could play sfx at guid: " + sfxGUID);
+                Addressables.Release(loadSFX);
+                return;
+            }
+
+            SFXToken toAdd = new SFXToken();
+            toAdd.xPos = position.x;
+            toAdd.yPos = position.y;
+            toAdd.zPos = position.z;
+            toAdd.SFXAddress = sfxGUID;
+            toAdd.localVolume = volume;
+            loopingSFXAddresses.Add(toAdd);
+
+            AudioClip stinker = loadSFX.Result as AudioClip;
+            Play3DSFX(stinker, position, environmental, loop, volume, minRand, maxRand);
+        }
+
         void AudioObjectCheck()
         {
             if(audioObject == null)
@@ -218,6 +400,38 @@ namespace RenCSharp
                 }
             }
         }
+
+        public async Awaitable Stop3DSFX(AssetReference clipToRemove, bool removeOnlyOne = true)
+        {
+            for(int i = loopingSFXAddresses.Count - 1; i > -1; i--)
+            {
+                if(clipToRemove.AssetGUID == loopingSFXAddresses[i].SFXAddress)
+                {
+                    loopingSFXAddresses.RemoveAt(i);
+                    if (removeOnlyOne) break;
+                }
+            }
+
+            if (clipToRemove.IsValid())
+            {
+                AudioClip sfxer = clipToRemove.OperationHandle.Result as AudioClip;
+                Stop3DSFX(sfxer, removeOnlyOne);
+            }
+
+            AsyncOperationHandle stinker = clipToRemove.LoadAssetAsync<AudioClip>();
+            await stinker.Task;
+
+            if(stinker.Status == AsyncOperationStatus.Failed)
+            {
+                Debug.LogError("couldn't find sfx: " + clipToRemove.Asset + " to remove.");
+                Addressables.Release(stinker);
+                return;
+            }
+
+            AudioClip sfx = stinker.Result as AudioClip;
+            Stop3DSFX(sfx, removeOnlyOne);
+        }
+
         /// <summary>
         /// Removes a 3DSFX from scene
         /// </summary>

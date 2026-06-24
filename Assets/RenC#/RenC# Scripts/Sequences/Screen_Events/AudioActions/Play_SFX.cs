@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,33 +7,44 @@ namespace RenCSharp.Sequences
     /// <summary>
     /// Play a sound effect. Kinda obvious.
     /// </summary>
+    [Obsolete("Outdated, should use Play_SFXAsset instead to communicate with Save/Load.", false)]
     public class Play_SFX : Screen_Event
     {
         [SerializeField] private AudioClip sfxToPlay;
-        [SerializeField, Tooltip("Leave as Vec3.zero to be a 2D sfx")] private Vector3 position = Vector3.zero;
-        [SerializeField, Tooltip("Used for audio balancing")] private bool environmental = false;
-        [SerializeField, Tooltip("Decides if the sound effect should loop")] private bool loop = false;
-        [SerializeField] private bool stopOnScreenProgress = true;
+        [SerializeField, Tooltip("Leave as Vec3.zero to be a 2D sfx")] protected Vector3 position = Vector3.zero;
+        [SerializeField, Tooltip("Decides if the sound effect should loop")] protected bool loop = false;
+        [SerializeField] protected bool stopOnScreenProgress = true;
         [SerializeField, Min(0), Tooltip("Decides how long a sfx should loop for, unused if loop is false. " +
-            "Leave at 0 if you want it to be stopped manually." +
-            "SFX will be automatically stopped by screen changing if duration is not 0.")] private float loopDuration = 1f;
-        [SerializeField, Range(0f, 1f)] private float baseVolume = 1f;
-        private Coroutine stopLoopRoutine;
-        private bool is3D => position != Vector3.zero;
+            "Leave at 0 if you want it to be stopped manually. This will make it an ESFX." +
+            "SFX will be automatically stopped by screen changing if duration is not 0.")]
+        protected float loopDuration = 1f;
+        [SerializeField, Range(0f, 1f)] protected float baseVolume = 1f;
+        protected Coroutine stopLoopRoutine;
+        protected bool is3D => position != Vector3.zero;
+        protected bool environmental => loopDuration == 0;
+
+        public AudioClip GetSFXToPlay => sfxToPlay;
+        public Vector3 GetPosition => position;
+        public bool GetLoop => loop;
+        public bool GetStopOnScreenProgress => stopOnScreenProgress;
+        public float GetLoopDuration => loopDuration;
+        public float GetBaseVolume => baseVolume;
+
         public override void DoEvent()
         {
-            if (!is3D) Audio_Manager.AM.Play2DSFX(sfxToPlay, 1f, 1f, baseVolume);
+            if (!is3D) Audio_Manager.AM.Play2DSFX(sfxToPlay, 1f, 1f, baseVolume, environmental, loop);
             else Audio_Manager.AM.Play3DSFX(sfxToPlay, position, environmental, loop, baseVolume);
 
             if (loop && loopDuration > 0)
             {
                 stopLoopRoutine = Script_Manager.SM.StartCoroutine(HandleLoopDuration());
             }
-            if(stopOnScreenProgress) Script_Manager.ProgressScreenEvent += PanicStopSFX;
+            if (stopOnScreenProgress) Script_Manager.ProgressScreenEvent += PanicStopSFX;
         }
 
-        private IEnumerator HandleLoopDuration()
+        protected virtual IEnumerator HandleLoopDuration()
         {
+            if (environmental) yield break;
             float t = 0;
             while(t < loopDuration)
             {
@@ -43,7 +55,7 @@ namespace RenCSharp.Sequences
             else Audio_Manager.AM.Stop2DSFX(sfxToPlay);
         }
 
-        private void PanicStopSFX()
+        protected virtual void PanicStopSFX()
         {
             if(stopLoopRoutine != null) Script_Manager.SM.StopCoroutine(stopLoopRoutine);
             if (is3D) Audio_Manager.AM.Stop3DSFX(sfxToPlay);
@@ -52,7 +64,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Audio/Play Sound Effect";
+            return "Deprecated/Play Sound Effect";
         }
     }
 }

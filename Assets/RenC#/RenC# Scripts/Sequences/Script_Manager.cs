@@ -515,6 +515,7 @@ namespace RenCSharp
             Debug.Log(particleLog);
 
             st.ActiveActors = actorTokens;
+            st.ActiveESFX = Audio_Manager.AM.GetLoopingSFXGUIDs;
             manToSave.ScreenInformation = st;
             menuBase.SetActive(false);
             StartCoroutine(WaitForScreenShot(manToSave, saveFileName, auto));
@@ -680,6 +681,27 @@ namespace RenCSharp
             catch(NullReferenceException ex)
             {
                 Debug.LogWarning($"Save Data ({sd.FileName}) doesn't contain a valid ParticleToken list. Darn! Message: {ex.Message}");
+            }
+
+            try
+            {
+                foreach(SFXToken sfxt in std.ActiveESFX)
+                {
+                    Vector3 position = new Vector3(sfxt.xPos, sfxt.yPos, sfxt.zPos);
+                    bool is3D = position == Vector3.zero;
+
+                    if (is3D)
+                    {
+                        Audio_Manager.AM.Play3DSFX(sfxt.SFXAddress, position, 1, 1, sfxt.localVolume, true, true);
+                    }
+                    else
+                    {
+                        Audio_Manager.AM.Play2DSFX(sfxt.SFXAddress, 1, 1, sfxt.localVolume, true, true);
+                    }
+                }
+            }catch(NullReferenceException ex)
+            {
+                Debug.LogWarning($"Save Data ({sd.FileName}) doesn't contain a valid SFXToken list. Darn! Message: {ex.Message}");
             }
 
             SequenceAsset.WaitForCompletion();
