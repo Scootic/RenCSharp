@@ -46,7 +46,7 @@ MonoBehaviour:
     dialog: <font="glitchfont">Nope, nope, nope. We're not doing this.
     ScreenActions:
     - rid: 9142197738211377235
-    - rid: 9142197738211377236
+    - rid: 4972360475574796360
     - rid: 9079475089592287444
     - rid: 9079475098267418804
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
@@ -78,7 +78,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Ah!
     ScreenActions:
-    - rid: 9142197738211377241
+    - rid: 4972360475574796361
     - rid: 9079475098267418805
   - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
     dialog: <font="glitchfont">There. You happy?
@@ -513,7 +513,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 1b9233e1431ff77439c022ec3f2ecb26, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 3d769f37f048fa9488eeff6f4157cb5f
@@ -524,6 +523,34 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 4972360475574796360
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 4f09cc94363340d459ef2681fc443d19
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796361
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 4f09cc94363340d459ef2681fc443d19
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
     - rid: 9079475089592287442
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -743,6 +770,7 @@ MonoBehaviour:
         - casDown
         - casDown
         - smile
+        - 
     - rid: 9142197738211377229
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -783,15 +811,6 @@ MonoBehaviour:
         - casDown
         - casDown
         - terror
-    - rid: 9142197738211377236
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 4f09cc94363340d459ef2681fc443d19, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
     - rid: 9142197738211377239
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -808,15 +827,6 @@ MonoBehaviour:
         - casDown
         - casDown
         - terror
-    - rid: 9142197738211377241
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 4f09cc94363340d459ef2681fc443d19, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
     - rid: 9142197738211377249
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

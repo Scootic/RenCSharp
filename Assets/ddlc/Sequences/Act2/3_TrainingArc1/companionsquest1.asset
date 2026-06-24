@@ -331,7 +331,7 @@ MonoBehaviour:
     dialog: As the armed men try to attack Farkas, he transforms into his werewolf
       form.
     ScreenActions:
-    - rid: 268099459762618371
+    - rid: 4972360475574796405
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: (Oh god...)
     ScreenActions: []
@@ -523,7 +523,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 63186ac8c6a1c9a46b37ef1b435cde62, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 1bc9b8b04e02c9d4dbe2a32dffd27c3b
@@ -534,16 +533,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 268099459762618371
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 7005aac9cf1f8074fb728afbd3cac263, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4351267874930426006
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1477,6 +1466,7 @@ MonoBehaviour:
             operation: 2
             desiredValue: 10
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
@@ -1488,6 +1478,7 @@ MonoBehaviour:
             operation: 2
             desiredValue: 20
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
@@ -1499,6 +1490,7 @@ MonoBehaviour:
             operation: 3
             desiredValue: 20
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
@@ -1705,6 +1697,7 @@ MonoBehaviour:
             operation: 2
             desiredValue: 10
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
@@ -1715,6 +1708,7 @@ MonoBehaviour:
             operation: 2
             desiredValue: 20
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
@@ -1725,8 +1719,23 @@ MonoBehaviour:
             operation: 3
             desiredValue: 20
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
             dialog: Really?
             ScreenActions: []
+    - rid: 4972360475574796405
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 7005aac9cf1f8074fb728afbd3cac263
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1

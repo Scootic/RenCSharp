@@ -113,8 +113,8 @@ MonoBehaviour:
         actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         visualSpriteIndexes:
         - default
-        - skyUp
-        - concernSpeak
+        - 
+        - 
         - 
     - rid: 268099729075732546
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
@@ -217,16 +217,15 @@ MonoBehaviour:
       data:
         actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         visualSpriteIndexes:
-        - skyUp
-        - skyUp
-        - shock
+        - skyDown
+        - skyDown
+        - bored
         - 
     - rid: 268099729075732561
       type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         sfxToPlay: {fileID: 8300000, guid: e97588fde909d0b4bb98405f325fdac3, type: 3}
         position: {x: 0, y: 0, z: 0}
-        environmental: 0
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
@@ -324,7 +323,6 @@ MonoBehaviour:
       data:
         sfxToPlay: {fileID: 8300000, guid: 4525e98dfb3d9ed4d90ab81145c9f53e, type: 3}
         position: {x: 0, y: 0, z: 0}
-        environmental: 0
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1

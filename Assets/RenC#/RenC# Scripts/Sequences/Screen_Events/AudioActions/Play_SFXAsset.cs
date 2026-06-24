@@ -4,9 +4,19 @@ using UnityEngine.AddressableAssets;
 
 namespace RenCSharp.Sequences
 {
-    public class Play_SFXAsset : Play_SFX
+    public class Play_SFXAsset : Screen_Event
     {
         [SerializeField] private AssetReference sfxAsset;
+        [SerializeField] private Vector3 position;
+        [SerializeField] private float baseVolume = 1;
+        [Header("Looping")]
+        [SerializeField] private bool loop = false;
+        [SerializeField] private bool stopOnScreenProgress = true;
+        [SerializeField, Tooltip("Set to 0 to not stop until manually stopped.")] private float loopDuration = 1;
+
+        private bool is3D;
+        private Coroutine stopLoopRoutine;
+        private bool environmental => loopDuration == 0;
 
         public AssetReference SetAssetReference { set { sfxAsset = value; } }
         public bool SetLoop { set {loop = value; } }
@@ -26,7 +36,7 @@ namespace RenCSharp.Sequences
             if (stopOnScreenProgress) Script_Manager.ProgressScreenEvent += PanicStopSFX;
         }
 
-        protected override IEnumerator HandleLoopDuration()
+        protected IEnumerator HandleLoopDuration()
         {
             if(environmental) yield break;
             float t = 0;
@@ -39,7 +49,7 @@ namespace RenCSharp.Sequences
             else Audio_Manager.AM.Stop2DSFX(sfxAsset);
         }
 
-        protected override void PanicStopSFX()
+        protected void PanicStopSFX()
         {
             if (stopLoopRoutine != null) Script_Manager.SM.StopCoroutine(stopLoopRoutine);
             if (is3D) Audio_Manager.AM.Stop3DSFX(sfxAsset);

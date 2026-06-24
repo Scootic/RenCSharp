@@ -58,7 +58,7 @@ MonoBehaviour:
     dialog: Yuri summons her bound dagger and-
     ScreenActions:
     - rid: 4351267964947792063
-    - rid: 4351267964947792064
+    - rid: 4972360475574796409
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: -stabs the wall. Shattering it, revealing a way forward and lowering
       the passageway's obstruction.
@@ -241,16 +241,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - determinedSpeak
-    - rid: 4351267964947792064
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 99f7a8dde4a22ed4997ef1f651a8ced2, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 0.33
     - rid: 4351267964947792065
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -414,3 +404,17 @@ MonoBehaviour:
         - skyDown
         - inquisitive
         - 
+    - rid: 4972360475574796409
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 99f7a8dde4a22ed4997ef1f651a8ced2
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 0.33
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1

@@ -16,7 +16,7 @@ namespace RenCSharp
         [SerializeField, Range(1, 20)] private int sfxAmount = 20; //dictates how many sound effects we can have at once
         [SerializeField] private GameObject audioObject; //prefab for 3D sfx
         private AudioSource[] sfxSources; //stores 2D sfx
-        [SerializeField] private List<GameObject> sfxList = new(); //stores 3D sfx
+        [SerializeField] private List<AudioSource> sfxList = new(); //stores 3D sfx
         private AudioSource leMusic, newBGM; //stores the background music
         [SerializeField] private List<SFXToken> loopingSFXAddresses = new();
 
@@ -70,6 +70,33 @@ namespace RenCSharp
             DontDestroyOnLoad(gameObject);
         }
 
+        public async Awaitable StopAllESFX()
+        {
+            for(int i = loopingSFXAddresses.Count - 1; i > -1; i--)
+            {
+                AsyncOperationHandle aso = Addressables.LoadAssetAsync<AudioClip>(loopingSFXAddresses[i].SFXAddress);
+                await aso.Task;
+
+                if(aso.Status == AsyncOperationStatus.Failed)
+                {
+                    Addressables.Release(aso);
+                    continue;
+                }
+
+                AudioClip stinker = aso.Result as AudioClip;
+
+                if (loopingSFXAddresses[i].xPos == 0 && loopingSFXAddresses[i].yPos == 0 && loopingSFXAddresses[i].zPos == 0)
+                {
+                    Stop2DSFX(stinker, true);
+                }
+                else
+                {
+                    Stop3DSFX(stinker, true);
+                }
+                loopingSFXAddresses.RemoveAt(i);
+            }
+        }
+
         #region 2DSFX
         /// <summary>
         /// Play a 2D sound effect.
@@ -81,8 +108,18 @@ namespace RenCSharp
         /// <param name="environmental">whether or not to use environmental or regular sound settings</param>
         public void Play2DSFX(AudioClip clipToPlay, float minRand = 1, float maxRand = 1, float volume = 1, bool environmental = false, bool loop = false)
         {
+            if (environmental && AlreadyPlaying2DSFX(clipToPlay)) return; //no duped esfx 
+
             sfxSources[sfxIndex].clip = clipToPlay; //tell the current audio source to load x clip
-            sfxSources[sfxIndex].volume = volume * (environmental ? esfxVolMult : sfxVolMult);
+            if (!environmental)
+            {
+                sfxSources[sfxIndex].volume = volume * sfxVolMult;
+            }
+            else
+            {
+                sfxSources[sfxIndex].volume = 0;
+                StartCoroutine(FadeInSFXVolume(sfxSources[sfxIndex], 1, volume, environmental));
+            }
             sfxSources[sfxIndex].loop = loop;
             sfxSources[sfxIndex].pitch = Random.Range(minRand, maxRand);
             sfxSources[sfxIndex].Play(); //tell the current audio source to play
@@ -184,19 +221,20 @@ namespace RenCSharp
             Play2DSFX(clips[randI], minRand, maxRand, volume, environmental);
         }
 
-        public void Stop2DSFX(AudioClip clipToStop, bool onlyStopOne = true)
+        public void Stop2DSFX(AudioClip clipToStop, bool onlyStopOne = true, bool fadeOut = false)
         {
             foreach (AudioSource source in sfxSources)
             {
                 if (source.clip = clipToStop)
                 {
-                    source.Stop();
+                    if(!fadeOut)source.Stop();
+                    else
                     if (onlyStopOne) return;
                 }
             }
         }
 
-        public async Awaitable Stop2DSFX(AssetReference sfxToStop, bool onlyStopOne = true)
+        public async Awaitable Stop2DSFX(AssetReference sfxToStop, bool onlyStopOne = true, bool fadeOut = false)
         {
             for(int i = loopingSFXAddresses.Count - 1; i > -1 ;i--)
             {
@@ -246,7 +284,6 @@ namespace RenCSharp
             
             GameObject gaming = Object_Pooling.Spawn(audioObject, position, Quaternion.identity); //Quaternion.identity is basically default for Quaternions
             gaming.transform.SetParent(null); //prevent dumbass going away with despawning objects?
-            sfxList.Add(gaming);
 
             if (gaming.GetComponent<AudioSource>() == null) //if no audio source
             {
@@ -254,6 +291,7 @@ namespace RenCSharp
             }
 
             AudioSource temp = gaming.GetComponent<AudioSource>();
+            sfxList.Add(temp);
             temp = ThingToPlay; //works or nah???
             temp.spatialBlend = 1f;
             temp.volume = vol; //reset volume because object pooling
@@ -262,17 +300,17 @@ namespace RenCSharp
             temp.volume *= environmental ? esfxVolMult : sfxVolMult;
             temp.Play();
 
-            if(!loop) StartCoroutine(BleanUp(gaming, ThingToPlay.clip.length));
+            if(!loop) StartCoroutine(BleanUp(temp, ThingToPlay.clip.length));
         }
 
         public void Play3DSFX(AudioClip clipToPlay, Vector3 position, bool environmental = false, bool loop = false, float vol = 1, float minRand = 1, float maxRand = 1)
         {
             AudioObjectCheck();
             RemoveOldest3DSFXCheck();
+            if (environmental && _3DSFXAlreadyPlaying(clipToPlay)) return; //no dupes of esfx. probably not great
 
             GameObject gaming = Object_Pooling.Spawn(audioObject, position, Quaternion.identity);
             gaming.transform.SetParent(null);
-            sfxList.Add(gaming);
 
             if(gaming.GetComponent<AudioSource>() == null)
             {
@@ -280,15 +318,24 @@ namespace RenCSharp
             }
 
             AudioSource temp = gaming.GetComponent<AudioSource>();
+            sfxList.Add(temp);
             temp.clip = clipToPlay;
             temp.spatialBlend = 1;
-            temp.volume = vol;
             temp.pitch = Random.Range(minRand, maxRand);
-            temp.volume *= environmental ? esfxVolMult : sfxVolMult;
             temp.loop = loop;
+            if (!environmental)
+            {
+                temp.volume = vol;
+                temp.volume *= sfxVolMult;
+            }
+            else
+            {
+                temp.volume = 0;
+                StartCoroutine(FadeInSFXVolume(temp, 1, vol, environmental));
+            }
             temp.Play();
 
-            if(!loop) StartCoroutine(BleanUp(gaming, temp.clip.length));
+            if(!loop) StartCoroutine(BleanUp(temp, temp.clip.length));
         }
 
         public async Awaitable Play3DSFX(AssetReference sfxToPlay, Vector3 position, float minRand = 1, float maxRand = 1, float volume = 1, bool environmental = false, bool loop = false)
@@ -377,10 +424,19 @@ namespace RenCSharp
         {
             if (sfxList.Count > realSFXSize)
             {
-                GameObject go = sfxList[0];
+                AudioSource go = sfxList[0];
                 sfxList.RemoveAt(0);
-                Object_Pooling.Despawn(go);
+                Object_Pooling.Despawn(go.gameObject);
             }
+        }
+
+        bool _3DSFXAlreadyPlaying(AudioClip clipTocheck)
+        {
+            foreach(AudioSource AS in sfxList)
+            {
+                if (AS.clip == clipTocheck) return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -388,20 +444,28 @@ namespace RenCSharp
         /// </summary>
         /// <param name="clipToRemove">The type of sound that will be removed</param>
         /// <param name="removeOnlyOne">Remove every instance of this sound, or just the first we find</param>
-        public void Stop3DSFX(AudioClip clipToRemove, bool removeOnlyOne = true)
+        public void Stop3DSFX(AudioClip clipToRemove, bool removeOnlyOne = true, bool fadeOut = false)
         {
-            foreach (GameObject go in sfxList)
+            for(int i = sfxList.Count - 1; i > -1;i--)
             {
-                if (go.GetComponent<AudioSource>().clip == clipToRemove)
+                if (sfxList[i].clip == clipToRemove)
                 {
-                    sfxList.Remove(go);
-                    Object_Pooling.Despawn(go);
-                    if (removeOnlyOne) return;
+                    AudioSource stinker = sfxList[i];
+                    if (!fadeOut)
+                    {
+                        sfxList.RemoveAt(i);
+                        Object_Pooling.Despawn(stinker.gameObject);
+                    }
+                    else
+                    {
+                        StartCoroutine(FadeOut3DSFX(stinker, 1));
+                    }
+                    if (removeOnlyOne) break;
                 }
             }
         }
 
-        public async Awaitable Stop3DSFX(AssetReference clipToRemove, bool removeOnlyOne = true)
+        public async Awaitable Stop3DSFX(AssetReference clipToRemove, bool removeOnlyOne = true, bool fadeOut = false)
         {
             for(int i = loopingSFXAddresses.Count - 1; i > -1; i--)
             {
@@ -415,7 +479,7 @@ namespace RenCSharp
             if (clipToRemove.IsValid())
             {
                 AudioClip sfxer = clipToRemove.OperationHandle.Result as AudioClip;
-                Stop3DSFX(sfxer, removeOnlyOne);
+                Stop3DSFX(sfxer, removeOnlyOne, fadeOut);
             }
 
             AsyncOperationHandle stinker = clipToRemove.LoadAssetAsync<AudioClip>();
@@ -429,17 +493,17 @@ namespace RenCSharp
             }
 
             AudioClip sfx = stinker.Result as AudioClip;
-            Stop3DSFX(sfx, removeOnlyOne);
+            Stop3DSFX(sfx, removeOnlyOne, fadeOut);
         }
 
         /// <summary>
         /// Removes a 3DSFX from scene
         /// </summary>
         /// <param name="goToRemove">The gameobject reference of the specific sound you want gone</param>
-        public void Stop3DSFX(GameObject goToRemove)
+        public void Stop3DSFX(AudioSource goToRemove)
         {
             sfxList.Remove(goToRemove);
-            Object_Pooling.Despawn(goToRemove);
+            Object_Pooling.Despawn(goToRemove.gameObject);
         }
         /// <summary>
         /// cleans up a 3d sfx from the sfxList
@@ -447,16 +511,50 @@ namespace RenCSharp
         /// <param name="gaming">The gameobject that's playing the sound that we wish to be gone</param>
         /// <param name="duration">how long it takes to despawn sound obj</param>
         /// <returns>Jack</returns>
-        private IEnumerator BleanUp(GameObject gaming, float duration)
+        private IEnumerator BleanUp(AudioSource gaming, float duration)
         {
             yield return new WaitForSeconds(duration);
             if (sfxList.Contains(gaming))
             {
                 sfxList.Remove(gaming);
-                Object_Pooling.Despawn(gaming);
+                Object_Pooling.Despawn(gaming.gameObject);
+            }
+        }
+
+        private IEnumerator FadeOut3DSFX(AudioSource gaming, float fadeOutDuration)
+        {
+            float t = fadeOutDuration;
+            float perc;
+            float ogVol = gaming.volume;
+            while (t >= 0)
+            {
+                t -= Time.deltaTime;
+                perc = t / fadeOutDuration;
+                gaming.volume = ogVol * perc;
+                yield return null;
+            }
+            gaming.Stop();
+            if (sfxList.Contains(gaming))
+            {
+                sfxList.Remove(gaming);
+                Object_Pooling.Despawn(gaming.gameObject);
             }
         }
         #endregion
+
+        private IEnumerator FadeInSFXVolume(AudioSource source, float fadeDuration, float endBaseVolume, bool environmental)
+        {
+            float t = 0;
+            source.volume = 0;
+            while(t <= fadeDuration)
+            {
+                t += Time.deltaTime;
+                float perc = t / fadeDuration;
+                source.volume = endBaseVolume * perc * (environmental ? esfxVolMult : sfxVolMult);
+                yield return null;
+            }
+            source.volume = endBaseVolume * (environmental ? esfxVolMult : sfxVolMult);
+        }
 
         #region BGM
         /// <summary>

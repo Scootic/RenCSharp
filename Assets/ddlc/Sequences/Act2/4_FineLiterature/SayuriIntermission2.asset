@@ -52,7 +52,7 @@ MonoBehaviour:
     dialog: Yuri reads aloud so Sayori can hear too.
     ScreenActions:
     - rid: 4351268349337141404
-    - rid: 4351268349337141408
+    - rid: 4972360475574796431
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Well now, there's something!
     ScreenActions:
@@ -104,7 +104,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 801ce0a512b6e8e41a9a1cf1932191ae, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: b4b4b43db861a4c468485204a4721167
@@ -206,16 +205,6 @@ MonoBehaviour:
     - rid: 4351268349337141407
       type: {class: Remove_Poem, ns: RenCSharp.Sequences, asm: Sequences}
       data: 
-    - rid: 4351268349337141408
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: ef0d753d1e95959469a74f817b54bda3, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4351268349337141409
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -296,3 +285,17 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - content
+    - rid: 4972360475574796431
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: ef0d753d1e95959469a74f817b54bda3
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1

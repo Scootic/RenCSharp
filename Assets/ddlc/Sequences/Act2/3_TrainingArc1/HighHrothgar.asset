@@ -69,7 +69,7 @@ MonoBehaviour:
     dialog: <font=dragonfont>fus</font>!
     ScreenActions:
     - rid: 4351267874930425914
-    - rid: 4351267874930425915
+    - rid: 4972360475574796406
   - speaker: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
     dialog: Dragonborn, it is you. Welcome to High Hrothgar.
     ScreenActions: []
@@ -157,16 +157,15 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 3f69205d11b3935488057cdda3369b64, type: 2}
-    requireCondition: 1
     conditions:
     - flagToCheck: GoodMonika
       operation: 1
       desiredValue: 0
       persistent: 0
+      debugResult: 0
       bitWise: 0
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 86813443e5b88e947bf7a7a6133d799e, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 348dc8f603500674b886d4b384281e59
@@ -336,15 +335,6 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: 17d7fb6524a48624b8f800e8b355e0ad, type: 2}
         loopOnScreen: 0
-    - rid: 4351267874930425915
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
     - rid: 4351267874930425917
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -454,3 +444,17 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+    - rid: 4972360475574796406
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1

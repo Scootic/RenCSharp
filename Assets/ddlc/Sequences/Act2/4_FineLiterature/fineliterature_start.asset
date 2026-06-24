@@ -32,16 +32,15 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: b4c46682784ffba428584b27e9310f75, type: 2}
-    requireCondition: 1
     conditions:
     - flagToCheck: GoodMonika
       operation: 3
       desiredValue: 1
       persistent: 0
+      debugResult: 0
       bitWise: 0
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 22b9ea47c35096b4da7e9b3c405fa914, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 0b807ac0dce8b0143ab6c62a626e4306

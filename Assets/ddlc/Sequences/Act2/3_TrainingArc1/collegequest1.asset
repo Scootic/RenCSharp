@@ -138,7 +138,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: With a simple motion of her hands, Yuri summons a dagger from Oblivion.
     ScreenActions:
-    - rid: 4351267943501267067
+    - rid: 4972360475574796401
   - speaker: {fileID: 11400000, guid: 3b9d3d794309e1848a67c6a6897eddf2, type: 2}
     dialog: I see, what about you?
     ScreenActions: []
@@ -154,7 +154,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4351267943501266973
     - rid: 4351267943501266974
-    - rid: 4351267943501266984
+    - rid: 4972360475574796402
     - rid: 4351267943501266985
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Yuri!
@@ -171,7 +171,7 @@ MonoBehaviour:
     - rid: 4351267943501266976
     - rid: 4351267943501266978
     - rid: 4351267943501266979
-    - rid: 4351267943501267066
+    - rid: 4972360475574796403
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Why'd you do that-!
     ScreenActions:
@@ -580,7 +580,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: Yuri reads the book...
     ScreenActions:
-    - rid: 4351267943501267149
+    - rid: 4972360475574796404
     - rid: 4351267943501267150
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: As Yuri closes the book, she realizes that she needs to go wake up Sayori
@@ -816,7 +816,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: f292921f7bce62c4fbd3cbfd815ed6f7, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 63186ac8c6a1c9a46b37ef1b435cde62
@@ -1336,16 +1335,6 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 3b9d3d794309e1848a67c6a6897eddf2, type: 2}
         fadeTime: 0.5
-    - rid: 4351267943501266984
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: a67f3af0a88dfef4194e419ab633887d, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4351267943501266985
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1746,26 +1735,6 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         loopOnScreen: 0
-    - rid: 4351267943501267066
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 4525e98dfb3d9ed4d90ab81145c9f53e, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
-    - rid: 4351267943501267067
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 99f7a8dde4a22ed4997ef1f651a8ced2, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 0.33
     - rid: 4351267943501267070
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2521,16 +2490,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - eyesClosedContent
-    - rid: 4351267943501267149
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: ef0d753d1e95959469a74f817b54bda3, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4351267943501267150
       type: {class: Spawn_Poem, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -3386,3 +3345,59 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - focus
+    - rid: 4972360475574796401
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 99f7a8dde4a22ed4997ef1f651a8ced2
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 0.33
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796402
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: a67f3af0a88dfef4194e419ab633887d
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796403
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 4525e98dfb3d9ed4d90ab81145c9f53e
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796404
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: ef0d753d1e95959469a74f817b54bda3
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1

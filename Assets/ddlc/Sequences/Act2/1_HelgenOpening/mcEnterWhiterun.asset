@@ -446,7 +446,7 @@ MonoBehaviour:
     dialog: Yuri focuses again, and successfully conjures a bound dagger.
     ScreenActions:
     - rid: 9079474795981832406
-    - rid: 1790118673552507005
+    - rid: 4972360475574796372
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: ...
     ScreenActions: []
@@ -720,16 +720,20 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 1790118673552507005
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 4972360475574796372
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        sfxToPlay: {fileID: 8300000, guid: 99f7a8dde4a22ed4997ef1f651a8ced2, type: 3}
+        sfxAsset:
+          m_AssetGUID: 99f7a8dde4a22ed4997ef1f651a8ced2
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
-        environmental: 0
+        baseVolume: 0.33
         loop: 0
         stopOnScreenProgress: 0
         loopDuration: 1
-        baseVolume: 0.33
     - rid: 9079474795981832377
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:

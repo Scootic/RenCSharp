@@ -116,7 +116,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Owie!
     ScreenActions:
-    - rid: 9142197673170043075
+    - rid: 4972360475574796359
     - rid: 9142197673170043076
     - rid: 9142197673170043077
     - rid: 9079475089592287416
@@ -468,7 +468,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: cd3af4819240eae419edf805d2e6ff82, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: b7d8abbd42123b145b7fa46c22d96941
@@ -479,6 +478,20 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 4972360475574796359
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 0b2a280c54db4fa4486944e6cfb59f1a
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
     - rid: 9079475089592287415
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -680,15 +693,6 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - smileSpeak
-    - rid: 9142197673170043075
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 0b2a280c54db4fa4486944e6cfb59f1a, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
     - rid: 9142197673170043076
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:

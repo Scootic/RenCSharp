@@ -139,7 +139,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: We hear a strange sound, a roar, coming from the distance.
     ScreenActions:
-    - rid: 9079474977939128412
+    - rid: 4972360475574796373
   - speaker: {fileID: 0}
     dialog: Good news! Alduin's coming to save me!
     ScreenActions: []
@@ -175,7 +175,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9079475098267418850
     - rid: 9079475089592287571
-    - rid: 9079474977939128411
+    - rid: 4972360475574796374
     - rid: 4972360390599770166
   - speaker: {fileID: 0}
     dialog: Not dying today, boys!
@@ -520,6 +520,34 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+    - rid: 4972360475574796373
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: dfabdf9e321262b478dd7cb54a783384
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+    - rid: 4972360475574796374
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 468aea67a488b4644baaa92bbdf4118c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
     - rid: 9079474591330205794
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -648,26 +676,6 @@ MonoBehaviour:
         spawnOffset: {x: -500, y: 0, z: 0}
         visualSpriteIndexes:
         - default
-    - rid: 9079474977939128411
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 468aea67a488b4644baaa92bbdf4118c, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
-    - rid: 9079474977939128412
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: dfabdf9e321262b478dd7cb54a783384, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 9079475089592287570
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:

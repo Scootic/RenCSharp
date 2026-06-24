@@ -60,7 +60,7 @@ MonoBehaviour:
     - rid: 4351268260154179671
     - rid: 4351268260154179672
     - rid: 4351268260154179673
-    - rid: 4351268260154179684
+    - rid: 4972360475574796412
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Hey, watch where you're going-
     ScreenActions:
@@ -558,16 +558,6 @@ MonoBehaviour:
         - skySmug
         - skySmug
         - grimaceBlush
-    - rid: 4351268260154179684
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: a67f3af0a88dfef4194e419ab633887d, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 0.5
     - rid: 4351268260154179685
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -708,6 +698,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: b0b2f39e4bb91124a867021155fb2ecd, type: 2}
@@ -718,6 +709,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 3
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: b0b2f39e4bb91124a867021155fb2ecd, type: 2}
@@ -728,6 +720,7 @@ MonoBehaviour:
             operation: 1
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: b0b2f39e4bb91124a867021155fb2ecd, type: 2}
@@ -742,6 +735,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: b0b2f39e4bb91124a867021155fb2ecd, type: 2}
@@ -753,6 +747,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 3
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: b0b2f39e4bb91124a867021155fb2ecd, type: 2}
@@ -764,6 +759,7 @@ MonoBehaviour:
             operation: 1
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: b0b2f39e4bb91124a867021155fb2ecd, type: 2}
@@ -778,6 +774,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: b0b2f39e4bb91124a867021155fb2ecd, type: 2}
@@ -789,6 +786,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 3
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: b0b2f39e4bb91124a867021155fb2ecd, type: 2}
@@ -800,6 +798,7 @@ MonoBehaviour:
             operation: 1
             desiredValue: 0
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: b0b2f39e4bb91124a867021155fb2ecd, type: 2}
@@ -1030,3 +1029,17 @@ MonoBehaviour:
         flagValue: 8
         increment: 0
         persistent: 0
+    - rid: 4972360475574796412
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: a67f3af0a88dfef4194e419ab633887d
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 0.5
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1

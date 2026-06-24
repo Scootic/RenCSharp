@@ -540,6 +540,7 @@ namespace RenCSharp
             StopAllCoroutines();
             //go through every single GO spawned by Object_Factory, and banish them.
             Object_Factory.ScrubDictionary();
+            _ = Audio_Manager.AM.StopAllESFX();
 
             Animated_Image_Handler ov = Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Animated_Image_Handler>();
             Animated_Image_Handler bg = Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder).GetComponent<Animated_Image_Handler>();
@@ -629,7 +630,7 @@ namespace RenCSharp
                 bgI.color = Color.white;
             }
 
-            Audio_Manager.AM.PlayBGM(std.MusicAssetKey, 1); //i doubt it would matter if everything else starts happening before bgm call ends
+            _ = Audio_Manager.AM.PlayBGM(std.MusicAssetKey, 1); //i doubt it would matter if everything else starts happening before bgm call ends
 
             SequenceAsset = Addressables.LoadAssetAsync<Sequence>(sd.CurrentSequenceAsset);
 
@@ -675,7 +676,7 @@ namespace RenCSharp
 
                     Vector3 localPos = new Vector3(pt.XPos, pt.YPos, pt.ZPos);
                     Debug.Log("Local position from particle save data: " + localPos);
-                    Object_Factory.SpawnParticleObject(true, pt.ParticleName, guh.transform, localPos, pt.UIParticleGUID, pt.ParticleSystemGUIDs[0]);
+                    _ = Object_Factory.SpawnParticleObject(true, pt.ParticleName, guh.transform, localPos, pt.UIParticleGUID, pt.ParticleSystemGUIDs[0]);
                 }
             }
             catch(NullReferenceException ex)
@@ -688,15 +689,15 @@ namespace RenCSharp
                 foreach(SFXToken sfxt in std.ActiveESFX)
                 {
                     Vector3 position = new Vector3(sfxt.xPos, sfxt.yPos, sfxt.zPos);
-                    bool is3D = position == Vector3.zero;
+                    bool is3D = position != Vector3.zero;
 
                     if (is3D)
                     {
-                        Audio_Manager.AM.Play3DSFX(sfxt.SFXAddress, position, 1, 1, sfxt.localVolume, true, true);
+                        _ = Audio_Manager.AM.Play3DSFX(sfxt.SFXAddress, position, 1, 1, sfxt.localVolume, true, true);
                     }
                     else
                     {
-                        Audio_Manager.AM.Play2DSFX(sfxt.SFXAddress, 1, 1, sfxt.localVolume, true, true);
+                        _ = Audio_Manager.AM.Play2DSFX(sfxt.SFXAddress, 1, 1, sfxt.localVolume, true, true);
                     }
                 }
             }catch(NullReferenceException ex)

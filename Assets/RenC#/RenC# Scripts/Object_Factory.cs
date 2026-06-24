@@ -88,7 +88,7 @@ namespace RenCSharp
                 subParticleObjHandle.Release();
             }
 
-            if (!ogParticleSystem.main.loop) RemoveObjectOverTimeAsync(name, ogParticleSystem.main.duration); //don't await this, just start ts!
+            if (!ogParticleSystem.main.loop) _ = RemoveObjectOverTimeAsync(name, ogParticleSystem.main.duration); //don't await this, just start ts!
             ogParticleSystem.Play();
 
             uiParticleObj.transform.localPosition = localPosition;

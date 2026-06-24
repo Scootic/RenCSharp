@@ -329,11 +329,11 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Regardless, Monika releases her arrow once she's sure it'll hit and-
     ScreenActions:
-    - rid: 4351268282100351092
+    - rid: 4972360475574796410
   - speaker: {fileID: 11400000, guid: bdbdcd61e8bc6564f90148e30a6a1a14, type: 2}
     dialog: Grraah!
     ScreenActions:
-    - rid: 4351268282100351091
+    - rid: 4972360475574796411
     - rid: 4351268282100351093
     - rid: 4351268282100351094
   - speaker: {fileID: 0}
@@ -1028,26 +1028,6 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - stern
-    - rid: 4351268282100351091
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: a9cf81a1e296f0341b286752e451c7ad, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
-    - rid: 4351268282100351092
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 0870b8a3e6ad3fb4e81793692c20e863, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4351268282100351093
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1317,3 +1297,31 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - closeEyeGrinSweat
+    - rid: 4972360475574796410
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 0870b8a3e6ad3fb4e81793692c20e863
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796411
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: a9cf81a1e296f0341b286752e451c7ad
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1

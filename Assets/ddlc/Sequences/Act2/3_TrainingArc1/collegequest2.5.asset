@@ -48,7 +48,7 @@ MonoBehaviour:
     - rid: 4351267964947792108
     - rid: 4351267964947792109
     - rid: 268099795830177891
-    - rid: 268099819477139522
+    - rid: 4972360475574796407
     - rid: 1790118692274307135
   - speaker: {fileID: 11400000, guid: e683e49275a2e914cb83757b791de99d, type: 2}
     dialog: Know that you have set in motion a chain of events that cannot be stopped.
@@ -78,7 +78,7 @@ MonoBehaviour:
     - rid: 4351267964947792113
     - rid: 4351267964947792114
     - rid: 268099795830177892
-    - rid: 268099819477139523
+    - rid: 4972360475574796408
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -227,26 +227,6 @@ MonoBehaviour:
           m_SubObjectGUID: 
           m_SubObjectType: 
           m_EditorAssetChanged: 1
-    - rid: 268099819477139522
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 6256c7959eedf1a4c8d0871c2869f82f, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
-    - rid: 268099819477139523
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 6256c7959eedf1a4c8d0871c2869f82f, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 1790118692274307135
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -456,6 +436,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 3
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
@@ -467,6 +448,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 2
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
@@ -611,6 +593,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 2
             persistent: 0
+            debugResult: 0
             bitWise: 1
           resultingScreen:
             speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
@@ -634,6 +617,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 2
             persistent: 0
+            debugResult: 0
             bitWise: 1
           resultingScreen:
             speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
@@ -657,6 +641,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 2
             persistent: 0
+            debugResult: 0
             bitWise: 1
           resultingScreen:
             speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
@@ -671,6 +656,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 2
             persistent: 0
+            debugResult: 0
             bitWise: 1
           resultingScreen:
             speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
@@ -685,6 +671,7 @@ MonoBehaviour:
             operation: 0
             desiredValue: 2
             persistent: 0
+            debugResult: 0
             bitWise: 1
           resultingScreen:
             speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
@@ -737,3 +724,31 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - angry
+    - rid: 4972360475574796407
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 6256c7959eedf1a4c8d0871c2869f82f
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
+    - rid: 4972360475574796408
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 6256c7959eedf1a4c8d0871c2869f82f
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1

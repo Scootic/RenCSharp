@@ -92,7 +92,7 @@ MonoBehaviour:
     dialog: <font=glitchfont>English.
     ScreenActions:
     - rid: 4351268190826791073
-    - rid: 4351268190826791075
+    - rid: 4972360475574796417
   - speaker: {fileID: 0}
     dialog: ...?!?
     ScreenActions: []
@@ -185,7 +185,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 67b7e5ba2570ded4394a65ed1e838281, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: f81cad40630c45d4da3d2f1008725ee1
@@ -357,16 +356,6 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - concern
-    - rid: 4351268190826791075
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 4f09cc94363340d459ef2681fc443d19, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4351268190826791076
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -482,3 +471,17 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - lookAwayPity
+    - rid: 4972360475574796417
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 4f09cc94363340d459ef2681fc443d19
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1

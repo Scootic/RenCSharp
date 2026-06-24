@@ -149,7 +149,7 @@ MonoBehaviour:
     - rid: 4351268234876944455
     - rid: 4351268260154179677
     - rid: 4351268260154179678
-    - rid: 4351268260154179681
+    - rid: 4972360475574796418
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Oh, there's a boat right over there.
     ScreenActions:
@@ -422,7 +422,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 7bfcb920d98da504880811fe169a8626, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: 67b7e5ba2570ded4394a65ed1e838281
@@ -492,6 +491,7 @@ MonoBehaviour:
             operation: 3
             desiredValue: 2
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
@@ -506,6 +506,7 @@ MonoBehaviour:
             operation: 3
             desiredValue: 2
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
@@ -520,6 +521,7 @@ MonoBehaviour:
             operation: 1
             desiredValue: 2
             persistent: 0
+            debugResult: 0
             bitWise: 0
           resultingScreen:
             speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
@@ -1139,13 +1141,17 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: b0b2f39e4bb91124a867021155fb2ecd, type: 2}
         fadeTime: 1
-    - rid: 4351268260154179681
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 4972360475574796418
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        sfxToPlay: {fileID: 8300000, guid: 4f09cc94363340d459ef2681fc443d19, type: 3}
+        sfxAsset:
+          m_AssetGUID: 4f09cc94363340d459ef2681fc443d19
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
-        environmental: 0
+        baseVolume: 1
         loop: 0
         stopOnScreenProgress: 0
         loopDuration: 1
-        baseVolume: 1

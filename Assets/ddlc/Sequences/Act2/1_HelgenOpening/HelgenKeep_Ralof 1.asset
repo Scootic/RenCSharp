@@ -200,7 +200,7 @@ MonoBehaviour:
     dialog: Jesus-
     ScreenActions:
     - rid: 9079475098267418872
-    - rid: 4972360384702578765
+    - rid: 4972360475574796377
   - speaker: {fileID: 0}
     dialog: Oh right, the ceiling caving in here was a scripted event in the game.
     ScreenActions: []
@@ -417,7 +417,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: <font=futura>Sneak Increased to 10
     ScreenActions:
-    - rid: 9079474705638883534
+    - rid: 4972360475574796378
   - speaker: {fileID: 0}
     dialog: I feel extra sneaky...
     ScreenActions: []
@@ -514,16 +514,34 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 4972360384702578765
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 4972360475574796377
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        sfxToPlay: {fileID: 8300000, guid: 468aea67a488b4644baaa92bbdf4118c, type: 3}
+        sfxAsset:
+          m_AssetGUID: 468aea67a488b4644baaa92bbdf4118c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
-        environmental: 0
+        baseVolume: 1
         loop: 0
         stopOnScreenProgress: 0
         loopDuration: 1
+    - rid: 4972360475574796378
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 32fc600949d70124e806a10f09f18422
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
         baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 0
+        loopDuration: 1
     - rid: 9079474599036452922
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -781,16 +799,6 @@ MonoBehaviour:
         spawnOffset: {x: -500, y: 0, z: 0}
         visualSpriteIndexes:
         - default
-    - rid: 9079474705638883534
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 32fc600949d70124e806a10f09f18422, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 0
-        loopDuration: 1
-        baseVolume: 1
     - rid: 9079474705638883537
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:

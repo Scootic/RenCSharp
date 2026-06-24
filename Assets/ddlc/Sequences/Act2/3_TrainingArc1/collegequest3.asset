@@ -50,7 +50,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Hey!
     ScreenActions:
-    - rid: 4351267988772749495
+    - rid: 4972360475574796393
     - rid: 4351267988772749496
     - rid: 4351267988772749497
     - rid: 4351267988772749498
@@ -324,7 +324,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Ow!
     ScreenActions:
-    - rid: 4351268055900487689
+    - rid: 4972360475574796394
     - rid: 4351268055900487690
     - rid: 4351268055900487692
     - rid: 268099503569240119
@@ -335,7 +335,7 @@ MonoBehaviour:
     dialog: Tolfdir attempts to strike the draugr with a bolt of lightning, it too
       is uneffective.
     ScreenActions:
-    - rid: 4351268055900487693
+    - rid: 4972360475574796395
   - speaker: {fileID: 11400000, guid: f2b4d7673734a1a43a263468a2605a5c, type: 2}
     dialog: Our spells aren't having any effect...
     ScreenActions: []
@@ -475,16 +475,6 @@ MonoBehaviour:
         - skyDown
         - lookAwaySmile
         - 
-    - rid: 4351267988772749495
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4351267988772749496
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1199,16 +1189,6 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - shock
-    - rid: 4351268055900487689
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: a67f3af0a88dfef4194e419ab633887d, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4351268055900487690
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1267,16 +1247,6 @@ MonoBehaviour:
         flagValue: 4
         increment: 0
         persistent: 0
-    - rid: 4351268055900487693
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: 56027e9b62786544ab9a50b8c054eae6, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-        baseVolume: 1
     - rid: 4972360390599770180
       type: {class: Screen_Shake, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1485,3 +1455,45 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+    - rid: 4972360475574796393
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796394
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: a67f3af0a88dfef4194e419ab633887d
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796395
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 56027e9b62786544ab9a50b8c054eae6
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1

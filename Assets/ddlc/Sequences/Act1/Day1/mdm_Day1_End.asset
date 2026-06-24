@@ -74,7 +74,7 @@ MonoBehaviour:
     dialog: ...
     ScreenActions:
     - rid: 9079475098267418705
-    - rid: 8612954549043593285
+    - rid: 4972360475574796343
   - speaker: {fileID: 0}
     dialog: Dang it.
     ScreenActions:
@@ -94,7 +94,7 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: ...
     ScreenActions:
-    - rid: 8612954549043593286
+    - rid: 4972360475574796344
     - rid: 9079475098267418707
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: '{mc}?'
@@ -194,7 +194,6 @@ MonoBehaviour:
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 11400000, guid: 5c0cc3d5f2d29d541aa8c3e598f5b7ca, type: 2}
-    requireCondition: 0
     conditions: []
   myself:
     m_AssetGUID: de6c4c10be8439e4fba72a0551eebac4
@@ -205,29 +204,39 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 4972360475574796343
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: ef0d753d1e95959469a74f817b54bda3
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 4972360475574796344
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: ef74d49700ef31547b8590288d507fd0
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 1
+        stopOnScreenProgress: 1
+        loopDuration: 1e+11
     - rid: 8612954527079858319
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         fadeTime: 0.5
-    - rid: 8612954549043593285
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: ef0d753d1e95959469a74f817b54bda3, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 0
-        stopOnScreenProgress: 1
-        loopDuration: 1
-    - rid: 8612954549043593286
-      type: {class: Play_SFX, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        sfxToPlay: {fileID: 8300000, guid: ef74d49700ef31547b8590288d507fd0, type: 3}
-        position: {x: 0, y: 0, z: 0}
-        environmental: 0
-        loop: 1
-        stopOnScreenProgress: 1
-        loopDuration: 1e+11
     - rid: 8612954643173736698
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
