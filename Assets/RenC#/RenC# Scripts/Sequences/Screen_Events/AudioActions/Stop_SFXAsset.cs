@@ -19,8 +19,8 @@ namespace RenCSharp.Sequences
         public bool SetIs3D { set { is3D = value; } }
         public override void DoEvent()
         {
-            if (is3D) _ = Audio_Manager.AM.Stop3DSFX(sfxToStop, true, fadeOut, true);
-            else _ = Audio_Manager.AM.Stop2DSFX(sfxToStop, true, fadeOut, true);
+            if (is3D) _ = Audio_Manager.AM.Stop3DSFX(sfxToStop, false, fadeOut, true);
+            else _ = Audio_Manager.AM.Stop2DSFX(sfxToStop, false, fadeOut, true);
         }
 
         public override string ToString()

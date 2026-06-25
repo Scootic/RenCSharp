@@ -16,7 +16,7 @@ namespace RenCSharp.Sequences
 
         private bool is3D;
         private Coroutine stopLoopRoutine;
-        private bool environmental => loopDuration == 0;
+        private bool environmental;
 
         public AssetReference SetAssetReference { set { sfxAsset = value; } }
         public bool SetLoop { set {loop = value; } }
@@ -26,8 +26,11 @@ namespace RenCSharp.Sequences
         public float SetLoopDuration { set { loopDuration = value; } }
         public override void DoEvent()
         {
-            if (!is3D) Audio_Manager.AM.Play2DSFX(sfxAsset, 1f, 1f, baseVolume, environmental, loop);
-            else Audio_Manager.AM.Play3DSFX(sfxAsset, position, 1f, 1f, baseVolume, environmental, loop);
+            is3D = position != Vector3.zero;
+            environmental = loopDuration <= 0;
+
+            if (!is3D) _ = Audio_Manager.AM.Play2DSFX(sfxAsset, 1f, 1f, baseVolume, environmental, loop);
+            else _ =Audio_Manager.AM.Play3DSFX(sfxAsset, position, 1f, 1f, baseVolume, environmental, loop);
 
             if (loop && loopDuration > 0)
             {

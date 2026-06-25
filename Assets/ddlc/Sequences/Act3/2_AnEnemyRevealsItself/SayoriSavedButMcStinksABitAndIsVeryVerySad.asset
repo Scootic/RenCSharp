@@ -31,7 +31,7 @@ MonoBehaviour:
     dialog: There were other prisoners there?
     ScreenActions:
     - rid: 4972360213072445445
-    - rid: 4972360213072445446
+    - rid: 4972360475574796652
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Well, even if there were, it's not our problem.
     ScreenActions:
@@ -937,15 +937,6 @@ MonoBehaviour:
         - skyDown
         - blank
         - EMPTY
-    - rid: 4972360213072445446
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        visualSpriteIndexes:
-        - default
-        - EMPTY
-        - concern2
-        - 
     - rid: 4972360213072445447
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -3566,3 +3557,12 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 0
         loopDuration: 1
+    - rid: 4972360475574796652
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - concern
+        - 

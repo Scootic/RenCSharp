@@ -91,31 +91,27 @@ namespace RenCSharp
             InitSFX(); // now that the manager is up, initialize all needed audio sources
             DontDestroyOnLoad(gameObject);
         }
-
-        public async Awaitable StopAllESFX()
+        /// <summary>
+        /// Stops every single SFX, both 2D and 3D, both ESFX and SFX. Doesn't stop BGM. Also clears out the loopingSFXTokens List.
+        /// </summary>
+        public void StopAllSFX()
         {
-            for(int i = loopingSFXAddresses.Count - 1; i > -1; i--)
+            loopingSFXAddresses.Clear();
+            for(int i = sfxList.Count - 1; i > -1; i--)
             {
-                AsyncOperationHandle aso = Addressables.LoadAssetAsync<AudioClip>(loopingSFXAddresses[i].SFXAddress);
-                await aso.Task;
-
-                if(aso.Status == AsyncOperationStatus.Failed)
-                {
-                    Addressables.Release(aso);
-                    continue;
-                }
-
-                AudioClip stinker = aso.Result as AudioClip;
-
-                if (loopingSFXAddresses[i].xPos == 0 && loopingSFXAddresses[i].yPos == 0 && loopingSFXAddresses[i].zPos == 0)
-                {
-                    Stop2DSFX(stinker, true);
-                }
-                else
-                {
-                    Stop3DSFX(stinker, true);
-                }
-                loopingSFXAddresses.RemoveAt(i);
+                Stop3DSFX(sfxList[i].clip, true, true, false);
+            }
+            for(int i = esfxList.Count - 1; i >-1; i--)
+            {
+                Stop3DSFX(esfxList[i].clip, true, true, true);
+            }
+            for(int i = sfxSources.Length - 1; i >-1; i--)
+            {
+                sfxSources[i].Stop();
+            }
+            for(int i = esfxSources.Length - 1; i >-1; i--)
+            {
+                esfxSources[i].Stop();
             }
         }
 
@@ -132,7 +128,6 @@ namespace RenCSharp
         {
             if (environmental && loop && AlreadyPlaying2DSFX(clipToPlay)) return; //no duped esfx 
 
-             
             if (!environmental)
             {
                 sfxSources[sfxIndex].clip = clipToPlay;
@@ -230,6 +225,7 @@ namespace RenCSharp
             }
 
             AudioClip man = stinker.Result as AudioClip;
+            if (AlreadyPlaying2DSFX(man)) return;
 
             SFXToken toAdd = new();
             toAdd.xPos = 0;
@@ -261,12 +257,13 @@ namespace RenCSharp
 
         public void Stop2DSFX(AudioClip clipToStop, bool onlyStopOne = true, bool fadeOut = false, bool environmental = false)
         {
-            foreach (AudioSource source in environmental ? sfxSources : esfxSources)
+            foreach (AudioSource source in environmental ? esfxSources : sfxSources)
             {
-                if (source.clip = clipToStop)
+                if (source.clip == clipToStop)
                 {
+                    //Debug.Log("Found 2D sfx to stop");
                     if (!fadeOut) source.Stop();
-                    else StartCoroutine(FadeOut3DSFX(source, 1));
+                    else StartCoroutine(FadeOut2DSFX(source, 1f));
                     if (onlyStopOne) return;
                 }
             }
@@ -274,6 +271,7 @@ namespace RenCSharp
 
         public async Awaitable Stop2DSFX(AssetReference sfxToStop, bool onlyStopOne = true, bool fadeOut = false, bool environmental = false)
         {
+            //Debug.Log("Stop 2DSFX Awaitable");
             for(int i = loopingSFXAddresses.Count - 1; i > -1 ;i--)
             {
                 if (loopingSFXAddresses[i].SFXAddress == sfxToStop.AssetGUID)
@@ -285,6 +283,7 @@ namespace RenCSharp
 
             if (sfxToStop.IsValid())
             {
+                Debug.Log("2DSFX Awaitable handle is already valid.");
                 AudioClip c = sfxToStop.OperationHandle.Result as AudioClip;
                 Stop2DSFX(c, onlyStopOne, fadeOut, environmental);
                 return;
@@ -316,6 +315,23 @@ namespace RenCSharp
             }
             return false;
         }
+
+        private IEnumerator FadeOut2DSFX(AudioSource stinker, float fadeDuration)
+        {
+            //Debug.Log("Fading out 2D SFX");
+            float t = fadeDuration;
+            float perc;
+            while (t >= 0)
+            {
+                t -= Time.deltaTime;
+                perc = t / fadeDuration;
+                stinker.volume *= perc;
+                yield return null;
+            }
+            stinker.Stop();
+            //don't need to destroy bcuz it's a 2d sfx.
+        }
+
         #endregion
 
         #region 3DSFX
@@ -446,6 +462,8 @@ namespace RenCSharp
             }
 
             AudioClip stinker = loadSFX.Result as AudioClip;
+            if (_3DSFXAlreadyPlaying(stinker)) return;
+
             SFXToken toAdd = new SFXToken();
             toAdd.xPos = position.x;
             toAdd.yPos = position.y;
@@ -741,8 +759,10 @@ namespace RenCSharp
             newBGM.volume = 0;
             newBGM.loop = isLooping;
             newBGM.Play();
-
-            if (setSameTime) newBGM.time = leMusic.time;
+            if (leMusic.clip != null)
+            {
+                if (setSameTime || leMusic.clip.name == musicToPlay.name) newBGM.time = leMusic.time;
+            }
             float t = 0; //shorthand for time, starting at 0
 
             while (t < fadeTime)
@@ -773,8 +793,10 @@ namespace RenCSharp
             newBGM.volume = 0;
             newBGM.loop = isLooping;
             newBGM.Play();
-
-            if (setSameTime) newBGM.time = leMusic.time;
+            if (leMusic.clip != null)
+            {
+                if (setSameTime || leMusic.clip.name == musicToPlay.name) newBGM.time = leMusic.time;
+            }
             float t = 0; //shorthand for time, starting at 0
 
             while (t < fadeTime)
@@ -795,12 +817,6 @@ namespace RenCSharp
             //set new sauce where the old sauce was
             leMusic = newBGM;
             enteringBGM = false;
-        }
-
-        public bool SameBGM(AudioClip musicToKompare)
-        {
-            if (leMusic.clip == musicToKompare) return true;
-            else return false;
         }
         #endregion
 

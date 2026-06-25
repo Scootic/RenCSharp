@@ -540,7 +540,7 @@ namespace RenCSharp
             StopAllCoroutines();
             //go through every single GO spawned by Object_Factory, and banish them.
             Object_Factory.ScrubDictionary();
-            _ = Audio_Manager.AM.StopAllESFX();
+            Audio_Manager.AM.StopAllSFX();
 
             Animated_Image_Handler ov = Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Animated_Image_Handler>();
             Animated_Image_Handler bg = Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder).GetComponent<Animated_Image_Handler>();
