@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-namespace EXPERIMENTAL
+namespace RenCSharp.EXPERIMENTAL
 {
     public static class RandomHelper 
     {

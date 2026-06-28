@@ -7,7 +7,7 @@ namespace RenCSharp.Menus
     {
         public static Menu_Manager MM;
         private Menu_Base curMenu;
-        [SerializeField] private MenusContainer[] menus;
+        [SerializeField] private MenusContainer[] menucontainers;
 
         private void Awake()
         {
@@ -27,17 +27,17 @@ namespace RenCSharp.Menus
         {
             int menuIndex = superIndex % 10;
             int containerIndex = (superIndex - menuIndex) / 10;
-            menus[containerIndex].MenuParent.SetActive(true);
+            menucontainers[containerIndex].MenuParent.SetActive(true);
             if(Script_Manager.SM != null) Script_Manager.SM.PauseSequence();
             if (curMenu != null) curMenu.OnMenuClose();
-            curMenu = menus[containerIndex].AllMenus[menuIndex];
+            curMenu = menucontainers[containerIndex].AllMenus[menuIndex];
             curMenu.OnMenuOpen();
         }
 
         public void CloseMenus()
         {
             if(Script_Manager.SM != null) Script_Manager.SM.UnpauseSequence();
-            foreach(MenusContainer mc in menus)
+            foreach(MenusContainer mc in menucontainers)
             {
                 mc.MenuParent.SetActive(false);
             }

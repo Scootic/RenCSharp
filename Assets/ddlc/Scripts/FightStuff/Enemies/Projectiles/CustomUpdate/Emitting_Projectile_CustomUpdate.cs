@@ -1,6 +1,6 @@
 using UnityEngine;
 using RenCSharp.Combat.Interfaces;
-using EXPERIMENTAL;
+using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp.Combat.Enemies
 {
     public class Emitting_Projectile_CustomUpdate : Projectile_CustomUpdate

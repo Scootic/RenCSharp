@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using EXPERIMENTAL;
+using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp
 {
     [RequireComponent(typeof(TextMeshProUGUI))]

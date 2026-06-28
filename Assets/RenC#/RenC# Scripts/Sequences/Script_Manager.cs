@@ -1,4 +1,4 @@
-using EXPERIMENTAL;
+using RenCSharp.EXPERIMENTAL;
 using RenCSharp.Actors;
 using RenCSharp.Sequences;
 using RenCSharp.Tags;
@@ -118,10 +118,14 @@ namespace RenCSharp
         private void Start()
         {
             if (!loaded) { StartSequence(); Event_Bus.AddStringEvent("PlayerName", SetPlayerName); }
+            Button_Inputs.ProgressTextBox += ProgressToNextScreen;
+            Button_Inputs.OpenConsole += FlipPauseSequence;
         }
 
         private void OnDisable()
         {
+            Button_Inputs.ProgressTextBox -= ProgressToNextScreen;
+            Button_Inputs.OpenConsole -= FlipPauseSequence;
             Object_Factory.ScrubDictionary(); //the dictionary is static, so we don't want to keep storing garbage forever.
             FlagToken ft = new FlagToken(Flag_Manager.GetPersistentDataFlags); //save the persistent flags
             for (int i = 0; i < ft.FlagIDs.Count; i++)
@@ -153,6 +157,16 @@ namespace RenCSharp
                 se.DoEvent();
             }
             StartCoroutine(RunThroughScreen(screen));
+        }
+        /// <summary>
+        /// alternates the pause state. not explicit, unlike pausesequence and unpausesequence. use those other methods if you can.
+        /// </summary>
+        public void FlipPauseSequence()
+        {
+            Debug.Log("Flipping pause: Paused? " + paused);
+            paused = !paused;
+            Textbox_String.PauseTextbox(paused);
+            SequencePausedEvent?.Invoke(paused);
         }
 
         public void PauseSequence()

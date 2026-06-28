@@ -3,6 +3,7 @@ using RenCSharp.Actors;
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp.Sequences
 {
     /// <summary>

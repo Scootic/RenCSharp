@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using EXPERIMENTAL;
+using RenCSharp.EXPERIMENTAL;
 using System.Collections.Generic;
 namespace RenCSharp.Combat.Player
 {

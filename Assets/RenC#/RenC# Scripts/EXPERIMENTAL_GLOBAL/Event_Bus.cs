@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
 using System;
-namespace EXPERIMENTAL
+namespace RenCSharp.EXPERIMENTAL
 {
     /// <summary>
     /// Bastardo Omnibus. contains dictionaries of every flavor of action you'd probably need.

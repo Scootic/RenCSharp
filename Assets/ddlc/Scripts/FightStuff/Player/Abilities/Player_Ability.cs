@@ -1,4 +1,4 @@
-using EXPERIMENTAL;
+using RenCSharp.EXPERIMENTAL;
 using UnityEngine;
 namespace RenCSharp.Combat.Player
 {

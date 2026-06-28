@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using EXPERIMENTAL;
+using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp
 {
     /// <summary>
@@ -53,9 +54,11 @@ namespace RenCSharp
         public AudioClip CurrentBGM => leMusic.clip;
         public string SongAssetGUID => songAssetGUID;
         public List<SFXToken> GetLoopingSFXGUIDs => loopingSFXAddresses;
+        public static Action<string> NewBGMNameAction;
 
         private void InitSFX()
         {
+            NewBGMNameAction = null;
             sfxSources = new AudioSource[sfxAmount]; //set the size of the audiosources array
             esfxSources = new AudioSource[sfxAmount];
 
@@ -133,7 +136,7 @@ namespace RenCSharp
                 sfxSources[sfxIndex].clip = clipToPlay;
                 sfxSources[sfxIndex].volume = volume * sfxVolMult;
                 sfxSources[sfxIndex].loop = loop;
-                sfxSources[sfxIndex].pitch = Random.Range(minRand, maxRand);
+                sfxSources[sfxIndex].pitch = UnityEngine.Random.Range(minRand, maxRand);
                 sfxSources[sfxIndex].Play();
             }
             else
@@ -141,7 +144,7 @@ namespace RenCSharp
                 esfxSources[sfxIndex].clip = clipToPlay;
                 
                 esfxSources[sfxIndex].loop = loop;
-                esfxSources[sfxIndex].pitch = Random.Range(minRand, maxRand);
+                esfxSources[sfxIndex].pitch = UnityEngine.Random.Range(minRand, maxRand);
                 esfxSources[sfxIndex].Play();
                 if (loop)
                 {
@@ -355,7 +358,7 @@ namespace RenCSharp
             temp.spatialBlend = 1f;
             temp.volume = vol; //reset volume because object pooling
             temp.loop = loop;
-            temp.pitch = Random.Range(minRand, maxRand);
+            temp.pitch = UnityEngine.Random.Range(minRand, maxRand);
             temp.volume *= environmental ? esfxVolMult : sfxVolMult;
             temp.Play();
 
@@ -380,7 +383,7 @@ namespace RenCSharp
 
             temp.clip = clipToPlay;
             temp.spatialBlend = 1;
-            temp.pitch = Random.Range(minRand, maxRand);
+            temp.pitch = UnityEngine.Random.Range(minRand, maxRand);
             temp.loop = loop;
             if (!environmental)
             {
@@ -756,6 +759,7 @@ namespace RenCSharp
             enteringBGM = true;
             newBGM = gameObject.AddComponent<AudioSource>(); //make a new Audio sauce
             newBGM.clip = musicToPlay; //Init the new sauce, based on passed in values
+            NewBGMNameAction?.Invoke(musicToPlay.name);
             newBGM.volume = 0;
             newBGM.loop = isLooping;
             newBGM.Play();
@@ -791,6 +795,7 @@ namespace RenCSharp
             newBGM = gameObject.AddComponent<AudioSource>(); //make a new Audio sauce
             newBGM.clip = musicToPlay; //Init the new sauce, based on passed in values
             newBGM.volume = 0;
+            NewBGMNameAction?.Invoke(musicToPlay.name);
             newBGM.loop = isLooping;
             newBGM.Play();
             if (leMusic.clip != null)

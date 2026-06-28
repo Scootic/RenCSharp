@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-namespace EXPERIMENTAL
+namespace RenCSharp.EXPERIMENTAL
 {
     /// <summary>
     /// A static class for referencing and comparing flags. Stores flags in a dictionary (based on whether or not you want it to be persistent)

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EXPERIMENTAL
+namespace RenCSharp.EXPERIMENTAL
 {
     /// <summary>
     /// Used to set a player prefence using a slider component. Useful for a settings menu where you can

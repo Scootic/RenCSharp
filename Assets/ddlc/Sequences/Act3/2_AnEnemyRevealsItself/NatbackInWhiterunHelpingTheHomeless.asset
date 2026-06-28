@@ -478,8 +478,10 @@ MonoBehaviour:
     ScreenActions:
     - rid: 4972360499399753885
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: (Um.
-    ScreenActions: []
+    dialog: (Um. <b>Player</b>, or whoever the hell you are, are <b>you</b> there?
+    ScreenActions:
+    - rid: 4972360543843647488
+    - rid: 4972360543843647489
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 0}
@@ -2654,4 +2656,24 @@ MonoBehaviour:
         - 
         - 
         - blank
+        - 
+    - rid: 4972360543843647488
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 55216f7377935b94dab2d434b6bdb4f1
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 2
+        setToSameTime: 0
+    - rid: 4972360543843647489
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
         - 

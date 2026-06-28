@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EXPERIMENTAL
+namespace RenCSharp.EXPERIMENTAL
 {
     /// <summary>
     /// Does funny random animations on a main menu. Feel free to not use.

@@ -2,7 +2,7 @@ using Unity.Burst;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Jobs;
-namespace EXPERIMENTAL
+namespace RenCSharp.EXPERIMENTAL
 {
     public struct TrigHelper
     {

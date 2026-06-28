@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 using RenCSharp.Tags;
-using EXPERIMENTAL;
+using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp
 {
     /// <summary>
