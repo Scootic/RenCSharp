@@ -6,33 +6,62 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 namespace RenCSharp.EXPERIMENTAL
 {
+    /// <summary>
+    /// In game console class to do commands and log things. Kinda similar to tag parser, but this is in a different assembly,
+    /// and there's no <> shenanigans. 
+    /// </summary>
     public class RenConsole
     {
         private static readonly Assembly consoleAssembly = Assembly.GetAssembly(typeof(RenConsole));
-        private static Type[] allTypes = consoleAssembly.GetTypes().Where(t => t.IsClass).ToArray();
-        private static readonly string[] consoleLogs = new string[20];
-        public static string[] ConsoleLogs => consoleLogs;
-        public static RenConsole instance = new RenConsole();
+        private static readonly Type[] allTypes = consoleAssembly.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(Base_CMD))).ToArray();
+        private static readonly LogContainer[] consoleLogs = new LogContainer[20]; //resize if you wanna see moar logs
+        public static LogContainer[] ConsoleLogs => consoleLogs;
+        public static readonly RenConsole instance = new RenConsole();
         public static Type[] AllConsoleAccessibleTypes => allTypes;
+        public static Action UpdateLogsListView;
 
-        public static void Log(string message, bool debugLog = true)
+        public static void Log(string message, LogSeverity severity = LogSeverity.Log, bool debugLog = true)
         {
+            LogContainer t = new();
+            t.Message = message;
+            t.Severity = severity;
+            t.DateTime = DateTime.Now.ToString("G");
+
             for (int i = 0; i < consoleLogs.Length; i++)
             {
-                if (consoleLogs[i] == null || consoleLogs[i] == "") { consoleLogs[i] = message; break; }
+                if (consoleLogs[i].DateTime == "") 
+                {
+                    consoleLogs[i] = t; 
+                    break; 
+                }
             }
 
-            if (consoleLogs[consoleLogs.Length - 1] != "") //if the list is full.
+            if (consoleLogs[consoleLogs.Length - 1].DateTime != "") //if the list is full.
             {
                 for(int i = 0; i < consoleLogs.Length - 1; i++)
                 {
                     consoleLogs[i] = consoleLogs[i + 1];
                 }
-                consoleLogs[consoleLogs.Length - 1] = message;
+
+                consoleLogs[consoleLogs.Length - 1] = t;
             }
 
-            if (debugLog) Debug.Log(message);
-            //reinit view or some shite
+            UpdateLogsListView?.Invoke();
+
+            if (!debugLog) return;
+            
+            switch (severity) 
+            {
+                case LogSeverity.LogWarning:
+                    Debug.LogWarning(message);
+                    break;
+                case LogSeverity.LogError: 
+                    Debug.LogError(message); 
+                    break;
+                default:
+                    Debug.Log(message); 
+                    break;
+            }
         }
 
         public static void ParseCommand(string cmd)
@@ -46,13 +75,30 @@ namespace RenCSharp.EXPERIMENTAL
             MethodInfo method;
             foreach(Type T in allTypes)
             {
-                method = T.GetMethod(split[0], BindingFlags.Static & BindingFlags.Public);
+                method = T.GetMethod(split[0], BindingFlags.Static | BindingFlags.NonPublic);
                 if(method != null)
                 {
                     method.Invoke(instance, arguments.ToArray());
-                    break;
+                    return;
                 }
             }
+            Log($"No known command by the name of: {split[0]}. Make sure you pay attention to case sensitivity!", LogSeverity.LogWarning);
         }
+    }
+    [Serializable]
+    public struct LogContainer
+    {
+        public string Message;
+        public string DateTime;
+        public LogSeverity Severity;
+    }
+    [Serializable]
+    public enum LogSeverity
+    {
+        Log,
+        LogWarning,
+        LogError,
+        LogPositive,
+        Null
     }
 }

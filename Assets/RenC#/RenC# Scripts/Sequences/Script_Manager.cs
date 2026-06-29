@@ -68,6 +68,10 @@ namespace RenCSharp
         private History curHist;
         private Sequences.Screen curScreen;
         private List<Button> curButtons;
+        /// <summary>
+        /// Decides if player pausing can interrupt the current fade transition, or what not
+        /// </summary>
+        private bool interruptable = true;
         private List<ParticleToken> activeParticles = new();
 
         public static Script_Manager SM;
@@ -75,6 +79,7 @@ namespace RenCSharp
         public static Action<bool> SequencePausedEvent;
         public Transform ActorHolder => actorHolder;
         public History CurrentHistory => curHist;
+        public Transform PlayerChoiceHolder => playerchoiceHolder;
         //certified singleton moment
         private void Awake()
         {
@@ -100,7 +105,7 @@ namespace RenCSharp
             Event_Bus.AddFloatEvent("TextSpeed", TextSpeed);
             Event_Bus.AddFloatEvent("LingerTime", TextAutoHang);
 
-            Event_Bus.AddVoidEvent("PauseSequence", PauseSequence);
+            Event_Bus.AddBoolEvent("PauseSequence", PauseSequence);
             Event_Bus.AddVoidEvent("UnpauseSequence", UnpauseSequence);
             
             Event_Bus.AddSingleObjEvent("OverrideScreen", OverrideScreen);
@@ -163,17 +168,21 @@ namespace RenCSharp
         /// </summary>
         public void FlipPauseSequence()
         {
-            Debug.Log("Flipping pause: Paused? " + paused);
-            paused = !paused;
-            Textbox_String.PauseTextbox(paused);
-            SequencePausedEvent?.Invoke(paused);
+            if (interruptable)
+            {
+                paused = !paused;
+                Debug.Log("Flipping pause: Paused? " + paused);
+                Textbox_String.PauseTextbox(paused);
+                SequencePausedEvent?.Invoke(paused);
+            }
         }
 
-        public void PauseSequence()
+        public void PauseSequence(bool Interruptable = true)
         {
             Debug.Log("SM PAUSED");
             paused = true;
             Textbox_String.PauseTextbox(true);
+            interruptable = Interruptable;
             SequencePausedEvent?.Invoke(paused); //for cool mfs to do game stuff whenever the sequence is paused. minigame mayhaps?
         }
 
@@ -181,6 +190,7 @@ namespace RenCSharp
         {
             Debug.Log("SM UNPAUSED");
             paused = false;
+            interruptable = true;
             Textbox_String.PauseTextbox(false);
             SequencePausedEvent?.Invoke(paused);
         }
@@ -268,7 +278,7 @@ namespace RenCSharp
         {
             int amountOfButtons = (int)arg1;
             List<string> buttonTexts = (List<string>)arg2;
-            PauseSequence();
+            PauseSequence(false);
             for (int i = 0; i < buttonTexts.Count; i++)
             {
                 buttonTexts[i] = Textbox_String.ReplaceableText(buttonTexts[i]);

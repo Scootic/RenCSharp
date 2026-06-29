@@ -10,9 +10,9 @@ namespace RenCSharp.Tags
 {
     public class TagParser
     {
-        private static Assembly tagAssembly = Assembly.GetAssembly(typeof(TagParser));
-        private static Type[] allTags = tagAssembly.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(Base_Tag))).ToArray();
-        private static TagParser instance = new TagParser();
+        private static readonly Assembly tagAssembly = Assembly.GetAssembly(typeof(TagParser));
+        private static readonly Type[] allTags = tagAssembly.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(Base_Tag))).ToArray();
+        private static readonly TagParser instance = new TagParser();
         private static TextMeshProUGUI currentTextMesh;
 
         public static TextMeshProUGUI SetCurrentTextMesh { set { currentTextMesh = value; } }

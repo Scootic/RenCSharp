@@ -101,7 +101,7 @@ namespace RenCSharp.Combat
 
         private void BulkSetUp()
         {
-            Event_Bus.TryFireVoidEvent("PauseSequence");
+            Event_Bus.TryFireBoolEvent("PauseSequence", false);
             Event_Bus.AddBoolEvent("EndAFight", EndAFight);
             combatCanvas.SetActive(true);
             playerHolder.gameObject.SetActive(false);

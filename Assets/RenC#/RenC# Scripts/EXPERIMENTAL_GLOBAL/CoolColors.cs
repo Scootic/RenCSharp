@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 namespace RenCSharp.EXPERIMENTAL
@@ -9,5 +8,9 @@ namespace RenCSharp.EXPERIMENTAL
         public static readonly Color slightTransWhiteGUI = new Color(1, 1, 1, 0.3f);
         public static readonly Color _75PercentBlack = new Color(0, 0, 0, 0.75f);
         public static readonly Color _50PercentBlack = new Color(0, 0, 0, 0.5f);
+        public static readonly Color slightTransRedGUI = new Color(0.5f, 0, 0, 0.5f);
+        public static readonly Color slightTransYellowGUI = new Color(0.5f, 0.45f, 0, 0.5f);
+        public static readonly Color slightTransBlueGUI = new Color(0, 0.6f, 0.6f, 0.5f);
+        public static readonly Color slightTransGrayGUI = new Color(0.5f, 0.5f, 0.5f, 0.5f);
     }
 }

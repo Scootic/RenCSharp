@@ -4,15 +4,15 @@ using System.Reflection;
 
 namespace RenCSharp.EXPERIMENTAL
 {
-    public class Help_CMD 
+    public class Help_CMD : Base_CMD
     {
-        public static void Help()
+        protected static void Help()
         {
             string msg = "List of available commands:";
 
             foreach(Type T in RenConsole.AllConsoleAccessibleTypes)
             {
-                MethodInfo[] methodInfos = T.GetMethods(BindingFlags.Public & BindingFlags.Static);
+                MethodInfo[] methodInfos = T.GetMethods(BindingFlags.Static | BindingFlags.NonPublic);
                 if (methodInfos.Length == 0) continue;
                 msg += $"\n{T.Name}: ";
                 foreach(MethodInfo mi in methodInfos)
@@ -28,7 +28,7 @@ namespace RenCSharp.EXPERIMENTAL
                 }
             }
 
-            RenConsole.Log(msg, false);
+            RenConsole.Log(msg, LogSeverity.LogPositive, false);
         }
 
         //public static void help() { Help(); }
