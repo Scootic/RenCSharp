@@ -1,4 +1,3 @@
-
 using System;
 using System.Reflection;
 
@@ -17,10 +16,23 @@ namespace RenCSharp.EXPERIMENTAL
                 msg += $"\n{T.Name}: ";
                 foreach(MethodInfo mi in methodInfos)
                 {
-                    msg += $"{mi.Name}, ";
+                    ParameterInfo[] parameters = mi.GetParameters();
+                    if(parameters.Length > 0)
+                    {
+                        msg += $"{mi.Name} -> ";
+                        foreach(ParameterInfo p in parameters)
+                        {
+                            msg += $"{p.Name}, ";
+                        }
+                        msg += "; ";
+                    }
+                    else
+                    {
+                        msg += $"{mi.Name}; ";
+                    }
                 }
 
-                if (msg.EndsWith(','))
+                if (msg.EndsWith(';'))
                 {
                     char[] glum = msg.ToCharArray();
                     glum[msg.Length - 1] = '.';

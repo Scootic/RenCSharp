@@ -90,7 +90,7 @@ namespace RenCSharp.Combat.Player
         {
             float f = (float)floatarg;
             bool b = (bool)boolarg;
-            if (invincible && f > 0) return; //don't take damage if invincible. go figure!
+            if ((invincible || Flag_Manager.GetFlag("tgm") == 1) && f > 0) return; //don't take damage if invincible. go figure!
 
             CustomOnHitStuff?.Invoke();
 

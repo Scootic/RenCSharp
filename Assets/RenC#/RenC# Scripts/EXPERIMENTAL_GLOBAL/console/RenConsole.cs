@@ -70,7 +70,7 @@ namespace RenCSharp.EXPERIMENTAL
             List<object> arguments = new();
             for(int i = 1; i < split.Length; i++)
             {
-                arguments.Add(split[i]);
+                arguments.Add(split[i] as object);
             }
             MethodInfo method;
             foreach(Type T in allTypes)
@@ -78,7 +78,21 @@ namespace RenCSharp.EXPERIMENTAL
                 method = T.GetMethod(split[0], BindingFlags.Static | BindingFlags.NonPublic);
                 if(method != null)
                 {
-                    method.Invoke(instance, arguments.ToArray());
+                    try
+                    {
+                        method.Invoke(instance, arguments.ToArray());
+                    }
+                    catch(TargetParameterCountException)
+                    {
+                        ParameterInfo[] parameters = method.GetParameters();
+                        string errorLog = $"{method.Name} was expecting {parameters.Length} parameter(s). (";
+                        foreach(ParameterInfo p in parameters)
+                        {
+                            errorLog += $"{p.Name}, ";
+                        }
+                        errorLog += ")";
+                        Log(errorLog, LogSeverity.LogError);
+                    }
                     return;
                 }
             }
