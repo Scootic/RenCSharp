@@ -27,7 +27,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: What in the hell is <b>your</b> problem?!?
     ScreenActions:
-    - rid: 4972360184803623034
+    - rid: 4972360613912379463
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -46,7 +46,8 @@ MonoBehaviour:
     - rid: 4972360184803623042
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: What do <b>you</b> want, you abstracted bastard?
-    ScreenActions: []
+    ScreenActions:
+    - rid: 4972360613912379464
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -58,7 +59,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: <b>You're</b> very manipulative, <b>you</b> know that?
     ScreenActions:
-    - rid: 4972360184803623045
+    - rid: 4972360613912379465
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: What, are Monika, Yuri, or Natsuki not good enough puppets for you?
     ScreenActions: []
@@ -318,15 +319,6 @@ MonoBehaviour:
         - skyDown
         - woodenMask
         - EMPTY
-    - rid: 4972360184803623034
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - blank
-        - EMPTY
     - rid: 4972360184803623036
       type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -423,7 +415,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - woodenMaskAngry
+        - woodenMask
         - 
     - rid: 4972360184803623043
       type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
@@ -443,15 +435,6 @@ MonoBehaviour:
         - 
         - 
         - woodenMask
-        - 
-    - rid: 4972360184803623045
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-        visualSpriteIndexes:
-        - 
-        - 
-        - woodenMaskAngry
         - 
     - rid: 4972360184803623049
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
@@ -1758,3 +1741,30 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 0
         loopDuration: 1
+    - rid: 4972360613912379463
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - woodenMaskAngry
+        - 
+    - rid: 4972360613912379464
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - woodenMaskAngry
+        - 
+    - rid: 4972360613912379465
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - woodenMaskAngry
+        - 

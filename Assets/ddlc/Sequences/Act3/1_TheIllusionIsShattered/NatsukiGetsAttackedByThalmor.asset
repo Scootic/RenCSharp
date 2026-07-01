@@ -23,7 +23,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: In his letter, he said he was going to be waiting here, didn't he?
     ScreenActions:
-    - rid: 4972359976905080882
+    - rid: 4972360613912379461
   - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
     dialog: Yes. Maybe he's inside?
     ScreenActions:
@@ -233,15 +233,6 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
-    - rid: 4972359976905080882
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-        visualSpriteIndexes:
-        - skyDown
-        - skyUp
-        - blank
-        - EMPTY
     - rid: 4972359976905080883
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1075,3 +1066,12 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 0
         loopDuration: 1
+    - rid: 4972360613912379461
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - speak
+        - 

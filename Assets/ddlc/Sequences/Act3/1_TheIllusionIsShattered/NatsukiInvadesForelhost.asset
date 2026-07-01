@@ -25,10 +25,10 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Is this the place?
     ScreenActions:
-    - rid: 1790118900062748857
     - rid: 1790118900062748858
     - rid: 1790118900062748859
     - rid: 1790118900062748861
+    - rid: 4972360613912379460
   - speaker: {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
     dialog: Should be.
     ScreenActions:
@@ -480,7 +480,7 @@ MonoBehaviour:
     dialog: I guess this means we've made it further than anyone else, eh?
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 6f47b2f061a0a3249992cdd21d6995ed, type: 2}
-    dialog: And we'll make it to then end.
+    dialog: And we'll make it to the end.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 17bd3b6fcae930647918fc183fea836b, type: 2}
     dialog: I think I'll refrain from using the blood...
@@ -868,17 +868,6 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
-    - rid: 1790118900062748857
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-        fadeInTime: 0.5
-        spawnOffset: {x: -200, y: 0, z: 0}
-        visualSpriteIndexes:
-        - skyDown
-        - skyUp
-        - blank
-        - EMPTY
     - rid: 1790118900062748858
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -3122,3 +3111,14 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 0
         loopDuration: 1
+    - rid: 4972360613912379460
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -200, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - speak
+        - ears

@@ -23,7 +23,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: (Let's see... if I were {mc}, where would I be?)
     ScreenActions:
-    - rid: 4972360025000116262
+    - rid: 4972360613912379462
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: (...)
     ScreenActions:
@@ -1091,17 +1091,6 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
-    - rid: 4972360025000116262
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        fadeInTime: 0.5
-        spawnOffset: {x: 0, y: 0, z: 0}
-        visualSpriteIndexes:
-        - skyDown
-        - skyUp
-        - blank
-        - EMPTY
     - rid: 4972360025000116263
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1161,7 +1150,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - 
+        - focus
         - 
     - rid: 4972360025000116266
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
@@ -5532,3 +5521,14 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 0
         loopDuration: 1
+    - rid: 4972360613912379462
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyUp
+        - skyUp
+        - focus
+        - 
