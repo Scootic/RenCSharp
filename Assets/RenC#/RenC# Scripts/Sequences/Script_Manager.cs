@@ -448,9 +448,17 @@ namespace RenCSharp
             ScreenToken st = new ScreenToken();
 
             manToSave.CurrentScreenIndex = curScreenIndex; //:)
-            manToSave.PlayerName = playerName; //should probably change to handle the dictionary that Textbox_String uses to replace stuffs.
             manToSave.CurrentFlags = new FlagToken(Flag_Manager.GetSaveDataFlags);
             manToSave.CurrentHistory = curHist;
+            List<string> replacerKeys = new();
+            List<string> replacerValues = new();
+            foreach (KeyValuePair<string, string> kvp in Textbox_String.GetReplacerTexts)
+            {
+                replacerKeys.Add(kvp.Key);
+                replacerValues.Add(kvp.Value);
+            }
+            manToSave.ReplacedTexts = replacerKeys.ToArray();
+            manToSave.ReplacingTexts = replacerValues.ToArray();
 
             //grab the cursequence. horrid! USES THE ASSET REFERENcE WE DONE STORED. MAYBE IT WORK? MAYBE IT NO :)
             manToSave.CurrentSequenceAsset = currentSequence.Myself.AssetGUID;
@@ -576,8 +584,15 @@ namespace RenCSharp
             //grab history
             curHist = sd.CurrentHistory;
 
-            //grab playername from file
-            SetPlayerName(sd.PlayerName);
+            //grab replacable strings from file
+            try
+            {
+                Textbox_String.ReceiveReplacableTextFromSave(sd.ReplacedTexts, sd.ReplacingTexts);
+            }
+            catch
+            {
+                Debug.LogWarning($"Save Data: {sd.FileName} doesn't contain replacing texts arrays. Well darn!");
+            }
 
             //grab assets
             curScreenIndex = sd.CurrentScreenIndex;

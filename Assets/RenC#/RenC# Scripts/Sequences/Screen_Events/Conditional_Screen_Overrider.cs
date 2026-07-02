@@ -6,6 +6,9 @@ namespace RenCSharp.Sequences
     public class Conditional_Screen_Overrider : Screen_Event
     {
         [SerializeField] private ConditionalScreen[] possibleScreens;
+
+        public ConditionalScreen[] PossibleScreens => possibleScreens;
+
         public override void DoEvent()
         {
             foreach(ConditionalScreen cs in possibleScreens)

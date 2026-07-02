@@ -7,7 +7,7 @@ using UnityEngine.AddressableAssets;
 using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp.Sequences
 {
-    public class Set_OverlayAsset : Screen_Event
+    public class Set_OverlayAsset : Screen_Event, INullAssetReferenceCheck
     {
         [SerializeField, Tooltip("If not animated, just uses index 0.")] private List<AssetReferenceSprite> imagesToSet;
         [SerializeField, Tooltip("Title card type stuff.")] private string overlayText = string.Empty;
@@ -88,6 +88,15 @@ namespace RenCSharp.Sequences
         public override string ToString()
         {
             return "Scene/Set Overlay Image";
+        }
+
+        public bool HasNullAssetReferences()
+        {
+            foreach(AssetReference ar in imagesToSet)
+            {
+                if (ar == null) return true;
+            }
+            return false;
         }
     }
 }

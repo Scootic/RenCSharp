@@ -8,7 +8,7 @@ namespace RenCSharp.Sequences
     /// Play_SFXAsset should make it so that forever looping SFX are environmental, and are affected by ESFX settings.
     /// This stop assumes that the sfx you gave it is environmental.
     /// </summary>
-    public class Stop_SFXAsset : Screen_Event
+    public class Stop_SFXAsset : Screen_Event, INullAssetReferenceCheck
     {
         [SerializeField] private AssetReference sfxToStop;
         [SerializeField] private bool is3D = false;
@@ -26,6 +26,11 @@ namespace RenCSharp.Sequences
         public override string ToString()
         {
             return "Audio/Stop SFX";
+        }
+
+        public bool HasNullAssetReferences()
+        {
+            return sfxToStop == null;
         }
     }
 }

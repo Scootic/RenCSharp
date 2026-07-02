@@ -3,7 +3,7 @@ using UnityEngine.AddressableAssets;
 
 namespace RenCSharp.Sequences
 {
-    public class Play_BGMAsset : Screen_Event
+    public class Play_BGMAsset : Screen_Event, INullAssetReferenceCheck
     {
         [SerializeField] private AssetReference songAsset;
         [SerializeField, Min(0), Tooltip("0 for no fade out.")] private float fadeTime = 1f;
@@ -19,6 +19,12 @@ namespace RenCSharp.Sequences
         {
             return "Audio/Play Music Track";
         }
+
+        public bool HasNullAssetReferences()
+        {
+            return songAsset == null;
+        }
+
         public AssetReference SetSongAsset { set { songAsset = value; } }
 
         public float SetFadeTime { set { fadeTime = value; } }

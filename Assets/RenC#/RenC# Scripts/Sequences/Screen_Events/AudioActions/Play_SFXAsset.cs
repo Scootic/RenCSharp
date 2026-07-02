@@ -4,7 +4,7 @@ using UnityEngine.AddressableAssets;
 
 namespace RenCSharp.Sequences
 {
-    public class Play_SFXAsset : Screen_Event
+    public class Play_SFXAsset : Screen_Event, INullAssetReferenceCheck
     {
         [SerializeField] private AssetReference sfxAsset;
         [SerializeField] private Vector3 position;
@@ -57,6 +57,11 @@ namespace RenCSharp.Sequences
             if (stopLoopRoutine != null) Script_Manager.SM.StopCoroutine(stopLoopRoutine);
             if (is3D) Audio_Manager.AM.Stop3DSFX(sfxAsset);
             else Audio_Manager.AM.Stop2DSFX(sfxAsset);
+        }
+
+        public bool HasNullAssetReferences()
+        {
+            return sfxAsset == null;
         }
 
         public override string ToString()

@@ -3,7 +3,7 @@ using UnityEngine.AddressableAssets;
 
 namespace RenCSharp.Sequences
 {
-    public class Spawn_UIParticle : Screen_Event
+    public class Spawn_UIParticle : Screen_Event, INullAssetReferenceCheck
     {
         [SerializeField, Tooltip("Local space. Should be same values as actor positions, if that helps.")] private Vector3 spawnPosition = Vector3.zero;
         [SerializeField] private AssetReference fellaToSpawnPrefab;
@@ -37,6 +37,11 @@ namespace RenCSharp.Sequences
         public override string ToString()
         {
             return "DDLC/Spawn Particles Object";
+        }
+
+        public bool HasNullAssetReferences()
+        {
+            return fellaToSpawnPrefab == null || (overrideParticles && overridingParticles == null);
         }
     }
 }

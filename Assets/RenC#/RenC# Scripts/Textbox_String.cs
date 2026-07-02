@@ -13,6 +13,7 @@ namespace RenCSharp
     /// </summary>
     public static class Textbox_String
     {
+        public static Dictionary<string, string> GetReplacerTexts => replacerTexts;
         /// <summary>
         /// Stupid dumb dictionary that contains key strings that we want replaced by value strings. Ie. replacing any instance of {mc} with the
         /// inputted name given by player. Used by the RunThroughText coroutine
@@ -179,6 +180,16 @@ namespace RenCSharp
             {
                 Debug.LogWarning("The replacer texts dictionary already contains: " + replaced + ". Setting value to: " + replacer);
                 replacerTexts[replaced] = replacer;
+            }
+        }
+
+        public static void ReceiveReplacableTextFromSave(string[] replaced, string[] replacers)
+        {
+            replacerTexts = new();
+            //replaced[] and replacers[] SHOULD be the same length, since they're saved into file by grabbing from the dict
+            for (int i = 0; i < replaced.Length; i++)
+            {
+                replacerTexts.Add(replaced[i], replacers[i]);
             }
         }
     }

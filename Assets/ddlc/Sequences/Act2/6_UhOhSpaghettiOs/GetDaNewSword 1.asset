@@ -1,0 +1,448 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: GetDaNewSword 1
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268100043383767205
+    - rid: 268100043383767206
+    - rid: 268100043383767212
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: First things first, gotta check out my new sword.
+    ScreenActions:
+    - rid: 268100043383767208
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 268100043383767209
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Hey Eorlund, is my sword ready?
+    ScreenActions:
+    - rid: 268100043383767210
+    - rid: 268100043383767211
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Aye. I hope it's to your liking.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Eorlund hands me the sword.
+    ScreenActions:
+    - rid: 268100066478391296
+  - speaker: {fileID: 0}
+    dialog: I twist it around in my hands, trying to get a feel for the different
+      weight.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Once I deem it satisfactory, I place it in the sheath Eorlund gave me
+      along with the sword.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I gesture to the weapon I've had since Helgen-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: You mind buying this thing off of me?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Pass it here and I'll appraise it.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: I do as instructed, handing it over to Eorlund.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Hm. It's a bit chipped here and the leather bindings are a bit frayed
+      here.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: It appears to have gone through a year of battle unserviced; why have
+      you not taken this to a smith for maintenance?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Ah, well, I've only had it for four days now, so you'd have to ask the
+      previous owner who's probably been dead for just as long.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Hmm...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Based on the poor condition, I can give you 10 septims for it.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: To be honest, I just want it off my hands, so deal.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: The exchange is finished, with Eorlund handing me the 10 promised proper
+      pieces of payment.
+    ScreenActions:
+    - rid: 268100066478391298
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Will that be all?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: Is Natsuki not working with you today?
+    ScreenActions:
+    - rid: 268100066478391299
+    - rid: 268100066478391302
+  - speaker: {fileID: 0}
+    dialog: Huh, Monika has a point. Where <i>is</i> Natsuki?
+    ScreenActions:
+    - rid: 268100066478391300
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Ah, she and the other members of the Circle left town just before the
+      dawn.
+    ScreenActions:
+    - rid: 268100066478391303
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: Not sure where they're off to, but it probably has something to deal
+      with Kodlak's death.
+    ScreenActions:
+    - rid: 268100066478391301
+  - speaker: {fileID: 0}
+    dialog: ... Kodlak died already?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 'Natsuki only <i>just</i> did the "turn into a werewolf" quest yesterday,
+      right? '
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: There should be at least one more quest of working with Aela and the
+      witches head quest before the Silver Hand assault Jorrvaskr.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Strange...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 'All known instances of this... "story" going off-script, seemingly without
+      our intervention:'
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Farkas using his werewolf form more than once...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Kodlak dying early...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ... I should check in with Sayori and Yuri to see if anything's off on
+      their end when I see them again.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Although, it might not matter if we head back home after I defeat Alduin.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Do you know which direction they're heading?
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+    dialog: From up here, I saw them moving southwest.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: What's in that direction, that the Companions would be interested in...?
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: ...
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Is the witch coven in that direction? I don't remember...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Do you have an idea of what they're up to, {mc}?)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: (Either they're going to murder a bunch of Silver Hand, or a bunch of
+      witches.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: (No matter what, it's a safe bet that murder's involved.)
+    ScreenActions:
+    - rid: 268100066478391304
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Yikes...)
+    ScreenActions:
+    - rid: 268100066478391305
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Well, tell her we said hi if you see her around.
+    ScreenActions:
+    - rid: 268100066478391306
+    - rid: 268100066478391307
+  - speaker: {fileID: 0}
+    dialog: The two of us take our leave of Eorlund, heading toward the barracks
+      to grab a couple of guys for our cause.
+    ScreenActions:
+    - rid: 268100066478391308
+    - rid: 268100066478391309
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 11400000, guid: ba63dbeccfd069847bb0781138e7efd2, type: 2}
+    conditions: []
+  myself:
+    m_AssetGUID: 1d2e97cf0ed2b3b47b57671872ca586f
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 268100043383767205
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 1570d8359ab50134c8ce556aa53ac25d
+          m_SubObjectName: whiterun2
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 3
+    - rid: 268100043383767206
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 63856e1ac10661c41a9339bc19594687
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 3
+        setToSameTime: 0
+    - rid: 268100043383767208
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive
+        - 
+    - rid: 268100043383767209
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 8ba741664c007464ab8997c87a7a111a
+          m_SubObjectName: whiterun_skyrforge
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 268100043383767210
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: -300, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        loopOnScreen: 0
+    - rid: 268100043383767211
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 268100043383767212
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeTime: 0.5
+    - rid: 268100066478391296
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerDamage
+        flagValue: 14
+        increment: 0
+        persistent: 0
+    - rid: 268100066478391298
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: Gold
+        flagValue: 10
+        increment: 1
+        persistent: 0
+    - rid: 268100066478391299
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - blankSpeak
+    - rid: 268100066478391300
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - blank
+    - rid: 268100066478391301
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 4a717978c2527d648be93e6fda5e3af7
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268100066478391302
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268100066478391303
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive
+    - rid: 268100066478391304
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smileSweat
+    - rid: 268100066478391305
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268100066478391306
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 63856e1ac10661c41a9339bc19594687
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 268100066478391307
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+    - rid: 268100066478391308
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 300, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        loopOnScreen: 0
+    - rid: 268100066478391309
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 257fa6872c2d2f24f900979e35fb64cc, type: 2}
+        fadeTime: 0.5

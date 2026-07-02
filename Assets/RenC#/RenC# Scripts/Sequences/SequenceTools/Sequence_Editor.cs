@@ -78,7 +78,7 @@ namespace RenCSharp.Sequences
             
             if(GUILayout.Button("Replace Deprecated Events")) //pretty please update to include things you want to replace en masse
             {
-                foreach (UnityEngine.Object obj in targets)
+                foreach (Object obj in targets)
                 {
                     _target = (Sequence)obj;
                     int replaced = 0;
@@ -190,6 +190,54 @@ namespace RenCSharp.Sequences
                     }
                     EditorUtility.SetDirty(obj);
                     Debug.Log("Done replacing " + _target.name + "'s deprecated events! Replaced: " + replaced + " events.");
+                }
+            }
+
+            if (GUILayout.Button("Find any Null Asset References"))
+            {
+                foreach(Object obj in targets)
+                {
+                    _target = obj as Sequence;
+                    int nullsFound = 0;
+                    for(int i = 0; i < _target.Screens.Length; i++)
+                    {
+                        Screen s = _target.Screens[i];
+                        for(int j = 0; j < s.ScreenActions.Count; j++)
+                        {
+                            if (s.ScreenActions[j] is INullAssetReferenceCheck)
+                            {
+                                INullAssetReferenceCheck narc = s.ScreenActions[j] as INullAssetReferenceCheck;
+                                if (narc.HasNullAssetReferences())
+                                {
+
+                                    Debug.Log($"Null Asset Reference at: {_target.name} -> Screen: {i} -> Action: {j}.");
+                                    nullsFound++;
+                                }
+                            }
+                            if (s.ScreenActions[j].ToString() == "Conditional Screen") //the mostest absolutely worstest nesting in history
+                            {
+                                Conditional_Screen_Overrider jabroni = s.ScreenActions[j] as Conditional_Screen_Overrider;
+                                foreach(ConditionalScreen cs in jabroni.PossibleScreens)
+                                {
+                                    Screen stinker = cs.ResultingScreen;
+                                    for(int k = 0; k < stinker.ScreenActions.Count; k++)
+                                    {
+                                        if (stinker.ScreenActions[k] is INullAssetReferenceCheck)
+                                        {
+                                            INullAssetReferenceCheck horrid = stinker.ScreenActions[k] as INullAssetReferenceCheck;
+                                            if (horrid.HasNullAssetReferences())
+                                            {
+                                                Debug.Log($"Null Asset Ref at: {_target.name} -> Screen: {i} -> conditional screen -> Resulting Screen{cs.ToString()} -> Screen Event: {k}.");
+                                                nullsFound++;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (nullsFound == 0) Debug.Log($"{_target.name} has no Null Asset References!");
+                    else Debug.LogWarning($"{_target.name} has: {nullsFound} Null Asset References.");
                 }
             }
 

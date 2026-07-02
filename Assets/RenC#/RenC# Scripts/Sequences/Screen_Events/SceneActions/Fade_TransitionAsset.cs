@@ -3,7 +3,7 @@ using UnityEngine.AddressableAssets;
 using System.Collections.Generic;
 namespace RenCSharp.Sequences
 {
-    public class Fade_TransitionAsset : Screen_Event
+    public class Fade_TransitionAsset : Screen_Event, INullAssetReferenceCheck
     {
         [SerializeField] private List<AssetReferenceSprite> newBG;
         [SerializeField] private float secondsPerFrame = 0.1f;
@@ -66,6 +66,15 @@ namespace RenCSharp.Sequences
         public override string ToString()
         {
             return "Scene/Fade Transition";
+        }
+
+        public bool HasNullAssetReferences()
+        {
+            foreach(AssetReference ar in newBG)
+            {
+                if (ar == null) return true;
+            }
+            return false;
         }
     }
 }
