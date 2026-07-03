@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
-  m_Name: MonikaAndMaroDealsWithTheDarkBrotherhood
+  m_Name: MonikaandMaroStalkTheDarkBrotherhood
   m_EditorClassIdentifier: 
   autoFocusSpeaker: 1
   screens:
@@ -27,7 +27,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (I can't believe some punk bandit tried to attack me on the way  here-)
     ScreenActions:
-    - rid: 4972360592123756639
+    - rid: 7856103004196306996
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (I guess I'm lucky that she was alone and was scared off by just my outfit...)
     ScreenActions:
@@ -213,7 +213,7 @@ MonoBehaviour:
     dialog: Actually, let me draft up a letter back to Cyrodiil, first.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
-    dialog: Commander Maro takes a brief minute to write a brief report that will
+    dialog: Commander Maro takes a brief minute to write a simple report that will
       be sent to his superiors.
     ScreenActions:
     - rid: 7856102979522003017
@@ -267,7 +267,7 @@ MonoBehaviour:
       sending that information back-
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 41a8ee15f11140840838dac560b7ed2b, type: 2}
-    dialog: Just in-case something goes... wrong.
+    dialog: Just in case something goes... wrong.
     ScreenActions:
     - rid: 7856102979522003027
   - speaker: {fileID: 11400000, guid: 41a8ee15f11140840838dac560b7ed2b, type: 2}
@@ -304,7 +304,8 @@ MonoBehaviour:
     ScreenActions:
     - rid: 7856102979522003033
   - speaker: {fileID: 11400000, guid: 41a8ee15f11140840838dac560b7ed2b, type: 2}
-    dialog: We'd have them carted back to Cyrodiil and have them deal with that.
+    dialog: We'd have the bastards carted back to Cyrodiil and have <i>them</i> deal
+      with that.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 41a8ee15f11140840838dac560b7ed2b, type: 2}
     dialog: But I'm sure they'd rather us take care of it the simple, and hard, way.
@@ -334,13 +335,70 @@ MonoBehaviour:
     ScreenActions:
     - rid: 7856102979522003039
     - rid: 7856102979522003040
-  - speaker: {fileID: 0}
-    dialog: 
+    - rid: 7856103004196307006
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Is... is that it? That door?)
     ScreenActions:
     - rid: 7856102979522003041
+    - rid: 7856102979522003057
+  - speaker: {fileID: 11400000, guid: 41a8ee15f11140840838dac560b7ed2b, type: 2}
+    dialog: (Yes.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (It's, uh... it's pretty creepy.)
+    ScreenActions:
+    - rid: 7856102979522003058
+  - speaker: {fileID: 11400000, guid: 41a8ee15f11140840838dac560b7ed2b, type: 2}
+    dialog: (Of course it is, it'll ward away anyone who doesn't know better.)
+    ScreenActions:
+    - rid: 7856102979522003059
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (...)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (So are we just gonna stand around here, or...?)
+    ScreenActions:
+    - rid: 7856102979522003060
+  - speaker: {fileID: 11400000, guid: 41a8ee15f11140840838dac560b7ed2b, type: 2}
+    dialog: (Ah, right-)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 41a8ee15f11140840838dac560b7ed2b, type: 2}
+    dialog: (Agent, did you bring the appropriate accomodations?)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 2376c82df69669342b30db689a8411f0, type: 2}
+    dialog: (Yes, sir. Canopies and cots.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 41a8ee15f11140840838dac560b7ed2b, type: 2}
+    dialog: (Excellent.)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 41a8ee15f11140840838dac560b7ed2b, type: 2}
+    dialog: (Let's find a spot where we can see that door and anyone going through
+      it without being seen ourselves-)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 41a8ee15f11140840838dac560b7ed2b, type: 2}
+    dialog: (Get our resting situation set up...)
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 41a8ee15f11140840838dac560b7ed2b, type: 2}
+    dialog: (And decide the watch order.)
+    ScreenActions:
+    - rid: 7856102979522003061
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Hey, uh, since I'm a guest on this... adventure, mind if I take normal
+      daytime hours?)
+    ScreenActions:
+    - rid: 7856102979522003062
+  - speaker: {fileID: 11400000, guid: 41a8ee15f11140840838dac560b7ed2b, type: 2}
+    dialog: (... Yeah, sure.)
+    ScreenActions:
+    - rid: 7856103004196306997
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: With that confirmation, the three begin scouting for good places to set
+      up camp.
+    ScreenActions:
+    - rid: 7856103004196306998
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 3adaf3ce42664714a8b9595dcf1c8316, type: 2}
     conditions: []
   myself:
     m_AssetGUID: 7c3d925639a7ba046a2367cd66856813
@@ -386,15 +444,6 @@ MonoBehaviour:
         - skyUp
         - blank
         - EMPTY
-    - rid: 4972360592123756639
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-        visualSpriteIndexes:
-        - 
-        - 
-        - smileSweat
-        - 
     - rid: 4972360592123756640
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1093,7 +1142,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - inquisitve
+        - inquisitive
         - 
     - rid: 7856102979522002954
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
@@ -1387,7 +1436,7 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
-        fadeTransition: 0
+        fadeTransition: 3
         fadeDuration: 3
     - rid: 7856102979522003040
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
@@ -1397,17 +1446,132 @@ MonoBehaviour:
           m_SubObjectName: 
           m_SubObjectGUID: 
           m_SubObjectType: 
-          m_EditorAssetChanged: 1
+          m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
     - rid: 7856102979522003041
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         songAsset:
-          m_AssetGUID: 
+          m_AssetGUID: bebe1601b1544504f87d86c2e1e106c1
           m_SubObjectName: 
           m_SubObjectGUID: 
           m_SubObjectType: 
-          m_EditorAssetChanged: 0
-        fadeTime: 1
+          m_EditorAssetChanged: 1
+        fadeTime: 2
         setToSameTime: 0
+    - rid: 7856102979522003057
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - sternSweat
+        - 
+    - rid: 7856102979522003058
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smileSweat
+        - 
+    - rid: 7856102979522003059
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - stern
+        - 
+    - rid: 7856102979522003060
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
+        - 
+    - rid: 7856102979522003061
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smileSweat
+        - 
+    - rid: 7856102979522003062
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grinSweat
+        - 
+    - rid: 7856103004196306996
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smileSweat
+        - 
+    - rid: 7856103004196306997
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smileSweat
+        - 
+    - rid: 7856103004196306998
+      type: {class: Group_Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorsToRemove:
+        - {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        - {fileID: 11400000, guid: 41a8ee15f11140840838dac560b7ed2b, type: 2}
+        - {fileID: 11400000, guid: 2376c82df69669342b30db689a8411f0, type: 2}
+        fadeTime: 0.5
+    - rid: 7856103004196307006
+      type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        nameOfObject: Background
+        newColor: {r: 1, g: 1, b: 1, a: 1}
+        newHueDegree: 0
+        newSaturation: 1
+        newContrast: 0.9
+        newTemperature: 1.2
+        newTint: 0
+        lerpDuration: 3
+        lerpCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4

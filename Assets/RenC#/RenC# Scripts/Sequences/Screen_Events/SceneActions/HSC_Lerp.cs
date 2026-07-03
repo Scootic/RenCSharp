@@ -11,11 +11,13 @@ namespace RenCSharp.Sequences
         [SerializeField, Range(-360,360)] private float newHueDegree = 0;
         [SerializeField] private float newSaturation = 1;
         [SerializeField] private float newContrast = 1;
+        [SerializeField] private float newTemperature = 0;
+        [SerializeField] private float newTint = 0;
         [SerializeField, Tooltip("The time it takes for the hsc transition to complete.")] private float lerpDuration = 1;
         [SerializeField] private AnimationCurve lerpCurve = Animation_Helper.EaseOut;
 
         private Coroutine transitionRoutine;
-        private float oldH, oldS, oldC, t, perc, lerpH, lerpS, lerpC;
+        private float oldH, oldS, oldC, oldTem, oldTin, t, perc, lerpH, lerpS, lerpC, lerpTem, lerpTin;
         private Color oldColor;
         private Image image;
         private Material hscMat;
@@ -29,6 +31,8 @@ namespace RenCSharp.Sequences
                 oldH = hscMat.GetFloat("_hue");
                 oldS = hscMat.GetFloat("_sat");
                 oldC = hscMat.GetFloat("_con");
+                oldTem = hscMat.GetFloat("_tem");
+                oldTin = hscMat.GetFloat("_tin");
                 oldColor = image.color;
                 t = 0;
                 transitionRoutine = Script_Manager.SM.StartCoroutine(LerpHSC());
@@ -46,6 +50,8 @@ namespace RenCSharp.Sequences
             hscMat.SetFloat("_hue", newHueDegree);
             hscMat.SetFloat("_sat", newSaturation);
             hscMat.SetFloat("_con", newContrast);
+            hscMat.SetFloat("_tem", newTemperature);
+            hscMat.SetFloat("_tin", newTint);
             image.color = newColor;
             Script_Manager.ProgressScreenEvent -= PanicStop;
         }
@@ -60,10 +66,14 @@ namespace RenCSharp.Sequences
                 lerpC = Mathf.Lerp(oldC, newContrast, perc);
                 lerpH = Mathf.Lerp(oldH, newHueDegree, perc);
                 lerpS = Mathf.Lerp(oldS, newSaturation, perc);
+                lerpTem = Mathf.Lerp(oldTem, newTemperature, perc);
+                lerpTin = Mathf.Lerp(oldTin, newTint, perc);
 
                 hscMat.SetFloat("_hue", lerpH);
                 hscMat.SetFloat("_sat", lerpS);
                 hscMat.SetFloat("_con", lerpC);
+                hscMat.SetFloat("_tem", lerpTem);
+                hscMat.SetFloat("_tin", lerpTin);
 
                 image.color = Color.Lerp(oldColor, newColor, perc);
 
@@ -74,6 +84,8 @@ namespace RenCSharp.Sequences
             hscMat.SetFloat("_hue", newHueDegree);
             hscMat.SetFloat("_con", newContrast);
             hscMat.SetFloat("_sat", newSaturation);
+            hscMat.SetFloat("_tem", newTemperature);
+            hscMat.SetFloat("_tin", newTint);
         }
 
         public override string ToString()

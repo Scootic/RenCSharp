@@ -63,6 +63,7 @@ MonoBehaviour:
     - rid: 268099459762618462
     - rid: 268099482212892672
     - rid: 268099819477139519
+    - rid: 7856103004196307004
   - speaker: {fileID: 0}
     dialog: ward farticles
     ScreenActions:
@@ -79,7 +80,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 268099551663226944
     - rid: 268099551663226945
-    - rid: 4972360368865148984
+    - rid: 7856103004196307002
   - speaker: {fileID: 0}
     dialog: spark particles
     ScreenActions:
@@ -91,6 +92,7 @@ MonoBehaviour:
     - rid: 268099556554833975
     - rid: 268099556554833978
     - rid: 268099819477139520
+    - rid: 7856103004196307005
   - speaker: {fileID: 0}
     dialog: teleportathion partikles
     ScreenActions:
@@ -195,7 +197,7 @@ MonoBehaviour:
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-        fadeInTime: 0.5
+        fadeInTime: 0.1
         spawnOffset: {x: 0, y: 0, z: 0}
         visualSpriteIndexes:
         - EMPTY
@@ -300,7 +302,25 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -325,7 +345,25 @@ MonoBehaviour:
           m_RotationOrder: 4
         motionPathY:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -530,7 +568,6 @@ MonoBehaviour:
       data:
         sfxToPlay: {fileID: 8300000, guid: 468aea67a488b4644baaa92bbdf4118c, type: 3}
         position: {x: 0, y: 0, z: 0}
-        environmental: 0
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
@@ -540,7 +577,6 @@ MonoBehaviour:
       data:
         sfxToPlay: {fileID: 8300000, guid: 6256c7959eedf1a4c8d0871c2869f82f, type: 3}
         position: {x: 0, y: 0, z: 0}
-        environmental: 0
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
@@ -550,7 +586,6 @@ MonoBehaviour:
       data:
         sfxToPlay: {fileID: 8300000, guid: 4a5153978164c7f4d888ef52ae8f516b, type: 3}
         position: {x: 0, y: 0, z: 0}
-        environmental: 0
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
@@ -560,7 +595,6 @@ MonoBehaviour:
       data:
         sfxToPlay: {fileID: 8300000, guid: 3fed67d36988a0943aa6e9c566e32167, type: 3}
         position: {x: 0, y: 0, z: 0}
-        environmental: 0
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
@@ -570,7 +604,6 @@ MonoBehaviour:
       data:
         sfxToPlay: {fileID: 8300000, guid: fdb08f2201a864b4ebb5750215a7e9f3, type: 3}
         position: {x: 0, y: 0, z: 0}
-        environmental: 0
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
@@ -610,7 +643,6 @@ MonoBehaviour:
       data:
         sfxToPlay: {fileID: 8300000, guid: cef0af27bff21004da98e6dbfb340cf7, type: 3}
         position: {x: 0, y: 0, z: 0}
-        environmental: 0
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
@@ -674,31 +706,6 @@ MonoBehaviour:
         - uniUp
         - shockSurprise
         - EMPTY
-    - rid: 4972360368865148984
-      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        localMotionOffset: {x: 0, y: 0, z: 0}
-        motionDuration: 1
-        motionPathX:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        motionPathY:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        motionPathZ:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        target: {fileID: 0}
-        loopOnScreen: 0
     - rid: 4972360384702578762
       type: {class: Screen_Shake, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -935,6 +942,8 @@ MonoBehaviour:
         newHueDegree: 0
         newSaturation: 0.8
         newContrast: 0.8
+        newTemperature: 0
+        newTint: 0
         lerpDuration: 1
         lerpCurve:
           serializedVersion: 2
@@ -968,6 +977,8 @@ MonoBehaviour:
         newHueDegree: 0
         newSaturation: 0.5
         newContrast: 0.8
+        newTemperature: 0
+        newTint: 0
         lerpDuration: 1
         lerpCurve:
           serializedVersion: 2
@@ -1001,6 +1012,8 @@ MonoBehaviour:
         newHueDegree: 0
         newSaturation: 1
         newContrast: 1
+        newTemperature: 0
+        newTint: 0
         lerpDuration: 0.15
         lerpCurve:
           serializedVersion: 2
@@ -1034,6 +1047,83 @@ MonoBehaviour:
         newHueDegree: 10
         newSaturation: 1.1
         newContrast: 0.5
+        newTemperature: 0
+        newTint: 0
+        lerpDuration: 1
+        lerpCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 7856103004196307002
+      type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        nameOfObject: Background
+        newColor: {r: 1, g: 1, b: 1, a: 1}
+        newHueDegree: 0
+        newSaturation: 1
+        newContrast: 0.9
+        newTemperature: 1.2
+        newTint: 0
+        lerpDuration: 1
+        lerpCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 7856103004196307004
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeTime: 0.5
+    - rid: 7856103004196307005
+      type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        nameOfObject: Background
+        newColor: {r: 1, g: 1, b: 1, a: 1}
+        newHueDegree: 0
+        newSaturation: 1
+        newContrast: 1
+        newTemperature: 0
+        newTint: 0
         lerpDuration: 1
         lerpCurve:
           serializedVersion: 2

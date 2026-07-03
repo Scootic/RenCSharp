@@ -469,12 +469,14 @@ namespace RenCSharp
                 st.BackgroundAssetKeys = aih.SpriteAssetGUIDs;
                 st.BackgroundSubobjectKeys = aih.SubObjectGUIDs;
                 st.BackgroundSPF = aih.SecondsPerFrame;
-                float[] bghsc = new float[3];
+                float[] bghsc = new float[5];
                 Image bgI = bg.GetComponent<Image>();
                 Material stinker = bgI.material;
                 bghsc[0] = stinker.GetFloat("_hue");
                 bghsc[1] = stinker.GetFloat("_sat");
                 bghsc[2] = stinker.GetFloat("_con");
+                bghsc[3] = stinker.GetFloat("_tem");
+                bghsc[4] = stinker.GetFloat("_tin");
                 st.BackgroundHSC = bghsc;
                 float[] bgcolor = new float[4];
                 bgcolor[0] = bgI.color.r;
@@ -490,12 +492,14 @@ namespace RenCSharp
                 st.OverlayAssetKeys = aih.SpriteAssetGUIDs;
                 st.OverlaySubobjectKeys = aih.SubObjectGUIDs;
                 st.OverlaySPF = aih.SecondsPerFrame;
-                float[] ovhsc = new float[3];
+                float[] ovhsc = new float[5];
                 Image ovI = ov.GetComponent<Image>();
                 Material stinker = ovI.material;
                 ovhsc[0] = stinker.GetFloat("_hue");
                 ovhsc[1] = stinker.GetFloat("_sat");
                 ovhsc[2] = stinker.GetFloat("_con");
+                ovhsc[3] = stinker.GetFloat("_tem");
+                ovhsc[4] = stinker.GetFloat("_tin");
                 st.OverlayHSC = ovhsc;
                 float[] ovcolor = new float[4];
                 ovcolor[0] = ovI.color.r;
@@ -611,19 +615,26 @@ namespace RenCSharp
                 ovStinker.SetFloat("_hue", std.OverlayHSC[0]);
                 ovStinker.SetFloat("_sat", std.OverlayHSC[1]);
                 ovStinker.SetFloat("_con", std.OverlayHSC[2]);
+                if (std.OverlayHSC.Length > 3)
+                {
+                    ovStinker.SetFloat("_tem", std.OverlayHSC[3]);
+                    ovStinker.SetFloat("_tin", std.OverlayHSC[4]);
+                }
             }
             else
             {
-                Debug.LogWarning($"Save data: {sd.FileName} doesn't have an overlay hsc array. Default values should still apply.");
+                Debug.LogWarning($"Save data: {sd.FileName} doesn't have a valid overlay hsc array. Default values should still apply.");
                 try
                 {
                     ovStinker.SetFloat("_hue", 0);
                     ovStinker.SetFloat("_sat", 1);
                     ovStinker.SetFloat("_con", 1);
+                    ovStinker.SetFloat("_tem", 0);
+                    ovStinker.SetFloat("_tin", 0);
                 }
                 catch
                 {
-                    Debug.LogError("Overlay object doesn't have the HSC Shader?");
+                    Debug.LogError("Overlay object doesn't have the Advanced Image Adjustment Shader?");
                 }
             }
             if(std.OverlayColor != null)
@@ -644,6 +655,11 @@ namespace RenCSharp
                 bgStinker.SetFloat("_hue", std.BackgroundHSC[0]);
                 bgStinker.SetFloat("_sat", std.BackgroundHSC[1]);
                 bgStinker.SetFloat("_con", std.BackgroundHSC[2]);
+                if (std.BackgroundHSC.Length > 3)
+                {
+                    bgStinker.SetFloat("_tem", std.BackgroundHSC[3]);
+                    bgStinker.SetFloat("_tin", std.BackgroundHSC[4]);
+                }
             }
             else
             {
@@ -653,10 +669,12 @@ namespace RenCSharp
                     bgStinker.SetFloat("_hue", 0);
                     bgStinker.SetFloat("_sat", 1);
                     bgStinker.SetFloat("_con", 1);
+                    bgStinker.SetFloat("_tem", 0);
+                    bgStinker.SetFloat("_tin", 0);
                 }
                 catch
                 {
-                    Debug.LogError("Background object doesn't have the HSC Shader?");
+                    Debug.LogError("Background object doesn't have the Advanced Image Adjustment Shader?");
                 }
             }
             if(std.BackgroundColor != null)
