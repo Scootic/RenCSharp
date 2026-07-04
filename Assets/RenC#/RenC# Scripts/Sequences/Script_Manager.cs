@@ -5,7 +5,6 @@ using RenCSharp.Tags;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -339,8 +338,8 @@ namespace RenCSharp
                 dialogBox.color = curActor.TextboxColor;
                 dialogField.font = curActor.ActorFont;
                 dialogBox.material = curActor.TextboxMaterial;
-                speakerNameField.text = TagParser.CleanOutTags(curActor.ActorName,false);
-                speakerNameField.text = Textbox_String.ReplaceableText(speakerNameField.text);
+                string s = TagParser.CleanOutTags(curActor.ActorName,false);
+                speakerNameField.text = Textbox_String.ReplaceableText(s);
                 speakerNameBoxScaler.ScaleTextHolder();
                 if (currentSequence.AutoFocusSpeaker && !prevActorIscurSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so
             }
@@ -354,10 +353,7 @@ namespace RenCSharp
                 dialogBox.material = null;
             }
 
-            string amended = Regex.Replace(screen.Dialog, playerTag, playerName); //insert the player's custom name into dialog
-            char[] dialogchars = amended.ToCharArray();
-
-            if(dialogchars.Length == 0) //hover on empty screens until the transition or whatever is finished
+            if(screen.Dialog.Length == 0) //hover on empty screens until the transition or whatever is finished
             {
                 dialogField.text = "";
                 while (paused)
@@ -370,10 +366,10 @@ namespace RenCSharp
                 yield break;
             }
             //if we have actual text, log that in the history
-            else UpdateHistory(curActor != null ? curActor.ActorName == playerTag ? playerName : curActor.ActorName : "Internal Narration", 
-                TagParser.CleanOutTags(amended, false));
+            else UpdateHistory(curActor != null ? Textbox_String.ReplaceableText(curActor.ActorName) : "Internal Narration", 
+                TagParser.CleanOutTags(screen.Dialog, false));
             //start adding text to the box, character by character
-            yield return Textbox_String.RunThroughText(dialogField, amended);
+            yield return Textbox_String.RunThroughText(dialogField, screen.Dialog);
 
             //safety measure once all chars have been put in their place
             StartCoroutine(FlashButton(curScreenIndex));

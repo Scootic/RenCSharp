@@ -43,7 +43,7 @@ namespace RenCSharp.Sequences
             spawnOffsetField.RegisterValueChangedCallback(evt =>
             {
                 spawnOffset.vector3Value = evt.newValue;
-                Debug.Log($"evtNewVal: {evt.newValue} | spawnOffsetValue: {spawnOffset.vector3Value}");
+                //Debug.Log($"evtNewVal: {evt.newValue} | spawnOffsetValue: {spawnOffset.vector3Value}");
                 theSequence.ApplyModifiedProperties();
             });
             
