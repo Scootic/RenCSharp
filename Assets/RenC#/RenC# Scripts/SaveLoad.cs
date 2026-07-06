@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using System.Linq;
 namespace RenCSharp
 {
     /// <summary>
@@ -16,9 +15,11 @@ namespace RenCSharp
         /// </summary>
         /// <param name="fileName">The name of the file (not file path), don't include the .fileType</param>
         /// <param name="sd">The savedata being saved to a file</param>
-        public static void Save(string fileName, SaveData sd)
+        /// <param name="subFolder"> The subfolder that data will be saved to. Useful for sorting save games into separate folders
+        /// based on the player's name</param>
+        public static void Save(string fileName, SaveData sd, string subFolder = "")
         {
-            string filePath = Application.persistentDataPath + "/" + fileName + ".sav";
+            string filePath = Application.persistentDataPath + "/" + (subFolder != "" ? subFolder + "/" : "") + fileName + ".sav";
             sd.FileName = fileName;
             Debug.Log("Saving data to: " + filePath);
             FileStream fs = new FileStream(filePath, FileMode.Create);
@@ -43,9 +44,9 @@ namespace RenCSharp
         /// <param name="fileName">The name of the file that we're looking for.</param>
         /// <param name="sd">The SaveData we should be getting from that file.</param>
         /// <returns>True if that file exists, false if it does not.</returns>
-        public static bool TryLoad(string fileName, out SaveData sd)
+        public static bool TryLoad(string fileName, out SaveData sd, string subFolder = "")
         {
-            string filePath = Application.persistentDataPath + "/" + fileName + ".sav";
+            string filePath = Application.persistentDataPath + "/" + (subFolder != "" ? subFolder + "/" : "") + fileName + ".sav";
             sd = new SaveData();
             if (!File.Exists(filePath)) { Debug.LogWarning("No file at: " + filePath); return false; }
 
@@ -74,6 +75,7 @@ namespace RenCSharp
             using (FileStream fs = File.Open(filePath, FileMode.Open))
             {
                 sd = (SaveData?)bf.Deserialize(fs);
+                Debug.Log($"File exists? :{sd != null}");
             }
             //fs.Close();
             await Awaitable.MainThreadAsync();
@@ -118,15 +120,24 @@ namespace RenCSharp
         /// a player could load or delete.
         /// </summary>
         /// <returns>An array of all found SaveData from the Application.persistentDataPath directory.</returns>
-        public static SaveData[] FindAllSaves()
+        public static SaveData[] FindAllSaves(string subDirectory = "")
         {
             List<SaveData> allSD = new();
 
-            string[] allFilePaths = Directory.GetFiles(Application.persistentDataPath);
+            string[] allFilePaths;
 
-            foreach(string s in allFilePaths)
+            if (subDirectory == "") 
+            { 
+                allFilePaths = Directory.GetFiles(Application.persistentDataPath, "*.sav", SearchOption.AllDirectories);
+            }
+            else
             {
-                if(TryLoadFromPath(s, out SaveData? sd)) allSD.Add((SaveData) sd);
+                allFilePaths = Directory.GetFiles(Application.persistentDataPath + "/" + subDirectory, "*.sav", SearchOption.AllDirectories);
+            }
+
+            foreach (string s in allFilePaths)
+            {
+                if (TryLoadFromPath(s, out SaveData? sd)) allSD.Add((SaveData)sd);
             }
 
             return allSD.ToArray();
@@ -134,32 +145,31 @@ namespace RenCSharp
 
         public static int AllSavesLength() //?
         {
-            int returner = 0;
-            List<string> allFilePaths = Directory.GetFiles(Application.persistentDataPath).ToList();
-            foreach(string s in allFilePaths)
-            {
-                if (s.Contains(".sav")) returner++;
-            }
-            return returner;
+            string[] allFilePaths = Directory.GetFiles(Application.persistentDataPath, "*.sav", SearchOption.AllDirectories);
+            return allFilePaths.Length;
         }
 
-        public static string[] AllSavesPaths()
+        public static string[] AllSavesPaths(string subDirectory = "")
         {
-            List<string> allFilePaths = Directory.GetFiles(Application.persistentDataPath).ToList();
-            for(int i = allFilePaths.Count - 1; i >= 0; i--)
-            {
-                if (!allFilePaths[i].Contains(".sav")) allFilePaths.RemoveAt(i);
+            string[] allFilePaths;
+            if (subDirectory == "") 
+            { 
+                allFilePaths = Directory.GetFiles(Application.persistentDataPath, "*.sav", SearchOption.AllDirectories);
             }
-            return allFilePaths.ToArray();
+            else 
+            {
+                allFilePaths = Directory.GetFiles(Application.persistentDataPath + "/" + subDirectory, "*.sav", SearchOption.AllDirectories);
+            }
+            return allFilePaths;
         }
 
         /// <summary>
         /// Specifically used to delete certain save data files, not any file at all contrary to the name.
         /// </summary>
         /// <param name="fileName">File name of save you want gone, not filepath!</param>
-        public static void DeleteFile(string fileName)
+        public static void DeleteFile(string fileName, string subFolder = "")
         {
-            string filePath = Application.persistentDataPath + "/" + fileName + ".sav";
+            string filePath = Application.persistentDataPath + "/" + (subFolder != "" ? $"{subFolder}/" : "") + fileName + ".sav";
             if (!File.Exists(filePath)) { Debug.LogWarning("Trying to delete a save that doesn't exist at: " + filePath); return; }
             File.Delete(filePath);
         }

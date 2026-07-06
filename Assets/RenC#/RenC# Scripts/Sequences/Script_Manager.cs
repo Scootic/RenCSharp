@@ -562,7 +562,16 @@ namespace RenCSharp
             Texture2D scaled = Evil_Texture_Resizer.Scaled(raw, 640, 480, FilterMode.Trilinear);
             sd.SaveScreenshot = scaled.EncodeToPNG();
             if(!auto) menuBase.SetActive(true);
-            SaveLoad.Save(fileName, sd);
+            //we're assuming that replacing texts[0] exists, since it SHOULD be the mc name given at game start...
+            if (sd.ReplacingTexts.Length > 0)
+            {
+                SaveLoad.Save(fileName, sd, auto ? $"AutoSaves_{sd.ReplacingTexts[0]}" : $"Saves_{sd.ReplacingTexts[0]}");
+            }
+            else
+            {
+                //don't bother with subfolders if we don't have an mc name or whatever...
+                SaveLoad.Save(fileName, sd);
+            }
             saving = false;
         }
 

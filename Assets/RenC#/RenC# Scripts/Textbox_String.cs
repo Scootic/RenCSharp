@@ -151,7 +151,10 @@ namespace RenCSharp
             foreach (KeyValuePair<string, string> kvp in replacerTexts) //by the end of this, replace generic guys like {mc} with the actual player's name
             {
                 //Debug.Log("Doing a stupid replacering!");
-                sOutput = Regex.Replace(sOutput, kvp.Key, kvp.Value);
+                if (sOutput.Contains(kvp.Key))
+                {
+                    sOutput = Regex.Replace(sOutput, kvp.Key, kvp.Value);
+                }
             }
             return sOutput;
         }
@@ -174,6 +177,7 @@ namespace RenCSharp
         {
             if (!replacerTexts.ContainsKey(replaced))
             {
+                Debug.Log($"Adding replacer text to dictionary. {replaced} will be replaced by: {replacer}");
                 replacerTexts.Add(replaced, replacer);
             }
             else
