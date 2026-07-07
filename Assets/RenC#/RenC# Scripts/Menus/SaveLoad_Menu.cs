@@ -7,10 +7,11 @@ namespace RenCSharp.Menus
     {
         [SerializeField] private GameObject saveMenu;
         [SerializeField,Tooltip("Requires a UIE with 2 buttons, 1 image, and 1 TMPText")] private GameObject loadGamePrefab;
-        [SerializeField] private Transform loadGameHolder;
-        [SerializeField] private Transform autoSaveLoadGameHolder;
-        [SerializeField] private Sprite defaultImage;
-        [SerializeField] private string autoSavePattern = "!AutoSave_";
+        [SerializeField, Tooltip("Preferably the content element of a scroll view.")] private Transform loadGameHolder;
+        [SerializeField, Tooltip("Preferably the content element of a scroll view.")] private Transform autoSaveLoadGameHolder;
+        [SerializeField, Tooltip("Displays if the save data has no screenshot information.")] private Sprite defaultImage;
+        [SerializeField, Tooltip("Determines what saves are autosaves to sort them into a separate container.")] private string autoSavePattern = "!AutoSave_";
+        [SerializeField, Tooltip("How many load game prefabs you expect to make up a row in the grid view.")] private int expectedPrefabsPerRow = 4;
         [Header("Main Menu Scene Loading")]
         [SerializeField] private bool mainMenu = false;
         [SerializeField] private Simple_Scene_Loader ssl;
@@ -19,7 +20,26 @@ namespace RenCSharp.Menus
         private string subDirectory = "";
         private int activeDatas = 0;
         private string fileName = "SaveData";
+        private Vector2 loadFabSizeDelta;
         private Awaitable openMenu;
+        /// <summary>
+        /// Rect Transform of Main Save Game scrolling content element
+        /// </summary>
+        private RectTransform rt;
+        /// <summary>
+        /// Rect Transform of Auto Save Game scrolling content element
+        /// </summary>
+        private RectTransform rt2;
+        /// <summary>
+        /// Rect Transform of GameObject saveMenu
+        /// </summary>
+        private RectTransform rt3;
+
+        private void Start()
+        {
+            loadFabSizeDelta = loadGamePrefab.GetComponent<RectTransform>().sizeDelta;
+            rt3 = saveMenu.GetComponent<RectTransform>();
+        }
 
         public override async Awaitable OnMenuOpen()
         {
@@ -41,7 +61,7 @@ namespace RenCSharp.Menus
             {
                 try
                 {
-                    subDirectory = Textbox_String.GetReplacerTexts["{mc}"];
+                    subDirectory = "Saves_" + Textbox_String.GetReplacerTexts["{mc}"];
                 }
                 catch
                 {
@@ -54,14 +74,17 @@ namespace RenCSharp.Menus
             }
 
             string[] paths = SaveLoad.AllSavesPaths(subDirectory);
+            Debug.Log("Found save file paths length: " + paths.Length);
 
-            RectTransform rt = loadGameHolder.GetComponent<RectTransform>();
+            rt = loadGameHolder.GetComponent<RectTransform>();
             rt.anchoredPosition = new Vector2(-0.5f * rt.sizeDelta.x - 50, 0);
-            if (autoSaveLoadGameHolder != null)
+
+            if(autoSaveLoadGameHolder != null)
             {
-                RectTransform rt2 = autoSaveLoadGameHolder.GetComponent<RectTransform>();
-                rt2.anchoredPosition = new Vector2(-0.5f * rt2.sizeDelta.x - 50, 0); //?
+                rt2 = autoSaveLoadGameHolder.GetComponent<RectTransform>();
+                rt2.anchoredPosition = new Vector2(-0.5f * rt2.sizeDelta.x - 50, 0);
             }
+            
             for (int i = 0; i < paths.Length; i++)
             {
                 if (!saveMenu.activeSelf) 
@@ -81,7 +104,7 @@ namespace RenCSharp.Menus
             GameObject go = await Object_Factory.SpawnObjectAsync(loadGamePrefab, "Save" + i, (auto && !mainMenu) ? autoSaveLoadGameHolder : loadGameHolder);
             UI_Element loadElement = go.GetComponent<UI_Element>();
             string s = sd.FileName;
-            if (s.Contains(autoSavePattern)) s.Replace(autoSavePattern, "");
+            Regex.Replace(s, autoSavePattern, "");
             if (!mainMenu) 
             {
                 loadElement.Texts[0].text = s;
@@ -114,8 +137,16 @@ namespace RenCSharp.Menus
             }
 
             loadElement.Buttons[0].onClick.AddListener(delegate { Load(sd); });
-            loadElement.Buttons[1].onClick.AddListener(delegate { Delete(sd.FileName); });
+            loadElement.Buttons[1].onClick.AddListener(delegate { Delete(sd.FileName, i); });
             activeDatas++;
+
+            float newSaveHolderSizeY = (loadGameHolder.transform.childCount / expectedPrefabsPerRow) * (loadFabSizeDelta.y * (rt3.sizeDelta.y / 257f));
+            rt.sizeDelta = new Vector2(rt.sizeDelta.x, newSaveHolderSizeY);
+            if (autoSaveLoadGameHolder != null)
+            {
+                float newAutoSaveHolderSizeX = autoSaveLoadGameHolder.childCount * (loadFabSizeDelta.x) + loadFabSizeDelta.x;
+                rt2.sizeDelta = new Vector2(newAutoSaveHolderSizeX, rt.sizeDelta.y);
+            }
         }
 
         public override void OnMenuClose()
@@ -148,11 +179,10 @@ namespace RenCSharp.Menus
             }
         }
 
-        private void Delete(string saveFileName)
+        private void Delete(string saveFileName, int index)
         {
-            SaveLoad.DeleteFile(saveFileName);
-            OnMenuClose();
-            _ = OnMenuOpen();
+            SaveLoad.DeleteSaveFile(saveFileName);
+            Object_Factory.RemoveObject("Save" + index);
         }
 
         public void SetFileName(string s)

@@ -19,7 +19,6 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9079475098267418678
     - rid: 9079475089592287301
-    - rid: 4972360592123756597
   - speaker: {fileID: 0}
     dialog: I see an annoying girl running toward me from the distance, waving her
       arms in the air like she's totally oblivious to any attention she might draw
@@ -45,7 +44,8 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
     dialog: <font="glitchfont">Oh! I've still got the other one lying around here
       somewhere.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 7856103093696462936
   - speaker: {fileID: 11400000, guid: fdd5cfec9471d2f48a6134838a2b377b, type: 2}
     dialog: <font="glitchfont">Let me just-</font>
     ScreenActions: []
@@ -290,7 +290,7 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
-    - rid: 4972360592123756597
+    - rid: 7856103093696462936
       type: {class: Set_ReplaceableText, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         textToReplace: '{Player}'

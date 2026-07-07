@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace RenCSharp.EXPERIMENTAL
 {
     public class Flag_CMD : Base_CMD
@@ -29,6 +31,20 @@ namespace RenCSharp.EXPERIMENTAL
             }
         }
 
+        protected static void GetAllFlags()
+        {
+            if (Flag_Manager.GetSaveDataFlags.Count == 0) { RenConsole.Log("There are no stored flags in the per-save dictionary.", LogSeverity.LogWarning, false); return; }
+
+            string s = "";
+
+            foreach (KeyValuePair<string, int> kvp in Flag_Manager.GetSaveDataFlags)
+            {
+                s += $"{kvp.Key}: {kvp.Value}, ";
+            }
+
+            RenConsole.Log(s, LogSeverity.LogPositive);
+        }
+
         protected static void GetPersistentFlag(string string_flagName)
         {
             try
@@ -53,6 +69,20 @@ namespace RenCSharp.EXPERIMENTAL
             {
                 RenConsole.Log("Failed to Set a Persistent Flag. Make sure the first argument is the flag name, and the second argument is an integer value.", LogSeverity.LogError);
             }
+        }
+
+        protected static void GetAllPersistentFlags()
+        {
+            if (Flag_Manager.GetPersistentDataFlags.Count == 0) { RenConsole.Log("There are no stored flags in the persistent flag dictionary.", LogSeverity.LogWarning, false); return; }
+
+            string s = "";
+
+            foreach (KeyValuePair<string, int> kvp in Flag_Manager.GetPersistentDataFlags)
+            {
+                s += $"{kvp.Key}: {kvp.Value}, ";
+            }
+
+            RenConsole.Log(s, LogSeverity.LogPositive);
         }
     }
 }

@@ -93,8 +93,15 @@ namespace RenCSharp
                         if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                         {
                             int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i, true); //since the text string gets rid of valid tags???
-                            TMP_CharacterInfo c = textBox.textInfo.characterInfo[goodI];
-                            Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
+                            try
+                            {
+                                TMP_CharacterInfo c = textBox.textInfo.characterInfo[goodI];
+                                Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
+                            }
+                            catch
+                            {
+                                Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
+                            }
                         }
                         i++;
                     }

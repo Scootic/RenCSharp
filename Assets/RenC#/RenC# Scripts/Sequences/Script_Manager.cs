@@ -565,7 +565,7 @@ namespace RenCSharp
             //we're assuming that replacing texts[0] exists, since it SHOULD be the mc name given at game start...
             if (sd.ReplacingTexts.Length > 0)
             {
-                SaveLoad.Save(fileName, sd, auto ? $"AutoSaves_{sd.ReplacingTexts[0]}" : $"Saves_{sd.ReplacingTexts[0]}");
+                SaveLoad.Save(fileName, sd, auto ? $"Saves_{sd.ReplacingTexts[0]}/AutoSaves" : $"Saves_{sd.ReplacingTexts[0]}");
             }
             else
             {

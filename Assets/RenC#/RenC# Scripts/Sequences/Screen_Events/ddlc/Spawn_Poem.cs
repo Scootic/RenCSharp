@@ -1,3 +1,4 @@
+using UnityEngine.TextCore;
 using UnityEngine;
 
 namespace RenCSharp.Sequences
@@ -23,7 +24,13 @@ namespace RenCSharp.Sequences
             if (poemGO == null) return;
             UI_Element uie = poemGO.GetComponent<UI_Element>();
             uie.Texts[0].text = poemToSpawn.PoemText;
+            RectTransform rt = uie.Texts[0].transform.parent.GetComponent<RectTransform>();
+            RectTransform rt2 = uie.Texts[0].GetComponent<RectTransform>();
             uie.Texts[0].font = poemToSpawn.PoemFont;
+            uie.Texts[0].ForceMeshUpdate();
+            FaceInfo face = uie.Texts[0].font.faceInfo;
+            rt.sizeDelta = new Vector2(rt.sizeDelta.x, uie.Texts[0].textInfo.lineCount * uie.Texts[0].fontSize * (face.lineHeight + face.ascentLine) * 2.25f);
+            rt2.localPosition = new Vector3(rt2.localPosition.x, rt.sizeDelta.y * 0.5f - 40, rt2.localPosition.z);
             here = true;
         }
 

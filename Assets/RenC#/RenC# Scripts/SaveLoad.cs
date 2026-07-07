@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using System.Text.RegularExpressions;
 namespace RenCSharp
 {
     /// <summary>
@@ -19,9 +20,14 @@ namespace RenCSharp
         /// based on the player's name</param>
         public static void Save(string fileName, SaveData sd, string subFolder = "")
         {
+            Regex.Replace(subFolder, "[ <>?*]", "_");
             string filePath = Application.persistentDataPath + "/" + (subFolder != "" ? subFolder + "/" : "") + fileName + ".sav";
             sd.FileName = fileName;
             Debug.Log("Saving data to: " + filePath);
+            if(subFolder != "" && !Directory.Exists(Application.persistentDataPath + "/" + subFolder))
+            {
+                Directory.CreateDirectory(Application.persistentDataPath + "/" + subFolder);
+            }
             FileStream fs = new FileStream(filePath, FileMode.Create);
             bf.Serialize(fs, sd);
             fs.Close();
@@ -71,13 +77,13 @@ namespace RenCSharp
                 Debug.LogWarning("No/Bad file at: " + filePath);
                 return null;
             }
-            //FileStream fs = new FileStream(filePath, FileMode.Open);
+
             using (FileStream fs = File.Open(filePath, FileMode.Open))
             {
                 sd = (SaveData?)bf.Deserialize(fs);
-                Debug.Log($"File exists? :{sd != null}");
+                //Debug.Log($"File exists? :{sd != null}");
             }
-            //fs.Close();
+
             await Awaitable.MainThreadAsync();
             return sd;
         }
@@ -158,6 +164,7 @@ namespace RenCSharp
             }
             else 
             {
+                Regex.Replace(subDirectory, "[ <>?*]", "_");
                 allFilePaths = Directory.GetFiles(Application.persistentDataPath + "/" + subDirectory, "*.sav", SearchOption.AllDirectories);
             }
             return allFilePaths;
@@ -167,8 +174,9 @@ namespace RenCSharp
         /// Specifically used to delete certain save data files, not any file at all contrary to the name.
         /// </summary>
         /// <param name="fileName">File name of save you want gone, not filepath!</param>
-        public static void DeleteFile(string fileName, string subFolder = "")
+        public static void DeleteSaveFile(string fileName, string subFolder = "")
         {
+            Regex.Replace(subFolder, "[ <>?*]", "_");
             string filePath = Application.persistentDataPath + "/" + (subFolder != "" ? $"{subFolder}/" : "") + fileName + ".sav";
             if (!File.Exists(filePath)) { Debug.LogWarning("Trying to delete a save that doesn't exist at: " + filePath); return; }
             File.Delete(filePath);

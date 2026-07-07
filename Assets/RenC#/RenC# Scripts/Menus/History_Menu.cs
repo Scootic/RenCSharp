@@ -7,6 +7,7 @@ namespace RenCSharp.Menus
         [SerializeField] private Transform historyHolder;
         [SerializeField] private GameObject historyPrefab;
         [SerializeField] private GameObject historyMenu;
+        [SerializeField] private float expectedHistoryObjectHeight = 200;
         int activeHistories = 0;
         private Awaitable spawner;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -14,12 +15,14 @@ namespace RenCSharp.Menus
         {
             historyMenu.SetActive(true);
             History t = Script_Manager.SM.CurrentHistory;
+            RectTransform rt = historyHolder.GetComponent<RectTransform>();
             Debug.Log("History lengther: " + t.DialogBoxes.Length);
             for (int i = 0; i < t.HistoryLength; i++)
             {
                 if (t.SpeakerNames[i] == null) continue;
                 spawner = SpawnHistory(i, t.SpeakerNames[i], t.DialogBoxes[i]);
                 await spawner;
+                rt.sizeDelta = new Vector2(rt.sizeDelta.x, activeHistories * expectedHistoryObjectHeight);
                 await Awaitable.NextFrameAsync();
             }
         }
