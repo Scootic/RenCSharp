@@ -367,7 +367,7 @@ namespace RenCSharp
             }
             //if we have actual text, log that in the history
             else UpdateHistory(curActor != null ? Textbox_String.ReplaceableText(curActor.ActorName) : "Internal Narration", 
-                TagParser.CleanOutTags(screen.Dialog, false));
+                Textbox_String.ReplaceableText(TagParser.CleanOutTags(screen.Dialog, false)));
             //start adding text to the box, character by character
             yield return Textbox_String.RunThroughText(dialogField, screen.Dialog);
 
