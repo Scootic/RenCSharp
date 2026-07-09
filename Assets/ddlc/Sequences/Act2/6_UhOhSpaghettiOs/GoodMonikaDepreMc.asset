@@ -36,8 +36,8 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Why didn't you say anything?!?
     ScreenActions:
-    - rid: 1790118444402999324
     - rid: 1790118444402999325
+    - rid: 7856103139480961123
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: I actually tried to at first, but the thing that brought us here stopped
       me.
@@ -198,6 +198,7 @@ MonoBehaviour:
         - 
         - 
         - blankSpeak
+        - 
     - rid: 1790118444402999318
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -215,6 +216,7 @@ MonoBehaviour:
         - 
         - 
         - sadShock
+        - 
     - rid: 1790118444402999320
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -247,15 +249,6 @@ MonoBehaviour:
         - 
         - 
         - blank
-    - rid: 1790118444402999324
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-        visualSpriteIndexes:
-        - 
-        - 
-        - smile
-        - 
     - rid: 1790118444402999325
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -264,6 +257,7 @@ MonoBehaviour:
         - 
         - 
         - pity
+        - 
     - rid: 1790118444402999326
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -272,6 +266,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 1790118444402999328
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -280,12 +275,14 @@ MonoBehaviour:
         - 
         - 
         - terror
+        - 
     - rid: 1790118444402999329
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         visualSpriteIndexes:
         - skyUp
+        - 
         - 
         - 
     - rid: 1790118444402999330
@@ -296,6 +293,7 @@ MonoBehaviour:
         - 
         - 
         - grinSweat
+        - 
     - rid: 1790118444402999331
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -304,6 +302,7 @@ MonoBehaviour:
         - skyDown
         - 
         - pity
+        - 
     - rid: 1790118444402999332
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -312,6 +311,7 @@ MonoBehaviour:
         - 
         - 
         - insaneSpeak
+        - 
     - rid: 1790118444402999333
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -448,6 +448,7 @@ MonoBehaviour:
         - 
         - 
         - depressed
+        - 
     - rid: 1790118469574328330
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -464,6 +465,7 @@ MonoBehaviour:
         - 
         - 
         - stern
+        - 
     - rid: 1790118469574328332
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -472,6 +474,7 @@ MonoBehaviour:
         - 
         - 
         - sternSpeak
+        - 
     - rid: 1790118469574328333
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -480,6 +483,7 @@ MonoBehaviour:
         - 
         - 
         - blankSpeak
+        - 
     - rid: 1790118469574328334
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -488,6 +492,7 @@ MonoBehaviour:
         - 
         - 
         - depressedLookAway
+        - 
     - rid: 1790118469574328335
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -496,6 +501,7 @@ MonoBehaviour:
         - 
         - 
         - blank
+        - 
     - rid: 1790118469574328336
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -530,3 +536,12 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
         fadeTime: 0.5
+    - rid: 7856103139480961123
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - insaneSpeak
+        - 

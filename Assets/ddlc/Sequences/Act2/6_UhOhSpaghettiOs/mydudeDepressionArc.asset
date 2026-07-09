@@ -22,10 +22,10 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: ...
     ScreenActions:
-    - rid: 1790118425451561061
     - rid: 1790118425451561062
     - rid: 1790118425451561069
     - rid: 4972360430703870073
+    - rid: 7856103139480961122
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: The dragon cutscene is already done, if that's why you're here.
     ScreenActions:
@@ -199,17 +199,6 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 3
-    - rid: 1790118425451561061
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-        fadeInTime: 0.5
-        spawnOffset: {x: 0, y: 0, z: 0}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - inquisitive
-        - 
     - rid: 1790118425451561062
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -799,6 +788,8 @@ MonoBehaviour:
         newHueDegree: 10
         newSaturation: 1.1
         newContrast: 0.5
+        newTemperature: 0
+        newTint: 0
         lerpDuration: 1
         lerpCurve:
           serializedVersion: 2
@@ -832,6 +823,8 @@ MonoBehaviour:
         newHueDegree: 0
         newSaturation: 1
         newContrast: 1
+        newTemperature: 0
+        newTint: 0
         lerpDuration: 1
         lerpCurve:
           serializedVersion: 2
@@ -857,3 +850,14 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+    - rid: 7856103139480961122
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - depressed
+        - 

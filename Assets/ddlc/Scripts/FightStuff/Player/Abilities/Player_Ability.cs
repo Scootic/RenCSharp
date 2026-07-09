@@ -29,6 +29,7 @@ namespace RenCSharp.Combat.Player
             {
                 if(debug) Debug.Log("doing ability update: " + gameObject.name + ", t: " + t);
                 t += Time.deltaTime;
+                if (Flag_Manager.GetFlag("tgm") == 1) t = abilityCooldown;
                 if (t >= abilityCooldown) { t = abilityCooldown; validToFire = true; }
                 float perc = (float)t / (float)abilityCooldown;
                 Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", perc);

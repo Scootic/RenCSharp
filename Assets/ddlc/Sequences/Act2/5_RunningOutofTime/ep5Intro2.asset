@@ -20,15 +20,15 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: <i>Even if</i> I can run very fast by yelling good.
     ScreenActions:
-    - rid: 4351268438874521957
+    - rid: 7856103139480961085
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (Guess that's my queue!)
     ScreenActions:
-    - rid: 4351268438874521958
+    - rid: 7856103139480961086
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: So, are you going to carry me the whole way, or what?
     ScreenActions:
-    - rid: 4351268438874521959
+    - rid: 7856103139480961087
   - speaker: {fileID: 0}
     dialog: ...
     ScreenActions: []
@@ -69,33 +69,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 4351268438874521957
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-        visualSpriteIndexes:
-        - default
-        - 
-        - 
-        - 
-    - rid: 4351268438874521958
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - bored
-        - 
-    - rid: 4351268438874521959
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-        visualSpriteIndexes:
-        - skyDown
-        - skyUp
-        - pitySmile
-        - 
     - rid: 4351268438874521960
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -104,6 +77,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - inquisitive
+        - 
     - rid: 4351268438874521961
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -112,6 +86,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - grinSweat
+        - 
     - rid: 4351268438874521962
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -139,3 +114,30 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+    - rid: 7856103139480961085
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smileSweat
+        - 
+    - rid: 7856103139480961086
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - closeEyeSmile
+        - 
+    - rid: 7856103139480961087
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - smug
+        - 

@@ -23,12 +23,12 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: Haaaahh...
     ScreenActions:
-    - rid: 1790118583906598933
     - rid: 1790118583906598934
+    - rid: 7856103139480961124
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: That feels nice-
     ScreenActions:
-    - rid: 1790118583906598935
+    - rid: 7856103139480961125
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: The constant tinge of bloodlust was actually pretty heavy.
     ScreenActions:
@@ -290,17 +290,6 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 3
-    - rid: 1790118583906598933
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-        fadeInTime: 0.5
-        spawnOffset: {x: -300, y: 0, z: 0}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - inquisitive
-        - 
     - rid: 1790118583906598934
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -310,14 +299,6 @@ MonoBehaviour:
         visualSpriteIndexes:
         - default
         - EMPTY
-    - rid: 1790118583906598935
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-        visualSpriteIndexes:
-        - 
-        - 
-        - smile2
     - rid: 1790118583906598936
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -720,3 +701,23 @@ MonoBehaviour:
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
+    - rid: 7856103139480961124
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skySmug
+        - skySmug
+        - closedEyeFrustratedSpeak
+        - ears
+    - rid: 7856103139480961125
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smile2
+        - ears

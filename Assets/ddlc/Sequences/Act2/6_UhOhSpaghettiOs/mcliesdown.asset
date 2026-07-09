@@ -22,9 +22,9 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 5dbdbe635e2cd084781e20280212a995, type: 2}
     dialog: Ah. You two.
     ScreenActions:
-    - rid: 1790118583906598981
     - rid: 1790118583906598982
     - rid: 1790118583906598983
+    - rid: 7856103139480961126
   - speaker: {fileID: 11400000, guid: 5dbdbe635e2cd084781e20280212a995, type: 2}
     dialog: What do you want?
     ScreenActions: []
@@ -150,17 +150,6 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
-    - rid: 1790118583906598981
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-        fadeInTime: 0.5
-        spawnOffset: {x: -400, y: 0, z: 0}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - inquisitive
-        - 
     - rid: 1790118583906598982
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -483,3 +472,14 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
+    - rid: 7856103139480961126
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -400, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - depressed
+        - 

@@ -28,12 +28,12 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Yuri, did you hear something-?
     ScreenActions:
-    - rid: 4351267964947792067
+    - rid: 7856103139480961076
   - speaker: {fileID: 11400000, guid: 99c1c9ab1bd810549a65874b102351c3, type: 2}
     dialog: Hush, don't panic. Take a deep breath, Yuri.
     ScreenActions:
-    - rid: 4351267964947792076
     - rid: 4351267964947792077
+    - rid: 7856103139480961077
   - speaker: {fileID: 11400000, guid: 99c1c9ab1bd810549a65874b102351c3, type: 2}
     dialog: Breathe in...
     ScreenActions:
@@ -208,15 +208,6 @@ MonoBehaviour:
         - skyUp
         - fear
         - 
-    - rid: 4351267964947792067
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - sighSpeak
-        - 
     - rid: 4351267964947792068
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -260,14 +251,6 @@ MonoBehaviour:
           m_RotationOrder: 4
         target: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         loopOnScreen: 0
-    - rid: 4351267964947792076
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        visualSpriteIndexes:
-        - skyUp
-        - skyUp
-        - fear
     - rid: 4351267964947792077
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -276,6 +259,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - shock
+        - 
     - rid: 4351267964947792078
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -284,6 +268,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - sighSpeak
+        - 
     - rid: 4351267964947792079
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -693,3 +678,21 @@ MonoBehaviour:
         flagValue: 1
         increment: 0
         persistent: 0
+    - rid: 7856103139480961076
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - concernSpeak
+        - 
+    - rid: 7856103139480961077
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - concern2
+        - 

@@ -21,5 +21,6 @@ namespace RenCSharp.Sequences
         {
             return "Auto Save";
         }
+        
     }
 }

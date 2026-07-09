@@ -31,7 +31,8 @@ namespace RenCSharp.Sequences
             for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
             {
                 if (visualSpriteIndexes[i] != string.Empty) uie.Images[i].sprite = actorToSpawn.Visuals[i].ReturnSprite(visualSpriteIndexes[i]);
-                else uie.Images[i].sprite = actorToSpawn.Visuals[i].layer[0]; //grab default sprite if there's nothing assigned
+                //no friggin' clue why we need to check if i fits inside the stinkin' arrays. unity is just racist sometimes IG
+                else if (uie.Images.Length < i && actorToSpawn.Visuals.Length < i) uie.Images[i].sprite = actorToSpawn.Visuals[i].layer[0]; //grab default sprite if there's nothing assigned
             }
             fadeIn = Script_Manager.SM.StartCoroutine(FadeIn(uie));
             Script_Manager.ProgressScreenEvent += delegate { PanicStop(uie); };

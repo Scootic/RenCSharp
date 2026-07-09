@@ -6,8 +6,10 @@ namespace RenCSharp.Sequences
     public class Start_Fight : Screen_Event
     {
         [SerializeField] private EnemySO enemyToLoad;
+
         public override void DoEvent()
         {
+            Script_Manager.SM.SaveGameData("!AutoSave_Fight", true);
             Fight_Manager.FM.StartAFight(enemyToLoad);
         }
 

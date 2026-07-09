@@ -22,7 +22,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: (Uhh... what time is it?)
     ScreenActions:
-    - rid: 268099503569240226
+    - rid: 7856103139480961088
     - rid: 268099503569240227
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: (I still feel pretty tired, so it must be around morning...)
@@ -432,17 +432,6 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
-    - rid: 268099503569240226
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-        fadeInTime: 0.5
-        spawnOffset: {x: 0, y: -200, z: 0}
-        visualSpriteIndexes:
-        - default
-        - 
-        - 
-        - 
     - rid: 268099503569240227
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -556,6 +545,7 @@ MonoBehaviour:
         - skyDown
         - skySmug
         - inquisitive
+        - ears
     - rid: 268099503569240236
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -671,6 +661,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - tsunShock
+        - 
     - rid: 268099503569240249
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1344,7 +1335,7 @@ MonoBehaviour:
         - skySmug
         - skySmug
         - '><Shock'
-        - 
+        - ears
     - rid: 268099640005492824
       type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1361,3 +1352,14 @@ MonoBehaviour:
             dialog: Natsuki lays down for a few more minutes, until her migraine
               subsides.
             ScreenActions: []
+    - rid: 7856103139480961088
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: -200, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skySmug
+        - closedEyeFrustratedSpeak
+        - ears

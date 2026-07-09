@@ -114,6 +114,7 @@ namespace RenCSharp
 
             Event_Bus.AddDoubleObjEvent("SMSpeed", SetSpeed);
             Event_Bus.AddDoubleObjEvent("SpawnPlayerButtons", SpawnPlayerButtons);
+            Event_Bus.AddDoubleObjEvent("SaveTheGame", SaveGameData);
             
             EndOfAllSequencesEvent += Application.Quit; //TEMPORARY THING
             SequencePausedEvent += ToggleDialogUI;
@@ -149,6 +150,7 @@ namespace RenCSharp
             Event_Bus.TryRemoveDoubleObjEvent("RemoveParticleFromList");
             Event_Bus.TryRemoveSingleObjEvent("OverrideScreen");
             Event_Bus.TryRemoveSingleObjEvent("AssignPlayerButtonBehavior");
+            Event_Bus.TryRemoveSingleObjEvent("SaveTheGame");
         }
         #region SequenceHandling
         public void StartSequence()
@@ -207,7 +209,7 @@ namespace RenCSharp
         #region ScreenHandling
         public void ProgressToNextScreen() //for an UI button to use, hopefully
         {
-            if (paused) return; //the ui button's interactivity SHOULD be able to handle this automatically
+            if (paused) { Debug.Log("Still paused, not progressing screen yet."); return; } //the ui button's interactivity SHOULD be able to handle this automatically
             if (!Textbox_String.JumpToEndOfTextbox) Textbox_String.JumpToEndOfTextbox = true; //make the text box jump to the end if it's still rendering text
             else
             {
@@ -434,9 +436,13 @@ namespace RenCSharp
         }
         #endregion
         #region SaveLoadHandling
-        public void SaveGameData(string saveFileName, bool auto = false)
+        public void SaveGameData(object string_saveFileName, object bool_Auto)
         {
             if (saving) return; //don't interrupt our save, good god!
+
+            string saveFileName = string_saveFileName as string;
+            bool auto = (bool)bool_Auto;
+
             if (saveFileName == null) saveFileName = "SaveData"; //default to prevent extreme BS
             saving = true;
 
@@ -773,9 +779,14 @@ namespace RenCSharp
             loaded = true;
             SetSpeed(PlayerPrefs.GetFloat("TextSpeed", textSpeed), false); //makes sure to reset speed, in case the text is in the middle of some garbage.
             Textbox_String.PauseTextbox(false);
-            StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
-
+            //previous method of starting the sequence again when loading a save below.
+            //causes weird timing problems that results in screen events not firing again.
+            ///StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
+            Textbox_String.JumpToEndOfTextbox = true;
+            paused = false;
             Event_Bus.TryFireVoidEvent("LoadedSave");
+            curScreenIndex--;
+            ProgressToNextScreen();
         }
 
         private void AddUIParticleToList(object tokenToAdd)

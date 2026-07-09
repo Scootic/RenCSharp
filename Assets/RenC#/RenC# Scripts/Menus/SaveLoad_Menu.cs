@@ -194,7 +194,7 @@ namespace RenCSharp.Menus
 
         public void Save()
         {
-            Script_Manager.SM.SaveGameData(fileName);
+            Script_Manager.SM.SaveGameData(fileName, false);
             OnMenuClose();
             _ = OnMenuOpen();
         }

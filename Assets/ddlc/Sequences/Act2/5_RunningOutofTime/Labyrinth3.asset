@@ -560,6 +560,7 @@ MonoBehaviour:
     - rid: 268099682247639159
     - rid: 268099682247639160
     - rid: 4972360390599770177
+    - rid: 7856103139480961089
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: ... huh.
     ScreenActions:
@@ -3000,3 +3001,23 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 0
         loopDuration: 1
+    - rid: 7856103139480961089
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 0
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 107c6035021c99f42be36c66b334c35b
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0

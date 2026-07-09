@@ -116,6 +116,7 @@ namespace RenCSharp
             if (activeGameObjects.ContainsKey(name))
             {
                 GameObject t = activeGameObjects[name];
+                if (t == null) return;
                 if (t.TryGetComponent(out IRemovableObject iroh))
                 {
                     iroh.OnRemove();
