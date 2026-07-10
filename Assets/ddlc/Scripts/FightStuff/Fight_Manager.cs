@@ -80,7 +80,6 @@ namespace RenCSharp.Combat
             singleAttack = false;
             passedScript = false;
             Textbox_String.PauseTextbox(true);
-            Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", 0);
             curEnemy = Object_Factory.SpawnObject(eso.EnemyPrefab.gameObject, "EnemyObject", enemyHolder).GetComponent<EnemyObject>();
             Event_Bus.TryFireSingleObjEvent("GetEnemyTransform", (object)curEnemy.transform);
             curEnemy.ReceiveEnemySO(eso);
@@ -120,6 +119,7 @@ namespace RenCSharp.Combat
             Event_Bus.TryFireFloatEvent("PlayerHealth", (float)Flag_Manager.GetFlag("PlayerCurHealth"));
             Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (float)Flag_Manager.GetFlag("PlayerCurHealth") / (float)Flag_Manager.GetFlag("PlayerMaxHealth"));
             playerObj.SetActive(false);
+            Event_Bus.TryFireFloatEvent("PlayerAbilityCooldown", 0);
         }
         #endregion
 

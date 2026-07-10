@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: EvilThalmorconclusion
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 7856103161831882832
+    - rid: 7856103161831882833
+    - rid: 7856103161831882840
+  - speaker: {fileID: 11400000, guid: 456bdc767cc7c384ca7c851c068851f8, type: 2}
+    dialog: Emissary Elenwen, the report for the day.
+    ScreenActions:
+    - rid: 7856103161831882836
+    - rid: 7856103161831882837
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 0}
+    conditions: []
+  myself:
+    m_AssetGUID: c3ab5d5846fbfc84aa1da576659e65d0
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 7856103161831882832
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: bc28b5eef12b64c4fbedc213b03b2251
+          m_SubObjectName: thalmorembassy_elenwenentrance
+          m_SubObjectGUID: 
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 5
+    - rid: 7856103161831882833
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: bebe1601b1544504f87d86c2e1e106c1
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 7856103161831882836
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 7856103161831882837
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 456bdc767cc7c384ca7c851c068851f8, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 7856103161831882840
+      type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        nameOfObject: Background
+        newColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+        newHueDegree: 0
+        newSaturation: 1.5
+        newContrast: 1.1
+        newTemperature: 0
+        newTint: 0
+        lerpDuration: 5
+        lerpCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
