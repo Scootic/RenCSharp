@@ -472,7 +472,7 @@ MonoBehaviour:
         fadeInTime: 0.5
         spawnOffset: {x: -300, y: 0, z: 0}
         visualSpriteIndexes:
-        - default
+        - skyDown
     - rid: 7856103045627904211
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -481,18 +481,18 @@ MonoBehaviour:
         spawnOffset: {x: 300, y: 0, z: 0}
         visualSpriteIndexes:
         - skyDown
-        - skyDown
-        - smile
-        - EMPTY
+        - 
+        - inquisitive
+        - 
     - rid: 7856103045627904212
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         visualSpriteIndexes:
-        - 
-        - 
-        - eyesClosedSmile
-        - 
+        - skyDown
+        - skyDown
+        - blank
+        - EMPTY
     - rid: 7856103045627904213
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

@@ -25,9 +25,9 @@ MonoBehaviour:
     dialog: Here we are.
     ScreenActions:
     - rid: 4972360184803622914
-    - rid: 4972360184803622917
     - rid: 4972360184803622918
     - rid: 4972360184803622919
+    - rid: 7856103185826971715
   - speaker: {fileID: 11400000, guid: 868c924e69c3f334bb0460b9b886366d, type: 2}
     dialog: Take her to one of the free cells then report back to me.
     ScreenActions: []
@@ -248,17 +248,6 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 4
         setToSameTime: 0
-    - rid: 4972360184803622917
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        fadeInTime: 0.5
-        spawnOffset: {x: 0, y: 0, z: 0}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - terror
-        - EMPTY
     - rid: 4972360184803622918
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -937,3 +926,14 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 0
         loopDuration: 1
+    - rid: 7856103185826971715
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - terror
+        - EMPTY

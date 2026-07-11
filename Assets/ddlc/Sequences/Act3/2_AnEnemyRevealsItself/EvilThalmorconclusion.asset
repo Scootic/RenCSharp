@@ -21,13 +21,93 @@ MonoBehaviour:
     - rid: 7856103161831882833
     - rid: 7856103161831882840
   - speaker: {fileID: 11400000, guid: 456bdc767cc7c384ca7c851c068851f8, type: 2}
-    dialog: Emissary Elenwen, the report for the day.
+    dialog: First Emissary Elenwen, the report for the day.
     ScreenActions:
     - rid: 7856103161831882836
     - rid: 7856103161831882837
+  - speaker: {fileID: 11400000, guid: 456bdc767cc7c384ca7c851c068851f8, type: 2}
+    dialog: The preparations for our journey to Winterhold tomorrow have been made.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: Good. Good.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 456bdc767cc7c384ca7c851c068851f8, type: 2}
+    dialog: We have received confirmation that Anoriath is dead-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 456bdc767cc7c384ca7c851c068851f8, type: 2}
+    dialog: Though we have also heard that the guard captain of Whiterun was investigating
+      the murder.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: Hm...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: I doubt any of the fools of this land would be able to find any evidence
+      that proves our involvement.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: That won't stop the majority of them from being suspicious, of course-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: But, we've managed to make it this far.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 456bdc767cc7c384ca7c851c068851f8, type: 2}
+    dialog: Valmir's cohort has not made their daily report.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: Hm.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: They probably just found themselves pre-occupied with directing multiple
+      bands of warriors into Forelhost.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: Just like last time...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 456bdc767cc7c384ca7c851c068851f8, type: 2}
+    dialog: I'd certainly hope so, we're sparse on manpower as it is.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: You don't need to tell me that!
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: I've already inquired Summerset for a timetable for when we're receiving
+      fresh recruits and resources.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: They've yet to respond-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: Though if what I heard the last time I was at Alinor Palace was correct...
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: The Dominion has... <i>other</i> priorities at the moment.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 456bdc767cc7c384ca7c851c068851f8, type: 2}
+    dialog: If you say so, First Emissary.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: That will be all. You're dismissed, Rulindil.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 456bdc767cc7c384ca7c851c068851f8, type: 2}
+    dialog: Of course.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: ...
+    ScreenActions:
+    - rid: 7856103185826971648
+    - rid: 7856103185826971649
+  - speaker: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+    dialog: Now, to close off my day with one last visit to the detainees.
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Elenwen heads down into the dungeon underneath her Solar.
+    ScreenActions:
+    - rid: 7856103185826971651
+    - rid: 7856103185826971652
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 0}
+    resultingSequence: {fileID: 11400000, guid: 88b6fcc3d2d221443987032a49b24845, type: 2}
     conditions: []
   myself:
     m_AssetGUID: c3ab5d5846fbfc84aa1da576659e65d0
@@ -69,7 +149,7 @@ MonoBehaviour:
         fadeInTime: 0.5
         spawnOffset: {x: -300, y: 0, z: 0}
         visualSpriteIndexes:
-        - default
+        - skyDown
     - rid: 7856103161831882837
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -77,7 +157,7 @@ MonoBehaviour:
         fadeInTime: 0.5
         spawnOffset: {x: 300, y: 0, z: 0}
         visualSpriteIndexes:
-        - default
+        - skyDown
     - rid: 7856103161831882840
       type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -113,3 +193,103 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+    - rid: 7856103185826971648
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 456bdc767cc7c384ca7c851c068851f8, type: 2}
+        fadeTime: 0.5
+    - rid: 7856103185826971649
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 300, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+        loopOnScreen: 0
+    - rid: 7856103185826971651
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: d377af3a16afedd44971cb7d415f0043, type: 2}
+        fadeTime: 0.5
+    - rid: 7856103185826971652
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
