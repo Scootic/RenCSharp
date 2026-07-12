@@ -3,10 +3,10 @@ using RenCSharp.EXPERIMENTAL;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-namespace RenCSharp.Combat.Enemies
+namespace RenCSharp.Combat.Enemies.Editor
 {
     [CustomEditor(typeof(EnemyAttack))]
-    public class EnemyAttack_Editor : Editor
+    public class EnemyAttack_Editor : UnityEditor.Editor
     {
         private EnemyAttack _me;
         private float _radius;
@@ -21,6 +21,10 @@ namespace RenCSharp.Combat.Enemies
 
         public override void OnInspectorGUI()
         {
+            if(GUILayout.Button("Open In Timeline Editor"))
+            {
+                EnemyAttackTimeLineEditor.DoWindow(_me);
+            }
             base.OnInspectorGUI();
             GUILayout.Label("Radius");
             _radString = GUILayout.TextField(_radString, GUILayout.Width(150));
