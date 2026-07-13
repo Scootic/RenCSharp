@@ -11,7 +11,13 @@ namespace RenCSharp.Combat.Enemies.Editor
         private EnemyAttack _me;
         private float _radius;
         private byte _resolution;
+        /// <summary>
+        /// String that will be converted into the radius value of the circle.
+        /// </summary>
         private string _radString;
+        /// <summary>
+        /// String that will be converted into the resolution value of the circle. (How many spawn positions make up the circle.)
+        /// </summary>
         private string _resString;
 
         private void OnEnable()

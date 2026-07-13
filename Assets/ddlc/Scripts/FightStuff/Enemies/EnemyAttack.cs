@@ -7,17 +7,17 @@ namespace RenCSharp.Combat.Enemies
     [CreateAssetMenu(menuName = "New Enemy Attack")]
     public class EnemyAttack : ScriptableObject
     {
-        [SerializeField] private Vector2 arenaDimensions = new Vector2(600, 350);
-        [SerializeReference] private ControlType controlType = new FreeRoam(); //default to freeroam, cause screw it
-        [SerializeField, Min(1)] private float attackDuration = 5f;
-        [SerializeField, Min(0.01f)] private float secondsPerProjectileSpawn = 0.5f;
+        [SerializeField, Tooltip("How big the arena will be when enabled. (Sizes may vary based on how canvas is scaled.)")] private Vector2 arenaDimensions = new Vector2(600, 350);
+        [SerializeReference, Tooltip("Basically what sort of behavior is assigned to player movement keys. Polymorphic!")] private ControlType controlType = new FreeRoam(); //default to freeroam, cause screw it
+        [SerializeField, Min(1), Tooltip("Duration in seconds of how long the attack lasts.")] private float attackDuration = 5f;
+        [SerializeField, Min(0.01f), Tooltip("cooldown in seconds that elapses between a projectile(s) being spawned.")] private float secondsPerProjectileSpawn = 0.5f;
         [SerializeField, Min(1), Tooltip("How many indices we run through at a time. X projectiles per secondsPerSpawn")] private int projectilesPerSpawn = 1;
         [Header("projectiles")]
-        [SerializeField] private Base_Projectile[] projectilesThatSpawn;
+        [SerializeField, Tooltip("All the projectiles that can be spawned. If null, doesn't spawn a projectile OR interrupt the attack, just moves on to next.")] private Base_Projectile[] projectilesThatSpawn;
         [SerializeField, Tooltip("Offset from arena center point (local position)")] private List<Vector3> spawnPoints = new();
         [SerializeField, Tooltip("Please be normalized (unless you are evil)!")] private List<Vector3> initialDirections = new();
         [SerializeField, Tooltip("chooses between the projectiles that spawn based on the projectile index method")] private List<int> indexes = new();
-        [SerializeField] private AttackSpawnSelectionMethod projectileSpawnPositionMethod = AttackSpawnSelectionMethod.NoRepeatRandom;
+        [SerializeField, Tooltip("Determines how the Fight_Manager selects the next index to use.")] private AttackSpawnSelectionMethod projectileSpawnPositionMethod = AttackSpawnSelectionMethod.NoRepeatRandom;
         [SerializeField] private AttackSpawnSelectionMethod projectileIndexMethod = AttackSpawnSelectionMethod.NoRepeatRandom;
 
         //Automatically scale all of our arrays, so that we will never have a time in which we can get an index outside of one of them.

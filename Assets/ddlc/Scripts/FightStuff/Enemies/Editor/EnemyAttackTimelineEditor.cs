@@ -5,13 +5,22 @@ using UnityEngine;
 using UnityEditor;
 using DMTimeArea;
 using System;
+using UnityEditor.Graphs;
 namespace RenCSharp.Combat.Enemies.Editor
 {
     public class EnemyAttackTimeLineEditor : SimpleTimeArea
     {
         [SerializeField] private EnemyAttack targetToEdit;
-        private SerializedObject activeTimeline;
-        private SerializedProperty targetToEditProperty;
+        [SerializeField] private Base_Projectile[] accessibleProjectiles;
+        private SerializedObject activeTimeline, targetToEditObject;
+        private SerializedProperty targetToEditProperty, accessibleProjectilesProperty;
+        /// <summary>
+        /// One of the properties of an EnemyAttack SO asset. See EnemyAttack.cs for more details.
+        /// </summary>
+        private SerializedProperty arenaDimensionsProperty, controlTypeProperty, attackDurationProperty,
+            secondsPerSpawnProperty, projectilesPerSpawnProperty, projectilesThatSpawnProperty, spawnPointsProperty,
+            initialDirectionsProperty, indexesProperty, projectileSpawnPositionMethodProperty, projectileIndexMethodProperty;
+        private ProjectileKnob curKnob;
 
         private Rect rectTotalArea;
         private Rect rectContent;
@@ -88,10 +97,49 @@ namespace RenCSharp.Combat.Enemies.Editor
         private void ClearMarkers()
         {
             //get rid of all existing markers from previous enemy attack
+            projectiles = new();
+            curKnob = null;
         }
         private void GrabMarkers()
         {
-            //get any existing markers from the current enemy attack
+            targetToEditObject = new SerializedObject(targetToEdit);
+
+            arenaDimensionsProperty = targetToEditObject.FindProperty("arenaDimensions");
+            controlTypeProperty = targetToEditObject.FindProperty("controlType");
+            attackDurationProperty = targetToEditObject.FindProperty("attackDuration");
+            secondsPerSpawnProperty = targetToEditObject.FindProperty("secondsPerProjectileSpawn");
+            projectilesPerSpawnProperty = targetToEditObject.FindProperty("projectilesPerSpawn");
+            projectilesThatSpawnProperty = targetToEditObject.FindProperty("projectilesThatSpawn");
+            spawnPointsProperty = targetToEditObject.FindProperty("spawnPoints");
+            initialDirectionsProperty = targetToEditObject.FindProperty("initialDirections");
+            indexesProperty = targetToEditObject.FindProperty("indexes");
+            projectileSpawnPositionMethodProperty = targetToEditObject.FindProperty("projectileSpawnPositionMethod");
+            projectileIndexMethodProperty = targetToEditObject.FindProperty("projectileIndexMethodProperty");
+
+            //using information for targetToEdit, spawn all the relevant markers
+            for(float t = 0; t < targetToEdit.AttackDuration; t+= targetToEdit.SecondsPerProjectileSpawn)
+            {
+                for(int i = 0; i < targetToEdit.ProjectilesPerSpawn; i++)
+                {
+                    //spawn a marker at the position relative to time, and pass in appropriate values.
+                    int index = Mathf.FloorToInt(t / targetToEdit.SecondsPerProjectileSpawn);
+                    int storedI = i;
+                    ProjectileKnob toAdd = new(targetToEdit.SpawnPoints[index], targetToEdit.InitialDirections[index], targetToEdit.ProjectilesThatSpawn[targetToEdit.Indexes[index]]);
+                    //where knobs will be rendered in ongui
+                    Vector3 knobPosition = new Vector3(TimeToTimeAreaPixel(t), storedI * 10f, 0);
+                    projectiles.Add(knobPosition, toAdd);
+                }
+            }
+
+            _simpleTimeArea.hRangeMax = targetToEdit.AttackDuration;
+        }
+
+        private void DrawMarkers()
+        {
+            foreach(KeyValuePair<Vector3, ProjectileKnob> knob in projectiles)
+            {
+                knob.Value.DisplayKnob(knob.Key);
+            }
         }
 
         #endregion
@@ -110,6 +158,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             window.minSize = new Vector3(400f, 200f);
             window.SetTargetToEdit = given;
             window.Show();
+            window.GrabMarkers();
         }
 
         private void OnEnable()
@@ -118,6 +167,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             _lastUpdateTime = (float)EditorApplication.timeSinceStartup;
             activeTimeline = new SerializedObject(this);
             targetToEditProperty = activeTimeline.FindProperty("targetToEdit");
+            accessibleProjectilesProperty = activeTimeline.FindProperty("accessibleProjectiles");
         }
 
         private void OnDisable()
@@ -167,6 +217,8 @@ namespace RenCSharp.Combat.Enemies.Editor
             DrawLeftContent();
             // Draw your left tool bar
             DrawLeftTopToolBar();
+
+            if (projectiles.Count > 0) DrawMarkers();
 
             GUILayout.BeginArea(rectContent);
             DrawCurveLine(rectTotalArea.x);
@@ -352,11 +404,38 @@ namespace RenCSharp.Combat.Enemies.Editor
                 }
             }
         }
+
         private List<Vector3> m_cachePoints = new List<Vector3>();
         public int m_segmentResolution = 20;
         private static Texture iconTexture = null;
+        private Dictionary<Vector3, ProjectileKnob> projectiles = new();
 
         public EnemyAttack SetTargetToEdit { set { targetToEdit = value; } }
+    }
+
+    public class ProjectileKnob
+    {
+        //when clicked, set the active knob to this bastard
+
+        [SerializeField] public Vector3 SpawnPosition;
+        [SerializeField] public Vector3 InitialDirection;
+        [SerializeField] public Base_Projectile ProjectileToSpawn;
+        private readonly float knobSize = 1;
+        private static Texture knobImage;
+
+        public ProjectileKnob(Vector3 pos, Vector3 dir, Base_Projectile proj)
+        {
+            SpawnPosition = pos;
+            InitialDirection = dir;
+            ProjectileToSpawn = proj;
+        }
+
+        public void DisplayKnob(Vector3 pos)
+        {
+            if (knobImage == null) knobImage = Resources.Load("EditorIcons/editordiamond.png") as Texture;
+            Rect drawRect = new Rect(pos.x - knobSize, pos.y - knobSize * 0.5f, knobSize, knobSize);
+            GUI.DrawTexture(drawRect, knobImage);
+        }
     }
 }
 #endif
