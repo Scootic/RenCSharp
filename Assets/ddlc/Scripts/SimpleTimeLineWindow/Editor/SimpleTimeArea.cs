@@ -388,7 +388,7 @@ namespace DMTimeArea
             Color cl01 = GUI.color;
             GUI.color = Color.red;
             float timeToPos = TimeToPixel(this.RunningTime);
-            GUI.DrawTexture(new Rect(-ARROW_WIDTH + timeToPos - _rectTimeAreaRuler.x, 2, ARROW_WIDTH * 2f, ARROW_WIDTH * 2f * 1.82f), ResManager.TimeHeadTexture);
+            if(ResManager.TimeHeadTexture != null) GUI.DrawTexture(new Rect(-ARROW_WIDTH + timeToPos - _rectTimeAreaRuler.x, 2, ARROW_WIDTH * 2f, ARROW_WIDTH * 2f * 1.82f), ResManager.TimeHeadTexture);
             GUI.color = cl01;
             Rect lineRect = new Rect(timeToPos - _rectTimeAreaRuler.x, TIMELINETIMELABEL_HEIGHT, 1, _rectTimeAreaContent.height + 6);
             EditorGUI.DrawRect(lineRect, Color.red);
@@ -406,7 +406,7 @@ namespace DMTimeArea
                 new Vector3(timeToPos - _rectTimeAreaRuler.x, this.position.height - timeRulerHeight - ARROW_WIDTH * 2 + 16));
 
             Rect cutOffRect = new Rect(-ARROW_WIDTH + timeToPos - _rectTimeAreaRuler.x, base.position.height - ARROW_WIDTH * 2 * 1.82f - toolbarHeight, ARROW_WIDTH * 2, ARROW_WIDTH * 2 * 1.82f);
-            GUI.DrawTexture(cutOffRect, ResManager.CutOffGuideLineTexture);
+            if(ResManager.CutOffGuideLineTexture != null) GUI.DrawTexture(cutOffRect, ResManager.CutOffGuideLineTexture);
             GUI.color = cl01;
             GUILayout.EndArea();
 

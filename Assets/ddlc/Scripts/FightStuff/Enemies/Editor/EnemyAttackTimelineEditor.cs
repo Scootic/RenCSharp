@@ -5,21 +5,21 @@ using UnityEngine;
 using UnityEditor;
 using DMTimeArea;
 using System;
-using UnityEditor.Graphs;
 namespace RenCSharp.Combat.Enemies.Editor
 {
     public class EnemyAttackTimeLineEditor : SimpleTimeArea
     {
         [SerializeField] private EnemyAttack targetToEdit;
-        [SerializeField] private Base_Projectile[] accessibleProjectiles;
+
         private SerializedObject activeTimeline, targetToEditObject;
-        private SerializedProperty targetToEditProperty, accessibleProjectilesProperty;
+        private SerializedProperty targetToEditProperty;
         /// <summary>
         /// One of the properties of an EnemyAttack SO asset. See EnemyAttack.cs for more details.
         /// </summary>
         private SerializedProperty arenaDimensionsProperty, controlTypeProperty, attackDurationProperty,
             secondsPerSpawnProperty, projectilesPerSpawnProperty, projectilesThatSpawnProperty, spawnPointsProperty,
             initialDirectionsProperty, indexesProperty, projectileSpawnPositionMethodProperty, projectileIndexMethodProperty;
+
         private ProjectileKnob curKnob;
 
         private Rect rectTotalArea;
@@ -94,6 +94,10 @@ namespace RenCSharp.Combat.Enemies.Editor
 
         #endregion
         #region EnemyAttackStuff
+        private void GrabAKnob(ProjectileKnob newcur)
+        {
+            curKnob = newcur;
+        }
         private void ClearMarkers()
         {
             //get rid of all existing markers from previous enemy attack
@@ -114,32 +118,30 @@ namespace RenCSharp.Combat.Enemies.Editor
             initialDirectionsProperty = targetToEditObject.FindProperty("initialDirections");
             indexesProperty = targetToEditObject.FindProperty("indexes");
             projectileSpawnPositionMethodProperty = targetToEditObject.FindProperty("projectileSpawnPositionMethod");
-            projectileIndexMethodProperty = targetToEditObject.FindProperty("projectileIndexMethodProperty");
+            projectileIndexMethodProperty = targetToEditObject.FindProperty("projectileIndexMethod");
 
-            //using information for targetToEdit, spawn all the relevant markers
-            for(float t = 0; t < targetToEdit.AttackDuration; t+= targetToEdit.SecondsPerProjectileSpawn)
-            {
-                for(int i = 0; i < targetToEdit.ProjectilesPerSpawn; i++)
-                {
-                    //spawn a marker at the position relative to time, and pass in appropriate values.
-                    int index = Mathf.FloorToInt(t / targetToEdit.SecondsPerProjectileSpawn);
-                    int storedI = i;
-                    ProjectileKnob toAdd = new(targetToEdit.SpawnPoints[index], targetToEdit.InitialDirections[index], targetToEdit.ProjectilesThatSpawn[targetToEdit.Indexes[index]]);
-                    //where knobs will be rendered in ongui
-                    Vector3 knobPosition = new Vector3(TimeToTimeAreaPixel(t), storedI * 10f, 0);
-                    projectiles.Add(knobPosition, toAdd);
-                }
-            }
+            if (_simpleTimeArea == null) InitTimeArea(false, false, true, true);
 
             _simpleTimeArea.hRangeMax = targetToEdit.AttackDuration;
+
+            for (int i = 0; i < targetToEdit.SpawnPoints.Length; i++)
+            {
+                ProjectileKnob toAdd = new(targetToEdit.SpawnPoints[i], targetToEdit.InitialDirections[i], targetToEdit.ProjectilesThatSpawn[targetToEdit.Indexes[i]]);
+                float timeItSpawnsAt = targetToEdit.SecondsPerProjectileSpawn * Mathf.Floor((float)i / targetToEdit.ProjectilesPerSpawn);
+                
+                Vector2 timeAndOffset = new Vector2(timeItSpawnsAt, (i % targetToEdit.ProjectilesPerSpawn) * 10f);
+                projectiles.Add(timeAndOffset, toAdd);
+            }
         }
 
         private void DrawMarkers()
         {
-            foreach(KeyValuePair<Vector3, ProjectileKnob> knob in projectiles)
+            GUILayout.BeginArea(_rectTimeAreaTotal, string.Empty);
+            foreach(KeyValuePair<Vector2, ProjectileKnob> knob in projectiles)
             {
-                knob.Value.DisplayKnob(knob.Key);
+                knob.Value.DisplayKnob(this, knob.Key);
             }
+            GUILayout.EndArea();
         }
 
         #endregion
@@ -158,7 +160,6 @@ namespace RenCSharp.Combat.Enemies.Editor
             window.minSize = new Vector3(400f, 200f);
             window.SetTargetToEdit = given;
             window.Show();
-            window.GrabMarkers();
         }
 
         private void OnEnable()
@@ -167,13 +168,15 @@ namespace RenCSharp.Combat.Enemies.Editor
             _lastUpdateTime = (float)EditorApplication.timeSinceStartup;
             activeTimeline = new SerializedObject(this);
             targetToEditProperty = activeTimeline.FindProperty("targetToEdit");
-            accessibleProjectilesProperty = activeTimeline.FindProperty("accessibleProjectiles");
+            ProjectileKnob.SelectKnob += GrabAKnob;
+            if (targetToEdit != null) { targetToEditProperty.boxedValue = targetToEdit; GrabMarkers(); }
         }
 
         private void OnDisable()
         {
             EditorApplication.update = (EditorApplication.CallbackFunction)System.Delegate.Remove(EditorApplication.update, new EditorApplication.CallbackFunction(OnEditorUpdate));
             activeTimeline = null;
+            ProjectileKnob.SelectKnob = null;
         }
 
         private void OnEditorUpdate()
@@ -221,7 +224,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             if (projectiles.Count > 0) DrawMarkers();
 
             GUILayout.BeginArea(rectContent);
-            DrawCurveLine(rectTotalArea.x);
+            //DrawCurveLine(rectTotalArea.x);
 
             GUILayout.EndArea();
         }
@@ -254,10 +257,21 @@ namespace RenCSharp.Combat.Enemies.Editor
         protected virtual void DrawLeftContent()
         {
             GUILayout.BeginArea(rectLeft);
-            GUILayout.Label("Draw your left content");
-            if (m_AnimationCurve == null)
-                m_AnimationCurve = new AnimationCurve();
-            m_AnimationCurve = EditorGUILayout.CurveField("Target Curve", m_AnimationCurve);
+            if(targetToEdit != null)
+            {
+                EditorGUILayout.PropertyField(arenaDimensionsProperty);
+                EditorGUILayout.PropertyField(controlTypeProperty);
+                EditorGUILayout.PropertyField(attackDurationProperty);
+                EditorGUILayout.PropertyField(projectileSpawnPositionMethodProperty);
+                EditorGUILayout.PropertyField(projectileIndexMethodProperty);
+            }
+
+            if(curKnob != null)
+            {
+                curKnob.SpawnPosition = EditorGUILayout.Vector3Field("Spawn Position", curKnob.SpawnPosition);
+                curKnob.InitialDirection = EditorGUILayout.Vector3Field("Initial Direction", curKnob.SpawnPosition);
+                curKnob.ProjectileToSpawn = EditorGUILayout.ObjectField(curKnob.ProjectileToSpawn, typeof(GameObject)) as Base_Projectile;
+            }
             GUILayout.EndArea();
         }
 
@@ -339,80 +353,16 @@ namespace RenCSharp.Combat.Enemies.Editor
             IsPlaying = false;
         }
 
-        private void DrawCurveLine(float offsetX)
-        {
-            // draw curve
-            Keyframe[] keys = m_AnimationCurve.keys;
-            int keyCount = keys.Length;
-            if (keyCount > 1)
-            {
-                //Keyframe startKey = keys[0];
-                //Keyframe endKey = keys[keyCount - 1];
-                m_cachePoints.Clear();
-                m_segmentResolution = Mathf.Clamp(m_segmentResolution, 3, 50);
-                for (int i = 0; i < keyCount - 1; i++)
-                {
-                    Keyframe cur = keys[i];
-                    Keyframe next = keys[i + 1];
-
-                    m_cachePoints.Add(new Vector3(cur.time, cur.value));
-                    float num = Mathf.Lerp(cur.time, next.time, 0.001f / (float)m_segmentResolution);
-                    m_cachePoints.Add(new Vector3(num, m_AnimationCurve.Evaluate(num)));
-
-                    for (float num2 = 1f; num2 < (float)m_segmentResolution; num2 += 1f)
-                    {
-                        num = Mathf.Lerp(cur.time, next.time, num2 / (float)m_segmentResolution);
-                        m_cachePoints.Add(new Vector3(num, m_AnimationCurve.Evaluate(num)));
-                    }
-                    num = Mathf.Lerp(cur.time, next.time, 1f - 0.000f / (float)m_segmentResolution);
-                    m_cachePoints.Add(new Vector3(num, m_AnimationCurve.Evaluate(num)));
-                    m_cachePoints.Add(new Vector3(next.time, next.value));
-                }
-
-                for (int i = 0; i < m_cachePoints.Count; i++)
-                {
-                    float time = m_cachePoints[i].x;
-                    float value = m_cachePoints[i].y;
-                    time = TimeToPixel((double)time) - offsetX;
-                    value = YToPixel(value);
-
-                    Vector2 pos = new Vector2(time, value);
-                    m_cachePoints[i] = pos;
-                }
-                if (m_cachePoints.Count != 0)
-                {
-                    Handles.BeginGUI();
-                    Handles.color = Color.white;
-                    Handles.DrawAAPolyLine(3, m_cachePoints.ToArray());
-                    Handles.EndGUI();
-                }
-
-                keys = m_AnimationCurve.keys;
-                for (int i = 0; i < keys.Length; i++)
-                {
-                    float time = keys[i].time;
-                    float value = keys[i].value;
-                    int iconWidth = 12;
-                    value = YToPixel(value);
-                    time = TimeToPixel((double)time) - offsetX;
-                    Vector2 pos = new Vector2(time, value);
-
-                    Rect rect = new Rect(pos.x - iconWidth * 0.5f, pos.y - iconWidth * 0.5f, iconWidth, iconWidth);
-                    if (iconTexture == null)
-                        iconTexture = EditorGUIUtility.IconContent("Animation.Record", "|Enable/disable keyframe recording mode.").image;
-                    GUI.DrawTexture(rect, iconTexture);
-                }
-            }
-        }
-
-        private List<Vector3> m_cachePoints = new List<Vector3>();
         public int m_segmentResolution = 20;
-        private static Texture iconTexture = null;
-        private Dictionary<Vector3, ProjectileKnob> projectiles = new();
+        private Dictionary<Vector2, ProjectileKnob> projectiles = new();
 
         public EnemyAttack SetTargetToEdit { set { targetToEdit = value; } }
     }
-
+    /// <summary>
+    /// Exists to serve as an individual projectile spawn in an attack. Basically a layer of user readability before
+    /// being converted into a file that is more memory-effective for the Fight_Manager to run through.
+    /// </summary>
+    [Serializable]
     public class ProjectileKnob
     {
         //when clicked, set the active knob to this bastard
@@ -420,7 +370,8 @@ namespace RenCSharp.Combat.Enemies.Editor
         [SerializeField] public Vector3 SpawnPosition;
         [SerializeField] public Vector3 InitialDirection;
         [SerializeField] public Base_Projectile ProjectileToSpawn;
-        private readonly float knobSize = 1;
+        public static Action<ProjectileKnob> SelectKnob;
+        private readonly float knobSize = 30;
         private static Texture knobImage;
 
         public ProjectileKnob(Vector3 pos, Vector3 dir, Base_Projectile proj)
@@ -430,11 +381,15 @@ namespace RenCSharp.Combat.Enemies.Editor
             ProjectileToSpawn = proj;
         }
 
-        public void DisplayKnob(Vector3 pos)
+        public void DisplayKnob(SimpleTimeArea timeArea, Vector2 timeAndOffset)
         {
-            if (knobImage == null) knobImage = Resources.Load("EditorIcons/editordiamond.png") as Texture;
-            Rect drawRect = new Rect(pos.x - knobSize, pos.y - knobSize * 0.5f, knobSize, knobSize);
-            GUI.DrawTexture(drawRect, knobImage);
+            if (knobImage == null) knobImage = Resources.Load("EditorIcons/editordiamond") as Texture;
+            Vector3 pos = new Vector3(timeArea.TimeToPixel(timeAndOffset.x), timeAndOffset.y + 100f, 0);
+            Rect drawRect = new Rect(pos.x - (knobSize * 0.5f) - timeArea._rectTimeAreaRuler.x, pos.y - knobSize * 0.5f, knobSize, knobSize);
+            if(GUI.Button(drawRect, knobImage))
+            {
+                SelectKnob?.Invoke(this);
+            }
         }
     }
 }
