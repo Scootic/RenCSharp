@@ -5,6 +5,19 @@ using UnityEditor;
 using UnityEngine;
 namespace RenCSharp.Combat.Enemies.Editor
 {
+    [CustomEditor(typeof(EnemyAttackTimelineData))]
+    public class EnemyAttackTimelineData_Editor : UnityEditor.Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            if(GUILayout.Button("Open In Timeline Editor"))
+            {
+                EnemyAttackTimeLineEditor.DoWindow(target as EnemyAttackTimelineData);
+            }
+            base.OnInspectorGUI();
+        }
+    }
+
     [CustomEditor(typeof(EnemyAttack))]
     public class EnemyAttack_Editor : UnityEditor.Editor
     {

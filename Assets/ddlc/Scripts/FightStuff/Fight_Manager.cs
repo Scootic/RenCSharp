@@ -7,6 +7,7 @@ using RenCSharp.Combat.Enemies;
 using RenCSharp.Combat.Interfaces;
 using RenCSharp.Combat.Player;
 using UnityEngine.UI;
+using System.Linq;
 namespace RenCSharp.Combat
 {
     public sealed class Fight_Manager : MonoBehaviour
@@ -22,6 +23,7 @@ namespace RenCSharp.Combat
         [SerializeField] private GameObject abilityHolder;
         [SerializeField] private TextMeshProUGUI combatTextbox;
         [Header("Arena/Enemy cosmetics")]
+        [SerializeField, Min(0.1f), Tooltip("The amount of delay, in seconds, that the player gets to move before the first projectile is spawned.")] private float secondsBeforeFirstProj = 0.75f;
         [SerializeField, Min(0.1f)] private float arenaSetUpTime = 1f;
         [SerializeField, Min(0.1f)] private float enemyDamageNumberForce = 5f;
         [SerializeField, Tooltip("For handling direction text is launched in."), Range(-360,360)] private float minDeg = 0;
@@ -171,62 +173,23 @@ namespace RenCSharp.Combat
         }
         private IEnumerator RunThroughAttack(EnemyAttack ea)
         {
-            float t = 0; //timer for the attack
-            float f = ea.SecondsPerProjectileSpawn; //timer for individual projectiles
             Textbox_String.JumpToEndOfTextbox = true;
             prevAttackPosRoll = -1; //make sure that 0 is always the first for an attack?
             yield return SetUpArena(ea);
             playerObj.transform.localPosition = Vector3.zero; //PLEASE PLEASE DON'T BE OUTSIDE OF THE BOX DAMN YOU
-            yield return new WaitForSeconds(0.75f); //wait less than a second before immediately spawning an projectile
+            yield return new WaitForSeconds(secondsBeforeFirstProj); //wait less than a second before immediately spawning an projectile
 
-            while (t <= ea.AttackDuration && fighting)
+            EnemyAttackTimelineData eatd = ea as EnemyAttackTimelineData;
+
+            if(eatd == null) //?
             {
-                t += Time.deltaTime;
-                f += Time.deltaTime; //screw it, second timer for spawning projectiles
-                if (f >= ea.SecondsPerProjectileSpawn) //go through spawning all the projectiles for the duration of the attack
-                {
-                    f = 0;
-                    for (int i = 0; i < ea.ProjectilesPerSpawn; i++) //spawn as many projectiles as we want in one go. the intelligent rolling should prevent bs
-                    {
-                        //roll which position/direction we have when first spawning a projectile
-                        if (prevAttackPosRoll == 0) dir = 1;
-                        else if (prevAttackPosRoll >= ea.SpawnPoints.Length - 1) dir = -1;
-
-                        int randI = ea.ProjectileSpawnPositionMethod switch
-                        {
-                            AttackSpawnSelectionMethod.TrueRandom => Random.Range(0, ea.SpawnPoints.Length),
-                            AttackSpawnSelectionMethod.NoRepeatRandom => RandomHelper.NoRepeatRoll("attackSpawnRoll", ea.SpawnPoints.Length),
-                            AttackSpawnSelectionMethod.LoopThrough => (prevAttackPosRoll >= ea.SpawnPoints.Length - 1) ? 0 : prevAttackPosRoll + 1,
-                            AttackSpawnSelectionMethod.ReverseLoopThrough => (prevAttackPosRoll <= 0) ? ea.SpawnPoints.Length - 1 : prevAttackPosRoll - 1,
-                            AttackSpawnSelectionMethod.PingPong => prevAttackPosRoll += dir,
-                            _ => 0 //default scenario of garbage null enum, just return 0 and probably complain too
-                        };
-
-                        if (randI >= ea.Indexes.Length || randI < 0) randI = 0; //panic grab 0 index if we suck nuts
-                        prevAttackPosRoll = randI;
-
-                        Base_Projectile projToSpawn = ea.ProjectilesThatSpawn[ea.Indexes[randI]];
-                        if(projToSpawn == null)
-                        {
-                            Debug.LogWarning("Null projectile found, moving on to next projectile.");
-                            continue;
-                        }
-                        Vector3 spawnPosition = ea.SpawnPoints[randI];
-                        Vector3 ogProjDir = ea.InitialDirections[randI];
-
-                        Base_Projectile cur = Object_Pooling.Spawn(projToSpawn.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Base_Projectile>();
-                        cur.transform.SetParent(playerHolder);
-                        cur.transform.localPosition = spawnPosition;
-                        cur.UpdateMoveDir(ogProjDir, true);
-                        Vector3 soundSpawnPos = Camera.main.transform.position + cur.transform.localPosition.normalized;
-                        Audio_Manager.AM.Play3DSFX(cur.SpawnSound, soundSpawnPos, false, false, cur.SpawnSoundVol, 0.9f, 1.1f);
-                        AddProjectileToList(cur.gameObject);
-                        StartCoroutine(Object_Pooling.DespawnOverTime(cur.gameObject, cur.Lifetime));
-                    }
-                }
-
-                yield return null;
+                yield return OldEnemyAttackRoutine(ea);
             }
+            else
+            {
+                yield return EnemyAttackTimelineRoutine(eatd);
+            }
+ 
             playerTurn = true;
             for (int i = activeProj.Count - 1; i >= 0; i--) //despawn all projectiles after attack is done
             {
@@ -281,6 +244,97 @@ namespace RenCSharp.Combat
             Object_Factory.RemoveObject("PlayerObject");
             ssl.LoadAnScene(1);
         }
+
+        private IEnumerator OldEnemyAttackRoutine(EnemyAttack ea)
+        {
+            float t = 0;
+            float f = ea.SecondsPerProjectileSpawn;
+            while (t <= ea.AttackDuration && fighting)
+            {
+                t += Time.deltaTime;
+                f += Time.deltaTime; //screw it, second timer for spawning projectiles
+                if (f >= ea.SecondsPerProjectileSpawn) //go through spawning all the projectiles for the duration of the attack
+                {
+                    f = 0;
+                    for (int i = 0; i < ea.ProjectilesPerSpawn; i++) //spawn as many projectiles as we want in one go. the intelligent rolling should prevent bs
+                    {
+                        //roll which position/direction we have when first spawning a projectile
+                        if (prevAttackPosRoll == 0) dir = 1;
+                        else if (prevAttackPosRoll >= ea.SpawnPoints.Length - 1) dir = -1;
+
+                        int randI = ea.ProjectileSpawnPositionMethod switch
+                        {
+                            AttackSpawnSelectionMethod.TrueRandom => Random.Range(0, ea.SpawnPoints.Length),
+                            AttackSpawnSelectionMethod.NoRepeatRandom => RandomHelper.NoRepeatRoll("attackSpawnRoll", ea.SpawnPoints.Length),
+                            AttackSpawnSelectionMethod.LoopThrough => (prevAttackPosRoll >= ea.SpawnPoints.Length - 1) ? 0 : prevAttackPosRoll + 1,
+                            AttackSpawnSelectionMethod.ReverseLoopThrough => (prevAttackPosRoll <= 0) ? ea.SpawnPoints.Length - 1 : prevAttackPosRoll - 1,
+                            AttackSpawnSelectionMethod.PingPong => prevAttackPosRoll += dir,
+                            _ => 0 //default scenario of garbage null enum, just return 0 and probably complain too
+                        };
+
+                        if (randI >= ea.Indexes.Length || randI < 0) randI = 0; //panic grab 0 index if we suck nuts
+                        prevAttackPosRoll = randI;
+
+                        Base_Projectile projToSpawn = ea.ProjectilesThatSpawn[ea.Indexes[randI]];
+                        if (projToSpawn == null)
+                        {
+                            Debug.LogWarning("Null projectile found, moving on to next projectile.");
+                            continue;
+                        }
+                        Vector3 spawnPosition = ea.SpawnPoints[randI];
+                        Vector3 ogProjDir = ea.InitialDirections[randI];
+
+                        Base_Projectile cur = Object_Pooling.Spawn(projToSpawn.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Base_Projectile>();
+                        cur.transform.SetParent(playerHolder);
+                        cur.transform.localPosition = spawnPosition;
+                        cur.UpdateMoveDir(ogProjDir, true);
+                        Vector3 soundSpawnPos = Camera.main.transform.position + cur.transform.localPosition.normalized;
+                        Audio_Manager.AM.Play3DSFX(cur.SpawnSound, soundSpawnPos, false, false, cur.SpawnSoundVol, 0.9f, 1.1f);
+                        AddProjectileToList(cur.gameObject);
+                        StartCoroutine(Object_Pooling.DespawnOverTime(cur.gameObject, cur.Lifetime));
+                    }
+                }
+
+                yield return null;
+            }
+        }
+
+        private IEnumerator EnemyAttackTimelineRoutine(EnemyAttackTimelineData eatd)
+        {
+            float t = 0;
+            int frame = 0;
+
+            List<Base_Projectile> projectiles = eatd.ProjectilesThatSpawn.ToList();
+            SortedDictionary<int, ProjectileFrameData> keyFrames = eatd.GetTimelineInformation;
+
+            while (t < eatd.AttackDuration && fighting)
+            {
+                if (keyFrames.ContainsKey(frame))
+                {
+                    foreach(ProjectileSnub ps in keyFrames[frame].ProjectilesSpawnedAtFrame)
+                    {
+                        Base_Projectile temp = Object_Pooling.Spawn(projectiles[ps.ProjectileIndex].gameObject, Vector3.zero, Quaternion.identity).GetComponent<Base_Projectile>();
+                        temp.transform.SetParent(playerHolder);
+                        temp.transform.localPosition = ps.SpawnPosition;
+                        temp.UpdateMoveDir(ps.InitialDirection, true);
+                        Vector3 spawnSoundPos = Camera.main.transform.position + temp.transform.localPosition.normalized;
+                        Audio_Manager.AM.Play3DSFX(temp.SpawnSound, spawnSoundPos, false, false, temp.SpawnSoundVol, 0.9f, 1.1f);
+                        AddProjectileToList(temp.gameObject);
+                        StartCoroutine(Object_Pooling.DespawnOverTime(temp.gameObject, temp.Lifetime));
+                    }
+                }
+                frame++;
+
+                if (frame >= keyFrames.Last().Key) 
+                {
+                    frame = 0; //loop around if the current frame is past the final projectile element?
+                    yield return new WaitForSeconds(secondsBeforeFirstProj); //do the same waiting as before, since we're not operating under secondsPerProj rules?
+                }
+
+                yield return new WaitForSeconds(Time.deltaTime); //wait for the normalized next frame? should prevent fps changing attack times??? set back to null if it don't work
+            }
+        }
+
         #endregion
 
         #region Arena
