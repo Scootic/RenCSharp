@@ -56,16 +56,21 @@ namespace RenCSharp.Combat.Enemies
         }
 
         public AttackSpawnSelectionMethod ProjectileSpawnPositionMethod => projectileSpawnPositionMethod;
+        public AttackSpawnSelectionMethod SetProjectileSpawnPositionMethod { set { projectileSpawnPositionMethod = value; } }
         public AttackSpawnSelectionMethod ProjectileIndexMethod => projectileIndexMethod;
+        public AttackSpawnSelectionMethod SetProjectileIndexMethod { set { projectileIndexMethod = value; } }
         public Vector2 ArenaDimensions => arenaDimensions;
+        public Vector2 SetArenaDimensions { set { arenaDimensions = value; } }
         public ControlType ControlType => controlType;
+        public ControlType SetControlType { set { controlType = value; } }
         public Base_Projectile[] ProjectilesThatSpawn => projectilesThatSpawn;
+        public Base_Projectile[] SetProjectilesThatSpawn { set { projectilesThatSpawn = value; } }
         public Vector3[] InitialDirections => initialDirections.ToArray();
         public Vector3[] SpawnPoints => spawnPoints.ToArray();
         public int[] Indexes => indexes.ToArray();
         public float AttackDuration => attackDuration;
+        public float SetAttackDuration { set { attackDuration = value; } }
         public float SecondsPerProjectileSpawn => secondsPerProjectileSpawn;
-
         public int ProjectilesPerSpawn => projectilesPerSpawn;
     }
 }

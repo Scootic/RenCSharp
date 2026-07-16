@@ -51,7 +51,6 @@ namespace RenCSharp.Combat.Enemies
             }
         }
 
-        public List<Base_Projectile> SetProjectilesThatSpawn { set { projectilesThatSpawn = value.ToArray(); } }
         public SortedDictionary<int, ProjectileFrameData> GetTimelineInformation
         {
             get

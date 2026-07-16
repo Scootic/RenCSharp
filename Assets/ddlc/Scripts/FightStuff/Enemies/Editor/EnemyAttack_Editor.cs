@@ -8,13 +8,43 @@ namespace RenCSharp.Combat.Enemies.Editor
     [CustomEditor(typeof(EnemyAttackTimelineData))]
     public class EnemyAttackTimelineData_Editor : UnityEditor.Editor
     {
+        private EnemyAttackTimelineData _me;
+
+        private SerializedProperty arenaDimensionsProperty, controlTypeProperty, attackDurationProperty, projectileSpawnMethodProperty, projectileIndexMethodProperty, projectilesThatSpawnProperty;
+        private SerializedProperty keyframesProperty, frameDataProperty;
+
+        private void OnEnable()
+        {
+            _me = target as EnemyAttackTimelineData;
+            SerializedObject so = new SerializedObject(_me);
+            arenaDimensionsProperty = so.FindProperty("arenaDimensions");
+            controlTypeProperty = so.FindProperty("controlType");
+            attackDurationProperty = so.FindProperty("attackDuration");
+            projectileSpawnMethodProperty = so.FindProperty("projectileSpawnPositionMethod");
+            projectileIndexMethodProperty = so.FindProperty("projectileIndexMethod");
+            projectilesThatSpawnProperty = so.FindProperty("projectilesThatSpawn");
+            keyframesProperty = so.FindProperty("keyframes");
+            frameDataProperty = so.FindProperty("frameData");
+        }
+
         public override void OnInspectorGUI()
         {
             if(GUILayout.Button("Open In Timeline Editor"))
             {
-                EnemyAttackTimeLineEditor.DoWindow(target as EnemyAttackTimelineData);
+                EnemyAttackTimeLineEditor.DoWindow(_me);
             }
-            base.OnInspectorGUI();
+
+            EditorGUILayout.LabelField("Default Enemy Attack Data");
+            EditorGUILayout.PropertyField(arenaDimensionsProperty);
+            EditorGUILayout.PropertyField(controlTypeProperty);
+            EditorGUILayout.PropertyField(attackDurationProperty);
+            EditorGUILayout.PropertyField(projectilesThatSpawnProperty);
+            EditorGUILayout.PropertyField(projectileSpawnMethodProperty);
+            EditorGUILayout.PropertyField(projectileIndexMethodProperty);
+
+            EditorGUILayout.LabelField("Timeline Data");
+            EditorGUILayout.PropertyField(keyframesProperty);
+            EditorGUILayout.PropertyField(frameDataProperty);
         }
     }
 

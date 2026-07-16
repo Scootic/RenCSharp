@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1f9f3aa6e6a5af4d88f6a38c71a9dbe, type: 3}
   m_Name: D_ArrowTimeline
   m_EditorClassIdentifier: 
-  arenaDimensions: {x: 600, y: 350}
+  arenaDimensions: {x: 550, y: 550}
   controlType:
-    rid: 7856103273539829848
-  attackDuration: 5
+    rid: 7856103299494969423
+  attackDuration: 10
   secondsPerProjectileSpawn: 0.5
   projectilesPerSpawn: 1
   projectilesThatSpawn:
@@ -29,31 +29,62 @@ MonoBehaviour:
   frameData:
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: 500, y: 0, z: 0}
-      InitialDirection: {x: -1, y: 0, z: 0}
+      InitialDirection: {x: 500, y: 0, z: 0}
       ProjectileIndex: 0
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: 0, y: 500, z: 0}
-      InitialDirection: {x: 0, y: -1, z: 0}
+      InitialDirection: {x: 0, y: 500, z: 0}
       ProjectileIndex: 0
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: 500, y: 500, z: 0}
-      InitialDirection: {x: -1, y: -1, z: 0}
+      InitialDirection: {x: 500, y: 500, z: 0}
       ProjectileIndex: 0
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: -500, y: 500, z: 0}
-      InitialDirection: {x: 1, y: -1, z: 0}
+      InitialDirection: {x: -500, y: 500, z: 0}
       ProjectileIndex: 0
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: -500, y: 0, z: 0}
-      InitialDirection: {x: 1, y: 0, z: 0}
-      ProjectileIndex: 0
-    - SpawnPosition: {x: -500, y: 0, z: 0}
-      InitialDirection: {x: 1, y: 0, z: 0}
+      InitialDirection: {x: -500, y: 0, z: 0}
       ProjectileIndex: 0
   references:
     version: 2
     RefIds:
-    - rid: 7856103273539829848
-      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+    - rid: 7856103299494969423
+      type: {class: Dodge, ns: RenCSharp.Combat.Player, asm: Player}
       data:
-        speed: 500
+        dodgeCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 1.9789225
+            outSlope: 1.9789225
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.50530183
+            value: 0.99995315
+            inSlope: -0.021208704
+            outSlope: -0.021208704
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -2.02134
+            outSlope: -2.02134
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        distanceFromCenter: 250
+        timeToDodge: 0.5
