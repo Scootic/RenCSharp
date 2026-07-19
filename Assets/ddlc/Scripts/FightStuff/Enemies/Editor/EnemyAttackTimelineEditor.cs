@@ -25,7 +25,7 @@ namespace RenCSharp.Combat.Enemies.Editor
 
         private ProjectileKnob curKnob;
         private Vector2 curKnobTimeAndOffset;
-        private SerializedProperty curKnobProjectileProperty;
+        //private SerializedProperty curKnobProjectileProperty;
 
         private Rect rectTotalArea;
         private Rect rectContent;
@@ -34,13 +34,46 @@ namespace RenCSharp.Combat.Enemies.Editor
         private Rect rectTopBar;
         private Rect rectLeft;
         public Rect rectLeftTopToolBar;
+        private GenericMenu timeAreaCTXMenu;
 
         public AnimationCurve m_AnimationCurve;
 
         private float _lastUpdateTime = 0f;
-        private readonly float knobVerticalOffsetMult = 10f;
+        /// <summary>
+        /// How much to scale up values by (ie. multiply the expected 1920x1080 screen by X to get the rect size).
+        /// Best if it's below 1 probby.
+        /// </summary>
+        private float previewRectScale = 0.25f;
+        private Rect VisualPreviewHolderRect
+        {   
+            get
+            {
+                if (visualPreviewHolderRect == null || visualPreviewHolderRect == Rect.zero)
+                {
+                    float w = 1920f * previewRectScale;
+                    float h = 1080f * previewRectScale;
+                    return new Rect(rectTotalArea.x + w * 0.5f, rectTotalArea.y + h * 0.5f, w, h);
+                }
+                else
+                {
+                    return visualPreviewHolderRect;
+                }
+            }
+            set
+            {
+                visualPreviewHolderRect = value;
+            }
+        }
+        private Rect visualPreviewHolderRect, visualPreviewArenaRect;
+        private readonly float knobVerticalOffsetMult = 50f;
         private static readonly Vector2 minWindowSize = new Vector2(400f, 200f);
-        private static Texture SaveIcon, PlaceKnobIcon;
+
+        private static Texture saveIcon, placeKnobIcon, arenaPreviewTexture;
+        private readonly static string assetPathToEditorIcons = "Assets/ddlc/Visuals/Editor/";
+
+        private static GUIContent PlaceKnobContent;
+        private static GUIContent SaveContent;
+
         private static string PreferredSaveFolder = Application.dataPath;
         #region Used
         private double runningTime = 10.0f;
@@ -106,7 +139,7 @@ namespace RenCSharp.Combat.Enemies.Editor
         private void PlaceANewKnob()
         {
             ProjectileKnob toAdd = new(Vector3.zero, Vector3.zero, null);
-            float timeItSpawnsAt = (float)RunningTime;
+            float timeItSpawnsAt = (float)Math.Round(RunningTime, 1, MidpointRounding.AwayFromZero);
             float largestY = 0;
 
             foreach(KeyValuePair<Vector2, ProjectileKnob> kvp in projectiles)
@@ -124,13 +157,13 @@ namespace RenCSharp.Combat.Enemies.Editor
         public void RemoveAKnob(Vector2 timeAndOffset)
         {
             projectiles.Remove(timeAndOffset);
+            GrabAKnob(null, Vector2.zero);
         }
 
         private void GrabAKnob(ProjectileKnob newcur, Vector2 timeAndOffset)
         {
             curKnob = newcur;
-            SerializedObject s = new SerializedObject(curKnob);
-            curKnobProjectileProperty = s.FindProperty("ProjectileToSpawn");
+            //Debug.Log("Grabbing a new knob: " + curKnob.ToString());
             curKnobTimeAndOffset = timeAndOffset;
         }
         private void ClearMarkers()
@@ -213,17 +246,21 @@ namespace RenCSharp.Combat.Enemies.Editor
                 }
             }
         }
-
+        /// <summary>
+        /// Draws all the Knobs for each projectile in the timeline data.
+        /// </summary>
         private void DrawMarkers()
         {
             GUILayout.BeginArea(_rectTimeAreaTotal, string.Empty);
             foreach(KeyValuePair<Vector2, ProjectileKnob> knob in projectiles)
             {
-                knob.Value.DisplayKnob(this, knob.Key);
+                knob.Value.DisplayKnob(this, knob.Key, knob.Value == curKnob);
             }
             GUILayout.EndArea();
         }
-
+        /// <summary>
+        /// Saves the current timeline to an EnemyAttackTimelineData asset.
+        /// </summary>
         private void SaveTimelineDataToFile()
         {
             List<Base_Projectile> projectilesToSave = new();
@@ -317,9 +354,27 @@ namespace RenCSharp.Combat.Enemies.Editor
                 }
             }
         }
+        //ideally, show a small area that shows where projectiles spawn, or even are at- at current time in the timeline!
+        //change shape based off of the arena dimensions, too?
+        private void DisplayAttackAreaPreview()
+        {
+            visualPreviewHolderRect = GUI.Window(10, visualPreviewHolderRect, DisplayAttackAreaWindow, "Preview Display");
+            GUI.BringWindowToFront(10);
+        }
+
+        private void DisplayAttackAreaWindow(int windowID)
+        {
+            Debug.Log($"visualPreviewRect: " + visualPreviewHolderRect);
+            Vector2 arenaDimensions = arenaDimensionsProperty.vector2Value;
+            //? (120, 270/4, arenaDim seem to work...)
+            visualPreviewArenaRect = new Rect(visualPreviewHolderRect.width * previewRectScale, visualPreviewHolderRect.height * previewRectScale, arenaDimensions.x * previewRectScale, arenaDimensions.y * previewRectScale);
+            GUI.DrawTexture(visualPreviewArenaRect, arenaPreviewTexture);
+
+            GUI.DragWindow();
+        }
 
         #endregion
-
+        #region WindowSpawning
         [MenuItem("Window/EnemyAttack Timeline Window", false, 2002)]
         public static void DoWindow()
         {
@@ -328,7 +383,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             window.Show();
         }
         /// <summary>
-        /// enemy attack no timeline
+        /// enemy attack so
         /// </summary>
         /// <param name="given"></param>
         public static void DoWindow(EnemyAttack given)
@@ -339,7 +394,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             window.Show();
         }
         /// <summary>
-        /// enemy attack timeline
+        /// enemy attack timeline so
         /// </summary>
         /// <param name="given"></param>
         public static void DoWindow(EnemyAttackTimelineData given)
@@ -349,17 +404,21 @@ namespace RenCSharp.Combat.Enemies.Editor
             window.SetTimelineData = given;
             window.Show();
         }
-
+        #endregion
         private void OnEnable()
         {
             EditorApplication.update = (EditorApplication.CallbackFunction)System.Delegate.Combine(EditorApplication.update, new EditorApplication.CallbackFunction(OnEditorUpdate));
             _lastUpdateTime = (float)EditorApplication.timeSinceStartup;
             _frameRate = 60f;
-            if (SaveIcon == null) SaveIcon = Resources.Load("EditorIcons/saveicon") as Texture;
-            if (PlaceKnobIcon == null) PlaceKnobIcon = Resources.Load("EditorIcons/placeknobicon") as Texture;
+            saveIcon = EditorGUIUtility.Load(assetPathToEditorIcons + "saveicon.png") as Texture;
+            SaveContent = new GUIContent(saveIcon, "Save the contents of the current timeline to an Enemy Attack Timeline Data asset.");
+            placeKnobIcon = EditorGUIUtility.Load(assetPathToEditorIcons + "placeknobicon.png") as Texture;
+            PlaceKnobContent = new GUIContent(placeKnobIcon, "Place a new Projectile in the Timeline.");
+            arenaPreviewTexture = EditorGUIUtility.Load(assetPathToEditorIcons + "arenapreview.png") as Texture;
             activeTimeline = new SerializedObject(this);
             targetToEditProperty = activeTimeline.FindProperty("targetToEdit");
             ProjectileKnob.SelectKnob += GrabAKnob;
+            visualPreviewHolderRect = VisualPreviewHolderRect;
             PreferredSaveFolder = EditorPrefs.GetString("attacksavefolder", Application.dataPath);
             if(timelineData != null) { GrabMarkers(timelineData); return; }
             if (targetToEdit != null) { targetToEditProperty.boxedValue = targetToEdit; GrabMarkers(targetToEdit); return; }
@@ -393,6 +452,7 @@ namespace RenCSharp.Combat.Enemies.Editor
 
         private void OnGUI()
         {
+            Event cur = Event.current;
             Rect rectMainBodyArea = new Rect(0, toolbarHeight, base.position.width, this.position.height - toolbarHeight);
             rectTopBar = new Rect(0, 0, this.position.width, toolbarHeight);
             rectLeft = new Rect(rectMainBodyArea.x, rectMainBodyArea.y + timeRulerHeight, LEFTWIDTH, rectMainBodyArea.height);
@@ -413,15 +473,31 @@ namespace RenCSharp.Combat.Enemies.Editor
             DrawLeftContent();
             // Draw your left tool bar
             DrawLeftTopToolBar();
-
             if (projectiles.Count > 0) DrawMarkers();
+            BeginWindows();
+            DisplayAttackAreaPreview();
+            EndWindows();
 
             GUILayout.BeginArea(rectContent);
-            //DrawCurveLine(rectTotalArea.x);
-
             GUILayout.EndArea();
-        }
 
+            //bail if outside rect, not a mouse click, or if in the preview rect.
+            if (!rectContent.Contains(cur.mousePosition) || cur.type != EventType.MouseDown || visualPreviewArenaRect.Contains(cur.mousePosition)) return;
+            if (cur.button == 1 && curKnob == null)
+            {
+                float timeX = PixelToTime(cur.mousePosition.x);
+                timeAreaCTXMenu = new GenericMenu();
+                timeAreaCTXMenu.AddItem(new GUIContent($"Place Knob At Frame: {Mathf.Floor(timeX * _frameRate)}"), false, delegate
+                {
+                    runningTime = (double)timeX;
+                    PlaceANewKnob();
+                });
+                timeAreaCTXMenu.ShowAsContext();
+            }else if(cur.button == 0 && curKnob != null)
+            {
+                GrabAKnob(null, Vector2.zero);
+            }
+        }
 
         protected override void DrawVerticalTickLine()
         {
@@ -446,14 +522,16 @@ namespace RenCSharp.Combat.Enemies.Editor
             }
             Handles.color = preColor;
         }
-
+        /// <summary>
+        /// Should be drawing the relevant properties: controlType, arenaDimensions, attackDuration, and the spawningMethod enums.
+        /// Also draws the current knob's information, if there is one.
+        /// </summary>
         protected virtual void DrawLeftContent()
         {
             if (timelineData == null) return;
             GUILayout.BeginArea(rectLeft);
             if(targetToEdit != null || timelineData.name != "tempfile") //if we have actual timelinedata, it shouldn't matter if targettoedit is null
             {
-
                 if (controlTypeProperty != null) EditorGUILayout.PropertyField(controlTypeProperty);
 
                 if (arenaDimensionsProperty != null) EditorGUILayout.PropertyField(arenaDimensionsProperty);
@@ -472,12 +550,16 @@ namespace RenCSharp.Combat.Enemies.Editor
                 EditorGUILayout.LabelField("Projectile Knob Data");
                 curKnob.SpawnPosition = EditorGUILayout.Vector3Field("Spawn Position", curKnob.SpawnPosition);
                 curKnob.InitialDirection = EditorGUILayout.Vector3Field("Initial Direction", curKnob.InitialDirection);
-                EditorGUILayout.PropertyField(curKnobProjectileProperty);
+                curKnob.ProjectileToSpawn = EditorGUILayout.ObjectField(curKnob.ProjectileToSpawn, typeof(Base_Projectile), false) as Base_Projectile;
+                //EditorGUILayout.PropertyField(curKnobProjectileProperty);
                 EditorGUILayout.EndVertical();
             }
             GUILayout.EndArea();
         }
 
+        /// <summary>
+        /// Draws the old enemy attack field for selection, as well as the settings menu to change framerate and desired file paths.
+        /// </summary>
         protected virtual void DrawTopToolBar()
         {
             GUILayout.BeginArea(rectTopBar);
@@ -500,6 +582,9 @@ namespace RenCSharp.Combat.Enemies.Editor
             GUILayout.EndArea();
         }
 
+        /// <summary>
+        /// Draws the controls: back-a-frame, play/pause, forward-a-frame, place-a-knob, and save-to-file.
+        /// </summary>
         private void DrawLeftTopToolBar()
         {
             // left top tool bar
@@ -537,12 +622,12 @@ namespace RenCSharp.Combat.Enemies.Editor
                 this.RunningTime = 0.0f;
             }
             //place a new knob
-            if (GUILayout.Button(PlaceKnobIcon, EditorStyles.toolbarButton, GUILayout.ExpandWidth(false)))
+            if (GUILayout.Button(PlaceKnobContent, EditorStyles.toolbarButton, GUILayout.ExpandWidth(false)))
             {
                 PlaceANewKnob();
             }
             //save the current timeline to an EnemyAttackTimelineData file
-            if (GUILayout.Button(SaveIcon, EditorStyles.toolbarButton, GUILayout.ExpandWidth(false)))
+            if (GUILayout.Button(SaveContent, EditorStyles.toolbarButton, GUILayout.ExpandWidth(false)))
             {
                 playing = false;
                 PausePreView();
@@ -593,15 +678,16 @@ namespace RenCSharp.Combat.Enemies.Editor
     /// being converted into a file that is more memory-effective for the Fight_Manager to run through.
     /// </summary>
     [Serializable]
-    public class ProjectileKnob : UnityEngine.Object
+    public class ProjectileKnob
     {
         //when clicked, set the active knob to this bastard
 
-        [SerializeField] public Vector3 SpawnPosition;
-        [SerializeField] public Vector3 InitialDirection;
-        [SerializeField] public Base_Projectile ProjectileToSpawn;
+        [SerializeField] public Vector3 SpawnPosition = Vector3.zero;
+        [SerializeField] public Vector3 InitialDirection = Vector3.zero;
+        [SerializeField] public Base_Projectile ProjectileToSpawn = null;
         public static Action<ProjectileKnob, Vector2> SelectKnob;
         private readonly float knobSize = 30;
+        private readonly Color selectedKnobColor = new(0.75f,0.9f,0.4f, 1);
         private static Texture knobImage;
         private static GenericMenu DestroyMeMenu = null;
 
@@ -612,28 +698,31 @@ namespace RenCSharp.Combat.Enemies.Editor
             ProjectileToSpawn = proj;
         }
 
-        public void DisplayKnob(EnemyAttackTimeLineEditor timeArea, Vector2 timeAndOffset)
+        public void DisplayKnob(EnemyAttackTimeLineEditor timeArea, Vector2 timeAndOffset, bool selected = false)
         {
-            if (knobImage == null) knobImage = Resources.Load("EditorIcons/editordiamond") as Texture;
-            Vector3 pos = new Vector3(timeArea.TimeToPixel(timeAndOffset.x), timeAndOffset.y + 100f, 0);
+            if (knobImage == null) knobImage = EditorGUIUtility.Load("Assets/ddlc/Visuals/Editor/editordiamond.png") as Texture;
+            Vector2 pos = new Vector2(timeArea.TimeToPixel(timeAndOffset.x), timeAndOffset.y + 100f);
             Rect drawRect = new Rect(pos.x - (knobSize * 0.5f) - timeArea._rectTimeAreaRuler.x, pos.y - knobSize * 0.5f, knobSize, knobSize);
-            if(GUI.Button(drawRect, knobImage))
-            {
-                Event cur = Event.current;
-                if (cur.type != EventType.ContextClick)
+            GUI.DrawTexture(drawRect, knobImage, ScaleMode.ScaleToFit, true, 0, selected ? selectedKnobColor : Color.white, 0, 0);
+            Event cur = Event.current;
+            if (!drawRect.Contains(cur.mousePosition) || cur.type != EventType.MouseUp) return;
+
+            if(cur.button == 0) SelectKnob?.Invoke(this, timeAndOffset);
+            else if(cur.button == 1)
+            { 
+                DestroyMeMenu = new GenericMenu();
+                DestroyMeMenu.AddItem(new GUIContent($"Delete Knob at {timeAndOffset.x} seconds."), false, delegate
                 {
-                    SelectKnob?.Invoke(this, timeAndOffset);
-                }
-                else
-                {
-                    DestroyMeMenu = new GenericMenu();
-                    DestroyMeMenu.AddItem(new GUIContent("Delete Knob"), false, delegate
-                    {
-                        timeArea.RemoveAKnob(timeAndOffset);
-                    });
-                    DestroyMeMenu.ShowAsContext();
-                }
+                    timeArea.RemoveAKnob(timeAndOffset);
+                });
+                DestroyMeMenu.ShowAsContext();
             }
+            
+        }
+
+        public override string ToString()
+        {
+            return $"Spawn Pos: {SpawnPosition}, Initial Dir: {InitialDirection}, ProjectileSpawned: {ProjectileToSpawn?.name}";
         }
     }
 }

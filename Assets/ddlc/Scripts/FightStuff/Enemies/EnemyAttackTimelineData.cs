@@ -8,9 +8,9 @@ namespace RenCSharp.Combat.Enemies
     public class EnemyAttackTimelineData : EnemyAttack
     {
         //split dict into lists because EVIL?!?
-        [SerializeField] private List<int> keyframes = new();
-        [SerializeField] private List<ProjectileFrameData> frameData = new();
-
+        [SerializeField, Tooltip("Pretty please don't change this in here, just for debug.")] private List<int> keyframes = new();
+        [SerializeField, Tooltip("Pretty please don't change this in here, just for debug.")] private List<ProjectileFrameData> frameData = new();
+        [SerializeField] private bool debug = false;
         public void DebugTimelineInformation()
         {
             string s1 = $"All stored projectiles in {name}: ";
@@ -33,7 +33,7 @@ namespace RenCSharp.Combat.Enemies
 
         private void OnValidate()
         {
-            DebugTimelineInformation();
+            if(debug)DebugTimelineInformation();
         }
 
         public Dictionary<int, ProjectileFrameData> SetTimelineInformation { set
