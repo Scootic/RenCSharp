@@ -50,6 +50,20 @@ namespace RenCSharp.EXPERIMENTAL
             return (Mathf.Approximately(a.x, b.x) && Mathf.Approximately(a.y, b.y) && Mathf.Approximately(a.z, b.z));
         }
 
+        public static float GetDegreeFromVector(Vector2 v2, float degreeOffset = 90)
+        {
+            if (v2 == Vector2.zero) return 0;
+            v2.Normalize();
+            return Mathf.Atan2(v2.y, v2.x) * Mathf.Rad2Deg + degreeOffset;
+        }
+
+        public static float GetDegreeFromVector(Vector3 v3, float degreeOffset = 90)
+        {
+            if (v3 == Vector3.zero) return 0;
+            v3.Normalize();
+            return Mathf.Atan2(v3.y, v3.x) * Mathf.Rad2Deg + degreeOffset;
+        }
+
         /// <summary>
         /// Do trig bullstuff to get a quaternion out of a vec2. For bottom facing sprite type things. (projectiles).
         /// </summary>
@@ -57,10 +71,7 @@ namespace RenCSharp.EXPERIMENTAL
         /// <returns>A quaternion with a euler angle z being relative and 0 x + 0 y.</returns>
         public static Quaternion GetQuaternion(Vector2 v2, float degreeOffset = 90)
         {
-            if(v2 == Vector2.zero) return Quaternion.identity; //bail out because the math won't be happy.
-            v2.Normalize();
-            float z = Mathf.Atan2(v2.y, v2.x) * Mathf.Rad2Deg + degreeOffset;
-            Vector3 euler = new Vector3(0, 0, z);
+            Vector3 euler = new Vector3(0, 0, GetDegreeFromVector(v2, degreeOffset));
             return Quaternion.Euler(euler);
         }
         /// <summary>
@@ -70,10 +81,7 @@ namespace RenCSharp.EXPERIMENTAL
         /// <returns>A quaternion with a euler angle z being relative and 0 x + 0 y. If V3 is 0, return quat.identity</returns>
         public static Quaternion GetQuaternion(Vector3 v3, float degreeOffset = 90)
         {
-            if(v3 == Vector3.zero) return Quaternion.identity; //bail out because the math below won't be happy.
-            v3.Normalize();
-            float z = Mathf.Atan2(v3.y, v3.x) * Mathf.Rad2Deg + degreeOffset;
-            Vector3 euler = new Vector3(0, 0, z);
+            Vector3 euler = new Vector3(0, 0, GetDegreeFromVector(v3, degreeOffset));
             return Quaternion.Euler(euler);
         }
 

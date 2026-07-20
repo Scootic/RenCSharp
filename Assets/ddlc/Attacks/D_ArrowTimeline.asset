@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arenaDimensions: {x: 550, y: 550}
   controlType:
-    rid: 7856103299494969423
+    rid: 7856103390270193753
   attackDuration: 10
   secondsPerProjectileSpawn: 0.5
   projectilesPerSpawn: 1
@@ -29,29 +29,29 @@ MonoBehaviour:
   frameData:
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: 500, y: 0, z: 0}
-      InitialDirection: {x: 500, y: 0, z: 0}
+      InitialDirection: {x: -1, y: 0, z: 0}
       ProjectileIndex: 0
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: 0, y: 500, z: 0}
-      InitialDirection: {x: 0, y: 500, z: 0}
+      InitialDirection: {x: 0, y: -1, z: 0}
       ProjectileIndex: 0
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: 500, y: 500, z: 0}
-      InitialDirection: {x: 500, y: 500, z: 0}
+      InitialDirection: {x: -1, y: -1, z: 0}
       ProjectileIndex: 0
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: -500, y: 500, z: 0}
-      InitialDirection: {x: -500, y: 500, z: 0}
+      InitialDirection: {x: 1, y: -1, z: 0}
       ProjectileIndex: 0
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: -500, y: 0, z: 0}
-      InitialDirection: {x: -500, y: 0, z: 0}
+      InitialDirection: {x: 1, y: 0, z: 0}
       ProjectileIndex: 0
   debug: 0
   references:
     version: 2
     RefIds:
-    - rid: 7856103299494969423
+    - rid: 7856103390270193753
       type: {class: Dodge, ns: RenCSharp.Combat.Player, asm: Player}
       data:
         dodgeCurve:

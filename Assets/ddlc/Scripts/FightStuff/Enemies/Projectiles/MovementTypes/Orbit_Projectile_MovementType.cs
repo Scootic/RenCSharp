@@ -39,6 +39,15 @@ namespace RenCSharp.Combat.Enemies
             projectileTransform.localPosition = newPos;
         }
 
+        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPos)
+        {
+            Vector2 s = new Vector2(spawnPos.x, spawnPos.y);
+            eval = time / orbitTravelTime;
+            offset = (speed * time) * initialDirection;
+            Vector3 newPos = TrigHelper.PercentAlongUnitCirclePoint(eval, circleRadius) + offset;
+            return s + new Vector2(newPos.x, newPos.y);
+        }
+
         public override string ToString()
         {
             return "Orbit";

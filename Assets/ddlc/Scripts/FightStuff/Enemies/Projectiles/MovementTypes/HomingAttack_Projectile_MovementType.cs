@@ -37,6 +37,13 @@ namespace RenCSharp.Combat.Enemies
             projectileTransform.position += moveDir * Time.deltaTime * speed;
         }
 
+        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPosition)
+        {
+            Vector2 s = new Vector2(spawnPosition.x, spawnPosition.y);
+            //same as straight line, because nothing to home into?
+            return s + (speed * time) * initialDirection;
+        }
+
         public override string ToString()
         {
             return "Homing Projectile";

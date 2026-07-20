@@ -37,6 +37,14 @@ namespace RenCSharp.Combat.Enemies
             projectileTransform.position = newPos;
         }
 
+        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPos)
+        {
+            boundingPositions = BoundingBezierPositions.BoundingPositions4(curveType, spawnPos, initialDirection, distanceFromSpawn, arcHeight);
+            eval = time / travelDuration;
+            Vector3 pos = TrigHelper.BezPos(boundingPositions, eval);
+            return new Vector2(pos.x, pos.y); 
+        }
+
         public override string ToString()
         {
             return "Bezier Curve";

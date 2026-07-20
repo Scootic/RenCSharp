@@ -20,7 +20,14 @@ namespace RenCSharp.Combat.Enemies
             moveDir = v3;
             if(movementSetsRotation || first) projectileTransform.rotation = TrigHelper.GetQuaternion(moveDir);
         }
-
+        /// <summary>
+        /// Try to estimate a position in time based off of a given movedir and spawn position.
+        /// </summary>
+        /// <param name="time">Seconds after spawn.</param>
+        /// <param name="initialDirection">Initial movement direction</param>
+        /// <param name="spawnPos">The position being assumed as spawn.</param>
+        /// <returns></returns>
+        public abstract Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPos);
         public Transform SetProjectileTransform { set { projectileTransform = value; } }
         public Rigidbody SetProjectileRigidbody { set { projectileRigidbody = value; } }
         [SerializeField] protected float speed = 500f;

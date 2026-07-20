@@ -24,6 +24,13 @@ namespace RenCSharp.Combat.Enemies
             projectileTransform.position += moveDir * speed * Time.deltaTime;
         }
 
+        public override Vector2 GetPositionAtTime(float time, Vector2 initialDir, Vector3 spawnPosition)
+        {
+            Vector3 parallel = Vector3.Cross(initialDir, Vector3.forward);
+            Vector3 init = new Vector3(initialDir.x, initialDir.y);
+            return (spawnPosition + (init * speed * time) + parallel * amplitude * Mathf.Sin(frequency * time));
+        }
+
         public override string ToString()
         {
             return "Sine Wave";

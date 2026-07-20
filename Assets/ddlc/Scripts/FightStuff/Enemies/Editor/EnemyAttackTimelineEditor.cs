@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using RenCSharp.Combat.Player;
 using RenCSharp.Combat.Interfaces;
+using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp.Combat.Enemies.Editor
 {
     public class EnemyAttackTimeLineEditor : SimpleTimeArea
@@ -67,9 +68,17 @@ namespace RenCSharp.Combat.Enemies.Editor
         private Rect visualPreviewHolderRect, visualPreviewArenaRect;
         private readonly float knobVerticalOffsetMult = 50f;
         private static readonly Vector2 minWindowSize = new Vector2(400f, 200f);
+        /// <summary>
+        /// gets multiplied by preview rect scale
+        /// </summary>
+        private static readonly Vector2 projectilePreviewSize = new Vector2(100, 100);
 
-        private static Texture saveIcon, placeKnobIcon, arenaPreviewTexture;
+        private static Texture saveIcon, placeKnobIcon, arenaPreviewTexture, projectilePreviewTexture;
         private readonly static string assetPathToEditorIcons = "Assets/ddlc/Visuals/Editor/";
+
+        private static readonly Color beforeSpawnC = new Color(0.65f, 0.65f, 0.65f, 1);
+        private static readonly Color spawnC = new Color(1, 0.3f, 0, 1);
+        private static readonly Color afterSpawnC = new Color(0.86f, 0.86f, 0.86f, 1);
 
         private static GUIContent PlaceKnobContent;
         private static GUIContent SaveContent;
@@ -364,12 +373,46 @@ namespace RenCSharp.Combat.Enemies.Editor
 
         private void DisplayAttackAreaWindow(int windowID)
         {
+            //rember to flip y. somehow?!?!?!?!?!?!?!?
+            Matrix4x4 ogMatrix = GUI.matrix;
             Debug.Log($"visualPreviewRect: " + visualPreviewHolderRect);
-            Vector2 arenaDimensions = arenaDimensionsProperty.vector2Value;
-            //? (120, 270/4, arenaDim seem to work...)
-            visualPreviewArenaRect = new Rect(visualPreviewHolderRect.width * previewRectScale, visualPreviewHolderRect.height * previewRectScale, arenaDimensions.x * previewRectScale, arenaDimensions.y * previewRectScale);
+            Vector2 arenaDimensions = arenaDimensionsProperty.vector2Value * previewRectScale;
+            Vector2 arenaPos = new Vector2((visualPreviewHolderRect.width * 0.5f) - (arenaDimensions.x * 0.5f), (visualPreviewHolderRect.height * 0.5f) - (arenaDimensions.y * 0.5f));
+            Vector2 projOrigin = new Vector2((visualPreviewHolderRect.width * 0.5f) - (projectilePreviewSize.x * previewRectScale * 0.5f), (visualPreviewHolderRect.height * 0.5f) - (projectilePreviewSize.y * previewRectScale * 0.5f));
+            visualPreviewArenaRect = new Rect(arenaPos.x, arenaPos.y, arenaDimensions.x, arenaDimensions.y);
+
             GUI.DrawTexture(visualPreviewArenaRect, arenaPreviewTexture);
 
+            foreach (KeyValuePair<Vector2, ProjectileKnob> kvp in projectiles) 
+            {
+                ProjectileKnob pk = kvp.Value;
+
+                float t = (float)runningTime - kvp.Key.x;
+                //don't render if before proj spawn!
+                if(t > pk.ProjectileToSpawn.Lifetime || t < 0) { GUI.matrix = ogMatrix; break; }
+
+                Vector2 drawPos = new Vector2(projOrigin.x + pk.SpawnPosition.x * previewRectScale, projOrigin.y + pk.SpawnPosition.y * previewRectScale);
+                Rect drawProjectile = new Rect(drawPos.x, drawPos.y, projectilePreviewSize.x * previewRectScale, projectilePreviewSize.y * previewRectScale);
+
+                Color cToDraw = new();
+
+                if (kvp.Key.x == runningTime)
+                {
+                    cToDraw = spawnC;
+                }
+                else
+                {
+                    Debug.Log($"{t} after spawn");
+                    cToDraw = afterSpawnC;
+                    Vector2 offsetPos = pk.ProjectileToSpawn.GetMovementType.GetPositionAtTime(t, pk.InitialDirection, pk.SpawnPosition) * previewRectScale;
+                    Debug.Log("offsetPos: " + offsetPos);
+                    drawPos = new Vector2(projOrigin.x + offsetPos.x, projOrigin.y + offsetPos.y);
+                    drawProjectile = new Rect(drawPos.x, drawPos.y, projectilePreviewSize.x * previewRectScale, projectilePreviewSize.y * previewRectScale);
+                }
+                GUIUtility.RotateAroundPivot(TrigHelper.GetDegreeFromVector(pk.InitialDirection, 270), drawPos);
+                GUI.DrawTexture(drawProjectile, projectilePreviewTexture, ScaleMode.ScaleToFit, true, 0, cToDraw, 0, 0);
+                GUI.matrix = ogMatrix;
+            }
             GUI.DragWindow();
         }
 
@@ -415,6 +458,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             placeKnobIcon = EditorGUIUtility.Load(assetPathToEditorIcons + "placeknobicon.png") as Texture;
             PlaceKnobContent = new GUIContent(placeKnobIcon, "Place a new Projectile in the Timeline.");
             arenaPreviewTexture = EditorGUIUtility.Load(assetPathToEditorIcons + "arenapreview.png") as Texture;
+            projectilePreviewTexture = EditorGUIUtility.Load(assetPathToEditorIcons + "projectilepreview.png") as Texture;
             activeTimeline = new SerializedObject(this);
             targetToEditProperty = activeTimeline.FindProperty("targetToEdit");
             ProjectileKnob.SelectKnob += GrabAKnob;

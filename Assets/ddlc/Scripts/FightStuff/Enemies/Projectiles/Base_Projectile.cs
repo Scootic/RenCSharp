@@ -44,6 +44,7 @@ namespace RenCSharp.Combat.Enemies
         public float SpawnSoundVol => spawnSoundVol;
         public AudioClip SpawnSound => spawnSound;
         public Vector3 GetMoveDir => moveDir;
+        public Projectile_MovementType GetMovementType => movementType;
         /// <summary>
         /// Sets the move direction that's used in update to change the projectile's position.
         /// </summary>
