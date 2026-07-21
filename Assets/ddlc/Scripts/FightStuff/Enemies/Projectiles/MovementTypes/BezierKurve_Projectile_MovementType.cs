@@ -39,7 +39,8 @@ namespace RenCSharp.Combat.Enemies
 
         public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPos)
         {
-            boundingPositions = BoundingBezierPositions.BoundingPositions4(curveType, spawnPos, initialDirection, distanceFromSpawn, arcHeight);
+            Vector3 dir = new Vector3(initialDirection.x, initialDirection.y, 0);
+            boundingPositions = BoundingBezierPositions.BoundingPositions4(curveType, spawnPos, dir, distanceFromSpawn, arcHeight);
             eval = time / travelDuration;
             Vector3 pos = TrigHelper.BezPos(boundingPositions, eval);
             return new Vector2(pos.x, pos.y); 

@@ -375,7 +375,6 @@ namespace RenCSharp.Combat.Enemies.Editor
         {
             //rember to flip y. somehow?!?!?!?!?!?!?!?
             Matrix4x4 ogMatrix = GUI.matrix;
-            Debug.Log($"visualPreviewRect: " + visualPreviewHolderRect);
             Vector2 arenaDimensions = arenaDimensionsProperty.vector2Value * previewRectScale;
             Vector2 arenaPos = new Vector2((visualPreviewHolderRect.width * 0.5f) - (arenaDimensions.x * 0.5f), (visualPreviewHolderRect.height * 0.5f) - (arenaDimensions.y * 0.5f));
             Vector2 projOrigin = new Vector2((visualPreviewHolderRect.width * 0.5f) - (projectilePreviewSize.x * previewRectScale * 0.5f), (visualPreviewHolderRect.height * 0.5f) - (projectilePreviewSize.y * previewRectScale * 0.5f));
@@ -392,6 +391,11 @@ namespace RenCSharp.Combat.Enemies.Editor
                 if(t > pk.ProjectileToSpawn.Lifetime || t < 0) { GUI.matrix = ogMatrix; break; }
 
                 Vector2 drawPos = new Vector2(projOrigin.x + pk.SpawnPosition.x * previewRectScale, projOrigin.y + pk.SpawnPosition.y * previewRectScale);
+
+                Vector3 flipYPos = new Vector3(pk.SpawnPosition.x, pk.SpawnPosition.y * -1);
+                Vector3 flipYDir = new Vector3(pk.InitialDirection.x, pk.InitialDirection.y * -1);
+
+                drawPos = new Vector2(projOrigin.x + flipYPos.x * previewRectScale, projOrigin.y + flipYPos.y * previewRectScale);
                 Rect drawProjectile = new Rect(drawPos.x, drawPos.y, projectilePreviewSize.x * previewRectScale, projectilePreviewSize.y * previewRectScale);
 
                 Color cToDraw = new();
@@ -402,17 +406,19 @@ namespace RenCSharp.Combat.Enemies.Editor
                 }
                 else
                 {
-                    Debug.Log($"{t} after spawn");
                     cToDraw = afterSpawnC;
-                    Vector2 offsetPos = pk.ProjectileToSpawn.GetMovementType.GetPositionAtTime(t, pk.InitialDirection, pk.SpawnPosition) * previewRectScale;
+                    Vector2 offsetPos = pk.ProjectileToSpawn.GetMovementType.GetPositionAtTime(t, flipYDir, flipYPos) * previewRectScale;
                     Debug.Log("offsetPos: " + offsetPos);
                     drawPos = new Vector2(projOrigin.x + offsetPos.x, projOrigin.y + offsetPos.y);
                     drawProjectile = new Rect(drawPos.x, drawPos.y, projectilePreviewSize.x * previewRectScale, projectilePreviewSize.y * previewRectScale);
                 }
-                GUIUtility.RotateAroundPivot(TrigHelper.GetDegreeFromVector(pk.InitialDirection, 270), drawPos);
+                Vector2 rotatePoint = drawPos + new Vector2(projectilePreviewSize.x * 0.5f * previewRectScale, projectilePreviewSize.y * 0.5f * previewRectScale);
+                GUIUtility.RotateAroundPivot(TrigHelper.GetDegreeFromVector(flipYDir, 270), rotatePoint);
                 GUI.DrawTexture(drawProjectile, projectilePreviewTexture, ScaleMode.ScaleToFit, true, 0, cToDraw, 0, 0);
                 GUI.matrix = ogMatrix;
             }
+
+            GUI.matrix = ogMatrix;
             GUI.DragWindow();
         }
 
