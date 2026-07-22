@@ -37,9 +37,14 @@ namespace RenCSharp.Combat.Enemies
             projectileTransform.position += moveDir * Time.deltaTime * speed;
         }
 
-        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPosition)
+        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPosition, bool flipY = false)
         {
             Vector2 s = new Vector2(spawnPosition.x, spawnPosition.y);
+            if (flipY)
+            {
+                s = new Vector2(s.x, s.y * -1);
+                initialDirection = new Vector2(initialDirection.x, initialDirection.y * -1);
+            }
             //same as straight line, because nothing to home into?
             return s + (speed * time) * initialDirection;
         }

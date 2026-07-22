@@ -37,10 +37,16 @@ namespace RenCSharp.Combat.Enemies
             projectileTransform.position = newPos;
         }
 
-        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPos)
+        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPos, bool flipY = false)
         {
+            if (flipY)
+            {
+                initialDirection = new Vector2(initialDirection.x, initialDirection.y * -1);
+                spawnPos = new Vector3(spawnPos.x, spawnPos.y * -1);
+            }
+
             Vector3 dir = new Vector3(initialDirection.x, initialDirection.y, 0);
-            boundingPositions = BoundingBezierPositions.BoundingPositions4(curveType, spawnPos, dir, distanceFromSpawn, arcHeight);
+            boundingPositions = BoundingBezierPositions.BoundingPositions4(curveType, spawnPos, dir, distanceFromSpawn, flipY ? arcHeight * -1 : arcHeight);
             eval = time / travelDuration;
             Vector3 pos = TrigHelper.BezPos(boundingPositions, eval);
             return new Vector2(pos.x, pos.y); 

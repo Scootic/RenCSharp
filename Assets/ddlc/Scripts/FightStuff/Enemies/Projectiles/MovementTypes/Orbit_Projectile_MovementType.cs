@@ -39,8 +39,14 @@ namespace RenCSharp.Combat.Enemies
             projectileTransform.localPosition = newPos;
         }
 
-        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPos)
+        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPos, bool flipY = false)
         {
+            if (flipY)
+            {
+                spawnPos = new Vector3(spawnPos.x, spawnPos.y * -1);
+                initialDirection = new Vector2(initialDirection.x, initialDirection.y * -1);
+            }
+
             Vector2 s = new Vector2(spawnPos.x, spawnPos.y);
             eval = time / orbitTravelTime;
             offset = (speed * time) * initialDirection;

@@ -49,23 +49,17 @@ namespace RenCSharp.Combat.Enemies.Editor
         {   
             get
             {
-                if (visualPreviewHolderRect == null || visualPreviewHolderRect == Rect.zero)
-                {
-                    float w = 1920f * previewRectScale;
-                    float h = 1080f * previewRectScale;
-                    return new Rect(rectTotalArea.x + w * 0.5f, rectTotalArea.y + h * 0.5f, w, h);
-                }
-                else
-                {
-                    return visualPreviewHolderRect;
-                }
+                float w = 1920f * previewRectScale;
+                float h = 1080f * previewRectScale;
+                //Debug.Log($"Setting visual preview rect to: {rectTotalArea.width - w}, {rectTotalArea.height - h}, {w}, {h}");
+                return new Rect(rectTotalArea.width - w * 0.5f, rectTotalArea.height - h, w, h);
             }
             set
             {
                 visualPreviewHolderRect = value;
             }
         }
-        private Rect visualPreviewHolderRect, visualPreviewArenaRect;
+        private Rect visualPreviewHolderRect = Rect.zero, visualPreviewArenaRect;
         private readonly float knobVerticalOffsetMult = 50f;
         private static readonly Vector2 minWindowSize = new Vector2(400f, 200f);
         /// <summary>
@@ -76,7 +70,6 @@ namespace RenCSharp.Combat.Enemies.Editor
         private static Texture saveIcon, placeKnobIcon, arenaPreviewTexture, projectilePreviewTexture;
         private readonly static string assetPathToEditorIcons = "Assets/ddlc/Visuals/Editor/";
 
-        private static readonly Color beforeSpawnC = new Color(0.65f, 0.65f, 0.65f, 1);
         private static readonly Color spawnC = new Color(1, 0.3f, 0, 1);
         private static readonly Color afterSpawnC = new Color(0.86f, 0.86f, 0.86f, 1);
 
@@ -84,6 +77,8 @@ namespace RenCSharp.Combat.Enemies.Editor
         private static GUIContent SaveContent;
 
         private static string PreferredSaveFolder = Application.dataPath;
+
+        private static Event cur;
         #region Used
         private double runningTime = 10.0f;
         protected override double RunningTime
@@ -161,6 +156,27 @@ namespace RenCSharp.Combat.Enemies.Editor
 
             Vector2 timeAndOffset = new Vector2(timeItSpawnsAt, largestY);
             projectiles.Add(timeAndOffset, toAdd);
+        }
+        /// <summary>
+        /// Places a new knob, that takes in a spawn position. Probably being used by the arena preview window.
+        /// </summary>
+        /// <param name="pos">The spawn position of the new projectile.</param>
+        private void PlaceANewKnob(Vector2 pos)
+        {
+            ProjectileKnob toAdd = new(pos, Vector3.zero, null);
+            float timeItSpawnsAt = (float)Math.Round(RunningTime, 1, MidpointRounding.AwayFromZero);
+            float largestY = 0;
+            foreach(KeyValuePair<Vector2, ProjectileKnob> kvp in projectiles)
+            {
+                if(kvp.Key.x == timeItSpawnsAt)
+                {
+                    largestY = kvp.Key.y + knobVerticalOffsetMult;
+                }
+            }
+
+            Vector2 timeAndOffset = new Vector2(timeItSpawnsAt, largestY);
+            projectiles.Add(timeAndOffset, toAdd);
+            GrabAKnob(projectiles[timeAndOffset], timeAndOffset);
         }
 
         public void RemoveAKnob(Vector2 timeAndOffset)
@@ -367,13 +383,14 @@ namespace RenCSharp.Combat.Enemies.Editor
         //change shape based off of the arena dimensions, too?
         private void DisplayAttackAreaPreview()
         {
-            visualPreviewHolderRect = GUI.Window(10, visualPreviewHolderRect, DisplayAttackAreaWindow, "Preview Display");
+            VisualPreviewHolderRect = GUI.Window(10, VisualPreviewHolderRect, DisplayAttackAreaWindow, "Preview Arena Display");
             GUI.BringWindowToFront(10);
         }
 
         private void DisplayAttackAreaWindow(int windowID)
         {
-            //rember to flip y. somehow?!?!?!?!?!?!?!?
+            //rember to flip y. somehow?!?!?!?!?!?!?!
+            Color cToDraw = new();
             Matrix4x4 ogMatrix = GUI.matrix;
             Vector2 arenaDimensions = arenaDimensionsProperty.vector2Value * previewRectScale;
             Vector2 arenaPos = new Vector2((visualPreviewHolderRect.width * 0.5f) - (arenaDimensions.x * 0.5f), (visualPreviewHolderRect.height * 0.5f) - (arenaDimensions.y * 0.5f));
@@ -382,44 +399,70 @@ namespace RenCSharp.Combat.Enemies.Editor
 
             GUI.DrawTexture(visualPreviewArenaRect, arenaPreviewTexture);
 
+            Vector2 drawPos, flipYPos, offsetPos, rotatePoint;
+            Vector3 flipYDir;
+            Rect drawProjectile;
+
             foreach (KeyValuePair<Vector2, ProjectileKnob> kvp in projectiles) 
             {
                 ProjectileKnob pk = kvp.Value;
-
+                //t is the current time in the projectile's life after being spawned.
                 float t = (float)runningTime - kvp.Key.x;
                 //don't render if before proj spawn!
-                if(t > pk.ProjectileToSpawn.Lifetime || t < 0) { GUI.matrix = ogMatrix; break; }
+                if(t > pk.ProjectileToSpawn.Lifetime || t < 0) { GUI.matrix = ogMatrix; continue; }
 
-                Vector2 drawPos = new Vector2(projOrigin.x + pk.SpawnPosition.x * previewRectScale, projOrigin.y + pk.SpawnPosition.y * previewRectScale);
+                drawPos = new Vector2(projOrigin.x + pk.SpawnPosition.x * previewRectScale, projOrigin.y + pk.SpawnPosition.y * previewRectScale);
 
-                Vector3 flipYPos = new Vector3(pk.SpawnPosition.x, pk.SpawnPosition.y * -1);
-                Vector3 flipYDir = new Vector3(pk.InitialDirection.x, pk.InitialDirection.y * -1);
+                flipYPos = new Vector3(pk.SpawnPosition.x, pk.SpawnPosition.y * -1);
+                flipYDir = new Vector3(pk.InitialDirection.x, pk.InitialDirection.y * -1);
 
                 drawPos = new Vector2(projOrigin.x + flipYPos.x * previewRectScale, projOrigin.y + flipYPos.y * previewRectScale);
-                Rect drawProjectile = new Rect(drawPos.x, drawPos.y, projectilePreviewSize.x * previewRectScale, projectilePreviewSize.y * previewRectScale);
-
-                Color cToDraw = new();
+                drawProjectile = new Rect(drawPos.x, drawPos.y, projectilePreviewSize.x * previewRectScale, projectilePreviewSize.y * previewRectScale);
 
                 if (kvp.Key.x == runningTime)
                 {
+                    //if the key equals running time, that means the projectile just "spawned"
                     cToDraw = spawnC;
                 }
                 else
                 {
                     cToDraw = afterSpawnC;
-                    Vector2 offsetPos = pk.ProjectileToSpawn.GetMovementType.GetPositionAtTime(t, flipYDir, flipYPos) * previewRectScale;
-                    Debug.Log("offsetPos: " + offsetPos);
+                    //get the expected offset that comes from being a moving projectile at t seconds of its lifespan.
+                    offsetPos = pk.ProjectileToSpawn.GetMovementType.GetPositionAtTime(t, pk.InitialDirection, pk.SpawnPosition, true) * previewRectScale;
                     drawPos = new Vector2(projOrigin.x + offsetPos.x, projOrigin.y + offsetPos.y);
                     drawProjectile = new Rect(drawPos.x, drawPos.y, projectilePreviewSize.x * previewRectScale, projectilePreviewSize.y * previewRectScale);
                 }
-                Vector2 rotatePoint = drawPos + new Vector2(projectilePreviewSize.x * 0.5f * previewRectScale, projectilePreviewSize.y * 0.5f * previewRectScale);
+                if (pk == curKnob) cToDraw = CoolColors.selectedOliveColor;
+                //make sure the representation is rotated to match the initial direction (updating the rotation as it would in game probably isn't *that* important)
+                rotatePoint = drawPos + new Vector2(projectilePreviewSize.x * 0.5f * previewRectScale, projectilePreviewSize.y * 0.5f * previewRectScale);
                 GUIUtility.RotateAroundPivot(TrigHelper.GetDegreeFromVector(flipYDir, 270), rotatePoint);
+                //finally draw our projectile representation now that we have everything
                 GUI.DrawTexture(drawProjectile, projectilePreviewTexture, ScaleMode.ScaleToFit, true, 0, cToDraw, 0, 0);
                 GUI.matrix = ogMatrix;
+
+                if(drawProjectile.Contains(cur.mousePosition) && cur.button == 0 && cur.isMouse)
+                {
+                    GrabAKnob(pk, kvp.Key);
+                }
             }
 
             GUI.matrix = ogMatrix;
-            GUI.DragWindow();
+
+            if (visualPreviewHolderRect.Contains(cur.mousePosition)) Debug.Log("mouse in window!");
+
+            if(visualPreviewHolderRect.Contains(cur.mousePosition) && cur.button == 1 && cur.isMouse)
+            {
+                Debug.Log("rightclicked inside preview");
+                Vector2 wouldBeSpawnPosition = (cur.mousePosition - arenaPos) / previewRectScale; //absolute minus origin = relative?
+                GenericMenu previewSpawnProj = new();
+                previewSpawnProj.AddItem(new GUIContent($"Add Projectile at: ({wouldBeSpawnPosition.x}, {wouldBeSpawnPosition.y}) - {runningTime}s"), false, delegate
+                {
+                    PlaceANewKnob(wouldBeSpawnPosition);
+                });
+                previewSpawnProj.ShowAsContext();
+            }
+            //enable below to let user drag, seems to prevent right-click events from working.
+            //GUI.DragWindow();
         }
 
         #endregion
@@ -468,7 +511,6 @@ namespace RenCSharp.Combat.Enemies.Editor
             activeTimeline = new SerializedObject(this);
             targetToEditProperty = activeTimeline.FindProperty("targetToEdit");
             ProjectileKnob.SelectKnob += GrabAKnob;
-            visualPreviewHolderRect = VisualPreviewHolderRect;
             PreferredSaveFolder = EditorPrefs.GetString("attacksavefolder", Application.dataPath);
             if(timelineData != null) { GrabMarkers(timelineData); return; }
             if (targetToEdit != null) { targetToEditProperty.boxedValue = targetToEdit; GrabMarkers(targetToEdit); return; }
@@ -502,7 +544,7 @@ namespace RenCSharp.Combat.Enemies.Editor
 
         private void OnGUI()
         {
-            Event cur = Event.current;
+            cur = Event.current;
             Rect rectMainBodyArea = new Rect(0, toolbarHeight, base.position.width, this.position.height - toolbarHeight);
             rectTopBar = new Rect(0, 0, this.position.width, toolbarHeight);
             rectLeft = new Rect(rectMainBodyArea.x, rectMainBodyArea.y + timeRulerHeight, LEFTWIDTH, rectMainBodyArea.height);
@@ -532,7 +574,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             GUILayout.EndArea();
 
             //bail if outside rect, not a mouse click, or if in the preview rect.
-            if (!rectContent.Contains(cur.mousePosition) || cur.type != EventType.MouseDown || visualPreviewArenaRect.Contains(cur.mousePosition)) return;
+            if (!rectContent.Contains(cur.mousePosition) || cur.type != EventType.MouseDown || visualPreviewHolderRect.Contains(cur.mousePosition)) return;
             if (cur.button == 1 && curKnob == null)
             {
                 float timeX = PixelToTime(cur.mousePosition.x);
@@ -724,20 +766,18 @@ namespace RenCSharp.Combat.Enemies.Editor
         }
     }
     /// <summary>
-    /// Exists to serve as an individual projectile spawn in an attack. Basically a layer of user readability before
-    /// being converted into a file that is more memory-effective for the Fight_Manager to run through.
+    /// Exists to serve as an individual projectile spawn in an enemy attack timeline. Basically a layer of user readability before
+    /// being converted into a file that is more memory-effective for the Fight_Manager to run through. (I HOPE?!?!)
     /// </summary>
     [Serializable]
     public class ProjectileKnob
     {
-        //when clicked, set the active knob to this bastard
-
         [SerializeField] public Vector3 SpawnPosition = Vector3.zero;
         [SerializeField] public Vector3 InitialDirection = Vector3.zero;
         [SerializeField] public Base_Projectile ProjectileToSpawn = null;
         public static Action<ProjectileKnob, Vector2> SelectKnob;
         private readonly float knobSize = 30;
-        private readonly Color selectedKnobColor = new(0.75f,0.9f,0.4f, 1);
+        
         private static Texture knobImage;
         private static GenericMenu DestroyMeMenu = null;
 
@@ -753,9 +793,9 @@ namespace RenCSharp.Combat.Enemies.Editor
             if (knobImage == null) knobImage = EditorGUIUtility.Load("Assets/ddlc/Visuals/Editor/editordiamond.png") as Texture;
             Vector2 pos = new Vector2(timeArea.TimeToPixel(timeAndOffset.x), timeAndOffset.y + 100f);
             Rect drawRect = new Rect(pos.x - (knobSize * 0.5f) - timeArea._rectTimeAreaRuler.x, pos.y - knobSize * 0.5f, knobSize, knobSize);
-            GUI.DrawTexture(drawRect, knobImage, ScaleMode.ScaleToFit, true, 0, selected ? selectedKnobColor : Color.white, 0, 0);
+            GUI.DrawTexture(drawRect, knobImage, ScaleMode.ScaleToFit, true, 0, selected ? CoolColors.selectedOliveColor : Color.white, 0, 0);
             Event cur = Event.current;
-            if (!drawRect.Contains(cur.mousePosition) || cur.type != EventType.MouseUp) return;
+            if (!drawRect.Contains(cur.mousePosition) || cur.type != EventType.MouseUp) return; //bail if it's a bad event type
 
             if(cur.button == 0) SelectKnob?.Invoke(this, timeAndOffset);
             else if(cur.button == 1)
@@ -767,7 +807,6 @@ namespace RenCSharp.Combat.Enemies.Editor
                 });
                 DestroyMeMenu.ShowAsContext();
             }
-            
         }
 
         public override string ToString()

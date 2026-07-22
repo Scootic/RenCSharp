@@ -26,8 +26,10 @@ namespace RenCSharp.Combat.Enemies
         /// <param name="time">Seconds after spawn.</param>
         /// <param name="initialDirection">Initial movement direction</param>
         /// <param name="spawnPos">The position being assumed as spawn.</param>
+        /// <param name="flipY">Decides whether or not to flip any y values involved (both initDir and spawnPos). Useful for
+        /// GUI-type environments that for some god awful reason put origin in top-left of element instead of center</param>
         /// <returns></returns>
-        public abstract Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPos);
+        public abstract Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPos, bool flipY = false);
         public Transform SetProjectileTransform { set { projectileTransform = value; } }
         public Rigidbody SetProjectileRigidbody { set { projectileRigidbody = value; } }
         [SerializeField] protected float speed = 500f;
