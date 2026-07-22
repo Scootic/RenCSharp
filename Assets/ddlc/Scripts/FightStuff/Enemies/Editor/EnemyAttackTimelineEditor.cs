@@ -443,6 +443,7 @@ namespace RenCSharp.Combat.Enemies.Editor
                 if(drawProjectile.Contains(cur.mousePosition) && cur.button == 0 && cur.isMouse)
                 {
                     GrabAKnob(pk, kvp.Key);
+                    cur.Use();
                 }
             }
 
@@ -460,6 +461,7 @@ namespace RenCSharp.Combat.Enemies.Editor
                     PlaceANewKnob(wouldBeSpawnPosition);
                 });
                 previewSpawnProj.ShowAsContext();
+                cur.Use();
             }
             //enable below to let user drag, seems to prevent right-click events from working.
             //GUI.DragWindow();
@@ -585,10 +587,12 @@ namespace RenCSharp.Combat.Enemies.Editor
                     PlaceANewKnob();
                 });
                 timeAreaCTXMenu.ShowAsContext();
-            }else if(cur.button == 0 && curKnob != null)
+            }
+            else if(cur.button == 0 && curKnob != null)
             {
                 GrabAKnob(null, Vector2.zero);
             }
+            cur.Use();
         }
 
         protected override void DrawVerticalTickLine()
@@ -807,6 +811,7 @@ namespace RenCSharp.Combat.Enemies.Editor
                 });
                 DestroyMeMenu.ShowAsContext();
             }
+            cur.Use();
         }
 
         public override string ToString()
