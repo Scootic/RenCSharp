@@ -302,13 +302,16 @@ namespace RenCSharp.Combat
         private IEnumerator EnemyAttackTimelineRoutine(EnemyAttackTimelineData eatd)
         {
             float t = 0;
-            int frame = 0;
-
+            int frame;
             List<Base_Projectile> projectiles = eatd.ProjectilesThatSpawn.ToList();
             SortedDictionary<int, ProjectileFrameData> keyFrames = eatd.GetTimelineInformation;
+            int loopOffset = keyFrames.Last().Key;
+            int loops = 0;
 
-            while (t < eatd.AttackDuration && fighting)
+            while (t <= eatd.AttackDuration && fighting)
             {
+                t += Time.deltaTime;
+                frame = Mathf.FloorToInt(t * 60f) - (loopOffset * loops); //since timelines are defaulted to 60fps
                 if (keyFrames.ContainsKey(frame))
                 {
                     foreach(ProjectileSnub ps in keyFrames[frame].ProjectilesSpawnedAtFrame)
@@ -323,15 +326,14 @@ namespace RenCSharp.Combat
                         StartCoroutine(Object_Pooling.DespawnOverTime(temp.gameObject, temp.Lifetime));
                     }
                 }
-                frame++;
 
-                if (frame >= keyFrames.Last().Key) 
+                if (frame - (loopOffset * loops) >= loopOffset) 
                 {
-                    frame = 0; //loop around if the current frame is past the final projectile element?
+                    loops++; //loop around if the current frame is past the final projectile element?
                     yield return new WaitForSeconds(secondsBeforeFirstProj); //do the same waiting as before, since we're not operating under secondsPerProj rules?
                 }
 
-                yield return new WaitForSeconds(Time.deltaTime); //wait for the normalized next frame? should prevent fps changing attack times??? set back to null if it don't work
+                yield return null;
             }
         }
 

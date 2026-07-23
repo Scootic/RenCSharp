@@ -35,7 +35,7 @@ namespace RenCSharp.Combat.Enemies.Editor
         private Rect rectTopBar;
         private Rect rectLeft;
         public Rect rectLeftTopToolBar;
-        private GenericMenu timeAreaCTXMenu;
+        private GenericMenu timeAreaCTXMenu, previewSpawnProj;
 
         public AnimationCurve m_AnimationCurve;
 
@@ -45,13 +45,17 @@ namespace RenCSharp.Combat.Enemies.Editor
         /// Best if it's below 1 probby.
         /// </summary>
         private float previewRectScale = 0.25f;
+
+        private float previewGuidelineDistance = 100f;
+
+        private float previewProjectilePlacingGridSnap = 20f;
         private Rect VisualPreviewHolderRect
         {   
             get
             {
+                //by default, we use a 1920x1080 full-screen. You can change this based on how you're scaling your canvases.
                 float w = 1920f * previewRectScale;
                 float h = 1080f * previewRectScale;
-                //Debug.Log($"Setting visual preview rect to: {rectTotalArea.width - w}, {rectTotalArea.height - h}, {w}, {h}");
                 return new Rect(rectTotalArea.width - w * 0.5f, rectTotalArea.height - h, w, h);
             }
             set
@@ -67,7 +71,7 @@ namespace RenCSharp.Combat.Enemies.Editor
         /// </summary>
         private static readonly Vector2 projectilePreviewSize = new Vector2(100, 100);
 
-        private static Texture saveIcon, placeKnobIcon, arenaPreviewTexture, projectilePreviewTexture;
+        private static Texture saveIcon, placeKnobIcon, arenaPreviewTexture, projectilePreviewTexture, singlePixel;
         private readonly static string assetPathToEditorIcons = "Assets/ddlc/Visuals/Editor/";
 
         private static readonly Color spawnC = new Color(1, 0.3f, 0, 1);
@@ -161,9 +165,10 @@ namespace RenCSharp.Combat.Enemies.Editor
         /// Places a new knob, that takes in a spawn position. Probably being used by the arena preview window.
         /// </summary>
         /// <param name="pos">The spawn position of the new projectile.</param>
-        private void PlaceANewKnob(Vector2 pos)
+        /// <param name="toSpawn">The projectile being spawned.</param>
+        private void PlaceANewKnob(Vector2 pos, Base_Projectile toSpawn = null)
         {
-            ProjectileKnob toAdd = new(pos, Vector3.zero, null);
+            ProjectileKnob toAdd = new(pos, Vector3.zero, toSpawn);
             float timeItSpawnsAt = (float)Math.Round(RunningTime, 1, MidpointRounding.AwayFromZero);
             float largestY = 0;
             foreach(KeyValuePair<Vector2, ProjectileKnob> kvp in projectiles)
@@ -222,18 +227,24 @@ namespace RenCSharp.Combat.Enemies.Editor
             projectileSpawnPositionMethodProperty = targetToEditObject.FindProperty("projectileSpawnPositionMethod");
             projectileIndexMethodProperty = targetToEditObject.FindProperty("projectileIndexMethod");
 
+            List<Base_Projectile> storedProjectiles = new();
+
             if (_simpleTimeArea == null) InitTimeArea(false, false, true, true);
 
             _simpleTimeArea.hRangeMax = targetToEdit.AttackDuration;
 
             for (int i = 0; i < targetToEdit.SpawnPoints.Length; i++)
             {
-                ProjectileKnob toAdd = new(targetToEdit.SpawnPoints[i], targetToEdit.InitialDirections[i], targetToEdit.ProjectilesThatSpawn[targetToEdit.Indexes[i]]);
+                Base_Projectile stinker = targetToEdit.ProjectilesThatSpawn[targetToEdit.Indexes[i]];
+                if (!storedProjectiles.Contains(stinker)) { storedProjectiles.Add(stinker); }
+                ProjectileKnob toAdd = new(targetToEdit.SpawnPoints[i], targetToEdit.InitialDirections[i], stinker);
                 float timeItSpawnsAt = targetToEdit.SecondsPerProjectileSpawn * Mathf.Floor((float)i / targetToEdit.ProjectilesPerSpawn);
                 
                 Vector2 timeAndOffset = new Vector2(timeItSpawnsAt, (i % targetToEdit.ProjectilesPerSpawn) * knobVerticalOffsetMult);
                 projectiles.Add(timeAndOffset, toAdd);
             }
+
+            timelineData.SetProjectilesThatSpawn = storedProjectiles.ToArray();
         }
 
         /// <summary>
@@ -390,7 +401,7 @@ namespace RenCSharp.Combat.Enemies.Editor
         private void DisplayAttackAreaWindow(int windowID)
         {
             //rember to flip y. somehow?!?!?!?!?!?!?!
-            Color cToDraw = new();
+            Color cToDraw = CoolColors.slightTransWhiteGUI;
             Matrix4x4 ogMatrix = GUI.matrix;
             Vector2 arenaDimensions = arenaDimensionsProperty.vector2Value * previewRectScale;
             Vector2 arenaPos = new Vector2((visualPreviewHolderRect.width * 0.5f) - (arenaDimensions.x * 0.5f), (visualPreviewHolderRect.height * 0.5f) - (arenaDimensions.y * 0.5f));
@@ -398,6 +409,27 @@ namespace RenCSharp.Combat.Enemies.Editor
             visualPreviewArenaRect = new Rect(arenaPos.x, arenaPos.y, arenaDimensions.x, arenaDimensions.y);
 
             GUI.DrawTexture(visualPreviewArenaRect, arenaPreviewTexture);
+
+            int expectedGuidlineSubdivisionsX = Mathf.FloorToInt(visualPreviewHolderRect.width / (previewGuidelineDistance * previewRectScale));
+            int expectedGuidlineSubdivisionsY = Mathf.FloorToInt(visualPreviewHolderRect.height / (previewGuidelineDistance * previewRectScale));
+
+            //absolute damnable hogwash
+            float xRemainder = visualPreviewHolderRect.width % (previewGuidelineDistance * previewRectScale);
+            float yRemainder = visualPreviewHolderRect.height % (previewGuidelineDistance * previewRectScale);
+
+            Rect guideLineRect;
+            //draw x guidelines
+            for (int i = 0; i < expectedGuidlineSubdivisionsX; i++)
+            {
+                guideLineRect = new Rect(i * previewGuidelineDistance * previewRectScale + xRemainder, 0, 1, visualPreviewHolderRect.height);
+                GUI.DrawTexture(guideLineRect, singlePixel, ScaleMode.StretchToFill, true, 0, cToDraw, 0, 0);
+            }
+            //draw y guidelines
+            for(int i = 0; i < expectedGuidlineSubdivisionsY; i++)
+            {
+                guideLineRect = new Rect(0, i * previewGuidelineDistance * previewRectScale + yRemainder, visualPreviewHolderRect.width, 1);
+                GUI.DrawTexture(guideLineRect, singlePixel, ScaleMode.StretchToFill, true, 0, cToDraw, 0, 0);
+            }
 
             Vector2 drawPos, flipYPos, offsetPos, rotatePoint;
             Vector3 flipYDir;
@@ -409,7 +441,8 @@ namespace RenCSharp.Combat.Enemies.Editor
                 //t is the current time in the projectile's life after being spawned.
                 float t = (float)runningTime - kvp.Key.x;
                 //don't render if before proj spawn!
-                if(t > pk.ProjectileToSpawn.Lifetime || t < 0) { GUI.matrix = ogMatrix; continue; }
+                if (pk.ProjectileToSpawn == null) { GUI.matrix = ogMatrix; continue; }
+                if (t > pk.ProjectileToSpawn.Lifetime || t < 0) { GUI.matrix = ogMatrix; continue; }
 
                 drawPos = new Vector2(projOrigin.x + pk.SpawnPosition.x * previewRectScale, projOrigin.y + pk.SpawnPosition.y * previewRectScale);
 
@@ -449,22 +482,27 @@ namespace RenCSharp.Combat.Enemies.Editor
 
             GUI.matrix = ogMatrix;
 
-            if (visualPreviewHolderRect.Contains(cur.mousePosition)) Debug.Log("mouse in window!");
-
-            if(visualPreviewHolderRect.Contains(cur.mousePosition) && cur.button == 1 && cur.isMouse)
+            if(cur.button == 1 && cur.isMouse)
             {
-                Debug.Log("rightclicked inside preview");
-                Vector2 wouldBeSpawnPosition = (cur.mousePosition - arenaPos) / previewRectScale; //absolute minus origin = relative?
-                GenericMenu previewSpawnProj = new();
-                previewSpawnProj.AddItem(new GUIContent($"Add Projectile at: ({wouldBeSpawnPosition.x}, {wouldBeSpawnPosition.y}) - {runningTime}s"), false, delegate
+                Vector2 wouldBeSpawnPosition = (cur.mousePosition - projOrigin) / previewRectScale; //absolute minus origin = relative?
+                wouldBeSpawnPosition = new Vector2(wouldBeSpawnPosition.x, wouldBeSpawnPosition.y * -1);
+                previewSpawnProj = new();
+                foreach (Base_Projectile bp in timelineData.ProjectilesThatSpawn)
+                {
+                    if (bp == null) continue;
+                    previewSpawnProj.AddItem(new GUIContent($"Add Projectile ({bp.gameObject.name}) at: ({wouldBeSpawnPosition.x}, {wouldBeSpawnPosition.y}) - {runningTime}s"), false, delegate
+                    {
+                        PlaceANewKnob(wouldBeSpawnPosition, bp);
+                    });
+                }
+                previewSpawnProj.AddSeparator("");
+                previewSpawnProj.AddItem(new GUIContent($"Add Empty Projectile at: ({wouldBeSpawnPosition.x}, {wouldBeSpawnPosition.y}) - {runningTime}s"), false, delegate
                 {
                     PlaceANewKnob(wouldBeSpawnPosition);
                 });
                 previewSpawnProj.ShowAsContext();
                 cur.Use();
             }
-            //enable below to let user drag, seems to prevent right-click events from working.
-            //GUI.DragWindow();
         }
 
         #endregion
@@ -509,6 +547,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             placeKnobIcon = EditorGUIUtility.Load(assetPathToEditorIcons + "placeknobicon.png") as Texture;
             PlaceKnobContent = new GUIContent(placeKnobIcon, "Place a new Projectile in the Timeline.");
             arenaPreviewTexture = EditorGUIUtility.Load(assetPathToEditorIcons + "arenapreview.png") as Texture;
+            singlePixel = EditorGUIUtility.Load(assetPathToEditorIcons + "singlepixel.png") as Texture;
             projectilePreviewTexture = EditorGUIUtility.Load(assetPathToEditorIcons + "projectilepreview.png") as Texture;
             activeTimeline = new SerializedObject(this);
             targetToEditProperty = activeTimeline.FindProperty("targetToEdit");
@@ -581,6 +620,16 @@ namespace RenCSharp.Combat.Enemies.Editor
             {
                 float timeX = PixelToTime(cur.mousePosition.x);
                 timeAreaCTXMenu = new GenericMenu();
+                foreach (Base_Projectile bp in timelineData.ProjectilesThatSpawn)
+                {
+                    if(bp == null) continue;
+                    timeAreaCTXMenu.AddItem(new GUIContent($"Place Knob ({bp.gameObject.name}) At Frame: {Mathf.Floor(timeX * _frameRate)}"), false, delegate
+                    {
+                        runningTime = (double)timeX;
+                        PlaceANewKnob(Vector2.zero,bp);
+                    });
+                }
+                timeAreaCTXMenu.AddSeparator("");
                 timeAreaCTXMenu.AddItem(new GUIContent($"Place Knob At Frame: {Mathf.Floor(timeX * _frameRate)}"), false, delegate
                 {
                     runningTime = (double)timeX;
@@ -746,7 +795,7 @@ namespace RenCSharp.Combat.Enemies.Editor
         {
             IsPlaying = false;
         }
-
+        //do the thing where the user can select a desired folder where they store/save attacks
         protected override void OnCreateSettingContent(GenericMenu menu)
         {
             menu.AddSeparator("");
