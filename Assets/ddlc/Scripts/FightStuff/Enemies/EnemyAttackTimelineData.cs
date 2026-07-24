@@ -10,6 +10,7 @@ namespace RenCSharp.Combat.Enemies
         //split dict into lists because EVIL?!?
         [SerializeField, Tooltip("Pretty please don't change this in here, just for debug.")] private List<int> keyframes = new();
         [SerializeField, Tooltip("Pretty please don't change this in here, just for debug.")] private List<ProjectileFrameData> frameData = new();
+        [SerializeField, Min(1), Tooltip("The amount of times the timeline will loop upon reaching the end of duration.")] private int loops = 1;
         [SerializeField] private bool debug = false;
         public void DebugTimelineInformation()
         {
@@ -63,7 +64,7 @@ namespace RenCSharp.Combat.Enemies
                 return new SortedDictionary<int, ProjectileFrameData>(toBeSorted);
             }
         }
-
+        public int Loops => loops;
         public List<int> Keyframes => keyframes;
         public List<ProjectileFrameData> FrameData => frameData;
 

@@ -15,7 +15,7 @@ MonoBehaviour:
   arenaDimensions: {x: 550, y: 550}
   controlType:
     rid: 7856103390270193753
-  attackDuration: 10
+  attackDuration: 5
   secondsPerProjectileSpawn: 0.5
   projectilesPerSpawn: 1
   projectilesThatSpawn:
@@ -47,6 +47,7 @@ MonoBehaviour:
     - SpawnPosition: {x: -500, y: 0, z: 0}
       InitialDirection: {x: 1, y: 0, z: 0}
       ProjectileIndex: 0
+  loops: 2
   debug: 0
   references:
     version: 2

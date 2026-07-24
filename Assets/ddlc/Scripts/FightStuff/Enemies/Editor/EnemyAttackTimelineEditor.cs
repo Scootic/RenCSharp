@@ -22,7 +22,8 @@ namespace RenCSharp.Combat.Enemies.Editor
         /// </summary>
         private SerializedProperty arenaDimensionsProperty, controlTypeProperty, attackDurationProperty,
             secondsPerSpawnProperty, projectilesPerSpawnProperty, projectilesThatSpawnProperty, spawnPointsProperty,
-            initialDirectionsProperty, indexesProperty, projectileSpawnPositionMethodProperty, projectileIndexMethodProperty;
+            initialDirectionsProperty, indexesProperty, projectileSpawnPositionMethodProperty, projectileIndexMethodProperty,
+            loopsProperty;
 
         private ProjectileKnob curKnob;
         private Vector2 curKnobTimeAndOffset;
@@ -46,9 +47,14 @@ namespace RenCSharp.Combat.Enemies.Editor
         /// </summary>
         private float previewRectScale = 0.25f;
 
-        private float previewGuidelineDistance = 100f;
-
-        private float previewProjectilePlacingGridSnap = 20f;
+        /// <summary>
+        /// how much pre-scaled space is placed between guidelines in the projectile preview window
+        /// </summary>
+        private int previewGuidelineDistance = 100;
+        /// <summary>
+        /// preview pixel snapping for placing new projectiles inside the preview
+        /// </summary>
+        private int previewProjectilePlacingGridSnap = 20;
         private Rect VisualPreviewHolderRect
         {   
             get
@@ -214,6 +220,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             timelineData.name = "tempfile"; //to make sure when saving, we can check if the name means it's a tempfile or a file
             //that already exists.
             targetToEditObject = new SerializedObject(ea);
+            SerializedObject timelineDataSO = new SerializedObject(timelineData);
 
             arenaDimensionsProperty = targetToEditObject.FindProperty("arenaDimensions");
             controlTypeProperty = targetToEditObject.FindProperty("controlType");
@@ -226,6 +233,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             indexesProperty = targetToEditObject.FindProperty("indexes");
             projectileSpawnPositionMethodProperty = targetToEditObject.FindProperty("projectileSpawnPositionMethod");
             projectileIndexMethodProperty = targetToEditObject.FindProperty("projectileIndexMethod");
+            loopsProperty = timelineDataSO.FindProperty("loops");
 
             List<Base_Projectile> storedProjectiles = new();
 
@@ -263,6 +271,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             attackDurationProperty = targetToEditObject.FindProperty("attackDuration");
             projectileSpawnPositionMethodProperty = targetToEditObject.FindProperty("projectileSpawnPositionMethod");
             projectileIndexMethodProperty = targetToEditObject.FindProperty("projectileIndexMethod");
+            loopsProperty = targetToEditObject.FindProperty("loops");
 
             if (_simpleTimeArea == null) InitTimeArea(false, false, true, true);
             _simpleTimeArea.hRangeMax = eatd.AttackDuration;
@@ -409,25 +418,29 @@ namespace RenCSharp.Combat.Enemies.Editor
             visualPreviewArenaRect = new Rect(arenaPos.x, arenaPos.y, arenaDimensions.x, arenaDimensions.y);
 
             GUI.DrawTexture(visualPreviewArenaRect, arenaPreviewTexture);
-
-            int expectedGuidlineSubdivisionsX = Mathf.FloorToInt(visualPreviewHolderRect.width / (previewGuidelineDistance * previewRectScale));
-            int expectedGuidlineSubdivisionsY = Mathf.FloorToInt(visualPreviewHolderRect.height / (previewGuidelineDistance * previewRectScale));
-
-            //absolute damnable hogwash
-            float xRemainder = visualPreviewHolderRect.width % (previewGuidelineDistance * previewRectScale);
-            float yRemainder = visualPreviewHolderRect.height % (previewGuidelineDistance * previewRectScale);
+            Vector2 trueOrigin = visualPreviewArenaRect.center;
 
             Rect guideLineRect;
             //draw x guidelines
-            for (int i = 0; i < expectedGuidlineSubdivisionsX; i++)
+            for (float x = trueOrigin.x; x < visualPreviewHolderRect.width; x+=(previewGuidelineDistance * previewRectScale))
             {
-                guideLineRect = new Rect(i * previewGuidelineDistance * previewRectScale + xRemainder, 0, 1, visualPreviewHolderRect.height);
+                guideLineRect = new Rect(x, 0, 1, visualPreviewHolderRect.height);
+                GUI.DrawTexture(guideLineRect, singlePixel, ScaleMode.StretchToFill, true, 0, cToDraw, 0, 0);
+            }
+            for (float x = trueOrigin.x - previewGuidelineDistance * previewRectScale; x > 0; x-=(previewGuidelineDistance * previewRectScale))
+            {
+                guideLineRect = new Rect(x, 0, 1, visualPreviewHolderRect.height);
                 GUI.DrawTexture(guideLineRect, singlePixel, ScaleMode.StretchToFill, true, 0, cToDraw, 0, 0);
             }
             //draw y guidelines
-            for(int i = 0; i < expectedGuidlineSubdivisionsY; i++)
+            for(float y = trueOrigin.y; y < visualPreviewHolderRect.height; y+=(previewGuidelineDistance * previewRectScale))
             {
-                guideLineRect = new Rect(0, i * previewGuidelineDistance * previewRectScale + yRemainder, visualPreviewHolderRect.width, 1);
+                guideLineRect = new Rect(0, y, visualPreviewHolderRect.width, 1);
+                GUI.DrawTexture(guideLineRect, singlePixel, ScaleMode.StretchToFill, true, 0, cToDraw, 0, 0);
+            }
+            for(float y = trueOrigin.y - previewGuidelineDistance * previewRectScale; y > 0; y-=(previewGuidelineDistance * previewRectScale))
+            {
+                guideLineRect = new Rect(0, y, visualPreviewHolderRect.width, 1);
                 GUI.DrawTexture(guideLineRect, singlePixel, ScaleMode.StretchToFill, true, 0, cToDraw, 0, 0);
             }
 
@@ -484,8 +497,13 @@ namespace RenCSharp.Combat.Enemies.Editor
 
             if(cur.button == 1 && cur.isMouse)
             {
-                Vector2 wouldBeSpawnPosition = (cur.mousePosition - projOrigin) / previewRectScale; //absolute minus origin = relative?
+                Vector2 wouldBeSpawnPosition = (cur.mousePosition - trueOrigin) / previewRectScale; //absolute minus origin = relative?
                 wouldBeSpawnPosition = new Vector2(wouldBeSpawnPosition.x, wouldBeSpawnPosition.y * -1);
+                float xMod = wouldBeSpawnPosition.x % previewProjectilePlacingGridSnap;
+                float yMod = wouldBeSpawnPosition.y % previewProjectilePlacingGridSnap;
+
+                wouldBeSpawnPosition = new Vector2(wouldBeSpawnPosition.x - xMod,wouldBeSpawnPosition.y - yMod);
+
                 previewSpawnProj = new();
                 foreach (Base_Projectile bp in timelineData.ProjectilesThatSpawn)
                 {
@@ -553,6 +571,8 @@ namespace RenCSharp.Combat.Enemies.Editor
             targetToEditProperty = activeTimeline.FindProperty("targetToEdit");
             ProjectileKnob.SelectKnob += GrabAKnob;
             PreferredSaveFolder = EditorPrefs.GetString("attacksavefolder", Application.dataPath);
+            previewGuidelineDistance = EditorPrefs.GetInt("previewguideline", 100);
+            previewProjectilePlacingGridSnap = EditorPrefs.GetInt("previewprojectileplacinggrid", 20);
             if(timelineData != null) { GrabMarkers(timelineData); return; }
             if (targetToEdit != null) { targetToEditProperty.boxedValue = targetToEdit; GrabMarkers(targetToEdit); return; }
         }
@@ -668,7 +688,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             Handles.color = preColor;
         }
         /// <summary>
-        /// Should be drawing the relevant properties: controlType, arenaDimensions, attackDuration, and the spawningMethod enums.
+        /// Should be drawing the relevant properties: controlType, arenaDimensions, loops, attackDuration, and the spawningMethod enums.
         /// Also draws the current knob's information, if there is one.
         /// </summary>
         protected virtual void DrawLeftContent()
@@ -682,6 +702,8 @@ namespace RenCSharp.Combat.Enemies.Editor
                 if (arenaDimensionsProperty != null) EditorGUILayout.PropertyField(arenaDimensionsProperty);
 
                 if(attackDurationProperty != null) EditorGUILayout.PropertyField(attackDurationProperty);
+
+                if (loopsProperty != null) EditorGUILayout.PropertyField(loopsProperty);
 
                 if(projectileSpawnPositionMethodProperty != null) EditorGUILayout.PropertyField(projectileSpawnPositionMethodProperty);
 
@@ -710,6 +732,8 @@ namespace RenCSharp.Combat.Enemies.Editor
             GUILayout.BeginArea(rectTopBar);
             Rect settingsDropDownRect = new Rect(rectTopBar.width - 32, rectTopBar.y, 30, 30);
             Rect enemyAttackSORect = new Rect(0, rectTopBar.y, 300, 18);
+            Rect previewGuidelineRect = new(300, rectTopBar.y, 225, 18);
+            Rect previewProjectilePlacingRect = new(525, rectTopBar.y, 225, 18);
 
             EditorGUI.BeginChangeCheck();
             EditorGUI.PropertyField(enemyAttackSORect,targetToEditProperty);
@@ -719,6 +743,11 @@ namespace RenCSharp.Combat.Enemies.Editor
                 activeTimeline.ApplyModifiedProperties();
                 GrabMarkers(targetToEditProperty.boxedValue as EnemyAttack);
             }
+
+            previewGuidelineDistance = EditorGUI.IntSlider(previewGuidelineRect, "Preview Guideline Distance", previewGuidelineDistance, 1, 99999);
+            previewProjectilePlacingGridSnap = EditorGUI.IntSlider(previewProjectilePlacingRect, "Preview Snap Grid Spacing", previewProjectilePlacingGridSnap, 1, 99999);
+            EditorPrefs.SetInt("previewguideline", previewGuidelineDistance);
+            EditorPrefs.SetInt("previewprojectileplacinggrid", previewProjectilePlacingGridSnap);
 
             if (!Application.isPlaying && GUI.Button(settingsDropDownRect, ResManager.SettingIcon, EditorStyles.toolbarDropDown))
             {

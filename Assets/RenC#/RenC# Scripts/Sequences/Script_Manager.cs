@@ -219,7 +219,7 @@ namespace RenCSharp
                 ProgressScreenEvent = null; //wipe all delegates from the action before continuing
                 curScreenIndex++;
                 Event_Bus.TryFireStringEvent("DebugSequence", "Sequence '" + currentSequence.name + "' | Index: " + curScreenIndex);
-                Debug.Log("current Scrindex: " + curScreenIndex + ", Final Screen? " + (curScreenIndex >= currentSequence.Screens.Length - 1));
+                RenConsole.Log("current Scrindex: " + curScreenIndex + ", Final Screen? " + (curScreenIndex >= currentSequence.Screens.Length - 1));
                 if (curScreenIndex < currentSequence.Screens.Length) //if we are still within the sequence
                 {
                     curScreen = currentSequence.Screens[curScreenIndex];
@@ -784,9 +784,10 @@ namespace RenCSharp
             ///StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
             Textbox_String.JumpToEndOfTextbox = true;
             paused = false;
-            Event_Bus.TryFireVoidEvent("LoadedSave");
+            //go back one to progress into the screen.
             curScreenIndex--;
             ProgressToNextScreen();
+            Event_Bus.TryFireVoidEvent("LoadedSave");
         }
 
         private void AddUIParticleToList(object tokenToAdd)

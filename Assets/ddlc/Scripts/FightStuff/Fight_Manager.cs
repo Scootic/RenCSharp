@@ -102,7 +102,7 @@ namespace RenCSharp.Combat
 
         private void BulkSetUp()
         {
-            Event_Bus.TryFireBoolEvent("PauseSequence", false);
+            Event_Bus.TryFireBoolEvent("PauseSequence", false); //pause the sequence, and make the pause uninterruptable
             Event_Bus.AddBoolEvent("EndAFight", EndAFight);
             combatCanvas.SetActive(true);
             playerHolder.gameObject.SetActive(false);
@@ -302,16 +302,16 @@ namespace RenCSharp.Combat
         private IEnumerator EnemyAttackTimelineRoutine(EnemyAttackTimelineData eatd)
         {
             float t = 0;
-            int frame;
+            int frame = 0;
             List<Base_Projectile> projectiles = eatd.ProjectilesThatSpawn.ToList();
             SortedDictionary<int, ProjectileFrameData> keyFrames = eatd.GetTimelineInformation;
-            int loopOffset = keyFrames.Last().Key;
             int loops = 0;
 
-            while (t <= eatd.AttackDuration && fighting)
+            while (t <= (eatd.AttackDuration * eatd.Loops) && fighting)
             {
                 t += Time.deltaTime;
-                frame = Mathf.FloorToInt(t * 60f) - (loopOffset * loops); //since timelines are defaulted to 60fps
+                //curTime in 60fps minus looped duration time in 60fps
+                frame = Mathf.FloorToInt(t * 60f) - Mathf.FloorToInt(eatd.AttackDuration * 60f * loops); //since timelines are defaulted to 60fps
                 if (keyFrames.ContainsKey(frame))
                 {
                     foreach(ProjectileSnub ps in keyFrames[frame].ProjectilesSpawnedAtFrame)
@@ -325,12 +325,12 @@ namespace RenCSharp.Combat
                         AddProjectileToList(temp.gameObject);
                         StartCoroutine(Object_Pooling.DespawnOverTime(temp.gameObject, temp.Lifetime));
                     }
+                    t += 0.166667f; //add a single frame after we're done with this one to prevent dupes?
                 }
 
-                if (frame - (loopOffset * loops) >= loopOffset) 
+                if (t > eatd.AttackDuration + (eatd.AttackDuration * loops)) 
                 {
                     loops++; //loop around if the current frame is past the final projectile element?
-                    yield return new WaitForSeconds(secondsBeforeFirstProj); //do the same waiting as before, since we're not operating under secondsPerProj rules?
                 }
 
                 yield return null;

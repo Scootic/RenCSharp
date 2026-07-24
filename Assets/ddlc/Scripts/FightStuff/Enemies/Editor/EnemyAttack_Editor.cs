@@ -11,7 +11,7 @@ namespace RenCSharp.Combat.Enemies.Editor
         private EnemyAttackTimelineData _me;
 
         private SerializedProperty arenaDimensionsProperty, controlTypeProperty, attackDurationProperty, projectileSpawnMethodProperty, projectileIndexMethodProperty, projectilesThatSpawnProperty;
-        private SerializedProperty keyframesProperty, frameDataProperty;
+        private SerializedProperty keyframesProperty, frameDataProperty, loopsProperty;
 
         private void OnEnable()
         {
@@ -25,6 +25,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             projectilesThatSpawnProperty = so.FindProperty("projectilesThatSpawn");
             keyframesProperty = so.FindProperty("keyframes");
             frameDataProperty = so.FindProperty("frameData");
+            loopsProperty = so.FindProperty("loops");
         }
 
         public override void OnInspectorGUI()
@@ -43,6 +44,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             EditorGUILayout.PropertyField(projectileIndexMethodProperty);
 
             EditorGUILayout.LabelField("Timeline Data");
+            EditorGUILayout.PropertyField(loopsProperty);
             EditorGUILayout.PropertyField(keyframesProperty);
             EditorGUILayout.PropertyField(frameDataProperty);
         }
