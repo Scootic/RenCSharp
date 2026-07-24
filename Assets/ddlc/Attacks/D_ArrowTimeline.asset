@@ -25,7 +25,7 @@ MonoBehaviour:
   indexes: 
   projectileSpawnPositionMethod: 1
   projectileIndexMethod: 1
-  keyframes: 000000003c00000078000000b4000000f0000000
+  keyframes: 000000003c00000078000000b4000000f000000058020000
   frameData:
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: 500, y: 0, z: 0}
@@ -46,6 +46,10 @@ MonoBehaviour:
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: -500, y: 0, z: 0}
       InitialDirection: {x: 1, y: 0, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 0, y: 0, z: 0}
+      InitialDirection: {x: 0, y: 0, z: 0}
       ProjectileIndex: 0
   loops: 2
   debug: 0
