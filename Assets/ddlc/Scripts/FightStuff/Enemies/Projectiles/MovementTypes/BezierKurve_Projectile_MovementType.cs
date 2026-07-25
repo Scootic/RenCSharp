@@ -37,7 +37,7 @@ namespace RenCSharp.Combat.Enemies
             projectileTransform.position = newPos;
         }
 
-        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPos, bool flipY = false)
+        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPos, out Vector2 dirAtTime, bool flipY = false)
         {
             if (flipY)
             {
@@ -49,6 +49,18 @@ namespace RenCSharp.Combat.Enemies
             boundingPositions = BoundingBezierPositions.BoundingPositions4(curveType, spawnPos, dir, distanceFromSpawn, flipY ? arcHeight * -1 : arcHeight);
             eval = time / travelDuration;
             Vector3 pos = TrigHelper.BezPos(boundingPositions, eval);
+
+            if(eval == 0)
+            {
+                dirAtTime = initialDirection;
+            }
+            else
+            {
+                Vector3 olderPos = TrigHelper.BezPos(boundingPositions, eval - 0.01f);
+                Vector3 dirToFramePos = pos - olderPos;
+                dirAtTime = new Vector2(dirToFramePos.x, dirToFramePos.y);
+            }
+
             return new Vector2(pos.x, pos.y); 
         }
 

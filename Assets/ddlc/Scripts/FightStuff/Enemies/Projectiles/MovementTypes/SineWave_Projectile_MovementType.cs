@@ -24,7 +24,7 @@ namespace RenCSharp.Combat.Enemies
             projectileTransform.position += moveDir * speed * Time.deltaTime;
         }
 
-        public override Vector2 GetPositionAtTime(float time, Vector2 initialDir, Vector3 spawnPosition, bool flipY = false)
+        public override Vector2 GetPositionAtTime(float time, Vector2 initialDir, Vector3 spawnPosition, out Vector2 dirAtTime, bool flipY = false)
         {
             if (flipY)
             {
@@ -33,7 +33,22 @@ namespace RenCSharp.Combat.Enemies
             }
             Vector3 parallel = Vector3.Cross(initialDir, Vector3.forward);
             Vector3 init = new Vector3(initialDir.x, initialDir.y);
-            return (spawnPosition + (init * speed * time) + parallel * amplitude * Mathf.Sin(frequency * time));
+
+            Vector3 posToReturn = (spawnPosition + (init * speed * time)) + parallel * amplitude * Mathf.Sin(frequency * time);
+
+            if (time == 0) 
+            {
+                dirAtTime = initialDir;
+            }
+            else
+            {
+                float prevTime = time - 0.01f;
+                Vector3 slightlyOlderPosition = (spawnPosition + (init * speed * prevTime) + parallel * amplitude * Mathf.Sin(frequency * prevTime));
+                Vector3 dirTypeShi = posToReturn - slightlyOlderPosition;
+                dirAtTime = new Vector2(dirTypeShi.x, dirTypeShi.y);
+            }
+
+            return posToReturn;
         }
 
         public override string ToString()

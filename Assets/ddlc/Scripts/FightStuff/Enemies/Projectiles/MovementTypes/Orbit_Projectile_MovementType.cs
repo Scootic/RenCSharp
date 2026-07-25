@@ -39,7 +39,7 @@ namespace RenCSharp.Combat.Enemies
             projectileTransform.localPosition = newPos;
         }
 
-        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPos, bool flipY = false)
+        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPos, out Vector2 dirAtTime, bool flipY = false)
         {
             if (flipY)
             {
@@ -51,6 +51,18 @@ namespace RenCSharp.Combat.Enemies
             eval = time / orbitTravelTime;
             offset = (speed * time) * initialDirection;
             Vector3 newPos = TrigHelper.PercentAlongUnitCirclePoint(eval, circleRadius) + offset;
+
+            if(eval == 0)
+            {
+                dirAtTime = initialDirection;
+            }
+            else
+            {
+                Vector3 olderPos = TrigHelper.PercentAlongUnitCirclePoint(eval - 0.01f, circleRadius) + offset;
+                Vector3 dirToFramePos = newPos - olderPos;
+                dirAtTime = new Vector2(dirToFramePos.x, dirToFramePos.y);
+            }
+
             return s + new Vector2(newPos.x, newPos.y);
         }
 

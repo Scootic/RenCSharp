@@ -45,10 +45,21 @@ namespace RenCSharp.Combat.Enemies
         public AudioClip SpawnSound => spawnSound;
         public Vector3 GetMoveDir => moveDir;
         public Projectile_MovementType GetMovementType => movementType;
-        public Vector2 SizeDelta => GetComponent<RectTransform>().sizeDelta;
+        public Vector2 SizeDelta => gameObject.GetComponent<RectTransform>().sizeDelta;
         public Texture DisplayTexture => sprite.sprite.texture;
-        public Rect DisplayTextureRect => sprite.sprite.textureRect;
-        public Vector2 DisplayTextureRectOffset => sprite.sprite.textureRectOffset;
+        public Rect DisplayTextureRect
+        {
+            get
+            {
+                Rect unscaledRect = sprite.sprite.textureRect;
+                Vector2 textureSize = new Vector2(DisplayTexture.width, DisplayTexture.height);
+                Rect scaledRect = new Rect(unscaledRect.x / textureSize.x, unscaledRect.y / textureSize.y, 
+                    unscaledRect.width / textureSize.x, unscaledRect.height / textureSize.y);
+                return scaledRect;
+            }
+        }
+       
+        public Vector2 DisplayTextureRectOffset => sprite.sprite.textureRectOffset; //?
 
         /// <summary>
         /// Sets the move direction that's used in update to change the projectile's position.

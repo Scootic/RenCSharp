@@ -19,10 +19,11 @@ namespace RenCSharp.Combat.Enemies
             projectileTransform.rotation = TrigHelper.GetQuaternion(projectileRigidbody.linearVelocity.normalized);
         }
 
-        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPosition, bool flipY = false)
+        public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPosition, out Vector2 dirAtTime, bool flipY = false)
         {
             Vector2 s = new Vector2(spawnPosition.x, spawnPosition.y);
             if (flipY) { s = new Vector2(s.x, s.y * -1); initialDirection = new Vector2(initialDirection.x, initialDirection.y * -1); }
+            dirAtTime = initialDirection;
             //just uses straight line logic because genuinely, fuck doing math
             return s + (time * speed) * initialDirection;
         }
