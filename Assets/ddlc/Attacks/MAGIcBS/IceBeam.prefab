@@ -409,6 +409,10 @@ MonoBehaviour:
   despawnType:
     rid: 268099759930082147
   updateTypes: []
+  customUpdateWhileInactive: 1
+  customUpdateWhileActive: 1
+  movementWhileInactive: 1
+  movementWhileActive: 1
   damageOverTime: 0
   destroyOnHit: 0
   baseDamage: 7
@@ -421,20 +425,16 @@ MonoBehaviour:
   beamVisualElements: {fileID: 5318929957290242959}
   beamFullSound: {fileID: 8300000, guid: 17af76ff76a7d1c419725ef1ffbcf27c, type: 3}
   beamSoundVol: 1
-  beamVisualTravelSpeed: 0
+  beamVisualTravelSpeed: 300
   emptyBeamC: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
   fullBeamC: {r: 1, g: 0, b: 0, a: 1}
-  customUpdateWhileInactive: 1
-  customUpdateWhileActive: 1
-  movementWhileInactive: 1
-  movementWhileActive: 1
   references:
     version: 2
     RefIds:
     - rid: 268099759930082146
       type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
-        speed: 300
+        speed: 1
         movementSetsRotation: 1
     - rid: 268099759930082147
       type: {class: Empty_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}

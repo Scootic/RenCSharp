@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 8377995820507028729}
   - component: {fileID: 7574031852360068791}
   m_Layer: 6
-  m_Name: Image
+  m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -409,6 +409,10 @@ MonoBehaviour:
   despawnType:
     rid: 268099759930082143
   updateTypes: []
+  customUpdateWhileInactive: 1
+  customUpdateWhileActive: 1
+  movementWhileInactive: 1
+  movementWhileActive: 1
   damageOverTime: 0
   destroyOnHit: 0
   baseDamage: 7
@@ -424,10 +428,6 @@ MonoBehaviour:
   beamVisualTravelSpeed: 150
   emptyBeamC: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
   fullBeamC: {r: 1, g: 0, b: 0, a: 1}
-  customUpdateWhileInactive: 1
-  customUpdateWhileActive: 1
-  movementWhileInactive: 1
-  movementWhileActive: 1
   references:
     version: 2
     RefIds:

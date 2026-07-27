@@ -409,7 +409,6 @@ namespace RenCSharp.Combat.Enemies.Editor
 
         private void DisplayAttackAreaWindow(int windowID)
         {
-            //rember to flip y. somehow?!?!?!?!?!?!?!
             Color cToDraw = CoolColors.slightTransWhiteGUI;
             Color ogGUIc = GUI.color;
             Matrix4x4 ogMatrix = GUI.matrix;
@@ -422,28 +421,29 @@ namespace RenCSharp.Combat.Enemies.Editor
             Vector2 trueOrigin = visualPreviewArenaRect.center;
 
             Rect guideLineRect;
+            float adjustedGuidelineDistance = previewGuidelineDistance * previewRectScale;
 
             //draw x guidelines
-            for (float x = trueOrigin.x; x < visualPreviewHolderRect.width; x+=(previewGuidelineDistance * previewRectScale))
+            for (float x = trueOrigin.x; x < visualPreviewHolderRect.width; x+= adjustedGuidelineDistance)
             {
-                guideLineRect = new Rect(x, 0, 1, visualPreviewHolderRect.height);
+                guideLineRect = new Rect(x, 15, 1, visualPreviewHolderRect.height - 30);
                 GUI.DrawTexture(guideLineRect, singlePixel, ScaleMode.StretchToFill, true, 0, cToDraw, 0, 0);
             }
-            for (float x = trueOrigin.x - previewGuidelineDistance * previewRectScale; x > 0; x-=(previewGuidelineDistance * previewRectScale))
+            for (float x = trueOrigin.x - previewGuidelineDistance * previewRectScale; x > 0; x-=adjustedGuidelineDistance)
             {
-                guideLineRect = new Rect(x, 0, 1, visualPreviewHolderRect.height);
+                guideLineRect = new Rect(x, 15, 1, visualPreviewHolderRect.height - 30);
                 GUI.DrawTexture(guideLineRect, singlePixel, ScaleMode.StretchToFill, true, 0, cToDraw, 0, 0);
             }
 
             //draw y guidelines
-            for(float y = trueOrigin.y; y < visualPreviewHolderRect.height; y+=(previewGuidelineDistance * previewRectScale))
+            for(float y = trueOrigin.y; y < visualPreviewHolderRect.height; y+=adjustedGuidelineDistance)
             {
-                guideLineRect = new Rect(0, y, visualPreviewHolderRect.width, 1);
+                guideLineRect = new Rect(26.66667f, y, visualPreviewHolderRect.width - 53.3333f, 1);
                 GUI.DrawTexture(guideLineRect, singlePixel, ScaleMode.StretchToFill, true, 0, cToDraw, 0, 0);
             }
-            for(float y = trueOrigin.y - previewGuidelineDistance * previewRectScale; y > 0; y-=(previewGuidelineDistance * previewRectScale))
+            for(float y = trueOrigin.y - previewGuidelineDistance * previewRectScale; y > 0; y-=adjustedGuidelineDistance)
             {
-                guideLineRect = new Rect(0, y, visualPreviewHolderRect.width, 1);
+                guideLineRect = new Rect(26.66667f, y, visualPreviewHolderRect.width - 53.3333f, 1);
                 GUI.DrawTexture(guideLineRect, singlePixel, ScaleMode.StretchToFill, true, 0, cToDraw, 0, 0);
             }
 
@@ -452,23 +452,30 @@ namespace RenCSharp.Combat.Enemies.Editor
             Vector3 flipYDir;
             Rect drawProjectile;
 
+            Beam_Projectile beamP;
+            Base_Projectile bp;
+
             foreach (KeyValuePair<Vector2, ProjectileKnob> kvp in projectiles) 
             {
                 ProjectileKnob pk = kvp.Value;
                 //t is the current time in the projectile's life after being spawned.
                 float t = (float)runningTime - kvp.Key.x;
-                //don't render if before proj spawn!
-                if (pk.ProjectileToSpawn == null) { GUI.matrix = ogMatrix; continue; }
-                if (t > pk.ProjectileToSpawn.Lifetime || t < 0) { GUI.matrix = ogMatrix; continue; }
 
-                projOrigin = new Vector2((visualPreviewHolderRect.width * 0.5f) - (pk.ProjectileToSpawn.SizeDelta.x * previewRectScale * 0.5f), (visualPreviewHolderRect.height * 0.5f) - (pk.ProjectileToSpawn.SizeDelta.y * previewRectScale * 0.5f));
+                bp = pk.ProjectileToSpawn;
+                beamP = pk.ProjectileToSpawn as Beam_Projectile;
+                //don't render if before proj spawn!
+                if (bp == null) { GUI.matrix = ogMatrix; continue; }
+                if (t > bp.Lifetime || t < 0) { GUI.matrix = ogMatrix; continue; }
+
+                projOrigin = new Vector2((visualPreviewHolderRect.width * 0.5f) - (bp.SizeDelta.x * previewRectScale * 0.5f), 
+                    (visualPreviewHolderRect.height * 0.5f) - (bp.SizeDelta.y * previewRectScale * 0.5f));
                 drawPos = new Vector2(projOrigin.x + pk.SpawnPosition.x * previewRectScale, projOrigin.y + pk.SpawnPosition.y * previewRectScale);
 
                 flipYPos = new Vector3(pk.SpawnPosition.x, pk.SpawnPosition.y * -1);
                 flipYDir = new Vector3(pk.InitialDirection.x, pk.InitialDirection.y * -1);
 
                 drawPos = new Vector2(projOrigin.x + flipYPos.x * previewRectScale, projOrigin.y + flipYPos.y * previewRectScale);
-                drawProjectile = new Rect(drawPos.x, drawPos.y, pk.ProjectileToSpawn.SizeDelta.x * previewRectScale, pk.ProjectileToSpawn.SizeDelta.y * previewRectScale);
+                drawProjectile = new Rect(drawPos.x, drawPos.y, bp.SizeDelta.x * previewRectScale, bp.SizeDelta.y * previewRectScale);
 
                 dirAtTime = flipYDir;
 
@@ -480,31 +487,73 @@ namespace RenCSharp.Combat.Enemies.Editor
                 else
                 {
                     cToDraw = afterSpawnC;
+                    switch (bp.GetHitType)
+                    {
+                        case ProjectileHitType.StayStill:
+                            cToDraw = CoolColors.undertaleBlue;
+                            break;
+                        case ProjectileHitType.StayMoving:
+                            cToDraw = CoolColors.undertaleOrange;
+                            break;
+                    }
                     //get the expected offset that comes from being a moving projectile at t seconds of its lifespan.
-                    offsetPos = pk.ProjectileToSpawn.GetMovementType.GetPositionAtTime(t, pk.InitialDirection, pk.SpawnPosition, out dirAtTime, true) * previewRectScale;
+                    offsetPos = bp.GetMovementType.GetPositionAtTime(t, pk.InitialDirection, pk.SpawnPosition, out dirAtTime, true) * previewRectScale;
                     drawPos = new Vector2(projOrigin.x + offsetPos.x, projOrigin.y + offsetPos.y);
-                    drawProjectile = new Rect(drawPos.x, drawPos.y, pk.ProjectileToSpawn.SizeDelta.x * previewRectScale, pk.ProjectileToSpawn.SizeDelta.y * previewRectScale);
+                    drawProjectile = new Rect(drawPos.x, drawPos.y, bp.SizeDelta.x * previewRectScale, bp.SizeDelta.y * previewRectScale);
                 }
-                if (pk == curKnob) cToDraw = CoolColors.selectedOliveColor;
+                if (pk == curKnob) 
+                { 
+                    //also draw some sort of rotation aid for knubs that are already present, please!
+                    cToDraw = CoolColors.selectedOliveColor; 
+                }
+
                 //make sure the representation is rotated to match the initial direction (updating the rotation as it would in game probably isn't *that* important)
-                rotatePoint = drawPos + new Vector2(pk.ProjectileToSpawn.SizeDelta.x * 0.5f * previewRectScale, pk.ProjectileToSpawn.SizeDelta.y * 0.5f * previewRectScale);
+                rotatePoint = drawPos + new Vector2(bp.SizeDelta.x * 0.5f * previewRectScale, bp.SizeDelta.y * 0.5f * previewRectScale);
                 GUIUtility.RotateAroundPivot(TrigHelper.GetDegreeFromVector(dirAtTime, 270), rotatePoint);
+
                 //finally draw our projectile representation now that we have everything
                 GUI.color = cToDraw;
-                //draw texture w/ cords no work??????? even tho it should??!?!?!?
-                GUI.DrawTextureWithTexCoords(drawProjectile, pk.ProjectileToSpawn.DisplayTexture, pk.ProjectileToSpawn.DisplayTextureRect, true);
-                //GUI.DrawTexture(drawProjectile, projectilePreviewTexture);
-                Debug.Log($"Drawing mf at rect: {drawProjectile}, texture: {pk.ProjectileToSpawn.DisplayTexture}, texturerect: {pk.ProjectileToSpawn.DisplayTextureRect}");
+                //really stupid that beam_projectile is a whole stinkin' separate class, but what's a man to do since it requires
+                //a damnable UI_Element to work
+                if (beamP == null)
+                {
+                    GUI.DrawTextureWithTexCoords(drawProjectile, pk.ProjectileToSpawn.DisplayTexture, pk.ProjectileToSpawn.DisplayTextureRect, true);
+                    //Debug.Log($"Drawing mf at rect: {drawProjectile}, texture: {pk.ProjectileToSpawn.DisplayTexture}, texturerect: {pk.ProjectileToSpawn.DisplayTextureRect}");
+                }
+                else
+                {
+                    Texture[] beamTextures = beamP.GetBeamElementTextures;
+                    Rect[] beamTextureOffsets = beamP.GetBeamElementTextureOffsets;
+                    Vector2[] beamSizeDeltas = beamP.GetBeamSizeDeltasAtTime(t);
+
+                    for(int i = 0; i < beamTextures.Length; i++)
+                    {
+                        drawProjectile = new Rect(drawPos.x, drawPos.y, beamSizeDeltas[i].x * previewRectScale, beamSizeDeltas[i].y * previewRectScale);
+                        if (i <= 1)
+                        {
+                            GUI.color = t < beamP.ColliderEnableTime ? afterSpawnC : spawnC;
+                            GUI.DrawTextureWithTexCoords(drawProjectile, beamTextures[i], beamTextureOffsets[i], true);
+                        }
+                        else
+                        {
+                            GUI.color = CoolColors._50PercentBlack;
+                            float scaledXD = beamSizeDeltas[i].x * previewRectScale;
+                            Rect subRect = new Rect(drawPos.x + scaledXD, drawPos.y, i == 2 ? scaledXD : scaledXD * -1, beamSizeDeltas[i].y * previewRectScale);
+                            GUI.DrawTextureWithTexCoords(subRect, beamTextures[i], beamTextureOffsets[i], true);
+                        }
+                    }
+                }
+
                 GUI.matrix = ogMatrix;
                 GUI.color = ogGUIc;
-
+                //if you left click on a projectile in the preview window, select its corresponding snub.
                 if(drawProjectile.Contains(cur.mousePosition) && cur.button == 0 && cur.isMouse)
                 {
                     GrabAKnob(pk, kvp.Key);
                     cur.Use();
                 }
             }
-
+            //if you right click somewhere in the preview window, give the option to spawn a new snub there.
             if(cur.button == 1 && cur.isMouse)
             {
                 Vector2 wouldBeSpawnPosition = (cur.mousePosition - trueOrigin) / previewRectScale; //absolute minus origin = relative?
@@ -516,17 +565,19 @@ namespace RenCSharp.Combat.Enemies.Editor
                 //to instead increment in size by the grid spacing snap integer. (to make the numbers clean and usable!)
 
                 previewSpawnProj = new();
-                foreach (Base_Projectile bp in timelineData.ProjectilesThatSpawn)
+                foreach (Base_Projectile bup in timelineData.ProjectilesThatSpawn)
                 {
-                    if (bp == null) continue;
-                    previewSpawnProj.AddItem(new GUIContent($"Add Projectile ({bp.gameObject.name}) at: ({wouldBeSpawnPosition.x}, {wouldBeSpawnPosition.y}) - {runningTime}s"), false, delegate
+                    //give an option to spawn a projectile type that's already in the stored array.
+                    if (bup == null) continue;
+                    previewSpawnProj.AddItem(new GUIContent($"Add Projectile ({bup.gameObject.name}) at: ({wouldBeSpawnPosition.x}, {wouldBeSpawnPosition.y}) - {runningTime}s"), false, delegate
                     {
-                        PlaceANewKnob(wouldBeSpawnPosition, bp);
+                        PlaceANewKnob(wouldBeSpawnPosition, bup);
                     });
                 }
                 previewSpawnProj.AddSeparator("");
                 previewSpawnProj.AddItem(new GUIContent($"Add Empty Projectile at: ({wouldBeSpawnPosition.x}, {wouldBeSpawnPosition.y}) - {runningTime}s"), false, delegate
                 {
+                    //spawn an empty snub if you want
                     PlaceANewKnob(wouldBeSpawnPosition);
                 });
                 previewSpawnProj.ShowAsContext();
@@ -571,6 +622,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             EditorApplication.update = (EditorApplication.CallbackFunction)System.Delegate.Combine(EditorApplication.update, new EditorApplication.CallbackFunction(OnEditorUpdate));
             _lastUpdateTime = (float)EditorApplication.timeSinceStartup;
             _frameRate = 60f; //default to 60fps always to remain consistent with math
+            runningTime = 0;
             //load textures used in GUI
             saveIcon = EditorGUIUtility.Load(assetPathToEditorIcons + "saveicon.png") as Texture;
             SaveContent = new GUIContent(saveIcon, "Save the contents of the current timeline to an Enemy Attack Timeline Data asset.");

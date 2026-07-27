@@ -21,7 +21,7 @@ namespace RenCSharp.Combat.Enemies
         {
             moveDir = ogMoveDir + amplitude * Mathf.Sin(frequency * Time.time) * parallelDir;
             if(movementSetsRotation) projectileTransform.rotation = TrigHelper.GetQuaternion(moveDir);
-            projectileTransform.position += moveDir * speed * Time.deltaTime;
+            projectileTransform.position += speed * Time.deltaTime * moveDir;
         }
 
         public override Vector2 GetPositionAtTime(float time, Vector2 initialDir, Vector3 spawnPosition, out Vector2 dirAtTime, bool flipY = false)
@@ -34,7 +34,8 @@ namespace RenCSharp.Combat.Enemies
             Vector3 parallel = Vector3.Cross(initialDir, Vector3.forward);
             Vector3 init = new Vector3(initialDir.x, initialDir.y);
 
-            Vector3 posToReturn = (spawnPosition + (init * speed * time)) + parallel * amplitude * Mathf.Sin(frequency * time);
+            //the parallel offset half of the equation doesn't scale with how the movement actually does. >:(
+            Vector3 posToReturn = spawnPosition + (speed * time * init) + (amplitude * Mathf.Sin(frequency * time) * parallel);
 
             if (time == 0) 
             {
@@ -43,7 +44,7 @@ namespace RenCSharp.Combat.Enemies
             else
             {
                 float prevTime = time - 0.01f;
-                Vector3 slightlyOlderPosition = (spawnPosition + (init * speed * prevTime) + parallel * amplitude * Mathf.Sin(frequency * prevTime));
+                Vector3 slightlyOlderPosition = spawnPosition + (speed * prevTime * init) + (amplitude * Mathf.Sin(frequency * prevTime) * parallel);
                 Vector3 dirTypeShi = posToReturn - slightlyOlderPosition;
                 dirAtTime = new Vector2(dirTypeShi.x, dirTypeShi.y);
             }

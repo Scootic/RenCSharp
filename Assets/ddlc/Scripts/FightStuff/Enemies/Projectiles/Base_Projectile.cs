@@ -41,6 +41,7 @@ namespace RenCSharp.Combat.Enemies
         protected Coroutine spawnInRoutine;
         protected Rigidbody receiverRB, myRB;
         public float Lifetime => lifetime;
+        public float ColliderEnableTime => colliderEnableTime;
         public float SpawnSoundVol => spawnSoundVol;
         public AudioClip SpawnSound => spawnSound;
         public Vector3 GetMoveDir => moveDir;
@@ -51,15 +52,22 @@ namespace RenCSharp.Combat.Enemies
         {
             get
             {
+                Vector4 spriteBorder = sprite.sprite.border;
                 Rect unscaledRect = sprite.sprite.textureRect;
+                //try to get the unscaled rect of the borders, since that's how projectiles are rendered.
+                unscaledRect = new Rect(unscaledRect.x + spriteBorder.x, unscaledRect.y + spriteBorder.w,
+                    unscaledRect.width - spriteBorder.x - spriteBorder.z, unscaledRect.height - spriteBorder.y - spriteBorder.w);
                 Vector2 textureSize = new Vector2(DisplayTexture.width, DisplayTexture.height);
-                Rect scaledRect = new Rect(unscaledRect.x / textureSize.x, unscaledRect.y / textureSize.y, 
+                //normalize the unscaled rect by the size of the texture.
+                Rect scaledRect = new Rect(unscaledRect.x / textureSize.x, unscaledRect.y / textureSize.y,
                     unscaledRect.width / textureSize.x, unscaledRect.height / textureSize.y);
                 return scaledRect;
             }
         }
        
         public Vector2 DisplayTextureRectOffset => sprite.sprite.textureRectOffset; //?
+
+        public ProjectileHitType GetHitType => hitType;
 
         /// <summary>
         /// Sets the move direction that's used in update to change the projectile's position.
@@ -105,7 +113,7 @@ namespace RenCSharp.Combat.Enemies
             myCol.enabled = true;
         }
 
-        //Handle movements
+        //Handle movements and custom update behaviors
         protected virtual void Update()
         {
             if((movementWhileActive && myCol.enabled) || (movementWhileInactive && !myCol.enabled)) movementType.MovementBehavior();

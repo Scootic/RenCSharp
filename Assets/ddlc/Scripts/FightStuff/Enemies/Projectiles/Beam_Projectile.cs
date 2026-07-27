@@ -14,7 +14,73 @@ namespace RenCSharp.Combat.Enemies
         [SerializeField, Tooltip("Applies to the child that has the visual element.")] private float beamVisualTravelSpeed = 0;
         [SerializeField] private Color emptyBeamC = Color.black;
         [SerializeField] private Color fullBeamC = Color.red;
-        
+
+        public Texture[] GetBeamElementTextures
+        {
+            get
+            {
+                Texture[] toReturn = new Texture[beamVisualElements.Images.Length];
+                for(int i = 0; i < toReturn.Length; i++)
+                {
+                    toReturn[i] = beamVisualElements.Images[i].sprite.texture;
+                }
+                return toReturn;
+            }
+        }
+
+        public Rect[] GetBeamElementTextureOffsets
+        {
+            get
+            {
+                Rect[] toReturn = new Rect[beamVisualElements.Images.Length];
+                Texture[] theTextures = GetBeamElementTextures;
+                Vector4 spriteBorder;
+                Rect unscaledRect;
+                Vector2 textureSize;
+
+                for (int i = 0; i < toReturn.Length; i++)
+                {
+                    spriteBorder = beamVisualElements.Images[i].sprite.border;
+                    unscaledRect = beamVisualElements.Images[i].sprite.textureRect;
+                    //try to get the unscaled rect of the borders, since that's how projectiles are rendered.
+                    unscaledRect = new Rect(unscaledRect.x + spriteBorder.x, unscaledRect.y + spriteBorder.w,
+                        unscaledRect.width - spriteBorder.x - spriteBorder.z, unscaledRect.height - spriteBorder.y - spriteBorder.w);
+                    textureSize = new Vector2(theTextures[i].width, theTextures[i].height);
+                    //normalize the unscaled rect by the size of the texture.
+                    Rect scaledRect = new Rect(unscaledRect.x / textureSize.x, unscaledRect.y / textureSize.y,
+                        unscaledRect.width / textureSize.x, unscaledRect.height / textureSize.y);
+                    toReturn[i] = scaledRect;
+                }
+
+                return toReturn;
+            }
+        }
+
+        public Vector2[] GetBeamSizeDeltasAtTime(float time)
+        {
+            float eval = time / colliderEnableTime;
+            Vector2[] toReturn = new Vector2[beamVisualElements.Images.Length];
+
+            for(int i = 0; i < toReturn.Length; i++)
+            {
+                toReturn[i] = beamVisualElements.Images[i].GetComponent<RectTransform>().sizeDelta;
+            }
+
+            if(eval >= 1)
+            {
+                toReturn[1] = Vector2.zero;
+                toReturn[2] = Vector2.zero;
+                toReturn[3] = Vector2.zero;
+            }
+            else
+            {
+                toReturn[0] = Vector2.zero;
+                toReturn[2] = new Vector2(toReturn[2].x * eval, toReturn[2].y);
+                toReturn[3] = new Vector2(toReturn[3].x * eval, toReturn[2].y);
+            }
+
+            return toReturn;
+        }
 
         protected override IEnumerator EnableTriggerOverTime()
         {
