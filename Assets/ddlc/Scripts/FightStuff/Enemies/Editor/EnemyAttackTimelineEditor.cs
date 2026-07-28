@@ -70,7 +70,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             }
         }
         private Rect visualPreviewHolderRect = Rect.zero, visualPreviewArenaRect;
-        private readonly float knobVerticalOffsetMult = 50f;
+        private readonly float knobVerticalOffsetMult = 50f, previewRotateKnobSize = 50f;
         private static readonly Vector2 minWindowSize = new Vector2(400f, 200f);
         /// <summary>
         /// gets multiplied by preview rect scale
@@ -504,7 +504,17 @@ namespace RenCSharp.Combat.Enemies.Editor
                 if (pk == curKnob) 
                 { 
                     //also draw some sort of rotation aid for knubs that are already present, please!
-                    cToDraw = CoolColors.selectedOliveColor; 
+                    cToDraw = CoolColors.selectedOliveColor;
+                    Vector2 rotateKnobPosition = new Vector2(drawPos.x + flipYDir.x, drawPos.y + flipYDir.y);
+                    Rect rotateKnobRect = new Rect(rotateKnobPosition.x, rotateKnobPosition.y, 
+                        previewRotateKnobSize * previewRectScale , previewRotateKnobSize * previewRectScale);
+                    GUI.DrawTexture(rotateKnobRect, projectilePreviewTexture);
+                    
+                    //if we're draggin' on the knob
+                    if(cur.isMouse && cur.button == 0 && rotateKnobRect.Contains(cur.mousePosition))
+                    {
+                        //normalize mousepos relative to the rotate knob pos, move pos, and apply to the initdir.
+                    }
                 }
 
                 //make sure the representation is rotated to match the initial direction (updating the rotation as it would in game probably isn't *that* important)

@@ -41,6 +41,7 @@ namespace RenCSharp.EXPERIMENTAL
         // Update is called once per frame
         void UpdateLogsView()
         {
+            if (consoleLogs == null) return;
             consoleLogs.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
             consoleLogs.itemsSource = RenConsole.ConsoleLogs;
             consoleLogs.makeItem = () => new RenConsole_LogField();
