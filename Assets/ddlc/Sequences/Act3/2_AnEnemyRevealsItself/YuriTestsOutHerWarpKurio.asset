@@ -24,7 +24,7 @@ MonoBehaviour:
     dialog: Ah! You see how the ring has strange purple waves flowing over it?
     ScreenActions:
     - rid: 7856103045627904210
-    - rid: 7856103045627904211
+    - rid: 7856103590335348869
   - speaker: {fileID: 11400000, guid: 8c9256f0136990746a31b7a644716f46, type: 2}
     dialog: That <i>should</i> mean that it's been successfully enchanted.
     ScreenActions:
@@ -473,17 +473,6 @@ MonoBehaviour:
         spawnOffset: {x: -300, y: 0, z: 0}
         visualSpriteIndexes:
         - skyDown
-    - rid: 7856103045627904211
-      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-        fadeInTime: 0.5
-        spawnOffset: {x: 300, y: 0, z: 0}
-        visualSpriteIndexes:
-        - skyDown
-        - 
-        - inquisitive
-        - 
     - rid: 7856103045627904212
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2025,3 +2014,14 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+    - rid: 7856103590335348869
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - inquisitive
+        - EMPTY

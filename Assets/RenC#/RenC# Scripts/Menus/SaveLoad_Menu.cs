@@ -140,7 +140,7 @@ namespace RenCSharp.Menus
             loadElement.Buttons[1].onClick.AddListener(delegate { Delete(sd.FileName, i); });
             activeDatas++;
 
-            float newSaveHolderSizeY = (loadGameHolder.transform.childCount / expectedPrefabsPerRow) * (loadFabSizeDelta.y * (rt3.sizeDelta.y / 257f));
+            float newSaveHolderSizeY = (loadGameHolder.transform.childCount / expectedPrefabsPerRow) * (loadFabSizeDelta.y * (rt3.sizeDelta.y / 240f));
             rt.sizeDelta = new Vector2(rt.sizeDelta.x, newSaveHolderSizeY);
             if (autoSaveLoadGameHolder != null)
             {

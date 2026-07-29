@@ -47,11 +47,18 @@ namespace RenCSharp.Combat.Enemies
         public Vector3 GetMoveDir => moveDir;
         public Projectile_MovementType GetMovementType => movementType;
         public Vector2 SizeDelta => gameObject.GetComponent<RectTransform>().sizeDelta;
-        public Texture DisplayTexture => sprite.sprite.texture;
+        public Texture DisplayTexture {
+            get
+            {
+                if (sprite.sprite != null) return sprite.sprite.texture;
+                else return null;
+            }
+        }
         public Rect DisplayTextureRect
         {
             get
             {
+                if (sprite.sprite == null) return new Rect();
                 Vector4 spriteBorder = sprite.sprite.border;
                 Rect unscaledRect = sprite.sprite.textureRect;
                 //try to get the unscaled rect of the borders, since that's how projectiles are rendered.
@@ -64,8 +71,6 @@ namespace RenCSharp.Combat.Enemies
                 return scaledRect;
             }
         }
-       
-        public Vector2 DisplayTextureRectOffset => sprite.sprite.textureRectOffset; //?
 
         public ProjectileHitType GetHitType => hitType;
 
