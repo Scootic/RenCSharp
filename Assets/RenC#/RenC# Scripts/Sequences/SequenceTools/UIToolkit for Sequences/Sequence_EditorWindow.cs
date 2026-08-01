@@ -96,6 +96,7 @@ namespace RenCSharp.Sequences
             }
             //don't need to set the assetref, since it's a bound serialized property???
             EditorUtility.SetDirty(_target);
+            AssetDatabase.SaveAssets();
         }
 
         private void InitScreenListView()
@@ -135,7 +136,7 @@ namespace RenCSharp.Sequences
                 screenScrollView.unbindItem = (VisualElement e, int index) =>
                 {
                     ScreenUITKField screenField = e as ScreenUITKField;
-                    screenField.Q<PropertyField>().Unbind();
+                    screenField.Unbind();
                     int storedIndex = index;
                     if (screenField != null)
                     {
@@ -452,9 +453,7 @@ namespace RenCSharp.Sequences
         private void OnInspectorUpdate()
         {
             if (_target == null) return;
-
             curT += 0.15f;
-            //Debug.Log("curT: " + curT);
             if (curT >= timeToAutoSave && timeToAutoSave >= 0)
             {
                 curT = 0;
