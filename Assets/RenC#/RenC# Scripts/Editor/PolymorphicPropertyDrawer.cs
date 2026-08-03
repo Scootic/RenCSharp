@@ -27,22 +27,36 @@ namespace RenCSharp
         protected static List<string> typeToStrings;
         protected abstract string DropDownMenuName();
         [SerializeReference] protected SerializedProperty m_SE; //only used by IMGUI chicanery
-
+        #region UIToolkit
         //below only used by UIToolkit chicanery
+        /// <summary>
+        /// Not the container of the whole element, just the contents? (Doesn't include the draggy area in lists/arrays?!?)
+        /// </summary>
         protected VisualElement container;
         protected DropdownField polymorphDropDown;
+        /// <summary>
+        /// same visual element as container?!?!?!?!?!? WHAT?!?!?
+        /// </summary>
         protected PropertyField polymorphPropertyField;
         protected T propertyValue;
         protected string newVal;
         protected int typeIndex;
 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        { 
+        {
             SetDropDownUITK(property);
-            polymorphPropertyField = new PropertyField();
+            polymorphPropertyField = new();
 
             polymorphPropertyField.label = propertyValue != null ? propertyValue.ToString() : DropDownMenuName();
             polymorphPropertyField.BindProperty(property);
+            polymorphPropertyField.focusable = false;
+            polymorphPropertyField.pickingMode = PickingMode.Ignore;
+            polymorphPropertyField.AddToClassList(PropertyField.inspectorElementUssClassName);
+            polymorphPropertyField.RegisterCallback<PointerDownEvent>(evt =>
+            {
+                Debug.Log("clicked on the polymorph property field... field.");
+            });
+
             container.Add(polymorphPropertyField);
 
             return container;
@@ -61,6 +75,8 @@ namespace RenCSharp
            
             container = new VisualElement();
             container.style.flexDirection = FlexDirection.Column;
+            container.pickingMode = PickingMode.Ignore;
+            container.focusable = false;
 
             propertyValue = mySP.boxedValue as T;
             int indexOfcur = typeToStrings.Count - 1;
@@ -82,7 +98,8 @@ namespace RenCSharp
 
             container.Add(polymorphDropDown);
         }
-
+        #endregion
+        #region IMGUI
         /// <summary>
         /// By default, will render the property drawer one line below a childType selector dropdown menu.
         /// </summary>
@@ -119,7 +136,7 @@ namespace RenCSharp
                 menu.DropDown(pos);
             }
         }
-
+        #endregion
         protected virtual void SetChildType(object obj)
         {
             T selectedType = obj as T;

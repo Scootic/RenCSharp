@@ -9,7 +9,7 @@ namespace RenCSharp
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            Audio_Manager.AM.PlayBGM(bgm, fadeTime);
+            _ = Audio_Manager.AM.PlayBGM(bgm, fadeTime);
         }
     }
 }

@@ -106,6 +106,7 @@ namespace RenCSharp.Sequences
                 SerializedObject so = new SerializedObject(_target);
                 SerializedProperty screensProp = so.FindProperty("screens");
                 screenScrollView.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
+                screenScrollView.pickingMode = PickingMode.Ignore;
                 screenScrollView.itemsSource = _target.Screens;
                 screenScrollView.makeItem = () => new ScreenUITKField("Screen");
                 screenScrollView.bindItem = (VisualElement e, int index) =>
@@ -143,7 +144,7 @@ namespace RenCSharp.Sequences
                         AllTheExtractScreens.Remove(storedIndex);
                     }
                 };
-                screenScrollView.selectionType = SelectionType.Single;
+                screenScrollView.selectionType = SelectionType.None;
             }
         }
 

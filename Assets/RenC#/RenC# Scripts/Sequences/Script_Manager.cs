@@ -29,7 +29,7 @@ namespace RenCSharp
         [SerializeField] private TextHolder_Scaler speakerNameBoxScaler;
         [SerializeField] private Image dialogBox;
         [SerializeField, Tooltip("Decides the color of the textboxes if there's no actor in a screen.")] private Color defaultTextBoxColor = Color.white;
-        [SerializeField] private TMP_FontAsset defaultFont;
+        [SerializeField, Tooltip("Decides the font of the textbox if the current actor doesn't have one. (Or there's no current actor.)")] private TMP_FontAsset defaultFont;
 
         [Header("Buttons")]
         [SerializeField] private Button playerchoicePrefab;
@@ -52,14 +52,14 @@ namespace RenCSharp
         [SerializeField] private GameObject menuBase;
 
         [Header("Settings")]
-        [SerializeField, Tooltip("In seconds, 0 for character every frame."), Min(0)] private float textSpeed = 0;
-        [SerializeField, Tooltip("In seconds."), Min(0)] private float autoFocusScaleDuration = 0.25f;
-        [SerializeField, Tooltip("Handled by SaveData. Only viewable for debug purposes.")] private string playerName = "Guy"; //probably should be handled by an save data
-        [SerializeField, Tooltip("This will be string that is replaced by inputted player name.")] private string playerTag = "{MC}";
-        [SerializeField, Tooltip("How long the SM will linger on a screen while on auto.")] private float lingerTime = 0.5f;
+        [SerializeField, Tooltip("In seconds; 0 for showing a character every frame."), Min(0)] private float textSpeed = 0;
+        [SerializeField, Tooltip("In seconds. How long it takes for the actor auto-focus to scale the current actor up."), Min(0)] private float autoFocusScaleDuration = 0.25f;
+        [SerializeField, Tooltip("Handled by SaveData. Only viewable for debug purposes.")] private string playerName = "Guy";
+        [SerializeField, Tooltip("This will be string that is replaced by inputted player name. Purely for testing purposes, as TextboxString.ReplaceableText dict can replace it.")] private string playerTag = "{MC}";
+        [SerializeField, Tooltip("How long the SM will linger on a specific screen while on auto.")] private float lingerTime = 0.5f;
         [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero.")] private byte historyLength = 10;
 
-        [Header("Debug")]
+        [Header("Debug - Please Don't Touch! May cause errors!")]
         [SerializeField] private bool paused = false;
         [SerializeField] private bool auto = false;
         [SerializeField] private bool saving = false;
@@ -407,15 +407,13 @@ namespace RenCSharp
                 }
             }
             //if we found no room, replace everything going down.
-            for (int i = curHist.HistoryLength - 1; i >= 0; i--)
+            for (int i = curHist.HistoryLength - 1; i >= 1; i--)
             {
                 string tSpeaker = curHist.SpeakerNames[i];
                 string tDialog = curHist.DialogBoxes[i];
 
                 curHist.SpeakerNames[i] = speaker;
                 curHist.DialogBoxes[i] = text;
-
-                if (i == 0) return; //don't bother spending cpu if we are at the final operation.
 
                 speaker = tSpeaker;
                 text = tDialog;

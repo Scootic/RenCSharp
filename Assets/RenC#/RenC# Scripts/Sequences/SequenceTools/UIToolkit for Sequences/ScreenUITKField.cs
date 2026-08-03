@@ -27,34 +27,36 @@ namespace RenCSharp.Sequences
             AddToClassList(alignedFieldUssClassName);
             labelElement.style.marginBottom = 1;
 
-            StartGapSpace = new VisualElement();
+            StartGapSpace = new();
             StartGapSpace.style.height = 10;
             StartGapSpace.style.color = CoolColors._75PercentBlack;
             StartGapSpace.style.backgroundColor = CoolColors._75PercentBlack;
             ContentElement.Add(StartGapSpace);
 
-            ActorField = new ObjectField();
+            ActorField = new();
             ActorField.label = "Speaker:";
             ActorField.objectType = typeof(Actor);
             ActorField.value = s.Speaker;
             ActorField.Q<Label>().style.color = Color.white;
             ContentElement.Add(ActorField);
 
-            DialogField = new TextField();
+            DialogField = new();
             DialogField.label = "Dialog:";
             DialogField.Q<Label>().style.color = Color.white;
-            DialogField.SetVerticalScrollerVisibility(ScrollerVisibility.Auto); //???
+            DialogField.verticalScrollerVisibility = ScrollerVisibility.Auto; //???
             DialogField.style.whiteSpace = WhiteSpace.Normal;
             DialogField.multiline = true;
             DialogField.style.color = Color.white;
             ContentElement.Add(DialogField);
 
-            ScreenEventsField = new PropertyField();
+            ScreenEventsField = new();
             ScreenEventsField.label = "Screen Actions:";
             ScreenEventsField.style.color = Color.white;
+            ScreenEventsField.pickingMode = PickingMode.Ignore;
+            ScreenEventsField.focusable = false;
             ContentElement.Add(ScreenEventsField);
 
-            EndGapSpace = new VisualElement();
+            EndGapSpace = new();
             EndGapSpace.style.height = 20;
             ContentElement.Add(EndGapSpace);
         }
@@ -74,7 +76,7 @@ namespace RenCSharp.Sequences
             StartGapSpace.style.backgroundColor = CoolColors._75PercentBlack;
             ContentElement.Add(StartGapSpace);
 
-            ActorField = new ObjectField();
+            ActorField = new();
             ActorField.objectType = typeof(Actor);
             ActorField.label = "Speaker:";
             ActorField.Q<Label>().style.color = Color.white;
@@ -82,8 +84,8 @@ namespace RenCSharp.Sequences
             ActorField.value = null;
             ContentElement.Add(ActorField);
 
-            DialogField = new TextField();
-            DialogField.SetVerticalScrollerVisibility(ScrollerVisibility.Auto);
+            DialogField = new();
+            DialogField.verticalScrollerVisibility = ScrollerVisibility.Auto;
             DialogField.style.whiteSpace = WhiteSpace.Normal;
             DialogField.label = "Dialog:";
             DialogField.Q<Label>().style.color = Color.white;
@@ -92,12 +94,14 @@ namespace RenCSharp.Sequences
             DialogField.multiline = true;
             ContentElement.Add(DialogField);
 
-            ScreenEventsField = new PropertyField();
+            ScreenEventsField = new();
             ScreenEventsField.label = "Screen Actions:";
             ScreenEventsField.style.color = Color.white;
+            ScreenEventsField.pickingMode = PickingMode.Ignore;
+            ScreenEventsField.focusable = false;
             ContentElement.Add(ScreenEventsField);
 
-            EndGapSpace = new VisualElement();
+            EndGapSpace = new();
             EndGapSpace.style.height = 20;
             ContentElement.Add(EndGapSpace);
         }

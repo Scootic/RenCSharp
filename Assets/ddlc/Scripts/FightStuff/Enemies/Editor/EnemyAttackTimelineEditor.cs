@@ -8,7 +8,6 @@ using UnityEngine;
 using RenCSharp.Combat.Player;
 using RenCSharp.Combat.Interfaces;
 using RenCSharp.EXPERIMENTAL;
-using System.Xml.Serialization;
 namespace RenCSharp.Combat.Enemies.Editor
 {
     public class EnemyAttackTimeLineEditor : SimpleTimeArea

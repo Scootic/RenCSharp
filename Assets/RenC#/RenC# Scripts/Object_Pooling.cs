@@ -56,13 +56,13 @@ namespace RenCSharp
                 id.OnRemove(b);
             }
 
-            if (obj.GetComponent<PoolMember>() == null)
+            if(obj.TryGetComponent(out PoolMember pm))
             {
-                GameObject.Destroy(obj);
+                pm.MyPool.Despawn(obj);
             }
             else
             {
-                obj.GetComponent<PoolMember>().MyPool.Despawn(obj);
+                GameObject.Destroy(obj);
             }
         }
 
@@ -80,7 +80,7 @@ namespace RenCSharp
 
             public GameObject Spawn(Vector3 position, Quaternion rotation)
             {
-                GameObject obj = null;
+                GameObject obj;
 
                 if (_inactiveObjects.Count == 0)
                 {

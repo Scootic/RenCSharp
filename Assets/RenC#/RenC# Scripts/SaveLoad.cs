@@ -10,7 +10,7 @@ namespace RenCSharp
     /// </summary>
     public static class SaveLoad
     {
-        private static BinaryFormatter bf = new BinaryFormatter();
+        private static readonly BinaryFormatter bf = new BinaryFormatter();
         /// <summary>
         /// Save a SaveData struct to a file in the persistent datapath.
         /// </summary>
@@ -62,12 +62,12 @@ namespace RenCSharp
             fs.Close();
             return true;
         }
+
         /// <summary>
         /// Uses awaitables to get some save data. ~20fps in the middle of loading thanks to offloading some stuffs to BG thread.
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns>The save data at filePath</returns>
-        
         public static async Awaitable<SaveData?> TryLoadFromPathAsync(string filePath)
         {
             await Awaitable.BackgroundThreadAsync();

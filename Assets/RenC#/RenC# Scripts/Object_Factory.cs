@@ -24,6 +24,36 @@ namespace RenCSharp
                 return true;
             }
         }
+        /// <summary>
+        /// Includes children in the component search.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="name"></param>
+        /// <param name="component"></param>
+        /// <returns></returns>
+        public static bool TryGetComponent<T>(string name, out T component) 
+        {
+            if (TryGetObject(name, out GameObject go))
+            {
+                component = go.GetComponentInChildren<T>();
+                if (component != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    Debug.LogWarning($"No compontent of type: {component.GetType()} found on object: {name}.");
+                    component = default(T);
+                    return false;
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"Couldn't find an object of name: {name}.");
+                component = default(T);
+                return false;
+            }
+        }
 
         public static GameObject SpawnObject(GameObject prefab, string name, Transform parent = null)
         {
