@@ -768,7 +768,7 @@ MonoBehaviour:
     - rid: 4972360213072445710
     - rid: 4972360225885257840
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: <NoiseText=1,1>I love you so much</NoiseText>...
+    dialog: ...
     ScreenActions:
     - rid: 4972360213072445705
     - rid: 4972360225885257841
@@ -785,10 +785,11 @@ MonoBehaviour:
     - rid: 4972360213072445708
     - rid: 4972360213072445709
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
-    dialog: The two take a minute to just... love each other. Ignoring the fact that
-      they're in the middle of a public road.
+    dialog: The two take a minute to live in the moment. Ignoring the fact that they're
+      in the middle of a public road.
     ScreenActions:
     - rid: 4972360213072445712
+    - rid: 8164893166592852061
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: Also ignoring that you and the dog are both watching.
     ScreenActions: []
@@ -2769,7 +2770,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - sadShock
+        - closeEyeSadCry
         - 
     - rid: 4972360213072445706
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
@@ -3565,4 +3566,13 @@ MonoBehaviour:
         - 
         - 
         - concern
+        - 
+    - rid: 8164893166592852061
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - closeEyeSad
         - 
