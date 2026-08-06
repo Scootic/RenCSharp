@@ -567,18 +567,24 @@ namespace RenCSharp
                 Stop3DSFX(sfxer, removeOnlyOne, fadeOut, environmental);
             }
 
-            AsyncOperationHandle stinker = clipToRemove.LoadAssetAsync<AudioClip>();
-            await stinker.Task;
-
-            if(stinker.Status == AsyncOperationStatus.Failed)
+            try
             {
-                Debug.LogError("couldn't find sfx: " + clipToRemove.Asset + " to remove.");
-                Addressables.Release(stinker);
-                return;
-            }
+                AsyncOperationHandle stinker = clipToRemove.LoadAssetAsync<AudioClip>();
+                await stinker.Task;
+                if (stinker.Status == AsyncOperationStatus.Failed)
+                {
+                    Debug.LogError("couldn't find sfx: " + clipToRemove.Asset + " to remove.");
+                    Addressables.Release(stinker);
+                    return;
+                }
 
-            AudioClip sfx = stinker.Result as AudioClip;
-            Stop3DSFX(sfx, removeOnlyOne, fadeOut, environmental);
+                AudioClip sfx = stinker.Result as AudioClip;
+                Stop3DSFX(sfx, removeOnlyOne, fadeOut, environmental);
+            }
+            catch
+            {
+                Debug.LogError("Stupid complaint from assetref management trying to stop a 3DSFX. God dang it!");
+            }
         }
 
         /// <summary>

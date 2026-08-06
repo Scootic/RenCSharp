@@ -47,12 +47,7 @@ namespace RenCSharp.Sequences
         private void PanicStop()
         {
             if (transitionRoutine != null) Script_Manager.SM.StopCoroutine(transitionRoutine);
-            hscMat.SetFloat("_hue", newHueDegree);
-            hscMat.SetFloat("_sat", newSaturation);
-            hscMat.SetFloat("_con", newContrast);
-            hscMat.SetFloat("_tem", newTemperature);
-            hscMat.SetFloat("_tin", newTint);
-            image.color = newColor;
+            SetToEnd();
             Script_Manager.ProgressScreenEvent -= PanicStop;
         }
 
@@ -80,12 +75,17 @@ namespace RenCSharp.Sequences
                 yield return null;
             }
 
-            image.color = newColor;
-            hscMat.SetFloat("_hue", newHueDegree);
-            hscMat.SetFloat("_con", newContrast);
-            hscMat.SetFloat("_sat", newSaturation);
-            hscMat.SetFloat("_tem", newTemperature);
-            hscMat.SetFloat("_tin", newTint);
+            SetToEnd();
+        }
+
+        private void SetToEnd()
+        {
+            image.color = Color.Lerp(oldColor, newColor, lerpCurve.Evaluate(1));
+            hscMat.SetFloat("_hue", Mathf.Lerp(oldH, newHueDegree, lerpCurve.Evaluate(1)));
+            hscMat.SetFloat("_con", Mathf.Lerp(oldC, newContrast, lerpCurve.Evaluate(1)));
+            hscMat.SetFloat("_sat", Mathf.Lerp(oldS, newSaturation, lerpCurve.Evaluate(1)));
+            hscMat.SetFloat("_tem", Mathf.Lerp(oldTem, newTemperature, lerpCurve.Evaluate(1)));
+            hscMat.SetFloat("_tin", Mathf.Lerp(oldTin, newTint, lerpCurve.Evaluate(1)));
         }
 
         public override string ToString()

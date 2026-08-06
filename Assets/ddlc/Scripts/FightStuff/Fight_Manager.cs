@@ -228,7 +228,7 @@ namespace RenCSharp.Combat
         /// <summary>
         /// Adds a gameobject to the projectile list, so we can clean them up when the attack is finished.
         /// </summary>
-        /// <param name="obj">GAMEOBJEKT the gameobject we are adding to list</param>
+        /// <param name="obj">GAMEOBJECT the gameobject we are adding to list</param>
         private void AddProjectileToList(object obj)
         {
             GameObject go = (GameObject) obj;
