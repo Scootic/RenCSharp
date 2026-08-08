@@ -438,7 +438,7 @@ namespace RenCSharp
         {
             if (saving) return; //don't interrupt our save, good god!
 
-            string saveFileName = string_saveFileName as string;
+            string saveFileName = (string)string_saveFileName;
             bool auto = (bool)bool_Auto;
 
             if (saveFileName == null) saveFileName = "SaveData"; //default to prevent extreme BS

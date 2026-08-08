@@ -58,7 +58,7 @@ MonoBehaviour:
     dialog: Sayori always says nice things about you.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: Oh, hello. (Sayori, you're talking about me behind my ba-)
+    dialog: Oh, hello. Sayori, you're talking about me behind my back-?
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: c3dd8de5b66462c489c46f09a84b83a5, type: 2}
     dialog: Seriously? You brought a boy?
@@ -81,7 +81,7 @@ MonoBehaviour:
     - rid: 8612954489503350882
     - rid: 8612954489503350883
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: <NoiseText=1,1>Gah</NoiseText>!
+    dialog: <NoiseText=3,1>Gah</NoiseText>!
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: cd908b1d4341a3a499ce3d9070013ac2, type: 2}
     dialog: Welcome to the club!
@@ -90,14 +90,17 @@ MonoBehaviour:
     dialog: Yeah, yeah, whatever. Can I please just get a word in edgewise?
     ScreenActions:
     - rid: 8612954489503350899
+    - rid: 8164893234914656310
   - speaker: {fileID: 11400000, guid: cd908b1d4341a3a499ce3d9070013ac2, type: 2}
     dialog: Uh, okay?
     ScreenActions:
     - rid: 8612954489503350900
     - rid: 8612954489503350901
+    - rid: 8164893234914656309
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: 'Now looky here:'
-    ScreenActions: []
+    ScreenActions:
+    - rid: 8164893234914656308
   - speaker: {fileID: 0}
     dialog: I point at Sayori.
     ScreenActions: []
@@ -126,7 +129,7 @@ MonoBehaviour:
       <i>just</i> for cupcakes, right {mc}?
     ScreenActions:
     - rid: 8612954489503350906
-    - rid: 8612954489503350907
+    - rid: 8164893234914656311
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: That's right. Besides, I'm more of a brownie guy.
     ScreenActions:
@@ -239,8 +242,8 @@ MonoBehaviour:
       a wrapped tray and Yuri opens one of the lockers in the back.
     ScreenActions: []
   - speaker: {fileID: 0}
-    dialog: I take a seat next to Sayori, physically portraying my figurative closeness
-      to her. (She's the person I'm most comfortable with in this room.)
+    dialog: I take a seat next to Sayori, since, out of all the people here, she's
+      the one I know the best.
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: Natsuki, with a weirdly smug stride, makes her way back to the table,
@@ -484,7 +487,7 @@ MonoBehaviour:
     dialog: The only person who hasn't stared at me yet is Sayori!
     ScreenActions: []
   - speaker: {fileID: 0}
-    dialog: Should I take that personally?
+    dialog: ... <i>Should I take that personally</i>?
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Anyway, what sort of stuff do you read, Yuri?
@@ -1067,6 +1070,42 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+    - rid: 8164893234914656308
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 414f93f19d58bf04abb3de23b3a44ed7, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - inquisitive
+        - 
+    - rid: 8164893234914656309
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 414f93f19d58bf04abb3de23b3a44ed7, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - pitySmile
+        - 
+    - rid: 8164893234914656310
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 414f93f19d58bf04abb3de23b3a44ed7, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - lookAwayPity
+        - 
+    - rid: 8164893234914656311
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: cd908b1d4341a3a499ce3d9070013ac2, type: 2}
+        visualSpriteIndexes:
+        - uniDown
+        - uniDown
+        - pitySpeak
+        - 
     - rid: 8612954489503350867
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1160,7 +1199,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - uniUp
         - uniUp
-        - yanGrin
+        - yanGasp
         - 
     - rid: 8612954489503350880
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
@@ -1330,15 +1369,6 @@ MonoBehaviour:
         - uniSmug
         - uniSmug
         - scowl
-        - 
-    - rid: 8612954489503350907
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: cd908b1d4341a3a499ce3d9070013ac2, type: 2}
-        visualSpriteIndexes:
-        - uniDown
-        - uniDown
-        - pitySpeak
         - 
     - rid: 8612954489503350908
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}

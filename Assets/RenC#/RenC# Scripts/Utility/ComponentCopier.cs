@@ -67,7 +67,7 @@ namespace RenCSharp
                 Debug.Log("Field: " + field.Name + ": " + field.FieldType);
             }
 
-            return destination as T;
+            return destination;
         }
         /// <summary>
         /// copies a generic struct

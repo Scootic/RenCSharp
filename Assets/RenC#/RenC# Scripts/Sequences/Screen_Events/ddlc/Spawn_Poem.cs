@@ -11,7 +11,7 @@ namespace RenCSharp.Sequences
         public override void DoEvent()
         {
             SpawnGuy();
-            Script_Manager.ProgressScreenEvent += SpawnGuy;
+            //Script_Manager.ProgressScreenEvent += SpawnGuy;
         }
 
         private void SpawnGuy()
@@ -19,7 +19,7 @@ namespace RenCSharp.Sequences
             Debug.Log("Spawning a Poem!");
             GameObject poemGO = Object_Factory.SpawnObject(poemGOFab, "Poem", GameObject.Find("Foregroundcanvas").transform);
             //pass in values.
-            if (poemGO == null) return;
+            if (poemGO == null || poemToSpawn == null) return;
             UI_Element uie = poemGO.GetComponent<UI_Element>();
             uie.Texts[0].text = poemToSpawn.PoemText;
             RectTransform rt = uie.Texts[0].transform.parent.GetComponent<RectTransform>();

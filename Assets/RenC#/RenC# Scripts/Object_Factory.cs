@@ -179,7 +179,7 @@ namespace RenCSharp
                 GameObject.Destroy(kvp.Value);
             }
 
-            activeGameObjects = new Dictionary<string, GameObject>();
+            activeGameObjects.Clear();
         }
     }
 }
