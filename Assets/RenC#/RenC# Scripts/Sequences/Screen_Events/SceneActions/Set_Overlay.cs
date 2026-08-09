@@ -1,14 +1,16 @@
+using RenCSharp.EXPERIMENTAL;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
-using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp.Sequences
 {
     [Obsolete("Deprecated. Please use Set_OverlayAsset instead.", false)]
-    public class Set_Overlay : Screen_Event
+    public class Set_Overlay : Screen_Event, IDeprecatedReplaceable<Screen_Event>
     {
         [SerializeField, Tooltip("If not animated, just uses index 0.")] private List<Sprite> imagesToSet;
         [SerializeField, Tooltip("Title card type stuff.")] private string overlayText = string.Empty;
@@ -73,6 +75,32 @@ namespace RenCSharp.Sequences
             }
             text.text = overlayText;
             overlayImg.color = Color.white;
+        }
+
+        public Screen_Event Replacement()
+        {
+            Set_OverlayAsset newVentSO = new Set_OverlayAsset();
+
+            newVentSO.SetOverlayText = overlayText;
+            newVentSO.SetSecondsPerFrame = secondsPerFrame;
+            newVentSO.SetEndWithScreen = endWithScreen;
+            newVentSO.SetFadeTime = fadeTime;
+
+            List<Sprite> sprungles = imagesToSet;
+            List<AssetReferenceSprite> leRefs = new();
+            foreach (Sprite spr in sprungles) //get shiz set up!
+            {
+                string johnsonSO = AssetDatabase.GetAssetPath(spr);
+                Debug.Log("Asset Path for sprite? " + johnsonSO);
+                string guidSO = AssetDatabase.AssetPathToGUID(johnsonSO);
+                AssetReferenceSprite stupid = new AssetReferenceSprite(guidSO);
+                stupid.SubObjectName = spr.name; //?
+                leRefs.Add(stupid);
+
+            }
+            newVentSO.SetImagesToSet = leRefs;
+
+            return newVentSO;
         }
 
         public override string ToString()

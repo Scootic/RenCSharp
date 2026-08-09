@@ -19,6 +19,8 @@ namespace RenCSharp.EXPERIMENTAL
         public static readonly Color slightTransGrayGUI = new(0.5f, 0.5f, 0.5f, 0.5f);
         #endregion
         public static readonly Color selectedOliveColor = new(0.75f, 0.9f, 0.4f, 1);
+        public static readonly Color selectedForestColor = new(0.2f, 0.4f, 0.2f,1);
+        public static readonly Color grayGUI = new(0.3f, 0.3f, 0.3f, 1);
         public static readonly Color undertaleOrange = new(1, 0.6075f, 0.2039f, 1);
         public static readonly Color undertaleBlue = new(0.2392f, 0.9215f, 1, 1);
     }

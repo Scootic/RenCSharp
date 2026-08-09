@@ -1,8 +1,6 @@
 #if UNITY_EDITOR
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -76,7 +74,7 @@ namespace RenCSharp.Sequences
                     $"\n{totalHours}:{totalMinutes}:{totalSeconds} (H:M:S). (Ignores fade transitions and other pauses to sequence.)");
             }
             
-            if(GUILayout.Button("Replace Deprecated Events")) //pretty please update to include things you want to replace en masse
+            if (GUILayout.Button("Replace Deprecated Events")) //pretty please update to include things you want to replace en masse
             {
                 foreach (Object obj in targets)
                 {
@@ -88,103 +86,11 @@ namespace RenCSharp.Sequences
                         for (int j = 0; j < s.ScreenActions.Count; j++)
                         {
                             Screen_Event vent = s.ScreenActions[j];
-                            switch (vent.ToString())
+                            IDeprecatedReplaceable<Screen_Event> replacer = vent as IDeprecatedReplaceable<Screen_Event>;
+                            if(replacer != null)
                             {
-                                case "Deprecated/Play Music Track":
-                                    Debug.Log("Replacing BGM Play...");
-                                    Play_BGM bgmVent = vent as Play_BGM;
-                                    Play_BGMAsset newVent = new Play_BGMAsset();
-
-                                    newVent.SetFadeTime = bgmVent.FadeTime;
-                                    newVent.SetToSameTime = bgmVent.SetToSameTime;
-                                    s.ScreenActions[j] = newVent;
-                                    string johnson = AssetDatabase.GetAssetPath(bgmVent.Song);
-                                    string guid = AssetDatabase.AssetPathToGUID(johnson);
-                                    newVent.SetSongAsset = new AssetReference(guid);
-                                    replaced++;
-                                    break;
-                                case "Deprecated/Set Overlay Image":
-                                    Debug.Log("Replacing Set Overlay...");
-                                    Set_Overlay oldVentSO = vent as Set_Overlay;
-                                    Set_OverlayAsset newVentSO = new Set_OverlayAsset();
-
-                                    newVentSO.SetOverlayText = oldVentSO.GetOverlayText;
-                                    newVentSO.SetSecondsPerFrame = oldVentSO.GetSecondsPerFrame;
-                                    newVentSO.SetEndWithScreen = oldVentSO.GetEndWithScreen;
-                                    newVentSO.SetFadeTime = oldVentSO.GetFadeTime;
-
-                                    List<Sprite> sprungles = oldVentSO.GetImagesToSet;
-                                    List<AssetReferenceSprite> leRefs = new();
-                                    foreach (Sprite spr in sprungles) //get shiz set up!
-                                    {
-                                        string johnsonSO = AssetDatabase.GetAssetPath(spr);
-                                        Debug.Log("Asset Path for sprite? " + johnsonSO);
-                                        string guidSO = AssetDatabase.AssetPathToGUID(johnsonSO);
-                                        AssetReferenceSprite stupid = new AssetReferenceSprite(guidSO);
-                                        stupid.SubObjectName = spr.name; //?
-                                        leRefs.Add(stupid);
-
-                                    }
-                                    newVentSO.SetImagesToSet = leRefs;
-                                    s.ScreenActions[j] = newVentSO;
-                                    replaced++;
-                                    break;
-
-                                case "Deprecated/Fade Transition":
-                                    Debug.Log("Replacing Fade Transition...");
-                                    Fade_Transition oldVentFT = vent as Fade_Transition;
-                                    Fade_TransitionAsset newVentFT = new Fade_TransitionAsset();
-
-                                    newVentFT.SetFadeTransition = oldVentFT.GetFadeTransition;
-                                    newVentFT.SetFadeDuration = oldVentFT.GetFadeDuration;
-                                    newVentFT.SetSecondsPerFrame = oldVentFT.GetSecondsPerFrame;
-
-                                    Sprite[] dingus = oldVentFT.GetNewBG;
-                                    List<AssetReferenceSprite> leRefsFT = new();
-                                    foreach (Sprite spr in dingus)
-                                    {
-                                        string johnsonFT = AssetDatabase.GetAssetPath(spr);
-                                        string guidFT = AssetDatabase.AssetPathToGUID(johnsonFT);
-                                        AssetReferenceSprite stupid = new AssetReferenceSprite(guidFT);
-                                        stupid.SubObjectName = spr.name;
-                                        leRefsFT.Add(stupid);
-                                    }
-                                    newVentFT.SetNewBG = leRefsFT;
-                                    s.ScreenActions[j] = newVentFT;
-                                    replaced++;
-                                    break;
-
-                                case "Deprecated/Play Sound Effect":
-                                    Debug.Log("Replacing Play Sound Effect...");
-                                    Play_SFX oldVentPS = vent as Play_SFX;
-                                    Play_SFXAsset newVentPS = new Play_SFXAsset();
-
-                                    newVentPS.SetBaseVolume = oldVentPS.GetBaseVolume;
-                                    newVentPS.SetLoop = oldVentPS.GetLoop;
-                                    newVentPS.SetStopOnScreenProgress = oldVentPS.GetStopOnScreenProgress;
-                                    newVentPS.SetPosition = oldVentPS.GetPosition;
-                                    newVentPS.SetLoopDuration = oldVentPS.GetLoopDuration;
-
-                                    string johnsonPS = AssetDatabase.GetAssetPath(oldVentPS.GetSFXToPlay);
-                                    string guidPS = AssetDatabase.AssetPathToGUID(johnsonPS);
-                                    AssetReference stinky = new AssetReference(guidPS);
-                                    newVentPS.SetAssetReference = stinky;
-                                    s.ScreenActions[j] = newVentPS;
-                                    replaced++;
-                                    break;
-
-                                case "Deprecated/Stop Looping Sound Effect":
-                                    Debug.Log("Replacing Stop Sound Effect...");
-                                    Stop_SFX oldVentSS = vent as Stop_SFX;
-                                    Stop_SFXAsset newVentSS = new Stop_SFXAsset();
-
-                                    newVentSS.SetIs3D = oldVentSS.GetIs3D;
-                                    string johnsonSS = AssetDatabase.GetAssetPath(oldVentSS.GetClipToStop);
-                                    string guidSS = AssetDatabase.AssetPathToGUID(johnsonSS);
-                                    newVentSS.SetSFXToStop = new AssetReference(guidSS);
-                                    s.ScreenActions[j] = newVentSS;
-                                    replaced++;
-                                    break;
+                                s.ScreenActions[j] = replacer.Replacement();
+                                replaced++;
                             }
                         }
                     }
@@ -241,7 +147,7 @@ namespace RenCSharp.Sequences
                 }
             }
 
-            if(GUILayout.Button("Open in Sequence Editor"))
+            if (GUILayout.Button("Open in Sequence Editor"))
             {
                 Sequence_EditorWindow.OpenWindow(_target);
                 Sequence_EditorWindow.SetTarget = _target;
@@ -262,93 +168,5 @@ namespace RenCSharp.Sequences
             }
         }
     }
-
-    
-
-    ///old garbage window that tries to segment the Screen array to save on redraws. Doesn't friggin' work. I'm blaming
-    ///serialization???
-    //{
-    //private Vector2 scrollPos;
-    //[Min(0), Tooltip("The screen that will receive the new screen action.")]private int screenIndex = 0;
-    //Sequence manToEdit = null;
-
-    // [MenuItem("Window/Sequence Editor")]
-    // public static void ShowWindow()
-    // {
-    //     allSubs = childrenOfSE.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(Screen_Event))).ToArray();
-    //     GetWindow(typeof(Sequence_Editor));
-    // }
-
-    // private void OnEnable()
-    // {
-    //      titleContent = new GUIContent("Sequence Editor");
-    // }
-
-    //  private void OnGUI()
-    //   {
-    //     GUILayout.Label("Sequence Data");
-    //      manToEdit = (Sequence) EditorGUILayout.ObjectField("Sequence", manToEdit, typeof(Sequence), false);
-    //      screenIndex = EditorGUILayout.IntField("Screen Index", screenIndex);
-    //      scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
-    //freak the hell out
-    //      if (allSubs == null) 
-    //     GUILayout.Label("Screen Actions");
-    //     foreach (Type stupid in allSubs)
-    //     {
-    //        Screen_Event sumba = Activator.CreateInstance(stupid) as Screen_Event;
-    //        if (EditorGUILayout.LinkButton(sumba.ToString()))
-    //         {
-    //            if(screenIndex < manToEdit.Screens.Length)
-    //             {
-    //                 manToEdit.Screens[screenIndex].ScreenActions.Add(sumba);
-    //               }
-    //           else
-    //            {
-    //               Debug.LogWarning("Screen Index too large, you dingus!");
-    //          }
-    //       }
-    //   }
-    //       EditorGUILayout.EndScrollView();
-    //  }
-
-    ///old method below where buttons were spawned directly in Sequence inspectorGUI, rather than in their own window
-
-    /*
-    //reasonable stuff here
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-
-        Sequence selected = target as Sequence;
-        Screen[] myTarget = selected.Screens;
-        GUILayout.Label("Screen Index");
-        screenIndex = GUILayout.TextField(screenIndex, 3); //set the index of the screen you want to add actions to
-        GUILayout.Label("Possible Screen Actions");
-        foreach (Type stupid in allSubs) //nested AF! HORRID!
-        {
-            Screen_Event sumba = Activator.CreateInstance(stupid) as Screen_Event; //get a class instance out of the type chicanery
-
-            if (GUILayout.Button(sumba.ToString())) //create a button for each type that'll add that class to the screen actions[]
-            {
-                if (int.TryParse(screenIndex, out int result) && result >= 0)
-                {
-                    if (result < myTarget.Length)
-                    {
-                        myTarget[result].ScreenActions.Add(sumba);
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Screen Index too big! Out of bounds!");
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning("Bad screen index assigned! (0 through 999 please)");
-                }
-            }
-        }
-    }*/
-    //}
-
 }
 #endif

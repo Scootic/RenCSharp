@@ -1,5 +1,6 @@
+#if UNITY_EDITOR
 using UnityEngine;
-
+using UnityEditor;
 namespace RenCSharp
 {
     /// <summary>
@@ -17,6 +18,11 @@ namespace RenCSharp
         {
             AnimationCurve toReturn = new AnimationCurve();
             toReturn.CopyFrom(new AnimationCurve(EaseOut1(), EaseOut2()));
+            for(int i = 0; i < toReturn.keys.Length ; i++)
+            {
+                AnimationUtility.SetKeyLeftTangentMode(toReturn, i, AnimationUtility.TangentMode.Free);
+                AnimationUtility.SetKeyRightTangentMode(toReturn, i, AnimationUtility.TangentMode.Free);
+            }
             return toReturn;
         }
         /// <summary>
@@ -27,6 +33,11 @@ namespace RenCSharp
         {
             AnimationCurve toReturn = new AnimationCurve();
             toReturn.CopyFrom(new AnimationCurve(EarlyPeak1(), EarlyPeak2()));
+            for (int i = 0; i < toReturn.keys.Length; i++)
+            {
+                AnimationUtility.SetKeyLeftTangentMode(toReturn, i, AnimationUtility.TangentMode.Free);
+                AnimationUtility.SetKeyRightTangentMode(toReturn, i, AnimationUtility.TangentMode.Free);
+            }
             return toReturn;
         }
         /// <summary>
@@ -37,6 +48,11 @@ namespace RenCSharp
         {
             AnimationCurve toReturn = new AnimationCurve();
             toReturn.CopyFrom(new AnimationCurve(JostleKeyframes));
+            for (int i = 0; i < toReturn.keys.Length; i++)
+            {
+                AnimationUtility.SetKeyLeftTangentMode(toReturn, i, AnimationUtility.TangentMode.Free);
+                AnimationUtility.SetKeyRightTangentMode(toReturn, i, AnimationUtility.TangentMode.Free);
+            }
             return toReturn;
         }
 
@@ -46,35 +62,27 @@ namespace RenCSharp
         #region EaseOut
         private static Keyframe EaseOut1()
         {
-            Keyframe toReturn = new Keyframe(0, 0, 2, 2, 0, 0);
-
-            toReturn.tangentMode = 0;
+            Keyframe toReturn = new(0, 0, 2, 2, 0, 0);
             toReturn.weightedMode = WeightedMode.None;
-
             return toReturn;
         }
         private static Keyframe EaseOut2()
         {
-            Keyframe toReturn = new Keyframe(1, 1, 0, 0, 0, 0);
-
-            toReturn.tangentMode = 0;
+            Keyframe toReturn = new(1, 1, 0, 0, 0, 0);
             toReturn.weightedMode = WeightedMode.None;
-
             return toReturn;
         }
         #endregion
         #region EarlyPeakToZero
         private static Keyframe EarlyPeak1()
         {
-            Keyframe toReturn = new Keyframe(0, 0, 5.77f, 5.77f, 0, 0.02f);
-            toReturn.tangentMode = 0;
+            Keyframe toReturn = new(0, 0, 5.77f, 5.77f, 0, 0.02f);
             toReturn.weightedMode = WeightedMode.None;
             return toReturn;
         }
         private static Keyframe EarlyPeak2() 
         {
-            Keyframe toReturn = new Keyframe(1, 0, -1.35f, -1.35f, 0, 0.02f);
-            toReturn.tangentMode = 0;
+            Keyframe toReturn = new(1, 0, -1.35f, -1.35f, 0, 0.02f);
             toReturn.weightedMode = WeightedMode.None;
             return toReturn;
         }
@@ -82,64 +90,55 @@ namespace RenCSharp
         #region Jostle
         private static Keyframe Jostle1()
         {
-            Keyframe toReturn = new Keyframe(0, 0, 0, 0, 0, 0);
-            toReturn.tangentMode = 0;
+            Keyframe toReturn = new(0, 0, 0, 0, 0, 0);
             toReturn.weightedMode = WeightedMode.None;
             return toReturn;
         }
         private static Keyframe Jostle2() 
         {
-            Keyframe toReturn = new Keyframe(0.05f, 1, 0.05f, 0.05f, 1, 0.33f);
-            toReturn.tangentMode = 0;
+            Keyframe toReturn = new(0.05f, 1, 0.05f, 0.05f, 1, 0.33f);
             toReturn.weightedMode = WeightedMode.None;
             return toReturn;
         }
         private static Keyframe Jostle3()
         {
-            Keyframe toReturn = new Keyframe(0.15f, -1, -0.01f, -0.01f, 0.33f, 1);
-            toReturn.tangentMode = 0;
+            Keyframe toReturn = new(0.15f, -1, -0.01f, -0.01f, 0.33f, 1);
             toReturn.weightedMode = WeightedMode.None;
             return toReturn;
         }
         private static Keyframe Jostle4()
         {
-            Keyframe toReturn = new Keyframe(0.3f, 1, -0.003f, -0.003f, 0.8f, 0.5f);
-            toReturn.tangentMode = 0;
+            Keyframe toReturn = new(0.3f, 1, -0.003f, -0.003f, 0.8f, 0.5f);
             toReturn.weightedMode = WeightedMode.None; 
             return toReturn;
         }
         private static Keyframe Jostle5() 
         {
-            Keyframe toReturn = new Keyframe(0.4f, -1, 0.03f, 0.03f, 0.33f, 0.45f);
-            toReturn.tangentMode = 0;
+            Keyframe toReturn = new(0.4f, -1, 0.03f, 0.03f, 0.33f, 0.45f);
             toReturn.weightedMode = WeightedMode.None;
             return toReturn;
         }
         private static Keyframe Jostle6() 
         {
-            Keyframe toReturn = new Keyframe(0.5f, 0.62f, 0.01f, 0.01f, 1, 0.33f);
-            toReturn.tangentMode = 0;
+            Keyframe toReturn = new(0.5f, 0.62f, 0.01f, 0.01f, 1, 0.33f);
             toReturn.weightedMode = WeightedMode.None;
             return toReturn;
         }
         private static Keyframe Jostle7() 
         {
-            Keyframe toReturn = new Keyframe(0.7f, -0.5f, -0.04f, -0.04f, 1, 0.33f);
-            toReturn.tangentMode = 0;
+            Keyframe toReturn = new(0.7f, -0.5f, -0.04f, -0.04f, 1, 0.33f);
             toReturn.weightedMode = WeightedMode.None;
             return toReturn;
         }
         private static Keyframe Jostle8() 
         {
-            Keyframe toReturn = new Keyframe(0.85f, 0.2f, -0.1f, -0.1f, 1, 0.33f);
-            toReturn.tangentMode = 0;
+            Keyframe toReturn = new(0.85f, 0.2f, -0.1f, -0.1f, 1, 0.33f);
             toReturn.weightedMode = WeightedMode.None;
             return toReturn;
         }
         private static Keyframe Jostle9()
         {
-            Keyframe toReturn = new Keyframe(1, 0, -0.03f, -0.03f, 1, 0);
-            toReturn.tangentMode = 0;
+            Keyframe toReturn = new(1, 0, -0.03f, -0.03f, 1, 0);
             toReturn.weightedMode = WeightedMode.None;
             return toReturn;
         }
@@ -150,3 +149,4 @@ namespace RenCSharp
         #endregion
     }
 }
+#endif

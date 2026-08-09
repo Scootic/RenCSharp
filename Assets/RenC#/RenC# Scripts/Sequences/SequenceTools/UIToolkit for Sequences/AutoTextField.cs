@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using UnityEngine;
+using RenCSharp.EXPERIMENTAL;
+using System.Linq;
 namespace RenCSharp.Sequences
 {
     [UxmlElement]
     public partial class AutoTextField : BaseField<string>
     {
         private static List<string> cacheList;
-        private readonly VisualElement ContentElement;
+        private readonly VisualElement ContentElement, DropdownFieldBG;
         private readonly TextField inputField;
         public TextField GetInputField { get { return inputField; } }
         private readonly DropdownField dropdownField;
@@ -17,6 +19,7 @@ namespace RenCSharp.Sequences
 
         private const string inputFieldClassName = "autotextfield__input-text";
         private const string dropdownFieldClassName = "autotextfield__input-dropdown";
+        private const int cacheListMax = 10;
 
         public AutoTextField() : this(null) { }
 
@@ -36,10 +39,11 @@ namespace RenCSharp.Sequences
             dropdownField.AddToClassList(dropdownFieldClassName);
             dropdownField.RegisterCallback<ChangeEvent<string>>(evt =>
             {
-                dropdownField.value = evt.newValue;
-                inputField.value = evt.newValue;
-                value = evt.newValue;
+                OnKeyInput(evt.newValue);
             });
+
+            DropdownFieldBG = dropdownField.Q<VisualElement>().Children().First();
+
             ContentElement.Add(dropdownField);
             dropdownField.style.minWidth = 100f;
         }
@@ -63,10 +67,11 @@ namespace RenCSharp.Sequences
             dropdownField.AddToClassList(dropdownFieldClassName);
             dropdownField.RegisterCallback<ChangeEvent<string>>(evt => 
             {
-                dropdownField.value = evt.newValue;
-                inputField.value = evt.newValue;
-                value = evt.newValue;
+                OnKeyInput(evt.newValue);
             });
+
+            DropdownFieldBG = dropdownField.Q<VisualElement>().Children().First();
+
             ContentElement.Add(dropdownField);
             dropdownField.style.minWidth = 100f;
         }
@@ -76,10 +81,10 @@ namespace RenCSharp.Sequences
             inputField.value = newVal;
             dropdownField.value = newVal;
             value = newVal;
-            if (validAutoText == null) { Debug.LogWarning($"{this.name} AutoTextField doesn't have a valid auto text list."); return; }
+            if (validAutoText == null) { Debug.LogWarning($"{name} AutoTextField doesn't have a valid auto text list."); return; }
 
             List<string> copyOfSource = new(new HashSet<string>(validAutoText));
-            cacheList = new List<string>(); //max shown is 7?
+            cacheList = new List<string>();
             dropdownField.choices = cacheList;
             int validAutoTextLength = copyOfSource.Count;
 
@@ -87,7 +92,7 @@ namespace RenCSharp.Sequences
             {
                 for (int i = 0; i < validAutoTextLength && i < copyOfSource.Count; i++)
                 {
-                    if (cacheList.Count >= 7) break;
+                    if (cacheList.Count >= cacheListMax) break;
                     if (copyOfSource[i].ToLower().Contains(newVal.ToLower())) //if it includes
                     {
                         cacheList.Add(copyOfSource[i]);
@@ -97,12 +102,12 @@ namespace RenCSharp.Sequences
                     }
                 }
 
-                if (cacheList.Count < 7 && cacheList.Count < validAutoText.Count) //if the includes list doesn't fill up the max amount
+                if (cacheList.Count < cacheListMax && cacheList.Count < validAutoText.Count) //if the includes list doesn't fill up the max amount
                 {
                     string keywords = inputField.value.ToLower();
-                    for (int i = 0; i < validAutoTextLength && i < cacheList.Count; i++)
+                    for (int i = 0; i < validAutoTextLength && i < cacheList.Count; i++) //run through levenshtein distance
                     {
-                        if (cacheList.Count >= 7) break;
+                        if (cacheList.Count >= cacheListMax) break;
                         int distance = StringExtend.LevenshteinDistance(copyOfSource[i], keywords, false);
                         bool closeEnough = (copyOfSource.Count * 0.5f) > distance;
                         if (closeEnough)
@@ -116,7 +121,7 @@ namespace RenCSharp.Sequences
 
                     for (int i = 0; i < validAutoTextLength && i < copyOfSource.Count; i++)
                     {
-                        if (cacheList.Count >= 7) break;
+                        if (cacheList.Count >= cacheListMax) break;
                         if (copyOfSource[i].ToLower().StartsWith(newVal.ToLower()[0])) //if it starts with the same letter
                         {
                             cacheList.Add(copyOfSource[i]);
@@ -129,9 +134,14 @@ namespace RenCSharp.Sequences
             }
 
             bool prevVis = dropdownField.visible;
+            bool valueInList = cacheList.Contains(inputField.value);
+
             dropdownField.visible = cacheList.Count > 0 && newVal != "";
             dropdownField.enabledSelf = dropdownField.visible;
-            if(prevVis != dropdownField.visible) ContentElement.MarkDirtyRepaint(); //repaint if the visibility changed.
+
+            DropdownFieldBG.style.backgroundColor = valueInList ? CoolColors.selectedForestColor : CoolColors.grayGUI;
+
+            if (prevVis != dropdownField.visible || valueInList) ContentElement.MarkDirtyRepaint(); //repaint if the visibility changed.
             //cacheList.Reverse(); Reverse based on the position of the expanded menu to the button?
             dropdownField.choices = cacheList;
         }

@@ -1,12 +1,14 @@
 using System;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 namespace RenCSharp.Sequences
 {
     /// <summary>
     /// Plays a new music track and fades out the old one.
     /// </summary>
     [Obsolete("Outdated, should use PlayBGMAsset instead to communicate with Save/Load.", false)]
-    public class Play_BGM : Screen_Event
+    public class Play_BGM : Screen_Event, IDeprecatedReplaceable<Screen_Event>
     {
         [SerializeField] private AudioClip musicTrack;
         [SerializeField,Min(0), Tooltip("0 for no fade out.")] private float fadeTime = 1f;
@@ -19,6 +21,20 @@ namespace RenCSharp.Sequences
         public override string ToString()
         {
             return "Deprecated/Play Music Track";
+        }
+
+        public Screen_Event Replacement()
+        {
+            Play_BGMAsset newVent = new();
+
+            newVent.SetFadeTime = fadeTime;
+            newVent.SetToSameTime = setToSameTime;
+
+            string johnson = AssetDatabase.GetAssetPath(musicTrack);
+            string guid = AssetDatabase.AssetPathToGUID(johnson);
+            newVent.SetSongAsset = new AssetReference(guid);
+
+            return newVent;
         }
 
         public float FadeTime => fadeTime;

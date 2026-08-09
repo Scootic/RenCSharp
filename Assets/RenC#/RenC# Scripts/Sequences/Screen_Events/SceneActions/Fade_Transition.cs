@@ -1,6 +1,9 @@
 
 using System;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -9,7 +12,7 @@ namespace RenCSharp.Sequences
     /// the end of a fade.
     /// </summary>
     [Obsolete("Deprecated, please use Fade_TransitionAsset instead.", false)]
-    public class Fade_Transition : Screen_Event
+    public class Fade_Transition : Screen_Event, IDeprecatedReplaceable<Screen_Event>
     {
         [SerializeField] private Sprite[] newBG;
         [SerializeField] private float secondsPerFrame = 0.1f;
@@ -57,6 +60,28 @@ namespace RenCSharp.Sequences
         {
             Textbox_String.PauseTextbox(false);
             Script_Manager.SM.UnpauseSequence();
+        }
+
+        public Screen_Event Replacement()
+        {
+            Fade_TransitionAsset newVentFT = new Fade_TransitionAsset();
+
+            newVentFT.SetFadeTransition = fadeTransition;
+            newVentFT.SetFadeDuration = fadeDuration;
+            newVentFT.SetSecondsPerFrame = secondsPerFrame;
+
+            Sprite[] dingus = newBG;
+            List<AssetReferenceSprite> leRefsFT = new();
+            foreach (Sprite spr in dingus)
+            {
+                string johnsonFT = AssetDatabase.GetAssetPath(spr);
+                string guidFT = AssetDatabase.AssetPathToGUID(johnsonFT);
+                AssetReferenceSprite stupid = new AssetReferenceSprite(guidFT);
+                stupid.SubObjectName = spr.name;
+                leRefsFT.Add(stupid);
+            }
+            newVentFT.SetNewBG = leRefsFT;
+            return newVentFT;
         }
 
         public override string ToString()

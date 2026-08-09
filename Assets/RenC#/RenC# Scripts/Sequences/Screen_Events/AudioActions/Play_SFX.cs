@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace RenCSharp.Sequences
 {
@@ -8,7 +10,7 @@ namespace RenCSharp.Sequences
     /// Play a sound effect. Kinda obvious.
     /// </summary>
     [Obsolete("Outdated, should use Play_SFXAsset instead to communicate with Save/Load.", false)]
-    public class Play_SFX : Screen_Event
+    public class Play_SFX : Screen_Event, IDeprecatedReplaceable<Screen_Event>
     {
         [SerializeField] private AudioClip sfxToPlay;
         [SerializeField, Tooltip("Leave as Vec3.zero to be a 2D sfx")] protected Vector3 position = Vector3.zero;
@@ -60,6 +62,24 @@ namespace RenCSharp.Sequences
             if(stopLoopRoutine != null) Script_Manager.SM.StopCoroutine(stopLoopRoutine);
             if (is3D) Audio_Manager.AM.Stop3DSFX(sfxToPlay);
             else Audio_Manager.AM.Stop2DSFX(sfxToPlay);
+        }
+
+        public Screen_Event Replacement()
+        {
+            Play_SFXAsset newVentPS = new Play_SFXAsset();
+
+            newVentPS.SetBaseVolume = baseVolume;
+            newVentPS.SetLoop = loop;
+            newVentPS.SetStopOnScreenProgress = stopOnScreenProgress;
+            newVentPS.SetPosition = position;
+            newVentPS.SetLoopDuration = loopDuration;
+
+            string johnsonPS = AssetDatabase.GetAssetPath(sfxToPlay);
+            string guidPS = AssetDatabase.AssetPathToGUID(johnsonPS);
+            AssetReference stinky = new AssetReference(guidPS);
+            newVentPS.SetAssetReference = stinky;
+
+            return newVentPS;
         }
 
         public override string ToString()

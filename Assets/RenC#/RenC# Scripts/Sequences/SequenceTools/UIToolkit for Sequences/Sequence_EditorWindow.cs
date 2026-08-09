@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 namespace RenCSharp.Sequences
@@ -285,103 +284,12 @@ namespace RenCSharp.Sequences
                     for (int j = 0; j < s.ScreenActions.Count; j++)
                     {
                         Screen_Event vent = s.ScreenActions[j];
-                        switch (vent.ToString())
+                        //type agnosticism?!?!?!?!?
+                        IDeprecatedReplaceable<Screen_Event> replacer = vent as IDeprecatedReplaceable<Screen_Event>;
+                        if (replacer != null)
                         {
-                            case "Deprecated/Play Music Track":
-                                Debug.Log("Replacing BGM Play...");
-                                Play_BGM bgmVent = vent as Play_BGM;
-                                Play_BGMAsset newVent = new Play_BGMAsset();
-
-                                newVent.SetFadeTime = bgmVent.FadeTime;
-                                newVent.SetToSameTime = bgmVent.SetToSameTime;
-                                s.ScreenActions[j] = newVent;
-                                string johnson = AssetDatabase.GetAssetPath(bgmVent.Song);
-                                string guid = AssetDatabase.AssetPathToGUID(johnson);
-                                newVent.SetSongAsset = new AssetReference(guid);
-                                replaced++;
-                                break;
-                            case "Deprecated/Set Overlay Image":
-                                Debug.Log("Replacing Set Overlay...");
-                                Set_Overlay oldVentSO = vent as Set_Overlay;
-                                Set_OverlayAsset newVentSO = new Set_OverlayAsset();
-
-                                newVentSO.SetOverlayText = oldVentSO.GetOverlayText;
-                                newVentSO.SetSecondsPerFrame = oldVentSO.GetSecondsPerFrame;
-                                newVentSO.SetEndWithScreen = oldVentSO.GetEndWithScreen;
-                                newVentSO.SetFadeTime = oldVentSO.GetFadeTime;
-
-                                List<Sprite> sprungles = oldVentSO.GetImagesToSet;
-                                List<AssetReferenceSprite> leRefs = new();
-                                foreach (Sprite spr in sprungles) //get shiz set up!
-                                {
-                                    string johnsonSO = AssetDatabase.GetAssetPath(spr);
-                                    Debug.Log("Asset Path for sprite? " + johnsonSO);
-                                    string guidSO = AssetDatabase.AssetPathToGUID(johnsonSO);
-                                    AssetReferenceSprite stupid = new AssetReferenceSprite(guidSO);
-                                    stupid.SubObjectName = spr.name; //?
-                                    leRefs.Add(stupid);
-
-                                }
-                                newVentSO.SetImagesToSet = leRefs;
-                                s.ScreenActions[j] = newVentSO;
-                                replaced++;
-                                break;
-
-                            case "Deprecated/Fade Transition":
-                                Debug.Log("Replacing Fade Transition...");
-                                Fade_Transition oldVentFT = vent as Fade_Transition;
-                                Fade_TransitionAsset newVentFT = new Fade_TransitionAsset();
-
-                                newVentFT.SetFadeTransition = oldVentFT.GetFadeTransition;
-                                newVentFT.SetFadeDuration = oldVentFT.GetFadeDuration;
-                                newVentFT.SetSecondsPerFrame = oldVentFT.GetSecondsPerFrame;
-
-                                Sprite[] dingus = oldVentFT.GetNewBG;
-                                List<AssetReferenceSprite> leRefsFT = new();
-                                foreach (Sprite spr in dingus)
-                                {
-                                    string johnsonFT = AssetDatabase.GetAssetPath(spr);
-                                    string guidFT = AssetDatabase.AssetPathToGUID(johnsonFT);
-                                    AssetReferenceSprite stupid = new AssetReferenceSprite(guidFT);
-                                    stupid.SubObjectName = spr.name;
-                                    leRefsFT.Add(stupid);
-                                }
-                                newVentFT.SetNewBG = leRefsFT;
-                                s.ScreenActions[j] = newVentFT;
-                                replaced++;
-                                break;
-
-                            case "Deprecated/Play Sound Effect":
-                                Debug.Log("Replacing Play Sound Effect...");
-                                Play_SFX oldVentPS = vent as Play_SFX;
-                                Play_SFXAsset newVentPS = new Play_SFXAsset();
-
-                                newVentPS.SetBaseVolume = oldVentPS.GetBaseVolume;
-                                newVentPS.SetLoop = oldVentPS.GetLoop;
-                                newVentPS.SetStopOnScreenProgress = oldVentPS.GetStopOnScreenProgress;
-                                newVentPS.SetPosition = oldVentPS.GetPosition;
-                                newVentPS.SetLoopDuration = oldVentPS.GetLoopDuration;
-
-                                string johnsonPS = AssetDatabase.GetAssetPath(oldVentPS.GetSFXToPlay);
-                                string guidPS = AssetDatabase.AssetPathToGUID(johnsonPS);
-                                AssetReference stinky = new AssetReference(guidPS);
-                                newVentPS.SetAssetReference = stinky;
-                                s.ScreenActions[j] = newVentPS;
-                                replaced++;
-                                break;
-
-                            case "Deprecated/Stop Looping Sound Effect":
-                                Debug.Log("Replacing Stop Sound Effect...");
-                                Stop_SFX oldVentSS = vent as Stop_SFX;
-                                Stop_SFXAsset newVentSS = new Stop_SFXAsset();
-
-                                newVentSS.SetIs3D = oldVentSS.GetIs3D;
-                                string johnsonSS = AssetDatabase.GetAssetPath(oldVentSS.GetClipToStop);
-                                string guidSS = AssetDatabase.AssetPathToGUID(johnsonSS);
-                                newVentSS.SetSFXToStop = new AssetReference(guidSS);
-                                s.ScreenActions[j] = newVentSS;
-                                replaced++;
-                                break;
+                            s.ScreenActions[j] = replacer.Replacement();
+                            replaced++;
                         }
                     }
                     Debug.Log("Replaced " + replaced + " deprecated screen events.");

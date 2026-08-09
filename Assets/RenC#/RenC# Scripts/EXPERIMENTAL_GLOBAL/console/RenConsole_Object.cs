@@ -62,9 +62,9 @@ namespace RenCSharp.EXPERIMENTAL
             //play anim?
             if (open)
             {
-                consoleInput.RemoveFromClassList("renCSharp-console-input:initial");
+                consoleInput.RemoveFromClassList("renCSharp-console-input:enabled");
                 consoleInput.AddToClassList("renCSharp-console-input");
-                consoleLogs.RemoveFromClassList("renCSharp-console-logs:initial");
+                consoleLogs.RemoveFromClassList("renCSharp-console-logs:enabled");
                 consoleLogs.AddToClassList("renCSharp-console-logs");
                 consoleInput.UnregisterValueChangedCallback(ReceiveCommand);
                 consoleInput.Blur();
@@ -73,9 +73,9 @@ namespace RenCSharp.EXPERIMENTAL
             else
             {
                 consoleInput.RemoveFromClassList("renCSharp-console-input");
-                consoleInput.AddToClassList("renCSharp-console-input:initial");
+                consoleInput.AddToClassList("renCSharp-console-input:enabled");
                 consoleLogs.RemoveFromClassList("renCSharp-console-logs");
-                consoleLogs.RemoveFromClassList("renCSharp-console-logs:initial");
+                consoleLogs.RemoveFromClassList("renCSharp-console-logs:enabled");
                 UpdateLogsView();
                 consoleInput.RegisterValueChangedCallback(ReceiveCommand);
                 consoleInput.focusable = true;
