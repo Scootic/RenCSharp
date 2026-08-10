@@ -30,7 +30,7 @@ namespace RenCSharp
         protected static T clipboardValue;
         protected static bool debugClipboard = true;
 
-        [SerializeReference] protected SerializedProperty m_SE; //only used by IMGUI chicanery
+        protected SerializedProperty m_SE; //only used by IMGUI chicanery
 
         protected static GenericMenu ClipboardMenu;
         #region UIToolkit
@@ -70,7 +70,7 @@ namespace RenCSharp
             clipboardButton.text = "...";
             clipboardButton.RegisterCallback<PointerDownEvent>(evt =>
             {
-                UpdateClipboardMenu();
+                UpdateClipboardMenu(property);
                 ClipboardMenu.ShowAsContext();
             });
             polymorphDropDown.Add(clipboardButton);
@@ -116,6 +116,7 @@ namespace RenCSharp
             });
 
             container.Add(polymorphDropDown);
+            m_SE = mySP; //?
         }
         #endregion
         #region IMGUI
@@ -149,7 +150,7 @@ namespace RenCSharp
                     T instance = Activator.CreateInstance(childType) as T;
                     menu.AddItem(new GUIContent(instance.ToString()),
                         !(property.managedReferenceValue == null) ? property.managedReferenceValue.ToString() == instance.ToString() : false,
-                        SetChildType, instance);
+                        delegate { SetChildType(instance, property); });
                 }
 
                 menu.DropDown(pos);
@@ -159,16 +160,16 @@ namespace RenCSharp
 
             if(GUI.Button(clipboardRectButton, "..."))
             {
-                UpdateClipboardMenu();
+                UpdateClipboardMenu(property);
                 ClipboardMenu.ShowAsContext();
             }
         }
         #endregion
-        protected virtual void SetChildType(object obj)
+        protected virtual void SetChildType(object obj, SerializedProperty sp)
         {
             T selectedType = obj as T;
-            m_SE.managedReferenceValue = selectedType;
-            m_SE.serializedObject.ApplyModifiedProperties();
+            sp.managedReferenceValue = selectedType;
+            sp.serializedObject.ApplyModifiedProperties();
         }
 
         protected virtual void CopyToClipboard(T value)
@@ -186,7 +187,7 @@ namespace RenCSharp
                         stinkyType = t;break;
                     }
                 }
-                Debug.Log("Copying to clipboard!");
+                Debug.Log($"Copying to clipboard! {clipboardValue}");
                 foreach(FieldInfo info in stinkyType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
                 {
                     Debug.Log($"info:{info.Name}, clipboardValue:{info.GetValue(clipboardValue)}");
@@ -194,7 +195,7 @@ namespace RenCSharp
             }
         }
 
-        protected virtual void PasteFromClipboard()
+        protected virtual void PasteFromClipboard(SerializedProperty sp)
         {
             Type tType = null; //absolutely gonna get replaced by the foreach loop. i hope...
             object stinker;
@@ -218,20 +219,21 @@ namespace RenCSharp
                 info.SetValue(temp, info.GetValue(clipboardValue));
             }
 
-            m_SE.boxedValue = temp; //????????????????????
-            m_SE.serializedObject.ApplyModifiedProperties();
+            sp.managedReferenceValue = temp; //????????????????????
+            sp.serializedObject.ApplyModifiedProperties();
         }
 
-        protected virtual void UpdateClipboardMenu()
+        protected virtual void UpdateClipboardMenu(SerializedProperty sp)
         {
             debugClipboard = EditorPrefs.GetBool("PolymorphDebugClipboard", true);
             ClipboardMenu = new();
             try
             {
-                string copyString = Regex.Replace(m_SE.managedReferenceValue.ToString(), "/", "-");
+                string copyString = Regex.Replace(sp.managedReferenceValue.ToString(), "/", "-");
                 ClipboardMenu.AddItem(new GUIContent($"Copy: {copyString}"), false, delegate
                 {
-                    CopyToClipboard(m_SE.managedReferenceValue as T);
+                    T instance = sp.managedReferenceValue as T;
+                    CopyToClipboard(instance);
                 });
             }
             catch
@@ -251,7 +253,7 @@ namespace RenCSharp
                 string s = Regex.Replace(clipboardValue.ToString(), "/", "-");
                 ClipboardMenu.AddItem(new GUIContent($"Paste: {s}"), false, delegate
                 {
-                    PasteFromClipboard();
+                    PasteFromClipboard(sp);
                 });
             }
             ClipboardMenu.AddSeparator("");
