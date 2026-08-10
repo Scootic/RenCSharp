@@ -5,14 +5,14 @@ namespace RenCSharp.Sequences
 {
     public class Play_BGMAsset : Screen_Event, INullAssetReferenceCheck
     {
-        [SerializeField] private AssetReference songAsset;
-        [SerializeField, Min(0), Tooltip("0 for no fade out.")] private float fadeTime = 1f;
-        [SerializeField, Tooltip("Sets the new audio track to start at the current one's current duration.")] private bool setToSameTime = false;
+        [SerializeField] protected AssetReference songAsset;
+        [SerializeField, Min(0), Tooltip("0 for no fade out.")] protected float fadeTime = 1f;
+        [SerializeField, Tooltip("Sets the new audio track to start at the current one's current duration.")] protected bool setToSameTime = false;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override void DoEvent()
         {
             Debug.Log("Asset Playing Audio!");
-            Audio_Manager.AM.PlayBGM(songAsset, fadeTime, true, setToSameTime);
+            _ = Audio_Manager.AM.PlayBGM(songAsset, fadeTime, true, setToSameTime);
         }
 
         public override string ToString()

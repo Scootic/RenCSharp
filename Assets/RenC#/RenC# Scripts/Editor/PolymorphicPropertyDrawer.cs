@@ -7,6 +7,7 @@ using System.Reflection;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 namespace RenCSharp
 {
     ///Author: Scootic Rowlann
@@ -26,7 +27,12 @@ namespace RenCSharp
         protected static Type[] allTChildren;
         protected static List<string> typeToStrings;
         protected abstract string DropDownMenuName();
+        protected static T clipboardValue;
+        protected static bool debugClipboard = true;
+
         [SerializeReference] protected SerializedProperty m_SE; //only used by IMGUI chicanery
+
+        protected static GenericMenu ClipboardMenu;
         #region UIToolkit
         //below only used by UIToolkit chicanery
         /// <summary>
@@ -34,6 +40,7 @@ namespace RenCSharp
         /// </summary>
         protected VisualElement container;
         protected DropdownField polymorphDropDown;
+        protected Button clipboardButton;
         /// <summary>
         /// same visual element as container?!?!?!?!?!? WHAT?!?!?
         /// </summary>
@@ -56,6 +63,17 @@ namespace RenCSharp
             {
                 Debug.Log("clicked on the polymorph property field... field.");
             });
+
+            clipboardButton = new Button();
+            clipboardButton.style.height = 25;
+            clipboardButton.style.width = 25;
+            clipboardButton.text = "...";
+            clipboardButton.RegisterCallback<PointerDownEvent>(evt =>
+            {
+                UpdateClipboardMenu();
+                ClipboardMenu.ShowAsContext();
+            });
+            polymorphDropDown.Add(clipboardButton);
 
             container.Add(polymorphPropertyField);
 
@@ -86,6 +104,7 @@ namespace RenCSharp
             container.AddToClassList("unity-base-field__aligned");
 
             polymorphDropDown = new DropdownField(typeToStrings, indexOfcur);
+            polymorphDropDown.style.flexDirection = FlexDirection.Row;
 
             polymorphDropDown.RegisterValueChangedCallback(evt =>
             {
@@ -110,7 +129,7 @@ namespace RenCSharp
         {
             EditorGUI.BeginProperty(position, label, property);
             m_SE = property;
-            Rect dDownRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+            Rect dDownRect = new Rect(position.x, position.y, position.width - 25, EditorGUIUtility.singleLineHeight);
             DropDownMenu(dDownRect, property);
             Rect newPos = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, position.height);
             EditorGUI.PropertyField(newPos, property, new GUIContent(property.type), true);
@@ -135,6 +154,14 @@ namespace RenCSharp
 
                 menu.DropDown(pos);
             }
+
+            Rect clipboardRectButton = new Rect(pos.x + pos.width, pos.y, 25, EditorGUIUtility.singleLineHeight);
+
+            if(GUI.Button(clipboardRectButton, "..."))
+            {
+                UpdateClipboardMenu();
+                ClipboardMenu.ShowAsContext();
+            }
         }
         #endregion
         protected virtual void SetChildType(object obj)
@@ -142,6 +169,97 @@ namespace RenCSharp
             T selectedType = obj as T;
             m_SE.managedReferenceValue = selectedType;
             m_SE.serializedObject.ApplyModifiedProperties();
+        }
+
+        protected virtual void CopyToClipboard(T value)
+        {
+            clipboardValue = value;
+            if (debugClipboard)
+            {
+                allTChildren = typeAssembly.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(T))).ToArray();
+                Type stinkyType = null;
+                foreach(Type t in allTChildren)
+                {
+                    object activated = Activator.CreateInstance(t);
+                    if(activated.ToString() == clipboardValue.ToString())
+                    {
+                        stinkyType = t;break;
+                    }
+                }
+                Debug.Log("Copying to clipboard!");
+                foreach(FieldInfo info in stinkyType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+                {
+                    Debug.Log($"info:{info.Name}, clipboardValue:{info.GetValue(clipboardValue)}");
+                }
+            }
+        }
+
+        protected virtual void PasteFromClipboard()
+        {
+            Type tType = null; //absolutely gonna get replaced by the foreach loop. i hope...
+            object stinker;
+            allTChildren = typeAssembly.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(T))).ToArray(); //hate this line >:)
+
+            foreach (Type t in allTChildren) //get the REAL type of our clipboard value (even though it's stored as parent class T)
+            {
+                stinker = Activator.CreateInstance(t);
+                if (stinker.ToString() == clipboardValue.ToString())
+                {
+                    tType = t;
+                    break;
+                }
+            }
+
+            object temp = Activator.CreateInstance(tType); //make a temporary object we'll throw all the values from clipboard into
+
+            foreach (FieldInfo info in tType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                if(debugClipboard)Debug.Log($"Setting some shi! info:{info.Name}, clipboardValue:{info.GetValue(clipboardValue)}");
+                info.SetValue(temp, info.GetValue(clipboardValue));
+            }
+
+            m_SE.boxedValue = temp; //????????????????????
+            m_SE.serializedObject.ApplyModifiedProperties();
+        }
+
+        protected virtual void UpdateClipboardMenu()
+        {
+            debugClipboard = EditorPrefs.GetBool("PolymorphDebugClipboard", true);
+            ClipboardMenu = new();
+            try
+            {
+                string copyString = Regex.Replace(m_SE.managedReferenceValue.ToString(), "/", "-");
+                ClipboardMenu.AddItem(new GUIContent($"Copy: {copyString}"), false, delegate
+                {
+                    CopyToClipboard(m_SE.managedReferenceValue as T);
+                });
+            }
+            catch
+            {
+                ClipboardMenu.AddDisabledItem(new GUIContent("Can't copy nothing!"), false);
+            }
+            if (clipboardValue == null)
+            {
+                ClipboardMenu.AddDisabledItem(new GUIContent($"No value in clipboard."), false);
+            }
+            else if (clipboardValue as T == null)
+            {
+                ClipboardMenu.AddDisabledItem(new GUIContent($"Clipboard has incorrect type attached?!?"), false);
+            }
+            else
+            {
+                string s = Regex.Replace(clipboardValue.ToString(), "/", "-");
+                ClipboardMenu.AddItem(new GUIContent($"Paste: {s}"), false, delegate
+                {
+                    PasteFromClipboard();
+                });
+            }
+            ClipboardMenu.AddSeparator("");
+            ClipboardMenu.AddItem(new GUIContent("Debug Messages"), debugClipboard, delegate
+            {
+                debugClipboard = !debugClipboard;
+                EditorPrefs.SetBool("PolymorphDebugClipboard", debugClipboard);
+            });
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

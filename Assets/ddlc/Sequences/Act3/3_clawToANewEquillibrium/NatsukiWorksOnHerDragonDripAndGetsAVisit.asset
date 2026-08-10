@@ -469,7 +469,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: 'As Yuri enters Jorrvaskr, she pauses at the sight before her:'
     ScreenActions:
-    - rid: 8164893287844151351
+    - rid: 8164893304793595992
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
     dialog: A scene of excessively alcoholic merriment paired with a brawl in the
       corner of the room.
@@ -2125,15 +2125,6 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 3
         fadeDuration: 1
-    - rid: 8164893287844151351
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - inquisitive
-        - EMPTY
     - rid: 8164893287844151352
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2387,3 +2378,14 @@ MonoBehaviour:
         - 
         - yanSmile
         - 
+    - rid: 8164893304793595992
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyUp
+        - inquisitive
+        - EMPTY
