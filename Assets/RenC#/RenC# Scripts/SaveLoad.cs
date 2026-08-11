@@ -174,12 +174,23 @@ namespace RenCSharp
         /// Specifically used to delete certain save data files, not any file at all contrary to the name.
         /// </summary>
         /// <param name="fileName">File name of save you want gone, not filepath!</param>
-        public static void DeleteSaveFile(string fileName, string subFolder = "")
+        /// <param name="subFolder">Subfolder namee :)</param>
+        public static bool DeleteSaveFile(string fileName, string subFolder = "")
         {
             Regex.Replace(subFolder, "[ <>?*]", "_");
-            string filePath = Application.persistentDataPath + "/" + (subFolder != "" ? $"{subFolder}/" : "") + fileName + ".sav";
-            if (!File.Exists(filePath)) { Debug.LogWarning("Trying to delete a save that doesn't exist at: " + filePath); return; }
+            string directoryPath = Application.persistentDataPath + "/" + (subFolder != "" ? subFolder + "/": "");
+            string filePath = directoryPath + ".sav";
+            if (!File.Exists(filePath)) { Debug.LogWarning("Trying to delete a save that doesn't exist at: " + filePath); return false; }
+            Debug.Log($"Deleting file at: {filePath}");
             File.Delete(filePath);
+
+            if(Directory.GetFiles(directoryPath, "*.sav", SearchOption.AllDirectories).Length == 0)
+            {
+                Debug.Log($"No more files at directory: {directoryPath}. Deleting directory.");
+                Directory.Delete(directoryPath, true);
+            }
+
+            return true;
         }
     }
 }

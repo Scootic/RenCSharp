@@ -25,7 +25,7 @@ namespace RenCSharp.Sequences
         {
             if (Script_Manager.SM != null)
             {
-                Script_Manager.SM.LoadShit(SD);
+                Script_Manager.SM.LoadGame(SD);
                 Debug.Log("Should be loading aan scene!");
                 Object_Factory.RemoveObject(gameObject.name);
             }

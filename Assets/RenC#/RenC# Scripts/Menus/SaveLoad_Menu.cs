@@ -94,12 +94,19 @@ namespace RenCSharp.Menus
                 } //just stop ts if we aren't even in the save menu no more
                 SaveData sd = (SaveData)await SaveLoad.TryLoadFromPathAsync(paths[i]);
                 bool auto = paths[i].Contains(autoSavePattern); //potential bug, doesn't care if it starts with autosave pattern, player can just do ts themselves
-                await SpawnLoadButton(sd, i, auto);
+                if (mainMenu)
+                {
+                    try
+                    {
+                        subDirectory = "Saves_" + sd.ReplacingTexts[0];
+                    } catch {subDirectory = ""; } 
+                }
+                await SpawnLoadButton(sd, i, auto, subDirectory);
                 await Awaitable.NextFrameAsync();
             }
         }
 
-        private async Awaitable SpawnLoadButton(SaveData sd, int i, bool auto)
+        private async Awaitable SpawnLoadButton(SaveData sd, int i, bool auto, string subFolder)
         {
             GameObject go = await Object_Factory.SpawnObjectAsync(loadGamePrefab, "Save" + i, (auto && !mainMenu) ? autoSaveLoadGameHolder : loadGameHolder);
             UI_Element loadElement = go.GetComponent<UI_Element>();
@@ -136,8 +143,12 @@ namespace RenCSharp.Menus
                 loadElement.Images[0].sprite = defaultImage;
             }
 
+            if (s.Contains(autoSavePattern) && subFolder != string.Empty)
+            {
+                subFolder += "/AutoSaves";
+            }
             loadElement.Buttons[0].onClick.AddListener(delegate { Load(sd); });
-            loadElement.Buttons[1].onClick.AddListener(delegate { Delete(sd.FileName, i); });
+            loadElement.Buttons[1].onClick.AddListener(delegate { Delete(s,i, subFolder); });
             activeDatas++;
 
             float newSaveHolderSizeY = (loadGameHolder.transform.childCount / expectedPrefabsPerRow) * (loadFabSizeDelta.y * (rt3.sizeDelta.y / 240f));
@@ -160,7 +171,7 @@ namespace RenCSharp.Menus
             //if (!openMenu.IsCompleted) openMenu.Cancel();
             if (Script_Manager.SM != null)
             {
-                Script_Manager.SM.LoadShit(sd);
+                Script_Manager.SM.LoadGame(sd);
                 Menu_Manager.MM.CloseMenus(); //close after a save being loaded is probably the most sensible.
             }
             else
@@ -179,9 +190,9 @@ namespace RenCSharp.Menus
             }
         }
 
-        private void Delete(string saveFileName, int index)
+        private void Delete(string saveFileName, int index, string subFolder = "")
         {
-            SaveLoad.DeleteSaveFile(saveFileName);
+            SaveLoad.DeleteSaveFile(saveFileName, subFolder);
             Object_Factory.RemoveObject("Save" + index);
         }
 

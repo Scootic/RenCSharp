@@ -9,7 +9,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.UI; //:)
+using UnityEngine.UI;
+using UScreen = UnityEngine.Screen;
 namespace RenCSharp
 {
     /// <summary>
@@ -438,134 +439,16 @@ namespace RenCSharp
         {
             if (saving) return; //don't interrupt our save, good god!
 
-            string saveFileName = (string)string_saveFileName;
-            bool auto = (bool)bool_Auto;
+            SaveData manToSave = SaveData((string)string_saveFileName);
 
-            if (saveFileName == null) saveFileName = "SaveData"; //default to prevent extreme BS
-            saving = true;
-
-            SaveData manToSave = new SaveData();
-            ScreenToken st = new ScreenToken();
-
-            manToSave.CurrentScreenIndex = curScreenIndex; //:)
-            manToSave.CurrentFlags = new FlagToken(Flag_Manager.GetSaveDataFlags);
-            manToSave.CurrentHistory = curHist;
-            List<string> replacerKeys = new();
-            List<string> replacerValues = new();
-            foreach (KeyValuePair<string, string> kvp in Textbox_String.GetReplacerTexts)
-            {
-                replacerKeys.Add(kvp.Key);
-                replacerValues.Add(kvp.Value);
-            }
-            manToSave.ReplacedTexts = replacerKeys.ToArray();
-            manToSave.ReplacingTexts = replacerValues.ToArray();
-
-            //grab the cursequence. horrid! USES THE ASSET REFERENcE WE DONE STORED. MAYBE IT WORK? MAYBE IT NO :)
-            manToSave.CurrentSequenceAsset = currentSequence.Myself.AssetGUID;
-            //save bg data
-            if (Object_Factory.TryGetObject("Background", out GameObject bg)) 
-            {
-                Animated_Image_Handler aih = bg.GetComponent<Animated_Image_Handler>();
-                st.BackgroundAssetKeys = aih.SpriteAssetGUIDs;
-                st.BackgroundSubobjectKeys = aih.SubObjectGUIDs;
-                st.BackgroundSPF = aih.SecondsPerFrame;
-                float[] bghsc = new float[5];
-                Image bgI = bg.GetComponent<Image>();
-                Material stinker = bgI.material;
-                bghsc[0] = stinker.GetFloat("_hue");
-                bghsc[1] = stinker.GetFloat("_sat");
-                bghsc[2] = stinker.GetFloat("_con");
-                bghsc[3] = stinker.GetFloat("_tem");
-                bghsc[4] = stinker.GetFloat("_tin");
-                st.BackgroundHSC = bghsc;
-                float[] bgcolor = new float[4];
-                bgcolor[0] = bgI.color.r;
-                bgcolor[1] = bgI.color.b;
-                bgcolor[2] = bgI.color.g;
-                bgcolor[3] = bgI.color.a;
-                st.BackgroundColor = bgcolor;
-            }
-            //save overlay data
-            if(Object_Factory.TryGetObject("Overlay", out GameObject ov))
-            {
-                Animated_Image_Handler aih = ov.GetComponent<Animated_Image_Handler>();
-                st.OverlayAssetKeys = aih.SpriteAssetGUIDs;
-                st.OverlaySubobjectKeys = aih.SubObjectGUIDs;
-                st.OverlaySPF = aih.SecondsPerFrame;
-                float[] ovhsc = new float[5];
-                Image ovI = ov.GetComponent<Image>();
-                Material stinker = ovI.material;
-                ovhsc[0] = stinker.GetFloat("_hue");
-                ovhsc[1] = stinker.GetFloat("_sat");
-                ovhsc[2] = stinker.GetFloat("_con");
-                ovhsc[3] = stinker.GetFloat("_tem");
-                ovhsc[4] = stinker.GetFloat("_tin");
-                st.OverlayHSC = ovhsc;
-                float[] ovcolor = new float[4];
-                ovcolor[0] = ovI.color.r;
-                ovcolor[1] = ovI.color.g;
-                ovcolor[2] = ovI.color.b;
-                ovcolor[3] = ovI.color.a;
-                st.OverlayColor = ovcolor;
-            }
-
-            st.MusicAssetKey = Audio_Manager.AM.SongAssetGUID;
-            //save actor data
-            List<ActorToken> actorTokens = new();
-
-            foreach (Actor actor in activeActors)
-            {
-                if (Object_Factory.TryGetObject(actor.name, out GameObject go))
-                {
-                    UI_Element uie = go.GetComponent<UI_Element>();
-                    List<int> visualIndexes = new();
-                    for (int i = 0; i < uie.Images.Length; i++)
-                    {
-                        visualIndexes.Add(actor.Visuals[i].layer.IndexOf(uie.Images[i].sprite)); //HIDEOUS
-                    }
-                    ActorToken newt = new(go.transform.position, actor.Myself.AssetGUID, visualIndexes.ToArray());
-                    Debug.Log("ActorToken I'm adding to list: \n" + newt.ToString());
-                    actorTokens.Add(newt);
-                }else if(Object_Factory.TryGetObject(actor.ActorName, out GameObject goo)) //back up, in case of silly shenaniganas
-                {
-                    UI_Element uie = goo.GetComponent<UI_Element>();
-                    List<int> visualIndexes = new();
-                    for (int i = 0; i < uie.Images.Length; i++)
-                    {
-                        visualIndexes.Add(actor.Visuals[i].layer.IndexOf(uie.Images[i].sprite));
-                        ActorToken newt = new(goo.transform.position, actor.Myself.AssetGUID, visualIndexes.ToArray());
-                        actorTokens.Add(newt);
-                    }
-                }
-            }
-            //handle particles
-            st.ActiveParticles = activeParticles;
-
-            string particleLog = "Adding particles to save data: \n";
-
-            foreach(ParticleToken pt in st.ActiveParticles) 
-            {
-                particleLog += $"Particle: {pt.ParticleName}\n";
-            }
-
-            Debug.Log(particleLog);
-
-            st.ActiveActors = actorTokens;
-            st.ActiveESFX = Audio_Manager.AM.GetLoopingSFXGUIDs;
-            manToSave.ScreenInformation = st;
-            menuBase.SetActive(false);
-            StartCoroutine(WaitForScreenShot(manToSave, saveFileName, auto));
+            StartCoroutine(WaitForScreenShot(manToSave, (string)string_saveFileName, (bool)bool_Auto));
         }
 
         private IEnumerator WaitForScreenShot(SaveData sd, string fileName, bool auto)
         {
             yield return new WaitForEndOfFrame();
-            Texture2D raw = new Texture2D(UnityEngine.Screen.width, UnityEngine.Screen.height, TextureFormat.ARGB32, false);
-            raw.ReadPixels(new Rect(0, 0, UnityEngine.Screen.width, UnityEngine.Screen.height), 0, 0);
-            raw.Apply();
-            Texture2D scaled = Evil_Texture_Resizer.Scaled(raw, 640, 480, FilterMode.Trilinear);
-            sd.SaveScreenshot = scaled.EncodeToPNG();
-            if(!auto) menuBase.SetActive(true);
+            sd.SaveScreenshot = GetScreenShot();
+            menuBase.SetActive(!auto);
             //we're assuming that replacing texts[0] exists, since it SHOULD be the mc name given at game start...
             if (sd.ReplacingTexts.Length > 0)
             {
@@ -579,7 +462,7 @@ namespace RenCSharp
             saving = false;
         }
 
-        public void LoadShit(SaveData sd)
+        public void LoadGame(SaveData sd)
         {
             //stop all deranged nonsense on the SM!
             StopAllCoroutines();
@@ -812,6 +695,157 @@ namespace RenCSharp
             }
             Debug.Log($"Removed particle: {pt.ParticleName} from particle list.");
             activeParticles.Remove(pt);
+        }
+
+        public async Awaitable SaveGameAsync(object string_saveFileName, object bool_Auto)
+        {
+            bool auto = (bool)bool_Auto;
+            string fileName = (string)string_saveFileName;
+            if (!saving)
+            {
+                SaveData sd = SaveData((string)string_saveFileName);
+                await Awaitable.EndOfFrameAsync();
+                sd.SaveScreenshot = GetScreenShot();
+                menuBase.SetActive(!auto);
+                if (sd.ReplacingTexts.Length > 0)
+                {
+                    SaveLoad.Save(fileName, sd, auto ? $"Saves_{sd.ReplacingTexts[0]}/AutoSaves" : $"Saves_{sd.ReplacingTexts[0]}");
+                }
+                else
+                {
+                    //don't bother with subfolders if we don't have an mc name or whoever...
+                    SaveLoad.Save(fileName, sd);
+                }
+                saving = false;
+            }
+        }
+
+        private SaveData SaveData(string saveFileName)
+        {
+            if (saveFileName == null) saveFileName = "SaveData"; //default to prevent extreme BS
+            saving = true;
+
+            SaveData manToSave = new();
+            ScreenToken st = new();
+
+            manToSave.CurrentScreenIndex = curScreenIndex; //:)
+            manToSave.CurrentFlags = new FlagToken(Flag_Manager.GetSaveDataFlags);
+            manToSave.CurrentHistory = curHist;
+            List<string> replacerKeys = new();
+            List<string> replacerValues = new();
+            foreach (KeyValuePair<string, string> kvp in Textbox_String.GetReplacerTexts)
+            {
+                replacerKeys.Add(kvp.Key);
+                replacerValues.Add(kvp.Value);
+            }
+            manToSave.ReplacedTexts = replacerKeys.ToArray();
+            manToSave.ReplacingTexts = replacerValues.ToArray();
+
+            //grab the cursequence. horrid! USES THE ASSET REFERENcE WE DONE STORED. MAYBE IT WORK? MAYBE IT NO :)
+            manToSave.CurrentSequenceAsset = currentSequence.Myself.AssetGUID;
+            //save bg data
+            if (Object_Factory.TryGetObject("Background", out GameObject bg))
+            {
+                Animated_Image_Handler aih = bg.GetComponent<Animated_Image_Handler>();
+                st.BackgroundAssetKeys = aih.SpriteAssetGUIDs;
+                st.BackgroundSubobjectKeys = aih.SubObjectGUIDs;
+                st.BackgroundSPF = aih.SecondsPerFrame;
+                float[] bghsc = new float[5];
+                Image bgI = bg.GetComponent<Image>();
+                Material stinker = bgI.material;
+                bghsc[0] = stinker.GetFloat("_hue");
+                bghsc[1] = stinker.GetFloat("_sat");
+                bghsc[2] = stinker.GetFloat("_con");
+                bghsc[3] = stinker.GetFloat("_tem");
+                bghsc[4] = stinker.GetFloat("_tin");
+                st.BackgroundHSC = bghsc;
+                float[] bgcolor = new float[4];
+                bgcolor[0] = bgI.color.r;
+                bgcolor[1] = bgI.color.b;
+                bgcolor[2] = bgI.color.g;
+                bgcolor[3] = bgI.color.a;
+                st.BackgroundColor = bgcolor;
+            }
+            //save overlay data
+            if (Object_Factory.TryGetObject("Overlay", out GameObject ov))
+            {
+                Animated_Image_Handler aih = ov.GetComponent<Animated_Image_Handler>();
+                st.OverlayAssetKeys = aih.SpriteAssetGUIDs;
+                st.OverlaySubobjectKeys = aih.SubObjectGUIDs;
+                st.OverlaySPF = aih.SecondsPerFrame;
+                float[] ovhsc = new float[5];
+                Image ovI = ov.GetComponent<Image>();
+                Material stinker = ovI.material;
+                ovhsc[0] = stinker.GetFloat("_hue");
+                ovhsc[1] = stinker.GetFloat("_sat");
+                ovhsc[2] = stinker.GetFloat("_con");
+                ovhsc[3] = stinker.GetFloat("_tem");
+                ovhsc[4] = stinker.GetFloat("_tin");
+                st.OverlayHSC = ovhsc;
+                float[] ovcolor = new float[4];
+                ovcolor[0] = ovI.color.r;
+                ovcolor[1] = ovI.color.g;
+                ovcolor[2] = ovI.color.b;
+                ovcolor[3] = ovI.color.a;
+                st.OverlayColor = ovcolor;
+            }
+
+            st.MusicAssetKey = Audio_Manager.AM.SongAssetGUID;
+            //save actor data
+            List<ActorToken> actorTokens = new();
+
+            foreach (Actor actor in activeActors)
+            {
+                if (Object_Factory.TryGetObject(actor.name, out GameObject go))
+                {
+                    UI_Element uie = go.GetComponent<UI_Element>();
+                    List<int> visualIndexes = new();
+                    for (int i = 0; i < uie.Images.Length; i++)
+                    {
+                        visualIndexes.Add(actor.Visuals[i].layer.IndexOf(uie.Images[i].sprite)); //HIDEOUS
+                    }
+                    ActorToken newt = new(go.transform.position, actor.Myself.AssetGUID, visualIndexes.ToArray());
+                    Debug.Log("ActorToken I'm adding to list: \n" + newt.ToString());
+                    actorTokens.Add(newt);
+                }
+                else if (Object_Factory.TryGetObject(actor.ActorName, out GameObject goo)) //back up, in case of silly shenaniganas
+                {
+                    UI_Element uie = goo.GetComponent<UI_Element>();
+                    List<int> visualIndexes = new();
+                    for (int i = 0; i < uie.Images.Length; i++)
+                    {
+                        visualIndexes.Add(actor.Visuals[i].layer.IndexOf(uie.Images[i].sprite));
+                        ActorToken newt = new(goo.transform.position, actor.Myself.AssetGUID, visualIndexes.ToArray());
+                        actorTokens.Add(newt);
+                    }
+                }
+            }
+            //handle particles
+            st.ActiveParticles = activeParticles;
+
+            string particleLog = "Adding particles to save data: \n";
+
+            foreach (ParticleToken pt in st.ActiveParticles)
+            {
+                particleLog += $"Particle: {pt.ParticleName}\n";
+            }
+
+            Debug.Log(particleLog);
+
+            st.ActiveActors = actorTokens;
+            st.ActiveESFX = Audio_Manager.AM.GetLoopingSFXGUIDs;
+            manToSave.ScreenInformation = st;
+            menuBase.SetActive(false);
+            return manToSave;
+        }
+
+        private byte[] GetScreenShot()
+        {
+            Texture2D toReturn = new Texture2D(UScreen.width, UScreen.height, TextureFormat.ARGB32, false);
+            toReturn.ReadPixels(new Rect(0, 0, UScreen.width, UScreen.height), 0, 0);
+            toReturn.Apply();
+            toReturn = Evil_Texture_Resizer.Scaled(toReturn, 640, 480, FilterMode.Trilinear);
+            return toReturn.EncodeToPNG();
         }
 
         #endregion

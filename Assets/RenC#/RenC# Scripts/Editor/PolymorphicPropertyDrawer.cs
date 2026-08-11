@@ -30,9 +30,8 @@ namespace RenCSharp
         protected static T clipboardValue;
         protected static bool debugClipboard = true;
 
-        protected SerializedProperty m_SE; //only used by IMGUI chicanery
-
         protected static GenericMenu ClipboardMenu;
+
         #region UIToolkit
         //below only used by UIToolkit chicanery
         /// <summary>
@@ -64,15 +63,15 @@ namespace RenCSharp
                 Debug.Log("clicked on the polymorph property field... field.");
             });
 
-            clipboardButton = new Button();
-            clipboardButton.style.height = 25;
-            clipboardButton.style.width = 25;
-            clipboardButton.text = "...";
-            clipboardButton.RegisterCallback<PointerDownEvent>(evt =>
+            clipboardButton = new Button(() =>
             {
                 UpdateClipboardMenu(property);
                 ClipboardMenu.ShowAsContext();
             });
+            clipboardButton.style.height = polymorphDropDown.style.height;
+            clipboardButton.style.width = 25;
+            clipboardButton.text = "...";
+
             polymorphDropDown.Add(clipboardButton);
 
             container.Add(polymorphPropertyField);
@@ -116,9 +115,9 @@ namespace RenCSharp
             });
 
             container.Add(polymorphDropDown);
-            m_SE = mySP; //?
         }
         #endregion
+
         #region IMGUI
         /// <summary>
         /// By default, will render the property drawer one line below a childType selector dropdown menu.
@@ -129,7 +128,6 @@ namespace RenCSharp
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             EditorGUI.BeginProperty(position, label, property);
-            m_SE = property;
             Rect dDownRect = new Rect(position.x, position.y, position.width - 25, EditorGUIUtility.singleLineHeight);
             DropDownMenu(dDownRect, property);
             Rect newPos = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, position.height);
@@ -165,12 +163,8 @@ namespace RenCSharp
             }
         }
         #endregion
-        protected virtual void SetChildType(object obj, SerializedProperty sp)
-        {
-            T selectedType = obj as T;
-            sp.managedReferenceValue = selectedType;
-            sp.serializedObject.ApplyModifiedProperties();
-        }
+
+        #region Clipboard
 
         protected virtual void CopyToClipboard(T value)
         {
@@ -262,6 +256,14 @@ namespace RenCSharp
                 debugClipboard = !debugClipboard;
                 EditorPrefs.SetBool("PolymorphDebugClipboard", debugClipboard);
             });
+        }
+        #endregion
+
+        protected virtual void SetChildType(object obj, SerializedProperty sp)
+        {
+            T selectedType = obj as T;
+            sp.managedReferenceValue = selectedType;
+            sp.serializedObject.ApplyModifiedProperties();
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

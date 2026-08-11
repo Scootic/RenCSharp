@@ -22,7 +22,6 @@ namespace RenCSharp
         /// Stores 2D SFX
         /// </summary>
         private AudioSource[] sfxSources;
-
         /// <summary>
         /// Stores 2D ESFX
         /// </summary>
@@ -30,31 +29,41 @@ namespace RenCSharp
         /// <summary>
         /// Stores 3D SFX
         /// </summary>
-        private List<AudioSource> sfxList = new();
+        private readonly List<AudioSource> sfxList = new();
         /// <summary>
         /// Stores 3D ESFX
         /// </summary>
-        private List<AudioSource> esfxList = new();
-        private AudioSource leMusic, newBGM; //stores the background music
+        private readonly List<AudioSource> esfxList = new();
+        /// <summary>
+        /// Stores the currently playing BGM Track.
+        /// </summary>
+        private AudioSource leMusic;
+        /// <summary>
+        /// Temporarily stores a new BGM Track to be faded in. Its value gets placed into leMusic when the transition is done.
+        /// </summary>
+        private AudioSource newBGM;
         /// <summary>
         /// Stores all Tokens of looping ESFX that might need recalling through Save/Load
         /// </summary>
-        private List<SFXToken> loopingSFXAddresses = new();
+        private readonly List<SFXToken> loopingSFXAddresses = new();
 
         private int sfxIndex = 0; //Store the current sfx index
         private int realSFXSize; //?
         private bool enteringBGM = false; //used to see if we are currently doing a BGM fade transition.
         private Coroutine bgmRoutine; //stores the current bgm transition coroutine incase we need to stop it preemptively
-        private string songAssetGUID; //keeps track of asset guid that'll be passed to save/load
+        private string songAssetGUID; //keeps track of asset guid that'll be passed to save/load, SHOULD be newBGM if in coroutine...
 
         [Range(0, 1)] private float bgmVolMult = 0.5f, sfxVolMult = 0.5f, esfxVolMult = 0.5f; //volume multipliers
+        public static Action<string> NewBGMNameAction;
+
+        #region Getters
         public float BGMVol => bgmVolMult;
         public float SFXVol => sfxVolMult;
         public float ESFXVol => esfxVolMult;
         public AudioClip CurrentBGM => leMusic.clip;
         public string SongAssetGUID => songAssetGUID;
         public List<SFXToken> GetLoopingSFXGUIDs => loopingSFXAddresses;
-        public static Action<string> NewBGMNameAction;
+        #endregion
 
         private void InitSFX()
         {
@@ -116,6 +125,20 @@ namespace RenCSharp
             {
                 esfxSources[i].Stop();
             }
+        }
+
+        private IEnumerator FadeInSFXVolume(AudioSource source, float fadeDuration, float endBaseVolume, bool environmental)
+        {
+            float t = 0;
+            source.volume = 0;
+            while (t <= fadeDuration)
+            {
+                t += Time.deltaTime;
+                float perc = t / fadeDuration;
+                source.volume = endBaseVolume * perc * (environmental ? esfxVolMult : sfxVolMult);
+                yield return null;
+            }
+            source.volume = endBaseVolume * (environmental ? esfxVolMult : sfxVolMult);
         }
 
         #region 2DSFX
@@ -523,14 +546,9 @@ namespace RenCSharp
                     if (sfxList[i].clip == clipToRemove)
                     {
                         stinker = sfxList[i];
-                        if (!fadeOut)
-                        {
-                            Destroy3DSFX(clipToRemove);
-                        }
-                        else
-                        {
-                            StartCoroutine(FadeOut3DSFX(stinker, 1));
-                        }
+                        if (!fadeOut) Destroy3DSFX(clipToRemove);
+                        else StartCoroutine(FadeOut3DSFX(stinker, 1));
+
                         if (removeOnlyOne) break;
                     }
                 }
@@ -648,20 +666,6 @@ namespace RenCSharp
         }
         #endregion
 
-        private IEnumerator FadeInSFXVolume(AudioSource source, float fadeDuration, float endBaseVolume, bool environmental)
-        {
-            float t = 0;
-            source.volume = 0;
-            while(t <= fadeDuration)
-            {
-                t += Time.deltaTime;
-                float perc = t / fadeDuration;
-                source.volume = endBaseVolume * perc * (environmental ? esfxVolMult : sfxVolMult);
-                yield return null;
-            }
-            source.volume = endBaseVolume * (environmental ? esfxVolMult : sfxVolMult);
-        }
-
         #region BGM
         /// <summary>
         /// plays a song.
@@ -681,7 +685,7 @@ namespace RenCSharp
                 }
                 bgmRoutine = StartCoroutine(PlayBGMPog(musicToPlay, fadeTime, isLooping, setSameTime)); 
             }
-            else Debug.Log("You didn't give AM a clip to play bgm! Dumbass!");
+            else Debug.Log("You didn't give AM a clip to play BGM! Fool!");
         }
         /// <summary>
         /// plays a song from an asset reference. async moment.
@@ -774,7 +778,8 @@ namespace RenCSharp
                 if (setSameTime || leMusic.clip.name == musicToPlay.name) newBGM.time = leMusic.time;
             }
             float t = 0; //shorthand for time, starting at 0
-
+            float leMusicStartVol = Mathf.Min(bgmVolMult, leMusic.volume); //so we don't randomly jump back to full vol if we try
+            //to fade before another fade is done.
             while (t < fadeTime)
             {
                 //increase t by amount of time passed between frames
@@ -782,7 +787,7 @@ namespace RenCSharp
                 //calc percent of time that has passed, based on fadeTime
                 float perc = t / fadeTime;
                 //fade the musics out/in
-                leMusic.volume = Mathf.Lerp(bgmVolMult, 0, perc);
+                leMusic.volume = Mathf.Lerp(leMusicStartVol, 0, perc);
                 newBGM.volume = Mathf.Lerp(0, bgmVolMult, perc);
                 //yield the frame, then continue
                 yield return null;
@@ -809,7 +814,8 @@ namespace RenCSharp
                 if (setSameTime || leMusic.clip.name == musicToPlay.name) newBGM.time = leMusic.time;
             }
             float t = 0; //shorthand for time, starting at 0
-
+            float leMusicStartVol = Mathf.Min(bgmVolMult, leMusic.volume); //so we don't randomly jump back to full vol if we try
+            //to fade before another fade is done.
             while (t < fadeTime)
             {
                 //increase t by amount of time passed between frames
@@ -817,7 +823,7 @@ namespace RenCSharp
                 //calc percent of time that has passed, based on fadeTime
                 float perc = t / fadeTime;
                 //fade the musics out/in
-                leMusic.volume = Mathf.Lerp(bgmVolMult, 0, perc);
+                leMusic.volume = Mathf.Lerp(leMusicStartVol, 0, perc);
                 newBGM.volume = Mathf.Lerp(0, bgmVolMult, perc);
                 //yield the frame, then continue
                 yield return null;
