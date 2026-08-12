@@ -21,7 +21,11 @@ namespace UITK_SimpleTimeline
             float c = time - timeSqr;
             float d = -2 * timeCub + 3 * timeSqr;
             //???????
-            return a * toEval[0].Value + b * outTan * Vector3.one + c * inTan * Vector3.one + d * toEval[1].Value;
+            float x = a * toEval[0].Value.x + b * outTan + c * inTan + d * toEval[1].Value.x;
+            float y = a * toEval[0].Value.y + b * outTan + c * inTan + d * toEval[1].Value.y;
+            float z = a * toEval[0].Value.z + b * outTan + c * inTan + d * toEval[1].Value.z;
+
+            return new Vector3(x, y, z);
         }
     }
 }
