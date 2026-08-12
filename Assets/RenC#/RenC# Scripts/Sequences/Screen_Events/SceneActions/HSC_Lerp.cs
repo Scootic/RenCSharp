@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UITK_SimpleTimeline;
 namespace RenCSharp.Sequences
 {
     public class HSC_Lerp : Screen_Event

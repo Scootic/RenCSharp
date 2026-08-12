@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using UITK_SimpleTimeline;
 namespace RenCSharp.Sequences
 {
     public class Screen_Shake : Screen_Event

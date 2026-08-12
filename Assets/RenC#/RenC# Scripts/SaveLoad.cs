@@ -10,7 +10,7 @@ namespace RenCSharp
     /// </summary>
     public static class SaveLoad
     {
-        private static readonly BinaryFormatter bf = new BinaryFormatter();
+        private static readonly BinaryFormatter bf = new();
         /// <summary>
         /// Save a SaveData struct to a file in the persistent datapath.
         /// </summary>
@@ -28,7 +28,7 @@ namespace RenCSharp
             {
                 Directory.CreateDirectory(Application.persistentDataPath + "/" + subFolder);
             }
-            FileStream fs = new FileStream(filePath, FileMode.Create);
+            FileStream fs = new(filePath, FileMode.Create);
             bf.Serialize(fs, sd);
             fs.Close();
         }
@@ -149,12 +149,6 @@ namespace RenCSharp
             return allSD.ToArray();
         }
 
-        public static int AllSavesLength() //?
-        {
-            string[] allFilePaths = Directory.GetFiles(Application.persistentDataPath, "*.sav", SearchOption.AllDirectories);
-            return allFilePaths.Length;
-        }
-
         public static string[] AllSavesPaths(string subDirectory = "")
         {
             string[] allFilePaths;
@@ -179,7 +173,7 @@ namespace RenCSharp
         {
             Regex.Replace(subFolder, "[ <>?*]", "_");
             string directoryPath = Application.persistentDataPath + "/" + (subFolder != "" ? subFolder + "/": "");
-            string filePath = directoryPath + ".sav";
+            string filePath = directoryPath + fileName + ".sav";
             if (!File.Exists(filePath)) { Debug.LogWarning("Trying to delete a save that doesn't exist at: " + filePath); return false; }
             Debug.Log($"Deleting file at: {filePath}");
             File.Delete(filePath);
