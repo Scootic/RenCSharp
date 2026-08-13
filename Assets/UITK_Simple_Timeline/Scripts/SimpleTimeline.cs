@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using System.Linq;
 namespace UITK_SimpleTimeline
 {
+    /// <summary>
+    /// Animation-style struct to handle animating things based on data that isn't in-scene.
+    /// </summary>
     [Serializable]
     public struct SimpleTimeline
     {
@@ -15,27 +17,24 @@ namespace UITK_SimpleTimeline
         /// </summary>
         public const float SPF = 1f / 60f;
 
-        public List<TimelineCurve<object>> Curves;
+        public List<TimelineCurve<object, object>> Curves;
 
         public readonly async Awaitable RunThroughTimeline()
         {
-            int frame = 0;
             float secondsElapsed = 0;
 
             while(secondsElapsed < Duration || Loop)
             {
                 await Awaitable.WaitForSecondsAsync(SPF);
-                frame++;
                 secondsElapsed += SPF;
 
-                foreach(TimelineCurve<object> curve in Curves)
+                foreach(TimelineCurve<object, object> curve in Curves)
                 {
                     curve.Evaluate(secondsElapsed);
                 }
 
                 if(Loop && secondsElapsed >= Duration)
                 {
-                    frame = 0;
                     secondsElapsed = 0;
                 }
             }
@@ -43,7 +42,7 @@ namespace UITK_SimpleTimeline
 
         public readonly void TimelineResult()
         {
-            foreach(TimelineCurve<object> curve in Curves)
+            foreach(TimelineCurve<object, object> curve in Curves)
             {
                 curve.Evaluate(Duration);
             }

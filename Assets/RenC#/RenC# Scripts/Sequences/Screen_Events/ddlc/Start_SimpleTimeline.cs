@@ -9,12 +9,12 @@ namespace RenCSharp.Sequences
         /// <summary>
         /// Openable through drawer shenanigans!
         /// </summary>
-        private SimpleTimeline timelineToRunThrough;
+        [SerializeField] private SimpleTimelineAsset timelineToRunThrough;
         private Awaitable activeTimeline;
 
         public override async void DoEvent()
         {
-            activeTimeline = timelineToRunThrough.RunThroughTimeline();
+            activeTimeline = timelineToRunThrough.timeline.RunThroughTimeline();
             if (endWithScreen) Script_Manager.ProgressScreenEvent += PanicStop;
             await activeTimeline; //start it?
         }
@@ -22,12 +22,12 @@ namespace RenCSharp.Sequences
         void PanicStop()
         {
             activeTimeline.Cancel();
-            timelineToRunThrough.TimelineResult();
+            timelineToRunThrough.timeline.TimelineResult();
         }
 
         public override string ToString()
         {
-            return "DDLC/Start Simple Timeline";
+            return "DDLC/Play Simple Timeline";
         }
     }
 }
