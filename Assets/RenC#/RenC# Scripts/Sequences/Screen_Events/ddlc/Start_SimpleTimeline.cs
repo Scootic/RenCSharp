@@ -1,6 +1,6 @@
 using UITK_SimpleTimeline;
 using UnityEngine;
-
+using System.Threading;
 namespace RenCSharp.Sequences
 {
     public class Start_SimpleTimeline : Screen_Event
@@ -14,7 +14,7 @@ namespace RenCSharp.Sequences
 
         public override async void DoEvent()
         {
-            activeTimeline = timelineToRunThrough.timeline.RunThroughTimeline();
+            activeTimeline = timelineToRunThrough.timeline.RunThroughTimeline(new CancellationToken());
             if (endWithScreen) Script_Manager.ProgressScreenEvent += PanicStop;
             await activeTimeline; //start it?
         }

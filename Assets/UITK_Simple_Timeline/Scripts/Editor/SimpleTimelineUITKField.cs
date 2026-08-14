@@ -1,10 +1,10 @@
 #if UNITY_EDITOR
+using System;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
-using System.Reflection;
-using System;
-using UnityEditor;
 namespace UITK_SimpleTimeline.Editor
 {
     /// <summary>
@@ -23,8 +23,10 @@ namespace UITK_SimpleTimeline.Editor
         protected readonly ScrollView TimelineField;
         //knob property viewer
         protected readonly PropertyField CurrentKeyframeField;
-
-        protected GenericMenu SpawnKeyframeMenu;
+        //? the guys that'll be displayed in the scroll view?
+        protected readonly List<TimelineCurveField<object,object>>TimelineCurveFields;
+        //boy that'll show up when user right clicks inside curvey area?
+        protected GenericMenu AddNewCurveMenu;
         /// <summary>
         /// Please override with the types of curved knobs you want to be usable in your field.
         /// </summary>

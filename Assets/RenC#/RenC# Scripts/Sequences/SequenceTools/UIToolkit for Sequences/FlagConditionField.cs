@@ -1,8 +1,5 @@
 #if UNITY_EDITOR
-using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor;
-using UnityEditor.UIElements;
 namespace RenCSharp.Sequences
 {
     public class FlagConditionField : BaseField<FlagCondition>

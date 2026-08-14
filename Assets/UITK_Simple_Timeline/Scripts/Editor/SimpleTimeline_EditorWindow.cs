@@ -12,7 +12,7 @@ namespace UITK_SimpleTimeline.Editor
         private VisualElement root;
         private static SimpleTimeline timelineToEdit;
 
-        private readonly string uitkDocumentFilePath = "Assets/UITK_SimpleTimeline/Scripts/Editor/";
+        private readonly string uitkDocumentFilePath = "Assets/UITK_SimpleTimeline/Scripts/Editor/SimpleTimeline_EditorWindow.uxml";
         private VisualTreeAsset uitkDocumentAsset;
 
         public static void OpenWindow(SimpleTimeline givenTimeline)

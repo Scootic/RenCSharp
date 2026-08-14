@@ -14,15 +14,15 @@ namespace RenCSharp.Sequences
 
         [Header("Conditions")]
         [SerializeField] private FlagCondition[] conditions;
-        public Sequence ResultingSequence => resultingSequence;
-        public string ChoiceText => choiceText;
-        public FlagCondition[] Conditions => conditions;
+        public readonly Sequence ResultingSequence => resultingSequence;
+        public readonly string ChoiceText => choiceText;
+        public readonly FlagCondition[] Conditions => conditions;
 
         public Sequence SetResultingSequence { set {  resultingSequence = value; } }
         public string SetChoiceText { set { choiceText = value; } }
         public FlagCondition[] SetConditions { set  { conditions = value; } }
 
-        public bool MetAllConditions()
+        public readonly bool MetAllConditions()
         {
             if (conditions.Length == 0) return true;
             bool met = true;

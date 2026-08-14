@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using System.Threading;
 namespace UITK_SimpleTimeline
 {
     /// <summary>
@@ -16,15 +17,17 @@ namespace UITK_SimpleTimeline
         /// Seconds per frame. Ie. "I want 60FPS! Do: 1f / 60f."
         /// </summary>
         public const float SPF = 1f / 60f;
+        //figure out how to add timelinecurves of specific types and actually be able to interpret that?
+        //object.ToString?
+        public List<TimelineCurve<object,object>> Curves;
 
-        public List<TimelineCurve<object, object>> Curves;
-
-        public readonly async Awaitable RunThroughTimeline()
+        public readonly async Awaitable RunThroughTimeline(CancellationToken ct)
         {
             float secondsElapsed = 0;
 
             while(secondsElapsed < Duration || Loop)
             {
+                if (ct.IsCancellationRequested) break;
                 await Awaitable.WaitForSecondsAsync(SPF);
                 secondsElapsed += SPF;
 

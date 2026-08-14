@@ -1,8 +1,12 @@
 
 using UnityEngine;
-
+using System.Threading;
 namespace UITK_SimpleTimeline
 {
+    /// <summary>
+    /// Simple timeline player just to play a SimpleTimeline in a scene. PlayTimeline() is a public void
+    /// so it can be called by a UnityEvent or other scripts.
+    /// </summary>
     public class SimpleTimelinePlayer : MonoBehaviour
     {
         [SerializeField] private bool playOnStart = true;
@@ -15,7 +19,7 @@ namespace UITK_SimpleTimeline
 
         public void PlayTimeline()
         {
-            _ = timelineToPlay.timeline.RunThroughTimeline();
+            _ = timelineToPlay.timeline.RunThroughTimeline(new CancellationToken());
         }
     }
 }

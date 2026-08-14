@@ -4,17 +4,21 @@ using TangentMode = UnityEditor.AnimationUtility.TangentMode;
 using System.Collections.Generic;
 namespace UITK_SimpleTimeline
 {
+    [Serializable]
     public struct TimelineKeyframe<T> : IComparable
     {
+        public T Value;
+
         /// <summary>
         /// In seconds.
         /// </summary>
         public float Time;
-        public T Value;
         public float InSlope;
         public float OutSlope;
+
         public TangentMode TangentMode;
         public WeightedMode WeightedMode;
+
         public float InWeight;
         public float OutWeight;
         public float InTangent;
@@ -32,12 +36,18 @@ namespace UITK_SimpleTimeline
     /// </summary>
     /// <typeparam name="T">The type of value being lerped between.</typeparam>
     /// <typeparam name="U">The type of object that is affected.</typeparam>
+    [Serializable]
     public abstract class TimelineCurve<T, U> where U : class
     {
         /// <summary>
-        /// The object that will be impacted whenever the curve is evaluated. :)
+        /// The object(s?) that will be impacted whenever the curve is evaluated. :)
         /// </summary>
         public U ToAffect;
+        /// <summary>
+        /// Basically the same thing as AnimationCurve.Evaluate.
+        /// </summary>
+        /// <param name="time">The time, in seconds, on the curve that's being grabbed.</param>
+        /// <returns>The type of value that's in-between the keyframes at time.</returns>
         public abstract T Evaluate(float time);
 
         public WrapMode PreWrapMode = WrapMode.Default;
