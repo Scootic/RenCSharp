@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f9f3aa6e6a5af4d88f6a38c71a9dbe, type: 3}
+  m_Name: FR_StoneDroppin2
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 700, y: 450}
+  controlType:
+    rid: 8164893420957466718
+  attackDuration: 17.5
+  secondsPerProjectileSpawn: 0.5
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 6086333736105796336, guid: 2aca70372c6570f4b964ee992c0d58d2, type: 3}
+  - {fileID: 6086333736105796336, guid: 7132f24d930924141bb0be252ee60947, type: 3}
+  - {fileID: 6086333736105796336, guid: b1dfb40b326437c4c9c37b49b1ff2803, type: 3}
+  spawnPoints: []
+  initialDirections: []
+  indexes: 
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  keyframes: 00000000960000002c010000c201000058020000ee02000084030000
+  frameData:
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 0, y: 475, z: 0}
+      InitialDirection: {x: -44.61, y: -300, z: 0}
+      ProjectileIndex: 0
+    - SpawnPosition: {x: -350, y: 500, z: 0}
+      InitialDirection: {x: 48.88, y: -300, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 250, y: 550, z: 0}
+      InitialDirection: {x: -6.32, y: -300, z: 0}
+      ProjectileIndex: 0
+    - SpawnPosition: {x: 100, y: 500, z: 0}
+      InitialDirection: {x: -53.2, y: -300, z: 0}
+      ProjectileIndex: 1
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -100, y: 525, z: 0}
+      InitialDirection: {x: 21.82, y: -300, z: 0}
+      ProjectileIndex: 2
+    - SpawnPosition: {x: 150, y: 600, z: 0}
+      InitialDirection: {x: -14.98, y: -300, z: 0}
+      ProjectileIndex: 1
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 0, y: 525, z: 0}
+      InitialDirection: {x: 59.82, y: -300, z: 0}
+      ProjectileIndex: 0
+    - SpawnPosition: {x: -100, y: 550, z: 0}
+      InitialDirection: {x: 12.3, y: -300, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 200, y: 530, z: 0}
+      InitialDirection: {x: -31.09, y: -300, z: 0}
+      ProjectileIndex: 2
+    - SpawnPosition: {x: -100, y: 525, z: 0}
+      InitialDirection: {x: -49.99, y: -300, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 150, y: 475, z: 0}
+      InitialDirection: {x: -4.96, y: -300, z: 0}
+      ProjectileIndex: 1
+    - SpawnPosition: {x: 100, y: 575, z: 0}
+      InitialDirection: {x: -8.65, y: -300, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -123.62, y: 482.82, z: 0}
+      InitialDirection: {x: 93, y: -300, z: 0}
+      ProjectileIndex: 0
+  loops: 1
+  debug: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 8164893420957466718
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500

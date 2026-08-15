@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 namespace RenCSharp.Combat.Enemies
 {
-    [CreateAssetMenu(menuName = "New Enemy")]
+    [CreateAssetMenu(menuName = "Enemies/New Enemy")]
     public class EnemySO : ScriptableObject
     {
         [Header("Scripted Attacks")]

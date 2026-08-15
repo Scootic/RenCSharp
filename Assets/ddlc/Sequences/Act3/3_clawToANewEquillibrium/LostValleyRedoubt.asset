@@ -292,6 +292,66 @@ MonoBehaviour:
     dialog: 'Perhaps on queue, the Forsworn make themselves known:'
     ScreenActions:
     - rid: 8164893414404653242
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Upon the ramparts, facing down toward the pair, is a few Forsworn archers
+      who've already started drawing their bows.
+    ScreenActions:
+    - rid: 8164893420957466680
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: I'm gonna rush 'em, sit tight, Sayori-!
+    ScreenActions:
+    - rid: 8164893420957466681
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: <font=dragonfont>wuld n4 kest</font>!
+    ScreenActions:
+    - rid: 8164893420957466682
+    - rid: 8164893420957466683
+    - rid: 8164893420957466684
+    - rid: 8164893420957466685
+    - rid: 8164893420957466686
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: As he charges into battle, {mc} accidently sets off a trip wire-!
+    ScreenActions:
+    - rid: 8164893420957466687
+  - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+    dialog: Watch out for the rocks-!
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 8164893420957466688
+    - rid: 8164893420957466689
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: With the last of the rocks evaded, Sayori looks toward where she last
+      saw {mc}.
+    ScreenActions:
+    - rid: 8164893420957466719
+    - rid: 8164893420957466720
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: Using another burst of Whirlwind Sprint, he has managed to scale the
+      battlements?!?
+    ScreenActions:
+    - rid: 8164893420957466721
+    - rid: 8164893420957466722
+    - rid: 8164893420957466723
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: While up there, he unleashes the Unrelenting Force shout, flinging all
+      three of the Forsworn archers off their perch.
+    ScreenActions:
+    - rid: 8164893420957466724
+    - rid: 8164893420957466725
+  - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
+    dialog: One of whom was flung right at Sayori-!
+    ScreenActions:
+    - rid: 8164893420957466726
+    - rid: 8164893420957466729
+    - rid: 8164893420957466730
+    - rid: 8164893420957466731
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 8164893420957466727
+    - rid: 8164893420957466728
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 0}
@@ -2248,3 +2308,1009 @@ MonoBehaviour:
         - 
         - scowl
         - 
+    - rid: 8164893420957466680
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grimace
+        - 
+    - rid: 8164893420957466681
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grumpySpeak
+        - 
+    - rid: 8164893420957466682
+      type: {class: Screen_Shake, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        screenShakeType: 0
+        xAxis:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.05
+            value: 1
+            inSlope: 0.05
+            outSlope: 0.05
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.15
+            value: -1
+            inSlope: -0.01
+            outSlope: -0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 1
+          - serializedVersion: 3
+            time: 0.3
+            value: 1
+            inSlope: -0.003
+            outSlope: -0.003
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.8
+            outWeight: 0.5
+          - serializedVersion: 3
+            time: 0.4
+            value: -1
+            inSlope: 0.03
+            outSlope: 0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 0.45
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.62
+            inSlope: 0.01
+            outSlope: 0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.7
+            value: -0.5
+            inSlope: -0.04
+            outSlope: -0.04
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.85
+            value: 0.2
+            inSlope: -0.1
+            outSlope: -0.1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -0.03
+            outSlope: -0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        yAxis:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.05
+            value: 1
+            inSlope: 0.05
+            outSlope: 0.05
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.15
+            value: -1
+            inSlope: -0.01
+            outSlope: -0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 1
+          - serializedVersion: 3
+            time: 0.3
+            value: 1
+            inSlope: -0.003
+            outSlope: -0.003
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.8
+            outWeight: 0.5
+          - serializedVersion: 3
+            time: 0.4
+            value: -1
+            inSlope: 0.03
+            outSlope: 0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 0.45
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.62
+            inSlope: 0.01
+            outSlope: 0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.7
+            value: -0.5
+            inSlope: -0.04
+            outSlope: -0.04
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.85
+            value: 0.2
+            inSlope: -0.1
+            outSlope: -0.1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -0.03
+            outSlope: -0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        xOffset: 40
+        yOffset: -40
+        duration: 0.3
+        scaleUp: 0
+        multiplyOffsetByMaxSize: 0
+        maxSize: {x: 1.1, y: 1.1, z: 1.1}
+        scaleCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 5.77
+            outSlope: 5.77
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.02
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -1.35
+            outSlope: -1.35
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.02
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 8164893420957466683
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        fadeTime: 0.2
+    - rid: 8164893420957466684
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 300, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        loopOnScreen: 0
+    - rid: 8164893420957466685
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - concern2
+        - 
+    - rid: 8164893420957466686
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 8164893420957466687
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - '><Shock'
+        - 
+    - rid: 8164893420957466688
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: -500, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        loopOnScreen: 0
+    - rid: 8164893420957466689
+      type: {class: Start_Single_Attack, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        attackToRunThrough: {fileID: 11400000, guid: 6991ffabf65078e44ab8e4a1668204b1, type: 2}
+    - rid: 8164893420957466719
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - focus
+        - 
+    - rid: 8164893420957466720
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 500, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        loopOnScreen: 0
+    - rid: 8164893420957466721
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shockSurprise
+        - 
+    - rid: 8164893420957466722
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: -1}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 8164893420957466723
+      type: {class: Screen_Shake, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        screenShakeType: 0
+        xAxis:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.05
+            value: 1
+            inSlope: 0.05
+            outSlope: 0.05
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.15
+            value: -1
+            inSlope: -0.01
+            outSlope: -0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 1
+          - serializedVersion: 3
+            time: 0.3
+            value: 1
+            inSlope: -0.003
+            outSlope: -0.003
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.8
+            outWeight: 0.5
+          - serializedVersion: 3
+            time: 0.4
+            value: -1
+            inSlope: 0.03
+            outSlope: 0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 0.45
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.62
+            inSlope: 0.01
+            outSlope: 0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.7
+            value: -0.5
+            inSlope: -0.04
+            outSlope: -0.04
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.85
+            value: 0.2
+            inSlope: -0.1
+            outSlope: -0.1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -0.03
+            outSlope: -0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        yAxis:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.05
+            value: 1
+            inSlope: 0.05
+            outSlope: 0.05
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.15
+            value: -1
+            inSlope: -0.01
+            outSlope: -0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 1
+          - serializedVersion: 3
+            time: 0.3
+            value: 1
+            inSlope: -0.003
+            outSlope: -0.003
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.8
+            outWeight: 0.5
+          - serializedVersion: 3
+            time: 0.4
+            value: -1
+            inSlope: 0.03
+            outSlope: 0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 0.45
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.62
+            inSlope: 0.01
+            outSlope: 0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.7
+            value: -0.5
+            inSlope: -0.04
+            outSlope: -0.04
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.85
+            value: 0.2
+            inSlope: -0.1
+            outSlope: -0.1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -0.03
+            outSlope: -0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        xOffset: 40
+        yOffset: -40
+        duration: 0.3
+        scaleUp: 0
+        multiplyOffsetByMaxSize: 0
+        maxSize: {x: 1.1, y: 1.1, z: 1.1}
+        scaleCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 5.77
+            outSlope: 5.77
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.02
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -1.35
+            outSlope: -1.35
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.02
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 8164893420957466724
+      type: {class: Screen_Shake, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        screenShakeType: 0
+        xAxis:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.05
+            value: 1
+            inSlope: 0.05
+            outSlope: 0.05
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.15
+            value: -1
+            inSlope: -0.01
+            outSlope: -0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 1
+          - serializedVersion: 3
+            time: 0.3
+            value: 1
+            inSlope: -0.003
+            outSlope: -0.003
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.8
+            outWeight: 0.5
+          - serializedVersion: 3
+            time: 0.4
+            value: -1
+            inSlope: 0.03
+            outSlope: 0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 0.45
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.62
+            inSlope: 0.01
+            outSlope: 0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.7
+            value: -0.5
+            inSlope: -0.04
+            outSlope: -0.04
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.85
+            value: 0.2
+            inSlope: -0.1
+            outSlope: -0.1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -0.03
+            outSlope: -0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        yAxis:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.05
+            value: 1
+            inSlope: 0.05
+            outSlope: 0.05
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.15
+            value: -1
+            inSlope: -0.01
+            outSlope: -0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 1
+          - serializedVersion: 3
+            time: 0.3
+            value: 1
+            inSlope: -0.003
+            outSlope: -0.003
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.8
+            outWeight: 0.5
+          - serializedVersion: 3
+            time: 0.4
+            value: -1
+            inSlope: 0.03
+            outSlope: 0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33
+            outWeight: 0.45
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.62
+            inSlope: 0.01
+            outSlope: 0.01
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.7
+            value: -0.5
+            inSlope: -0.04
+            outSlope: -0.04
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 0.85
+            value: 0.2
+            inSlope: -0.1
+            outSlope: -0.1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -0.03
+            outSlope: -0.03
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        xOffset: 40
+        yOffset: -40
+        duration: 0.3
+        scaleUp: 0
+        multiplyOffsetByMaxSize: 0
+        maxSize: {x: 1.1, y: 1.1, z: 1.1}
+        scaleCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 5.77
+            outSlope: 5.77
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.02
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -1.35
+            outSlope: -1.35
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.02
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 8164893420957466725
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
+          m_SubObjectName: 
+          m_SubObjectGUID: 
+          m_SubObjectType: 
+          m_EditorAssetChanged: 1
+        position: {x: 0, y: 0, z: -1}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 8164893420957466726
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - '><Shock'
+        - 
+    - rid: 8164893420957466727
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeTime: 0.5
+    - rid: 8164893420957466728
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 11400000, guid: 3426c4ee54269a44b9bcec5133bed3fe, type: 2}
+        autoSaveName: '!AutoSave_Fight'
+    - rid: 8164893420957466729
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerDamage
+        flagValue: 10
+        increment: 0
+        persistent: 0
+    - rid: 8164893420957466730
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerMaxHealth
+        flagValue: 35
+        increment: 0
+        persistent: 0
+    - rid: 8164893420957466731
+      type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        flagID: PlayerCurHealth
+        flagValue: 35
+        increment: 0
+        persistent: 0

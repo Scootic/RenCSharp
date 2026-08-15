@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace RenCSharp.Combat.Enemies
 {
-    [CreateAssetMenu(menuName = "New Enemy Attack")]
+    [CreateAssetMenu(menuName = "Enemies/New Enemy Attack")]
     public class EnemyAttack : ScriptableObject
     {
         [SerializeField, Tooltip("How big the arena will be when enabled. (Sizes may vary based on how canvas is scaled.)")] protected Vector2 arenaDimensions = new Vector2(600, 350);

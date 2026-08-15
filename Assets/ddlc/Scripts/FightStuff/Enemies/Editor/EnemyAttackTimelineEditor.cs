@@ -16,18 +16,14 @@ namespace RenCSharp.Combat.Enemies.Editor
         [SerializeField] private EnemyAttackTimelineData timelineData;
 
         private SerializedObject activeTimeline, targetToEditObject;
-        private SerializedProperty targetToEditProperty, timelineToEditProperty;
+        private SerializedProperty targetToEditProperty;
         /// <summary>
         /// One of the properties of an EnemyAttack SO asset. See EnemyAttack.cs for more details.
         /// </summary>
-        private SerializedProperty arenaDimensionsProperty, controlTypeProperty, attackDurationProperty,
-            secondsPerSpawnProperty, projectilesPerSpawnProperty, projectilesThatSpawnProperty, spawnPointsProperty,
-            initialDirectionsProperty, indexesProperty, projectileSpawnPositionMethodProperty, projectileIndexMethodProperty,
-            loopsProperty;
+        private SerializedProperty arenaDimensionsProperty, controlTypeProperty, attackDurationProperty, projectileSpawnPositionMethodProperty, 
+            projectileIndexMethodProperty, loopsProperty;
 
         private ProjectileKnob curKnob;
-        private Vector2 curKnobTimeAndOffset;
-        //private SerializedProperty curKnobProjectileProperty;
 
         private Rect rectTotalArea;
         private Rect rectContent;
@@ -76,8 +72,8 @@ namespace RenCSharp.Combat.Enemies.Editor
         private static Texture saveIcon, placeKnobIcon, arenaPreviewTexture, projectilePreviewTexture, singlePixel;
         private readonly static string assetPathToEditorIcons = "Assets/ddlc/Visuals/Editor/";
 
-        private static readonly Color spawnC = new Color(1, 0.3f, 0, 1);
-        private static readonly Color afterSpawnC = new Color(0.86f, 0.86f, 0.86f, 1);
+        private static readonly Color spawnC = new(1, 0.3f, 0, 1);
+        private static readonly Color afterSpawnC = new(0.86f, 0.86f, 0.86f, 1);
 
         private static GUIContent PlaceKnobContent;
         private static GUIContent SaveContent;
@@ -108,7 +104,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             }
         }
 
-        private float LEFTWIDTH = 250f;
+        private readonly float LEFTWIDTH = 250f;
 
         public bool IsPlaying
         {
@@ -118,7 +114,7 @@ namespace RenCSharp.Combat.Enemies.Editor
 
         protected override bool IsLockedMoveFrame
         {
-            get { return (IsPlaying || Application.isPlaying); }
+            get { return IsPlaying; }
         }
 
         protected override bool IsLockDragHeaderArrow
@@ -210,11 +206,9 @@ namespace RenCSharp.Combat.Enemies.Editor
             GrabAKnob(null, Vector2.zero);
         }
 
-        private void GrabAKnob(ProjectileKnob newcur, Vector2 timeAndOffset)
+        private void GrabAKnob(ProjectileKnob newcur, Vector2 timeAndOffset) //?
         {
             curKnob = newcur;
-            //Debug.Log("Grabbing a new knob: " + curKnob.ToString());
-            curKnobTimeAndOffset = timeAndOffset;
         }
         private void ClearMarkers()
         {
@@ -239,12 +233,6 @@ namespace RenCSharp.Combat.Enemies.Editor
             arenaDimensionsProperty = targetToEditObject.FindProperty("arenaDimensions");
             controlTypeProperty = targetToEditObject.FindProperty("controlType");
             attackDurationProperty = targetToEditObject.FindProperty("attackDuration");
-            secondsPerSpawnProperty = targetToEditObject.FindProperty("secondsPerProjectileSpawn");
-            projectilesPerSpawnProperty = targetToEditObject.FindProperty("projectilesPerSpawn");
-            projectilesThatSpawnProperty = targetToEditObject.FindProperty("projectilesThatSpawn");
-            spawnPointsProperty = targetToEditObject.FindProperty("spawnPoints");
-            initialDirectionsProperty = targetToEditObject.FindProperty("initialDirections");
-            indexesProperty = targetToEditObject.FindProperty("indexes");
             projectileSpawnPositionMethodProperty = targetToEditObject.FindProperty("projectileSpawnPositionMethod");
             projectileIndexMethodProperty = targetToEditObject.FindProperty("projectileIndexMethod");
             loopsProperty = timelineDataSO.FindProperty("loops");
@@ -560,7 +548,7 @@ namespace RenCSharp.Combat.Enemies.Editor
                     GUI.DrawTextureWithTexCoords(drawProjectile, projectileDisplayTexture, projectileDisplayTextureRect, true);
                     //Debug.Log($"Drawing mf at rect: {drawProjectile}, texture: {pk.ProjectileToSpawn.DisplayTexture}, texturerect: {pk.ProjectileToSpawn.DisplayTextureRect}");
                 }
-                //if we have a Beam_Projectile
+                //if we have a Beam_Projectile. GOD WHAT A HORRIBLE IF/ELSE!!!
                 else
                 {
                     Texture[] beamTextures = beamP.GetBeamElementTextures;
@@ -701,17 +689,15 @@ namespace RenCSharp.Combat.Enemies.Editor
         private void OnEditorUpdate()
         {
             // float delta = (float)(EditorApplication.timeSinceStartup - _lastUpdateTime);
-            if (!Application.isPlaying && this.IsPlaying)
+            if (IsPlaying)
             {
                 double fTime = (float)EditorApplication.timeSinceStartup - _lastUpdateTime;
-                this.RunningTime += Math.Abs(fTime) * 1.0f;
-                if (this.RunningTime >= this.CutOffTime)
+                RunningTime += Math.Abs(fTime) * 1.0f;
+                if (RunningTime >= CutOffTime)
                 {
-                    this.PausePreView();
+                    PausePreView();
                 }
             }
-            //if (_simpleSample)
-            //    BlendCenter.BlendAnimation((float)this.RunningTime, aa01, aa02, _targetObject);
 
             _lastUpdateTime = (float)EditorApplication.timeSinceStartup;
             Repaint();
@@ -726,8 +712,8 @@ namespace RenCSharp.Combat.Enemies.Editor
             }
 
             cur = Event.current;
-            Rect rectMainBodyArea = new Rect(0, toolbarHeight, base.position.width, this.position.height - toolbarHeight);
-            rectTopBar = new Rect(0, 0, this.position.width, toolbarHeight);
+            Rect rectMainBodyArea = new Rect(0, toolbarHeight, base.position.width, position.height - toolbarHeight);
+            rectTopBar = new Rect(0, 0, position.width, toolbarHeight);
             rectLeft = new Rect(rectMainBodyArea.x, rectMainBodyArea.y + timeRulerHeight, LEFTWIDTH, rectMainBodyArea.height);
             rectLeftTopToolBar = new Rect(rectMainBodyArea.x, rectMainBodyArea.y, LEFTWIDTH, timeRulerHeight);
 
@@ -885,7 +871,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             EditorPrefs.SetInt("previewprojectileplacinggrid", previewProjectilePlacingGridSnap);
             EditorPrefs.SetFloat("previewrectscale", previewRectScale);
 
-            if (!Application.isPlaying && GUI.Button(settingsDropDownRect, ResManager.SettingIcon, EditorStyles.toolbarDropDown))
+            if (GUI.Button(settingsDropDownRect, ResManager.SettingIcon, EditorStyles.toolbarDropDown))
             {
                 OnClickSettingButton();
             }
@@ -908,8 +894,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             //toggle between playing and paused
             bool playing = IsPlaying;
             playing = GUILayout.Toggle(playing, ResManager.playContent, EditorStyles.toolbarButton, new GUILayoutOption[0]);
-            if (!Application.isPlaying)
-            {
+
                 if (IsPlaying != playing)
                 {
                     IsPlaying = playing;
@@ -918,18 +903,17 @@ namespace RenCSharp.Combat.Enemies.Editor
                     else
                         PausePreView();
                 }
-            }
+
             //go forward a frame
             if (GUILayout.Button(ResManager.nextKeyContent, EditorStyles.toolbarButton, GUILayout.ExpandWidth(false)))
             {
                 NextTimeFrame();
             }
             //stop and go back to beninging?
-            if (GUILayout.Button(ResManager.StopIcon, EditorStyles.toolbarButton, GUILayout.ExpandWidth(false))
-                && !Application.isPlaying)
+            if (GUILayout.Button(ResManager.StopIcon, EditorStyles.toolbarButton, GUILayout.ExpandWidth(false)))
             {
                 PausePreView();
-                this.RunningTime = 0.0f;
+                RunningTime = 0.0f;
             }
             //place a new knob
             if (GUILayout.Button(PlaceKnobContent, EditorStyles.toolbarButton, GUILayout.ExpandWidth(false)))
@@ -945,7 +929,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             }
 
             GUILayout.FlexibleSpace();
-            string timeStr = TimeAsString((double)this.RunningTime, "F2");
+            string timeStr = TimeAsString((double)RunningTime, "F2");
             GUILayout.Label(timeStr);
             GUILayout.EndHorizontal();
             GUILayout.EndArea();

@@ -21,11 +21,15 @@ namespace RenCSharp.Combat.Enemies
 
         public override Vector2 GetPositionAtTime(float time, Vector2 initialDirection, Vector3 spawnPosition, out Vector2 dirAtTime, bool flipY = false)
         {
-            Vector2 s = new Vector2(spawnPosition.x, spawnPosition.y);
+            Vector2 s = new(spawnPosition.x, spawnPosition.y);
             if (flipY) { s = new Vector2(s.x, s.y * -1); initialDirection = new Vector2(initialDirection.x, initialDirection.y * -1); }
-            dirAtTime = initialDirection;
-            //just uses straight line logic because genuinely, fuck doing math
-            return s + (time * speed) * initialDirection;
+            initialDirection = initialDirection.normalized * speed;
+            //assuming speed is ~500? very dangerous!
+            Vector2 accel = initialDirection + new Vector2(0, flipY ? speed : -speed);
+            float timeSqr = time * time;
+            Vector2 posToReturn = s + initialDirection * time + (0.5f * timeSqr * accel);
+            dirAtTime = (posToReturn - s).normalized;
+            return posToReturn;
         }
 
         public override string ToString()

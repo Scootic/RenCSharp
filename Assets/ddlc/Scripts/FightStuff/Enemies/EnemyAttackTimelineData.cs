@@ -4,7 +4,7 @@ using UnityEngine;
 namespace RenCSharp.Combat.Enemies
 {
     //only created by the EnemyAttackTimelineEditor?
-    [CreateAssetMenu(menuName = "New Enemy Attack Timeline")]
+    [CreateAssetMenu(menuName = "Enemies/New Enemy Attack Timeline")]
     public class EnemyAttackTimelineData : EnemyAttack
     {
         //split dict into lists because EVIL?!?
@@ -79,7 +79,7 @@ namespace RenCSharp.Combat.Enemies
     {
         public Vector3 SpawnPosition, InitialDirection;
         public int ProjectileIndex;
-        public override string ToString()
+        public override readonly string ToString()
         {
             return $"Spawn Position: {SpawnPosition}, InitialDirection: {InitialDirection}, ProjectileIndex: {ProjectileIndex}";
         }
