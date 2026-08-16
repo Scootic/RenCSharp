@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace UITK_SimpleTimeline
 {
     [Serializable]
-    public struct TimelineKeyframe<T> : IComparable
+    public class TimelineKeyframe<T> : UnityEngine.Object, IComparable //?? not sure if declaring this bastard as unityengine.obj is legal
     {
         public T Value;
 
@@ -24,7 +24,7 @@ namespace UITK_SimpleTimeline
         public float InTangent;
         public float OutTangent;
 
-        public readonly int CompareTo(object obj) //make sure we're ordering our lists by time, because duh
+        public int CompareTo(object obj) //super dee duper make sure we're ordering our lists by time, because duh
         {
             if (obj == null) return 1;
             TimelineKeyframe<T> other = (TimelineKeyframe<T>) obj;
@@ -57,49 +57,49 @@ namespace UITK_SimpleTimeline
         /// <summary>
         /// PLEASE! PLEASE BY SORTED IN ORDER OF TIME! PLEASE!!!
         /// </summary>
-        public List<TimelineKeyframe<T>> Keyframes;
-
+        private List<TimelineKeyframe<T>> keyframes;
+        public List<TimelineKeyframe<T>> Keyframes => keyframes;
         public void AddKeyframeToCurve(float time)
         {
             TimelineKeyframe<T> toAdd = new();
 
             for(int i = 0; i < Length; i++)
             {
-                if (time < Keyframes[i].Time) { Keyframes.Insert(i, toAdd); return; }
+                if (time < keyframes[i].Time) { keyframes.Insert(i, toAdd); return; }
             }
-            Keyframes.Add(toAdd);
+            keyframes.Add(toAdd);
         }
 
         public void RemoveKeyframeFromCurve(float time)
         {
             for(int i = 0; i < Length; i++)
             {
-                if (Keyframes[i].Time == time) Keyframes.RemoveAt(i);
+                if (keyframes[i].Time == time) keyframes.RemoveAt(i);
             }
         }
         public void RemoveKeyframeFromCurve(int index)
         {
-            Keyframes.RemoveAt(index);
+            keyframes.RemoveAt(index);
         }
         public void RemoveKeyframeFromCurve(TimelineKeyframe<T> toRemove)
         {
-            if (Keyframes.Contains(toRemove)) Keyframes.Remove(toRemove);
+            if (keyframes.Contains(toRemove)) keyframes.Remove(toRemove);
         }
 
         protected float[] KeyframeTimes
         {
             get
             {
-                float[] allTimes = new float[Keyframes.Count];
+                float[] allTimes = new float[keyframes.Count];
                 for(int i = 0; i < allTimes.Length; i++)
                 {
-                    allTimes[i] = Keyframes[i].Time;
+                    allTimes[i] = keyframes[i].Time;
                 }
                 return allTimes;
             }
         }
-        public int Length => Keyframes.Count;
-        public TimelineKeyframe<T> AtIndex(int i) { return Keyframes[i]; }
+        public int Length => keyframes.Count;
+        public TimelineKeyframe<T> AtIndex(int i) { return keyframes[i]; }
         #endregion
 
         #region ClosestTwos
@@ -117,7 +117,7 @@ namespace UITK_SimpleTimeline
                 index = ~index;
                 //index should now be the one higher than time?
                 toReturn[1] = index;
-                toReturn[0] = (index > 0) ? index - 1 : Keyframes.Count-1;
+                toReturn[0] = (index > 0) ? index - 1 : Length-1;
             }
             else
             {
@@ -129,7 +129,7 @@ namespace UITK_SimpleTimeline
                 else
                 {
                     toReturn[1] = index;
-                    toReturn[0] = (index > 0) ? index - 1 : Keyframes.Count - 1;
+                    toReturn[0] = (index > 0) ? index - 1 : Length - 1;
                 }
             }
             return toReturn;
@@ -143,8 +143,8 @@ namespace UITK_SimpleTimeline
         {
             TimelineKeyframe<T>[] toReturn = new TimelineKeyframe<T>[2];
             int[] indexes = ClosestTwoIndexes(time);
-            toReturn[0] = Keyframes[indexes[0]];
-            toReturn[1] = Keyframes[indexes[1]];
+            toReturn[0] = keyframes[indexes[0]];
+            toReturn[1] = keyframes[indexes[1]];
             return toReturn;
         }
         //not sure what I need this for?

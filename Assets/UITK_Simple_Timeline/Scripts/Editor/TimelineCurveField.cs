@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+using System;
 namespace UITK_SimpleTimeline.Editor
 {
     /// <summary>
@@ -14,6 +14,7 @@ namespace UITK_SimpleTimeline.Editor
     [UxmlElement]
     public partial class TimelineCurveField<T, U> : BaseField<TimelineCurve<T, U>> where U : class
     {
+        public Action DeleteMeAction;
         protected readonly Dictionary<float, TimelineKnob<T>> KeyframeIcons;
         protected readonly VisualElement Container;
         protected readonly float xOffset = 30; //?
@@ -70,6 +71,7 @@ namespace UITK_SimpleTimeline.Editor
                 tKnob.RegisterCallback<PointerDownEvent>(evt =>
                 {
                     if (evt.button == 1) tKnob.DeleteMe.ShowAsContext();
+                    else if (evt.button == 1) SimpleTimelineUITKField.ReceiveKeyframe(tKnob.value as TimelineKeyframe<object>);
                 });
                 KeyframeIcons.Add(kf.Time, tKnob);
             }
@@ -82,6 +84,15 @@ namespace UITK_SimpleTimeline.Editor
                 if (evt.button == 1) //if right click, spawn and set generic menu, get time to add based on mouse pos?
                 {
                     AddNewKeyframeMenu = new();
+                    AddNewKeyframeMenu.AddItem(new GUIContent($"Add Keyframe at {evt}"), false, delegate
+                    {
+
+                    });
+                    AddNewKeyframeMenu.AddSeparator("");
+                    AddNewKeyframeMenu.AddItem(new GUIContent("Delete Curve?!?"), false, delegate
+                    {
+                        DeleteMeAction?.Invoke();
+                    });
                 }
             });
         }
