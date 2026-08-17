@@ -9,6 +9,7 @@ namespace UITK_SimpleTimeline.Editor
     public partial class TimelineKnob<T> : BaseField<TimelineKeyframe<T>>
     {
         protected TimelineKnob<T> clipboard = null;
+        protected static Texture2D knobImage = null;
         public Action DeleteKnobAction;
         public GenericMenu DeleteMe
         {
@@ -40,7 +41,9 @@ namespace UITK_SimpleTimeline.Editor
         public TimelineKnob() : this(null) { }
         public TimelineKnob(string labelText) : base(labelText, new VisualElement())
         {
-            style.backgroundImage = Resources.Load<Texture2D>("UITK_SimpleTimeline_Icons/editordiamond.png");
+            if (knobImage == null) knobImage = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/UITK_Simple_Timeline/UITK_SimpleTimelineIcons/timelinediamond.png");
+            if (knobImage == null) Debug.LogError("TimelineKnob.cs can't find timelinediamond.png. Did you move the UITK_Simple_Timeline from your root Asset folder?");
+            style.backgroundImage = knobImage;
             style.position = Position.Absolute;
             style.height = 25f;
             style.width = 25f;
@@ -48,7 +51,9 @@ namespace UITK_SimpleTimeline.Editor
         public TimelineKnob(string labelText, TimelineKeyframe<T> kf) : base(labelText, new VisualElement())
         {
             value = kf;
-            style.backgroundImage = Resources.Load<Texture2D>("UITK_SimpleTimeline_Icons/editordiamond.png");
+            if (knobImage == null) knobImage = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/UITK_Simple_Timeline/UITK_SimpleTimelineIcons/timelinediamond.png");
+            if (knobImage == null) Debug.LogError("TimelineKnob.cs can't find timelinediamond.png. Did you move the UITK_Simple_Timeline from your root Asset folder?");
+            style.backgroundImage = knobImage;
             style.position = Position.Absolute;
             style.height = 25f;
             style.width = 25f;

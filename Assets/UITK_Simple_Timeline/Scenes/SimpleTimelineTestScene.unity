@@ -269,6 +269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 457650235}
+  - component: {fileID: 457650236}
   m_Layer: 0
   m_Name: Movers
   m_TagString: Untagged
@@ -292,6 +293,23 @@ Transform:
   - {fileID: 361836097}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &457650236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457650234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a17bc117b8e0b545ae41b670e8e49a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 0}
+  timelineAssets:
+  - {fileID: 11400000, guid: b4ab4b51d3df3e54fb05fa460dde0156, type: 2}
+  playInitialOnStart: 0
+  finishAnimationOnSwap: 1
 --- !u!1 &611947013
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,7 +764,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 975012901}
-  - component: {fileID: 975012900}
   m_Layer: 0
   m_Name: TimelinePlayer
   m_TagString: Untagged
@@ -754,20 +771,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &975012900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 975012899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88e8b6457a74f7d4c80682e3ce4c6e96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playOnStart: 1
-  timelineToPlay: {fileID: 11400000, guid: b4ab4b51d3df3e54fb05fa460dde0156, type: 2}
 --- !u!4 &975012901
 Transform:
   m_ObjectHideFlags: 0

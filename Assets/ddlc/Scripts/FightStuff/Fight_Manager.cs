@@ -71,6 +71,7 @@ namespace RenCSharp.Combat
             Event_Bus.TryRemoveSingleObjEvent("AddAProjectile");
             Event_Bus.TryRemoveBoolEvent("EndAFight");
         }
+
         #region StartUp
         public void StartAFight(EnemySO eso)
         {
@@ -469,6 +470,7 @@ namespace RenCSharp.Combat
         }
 
         #endregion
+
         void SpawnEnemyDamageNumber(float damageTaken)
         {
             UI_Element fella = Object_Pooling.Spawn(enemyDamageNumber.gameObject, curEnemy.transform.position, Quaternion.identity).GetComponent<UI_Element>();

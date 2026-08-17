@@ -1,0 +1,63 @@
+using UnityEngine;
+using System.Threading;
+
+namespace UITK_SimpleTimeline
+{
+    public class SimpleTimelineAnimationComponent : MonoBehaviour
+    {
+        [SerializeField, Tooltip("Leave empty if you want this GameObject to be the root.")] private GameObject root;
+        [SerializeField] private SimpleTimelineAsset[] timelineAssets;
+        [Header("Settings")]
+        [SerializeField, Tooltip("Decides if the component should play the timeline at index 0 on start.")] private bool playInitialOnStart = false;
+        [SerializeField, Tooltip("Decides if the currently playing timeline should be fully evaluated before swapping to a new one. [TimelineResult()]")] private bool finishAnimationOnSwap = true;
+        private SimpleTimeline[] timelines;
+        private Awaitable curTimeline = null;
+        private int curIndex;
+
+        private void Awake()
+        {
+            if (root == null) root = gameObject;
+            timelines = new SimpleTimeline[timelineAssets.Length];
+            //should be setting copies? We don't want to assign Scene GameObjects to raw timelineAsset timelines
+            //because they might not need them, AND it'd be bad to override other gameobjects.
+            for (int i = 0; i < timelines.Length; i++)
+            {
+                timelines[i] = timelineAssets[i].timeline;
+                timelines[i].SetSceneObject = root;
+            }
+        }
+
+        void Start()
+        {
+            if (playInitialOnStart && timelines.Length > 0)
+            {
+                curTimeline = timelines[0].RunThroughTimeline(new CancellationToken());
+            }
+        }
+
+        public void PlayTimeline(int index)
+        {
+            if (index < timelines.Length && index > 0)
+            {
+                if (curTimeline != null && !curTimeline.IsCompleted)
+                {
+                    curTimeline.Cancel();
+                    if (finishAnimationOnSwap) timelines[curIndex].TimelineResult();
+                }
+
+                curIndex = index;
+
+                curTimeline = timelines[curIndex].RunThroughTimeline(new CancellationToken());
+            }
+            else
+            {
+                Debug.LogWarning($"GameObject: {name} was given an index that was outside of timeline array range. ({index})");
+            }
+        }
+
+        public void HaltCurrentTimeline()
+        {
+            curTimeline?.Cancel();
+        }
+    }
+}

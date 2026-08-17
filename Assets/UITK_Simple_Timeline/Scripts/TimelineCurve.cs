@@ -32,13 +32,17 @@ namespace UITK_SimpleTimeline
         }
     }
     /// <summary>
-    /// Stupid evil lerper of cubicly type.
+    /// Stupid evil lerper of cubicly type. Remember to give your custom types a ToString(), and to add them
+    /// to the Type[] in SimpleTimelineUITKField.cs
     /// </summary>
     /// <typeparam name="T">The type of value being lerped between.</typeparam>
     /// <typeparam name="U">The type of object that is affected.</typeparam>
     [Serializable]
     public abstract class TimelineCurve<T, U> where U : class
     {
+        protected GameObject root;
+        public GameObject SetRootObject { set { root = value; } }
+
         /// <summary>
         /// The object(s?) that will be impacted whenever the curve is evaluated. :)
         /// </summary>
@@ -49,6 +53,12 @@ namespace UITK_SimpleTimeline
         /// <param name="time">The time, in seconds, on the curve that's being grabbed.</param>
         /// <returns>The type of value that's in-between the keyframes at time.</returns>
         public abstract T Evaluate(float time);
+        /// <summary>
+        /// A log message that shows what's happening at param:time.
+        /// </summary>
+        /// <param name="time">The time, in seconds, on the curve that's being grabbed.</param>
+        /// <returns>A contextual message to display what sort of things are happening at param:time.</returns>
+        public abstract string EvaluateMessage(float time);
 
         public WrapMode PreWrapMode = WrapMode.Default;
         public WrapMode PostWrapMode = WrapMode.Default;
@@ -57,7 +67,7 @@ namespace UITK_SimpleTimeline
         /// <summary>
         /// PLEASE! PLEASE BY SORTED IN ORDER OF TIME! PLEASE!!!
         /// </summary>
-        private List<TimelineKeyframe<T>> keyframes;
+        private readonly List<TimelineKeyframe<T>> keyframes = new();
         public List<TimelineKeyframe<T>> Keyframes => keyframes;
         public void AddKeyframeToCurve(float time)
         {

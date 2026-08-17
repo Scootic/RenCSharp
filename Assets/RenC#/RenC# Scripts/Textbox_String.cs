@@ -146,6 +146,7 @@ namespace RenCSharp
             textBox.ForceMeshUpdate();
             textBox.maxVisibleCharacters = textBox.text.Length; //please show everything if we aren't already!
         }
+
         /// <summary>
         /// Goes through a string, and replaces all instances of keys in the replaceabletexts dictionary with their values.
         /// Ie. Replace {mc} with the name stored in savedata, etc.
@@ -165,8 +166,10 @@ namespace RenCSharp
             }
             return sOutput;
         }
+
         /// <summary>
-        /// Stops any textbox from displaying new chars, hover on current string instead.
+        /// Stops any textbox from displaying new chars, hover on current string instead. Technically different from pausing
+        /// the Sequence.
         /// </summary>
         /// <param name="stop">What we set the paused value to. True to stop, False to go.</param>
         public static void PauseTextbox(bool stop)

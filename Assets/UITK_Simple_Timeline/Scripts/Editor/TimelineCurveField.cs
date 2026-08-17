@@ -16,34 +16,35 @@ namespace UITK_SimpleTimeline.Editor
     {
         public Action DeleteMeAction;
         protected readonly Dictionary<float, TimelineKnob<T>> KeyframeIcons;
-        protected readonly VisualElement Container;
         protected readonly float xOffset = 30; //?
         /// <summary>
         /// Should hold the data for the TimelineCurve's U value.
         /// </summary>
+        protected readonly VisualElement CurveDataContainer, KeyframeContainer;
         protected readonly PropertyField ToBeAffectedField;
         protected GenericMenu AddNewKeyframeMenu;
 
         public TimelineCurveField() : this(null) { }
         public TimelineCurveField(string labelText) : base(labelText, new VisualElement())
         {
-            Container = new VisualElement();
             KeyframeIcons = new();
             RegisterGenericMenu();
         }
         public TimelineCurveField(string labelText, TimelineCurve<T, U> curve) : base(labelText, new VisualElement())
         {
             value = curve;
-            Container = new VisualElement();
             KeyframeIcons = new();
+
+            CurveDataContainer = new();
+
+            Add(CurveDataContainer);
+
+            KeyframeContainer = new();
+
+            Add(CurveDataContainer);
 
             SpawnKeyframeKnobs(value);
             RegisterGenericMenu();
-
-            foreach (KeyValuePair<float, TimelineKnob<T>> kvp in KeyframeIcons)
-            {
-                Container.Add(kvp.Value);
-            }
         }
 
         protected void RegenerateIcons()
@@ -51,7 +52,7 @@ namespace UITK_SimpleTimeline.Editor
             //go through elements of the list, place them around, and make sure they've got values 'n' shite
             foreach (KeyValuePair<float, TimelineKnob<T>> kvp in KeyframeIcons)
             {
-                Container.Remove(kvp.Value);
+                KeyframeContainer.Remove(kvp.Value);
             }
             KeyframeIcons.Clear();
             SpawnKeyframeKnobs(value);
@@ -74,19 +75,21 @@ namespace UITK_SimpleTimeline.Editor
                     else if (evt.button == 1) SimpleTimelineUITKField.ReceiveKeyframe(tKnob.value as TimelineKeyframe<object>);
                 });
                 KeyframeIcons.Add(kf.Time, tKnob);
+                KeyframeContainer.Add(tKnob);
             }
         }
 
         protected void RegisterGenericMenu()
         {
-            Container.RegisterCallback<PointerDownEvent>(evt =>
+            RegisterCallback<PointerDownEvent>(evt =>
             {
                 if (evt.button == 1) //if right click, spawn and set generic menu, get time to add based on mouse pos?
                 {
                     AddNewKeyframeMenu = new();
                     AddNewKeyframeMenu.AddItem(new GUIContent($"Add Keyframe at {evt}"), false, delegate
                     {
-
+                        //value.AddKeyframeToCurve()
+                        RegenerateIcons();
                     });
                     AddNewKeyframeMenu.AddSeparator("");
                     AddNewKeyframeMenu.AddItem(new GUIContent("Delete Curve?!?"), false, delegate

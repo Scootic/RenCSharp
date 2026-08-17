@@ -5,13 +5,30 @@ using System.Threading;
 namespace UITK_SimpleTimeline
 {
     /// <summary>
-    /// Animation-style struct to handle animating things based on data that isn't in-scene.
+    /// AnimationClip-style struct to handle animating things based on data that isn't in-scene (but also some in-scene things, too).
     /// </summary>
     [Serializable]
     public struct SimpleTimeline
     {
         public bool Loop;
         public float Duration;
+
+        private GameObject sceneObject;
+        /// <summary>
+        /// Should only be used by the SimpleTimelineComponent, or another Scene-based script.
+        /// </summary>
+        public GameObject SetSceneObject 
+        { 
+            set 
+            { 
+                sceneObject = value; 
+                foreach(TimelineCurve<object, object> curve in Curves)
+                {
+                    curve.SetRootObject = sceneObject;
+                }
+            } 
+        }
+        public readonly bool HasSceneObject => sceneObject != null;
 
         /// <summary>
         /// Seconds per frame. Ie. "I want 60FPS! Do: 1f / 60f."

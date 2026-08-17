@@ -2,12 +2,14 @@ using UnityEngine;
 namespace UITK_SimpleTimeline
 {
     /// <summary>
-    /// Example curve that affects a transform's position.
+    /// Example curve that affects a transform's position. Uses transform .Find() to parse GameObject hierarchy,
+    /// so if you want to get a child of a child use this pattern: child1/subchild2
     /// </summary>
-    public class PositionCurve : TimelineCurve<Vector3, Transform>
+    public class PositionCurve : TimelineCurve<Vector3, string>
     {
         public override Vector3 Evaluate(float time)
         {
+            if(root == null) { Debug.LogWarning("No root object for position curve!"); return Vector3.zero; }
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
             float[] tangents = GetTangents(toEval);
@@ -21,18 +23,31 @@ namespace UITK_SimpleTimeline
             float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
 
             Vector3 toReturn = new(x, y, z);
-            ToAffect.localPosition = toReturn;
+            Transform t = root.transform.Find(ToAffect);
+            t.localPosition = toReturn;
 
             return toReturn;
         }
+
+        public override string EvaluateMessage(float time)
+        {
+            return $"{ToAffect}.localPos should be: {Evaluate(time)}";
+        }
+
+        public override string ToString()
+        {
+            return "Set Root Transform/Local Position";
+        }
     }
     /// <summary>
-    /// Example curve that affects a transform's scale.
+    /// Example curve that affects a transform's scale. Uses transform .Find() to parse GameObject hierarchy,
+    /// so if you want to get a child of a child use this pattern: child1/subchild2
     /// </summary>
-    public class ScaleCurve : TimelineCurve<Vector3, Transform>
+    public class ScaleCurve : TimelineCurve<Vector3, string>
     {
         public override Vector3 Evaluate(float time)
         {
+            if (root == null) { Debug.LogWarning("No root object for scale curve!"); return Vector3.zero; }
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
             float[] tangents = GetTangents(toEval);
@@ -43,18 +58,31 @@ namespace UITK_SimpleTimeline
             float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
 
             Vector3 toReturn = new(x, y, z);
-            ToAffect.localScale = toReturn;
+            Transform t = root.transform.Find(ToAffect);
+            t.localScale = toReturn;
 
             return toReturn;
         }
+
+        public override string EvaluateMessage(float time)
+        {
+            return $"{ToAffect}.localScale should be: {Evaluate(time)}";
+        }
+
+        public override string ToString()
+        {
+            return "Set Root Transform/Local Scale";
+        }
     }
     /// <summary>
-    /// Example curve that affects a transform's rotation.
+    /// Example curve that affects a transform's rotation. Uses transform .Find() to parse GameObject hierarchy,
+    /// so if you want to get a child of a child use this pattern: child1/subchild2
     /// </summary>
-    public class RotationCurve : TimelineCurve<Quaternion, Transform>
+    public class RotationCurve : TimelineCurve<Quaternion, string>
     {
         public override Quaternion Evaluate(float time)
         {
+            if (root == null) { Debug.LogWarning("No root object for rotation curve!"); return Quaternion.identity; }
             TimelineKeyframe<Quaternion>[] toEval = ClosestTwoKeyframes(time);
 
             float[] tangents = GetTangents(toEval);
@@ -66,8 +94,19 @@ namespace UITK_SimpleTimeline
             float w = cubics[0] * toEval[0].Value.w + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.w;
 
             Quaternion toReturn = new(x,y,z,w);
-            ToAffect.localRotation = toReturn;
+            Transform t = root.transform.Find(ToAffect);
+            t.localRotation = toReturn;
             return toReturn;
+        }
+
+        public override string EvaluateMessage(float time)
+        {
+            return $"{ToAffect}.localRot should be: {Evaluate(time)}";
+        }
+
+        public override string ToString()
+        {
+            return "Set Root Transform/Local Rotation";
         }
     }
 }
