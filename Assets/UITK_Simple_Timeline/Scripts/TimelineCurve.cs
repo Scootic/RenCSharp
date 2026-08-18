@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
+using UObject = UnityEngine.Object;
 using TangentMode = UnityEditor.AnimationUtility.TangentMode;
 using System.Collections.Generic;
 namespace UITK_SimpleTimeline
 {
     [Serializable]
-    public class TimelineKeyframe<T> : UnityEngine.Object, IComparable //?? not sure if declaring this bastard as unityengine.obj is legal
+    public class TimelineKeyframe<T> : UObject, IComparable //?? not sure if declaring this bastard as unityengine.obj is legal
     {
         public T Value;
 
@@ -38,7 +39,7 @@ namespace UITK_SimpleTimeline
     /// <typeparam name="T">The type of value being lerped between.</typeparam>
     /// <typeparam name="U">The type of object that is affected.</typeparam>
     [Serializable]
-    public abstract class TimelineCurve<T, U> where U : class
+    public abstract class TimelineCurve<T, U> : UObject where U : class
     {
         protected GameObject root;
         public GameObject SetRootObject { set { root = value; } }

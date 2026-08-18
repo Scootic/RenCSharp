@@ -17,7 +17,11 @@ namespace UITK_SimpleTimeline.Editor
             windowInstance = GetWindow<SimpleTimeline_EditorWindow>();
             windowInstance.titleContent = new GUIContent("Simple Timeline Editor");
         }
-
+        /// <summary>
+        /// Open editor window :)
+        /// </summary>
+        /// <param name="st">SimpleTimeline to edit</param>
+        /// <param name="field">Ideally, custom child class that actually has Types of curves to display</param>
         public static void OpenWindow(SimpleTimeline st, SimpleTimelineUITKField field)
         {
             if (windowInstance != null) { Debug.LogWarning("Simple Timeline Editor Window already open!"); return; }

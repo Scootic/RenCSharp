@@ -16,6 +16,7 @@ namespace UITK_SimpleTimeline.Editor
     {
         protected readonly VisualElement SimpleTimelineInfoHolder, TimelineHolder, 
             TimelineControlsHolder, KeyframeControlsHolder, CurrentTimePreview;
+        protected readonly TimelineRuler TimelineRuler;
         protected readonly IntegerField CurrentFrameField;
 
         protected readonly FloatField DurationField;
@@ -234,11 +235,13 @@ namespace UITK_SimpleTimeline.Editor
             });
             TimelineHolder.Add(TimelineScrollView);
 
+            TimelineRuler = new() { name = "TimelineRuler" };
+            TimelineScrollView.Add(TimelineRuler);
+
             #endregion
             GenerateTimelineCurveFields();
 
-            CurrentFrameField = new();
-            CurrentFrameField.value = 0;
+            CurrentFrameField = new() { value = 0 };
             CurrentFrameField.RegisterValueChangedCallback(evt =>
             {
                 curT = (float)evt.newValue / 60f; //bcuz 60fps...?
@@ -288,14 +291,21 @@ namespace UITK_SimpleTimeline.Editor
         protected void CreateAddNewCurveMenu()
         {
             AddNewCurveMenu = new();
-            foreach(Type t in GetValidCurveTypes())
+            try
             {
-                //this mans should always be a stinkin' TimelineCurve. (God I hope...)
-                object c = Activator.CreateInstance(t);
-                AddNewCurveMenu.AddItem(new GUIContent($"Add New {c.ToString()}"), false, delegate
+                foreach (Type t in GetValidCurveTypes())
                 {
-                    AddNewTimelineCurve(c as TimelineCurve<object, object>);
-                });
+                    //this mans should always be a stinkin' TimelineCurve. (God I hope...)
+                    object c = Activator.CreateInstance(t);
+                    AddNewCurveMenu.AddItem(new GUIContent($"Add New {c.ToString()}"), false, delegate
+                    {
+                        AddNewTimelineCurve(c as TimelineCurve<object, object>);
+                    });
+                }
+            }
+            catch(NullReferenceException)
+            {
+                Debug.LogError("No Types in GetValidCurveTypes(). Make sure to override it!");
             }
         }
 
