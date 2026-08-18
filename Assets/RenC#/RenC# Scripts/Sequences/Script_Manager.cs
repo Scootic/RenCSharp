@@ -91,7 +91,6 @@ namespace RenCSharp
                 Destroy(SM);
                 SM = this;
             }
-
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder);
             Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder);//horrid
             FlagToken ft = new FlagToken();

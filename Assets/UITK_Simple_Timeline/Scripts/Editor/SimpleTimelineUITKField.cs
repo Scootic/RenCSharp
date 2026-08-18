@@ -100,7 +100,7 @@ namespace UITK_SimpleTimeline.Editor
             DurationField.RegisterValueChangedCallback(evt =>
             {
                 thisTimeline.Duration = evt.newValue;
-                //adjust scroll view max size based on duration????
+                UpdateTimelineScrollSizeBasedOnDuration(evt.newValue);
             });
             SimpleTimelineInfoHolder.Add(DurationField);
 
@@ -234,8 +234,14 @@ namespace UITK_SimpleTimeline.Editor
                 }
             });
             TimelineHolder.Add(TimelineScrollView);
-
             TimelineRuler = new() { name = "TimelineRuler" };
+            TimelineRuler.RegisterCallback<PointerDownEvent>(evt =>
+            {
+                if(evt.button == 0 && !playing) //do the red ruler drag that sets cur time!
+                {
+
+                }
+            });
             TimelineScrollView.Add(TimelineRuler);
 
             #endregion
@@ -251,6 +257,11 @@ namespace UITK_SimpleTimeline.Editor
         public SimpleTimelineUITKField(string labelText, SimpleTimeline st) : base(labelText, new VisualElement())
         {
             thisTimeline = st;
+
+        }
+
+        protected void UpdateTimelineScrollSizeBasedOnDuration(float newDur)
+        {
 
         }
 
