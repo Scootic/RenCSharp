@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System;
 namespace UITK_SimpleTimeline.Editor
 {
     /// <summary>
@@ -12,39 +12,116 @@ namespace UITK_SimpleTimeline.Editor
     /// <typeparam name="T">The values that are lerped</typeparam>
     /// <typeparam name="U">The object that is affected</typeparam>
     [UxmlElement]
-    public partial class TimelineCurveField<T, U> : BaseField<TimelineCurve<T, U>> where U : class
+    public partial class TimelineCurveField<T, U> : BaseField<TimelineCurve<T, U>> where U : UnityEngine.Object
     {
         public Action DeleteMeAction;
-        protected readonly Dictionary<float, TimelineKnob<T>> KeyframeIcons;
-        protected readonly float xOffset = 30; //?
+        protected readonly Dictionary<float,TimelineKnob<T>> KeyframeIcons;
+        
+        protected readonly VisualElement CurveDataContainer;
+        protected readonly VisualElement KeyframeContainer;
         /// <summary>
         /// Should hold the data for the TimelineCurve's U value.
         /// </summary>
-        protected readonly VisualElement CurveDataContainer, KeyframeContainer;
         protected readonly PropertyField ToBeAffectedField;
-        protected GenericMenu AddNewKeyframeMenu;
+        protected GenericMenu AddNewKeyframeMenu, DeleteCurveMenu;
 
         public TimelineCurveField() : this(null) { }
+        //grumpus constructor that's bad!
         public TimelineCurveField(string labelText) : base(labelText, new VisualElement())
         {
             KeyframeIcons = new();
-            RegisterGenericMenu();
+
+            style.height = 150;
+            style.left = 0;
+            style.right = 0;
+            style.flexGrow = 1;
+            style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
+            style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            style.borderLeftColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            style.borderTopColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            style.borderRightColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            style.borderRightWidth = 1;
+            style.borderBottomWidth = 1;
+            style.borderTopWidth = 1;
+            style.borderLeftWidth = 1;
+            style.flexDirection = FlexDirection.Row;
+
+            CurveDataContainer = new();
+            CurveDataContainer.style.width = 150;
+            CurveDataContainer.style.height = 150;
+            CurveDataContainer.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
+            CurveDataContainer.style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            CurveDataContainer.style.borderRightColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            CurveDataContainer.style.borderTopColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            CurveDataContainer.style.borderLeftColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            CurveDataContainer.style.borderBottomWidth = 1;
+            CurveDataContainer.style.borderRightWidth = 1;
+            CurveDataContainer.style.borderTopWidth = 1;
+            CurveDataContainer.style.borderLeftWidth = 1;
+            Add(CurveDataContainer);
+
+            ToBeAffectedField = new();
+            ToBeAffectedField.style.width = 150;
+            ToBeAffectedField.style.height = 150;
+            //ToBeAffectedField.BindProperty(new SerializedObject(curve.ToAffect)); //?
+            CurveDataContainer.Add(ToBeAffectedField);
+
+            KeyframeContainer = new();
+            KeyframeContainer.style.left = 0;
+            KeyframeContainer.style.right = 0;
+            KeyframeContainer.style.height = 150;
+            Add(KeyframeContainer);
+
+            SpawnKeyframeKnobs(value);
+            RegisterGenericMenus();
         }
         public TimelineCurveField(string labelText, TimelineCurve<T, U> curve) : base(labelText, new VisualElement())
         {
             value = curve;
             KeyframeIcons = new();
+            style.height = 150;
+            style.left = 0;
+            style.right = 0;
+            style.flexGrow = 1;
+            style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
+            style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            style.borderLeftColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            style.borderTopColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            style.borderRightColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            style.borderRightWidth = 1;
+            style.borderBottomWidth = 1;
+            style.borderTopWidth = 1;
+            style.borderLeftWidth = 1;
+            style.flexDirection = FlexDirection.Row;
 
             CurveDataContainer = new();
-
+            CurveDataContainer.style.width = 150;
+            CurveDataContainer.style.height = 150;
+            CurveDataContainer.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
+            CurveDataContainer.style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            CurveDataContainer.style.borderRightColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            CurveDataContainer.style.borderTopColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            CurveDataContainer.style.borderLeftColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            CurveDataContainer.style.borderBottomWidth = 1;
+            CurveDataContainer.style.borderRightWidth = 1;
+            CurveDataContainer.style.borderTopWidth = 1;
+            CurveDataContainer.style.borderLeftWidth = 1;
             Add(CurveDataContainer);
+
+            ToBeAffectedField = new();
+            ToBeAffectedField.style.width = 150;
+            ToBeAffectedField.style.height = 150;
+            ToBeAffectedField.BindProperty(new SerializedObject(curve.ToAffect)); //?
+            CurveDataContainer.Add(ToBeAffectedField);
 
             KeyframeContainer = new();
-
-            Add(CurveDataContainer);
+            KeyframeContainer.style.left = 0;
+            KeyframeContainer.style.right = 0;
+            KeyframeContainer.style.height = 150;
+            Add(KeyframeContainer);
 
             SpawnKeyframeKnobs(value);
-            RegisterGenericMenu();
+            RegisterGenericMenus();
         }
 
         protected void RegenerateIcons()
@@ -63,7 +140,7 @@ namespace UITK_SimpleTimeline.Editor
             foreach (TimelineKeyframe<T> kf in curve.Keyframes)
             {
                 TimelineKnob<T> tKnob = new("", kf);
-                tKnob.transform.position = new Vector3(30 * kf.Time, 0, 0);
+                tKnob.transform.position = new Vector3((float)SimpleTimelineUITK_Helper.PixelWidthPerSeconds * kf.Time, 0, 0);
                 tKnob.DeleteKnobAction += delegate
                 {
                     KeyframeIcons.Remove(kf.Time);
@@ -72,30 +149,40 @@ namespace UITK_SimpleTimeline.Editor
                 tKnob.RegisterCallback<PointerDownEvent>(evt =>
                 {
                     if (evt.button == 1) tKnob.DeleteMe.ShowAsContext();
-                    else if (evt.button == 1) SimpleTimelineUITKField.ReceiveKeyframe(tKnob.value as TimelineKeyframe<object>);
+                    else if (evt.button == 0) SimpleTimelineUITK_Helper.ReceiveKeyframe?.Invoke(tKnob.value as TimelineKeyframe<object>);
                 });
                 KeyframeIcons.Add(kf.Time, tKnob);
                 KeyframeContainer.Add(tKnob);
             }
         }
 
-        protected void RegisterGenericMenu()
+        protected void RegisterGenericMenus()
         {
-            RegisterCallback<PointerDownEvent>(evt =>
+            KeyframeContainer.RegisterCallback<PointerDownEvent>(evt =>
             {
                 if (evt.button == 1) //if right click, spawn and set generic menu, get time to add based on mouse pos?
                 {
+                    float tToAddAt = evt.localPosition.x / (float)SimpleTimelineUITK_Helper.PixelWidthPerSeconds;
                     AddNewKeyframeMenu = new();
-                    AddNewKeyframeMenu.AddItem(new GUIContent($"Add Keyframe at {evt}"), false, delegate
+                    AddNewKeyframeMenu.AddItem(new GUIContent($"Add Keyframe at {tToAddAt}"), false, delegate
                     {
-                        //value.AddKeyframeToCurve()
+                        value.AddKeyframeToCurve(tToAddAt);
                         RegenerateIcons();
                     });
-                    AddNewKeyframeMenu.AddSeparator("");
-                    AddNewKeyframeMenu.AddItem(new GUIContent("Delete Curve?!?"), false, delegate
+                    AddNewKeyframeMenu.ShowAsContext();
+                }
+            });
+
+            CurveDataContainer.RegisterCallback<PointerDownEvent>(evt =>
+            {
+                if (evt.button == 1)
+                {
+                    DeleteCurveMenu = new();
+                    DeleteCurveMenu.AddItem(new GUIContent("Delete Curve?!?"), false, delegate
                     {
                         DeleteMeAction?.Invoke();
                     });
+                    DeleteCurveMenu.ShowAsContext();
                 }
             });
         }

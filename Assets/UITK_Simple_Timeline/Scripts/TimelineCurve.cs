@@ -9,7 +9,6 @@ namespace UITK_SimpleTimeline
     public class TimelineKeyframe<T> : UObject, IComparable //?? not sure if declaring this bastard as unityengine.obj is legal
     {
         public T Value;
-
         /// <summary>
         /// In seconds.
         /// </summary>
@@ -39,7 +38,7 @@ namespace UITK_SimpleTimeline
     /// <typeparam name="T">The type of value being lerped between.</typeparam>
     /// <typeparam name="U">The type of object that is affected.</typeparam>
     [Serializable]
-    public abstract class TimelineCurve<T, U> : UObject where U : class
+    public abstract class TimelineCurve<T, U> : UObject where U : UObject
     {
         protected GameObject root;
         public GameObject SetRootObject { set { root = value; } }
@@ -76,8 +75,15 @@ namespace UITK_SimpleTimeline
 
             for(int i = 0; i < Length; i++)
             {
-                if (time < keyframes[i].Time) { keyframes.Insert(i, toAdd); return; }
+                if (time < keyframes[i].Time) 
+                {
+                    //whenever inserting a keyframe, make it take the value of the previous one?
+                    if(i != 0) toAdd.Value = keyframes[i-1].Value;
+                    keyframes.Insert(i, toAdd); return; 
+                }
             }
+            //if we're adding a new keyframe to the "end" of a curve, make it have the same value as the previous last one.
+            toAdd.Value = keyframes[Length - 1].Value;
             keyframes.Add(toAdd);
         }
 

@@ -8,7 +8,7 @@ namespace UITK_SimpleTimeline
     /// (Either public or [SerializeField].)<br/><br/>The SimpleTimeline PropertyDrawer should give you the button you need
     /// to open the SimpleTimeline_EditorWindow.
     /// </summary>
-    [CreateAssetMenu(menuName = "SimpleTimeline Asset")]
+    [CreateAssetMenu(menuName = "UITK_SimpleTimeline/SimpleTimeline Asset")]
     public class SimpleTimelineAsset : ScriptableObject
     {
         public SimpleTimeline timeline;

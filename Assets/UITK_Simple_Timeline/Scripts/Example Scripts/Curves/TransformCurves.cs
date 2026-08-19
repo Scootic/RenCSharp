@@ -5,7 +5,7 @@ namespace UITK_SimpleTimeline
     /// Example curve that affects a transform's position. Uses transform .Find() to parse GameObject hierarchy,
     /// so if you want to get a child of a child use this pattern: child1/subchild2
     /// </summary>
-    public class PositionCurve : TimelineCurve<Vector3, string>
+    public class PositionCurve : TimelineCurve<Vector3, StringWrapper>
     {
         public override Vector3 Evaluate(float time)
         {
@@ -23,7 +23,7 @@ namespace UITK_SimpleTimeline
             float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
 
             Vector3 toReturn = new(x, y, z);
-            Transform t = root.transform.Find(ToAffect);
+            Transform t = root.transform.Find(ToAffect.value);
             t.localPosition = toReturn;
 
             return toReturn;
@@ -43,7 +43,7 @@ namespace UITK_SimpleTimeline
     /// Example curve that affects a transform's scale. Uses transform .Find() to parse GameObject hierarchy,
     /// so if you want to get a child of a child use this pattern: child1/subchild2
     /// </summary>
-    public class ScaleCurve : TimelineCurve<Vector3, string>
+    public class ScaleCurve : TimelineCurve<Vector3, StringWrapper>
     {
         public override Vector3 Evaluate(float time)
         {
@@ -58,7 +58,7 @@ namespace UITK_SimpleTimeline
             float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
 
             Vector3 toReturn = new(x, y, z);
-            Transform t = root.transform.Find(ToAffect);
+            Transform t = root.transform.Find(ToAffect.value);
             t.localScale = toReturn;
 
             return toReturn;
@@ -78,7 +78,7 @@ namespace UITK_SimpleTimeline
     /// Example curve that affects a transform's rotation. Uses transform .Find() to parse GameObject hierarchy,
     /// so if you want to get a child of a child use this pattern: child1/subchild2
     /// </summary>
-    public class RotationCurve : TimelineCurve<Quaternion, string>
+    public class RotationCurve : TimelineCurve<Quaternion, StringWrapper>
     {
         public override Quaternion Evaluate(float time)
         {
@@ -94,7 +94,7 @@ namespace UITK_SimpleTimeline
             float w = cubics[0] * toEval[0].Value.w + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.w;
 
             Quaternion toReturn = new(x,y,z,w);
-            Transform t = root.transform.Find(ToAffect);
+            Transform t = root.transform.Find(ToAffect.value);
             t.localRotation = toReturn;
             return toReturn;
         }

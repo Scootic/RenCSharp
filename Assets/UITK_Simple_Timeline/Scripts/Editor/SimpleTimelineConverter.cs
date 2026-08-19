@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEditor.UIElements;
-
+using UObject = UnityEngine.Object;
 namespace UITK_SimpleTimeline.Editor
 {
 
@@ -17,8 +17,8 @@ namespace UITK_SimpleTimeline.Editor
             object[] objects = value.Split('|');
             s.Loop = (bool)Convert.ChangeType(objects[0], typeof(bool), CultureInfo.InvariantCulture);
             s.Duration = (float)Convert.ChangeType(objects[1], typeof(float), CultureInfo.InvariantCulture);
-            s.Curves = (List<TimelineCurve<object, object>>)Convert.ChangeType(objects[2], 
-                typeof(List<TimelineCurve<object, object>>), 
+            s.Curves = (List<TimelineCurve<object, UObject>>)Convert.ChangeType(objects[2], 
+                typeof(List<TimelineCurve<object, UObject>>), 
                 CultureInfo.InvariantCulture);
             return s;
         }
