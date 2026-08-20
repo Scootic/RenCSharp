@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 using UnityEngine;
 using RenCSharp.EXPERIMENTAL;
 using System.Linq;
-namespace RenCSharp.Sequences
+namespace RenCSharp.Sequences.Editor
 {
     [UxmlElement]
     public partial class AutoTextField : BaseField<string>

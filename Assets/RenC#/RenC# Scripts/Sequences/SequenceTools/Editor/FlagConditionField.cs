@@ -1,6 +1,6 @@
 #if UNITY_EDITOR
 using UnityEngine.UIElements;
-namespace RenCSharp.Sequences
+namespace RenCSharp.Sequences.Editor
 {
     public class FlagConditionField : BaseField<FlagCondition>
     {

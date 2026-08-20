@@ -22,7 +22,7 @@ namespace UITK_SimpleTimeline
             //because they might not need them, AND it'd be bad to override other gameobjects.
             for (int i = 0; i < timelines.Length; i++)
             {
-                timelines[i] = timelineAssets[i].timeline;
+                timelines[i] = timelineAssets[i].Timeline;
                 timelines[i].SetSceneObject = root;
             }
         }

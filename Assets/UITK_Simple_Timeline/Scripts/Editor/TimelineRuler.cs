@@ -16,7 +16,7 @@ namespace UITK_SimpleTimeline.Editor
         {
             GrabRulerImage();
 
-            style.left = 150;
+            style.left = 0;
             style.right = 0;
             style.height = 25;
             style.backgroundColor = bgColor;

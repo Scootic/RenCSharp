@@ -6,7 +6,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace RenCSharp.Sequences
+namespace RenCSharp.Sequences.Editor
 {
     /// <summary>
     /// Unique EditorWindow for Sequences that exists because ScriptableObjects/Monobehaviors that have large arrays of strings

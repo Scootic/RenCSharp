@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace UITK_SimpleTimeline.Editor
+namespace UITK_SimpleTimeline
 {
     [UxmlElement]
     public partial class TimelineKnob<T> : BaseField<TimelineKeyframe<T>>

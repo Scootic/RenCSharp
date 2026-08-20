@@ -1,7 +1,8 @@
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-namespace RenCSharp.Sequences
+using UEditor = UnityEditor.Editor;
+namespace RenCSharp.Sequences.Editor
 {
     /// <summary>
     /// I hate this so much. Try to give screen events their name, so you actually know what the hell they are.
@@ -17,7 +18,7 @@ namespace RenCSharp.Sequences
     }
 
     [CustomEditor(typeof(Sequence)), CanEditMultipleObjects]
-    public class Sequence_Editor : Editor
+    public class Sequence_Editor : UEditor
     {
         private Sequence _target;
         public override void OnInspectorGUI()
@@ -30,7 +31,7 @@ namespace RenCSharp.Sequences
                 int wordcount = 0;
                 long totalChars = 0;
 
-                foreach(UnityEngine.Object obj in targets)
+                foreach(Object obj in targets)
                 {
                     _target = (Sequence)obj;
                     totalScreens += _target.Screens.Length;

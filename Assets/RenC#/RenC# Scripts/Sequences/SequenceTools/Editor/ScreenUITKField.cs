@@ -5,7 +5,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using RenCSharp.EXPERIMENTAL;
-namespace RenCSharp.Sequences
+namespace RenCSharp.Sequences.Editor
 {
     [UxmlElement]
     public partial class ScreenUITKField : BaseField<Screen>

@@ -11,11 +11,11 @@ namespace UITK_SimpleTimeline
     [CreateAssetMenu(menuName = "UITK_SimpleTimeline/SimpleTimeline Asset")]
     public class SimpleTimelineAsset : ScriptableObject
     {
-        public SimpleTimeline timeline;
+        public SimpleTimeline Timeline;
 
         public SimpleTimelineAsset(SimpleTimeline timeline)
         {
-            this.timeline = timeline;
+            Timeline = timeline;
         }
     }
 }

@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
-namespace RenCSharp.Sequences
+namespace RenCSharp.Sequences.Editor
 {
     [CustomPropertyDrawer(typeof(Conditional_Screen_Overrider))]
     public class Conditional_Screen_Overrider_Drawer : Screen_Event_Drawer

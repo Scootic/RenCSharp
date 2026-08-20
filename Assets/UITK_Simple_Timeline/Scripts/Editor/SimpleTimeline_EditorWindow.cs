@@ -6,10 +6,10 @@ namespace UITK_SimpleTimeline.Editor
     public class SimpleTimeline_EditorWindow : EditorWindow
     {
         public static SimpleTimeline_EditorWindow windowInstance;
-
-        private static SimpleTimelineUITKField timelineField;
         private static SimpleTimeline timelineToEdit = new();
 
+        private SimpleTimelineUITKField timelineField;
+        
         public static void OpenWindow(SimpleTimeline givenTimeline)
         {
             if (windowInstance != null) { Debug.LogWarning("Simple Timeline Editor Window already open!"); return; }
@@ -17,25 +17,20 @@ namespace UITK_SimpleTimeline.Editor
             windowInstance = GetWindow<SimpleTimeline_EditorWindow>();
             windowInstance.titleContent = new GUIContent("Simple Timeline Editor");
         }
-        /// <summary>
-        /// Open editor window :)
-        /// </summary>
-        /// <param name="st">SimpleTimeline to edit</param>
-        /// <param name="field">Ideally, custom child class that actually has Types of curves to display</param>
-        public static void OpenWindow(SimpleTimeline st, SimpleTimelineUITKField field)
+
+        public static void OpenWindow()
         {
             if (windowInstance != null) { Debug.LogWarning("Simple Timeline Editor Window already open!"); return; }
-            timelineToEdit = st;
-            timelineField = field;
+            timelineToEdit = new();
             windowInstance = GetWindow<SimpleTimeline_EditorWindow>();
             windowInstance.titleContent = new GUIContent("Simple Timeline Editor");
         }
 
+
         public void CreateGUI()
         {
-            //if no subclass SimpleTimelineUITKField is passed on creation, default to the base one. Sad and typeless!
-            if(timelineField != null) timelineField = new("",timelineToEdit);
-
+            timelineField = new("",timelineToEdit);
+       
             rootVisualElement.Add(timelineField);
         }
 

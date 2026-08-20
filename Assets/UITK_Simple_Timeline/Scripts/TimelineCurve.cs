@@ -3,6 +3,8 @@ using UnityEngine;
 using UObject = UnityEngine.Object;
 using TangentMode = UnityEditor.AnimationUtility.TangentMode;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
+
 namespace UITK_SimpleTimeline
 {
     [Serializable]
@@ -32,33 +34,38 @@ namespace UITK_SimpleTimeline
         }
     }
     /// <summary>
-    /// Stupid evil lerper of cubicly type. Remember to give your custom types a ToString(), and to add them
-    /// to the Type[] in SimpleTimelineUITKField.cs
+    /// Stupid evil lerper of cubicly type. Remember to give your custom types a ToString(), and to add their Assemblies
+    /// to the UITK_SimpleTimeline_AssemblyDatabase asset.
     /// </summary>
     /// <typeparam name="T">The type of value being lerped between.</typeparam>
     /// <typeparam name="U">The type of object that is affected.</typeparam>
     [Serializable]
-    public abstract class TimelineCurve<T, U> : UObject where U : UObject
+    public abstract class TimelineCurve<T, U> : UObject, ILerpable where U : UObject
     {
         protected GameObject root;
-        public GameObject SetRootObject { set { root = value; } }
 
         /// <summary>
         /// The object(s?) that will be impacted whenever the curve is evaluated. :)
         /// </summary>
-        public U ToAffect;
+        public U ToAffect = null;
         /// <summary>
         /// Basically the same thing as AnimationCurve.Evaluate.
         /// </summary>
         /// <param name="time">The time, in seconds, on the curve that's being grabbed.</param>
-        /// <returns>The type of value that's in-between the keyframes at time.</returns>
-        public abstract T Evaluate(float time);
+        public abstract void Evaluate(float time);
         /// <summary>
         /// A log message that shows what's happening at param:time.
         /// </summary>
         /// <param name="time">The time, in seconds, on the curve that's being grabbed.</param>
         /// <returns>A contextual message to display what sort of things are happening at param:time.</returns>
         public abstract string EvaluateMessage(float time);
+
+        public void SetRootObject(GameObject go) { root = go; }
+
+        public DestroyableVisualElement UITKRepresentation()
+        {
+            return new TimelineCurveField<T, U>("", this) as DestroyableVisualElement;
+        }
 
         public WrapMode PreWrapMode = WrapMode.Default;
         public WrapMode PostWrapMode = WrapMode.Default;

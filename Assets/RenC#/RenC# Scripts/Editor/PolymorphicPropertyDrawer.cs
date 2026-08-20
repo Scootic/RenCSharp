@@ -169,23 +169,22 @@ namespace RenCSharp
         protected virtual void CopyToClipboard(T value)
         {
             clipboardValue = value;
-            if (debugClipboard)
+            if (!debugClipboard) return;
+            
+            allTChildren = typeAssembly.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(T))).ToArray();
+            Type stinkyType = null;
+            foreach(Type t in allTChildren)
             {
-                allTChildren = typeAssembly.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(T))).ToArray();
-                Type stinkyType = null;
-                foreach(Type t in allTChildren)
+                object activated = Activator.CreateInstance(t);
+                if(activated.ToString() == clipboardValue.ToString())
                 {
-                    object activated = Activator.CreateInstance(t);
-                    if(activated.ToString() == clipboardValue.ToString())
-                    {
-                        stinkyType = t;break;
-                    }
+                    stinkyType = t;break;
                 }
-                Debug.Log($"Copying to clipboard! {clipboardValue}");
-                foreach(FieldInfo info in stinkyType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-                {
-                    Debug.Log($"info:{info.Name}, clipboardValue:{info.GetValue(clipboardValue)}");
-                }
+            }
+            Debug.Log($"Copying to clipboard! {clipboardValue}");
+            foreach(FieldInfo info in stinkyType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                Debug.Log($"info:{info.Name}, clipboardValue:{info.GetValue(clipboardValue)}");
             }
         }
 
@@ -238,7 +237,7 @@ namespace RenCSharp
             {
                 ClipboardMenu.AddDisabledItem(new GUIContent($"No value in clipboard."), false);
             }
-            else if (clipboardValue as T == null)
+            else if (clipboardValue as T == null) //?
             {
                 ClipboardMenu.AddDisabledItem(new GUIContent($"Clipboard has incorrect type attached?!?"), false);
             }

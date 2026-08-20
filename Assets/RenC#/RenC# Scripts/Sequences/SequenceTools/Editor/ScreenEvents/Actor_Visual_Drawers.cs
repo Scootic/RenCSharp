@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using RenCSharp.Actors;
-namespace RenCSharp.Sequences
+namespace RenCSharp.Sequences.Editor
 {
     [CustomPropertyDrawer(typeof(Spawn_Actor))]
     public class Spawn_Actor_Drawer : Screen_Event_Drawer //tweaking sometimes, but not the other one?!?

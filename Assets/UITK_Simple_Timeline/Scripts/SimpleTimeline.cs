@@ -11,6 +11,14 @@ namespace UITK_SimpleTimeline
     [Serializable]
     public struct SimpleTimeline
     {
+        public SimpleTimeline(float duration)
+        {
+            Loop = false;
+            Duration = duration;
+            sceneObject = null;
+            Curves = new();
+        }
+
         public bool Loop;
         public float Duration;
 
@@ -23,9 +31,9 @@ namespace UITK_SimpleTimeline
             set 
             { 
                 sceneObject = value; 
-                foreach(TimelineCurve<object, UObject> curve in Curves)
+                foreach(ILerpable curve in Curves)
                 {
-                    curve.SetRootObject = sceneObject;
+                    curve.SetRootObject(sceneObject);
                 }
             } 
         }
@@ -37,7 +45,7 @@ namespace UITK_SimpleTimeline
         public const float SPF = 1f / 60f;
         //figure out how to add timelinecurves of specific types and actually be able to interpret that?
         //object.ToString?
-        public List<TimelineCurve<object,UObject>> Curves;
+        public List<ILerpable> Curves;
 
         public readonly async Awaitable RunThroughTimeline(CancellationToken ct)
         {
@@ -49,7 +57,7 @@ namespace UITK_SimpleTimeline
                 await Awaitable.WaitForSecondsAsync(SPF);
                 secondsElapsed += SPF;
 
-                foreach(TimelineCurve<object, UObject> curve in Curves)
+                foreach(ILerpable curve in Curves)
                 {
                     curve.Evaluate(secondsElapsed);
                 }
@@ -63,7 +71,7 @@ namespace UITK_SimpleTimeline
 
         public readonly void TimelineResult()
         {
-            foreach(TimelineCurve<object, UObject> curve in Curves)
+            foreach(ILerpable curve in Curves)
             {
                 curve.Evaluate(Duration);
             }

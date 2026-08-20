@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEditor.UIElements;
 
-namespace RenCSharp.Sequences
+namespace RenCSharp.Sequences.Editor
 {
     public class ScreenConverter : UxmlAttributeConverter<Screen> //not sure if i even need this?
     {

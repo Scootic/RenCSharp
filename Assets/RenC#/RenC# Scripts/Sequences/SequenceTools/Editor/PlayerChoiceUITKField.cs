@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using UnityEditor;
 using System.Collections.Generic;
-namespace RenCSharp.Sequences
+namespace RenCSharp.Sequences.Editor
 {
     public class PlayerChoiceUITKField : BaseField<Player_Choice>
     {

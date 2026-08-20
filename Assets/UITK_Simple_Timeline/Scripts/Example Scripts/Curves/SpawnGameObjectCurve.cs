@@ -12,36 +12,34 @@ namespace UITK_SimpleTimeline
     /// to rely on GameObject.Find().)
     /// This only exists as an example.
     /// </summary>
-    public class SpawnGameObjectCurve : TimelineCurve<GOSpawnToken,GameObject>
+    public class SpawnGameObjectCurve : TimelineCurve<GOSpawnToken,GameObject>, ILerpable
     {
+        new public GameObject ToAffect = null;
         //how to convey this...?
         [SerializeField] private bool setToBeChildOfRoot = false;
-
-        public override GOSpawnToken Evaluate(float time)
+        public override void Evaluate(float time)
         {
             TimelineKeyframe<GOSpawnToken>[] keyframes = ClosestTwoKeyframes(time);
 
-            if (!Mathf.Approximately(keyframes[0].Time, time)) return new GOSpawnToken(); //make sure the time is comparable!
+            if (!Mathf.Approximately(keyframes[0].Time, time)) return; //make sure the time is comparable!
 
             GameObject t = GameObject.Instantiate(ToAffect, keyframes[0].Value.GetPosition(), 
                 keyframes[0].Value.GetRotation(), setToBeChildOfRoot ? root.transform : null);
             t.transform.localScale = keyframes[0].Value.GetScale();
             t.name = keyframes[0].Value.name;
-
-            return keyframes[0].Value;
         }
 
         public override string EvaluateMessage(float time)
         {
-            GOSpawnToken goose = Evaluate(time);
-            if(goose.Equals(GOSpawnToken.Default))
+            TimelineKeyframe<GOSpawnToken> goose = ClosestTwoKeyframes(time)[0];
+            if (!Mathf.Approximately(goose.Time, time))
             {
                 return $"Not Spawning GameObject: {ToAffect.name}";
             }
             else
             {
-                return $"Spawning GameObject: {ToAffect.name} at, \nPos:{goose.GetPosition()}" +
-                    $"\nRot:{goose.GetRotation()}\nScale:{goose.GetScale()}";
+                return $"Spawning GameObject: {ToAffect.name} at, \nPos:{goose.Value.GetPosition()}" +
+                    $"\nRot:{goose.Value.GetRotation()}\nScale:{goose.Value.GetScale()}";
             }
         }
 

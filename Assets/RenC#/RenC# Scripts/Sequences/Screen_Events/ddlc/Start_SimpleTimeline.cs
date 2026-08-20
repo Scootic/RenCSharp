@@ -14,7 +14,7 @@ namespace RenCSharp.Sequences
 
         public override async void DoEvent()
         {
-            activeTimeline = timelineToRunThrough.timeline.RunThroughTimeline(new CancellationToken());
+            activeTimeline = timelineToRunThrough.Timeline.RunThroughTimeline(new CancellationToken());
             if (endWithScreen) Script_Manager.ProgressScreenEvent += PanicStop;
             await activeTimeline; //start it?
         }
@@ -22,7 +22,7 @@ namespace RenCSharp.Sequences
         void PanicStop()
         {
             activeTimeline.Cancel();
-            timelineToRunThrough.timeline.TimelineResult();
+            timelineToRunThrough.Timeline.TimelineResult();
         }
 
         public override string ToString()

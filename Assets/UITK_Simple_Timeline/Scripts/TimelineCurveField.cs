@@ -1,21 +1,21 @@
-using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-namespace UITK_SimpleTimeline.Editor
+namespace UITK_SimpleTimeline
 {
     /// <summary>
-    /// 
+    /// god
     /// </summary>
     /// <typeparam name="T">The values that are lerped</typeparam>
     /// <typeparam name="U">The object that is affected</typeparam>
     [UxmlElement]
-    public partial class TimelineCurveField<T, U> : BaseField<TimelineCurve<T, U>> where U : UnityEngine.Object
+    public partial class TimelineCurveField<T,U> : BaseField<TimelineCurve<T,U>> where U : UnityEngine.Object
     {
-        public Action DeleteMeAction;
+        //public Action DeleteMeAction;
         protected readonly Dictionary<float,TimelineKnob<T>> KeyframeIcons;
+        protected readonly DestroyableVisualElement me;
         
         protected readonly VisualElement CurveDataContainer;
         protected readonly VisualElement KeyframeContainer;
@@ -27,8 +27,9 @@ namespace UITK_SimpleTimeline.Editor
 
         public TimelineCurveField() : this(null) { }
         //grumpus constructor that's bad!
-        public TimelineCurveField(string labelText) : base(labelText, new VisualElement())
+        public TimelineCurveField(string labelText) : base(labelText, new DestroyableVisualElement())
         {
+            me = this as DestroyableVisualElement;
             KeyframeIcons = new();
 
             style.height = 150;
@@ -75,8 +76,9 @@ namespace UITK_SimpleTimeline.Editor
             SpawnKeyframeKnobs(value);
             RegisterGenericMenus();
         }
-        public TimelineCurveField(string labelText, TimelineCurve<T, U> curve) : base(labelText, new VisualElement())
+        public TimelineCurveField(string labelText, TimelineCurve<T, U> curve) : base(labelText, new DestroyableVisualElement())
         {
+            me = this as DestroyableVisualElement;
             value = curve;
             KeyframeIcons = new();
             style.height = 150;
@@ -111,6 +113,8 @@ namespace UITK_SimpleTimeline.Editor
             ToBeAffectedField = new();
             ToBeAffectedField.style.width = 150;
             ToBeAffectedField.style.height = 150;
+            U gus = new UnityEngine.Object() as U;
+            curve.ToAffect = gus;
             ToBeAffectedField.BindProperty(new SerializedObject(curve.ToAffect)); //?
             CurveDataContainer.Add(ToBeAffectedField);
 
@@ -140,7 +144,7 @@ namespace UITK_SimpleTimeline.Editor
             foreach (TimelineKeyframe<T> kf in curve.Keyframes)
             {
                 TimelineKnob<T> tKnob = new("", kf);
-                tKnob.transform.position = new Vector3((float)SimpleTimelineUITK_Helper.PixelWidthPerSeconds * kf.Time, 0, 0);
+                tKnob.transform.position = new Vector3(SimpleTimelineUITK_Helper.PixelWidthPerSeconds * kf.Time, 0, 0);
                 tKnob.DeleteKnobAction += delegate
                 {
                     KeyframeIcons.Remove(kf.Time);
@@ -162,7 +166,7 @@ namespace UITK_SimpleTimeline.Editor
             {
                 if (evt.button == 1) //if right click, spawn and set generic menu, get time to add based on mouse pos?
                 {
-                    float tToAddAt = evt.localPosition.x / (float)SimpleTimelineUITK_Helper.PixelWidthPerSeconds;
+                    float tToAddAt = evt.localPosition.x / SimpleTimelineUITK_Helper.PixelWidthPerSeconds;
                     AddNewKeyframeMenu = new();
                     AddNewKeyframeMenu.AddItem(new GUIContent($"Add Keyframe at {tToAddAt}"), false, delegate
                     {
@@ -180,7 +184,9 @@ namespace UITK_SimpleTimeline.Editor
                     DeleteCurveMenu = new();
                     DeleteCurveMenu.AddItem(new GUIContent("Delete Curve?!?"), false, delegate
                     {
-                        DeleteMeAction?.Invoke();
+                        RemoveFromHierarchy();
+                        //more clean up required?!?
+                        me.DeleteMe?.Invoke();
                     });
                     DeleteCurveMenu.ShowAsContext();
                 }
