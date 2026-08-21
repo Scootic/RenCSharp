@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using UObject = UnityEngine.Object;
 using System.Threading;
 namespace UITK_SimpleTimeline
 {

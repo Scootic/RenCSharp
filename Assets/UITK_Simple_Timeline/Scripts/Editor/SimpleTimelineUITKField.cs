@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -91,6 +92,7 @@ namespace UITK_SimpleTimeline.Editor
             DurationField.RegisterValueChangedCallback(evt =>
             {
                 thisTimeline.Duration = evt.newValue;
+                SimpleTimelineUITK_Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue = evt.newValue;
                 UpdateTimelineScrollSizeBasedOnDuration(evt.newValue);
             });
             SimpleTimelineInfoHolder.Add(DurationField);
@@ -99,7 +101,11 @@ namespace UITK_SimpleTimeline.Editor
             LoopField.style.color = Color.white;
             LoopField.style.width = 225;
             LoopField.value = thisTimeline.Loop;
-            LoopField.RegisterValueChangedCallback(evt => { thisTimeline.Loop = evt.newValue; });
+            LoopField.RegisterValueChangedCallback(evt => 
+            {
+                SimpleTimelineUITK_Helper.SimpleTimelineProperty.FindPropertyRelative("Loop").boolValue = evt.newValue;
+                thisTimeline.Loop = evt.newValue; 
+            });
             SimpleTimelineInfoHolder.Add(LoopField);
             #endregion
 
@@ -274,6 +280,7 @@ namespace UITK_SimpleTimeline.Editor
                 if (evt.button == 1) //if right click
                 {
                     AddNewCurveMenu.ShowAsContext();
+                    evt.StopPropagation();
                 }
             });
             TimelineHolder.Add(TimelineScrollView);
@@ -286,6 +293,7 @@ namespace UITK_SimpleTimeline.Editor
                     //x seconds = localPos.x / PixelWidthPerSeconds. multiply by 60 for frame? floor???
                     CurrentFrameField.value = Mathf.FloorToInt(evt.localPosition.x /
                         (float)SimpleTimelineUITK_Helper.PixelWidthPerSeconds * 60f);
+                    evt.StopPropagation();
                 }
             });
             TimelineScrollView.Add(TimelineRuler);
@@ -347,10 +355,11 @@ namespace UITK_SimpleTimeline.Editor
             DurationField = new("Duration:") { name = "TimelineDuration" };
             DurationField.style.color = Color.white;
             DurationField.style.width = 225;
-            DurationField.value = thisTimeline.Duration;
+            DurationField.value = SimpleTimelineUITK_Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue;
             DurationField.RegisterValueChangedCallback(evt =>
             {
                 thisTimeline.Duration = evt.newValue;
+                SimpleTimelineUITK_Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue = evt.newValue;
                 UpdateTimelineScrollSizeBasedOnDuration(evt.newValue);
             });
             SimpleTimelineInfoHolder.Add(DurationField);
@@ -358,8 +367,12 @@ namespace UITK_SimpleTimeline.Editor
             LoopField = new("Loop:") { name = "TimelineLoop" };
             LoopField.style.color = Color.white;
             LoopField.style.width = 225;
-            LoopField.value = thisTimeline.Loop;
-            LoopField.RegisterValueChangedCallback(evt => { thisTimeline.Loop = evt.newValue; });
+            LoopField.value = SimpleTimelineUITK_Helper.SimpleTimelineProperty.FindPropertyRelative("Loop").boolValue;
+            LoopField.RegisterValueChangedCallback(evt => 
+            {
+                SimpleTimelineUITK_Helper.SimpleTimelineProperty.FindPropertyRelative("Loop").boolValue = evt.newValue;
+                thisTimeline.Loop = evt.newValue; 
+            });
             SimpleTimelineInfoHolder.Add(LoopField);
             #endregion
 
@@ -611,14 +624,14 @@ namespace UITK_SimpleTimeline.Editor
                 TimelineScrollView.Remove(curveField);
             }
             TimelineCurveFields.Clear();
-            if (thisTimeline.Curves == null) return;
-            for(int i = 0; i < thisTimeline.Curves.Count; i++)
+            if (SimpleTimelineUITK_Helper.CurvesProperty == null) return;
+            for(int i = 0; i < SimpleTimelineUITK_Helper.CurvesProperty.arraySize; i++)
             {
-                TimelineCurve lerpable = thisTimeline.Curves[i];
+                TimelineCurve lerpable = SimpleTimelineUITK_Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue as TimelineCurve;
                 DestroyableVisualElement t = new (lerpable.UITKRepresentation(i));
                 t.DeleteMe += delegate { RemoveTimelineCurve(lerpable); };
                 TimelineScrollView.Add(t.VE); //adding to the timeline scrollview should place it in the content section? i hope?
-                TimelineCurveFields.Add(t.VE);
+                TimelineCurveFields.Add(TimelineScrollView.Children().ToArray()[i + 1]);//? i at 0 should be timeline ruler
             }
             CurrentTimePreview.BringToFront();
         }

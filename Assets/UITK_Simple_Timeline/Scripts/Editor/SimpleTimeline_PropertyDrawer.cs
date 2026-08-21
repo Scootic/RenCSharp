@@ -14,7 +14,7 @@ namespace UITK_SimpleTimeline.Editor
                 //open up an editor window
                 try
                 {
-                    SimpleTimeline_EditorWindow.OpenWindow((SimpleTimeline)property.boxedValue);
+                    SimpleTimeline_EditorWindow.OpenWindow(property, property.serializedObject);
                 }
                 catch
                 {

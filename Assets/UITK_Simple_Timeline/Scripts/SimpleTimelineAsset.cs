@@ -11,7 +11,7 @@ namespace UITK_SimpleTimeline
     [CreateAssetMenu(menuName = "UITK_SimpleTimeline/SimpleTimeline Asset")]
     public class SimpleTimelineAsset : ScriptableObject
     {
-        public SimpleTimeline Timeline;
+        public SimpleTimeline Timeline = new(5);
 
         public SimpleTimelineAsset(SimpleTimeline timeline)
         {

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -81,9 +82,12 @@ namespace UITK_SimpleTimeline
             value = curve;
             KeyframeIcons = new();
             style.height = 150;
-            style.left = 0;
+            style.left = -150;
             style.right = 0;
-            style.flexGrow = 1;
+            style.flexGrow = 0;
+            style.maxHeight = 300;
+            style.minWidth = 0;
+            style.maxWidth = 9999;
             style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
             style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
             style.borderLeftColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
@@ -97,7 +101,7 @@ namespace UITK_SimpleTimeline
 
             CurveDataContainer = new();
             CurveDataContainer.style.width = 150;
-            CurveDataContainer.style.left = -150;
+            CurveDataContainer.style.left = -165;
             CurveDataContainer.style.height = 150;
             CurveDataContainer.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
             CurveDataContainer.style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
@@ -182,6 +186,7 @@ namespace UITK_SimpleTimeline
                     });
                     AddNewKeyframeMenu.ShowAsContext();
                 }
+                evt.StopPropagation();
             });
 
             CurveDataContainer.RegisterCallback<PointerDownEvent>(evt =>
@@ -194,8 +199,10 @@ namespace UITK_SimpleTimeline
                         RemoveFromHierarchy();
                     });
                     DeleteCurveMenu.ShowAsContext();
+                    evt.StopPropagation();
                 }
             });
         }
     }
 }
+#endif

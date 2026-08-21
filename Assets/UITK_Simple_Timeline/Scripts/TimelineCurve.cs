@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UObject = UnityEngine.Object;
 using TangentMode = UnityEditor.AnimationUtility.TangentMode;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
@@ -48,7 +47,7 @@ namespace UITK_SimpleTimeline
         public override VisualElement UITKRepresentation(int index)
         {
             Helper.WindowObject.Update();
-            Debug.Log($"CurvesProp Length: {Helper.CurvesProperty.arraySize}.Is property at index {index} null? " + Helper.CurvesProperty.GetArrayElementAtIndex(index));
+            //Debug.Log($"CurvesProp Length: {Helper.CurvesProperty.arraySize}.Is property at index {index} null? " + Helper.CurvesProperty.GetArrayElementAtIndex(index));
             return new TimelineCurveField<T,U>("", this, index);
         }
 

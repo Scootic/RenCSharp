@@ -20,6 +20,16 @@ namespace UITK_SimpleTimeline.Editor
             WindowInstance.titleContent = new GUIContent("Simple Timeline Editor");
         }
 
+        public static void OpenWindow(SerializedProperty sp, SerializedObject windObject)
+        {
+            if(WindowInstance != null) { Debug.LogWarning("Simple Timeline Editor Window already open!"); return; }
+            WindowInstance = GetWindow<SimpleTimeline_EditorWindow>();
+            Helper.SimpleTimelineProperty = sp;
+            Helper.WindowObject = windObject;
+            WindowInstance.TimelineToEdit = (SimpleTimeline)sp.boxedValue;
+            WindowInstance.titleContent = new GUIContent("Simple Timeline Editor");
+        }
+
         public static void OpenWindow()
         {
             if (WindowInstance != null) { Debug.LogWarning("Simple Timeline Editor Window already open!"); return; }
@@ -32,8 +42,8 @@ namespace UITK_SimpleTimeline.Editor
 
         public void CreateGUI()
         {
-            Helper.WindowObject = new(this);
-            Helper.SimpleTimelineProperty = Helper.WindowObject.FindProperty("TimelineToEdit");
+            if(Helper.WindowObject == null) Helper.WindowObject = new(this);
+            if(Helper.SimpleTimelineProperty == null) Helper.SimpleTimelineProperty = Helper.WindowObject.FindProperty("TimelineToEdit");
             //Debug.Log("SimpleTimelineProp: " + Helper.SimpleTimelineProperty.name);
             Helper.CurvesProperty = Helper.SimpleTimelineProperty.FindPropertyRelative("Curves");
             //Debug.Log("Curve Prop: " + Helper.CurvesProperty.name);
@@ -45,7 +55,10 @@ namespace UITK_SimpleTimeline.Editor
         private void OnDestroy()
         {
             //super duper make sure any changes made to the stinkin' simpletimeline are saved!
+            Debug.Log("Applying changes to SerializedO: " + Helper.WindowObject.targetObject.name);
             Helper.WindowObject.ApplyModifiedProperties();
+            Helper.SimpleTimelineProperty = null;
+            Helper.WindowObject = null;
             WindowInstance = null;
             timelineField = null;
         }

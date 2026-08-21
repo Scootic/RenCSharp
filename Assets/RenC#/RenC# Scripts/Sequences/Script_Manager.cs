@@ -93,7 +93,7 @@ namespace RenCSharp
             }
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder);
             Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder);//horrid
-            FlagToken ft = new FlagToken();
+            FlagToken ft = new();
             Flag_Manager.ReceiveFlagToken(ft.FlagTokenToDictionary(SaveLoad.LoadPersistentFlags()), true); //safety thing, make sure we have persistent flags
 
             curHist = new History(historyLength);

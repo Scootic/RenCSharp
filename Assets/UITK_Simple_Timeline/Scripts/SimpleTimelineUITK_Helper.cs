@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -17,3 +18,4 @@ namespace UITK_SimpleTimeline
         public static SerializedProperty SimpleTimelineProperty, CurvesProperty;
     }
 }
+#endif
