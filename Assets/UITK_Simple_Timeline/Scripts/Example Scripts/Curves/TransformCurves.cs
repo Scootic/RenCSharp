@@ -5,9 +5,8 @@ namespace UITK_SimpleTimeline
     /// Example curve that affects a transform's position. Uses transform .Find() to parse GameObject hierarchy,
     /// so if you want to get a child of a child use this pattern: child1/subchild2
     /// </summary>
-    public class PositionCurve : TimelineCurve<Vector3, StringWrapper>, ILerpable
+    public class PositionCurve : TypedTimelineCurve<Vector3, string>, ILerpable
     {
-        new public StringWrapper ToAffect = new();
         private Vector3 EvaluateV3(float time)
         {
             Vector3 toReturn = new();
@@ -25,7 +24,7 @@ namespace UITK_SimpleTimeline
             float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
 
             toReturn = new(x, y, z);
-            Transform t = root.transform.Find(ToAffect.value);
+            Transform t = root.transform.Find(ToAffect);
             t.localPosition = toReturn;
             return toReturn;
         }
@@ -49,10 +48,8 @@ namespace UITK_SimpleTimeline
     /// Example curve that affects a transform's scale. Uses transform .Find() to parse GameObject hierarchy,
     /// so if you want to get a child of a child use this pattern: child1/subchild2
     /// </summary>
-    public class ScaleCurve : TimelineCurve<Vector3, StringWrapper>, ILerpable
+    public class ScaleCurve : TypedTimelineCurve<Vector3, string>, ILerpable
     {
-        new public StringWrapper ToAffect = new();
-
         private Vector3 EvaluateV3(float time)
         {
             Vector3 toReturn = new();
@@ -67,7 +64,7 @@ namespace UITK_SimpleTimeline
             float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
 
             toReturn = new(x, y, z);
-            Transform t = root.transform.Find(ToAffect.value);
+            Transform t = root.transform.Find(ToAffect);
             t.localScale = toReturn;
             return toReturn;
         }
@@ -91,9 +88,8 @@ namespace UITK_SimpleTimeline
     /// Example curve that affects a transform's rotation. Uses transform .Find() to parse GameObject hierarchy,
     /// so if you want to get a child of a child use this pattern: child1/subchild2
     /// </summary>
-    public class RotationCurve : TimelineCurve<Quaternion, StringWrapper>, ILerpable
+    public class RotationCurve : TypedTimelineCurve<Quaternion, string>, ILerpable
     {
-        new public StringWrapper ToAffect = new();
         private Quaternion EvaluateQ(float time)
         {
             Quaternion toReturn = new();
@@ -109,7 +105,7 @@ namespace UITK_SimpleTimeline
             float w = cubics[0] * toEval[0].Value.w + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.w;
 
             toReturn = new(x,y,z,w);
-            Transform t = root.transform.Find(ToAffect.value);
+            Transform t = root.transform.Find(ToAffect);
             t.localRotation = toReturn;
             return toReturn;
         }

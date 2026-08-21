@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
-using UObject = UnityEngine.Object;
 using UnityEngine.UIElements;
 namespace UITK_SimpleTimeline.Editor
 {
@@ -24,9 +23,9 @@ namespace UITK_SimpleTimeline.Editor
         protected readonly Toggle LoopField;
 
         protected readonly Button BackFrame, PlayPause, ForwardFrame;
-        protected static Texture2D bckIco = null, fwdIco = null, playIco = null, pausIco = null, fullRulerLength = null;
+        protected static Texture2D bckIco = null, fwdIco = null, playIco = null, pausIco = null;
 
-        protected SimpleTimeline thisTimeline = new();
+        [SerializeField] protected SimpleTimeline thisTimeline = new();
 
         /// <summary>
         /// The scrollable area
@@ -250,7 +249,7 @@ namespace UITK_SimpleTimeline.Editor
             TimelineScrollView.horizontalScroller.highValue = 650;
             originalScrollMax = TimelineScrollView.horizontalScroller.highValue;
             ScrollViewContent = TimelineScrollView.Q<VisualElement>("unity-content-container");
-            ScrollViewContent.style.backgroundImage = fullRulerLength;
+            ScrollViewContent.style.backgroundImage = SimpleTimelineUITK_Helper.FullRulerLength;
             ScrollViewContent.style.unityBackgroundImageTintColor = SimpleTimelineUITK_Helper.HalfTransparentWhite;
             ScrollViewContent.style.backgroundPositionX = new StyleBackgroundPosition(new BackgroundPosition(BackgroundPositionKeyword.Left, 0f));
             ScrollViewContent.style.backgroundRepeat = new BackgroundRepeat(Repeat.Repeat, Repeat.Repeat);
@@ -313,7 +312,7 @@ namespace UITK_SimpleTimeline.Editor
 
         public SimpleTimelineUITKField(string labelText, SimpleTimeline st) : base(labelText, new VisualElement())
         {
-            thisTimeline = st;
+            thisTimeline = (SimpleTimeline)SimpleTimelineUITK_Helper.SimpleTimelineProperty.boxedValue;
 
             playing = false;
             curT = 0;
@@ -509,7 +508,7 @@ namespace UITK_SimpleTimeline.Editor
             TimelineScrollView.horizontalScroller.highValue = 650;
             originalScrollMax = TimelineScrollView.horizontalScroller.highValue;
             ScrollViewContent = TimelineScrollView.Q<VisualElement>("unity-content-container");
-            ScrollViewContent.style.backgroundImage = fullRulerLength;
+            ScrollViewContent.style.backgroundImage = SimpleTimelineUITK_Helper.FullRulerLength;
             ScrollViewContent.style.unityBackgroundImageTintColor = SimpleTimelineUITK_Helper.HalfTransparentWhite;
             ScrollViewContent.style.backgroundPositionX = new StyleBackgroundPosition(new BackgroundPosition(BackgroundPositionKeyword.Left, 0f));
             ScrollViewContent.style.backgroundRepeat = new BackgroundRepeat(Repeat.Repeat, Repeat.Repeat);
@@ -579,17 +578,30 @@ namespace UITK_SimpleTimeline.Editor
             ScrollViewContent.style.width = newDurInSeconds * (float)SimpleTimelineUITK_Helper.PixelWidthPerSeconds;
         }
 
-        public void AddNewTimelineCurve(ILerpable newCurve) 
+        public void AddNewTimelineCurve(TimelineCurve newCurve) 
         {
             if (thisTimeline.Curves == null) thisTimeline.Curves = new();
             thisTimeline.Curves.Add(newCurve);
+            UpdateCurvesProperty();
             GenerateTimelineCurveFields();
         }
 
-        public void RemoveTimelineCurve(ILerpable toRemove)
+        public void RemoveTimelineCurve(TimelineCurve toRemove)
         {
             thisTimeline.Curves.Remove(toRemove);
+            UpdateCurvesProperty();
             GenerateTimelineCurveFields();
+        }
+
+        protected void UpdateCurvesProperty()
+        {
+            SimpleTimelineUITK_Helper.CurvesProperty.ClearArray();
+            for(int i =0; i < thisTimeline.Curves.Count; i++)
+            {
+                SimpleTimelineUITK_Helper.CurvesProperty.InsertArrayElementAtIndex(i);
+                SimpleTimelineUITK_Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue = thisTimeline.Curves[i];
+            }
+            SimpleTimelineUITK_Helper.WindowObject.ApplyModifiedProperties();
         }
 
         protected void GenerateTimelineCurveFields()
@@ -602,18 +614,19 @@ namespace UITK_SimpleTimeline.Editor
             if (thisTimeline.Curves == null) return;
             for(int i = 0; i < thisTimeline.Curves.Count; i++)
             {
-                ILerpable lerpable = thisTimeline.Curves[i];
-                DestroyableVisualElement t = lerpable.UITKRepresentation();
+                TimelineCurve lerpable = thisTimeline.Curves[i];
+                DestroyableVisualElement t = new (lerpable.UITKRepresentation(i));
                 t.DeleteMe += delegate { RemoveTimelineCurve(lerpable); };
-                TimelineScrollView.Add(t); //adding to the timeline scrollview should place it in the content section? i hope?
+                TimelineScrollView.Add(t.VE); //adding to the timeline scrollview should place it in the content section? i hope?
+                TimelineCurveFields.Add(t.VE);
             }
             CurrentTimePreview.BringToFront();
         }
 
-        protected void DisplayKeyframeInformation(TimelineKeyframe<object> keyframeToDisplay)
+        protected void DisplayKeyframeInformation(SerializedProperty keyframeToDisplay)
         {
             CurrentKeyframeField.Unbind();
-            CurrentKeyframeField.BindProperty(new SerializedObject(keyframeToDisplay));
+            CurrentKeyframeField.BindProperty(keyframeToDisplay);
         }
 
         protected void CreateAddNewCurveMenu()
@@ -628,11 +641,11 @@ namespace UITK_SimpleTimeline.Editor
             foreach (Type t in UITK_SimpleTimeline_AssembliesDatabase.GetValidTimelineCurveTypes)
             {
                 //this mans should always be a stinkin' TimelineCurve. (God I hope...)
-                Debug.Log($"Adding type {t.Name} to curve menu!");
+                //Debug.Log($"Adding type {t.Name} to curve menu!");
                 object c = Activator.CreateInstance(t);
                 AddNewCurveMenu.AddItem(new GUIContent($"Add New {c.ToString()}"), false, delegate
                 {
-                    ILerpable curve = c as ILerpable;
+                    TimelineCurve curve = c as TimelineCurve;
                     AddNewTimelineCurve(curve);
                 });
             }
@@ -648,8 +661,8 @@ namespace UITK_SimpleTimeline.Editor
             if(!playIco) Debug.LogError("SimpleTimelineUITKField.cs can't find playicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
             if(pausIco == null) pausIco = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/UITK_Simple_Timeline/UITK_SimpleTimeline_Icons/pauseicon.png");
             if(!pausIco) Debug.LogError("SimpleTimelineUITKField.cs can't find pauseicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
-            if (fullRulerLength == null) fullRulerLength = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/UITK_Simple_Timeline/UITK_SimpleTimeline_Icons/fullrulerlength.png");
-            if (!fullRulerLength) Debug.LogError("SimpleTimelineUITKField.cs can't find fullrulerlength.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
+            if (SimpleTimelineUITK_Helper.FullRulerLength == null) SimpleTimelineUITK_Helper.FullRulerLength = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/UITK_Simple_Timeline/UITK_SimpleTimeline_Icons/fullrulerlength.png");
+            if (!SimpleTimelineUITK_Helper.FullRulerLength) Debug.LogError("SimpleTimelineUITKField.cs can't find fullrulerlength.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
         }
 
         protected void PreviewTimelineUpdate()
@@ -671,7 +684,7 @@ namespace UITK_SimpleTimeline.Editor
 
             CurrentFrameField.value++;
 
-            foreach(ILerpable curve in thisTimeline.Curves)
+            foreach(TimelineCurve curve in thisTimeline.Curves)
             {
                 curve.EvaluateMessage(curT);
             }

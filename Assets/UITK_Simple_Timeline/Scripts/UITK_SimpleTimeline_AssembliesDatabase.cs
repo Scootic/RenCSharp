@@ -25,8 +25,8 @@ namespace UITK_SimpleTimeline
 
                 foreach(Assembly a in assemblies)
                 {
-                    Type[] validTypes = a.GetTypes().Where(a => a.IsSubclassOfGenericType(typeof(TimelineCurve<,>)) && !a.IsAbstract).ToArray();
-                    Debug.Log($"Valid Type Length in Assembly {a.FullName}: {validTypes.Length}");
+                    Type[] validTypes = a.GetTypes().Where(a => a.IsSubclassOfGenericType(typeof(TypedTimelineCurve<,>)) && !a.IsAbstract).ToArray();
+                    //Debug.Log($"Valid Type Length in Assembly {a.FullName}: {validTypes.Length}");
                     foreach(Type t in validTypes)
                     {
                         toReturn.Add(t);
@@ -36,8 +36,6 @@ namespace UITK_SimpleTimeline
                 return toReturn;
             }
         }
-
-        
 
         [SerializeField] private AssemblyDefinitionAsset[] assemblyAssets;
         [SerializeField] private bool debug = false;
@@ -76,6 +74,11 @@ namespace UITK_SimpleTimeline
         }
 
         private void OnValidate()
+        {
+            Do();
+        }
+
+        private void OnEnable()
         {
             Do();
         }

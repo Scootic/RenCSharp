@@ -12,9 +12,8 @@ namespace UITK_SimpleTimeline
     /// to rely on GameObject.Find().)
     /// This only exists as an example.
     /// </summary>
-    public class SpawnGameObjectCurve : TimelineCurve<GOSpawnToken,GameObject>, ILerpable
+    public class SpawnGameObjectCurve : TypedTimelineCurve<GOSpawnToken,GameObject>, ILerpable
     {
-        new public GameObject ToAffect = null;
         //how to convey this...?
         [SerializeField] private bool setToBeChildOfRoot = false;
         public override void Evaluate(float time)

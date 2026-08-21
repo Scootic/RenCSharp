@@ -1,43 +1,52 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
+using Helper = UITK_SimpleTimeline.SimpleTimelineUITK_Helper;
 namespace UITK_SimpleTimeline.Editor
 {
     public class SimpleTimeline_EditorWindow : EditorWindow
     {
-        public static SimpleTimeline_EditorWindow windowInstance;
-        private static SimpleTimeline timelineToEdit = new();
+        public static SimpleTimeline_EditorWindow WindowInstance;
+        public SimpleTimeline TimelineToEdit = new();
 
         private SimpleTimelineUITKField timelineField;
         
         public static void OpenWindow(SimpleTimeline givenTimeline)
         {
-            if (windowInstance != null) { Debug.LogWarning("Simple Timeline Editor Window already open!"); return; }
-            timelineToEdit = givenTimeline;
-            windowInstance = GetWindow<SimpleTimeline_EditorWindow>();
-            windowInstance.titleContent = new GUIContent("Simple Timeline Editor");
+            if (WindowInstance != null) { Debug.LogWarning("Simple Timeline Editor Window already open!"); return; }
+            WindowInstance = GetWindow<SimpleTimeline_EditorWindow>();
+            WindowInstance.TimelineToEdit = givenTimeline;
+            if (givenTimeline.Curves == null) WindowInstance.TimelineToEdit.Curves = new();
+            WindowInstance.titleContent = new GUIContent("Simple Timeline Editor");
         }
 
         public static void OpenWindow()
         {
-            if (windowInstance != null) { Debug.LogWarning("Simple Timeline Editor Window already open!"); return; }
-            timelineToEdit = new();
-            windowInstance = GetWindow<SimpleTimeline_EditorWindow>();
-            windowInstance.titleContent = new GUIContent("Simple Timeline Editor");
+            if (WindowInstance != null) { Debug.LogWarning("Simple Timeline Editor Window already open!"); return; }
+            WindowInstance = GetWindow<SimpleTimeline_EditorWindow>();
+            WindowInstance.TimelineToEdit = new();
+            WindowInstance.TimelineToEdit.Curves = new();
+            WindowInstance.titleContent = new GUIContent("Simple Timeline Editor");
         }
 
 
         public void CreateGUI()
         {
-            timelineField = new("",timelineToEdit);
-       
+            Helper.WindowObject = new(this);
+            Helper.SimpleTimelineProperty = Helper.WindowObject.FindProperty("TimelineToEdit");
+            //Debug.Log("SimpleTimelineProp: " + Helper.SimpleTimelineProperty.name);
+            Helper.CurvesProperty = Helper.SimpleTimelineProperty.FindPropertyRelative("Curves");
+            //Debug.Log("Curve Prop: " + Helper.CurvesProperty.name);
+            timelineField = new("", TimelineToEdit);
+            
             rootVisualElement.Add(timelineField);
         }
 
         private void OnDestroy()
         {
-            windowInstance = null;
-            timelineToEdit = new();
+            //super duper make sure any changes made to the stinkin' simpletimeline are saved!
+            Helper.WindowObject.ApplyModifiedProperties();
+            WindowInstance = null;
             timelineField = null;
         }
     }

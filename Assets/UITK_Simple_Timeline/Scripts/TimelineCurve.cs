@@ -4,11 +4,11 @@ using UObject = UnityEngine.Object;
 using TangentMode = UnityEditor.AnimationUtility.TangentMode;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
-
+using Helper = UITK_SimpleTimeline.SimpleTimelineUITK_Helper;
 namespace UITK_SimpleTimeline
 {
     [Serializable]
-    public class TimelineKeyframe<T> : UObject, IComparable //?? not sure if declaring this bastard as unityengine.obj is legal
+    public class TimelineKeyframe<T> : IComparable //?? not sure if declaring this bastard as unityengine.obj is legal
     {
         public T Value;
         /// <summary>
@@ -33,6 +33,7 @@ namespace UITK_SimpleTimeline
             return Time.CompareTo(other.Time);
         }
     }
+
     /// <summary>
     /// Stupid evil lerper of cubicly type. Remember to give your custom types a ToString(), and to add their Assemblies
     /// to the UITK_SimpleTimeline_AssemblyDatabase asset.
@@ -40,53 +41,34 @@ namespace UITK_SimpleTimeline
     /// <typeparam name="T">The type of value being lerped between.</typeparam>
     /// <typeparam name="U">The type of object that is affected.</typeparam>
     [Serializable]
-    public abstract class TimelineCurve<T, U> : UObject, ILerpable where U : UObject
+    public abstract class TypedTimelineCurve<T,U> : TimelineCurve, ILerpable where U : class
     {
-        protected GameObject root;
+        public U ToAffect;
 
-        /// <summary>
-        /// The object(s?) that will be impacted whenever the curve is evaluated. :)
-        /// </summary>
-        public U ToAffect = null;
-        /// <summary>
-        /// Basically the same thing as AnimationCurve.Evaluate.
-        /// </summary>
-        /// <param name="time">The time, in seconds, on the curve that's being grabbed.</param>
-        public abstract void Evaluate(float time);
-        /// <summary>
-        /// A log message that shows what's happening at param:time.
-        /// </summary>
-        /// <param name="time">The time, in seconds, on the curve that's being grabbed.</param>
-        /// <returns>A contextual message to display what sort of things are happening at param:time.</returns>
-        public abstract string EvaluateMessage(float time);
-
-        public void SetRootObject(GameObject go) { root = go; }
-
-        public DestroyableVisualElement UITKRepresentation()
+        public override VisualElement UITKRepresentation(int index)
         {
-            return new TimelineCurveField<T, U>("", this) as DestroyableVisualElement;
+            Helper.WindowObject.Update();
+            Debug.Log($"CurvesProp Length: {Helper.CurvesProperty.arraySize}.Is property at index {index} null? " + Helper.CurvesProperty.GetArrayElementAtIndex(index));
+            return new TimelineCurveField<T,U>("", this, index);
         }
-
-        public WrapMode PreWrapMode = WrapMode.Default;
-        public WrapMode PostWrapMode = WrapMode.Default;
 
         #region Keyframes
         /// <summary>
         /// PLEASE! PLEASE BY SORTED IN ORDER OF TIME! PLEASE!!!
         /// </summary>
-        private readonly List<TimelineKeyframe<T>> keyframes = new();
+        [SerializeField] private readonly List<TimelineKeyframe<T>> keyframes = new();
         public List<TimelineKeyframe<T>> Keyframes => keyframes;
         public void AddKeyframeToCurve(float time)
         {
             TimelineKeyframe<T> toAdd = new();
 
-            for(int i = 0; i < Length; i++)
+            for (int i = 0; i < Length; i++)
             {
-                if (time < keyframes[i].Time) 
+                if (time < keyframes[i].Time)
                 {
                     //whenever inserting a keyframe, make it take the value of the previous one?
-                    if(i != 0) toAdd.Value = keyframes[i-1].Value;
-                    keyframes.Insert(i, toAdd); return; 
+                    if (i != 0) toAdd.Value = keyframes[i - 1].Value;
+                    keyframes.Insert(i, toAdd); return;
                 }
             }
             //if we're adding a new keyframe to the "end" of a curve, make it have the same value as the previous last one.
@@ -96,7 +78,7 @@ namespace UITK_SimpleTimeline
 
         public void RemoveKeyframeFromCurve(float time)
         {
-            for(int i = 0; i < Length; i++)
+            for (int i = 0; i < Length; i++)
             {
                 if (keyframes[i].Time == time) keyframes.RemoveAt(i);
             }
@@ -115,7 +97,7 @@ namespace UITK_SimpleTimeline
             get
             {
                 float[] allTimes = new float[keyframes.Count];
-                for(int i = 0; i < allTimes.Length; i++)
+                for (int i = 0; i < allTimes.Length; i++)
                 {
                     allTimes[i] = keyframes[i].Time;
                 }
@@ -136,12 +118,12 @@ namespace UITK_SimpleTimeline
         {
             int[] toReturn = new int[2];
             int index = Array.BinarySearch(KeyframeTimes, time);
-            if(index < 0)
+            if (index < 0)
             {
                 index = ~index;
                 //index should now be the one higher than time?
                 toReturn[1] = index;
-                toReturn[0] = (index > 0) ? index - 1 : Length-1;
+                toReturn[0] = (index > 0) ? index - 1 : Length - 1;
             }
             else
             {
@@ -217,4 +199,34 @@ namespace UITK_SimpleTimeline
         }
         #endregion
     }
+    
+    [Serializable]
+    public abstract class TimelineCurve
+    {
+        protected GameObject root;
+
+        /// <summary>
+        /// Basically the same thing as AnimationCurve.Evaluate, 'cept it doesn't return a float. When involved
+        /// during a SimpleTimeline.Await, should apply changes to the U ToAffect.
+        /// </summary>
+        /// <param name="time">The time, in seconds, on the curve that's being grabbed.</param>
+        public abstract void Evaluate(float time);
+        /// <summary>
+        /// A log message that shows what's happening at param:time.
+        /// </summary>
+        /// <param name="time">The time, in seconds, on the curve that's being grabbed.</param>
+        /// <returns>A contextual message to display what sort of things are happening at param:time.</returns>
+        public abstract string EvaluateMessage(float time);
+
+        public abstract VisualElement UITKRepresentation(int index);
+        /// <summary>
+        /// Should only really be used by in-scene components, like SimpleTimelineAnimationComponent.cs
+        /// </summary>
+        /// <param name="go">GameObject (in-scene!) to set as root.</param>
+        public void SetRootObject(GameObject go) { root = go; }
+
+        public WrapMode PreWrapMode = WrapMode.Default;
+        public WrapMode PostWrapMode = WrapMode.Default;
+    }
+
 }

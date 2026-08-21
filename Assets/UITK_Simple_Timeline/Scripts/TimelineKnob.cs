@@ -11,6 +11,7 @@ namespace UITK_SimpleTimeline
         protected TimelineKnob<T> clipboard = null;
         protected static Texture2D knobImage = null;
         public Action DeleteKnobAction;
+        public SerializedProperty KnobProperty;
         public GenericMenu DeleteMe
         {
             get
@@ -48,7 +49,7 @@ namespace UITK_SimpleTimeline
             style.height = 25f;
             style.width = 25f;
         }
-        public TimelineKnob(string labelText, TimelineKeyframe<T> kf) : base(labelText, new VisualElement())
+        public TimelineKnob(string labelText, TimelineKeyframe<T> kf, SerializedProperty knobProperty) : base(labelText, new VisualElement())
         {
             value = kf;
             if (knobImage == null) knobImage = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/UITK_Simple_Timeline/UITK_SimpleTimelineIcons/timelinediamond.png");
@@ -57,6 +58,7 @@ namespace UITK_SimpleTimeline
             style.position = Position.Absolute;
             style.height = 25f;
             style.width = 25f;
+            KnobProperty = knobProperty;
         }
     }
 }

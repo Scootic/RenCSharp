@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 namespace UITK_SimpleTimeline
 {
     public interface ILerpable
@@ -24,6 +26,6 @@ namespace UITK_SimpleTimeline
         /// everyone has to have their own uitk rep :(
         /// </summary>
         /// <returns></returns>
-        public DestroyableVisualElement UITKRepresentation();
+        public VisualElement UITKRepresentation(int index);
     }
 }

@@ -16,8 +16,8 @@ namespace UITK_SimpleTimeline.Editor
             object[] objects = value.Split('|');
             s.Loop = (bool)Convert.ChangeType(objects[0], typeof(bool), CultureInfo.InvariantCulture);
             s.Duration = (float)Convert.ChangeType(objects[1], typeof(float), CultureInfo.InvariantCulture);
-            s.Curves = (List<ILerpable>)Convert.ChangeType(objects[2], 
-                typeof(List<ILerpable>), 
+            s.Curves = (List<TimelineCurve>)Convert.ChangeType(objects[2], 
+                typeof(List<TimelineCurve>), 
                 CultureInfo.InvariantCulture);
             return s;
         }

@@ -11,11 +11,10 @@ namespace UITK_SimpleTimeline
     /// <typeparam name="T">The values that are lerped</typeparam>
     /// <typeparam name="U">The object that is affected</typeparam>
     [UxmlElement]
-    public partial class TimelineCurveField<T,U> : BaseField<TimelineCurve<T,U>> where U : UnityEngine.Object
+    public partial class TimelineCurveField<T,U> : BaseField<TypedTimelineCurve<T,U>> where U : class
     {
         //public Action DeleteMeAction;
         protected readonly Dictionary<float,TimelineKnob<T>> KeyframeIcons;
-        protected readonly DestroyableVisualElement me;
         
         protected readonly VisualElement CurveDataContainer;
         protected readonly VisualElement KeyframeContainer;
@@ -25,11 +24,12 @@ namespace UITK_SimpleTimeline
         protected readonly PropertyField ToBeAffectedField;
         protected GenericMenu AddNewKeyframeMenu, DeleteCurveMenu;
 
+        protected SerializedProperty curveProperty;
+
         public TimelineCurveField() : this(null) { }
         //grumpus constructor that's bad!
-        public TimelineCurveField(string labelText) : base(labelText, new DestroyableVisualElement())
+        public TimelineCurveField(string labelText) : base(labelText, new VisualElement())
         {
-            me = this as DestroyableVisualElement;
             KeyframeIcons = new();
 
             style.height = 150;
@@ -76,9 +76,8 @@ namespace UITK_SimpleTimeline
             SpawnKeyframeKnobs(value);
             RegisterGenericMenus();
         }
-        public TimelineCurveField(string labelText, TimelineCurve<T, U> curve) : base(labelText, new DestroyableVisualElement())
+        public TimelineCurveField(string labelText, TypedTimelineCurve<T, U> curve, int index) : base(labelText, new VisualElement())
         {
-            me = this as DestroyableVisualElement;
             value = curve;
             KeyframeIcons = new();
             style.height = 150;
@@ -98,6 +97,7 @@ namespace UITK_SimpleTimeline
 
             CurveDataContainer = new();
             CurveDataContainer.style.width = 150;
+            CurveDataContainer.style.left = -150;
             CurveDataContainer.style.height = 150;
             CurveDataContainer.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
             CurveDataContainer.style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
@@ -111,17 +111,23 @@ namespace UITK_SimpleTimeline
             Add(CurveDataContainer);
 
             ToBeAffectedField = new();
+            curveProperty = SimpleTimelineUITK_Helper.CurvesProperty.GetArrayElementAtIndex(index);
             ToBeAffectedField.style.width = 150;
             ToBeAffectedField.style.height = 150;
-            U gus = new UnityEngine.Object() as U;
-            curve.ToAffect = gus;
-            ToBeAffectedField.BindProperty(new SerializedObject(curve.ToAffect)); //?
+            ToBeAffectedField.BindProperty(curveProperty.FindPropertyRelative("ToAffect")); //?
             CurveDataContainer.Add(ToBeAffectedField);
 
             KeyframeContainer = new();
             KeyframeContainer.style.left = 0;
             KeyframeContainer.style.right = 0;
             KeyframeContainer.style.height = 150;
+            KeyframeContainer.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            KeyframeContainer.style.backgroundImage = SimpleTimelineUITK_Helper.FullRulerLength;
+            KeyframeContainer.style.unityBackgroundImageTintColor = SimpleTimelineUITK_Helper.HalfTransparentWhite;
+            KeyframeContainer.style.backgroundPositionX = new StyleBackgroundPosition(new BackgroundPosition(BackgroundPositionKeyword.Left, 0f));
+            KeyframeContainer.style.backgroundRepeat = new BackgroundRepeat(Repeat.Repeat, Repeat.Repeat);
+            KeyframeContainer.style.backgroundSize = new StyleBackgroundSize(new BackgroundSize(32, 32));
+            KeyframeContainer.style.flexGrow = 1;
             Add(KeyframeContainer);
 
             SpawnKeyframeKnobs(value);
@@ -139,11 +145,12 @@ namespace UITK_SimpleTimeline
             SpawnKeyframeKnobs(value);
         }
 
-        protected void SpawnKeyframeKnobs(TimelineCurve<T, U> curve)
+        protected void SpawnKeyframeKnobs(TypedTimelineCurve<T, U> curve)
         {
-            foreach (TimelineKeyframe<T> kf in curve.Keyframes)
+            for(int i = 0; i < curve.Keyframes.Count; i++)
             {
-                TimelineKnob<T> tKnob = new("", kf);
+                TimelineKeyframe<T> kf = curve.Keyframes[i];
+                TimelineKnob<T> tKnob = new("", kf, curveProperty.FindPropertyRelative("keyframes").GetArrayElementAtIndex(i));
                 tKnob.transform.position = new Vector3(SimpleTimelineUITK_Helper.PixelWidthPerSeconds * kf.Time, 0, 0);
                 tKnob.DeleteKnobAction += delegate
                 {
@@ -153,7 +160,7 @@ namespace UITK_SimpleTimeline
                 tKnob.RegisterCallback<PointerDownEvent>(evt =>
                 {
                     if (evt.button == 1) tKnob.DeleteMe.ShowAsContext();
-                    else if (evt.button == 0) SimpleTimelineUITK_Helper.ReceiveKeyframe?.Invoke(tKnob.value as TimelineKeyframe<object>);
+                    else if (evt.button == 0) SimpleTimelineUITK_Helper.ReceiveKeyframe?.Invoke(tKnob.KnobProperty);
                 });
                 KeyframeIcons.Add(kf.Time, tKnob);
                 KeyframeContainer.Add(tKnob);
@@ -185,8 +192,6 @@ namespace UITK_SimpleTimeline
                     DeleteCurveMenu.AddItem(new GUIContent("Delete Curve?!?"), false, delegate
                     {
                         RemoveFromHierarchy();
-                        //more clean up required?!?
-                        me.DeleteMe?.Invoke();
                     });
                     DeleteCurveMenu.ShowAsContext();
                 }
