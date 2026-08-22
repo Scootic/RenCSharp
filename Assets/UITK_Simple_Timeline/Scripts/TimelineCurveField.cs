@@ -1,11 +1,19 @@
 #if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 namespace UITK_SimpleTimeline
 {
+    [UxmlElement]
+    public partial class TestTimelineCurveField : TimelineCurveField<Vector3, string>
+    {
+
+    }
+
     /// <summary>
     /// god
     /// </summary>
@@ -31,55 +39,7 @@ namespace UITK_SimpleTimeline
         //grumpus constructor that's bad!
         public TimelineCurveField(string labelText) : base(labelText, new VisualElement())
         {
-            KeyframeIcons = new();
-
-            style.height = 150;
-            style.left = 0;
-            style.right = 0;
-            style.flexGrow = 1;
-            style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
-            style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
-            style.borderLeftColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
-            style.borderTopColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
-            style.borderRightColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
-            style.borderRightWidth = 1;
-            style.borderBottomWidth = 1;
-            style.borderTopWidth = 1;
-            style.borderLeftWidth = 1;
-            style.flexDirection = FlexDirection.Row;
-
-            CurveDataContainer = new();
-            CurveDataContainer.style.width = 150;
-            CurveDataContainer.style.height = 150;
-            CurveDataContainer.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
-            CurveDataContainer.style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderRightColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderTopColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderLeftColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderBottomWidth = 1;
-            CurveDataContainer.style.borderRightWidth = 1;
-            CurveDataContainer.style.borderTopWidth = 1;
-            CurveDataContainer.style.borderLeftWidth = 1;
-            Add(CurveDataContainer);
-
-            ToBeAffectedField = new();
-            ToBeAffectedField.style.width = 150;
-            ToBeAffectedField.style.height = 150;
-            //ToBeAffectedField.BindProperty(new SerializedObject(curve.ToAffect)); //?
-            CurveDataContainer.Add(ToBeAffectedField);
-
-            KeyframeContainer = new();
-            KeyframeContainer.style.left = 0;
-            KeyframeContainer.style.right = 0;
-            KeyframeContainer.style.height = 150;
-            Add(KeyframeContainer);
-
-            SpawnKeyframeKnobs(value);
-            RegisterGenericMenus();
-        }
-        public TimelineCurveField(string labelText, TypedTimelineCurve<T, U> curve, int index) : base(labelText, new VisualElement())
-        {
-            value = curve;
+            Remove(Children().ToArray()[0]);
             KeyframeIcons = new();
             style.height = 150;
             style.left = -150;
@@ -98,8 +58,9 @@ namespace UITK_SimpleTimeline
             style.borderTopWidth = 1;
             style.borderLeftWidth = 1;
             style.flexDirection = FlexDirection.Row;
+            style.position = Position.Absolute;
 
-            CurveDataContainer = new();
+            CurveDataContainer = new() { name = "CurveDataContainer" };
             CurveDataContainer.style.width = 150;
             CurveDataContainer.style.left = -165;
             CurveDataContainer.style.height = 150;
@@ -114,17 +75,84 @@ namespace UITK_SimpleTimeline
             CurveDataContainer.style.borderLeftWidth = 1;
             Add(CurveDataContainer);
 
-            ToBeAffectedField = new();
+            ToBeAffectedField = new() { name = "ToBeAffectedField" };
+            ToBeAffectedField.style.width = 150;
+            ToBeAffectedField.style.height = 150;
+            //ToBeAffectedField.BindProperty(curveProperty.FindPropertyRelative("ToAffect")); //?
+            CurveDataContainer.Add(ToBeAffectedField);
+
+            Label stuff = new();
+            stuff.text = "No to be affected field, because this has no curve information!";
+            ToBeAffectedField.Add(stuff);
+
+            KeyframeContainer = new() { name = "KeyframeContainer" };
+            KeyframeContainer.style.left = 0;
+            KeyframeContainer.style.right = 0;
+            KeyframeContainer.style.height = 150;
+            KeyframeContainer.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            KeyframeContainer.style.backgroundImage = SimpleTimelineUITK_Helper.FullRulerLength;
+            KeyframeContainer.style.unityBackgroundImageTintColor = SimpleTimelineUITK_Helper.HalfTransparentWhite;
+            KeyframeContainer.style.backgroundPositionX = new StyleBackgroundPosition(new BackgroundPosition(BackgroundPositionKeyword.Left, 0f));
+            KeyframeContainer.style.backgroundRepeat = new BackgroundRepeat(Repeat.Repeat, Repeat.Repeat);
+            KeyframeContainer.style.backgroundSize = new StyleBackgroundSize(new BackgroundSize(32, 32));
+            KeyframeContainer.style.flexGrow = 1;
+            Add(KeyframeContainer);
+
+            SpawnKeyframeKnobs(value);
+            RegisterGenericMenus();
+        }
+        public TimelineCurveField(string labelText, TypedTimelineCurve<T, U> curve, int index) : base(labelText, new VisualElement())
+        {
+            value = curve;
+            Remove(Children().ToArray()[0]);
+            KeyframeIcons = new();
+            style.height = 150;
+            style.left = -150;
+            style.right = 0;
+            style.flexGrow = 1;
+            style.maxHeight = 150;
+            style.minWidth = 0;
+            style.maxWidth = 99999;
+            style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
+            style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            style.borderLeftColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            style.borderTopColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            style.borderRightColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            style.borderRightWidth = 1;
+            style.borderBottomWidth = 1;
+            style.borderTopWidth = 1;
+            style.borderLeftWidth = 1;
+            style.flexDirection = FlexDirection.Row;
+            style.position = Position.Relative;
+
+            CurveDataContainer = new() { name = "CurveDataContainer" };
+            CurveDataContainer.style.width = 150;
+            CurveDataContainer.style.left = -170;
+            CurveDataContainer.style.right = 0;
+            CurveDataContainer.style.height = 150;
+            CurveDataContainer.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
+            CurveDataContainer.style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            CurveDataContainer.style.borderRightColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            CurveDataContainer.style.borderTopColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            CurveDataContainer.style.borderLeftColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            CurveDataContainer.style.borderBottomWidth = 1;
+            CurveDataContainer.style.borderRightWidth = 1;
+            CurveDataContainer.style.borderTopWidth = 1;
+            CurveDataContainer.style.borderLeftWidth = 1;
+            Add(CurveDataContainer);
+
+            ToBeAffectedField = new() { name = "ToBeAffectedField" };
             curveProperty = SimpleTimelineUITK_Helper.CurvesProperty.GetArrayElementAtIndex(index);
             ToBeAffectedField.style.width = 150;
             ToBeAffectedField.style.height = 150;
             ToBeAffectedField.BindProperty(curveProperty.FindPropertyRelative("ToAffect")); //?
             CurveDataContainer.Add(ToBeAffectedField);
 
-            KeyframeContainer = new();
+            KeyframeContainer = new() { name = "KeyframeContainer" };
             KeyframeContainer.style.left = 0;
             KeyframeContainer.style.right = 0;
             KeyframeContainer.style.height = 150;
+            KeyframeContainer.style.maxHeight = 150;
             KeyframeContainer.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
             KeyframeContainer.style.backgroundImage = SimpleTimelineUITK_Helper.FullRulerLength;
             KeyframeContainer.style.unityBackgroundImageTintColor = SimpleTimelineUITK_Helper.HalfTransparentWhite;
@@ -151,6 +179,7 @@ namespace UITK_SimpleTimeline
 
         protected void SpawnKeyframeKnobs(TypedTimelineCurve<T, U> curve)
         {
+            if (curve == null) return;
             for(int i = 0; i < curve.Keyframes.Count; i++)
             {
                 TimelineKeyframe<T> kf = curve.Keyframes[i];

@@ -256,7 +256,7 @@ namespace UITK_SimpleTimeline.Editor
             originalScrollMax = TimelineScrollView.horizontalScroller.highValue;
             ScrollViewContent = TimelineScrollView.Q<VisualElement>("unity-content-container");
             ScrollViewContent.style.backgroundImage = SimpleTimelineUITK_Helper.FullRulerLength;
-            ScrollViewContent.style.unityBackgroundImageTintColor = SimpleTimelineUITK_Helper.HalfTransparentWhite;
+            ScrollViewContent.style.unityBackgroundImageTintColor = SimpleTimelineUITK_Helper.QuarterTransparentWhite;
             ScrollViewContent.style.backgroundPositionX = new StyleBackgroundPosition(new BackgroundPosition(BackgroundPositionKeyword.Left, 0f));
             ScrollViewContent.style.backgroundRepeat = new BackgroundRepeat(Repeat.Repeat, Repeat.Repeat);
             ScrollViewContent.style.backgroundSize = new StyleBackgroundSize(new BackgroundSize(32, 32));
@@ -313,7 +313,7 @@ namespace UITK_SimpleTimeline.Editor
             TimelineScrollView.Add(CurrentTimePreview);
 
             #endregion
-            GenerateTimelineCurveFields();
+            //GenerateTimelineCurveFields(); no timelinecurves to generate with!
 
             schedule.Execute(PreviewTimelineUpdate).Every(16).StartingIn(0);
         }
@@ -522,7 +522,7 @@ namespace UITK_SimpleTimeline.Editor
             originalScrollMax = TimelineScrollView.horizontalScroller.highValue;
             ScrollViewContent = TimelineScrollView.Q<VisualElement>("unity-content-container");
             ScrollViewContent.style.backgroundImage = SimpleTimelineUITK_Helper.FullRulerLength;
-            ScrollViewContent.style.unityBackgroundImageTintColor = SimpleTimelineUITK_Helper.HalfTransparentWhite;
+            ScrollViewContent.style.unityBackgroundImageTintColor = SimpleTimelineUITK_Helper.QuarterTransparentWhite;
             ScrollViewContent.style.backgroundPositionX = new StyleBackgroundPosition(new BackgroundPosition(BackgroundPositionKeyword.Left, 0f));
             ScrollViewContent.style.backgroundRepeat = new BackgroundRepeat(Repeat.Repeat, Repeat.Repeat);
             ScrollViewContent.style.backgroundSize = new StyleBackgroundSize(new BackgroundSize(32, 32));
@@ -627,11 +627,18 @@ namespace UITK_SimpleTimeline.Editor
             if (SimpleTimelineUITK_Helper.CurvesProperty == null) return;
             for(int i = 0; i < SimpleTimelineUITK_Helper.CurvesProperty.arraySize; i++)
             {
+                try 
+                { 
                 TimelineCurve lerpable = SimpleTimelineUITK_Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue as TimelineCurve;
                 DestroyableVisualElement t = new (lerpable.UITKRepresentation(i));
                 t.DeleteMe += delegate { RemoveTimelineCurve(lerpable); };
                 TimelineScrollView.Add(t.VE); //adding to the timeline scrollview should place it in the content section? i hope?
                 TimelineCurveFields.Add(TimelineScrollView.Children().ToArray()[i + 1]);//? i at 0 should be timeline ruler
+                }
+                catch
+                {
+                    Debug.LogWarning("Null lerpable?!?");
+                }
             }
             CurrentTimePreview.BringToFront();
         }
