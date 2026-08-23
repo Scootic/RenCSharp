@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Helper = UITK_SimpleTimeline.SimpleTimelineUITK_Helper;
 namespace UITK_SimpleTimeline.Editor
 {
     /// <summary>
@@ -57,8 +58,8 @@ namespace UITK_SimpleTimeline.Editor
         {
             playing = false;
             curT = 0;
-            SimpleTimelineUITK_Helper.ReceiveKeyframe = null;
-            SimpleTimelineUITK_Helper.ReceiveKeyframe += DisplayKeyframeInformation;
+            Helper.ReceiveKeyframe = null;
+            Helper.ReceiveKeyframe += DisplayKeyframeInformation;
             style.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1);
             style.flexDirection = FlexDirection.Column;
 
@@ -74,10 +75,10 @@ namespace UITK_SimpleTimeline.Editor
 
             #region TimelineInfoHolder
             SimpleTimelineInfoHolder = new() { name = "SimpleTimelineInfoHolder" };
-            SimpleTimelineInfoHolder.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
+            SimpleTimelineInfoHolder.style.backgroundColor = Helper.SecondLayerBG;
             SimpleTimelineInfoHolder.style.borderBottomWidth = 1;
-            SimpleTimelineInfoHolder.style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
-            SimpleTimelineInfoHolder.style.borderRightColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            SimpleTimelineInfoHolder.style.borderBottomColor = Helper.SecondLayerBorder;
+            SimpleTimelineInfoHolder.style.borderRightColor = Helper.SecondLayerBorder;
             SimpleTimelineInfoHolder.style.borderRightWidth = 1;
             SimpleTimelineInfoHolder.style.minWidth = 0;
             SimpleTimelineInfoHolder.style.minHeight = 0;
@@ -92,7 +93,7 @@ namespace UITK_SimpleTimeline.Editor
             DurationField.RegisterValueChangedCallback(evt =>
             {
                 thisTimeline.Duration = evt.newValue;
-                SimpleTimelineUITK_Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue = evt.newValue;
+                Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue = evt.newValue;
                 UpdateTimelineScrollSizeBasedOnDuration(evt.newValue);
             });
             SimpleTimelineInfoHolder.Add(DurationField);
@@ -103,18 +104,18 @@ namespace UITK_SimpleTimeline.Editor
             LoopField.value = thisTimeline.Loop;
             LoopField.RegisterValueChangedCallback(evt => 
             {
-                SimpleTimelineUITK_Helper.SimpleTimelineProperty.FindPropertyRelative("Loop").boolValue = evt.newValue;
+                Helper.SimpleTimelineProperty.FindPropertyRelative("Loop").boolValue = evt.newValue;
                 thisTimeline.Loop = evt.newValue; 
             });
             SimpleTimelineInfoHolder.Add(LoopField);
             #endregion
 
             KeyframeControlsHolder = new() { name = "KeyframeControls" };
-            KeyframeControlsHolder.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
-            KeyframeControlsHolder.style.borderRightColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            KeyframeControlsHolder.style.backgroundColor = Helper.SecondLayerBG;
+            KeyframeControlsHolder.style.borderRightColor = Helper.SecondLayerBorder;
             KeyframeControlsHolder.style.borderRightWidth = 1;
             KeyframeControlsHolder.style.borderTopWidth = 1;
-            KeyframeControlsHolder.style.borderTopColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            KeyframeControlsHolder.style.borderTopColor = Helper.SecondLayerBorder;
             KeyframeControlsHolder.style.minWidth = 0;
             KeyframeControlsHolder.style.bottom = 0;
             KeyframeControlsHolder.style.flexGrow = 1;
@@ -144,10 +145,10 @@ namespace UITK_SimpleTimeline.Editor
             #region TimelineControlsHolder
             //holds the play/pause button and stuff!
             TimelineControlsHolder = new() { name = "TimelineControlsHolder" };
-            TimelineControlsHolder.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
-            TimelineControlsHolder.style.borderRightColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
-            TimelineControlsHolder.style.borderLeftColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
-            TimelineControlsHolder.style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            TimelineControlsHolder.style.backgroundColor = Helper.SecondLayerBG;
+            TimelineControlsHolder.style.borderRightColor = Helper.SecondLayerBorder;
+            TimelineControlsHolder.style.borderLeftColor = Helper.SecondLayerBorder;
+            TimelineControlsHolder.style.borderBottomColor = Helper.SecondLayerBorder;
             TimelineControlsHolder.style.borderRightWidth = 1;
             TimelineControlsHolder.style.borderLeftWidth = 1;
             TimelineControlsHolder.style.borderBottomWidth = 1;
@@ -219,7 +220,7 @@ namespace UITK_SimpleTimeline.Editor
                 curT = (float)evt.newValue / 60f;
                 CurrentSecondsField.value = curT;
                 //divide frame by 60, then multiply by PixelWidthPerSeconds?
-                CurrentTimePreview.style.left = curT * (float)SimpleTimelineUITK_Helper.PixelWidthPerSeconds;
+                CurrentTimePreview.style.left = curT * (float)Helper.PixelWidthPerSeconds;
             });
             TimelineControlsHolder.Add(CurrentFrameField);
 
@@ -242,7 +243,7 @@ namespace UITK_SimpleTimeline.Editor
 
             CreateAddNewCurveMenu();
             TimelineScrollView = new() { name = "TimelineScrollView" };
-            TimelineScrollView.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            TimelineScrollView.style.backgroundColor = Helper.SecondLayerBorder;
             TimelineScrollView.style.minHeight = 235;
             TimelineScrollView.style.maxHeight = 9999;
             TimelineScrollView.style.minWidth = 500;
@@ -255,8 +256,8 @@ namespace UITK_SimpleTimeline.Editor
             TimelineScrollView.horizontalScroller.highValue = 650;
             originalScrollMax = TimelineScrollView.horizontalScroller.highValue;
             ScrollViewContent = TimelineScrollView.Q<VisualElement>("unity-content-container");
-            ScrollViewContent.style.backgroundImage = SimpleTimelineUITK_Helper.FullRulerLength;
-            ScrollViewContent.style.unityBackgroundImageTintColor = SimpleTimelineUITK_Helper.QuarterTransparentWhite;
+            ScrollViewContent.style.backgroundImage = Helper.FullRulerLength;
+            ScrollViewContent.style.unityBackgroundImageTintColor = Helper.QuarterTransparentWhite;
             ScrollViewContent.style.backgroundPositionX = new StyleBackgroundPosition(new BackgroundPosition(BackgroundPositionKeyword.Left, 0f));
             ScrollViewContent.style.backgroundRepeat = new BackgroundRepeat(Repeat.Repeat, Repeat.Repeat);
             ScrollViewContent.style.backgroundSize = new StyleBackgroundSize(new BackgroundSize(32, 32));
@@ -292,7 +293,7 @@ namespace UITK_SimpleTimeline.Editor
                 {
                     //x seconds = localPos.x / PixelWidthPerSeconds. multiply by 60 for frame? floor???
                     CurrentFrameField.value = Mathf.FloorToInt(evt.localPosition.x /
-                        (float)SimpleTimelineUITK_Helper.PixelWidthPerSeconds * 60f);
+                        (float)Helper.PixelWidthPerSeconds * 60f);
                     evt.StopPropagation();
                 }
             });
@@ -320,12 +321,12 @@ namespace UITK_SimpleTimeline.Editor
 
         public SimpleTimelineUITKField(string labelText, SimpleTimeline st) : base(labelText, new VisualElement())
         {
-            thisTimeline = (SimpleTimeline)SimpleTimelineUITK_Helper.SimpleTimelineProperty.boxedValue;
+            thisTimeline = (SimpleTimeline)Helper.SimpleTimelineProperty.boxedValue;
 
             playing = false;
             curT = 0;
-            SimpleTimelineUITK_Helper.ReceiveKeyframe = null;
-            SimpleTimelineUITK_Helper.ReceiveKeyframe += DisplayKeyframeInformation;
+            Helper.ReceiveKeyframe = null;
+            Helper.ReceiveKeyframe += DisplayKeyframeInformation;
             style.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1);
             style.flexDirection = FlexDirection.Column;
 
@@ -341,10 +342,10 @@ namespace UITK_SimpleTimeline.Editor
 
             #region TimelineInfoHolder
             SimpleTimelineInfoHolder = new() { name = "SimpleTimelineInfoHolder" };
-            SimpleTimelineInfoHolder.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
+            SimpleTimelineInfoHolder.style.backgroundColor = Helper.SecondLayerBG;
             SimpleTimelineInfoHolder.style.borderBottomWidth = 1;
-            SimpleTimelineInfoHolder.style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
-            SimpleTimelineInfoHolder.style.borderRightColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            SimpleTimelineInfoHolder.style.borderBottomColor = Helper.SecondLayerBorder;
+            SimpleTimelineInfoHolder.style.borderRightColor = Helper.SecondLayerBorder;
             SimpleTimelineInfoHolder.style.borderRightWidth = 1;
             SimpleTimelineInfoHolder.style.minWidth = 0;
             SimpleTimelineInfoHolder.style.minHeight = 0;
@@ -355,11 +356,12 @@ namespace UITK_SimpleTimeline.Editor
             DurationField = new("Duration:") { name = "TimelineDuration" };
             DurationField.style.color = Color.white;
             DurationField.style.width = 225;
-            DurationField.value = SimpleTimelineUITK_Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue;
+            DurationField.value = Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue;
             DurationField.RegisterValueChangedCallback(evt =>
             {
                 thisTimeline.Duration = evt.newValue;
-                SimpleTimelineUITK_Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue = evt.newValue;
+                Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue = evt.newValue;
+                Helper.WindowObject.ApplyModifiedProperties();
                 UpdateTimelineScrollSizeBasedOnDuration(evt.newValue);
             });
             SimpleTimelineInfoHolder.Add(DurationField);
@@ -367,21 +369,22 @@ namespace UITK_SimpleTimeline.Editor
             LoopField = new("Loop:") { name = "TimelineLoop" };
             LoopField.style.color = Color.white;
             LoopField.style.width = 225;
-            LoopField.value = SimpleTimelineUITK_Helper.SimpleTimelineProperty.FindPropertyRelative("Loop").boolValue;
+            LoopField.value = Helper.SimpleTimelineProperty.FindPropertyRelative("Loop").boolValue;
             LoopField.RegisterValueChangedCallback(evt => 
             {
-                SimpleTimelineUITK_Helper.SimpleTimelineProperty.FindPropertyRelative("Loop").boolValue = evt.newValue;
+                Helper.SimpleTimelineProperty.FindPropertyRelative("Loop").boolValue = evt.newValue;
+                Helper.WindowObject.ApplyModifiedProperties();
                 thisTimeline.Loop = evt.newValue; 
             });
             SimpleTimelineInfoHolder.Add(LoopField);
             #endregion
 
             KeyframeControlsHolder = new() { name = "KeyframeControls" };
-            KeyframeControlsHolder.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
-            KeyframeControlsHolder.style.borderRightColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            KeyframeControlsHolder.style.backgroundColor = Helper.SecondLayerBG;
+            KeyframeControlsHolder.style.borderRightColor = Helper.SecondLayerBorder;
             KeyframeControlsHolder.style.borderRightWidth = 1;
             KeyframeControlsHolder.style.borderTopWidth = 1;
-            KeyframeControlsHolder.style.borderTopColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            KeyframeControlsHolder.style.borderTopColor = Helper.SecondLayerBorder;
             KeyframeControlsHolder.style.minWidth = 0;
             KeyframeControlsHolder.style.bottom = 0;
             KeyframeControlsHolder.style.flexGrow = 1;
@@ -411,10 +414,10 @@ namespace UITK_SimpleTimeline.Editor
             #region TimelineControlsHolder
             //holds the play/pause button and stuff!
             TimelineControlsHolder = new() { name = "TimelineControlsHolder" };
-            TimelineControlsHolder.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBG;
-            TimelineControlsHolder.style.borderRightColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
-            TimelineControlsHolder.style.borderLeftColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
-            TimelineControlsHolder.style.borderBottomColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            TimelineControlsHolder.style.backgroundColor = Helper.SecondLayerBG;
+            TimelineControlsHolder.style.borderRightColor = Helper.SecondLayerBorder;
+            TimelineControlsHolder.style.borderLeftColor = Helper.SecondLayerBorder;
+            TimelineControlsHolder.style.borderBottomColor = Helper.SecondLayerBorder;
             TimelineControlsHolder.style.borderRightWidth = 1;
             TimelineControlsHolder.style.borderLeftWidth = 1;
             TimelineControlsHolder.style.borderBottomWidth = 1;
@@ -485,7 +488,7 @@ namespace UITK_SimpleTimeline.Editor
                 curT = (float)evt.newValue / 60f;
                 CurrentSecondsField.value = curT;
                 //divide frame by 60, then multiply by PixelWidthPerSeconds?
-                CurrentTimePreview.style.left = curT * (float)SimpleTimelineUITK_Helper.PixelWidthPerSeconds;
+                CurrentTimePreview.style.left = curT * (float)Helper.PixelWidthPerSeconds;
             });
             TimelineControlsHolder.Add(CurrentFrameField);
 
@@ -508,7 +511,7 @@ namespace UITK_SimpleTimeline.Editor
 
             CreateAddNewCurveMenu();
             TimelineScrollView = new() { name = "TimelineScrollView" };
-            TimelineScrollView.style.backgroundColor = SimpleTimelineUITK_Helper.SecondLayerBorder;
+            TimelineScrollView.style.backgroundColor = Helper.SecondLayerBorder;
             TimelineScrollView.style.minHeight = 235;
             TimelineScrollView.style.maxHeight = 9999;
             TimelineScrollView.style.minWidth = 500;
@@ -521,8 +524,8 @@ namespace UITK_SimpleTimeline.Editor
             TimelineScrollView.horizontalScroller.highValue = 650;
             originalScrollMax = TimelineScrollView.horizontalScroller.highValue;
             ScrollViewContent = TimelineScrollView.Q<VisualElement>("unity-content-container");
-            ScrollViewContent.style.backgroundImage = SimpleTimelineUITK_Helper.FullRulerLength;
-            ScrollViewContent.style.unityBackgroundImageTintColor = SimpleTimelineUITK_Helper.QuarterTransparentWhite;
+            ScrollViewContent.style.backgroundImage = Helper.FullRulerLength;
+            ScrollViewContent.style.unityBackgroundImageTintColor = Helper.QuarterTransparentWhite;
             ScrollViewContent.style.backgroundPositionX = new StyleBackgroundPosition(new BackgroundPosition(BackgroundPositionKeyword.Left, 0f));
             ScrollViewContent.style.backgroundRepeat = new BackgroundRepeat(Repeat.Repeat, Repeat.Repeat);
             ScrollViewContent.style.backgroundSize = new StyleBackgroundSize(new BackgroundSize(32, 32));
@@ -557,7 +560,7 @@ namespace UITK_SimpleTimeline.Editor
                 {
                     //x seconds = localPos.x / PixelWidthPerSeconds. multiply by 60 for frame? floor???
                     CurrentFrameField.value = Mathf.FloorToInt(evt.localPosition.x /
-                        (float)SimpleTimelineUITK_Helper.PixelWidthPerSeconds * 60f);
+                        (float)Helper.PixelWidthPerSeconds * 60f);
                 }
             });
             TimelineScrollView.Add(TimelineRuler);
@@ -578,6 +581,7 @@ namespace UITK_SimpleTimeline.Editor
 
             #endregion
             GenerateTimelineCurveFields();
+            UpdateTimelineScrollSizeBasedOnDuration(Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue);
 
             schedule.Execute(PreviewTimelineUpdate).Every(16).StartingIn(0);
         }
@@ -588,7 +592,7 @@ namespace UITK_SimpleTimeline.Editor
             CurrentFrameField.value = 0;
             CurrentSecondsField.value = 0;
 
-            ScrollViewContent.style.width = newDurInSeconds * (float)SimpleTimelineUITK_Helper.PixelWidthPerSeconds;
+            ScrollViewContent.style.width = newDurInSeconds * (float)Helper.PixelWidthPerSeconds;
         }
 
         public void AddNewTimelineCurve(TimelineCurve newCurve) 
@@ -608,13 +612,14 @@ namespace UITK_SimpleTimeline.Editor
 
         protected void UpdateCurvesProperty()
         {
-            SimpleTimelineUITK_Helper.CurvesProperty.ClearArray();
+            Helper.CurvesProperty.ClearArray();
+            Helper.WindowObject.ApplyModifiedProperties();
+            Helper.CurvesProperty.arraySize = thisTimeline.Curves.Count;
             for(int i =0; i < thisTimeline.Curves.Count; i++)
             {
-                SimpleTimelineUITK_Helper.CurvesProperty.InsertArrayElementAtIndex(i);
-                SimpleTimelineUITK_Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue = thisTimeline.Curves[i];
+                Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue = thisTimeline.Curves[i];
             }
-            SimpleTimelineUITK_Helper.WindowObject.ApplyModifiedProperties();
+            Helper.WindowObject.ApplyModifiedProperties();
         }
 
         protected void GenerateTimelineCurveFields()
@@ -623,21 +628,24 @@ namespace UITK_SimpleTimeline.Editor
             {
                 TimelineScrollView.Remove(curveField);
             }
-            TimelineCurveFields.Clear();
-            if (SimpleTimelineUITK_Helper.CurvesProperty == null) return;
-            for(int i = 0; i < SimpleTimelineUITK_Helper.CurvesProperty.arraySize; i++)
+            for(int i = TimelineCurveFields.Count - 1; i >= 0; i--)
+            {
+                TimelineCurveFields.RemoveAt(i);
+            }
+            if (Helper.CurvesProperty == null) return;
+            for(int i = 0; i < Helper.CurvesProperty.arraySize; i++)
             {
                 try 
                 { 
-                TimelineCurve lerpable = SimpleTimelineUITK_Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue as TimelineCurve;
-                DestroyableVisualElement t = new (lerpable.UITKRepresentation(i));
-                t.DeleteMe += delegate { RemoveTimelineCurve(lerpable); };
-                TimelineScrollView.Add(t.VE); //adding to the timeline scrollview should place it in the content section? i hope?
-                TimelineCurveFields.Add(TimelineScrollView.Children().ToArray()[i + 1]);//? i at 0 should be timeline ruler
+                    TimelineCurve lerpable = Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue as TimelineCurve;
+                    DestroyableVisualElement t = new (lerpable.UITKRepresentation(i));
+                    t.DeleteMe += delegate { RemoveTimelineCurve(lerpable); };
+                    TimelineScrollView.Add(t.VE); //adding to the timeline scrollview should place it in the content section? i hope?
+                    TimelineCurveFields.Add(TimelineScrollView.Children().ToArray()[i + 1]);//? i at 0 should be timeline ruler
                 }
                 catch
                 {
-                    Debug.LogWarning("Null lerpable?!?");
+                    Debug.LogWarning("Null lerpable?!? That, or the TimelineCurveField failed to construct, somehow.");
                 }
             }
             CurrentTimePreview.BringToFront();
@@ -654,7 +662,7 @@ namespace UITK_SimpleTimeline.Editor
             AddNewCurveMenu = new();
             if (UITK_SimpleTimeline_AssembliesDatabase.GetValidTimelineCurveTypes == null) 
             {
-                Debug.LogWarning("No types for the SimpleTimelineUITKField!");
+                AddNewCurveMenu.AddDisabledItem(new GUIContent("No Valid Curve Types?!? Try checking the SimpleTimelineUITK_AssemblyDatabase."));
                 return; 
             }
 
@@ -673,16 +681,16 @@ namespace UITK_SimpleTimeline.Editor
 
         protected void GrabIcons()
         {
-            if(bckIco == null) bckIco = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/UITK_Simple_Timeline/UITK_SimpleTimeline_Icons/bckicon.png");
+            if(bckIco == null) bckIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+ "/bckicon.png");
             if(!bckIco) Debug.LogError("SimpleTimelineUITKField.cs can't find bckicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
-            if(fwdIco == null) fwdIco = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/UITK_Simple_Timeline/UITK_SimpleTimeline_Icons/fwdicon.png");
+            if(fwdIco == null) fwdIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+"/fwdicon.png");
             if(!fwdIco) Debug.LogError("SimpleTimelineUITKField.cs can't find fwdicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
-            if(playIco == null) playIco = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/UITK_Simple_Timeline/UITK_SimpleTimeline_Icons/playicon.png");
+            if(playIco == null) playIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+"/playicon.png");
             if(!playIco) Debug.LogError("SimpleTimelineUITKField.cs can't find playicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
-            if(pausIco == null) pausIco = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/UITK_Simple_Timeline/UITK_SimpleTimeline_Icons/pauseicon.png");
+            if(pausIco == null) pausIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+"/pauseicon.png");
             if(!pausIco) Debug.LogError("SimpleTimelineUITKField.cs can't find pauseicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
-            if (SimpleTimelineUITK_Helper.FullRulerLength == null) SimpleTimelineUITK_Helper.FullRulerLength = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/UITK_Simple_Timeline/UITK_SimpleTimeline_Icons/fullrulerlength.png");
-            if (!SimpleTimelineUITK_Helper.FullRulerLength) Debug.LogError("SimpleTimelineUITKField.cs can't find fullrulerlength.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
+            if (Helper.FullRulerLength == null) Helper.FullRulerLength = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+"/fullrulerlength.png");
+            if (!Helper.FullRulerLength) Debug.LogError("SimpleTimelineUITKField.cs can't find fullrulerlength.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
         }
 
         protected void PreviewTimelineUpdate()

@@ -14,10 +14,13 @@ namespace UITK_SimpleTimeline
     /// </summary>
     public class SpawnGameObjectCurve : TypedTimelineCurve<GOSpawnToken,GameObject>, ILerpable
     {
+        public override string DeleteCurveName() => "Spawn GameObject Curve";
+        public override string SpawnKeyframeName() => "Spawn Token Keyframe";
         //how to convey this...?
         [SerializeField] private bool setToBeChildOfRoot = false;
         public override void Evaluate(float time)
         {
+            if (!ValidCurve) return;
             TimelineKeyframe<GOSpawnToken>[] keyframes = ClosestTwoKeyframes(time);
 
             if (!Mathf.Approximately(keyframes[0].Time, time)) return; //make sure the time is comparable!
@@ -30,6 +33,7 @@ namespace UITK_SimpleTimeline
 
         public override string EvaluateMessage(float time)
         {
+            if (!ValidCurve) return "Spawn GO Curve is not yet valid!";
             TimelineKeyframe<GOSpawnToken> goose = ClosestTwoKeyframes(time)[0];
             if (!Mathf.Approximately(goose.Time, time))
             {

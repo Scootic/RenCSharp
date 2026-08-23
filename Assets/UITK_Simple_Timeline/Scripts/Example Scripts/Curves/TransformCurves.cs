@@ -7,6 +7,8 @@ namespace UITK_SimpleTimeline
     /// </summary>
     public class PositionCurve : TypedTimelineCurve<Vector3, string>, ILerpable
     {
+        public override string DeleteCurveName() => "Local Position Curve";
+        public override string SpawnKeyframeName() => "Vector3 Keyframe";
         private Vector3 EvaluateV3(float time)
         {
             Vector3 toReturn = new();
@@ -31,11 +33,13 @@ namespace UITK_SimpleTimeline
 
         public override void Evaluate(float time)
         {
+            if (!ValidCurve) return;
             EvaluateV3(time);
         }
 
         public override string EvaluateMessage(float time)
         {
+            if (!ValidCurve) return "Local position curve not yet valid! Give it some keyframes!";
             return $"{ToAffect}.localPos should be: {EvaluateV3(time)}";
         }
 
@@ -50,6 +54,8 @@ namespace UITK_SimpleTimeline
     /// </summary>
     public class ScaleCurve : TypedTimelineCurve<Vector3, string>, ILerpable
     {
+        public override string DeleteCurveName() => "Local Scale Curve";
+        public override string SpawnKeyframeName() => "Vector3 Keyframe";
         private Vector3 EvaluateV3(float time)
         {
             Vector3 toReturn = new();
@@ -71,11 +77,14 @@ namespace UITK_SimpleTimeline
 
         public override void Evaluate(float t)
         {
+            if (!ValidCurve) return;
             EvaluateV3(t);
         }
 
         public override string EvaluateMessage(float time)
         {
+            if (!ValidCurve) return "Local scale curve not yet valid! Give it some keyframes!";
+
             return $"{ToAffect}.localScale should be: {EvaluateV3(time)}";
         }
 
@@ -90,6 +99,8 @@ namespace UITK_SimpleTimeline
     /// </summary>
     public class RotationCurve : TypedTimelineCurve<Quaternion, string>, ILerpable
     {
+        public override string DeleteCurveName() => "Local Rotation Curve";
+        public override string SpawnKeyframeName() => "Quaternion Keyframe";
         private Quaternion EvaluateQ(float time)
         {
             Quaternion toReturn = new();
@@ -112,11 +123,14 @@ namespace UITK_SimpleTimeline
 
         public override void Evaluate(float time)
         {
+            if (!ValidCurve) return;
             EvaluateQ(time);
         }
 
         public override string EvaluateMessage(float time)
         {
+            if (!ValidCurve) return "Rotation curve is not yet valid! Give him some keyframes!";
+
             return $"{ToAffect}.localRot should be: {EvaluateQ(time)}";
         }
 

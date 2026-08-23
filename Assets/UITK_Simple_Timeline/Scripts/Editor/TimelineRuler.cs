@@ -29,7 +29,7 @@ namespace UITK_SimpleTimeline.Editor
         private void GrabRulerImage()
         {
             if (rulerImage != null) return;
-            rulerImage = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/UITK_Simple_Timeline/UITK_SimpleTimeline_Icons/rulerimage.png");
+            rulerImage = AssetDatabase.LoadAssetAtPath<Sprite>(SimpleTimelineUITK_Helper.EditorIconAssetPath+"/rulerimage.png");
             if (!rulerImage) Debug.LogError("TimelineRuler.cs couldn't find rulerimage.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
         }
     }

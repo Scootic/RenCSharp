@@ -1,7 +1,6 @@
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-
 namespace UITK_SimpleTimeline.Editor
 {
     [CustomPropertyDrawer(typeof(SimpleTimeline))]
@@ -9,7 +8,7 @@ namespace UITK_SimpleTimeline.Editor
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            if(GUILayout.Button("Open Timeline in Editor"))
+            if(GUILayout.Button("Open Timeline in Editor Window"))
             {
                 //open up an editor window
                 try

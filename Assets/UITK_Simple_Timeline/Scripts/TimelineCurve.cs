@@ -1,44 +1,16 @@
 using System;
 using UnityEngine;
-using TangentMode = UnityEditor.AnimationUtility.TangentMode;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using Helper = UITK_SimpleTimeline.SimpleTimelineUITK_Helper;
 namespace UITK_SimpleTimeline
 {
-    [Serializable]
-    public class TimelineKeyframe<T> : IComparable //?? not sure if declaring this bastard as unityengine.obj is legal
-    {
-        public T Value;
-        /// <summary>
-        /// In seconds.
-        /// </summary>
-        public float Time;
-        public float InSlope;
-        public float OutSlope;
-
-        public TangentMode TangentMode;
-        public WeightedMode WeightedMode;
-
-        public float InWeight;
-        public float OutWeight;
-        public float InTangent;
-        public float OutTangent;
-
-        public int CompareTo(object obj) //super dee duper make sure we're ordering our lists by time, because duh
-        {
-            if (obj == null) return 1;
-            TimelineKeyframe<T> other = (TimelineKeyframe<T>) obj;
-            return Time.CompareTo(other.Time);
-        }
-    }
-
     /// <summary>
-    /// Stupid evil lerper of cubicly type. Remember to give your custom types a ToString(), and to add their Assemblies
+    /// Stupid evil lerper of cubic type. Remember to give your custom types a ToString(), and to add their Assemblies
     /// to the UITK_SimpleTimeline_AssemblyDatabase asset.
     /// </summary>
     /// <typeparam name="T">The type of value being lerped between.</typeparam>
-    /// <typeparam name="U">The type of object that is affected.</typeparam>
+    /// <typeparam name="U">The type of object that is affected by the T value.</typeparam>
     [Serializable]
     public abstract class TypedTimelineCurve<T,U> : TimelineCurve, ILerpable where U : class
     {
@@ -115,6 +87,7 @@ namespace UITK_SimpleTimeline
         /// <returns>An array holding two indexes, the one below/equal to the time, and the one above. For lerping!</returns>
         protected int[] ClosestTwoIndexes(float time)
         {
+            if (!ValidCurve) return null;
             int[] toReturn = new int[2];
             int index = Array.BinarySearch(KeyframeTimes, time);
             if (index < 0)
@@ -146,6 +119,7 @@ namespace UITK_SimpleTimeline
         /// <returns>An array containing two keyframes: the one before/equal to given time, and the one after.</returns>
         protected TimelineKeyframe<T>[] ClosestTwoKeyframes(float time)
         {
+            if (!ValidCurve) return null;
             TimelineKeyframe<T>[] toReturn = new TimelineKeyframe<T>[2];
             int[] indexes = ClosestTwoIndexes(time);
             toReturn[0] = keyframes[indexes[0]];
@@ -155,12 +129,18 @@ namespace UITK_SimpleTimeline
         //not sure what I need this for?
         protected T[] ClosestLerpableValues(float time)
         {
+            if (!ValidCurve) return null;
             T[] toReturn = new T[2];
             TimelineKeyframe<T>[] temp = ClosestTwoKeyframes(time);
             toReturn[0] = temp[0].Value;
             toReturn[1] = temp[1].Value;
             return toReturn;
         }
+
+        /// <summary>
+        /// Is the keyframe count greater than 2? You can't lerp between less-than-equal-to 1 value(s)!
+        /// </summary>
+        protected bool ValidCurve => keyframes.Count >= 2;
         #endregion
 
         #region StupidMath
@@ -216,6 +196,9 @@ namespace UITK_SimpleTimeline
         /// <param name="time">The time, in seconds, on the curve that's being grabbed.</param>
         /// <returns>A contextual message to display what sort of things are happening at param:time.</returns>
         public abstract string EvaluateMessage(float time);
+
+        public abstract string DeleteCurveName();
+        public abstract string SpawnKeyframeName();
 
         public abstract VisualElement UITKRepresentation(int index);
         /// <summary>
