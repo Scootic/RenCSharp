@@ -9,6 +9,7 @@ namespace UITK_SimpleTimeline
     {
         public override string DeleteCurveName() => "Local Position Curve";
         public override string SpawnKeyframeName() => "Vector3 Keyframe";
+        public override string ToAffectName() => "Hierarchy Path to Move";
         private Vector3 EvaluateV3(float time)
         {
             Vector3 toReturn = new();
@@ -56,6 +57,7 @@ namespace UITK_SimpleTimeline
     {
         public override string DeleteCurveName() => "Local Scale Curve";
         public override string SpawnKeyframeName() => "Vector3 Keyframe";
+        public override string ToAffectName() => "Hierarchy Path to Scale";
         private Vector3 EvaluateV3(float time)
         {
             Vector3 toReturn = new();
@@ -101,6 +103,7 @@ namespace UITK_SimpleTimeline
     {
         public override string DeleteCurveName() => "Local Rotation Curve";
         public override string SpawnKeyframeName() => "Quaternion Keyframe";
+        public override string ToAffectName() => "Hierarchy Path to Rotate";
         private Quaternion EvaluateQ(float time)
         {
             Quaternion toReturn = new();

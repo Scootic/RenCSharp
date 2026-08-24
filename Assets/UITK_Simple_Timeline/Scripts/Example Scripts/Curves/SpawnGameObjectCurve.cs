@@ -16,6 +16,7 @@ namespace UITK_SimpleTimeline
     {
         public override string DeleteCurveName() => "Spawn GameObject Curve";
         public override string SpawnKeyframeName() => "Spawn Token Keyframe";
+        public override string ToAffectName() => "Prefab to Spawn";
         //how to convey this...?
         [SerializeField] private bool setToBeChildOfRoot = false;
         public override void Evaluate(float time)

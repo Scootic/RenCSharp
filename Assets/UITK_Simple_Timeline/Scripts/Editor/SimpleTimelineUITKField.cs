@@ -322,7 +322,8 @@ namespace UITK_SimpleTimeline.Editor
         public SimpleTimelineUITKField(string labelText, SimpleTimeline st) : base(labelText, new VisualElement())
         {
             thisTimeline = (SimpleTimeline)Helper.SimpleTimelineProperty.boxedValue;
-
+            Helper.RemoveTimelineCurve = null;
+            Helper.RemoveTimelineCurve += RemoveTimelineCurve; 
             playing = false;
             curT = 0;
             Helper.ReceiveKeyframe = null;
@@ -429,8 +430,7 @@ namespace UITK_SimpleTimeline.Editor
             BackFrame = new(() =>
             {
                 if (!playing) CurrentFrameField.value = Mathf.Max(CurrentFrameField.value - 1,0);
-            })
-            { name = "GoBackAFrame" };
+            }){ name = "GoBackAFrame" };
             BackFrame.iconImage = bckIco;
             Image bf = BackFrame.Q<Image>();
             bf.scaleMode = ScaleMode.ScaleToFit;
@@ -444,8 +444,7 @@ namespace UITK_SimpleTimeline.Editor
             {
                 playing = !playing;
                 PlayPause.iconImage = playing ? pausIco : playIco;
-            })
-            { name = "Play/Pause" };
+            }){ name = "Play/Pause" };
             PlayPause.iconImage = playIco;
             Image pp = PlayPause.Q<Image>();
             pp.scaleMode = ScaleMode.ScaleToFit;
@@ -457,9 +456,9 @@ namespace UITK_SimpleTimeline.Editor
 
             ForwardFrame = new(() => 
             { 
-                if (!playing) CurrentFrameField.value = Mathf.Min(CurrentFrameField.value + 1, Mathf.FloorToInt(DurationField.value * 60)); }
-            ) 
-            { name = "GoForwardAFrame" };
+                if (!playing) CurrentFrameField.value = Mathf.Min(CurrentFrameField.value + 1, Mathf.FloorToInt(DurationField.value * 60)); 
+            }
+            ){ name = "GoForwardAFrame" };
             ForwardFrame.iconImage = fwdIco;
             Image ff = ForwardFrame.Q<Image>();
             ff.scaleMode = ScaleMode.ScaleToFit;
@@ -600,48 +599,63 @@ namespace UITK_SimpleTimeline.Editor
             if (thisTimeline.Curves == null) thisTimeline.Curves = new();
             thisTimeline.Curves.Add(newCurve);
             UpdateCurvesProperty();
-            GenerateTimelineCurveFields();
         }
 
         public void RemoveTimelineCurve(TimelineCurve toRemove)
         {
-            thisTimeline.Curves.Remove(toRemove);
-            UpdateCurvesProperty();
-            GenerateTimelineCurveFields();
+            if (thisTimeline.Curves.Remove(toRemove))
+            {
+                UpdateCurvesProperty();
+            }
+            else
+            {
+                Debug.LogWarning($"Timeline.Curves doesn't contain {toRemove.ToString()}?!?");
+            }
         }
 
         protected void UpdateCurvesProperty()
         {
-            Helper.CurvesProperty.ClearArray();
-            Helper.WindowObject.ApplyModifiedProperties();
-            Helper.CurvesProperty.arraySize = thisTimeline.Curves.Count;
-            for(int i =0; i < thisTimeline.Curves.Count; i++)
+            try
             {
-                Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue = thisTimeline.Curves[i];
+                Helper.CurvesProperty.ClearArray();
+                Helper.CurvesProperty.arraySize = thisTimeline.Curves.Count;
+                for (int i = 0; i < thisTimeline.Curves.Count; i++)
+                {
+                    Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue = thisTimeline.Curves[i];
+                }
+                Helper.WindowObject.ApplyModifiedProperties();
+                GenerateTimelineCurveFields();
             }
-            Helper.WindowObject.ApplyModifiedProperties();
+            catch
+            {
+                Debug.LogWarning("UpdateCurvesProperty went wrong. SOMEHOW?!?!");
+            }
         }
 
         protected void GenerateTimelineCurveFields()
         {
             foreach(VisualElement curveField in TimelineCurveFields)
             {
-                TimelineScrollView.Remove(curveField);
+                try
+                {
+                    if(curveField.name != "TimePreview") curveField.RemoveFromHierarchy();
+                }
+                catch
+                {
+                    Debug.LogWarning($"Curve Field ({curveField.name}) not a child element?!?");
+                    continue;
+                }
             }
-            for(int i = TimelineCurveFields.Count - 1; i >= 0; i--)
-            {
-                TimelineCurveFields.RemoveAt(i);
-            }
+            TimelineCurveFields.Clear();
             if (Helper.CurvesProperty == null) return;
             for(int i = 0; i < Helper.CurvesProperty.arraySize; i++)
             {
                 try 
                 { 
                     TimelineCurve lerpable = Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue as TimelineCurve;
-                    DestroyableVisualElement t = new (lerpable.UITKRepresentation(i));
-                    t.DeleteMe += delegate { RemoveTimelineCurve(lerpable); };
-                    TimelineScrollView.Add(t.VE); //adding to the timeline scrollview should place it in the content section? i hope?
-                    TimelineCurveFields.Add(TimelineScrollView.Children().ToArray()[i + 1]);//? i at 0 should be timeline ruler
+                    VisualElement rep = lerpable.UITKRepresentation(i);
+                    TimelineScrollView.Add(rep); //adding to the timeline scrollview should place it in the content section? i hope?
+                    TimelineCurveFields.Add(rep);//? i at 0 should be timeline ruler
                 }
                 catch
                 {
@@ -649,6 +663,7 @@ namespace UITK_SimpleTimeline.Editor
                 }
             }
             CurrentTimePreview.BringToFront();
+            MarkDirtyRepaint();
         }
 
         protected void DisplayKeyframeInformation(SerializedProperty keyframeToDisplay)

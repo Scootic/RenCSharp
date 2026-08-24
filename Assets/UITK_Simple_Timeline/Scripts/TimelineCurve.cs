@@ -18,7 +18,6 @@ namespace UITK_SimpleTimeline
 
         public override VisualElement UITKRepresentation(int index)
         {
-            Helper.WindowObject.Update();
             //Debug.Log($"CurvesProp Length: {Helper.CurvesProperty.arraySize}.Is property at index {index} null? " + Helper.CurvesProperty.GetArrayElementAtIndex(index));
             return new TimelineCurveField<T,U>("", this, index);
         }
@@ -199,6 +198,7 @@ namespace UITK_SimpleTimeline
 
         public abstract string DeleteCurveName();
         public abstract string SpawnKeyframeName();
+        public abstract string ToAffectName();
 
         public abstract VisualElement UITKRepresentation(int index);
         /// <summary>

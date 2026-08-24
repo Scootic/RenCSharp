@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -28,8 +26,8 @@ namespace UITK_SimpleTimeline
         //public Action DeleteMeAction;
         protected readonly Dictionary<float,TimelineKnob<T>> KeyframeIcons;
         
-        protected readonly VisualElement CurveDataContainer;
-        protected readonly VisualElement KeyframeContainer;
+        protected readonly VisualElement CurveDataContainer, KeyframeContainer;
+        protected VisualElement o;
         /// <summary>
         /// Should hold the data for the TimelineCurve's U value.
         /// </summary>
@@ -98,19 +96,7 @@ namespace UITK_SimpleTimeline
 
             ToBeAffectedField.RegisterCallback<GeometryChangedEvent>(evt =>
             {
-                try
-                {
-                    Label l = ToBeAffectedField.Q<Label>();
-                    l.text = "To Affect:";
-                    l.style.width = 5;
-                    l.style.maxWidth = 10;
-                    l.style.flexGrow = 0;
-                    l.style.flexShrink = 1;
-                }
-                catch
-                {
-                    Debug.LogError("Stupid ah label couldnae be found from ToBeAffectedField >:(");
-                }
+                ResizeLabel();
             });
 
             CurveDataContainer.Add(ToBeAffectedField);
@@ -184,30 +170,18 @@ namespace UITK_SimpleTimeline
             Add(CurveDataContainer);
 
             ToBeAffectedField = new() { name = "ToBeAffectedField" };
+            ToBeAffectedField.RemoveFromClassList(alignedFieldUssClassName);
             curveProperty = Helper.CurvesProperty.GetArrayElementAtIndex(index);
             ToBeAffectedField.style.width = 150;
             ToBeAffectedField.style.height = 150;
             ToBeAffectedField.style.flexWrap = Wrap.Wrap;
-            ToBeAffectedField.BindProperty(curveProperty.FindPropertyRelative("ToAffect")); //?
-           
-            ToBeAffectedField.RegisterCallback<GeometryChangedEvent>(evt =>
-            {
-                try
-                {
-                    Label l = ToBeAffectedField.Q<Label>();
-                    l.text = "To Affect:";
-                    l.style.width = 5;
-                    l.style.maxWidth = 10;
-                    l.style.flexGrow = 0;
-                    l.style.flexShrink = 1;
-                }
-                catch
-                {
-                    Debug.LogError("Stupid ah label couldnae be found from ToBeAffectedField >:(");
-                }
-            });
-
+            ToBeAffectedField.style.flexGrow = 1;
+            //RegisterCallback<GeometryChangedEvent>(evt =>
+            //{
+            //    ResizeLabel();
+            //});
             CurveDataContainer.Add(ToBeAffectedField);
+            ToBeAffectedField.BindProperty(curveProperty.FindPropertyRelative("ToAffect")); //?    
 
             KeyframeContainer = new() { name = "KeyframeContainer" };
             KeyframeContainer.style.left = 151;
@@ -227,6 +201,9 @@ namespace UITK_SimpleTimeline
 
             SpawnKeyframeKnobs(value);
             RegisterGenericMenus();
+            MarkDirtyRepaint();
+
+            schedule.Execute(ResizeLabel).Until(() => o != null);
         }
 
         protected void RegenerateIcons()
@@ -289,14 +266,38 @@ namespace UITK_SimpleTimeline
                     DeleteCurveMenu = new();
                     DeleteCurveMenu.AddItem(new GUIContent($"Delete Curve {myPropertyIndex}: {value.DeleteCurveName()}?!?"), false, delegate
                     {
-                        RemoveFromHierarchy();
-                        Helper.CurvesProperty.DeleteArrayElementAtIndex(myPropertyIndex);//?
-                        Helper.WindowObject.ApplyModifiedProperties();
+                        Helper.RemoveTimelineCurve?.Invoke(curveProperty.managedReferenceValue as TimelineCurve);
                     });
                     DeleteCurveMenu.ShowAsContext();
                     evt.StopPropagation();
                 }
             });
+        }
+
+        protected void ResizeLabel()
+        {
+            try
+            {
+                o = ToBeAffectedField.Children().ToArray()[0];
+                o.style.flexDirection = FlexDirection.Column;
+                o.style.flexWrap = Wrap.Wrap;
+                Label l = o.Q<Label>();
+                l.text = value.ToAffectName();
+                l.style.maxWidth = 145;
+                l.style.minWidth = 50;
+                l.style.flexGrow = -1;
+                l.style.flexShrink = 1;
+                VisualElement v = o.Children().ToArray()[1];
+                v.style.flexGrow = 1;
+                v.style.minHeight = 17;
+                v.style.minWidth = 90;
+                v.style.maxWidth = 145;
+            }
+            catch
+            {
+                //Log in-case you have dire expectations.
+                //Debug.LogWarning("Stupid ah label couldnae be found from ToBeAffectedField >:(");
+            }
         }
     }
 }
