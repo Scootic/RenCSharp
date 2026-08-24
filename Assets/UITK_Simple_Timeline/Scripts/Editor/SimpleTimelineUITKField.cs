@@ -322,11 +322,11 @@ namespace UITK_SimpleTimeline.Editor
         public SimpleTimelineUITKField(string labelText, SimpleTimeline st) : base(labelText, new VisualElement())
         {
             thisTimeline = (SimpleTimeline)Helper.SimpleTimelineProperty.boxedValue;
-            Helper.RemoveTimelineCurve = null;
+            //Helper.RemoveTimelineCurve = null;
             Helper.RemoveTimelineCurve += RemoveTimelineCurve; 
             playing = false;
             curT = 0;
-            Helper.ReceiveKeyframe = null;
+            //Helper.ReceiveKeyframe = null;
             Helper.ReceiveKeyframe += DisplayKeyframeInformation;
             style.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1);
             style.flexDirection = FlexDirection.Column;
@@ -394,6 +394,8 @@ namespace UITK_SimpleTimeline.Editor
             Add(KeyframeControlsHolder);
 
             CurrentKeyframeField = new() { name = "CurrentKeyframe" };
+            CurrentKeyframeField.RemoveFromClassList(alignedFieldUssClassName);
+            CurrentKeyframeField.style.flexWrap = Wrap.Wrap;
             KeyframeControlsHolder.Add(CurrentKeyframeField);
 
             #region TimelineHolder
@@ -605,6 +607,7 @@ namespace UITK_SimpleTimeline.Editor
         {
             if (thisTimeline.Curves.Remove(toRemove))
             {
+                CurrentKeyframeField.Unbind();
                 UpdateCurvesProperty();
             }
             else

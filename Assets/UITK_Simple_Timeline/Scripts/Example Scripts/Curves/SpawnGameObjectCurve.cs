@@ -17,8 +17,7 @@ namespace UITK_SimpleTimeline
         public override string DeleteCurveName() => "Spawn GameObject Curve";
         public override string SpawnKeyframeName() => "Spawn Token Keyframe";
         public override string ToAffectName() => "Prefab to Spawn";
-        //how to convey this...?
-        [SerializeField] private bool setToBeChildOfRoot = false;
+
         public override void Evaluate(float time)
         {
             if (!ValidCurve) return;
@@ -26,9 +25,9 @@ namespace UITK_SimpleTimeline
 
             if (!Mathf.Approximately(keyframes[0].Time, time)) return; //make sure the time is comparable!
 
-            GameObject t = GameObject.Instantiate(ToAffect, keyframes[0].Value.GetPosition(), 
-                keyframes[0].Value.GetRotation(), setToBeChildOfRoot ? root.transform : null);
-            t.transform.localScale = keyframes[0].Value.GetScale();
+            GameObject t = GameObject.Instantiate(ToAffect, keyframes[0].Value.SpawnPos, 
+                keyframes[0].Value.SpawnRot, keyframes[0].Value.SetToBeChildOfRoot ? root.transform : null);
+            t.transform.localScale = keyframes[0].Value.SpawnScale;
             t.name = keyframes[0].Value.name;
         }
 
@@ -42,8 +41,8 @@ namespace UITK_SimpleTimeline
             }
             else
             {
-                return $"Spawning GameObject: {ToAffect.name} at, \nPos:{goose.Value.GetPosition()}" +
-                    $"\nRot:{goose.Value.GetRotation()}\nScale:{goose.Value.GetScale()}";
+                return $"Spawning GameObject: {ToAffect.name} at, \nPos:{goose.Value.SpawnPos}" +
+                    $"\nRot:{goose.Value.SpawnRot}\nScale:{goose.Value.SpawnScale}";
             }
         }
 
@@ -58,9 +57,9 @@ namespace UITK_SimpleTimeline
     [Serializable]
     public struct GOSpawnToken
     {
-        public float xPos, yPos, zPos;
-        public float xRot, yRot, zRot, wRot;
-        public float xScale, yScale, zScale;
+        public Vector3 SpawnPos, SpawnScale;
+        public Quaternion SpawnRot;
+        public bool SetToBeChildOfRoot;
         public string name;
 
         public static GOSpawnToken Default
@@ -81,10 +80,5 @@ namespace UITK_SimpleTimeline
         {
             return base.GetHashCode();
         }
-
-        public readonly Vector3 GetPosition() { return new Vector3(xPos, yPos, zPos); }
-
-        public readonly Quaternion GetRotation() { return new Quaternion(xRot, yRot, zRot, wRot); }
-        public readonly Vector3 GetScale() { return new Vector3(xScale, yScale, zScale); }
     }
 }

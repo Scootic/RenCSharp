@@ -15,7 +15,30 @@ MonoBehaviour:
   Timeline:
     Loop: 1
     Duration: 15
-    Curves: []
+    Curves:
+    - rid: 8164893621387526433
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 8164893621387526433
+      type: {class: SpawnGameObjectCurve, ns: UITK_SimpleTimeline, asm: UITK_SimpleTimeline}
+      data:
+        PreWrapMode: 0
+        PostWrapMode: 0
+        ToAffect: {fileID: 0}
+        keyframes:
+        - Value:
+            SpawnPos: {x: 0, y: 0, z: 0}
+            SpawnScale: {x: 0, y: 0, z: 0}
+            SpawnRot: {x: 0, y: 0, z: 0, w: 0}
+            SetToBeChildOfRoot: 0
+            name: 
+          Time: 1.4
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          InTangent: 0
+          OutTangent: 0

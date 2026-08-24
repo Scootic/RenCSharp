@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
-using Helper = UITK_SimpleTimeline.SimpleTimelineUITK_Helper;
 namespace UITK_SimpleTimeline
 {
     /// <summary>
@@ -26,11 +25,12 @@ namespace UITK_SimpleTimeline
         /// <summary>
         /// PLEASE! PLEASE BY SORTED IN ORDER OF TIME! PLEASE!!!
         /// </summary>
-        [SerializeField] private readonly List<TimelineKeyframe<T>> keyframes = new();
+        [SerializeField] protected List<TimelineKeyframe<T>> keyframes = new();
         public List<TimelineKeyframe<T>> Keyframes => keyframes;
         public void AddKeyframeToCurve(float time)
         {
             TimelineKeyframe<T> toAdd = new();
+            toAdd.Time = time;
 
             for (int i = 0; i < Length; i++)
             {
@@ -42,7 +42,7 @@ namespace UITK_SimpleTimeline
                 }
             }
             //if we're adding a new keyframe to the "end" of a curve, make it have the same value as the previous last one.
-            toAdd.Value = keyframes[Length - 1].Value;
+            if(Length > 0) toAdd.Value = keyframes[Length - 1].Value;
             keyframes.Add(toAdd);
         }
 
@@ -195,14 +195,27 @@ namespace UITK_SimpleTimeline
         /// <param name="time">The time, in seconds, on the curve that's being grabbed.</param>
         /// <returns>A contextual message to display what sort of things are happening at param:time.</returns>
         public abstract string EvaluateMessage(float time);
-
+        /// <summary>
+        /// String used to label what kind of curve is being deleted by right-click menu. Short-hand version of regular ToString().
+        /// Probably.
+        /// </summary>
+        /// <returns></returns>
         public abstract string DeleteCurveName();
+        /// <summary>
+        /// String used to describe the T value (the value that is stored in each keyframe).
+        /// </summary>
+        /// <returns></returns>
         public abstract string SpawnKeyframeName();
+        /// <summary>
+        /// String used to label the TimelineCurve when rendered in SimpleTimelineUITKField
+        /// </summary>
+        /// <returns></returns>
         public abstract string ToAffectName();
 
         public abstract VisualElement UITKRepresentation(int index);
         /// <summary>
         /// Should only really be used by in-scene components, like SimpleTimelineAnimationComponent.cs
+        /// Sets an in-scene GameObject to be the root element to be animated.
         /// </summary>
         /// <param name="go">GameObject (in-scene!) to set as root.</param>
         public void SetRootObject(GameObject go) { root = go; }

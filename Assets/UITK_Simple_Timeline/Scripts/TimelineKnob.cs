@@ -3,13 +3,13 @@ using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+using Helper = UITK_SimpleTimeline.SimpleTimelineUITK_Helper;
 namespace UITK_SimpleTimeline
 {
     [UxmlElement]
     public partial class TimelineKnob<T> : BaseField<TimelineKeyframe<T>>
     {
-        protected TimelineKnob<T> clipboard = null;
+        protected static TimelineKnob<T> clipboard = null;
         protected static Texture2D knobImage = null;
         public Action DeleteKnobAction;
         public SerializedProperty KnobProperty;
@@ -19,7 +19,7 @@ namespace UITK_SimpleTimeline
             {
                 GenericMenu toReturn = new();
 
-                toReturn.AddItem(new GUIContent($"Delete Knob at {value.Time}."), false, delegate
+                toReturn.AddItem(new GUIContent($"Delete Knob at {value.Time}s."), false, delegate
                 {
                     DeleteKnobAction.Invoke();
                 });
@@ -50,16 +50,29 @@ namespace UITK_SimpleTimeline
             style.height = 25f;
             style.width = 25f;
         }
-        public TimelineKnob(string labelText, TimelineKeyframe<T> kf, SerializedProperty knobProperty) : base(labelText, new VisualElement())
+        public TimelineKnob(string labelText, SerializedProperty knobProperty) : base(labelText, new VisualElement())
         {
-            value = kf;
-            if (knobImage == null) knobImage = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/UITK_Simple_Timeline/UITK_SimpleTimelineIcons/timelinediamond.png");
+            value = knobProperty.boxedValue as TimelineKeyframe<T>;
+            if (knobImage == null) knobImage = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath + "/timelinediamond.png");
             if (knobImage == null) Debug.LogError("TimelineKnob.cs can't find timelinediamond.png. Did you move the UITK_Simple_Timeline from your root Asset folder?");
             style.backgroundImage = knobImage;
             style.position = Position.Absolute;
             style.height = 25f;
             style.width = 25f;
             KnobProperty = knobProperty;
+            Helper.ReceiveKeyframe += SelectKnobColoring;
+        }
+
+        protected void SelectKnobColoring(SerializedProperty sp)
+        {
+            if(sp == KnobProperty)
+            {
+                style.unityBackgroundImageTintColor = Helper.SelectedKeyframe;
+            }
+            else
+            {
+                style.unityBackgroundImageTintColor = Color.white;
+            }
         }
     }
 }

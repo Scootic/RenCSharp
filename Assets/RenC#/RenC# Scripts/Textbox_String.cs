@@ -16,7 +16,7 @@ namespace RenCSharp
         public static Dictionary<string, string> GetReplacerTexts => replacerTexts;
         /// <summary>
         /// Stupid dumb dictionary that contains key strings that we want replaced by value strings. Ie. replacing any instance of {mc} with the
-        /// inputted name given by player. Used by the RunThroughText coroutine
+        /// inputted name given by player. Used by the RunThroughText coroutine. Certified Regex moment.
         /// </summary>
         private static Dictionary<string, string> replacerTexts = new();
         /// <summary>
@@ -113,6 +113,121 @@ namespace RenCSharp
             JumpToEndOfTextbox = true;
 
             while(i < textBox.text.Length) //just run through everything in a single frame if player skipped ahead.
+            {
+                if (textBox.text[i] == '<') //we've found a rich text tag
+                {
+                    string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
+                    while (textBox.text[i] != '>')
+                    {
+                        i++;
+                        tag += textBox.text[i];
+                    }
+
+                    if (TagParser.Parse(tag))
+                    {
+                        string s = Regex.Replace(textBox.text, tag, "");
+                        textBox.text = s;
+                        i -= tag.Length - 1; //??
+                    }
+                }
+                else //just add the char and move on if it's a regular ah character
+                {
+                    textBox.maxVisibleCharacters++;
+                    //only care about passing in a stupid char for the event if event actually exists
+                    if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
+                    {
+                        int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i);
+                        TMP_CharacterInfo c = textBox.textInfo.characterInfo[goodI];
+                        stu.Invoke((object)c);
+                    }
+                    i++;
+                }
+            }
+            textBox.ForceMeshUpdate();
+            textBox.maxVisibleCharacters = textBox.text.Length; //please show everything if we aren't already!
+        }
+        /// <summary>
+        /// Async version of the RunThroughText coroutine. Basically all of the same logic, but instead of being
+        /// handled as a coroutine, it relies on the Awaitable functions (ie. 'await Awaitable.NextFrameAsync' instead of 'yield
+        /// return null').
+        /// </summary>
+        /// <param name="textBox">The text area being populated by text.</param>
+        /// <param name="endText">How the final text display will look (tags not withstanding).</param>
+        /// <returns>War in our time?!?</returns>
+        public static async Awaitable RunThroughTextAsync(TextMeshProUGUI textBox, string endText)
+        {
+            float t = 0;
+            int i = 0;
+            string amended = endText;
+            TagParser.SetCurrentTextMesh = textBox;
+
+            amended = ReplaceableText(amended);
+            amended = TagParser.CleanOutFlags(amended);
+
+            textBox.text = amended; //insert text that will be shown over time
+
+            textBox.maxVisibleCharacters = 0;
+            textBox.ForceMeshUpdate();
+            JumpToEndOfTextbox = false;
+
+            while (i < textBox.text.Length && !JumpToEndOfTextbox) //while running through a textbox (player hasn't done nothing)
+            {
+                //only run through text if the SM is unpaused
+                while (pausedTextbox)
+                {
+                    await Awaitable.NextFrameAsync();
+                }
+
+                t += Time.deltaTime;
+                //add one character at a time, depending on text speed
+                if (t >= TextSpeed)
+                {
+                    t = 0;
+                    if (textBox.text[i] == '<') //we've found a rich text tag
+                    {
+                        string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
+                        while (textBox.text[i] != '>')
+                        {
+                            i++;
+                            tag += textBox.text[i];
+                        }
+
+                        if (TagParser.Parse(tag))
+                        {
+                            string s = Regex.Replace(textBox.text, tag, "");
+                            textBox.text = s;
+                            textBox.ForceMeshUpdate();
+                            i -= tag.Length - 1; //??
+                        }
+                    }
+                    else //just add the char and move on if it's a regular ah character
+                    {
+                        textBox.maxVisibleCharacters++;
+                        textBox.ForceMeshUpdate();
+                        //only care about passing in a stupid char for the event if event actually exists
+                        if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
+                        {
+                            int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i, true); //since the text string gets rid of valid tags???
+                            try
+                            {
+                                TMP_CharacterInfo c = textBox.textInfo.characterInfo[goodI];
+                                Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
+                            }
+                            catch
+                            {
+                                Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
+                            }
+                        }
+                        i++;
+                    }
+                }
+
+                await Awaitable.NextFrameAsync();
+            }
+
+            JumpToEndOfTextbox = true;
+
+            while (i < textBox.text.Length) //just run through everything in a single frame if player skipped ahead.
             {
                 if (textBox.text[i] == '<') //we've found a rich text tag
                 {

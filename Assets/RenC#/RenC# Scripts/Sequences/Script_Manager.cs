@@ -55,12 +55,11 @@ namespace RenCSharp
         [Header("Settings")]
         [SerializeField, Tooltip("In seconds; 0 for showing a character every frame."), Min(0)] private float textSpeed = 0;
         [SerializeField, Tooltip("In seconds. How long it takes for the actor auto-focus to scale the current actor up."), Min(0)] private float autoFocusScaleDuration = 0.25f;
-        [SerializeField, Tooltip("Handled by SaveData. Only viewable for debug purposes.")] private string playerName = "Guy";
         [SerializeField, Tooltip("This will be string that is replaced by inputted player name. Purely for testing purposes, as TextboxString.ReplaceableText dict can replace it.")] private string playerTag = "{MC}";
         [SerializeField, Tooltip("How long the SM will linger on a specific screen while on auto.")] private float lingerTime = 0.5f;
         [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero.")] private byte historyLength = 10;
 
-        [Header("Debug - Please Don't Touch! May cause errors!")]
+        [Header("Debug - Please Don't Touch! May cause errors! Only visibile to help you!")]
         [SerializeField] private bool paused = false;
         [SerializeField] private bool auto = false;
         [SerializeField] private bool saving = false;
@@ -91,7 +90,7 @@ namespace RenCSharp
                 Destroy(SM);
                 SM = this;
             }
-            Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder);
+            Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder); //profoundly sad
             Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder);//horrid
             FlagToken ft = new();
             Flag_Manager.ReceiveFlagToken(ft.FlagTokenToDictionary(SaveLoad.LoadPersistentFlags()), true); //safety thing, make sure we have persistent flags
@@ -946,7 +945,6 @@ namespace RenCSharp
         {
             if (s != string.Empty) 
             {
-                playerName = s;
                 Textbox_String.AddReplacableText(playerTag, s);
             }
         }

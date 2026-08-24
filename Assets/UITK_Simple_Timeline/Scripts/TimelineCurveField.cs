@@ -34,7 +34,7 @@ namespace UITK_SimpleTimeline
         protected readonly PropertyField ToBeAffectedField;
         protected GenericMenu AddNewKeyframeMenu, DeleteCurveMenu;
 
-        protected SerializedProperty curveProperty;
+        protected SerializedProperty curveProperty, keyframesProperty;
         protected readonly int myPropertyIndex;
 
         public TimelineCurveField() : this(null) { }
@@ -172,6 +172,7 @@ namespace UITK_SimpleTimeline
             ToBeAffectedField = new() { name = "ToBeAffectedField" };
             ToBeAffectedField.RemoveFromClassList(alignedFieldUssClassName);
             curveProperty = Helper.CurvesProperty.GetArrayElementAtIndex(index);
+            keyframesProperty = curveProperty.FindPropertyRelative("keyframes");
             ToBeAffectedField.style.width = 150;
             ToBeAffectedField.style.height = 150;
             ToBeAffectedField.style.flexWrap = Wrap.Wrap;
@@ -214,28 +215,33 @@ namespace UITK_SimpleTimeline
                 KeyframeContainer.Remove(kvp.Value);
             }
             KeyframeIcons.Clear();
-            SpawnKeyframeKnobs(value);
+            SpawnKeyframeKnobs(curveProperty.managedReferenceValue as TypedTimelineCurve<T,U>);
         }
 
         protected void SpawnKeyframeKnobs(TypedTimelineCurve<T, U> curve)
         {
-            if (curve == null) return;
-            for(int i = 0; i < curve.Keyframes.Count; i++)
+            if (curve == null || curve.Length <= 0) return;
+            Debug.Log("Curve keyframe length: " + curve.Length);
+            for(int i = 0; i < curve.Length; i++)
             {
-                TimelineKeyframe<T> kf = curve.Keyframes[i];
-                TimelineKnob<T> tKnob = new("", kf, curveProperty.FindPropertyRelative("keyframes").GetArrayElementAtIndex(i));
-                tKnob.transform.position = new Vector3(Helper.PixelWidthPerSeconds * kf.Time, 0, 0);
+                Debug.Log("Curve keyframe index: " + i);
+                TimelineKnob<T> tKnob = new("", keyframesProperty.GetArrayElementAtIndex(i));
+                float time = tKnob.value.Time;
+                tKnob.transform.position = new Vector3(Helper.PixelWidthPerSeconds * time, 0, 0);
                 tKnob.DeleteKnobAction += delegate
                 {
-                    KeyframeIcons.Remove(kf.Time);
-                    curve.RemoveKeyframeFromCurve(kf.Time);
+                    KeyframeIcons.Remove(time);
+                    curve.RemoveKeyframeFromCurve(time);
                 };
                 tKnob.RegisterCallback<PointerDownEvent>(evt =>
                 {
                     if (evt.button == 1) tKnob.DeleteMe.ShowAsContext();
-                    else if (evt.button == 0) Helper.ReceiveKeyframe?.Invoke(tKnob.KnobProperty);
+                    else if (evt.button == 0) 
+                    { 
+                        Helper.ReceiveKeyframe?.Invoke(tKnob.KnobProperty); 
+                    }
                 });
-                KeyframeIcons.Add(kf.Time, tKnob);
+                KeyframeIcons.Add(time, tKnob);
                 KeyframeContainer.Add(tKnob);
             }
         }
@@ -251,7 +257,11 @@ namespace UITK_SimpleTimeline
                     AddNewKeyframeMenu = new();
                     AddNewKeyframeMenu.AddItem(new GUIContent($"Add Keyframe ({value.SpawnKeyframeName()}) at {tToAddAt}"), false, delegate
                     {
+                        value = curveProperty.managedReferenceValue as TypedTimelineCurve<T, U>;
                         value.AddKeyframeToCurve(tToAddAt);
+                        curveProperty.managedReferenceValue = value;
+                        Helper.WindowObject.ApplyModifiedProperties();
+                        keyframesProperty = curveProperty.FindPropertyRelative("keyframes");
                         RegenerateIcons();
                     });
                     AddNewKeyframeMenu.ShowAsContext();

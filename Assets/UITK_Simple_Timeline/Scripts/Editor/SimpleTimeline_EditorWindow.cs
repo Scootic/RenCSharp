@@ -60,10 +60,17 @@ namespace UITK_SimpleTimeline.Editor
                 $"\n Duration: {Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue}" +
                 $"\n Loop: {Helper.SimpleTimelineProperty.FindPropertyRelative("Loop").boolValue} " +
                 $"\n Curve Count: {Helper.CurvesProperty.arraySize}");
+            //apply modified properties (basically all the information in the SimpleTimeline)
             Helper.WindowObject.ApplyModifiedProperties();
+            //set dirty to be extra super-dee-duper safe
             EditorUtility.SetDirty(Helper.WindowObject.targetObject);
+            //null serialized hogwash
             Helper.SimpleTimelineProperty = null;
             Helper.WindowObject = null;
+            //null actions
+            Helper.ReceiveKeyframe = null;
+            Helper.RemoveTimelineCurve = null;
+            //null other stuff
             WindowInstance = null;
             timelineField = null;
         }
