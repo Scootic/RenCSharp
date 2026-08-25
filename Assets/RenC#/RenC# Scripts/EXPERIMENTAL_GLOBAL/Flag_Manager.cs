@@ -72,7 +72,6 @@ namespace RenCSharp.EXPERIMENTAL
         /// <param name="persistent">Whether or not we should be loading into the curFlags dict, or the persistentFlags dict.</param>
         public static void ReceiveFlagToken(Dictionary<string, int> dict, bool persistent = false)
         {
-            Dictionary<string, int> t = new();
             if (!persistent) curFlags = dict;
             else persistentFlags = dict;
         }

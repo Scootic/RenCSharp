@@ -14,6 +14,7 @@ namespace UITK_SimpleTimeline
     public abstract class TypedTimelineCurve<T,U> : TimelineCurve, ILerpable where U : class
     {
         public U ToAffect;
+        public WrapMode WrapMode = WrapMode.Clamp;
 
         public override VisualElement UITKRepresentation(int index)
         {
@@ -44,6 +45,7 @@ namespace UITK_SimpleTimeline
             //if we're adding a new keyframe to the "end" of a curve, make it have the same value as the previous last one.
             if(Length > 0) toAdd.Value = keyframes[Length - 1].Value;
             keyframes.Add(toAdd);
+            Debug.Log("New keyframes length: " + Length);
         }
 
         public void RemoveKeyframeFromCurve(float time)

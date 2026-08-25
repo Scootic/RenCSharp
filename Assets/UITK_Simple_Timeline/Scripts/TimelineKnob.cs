@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -57,9 +58,14 @@ namespace UITK_SimpleTimeline
             if (knobImage == null) Debug.LogError("TimelineKnob.cs can't find timelinediamond.png. Did you move the UITK_Simple_Timeline from your root Asset folder?");
             style.backgroundImage = knobImage;
             style.position = Position.Absolute;
-            style.height = 25f;
-            style.width = 25f;
+            style.height = 35f;
+            style.width = 35f;
+            style.top = 15;
             KnobProperty = knobProperty;
+            RegisterCallback<PointerDownEvent>(async evt =>
+            {
+                await DragKnob(evt);
+            });
             Helper.ReceiveKeyframe += SelectKnobColoring;
         }
 
@@ -73,6 +79,28 @@ namespace UITK_SimpleTimeline
             {
                 style.unityBackgroundImageTintColor = Color.white;
             }
+        }
+        protected async Task DragKnob(PointerDownEvent pme)
+        {
+            float timeAtEventStart = (float)EditorApplication.timeSinceStartup;
+            Debug.Log($"Drag Event - DeltaTime {pme.deltaTime}");
+            while ((pme.pressedButtons & 1) == 1)
+            {
+                Debug.Log("Inside the loop!");
+                if (EditorApplication.timeSinceStartup > 0.2f + timeAtEventStart)
+                {
+                    Vector3 curPos = transform.position;
+                    //assuming that origin is the center of the element?
+                    curPos = new Vector3(curPos.x + pme.deltaPosition.x, curPos.y, curPos.z);
+                    transform.position = curPos;
+                    float newTime = curPos.x / Helper.PixelWidthPerSeconds * 60f;
+                    newTime = Mathf.Clamp(newTime, 0, Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue);
+                    KnobProperty.FindPropertyRelative("Time").floatValue = newTime;
+                    Helper.ApplyChangesToObject();
+                }
+                await Task.Yield();
+            }
+            return;
         }
     }
 }

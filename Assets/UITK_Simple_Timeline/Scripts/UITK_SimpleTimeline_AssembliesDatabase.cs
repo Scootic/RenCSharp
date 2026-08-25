@@ -17,7 +17,7 @@ namespace UITK_SimpleTimeline
                 List<Type> toReturn = new();
                 if(assemblies == null)
                 {
-                    Debug.LogError("No valid timeline curve types could be found because there's no AssemblyDatabase to parse through." +
+                    Debug.LogWarning("No valid timeline curve types could be found because there's no AssemblyDatabase to parse through." +
                         " Make sure to create one and assign relevant assemblies. (CreateAssetMenu->UITK_SimpleTimeline->Assembly Database.)"
                          + " You should only need one.");
                     return null;

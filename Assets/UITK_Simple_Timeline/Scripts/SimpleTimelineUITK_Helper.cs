@@ -28,6 +28,13 @@ namespace UITK_SimpleTimeline
 
         public static SerializedObject WindowObject;
         public static SerializedProperty SimpleTimelineProperty, CurvesProperty;
+
+        public static void ApplyChangesToObject()
+        {
+            WindowObject.ApplyModifiedProperties();
+            EditorUtility.SetDirty(WindowObject.targetObject);
+            WindowObject.Update();
+        }
     }
 }
 #endif

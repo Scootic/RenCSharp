@@ -27,11 +27,11 @@ namespace UITK_SimpleTimeline
         protected readonly Dictionary<float,TimelineKnob<T>> KeyframeIcons;
         
         protected readonly VisualElement CurveDataContainer, KeyframeContainer;
-        protected VisualElement o;
+        protected VisualElement o, w;
         /// <summary>
         /// Should hold the data for the TimelineCurve's U value.
         /// </summary>
-        protected readonly PropertyField ToBeAffectedField;
+        protected readonly PropertyField ToBeAffectedField, WrapModeField;
         protected GenericMenu AddNewKeyframeMenu, DeleteCurveMenu;
 
         protected SerializedProperty curveProperty, keyframesProperty;
@@ -117,7 +117,7 @@ namespace UITK_SimpleTimeline
             KeyframeContainer.style.flexShrink = -1;
             Add(KeyframeContainer);
 
-            SpawnKeyframeKnobs(value);
+            SpawnKeyframeKnobs();
             RegisterGenericMenus();
         }
         public TimelineCurveField(string labelText, TypedTimelineCurve<T, U> curve, int index) : base(labelText, new VisualElement())
@@ -174,15 +174,19 @@ namespace UITK_SimpleTimeline
             curveProperty = Helper.CurvesProperty.GetArrayElementAtIndex(index);
             keyframesProperty = curveProperty.FindPropertyRelative("keyframes");
             ToBeAffectedField.style.width = 150;
-            ToBeAffectedField.style.height = 150;
+            ToBeAffectedField.style.height = 75;
             ToBeAffectedField.style.flexWrap = Wrap.Wrap;
             ToBeAffectedField.style.flexGrow = 1;
-            //RegisterCallback<GeometryChangedEvent>(evt =>
-            //{
-            //    ResizeLabel();
-            //});
             CurveDataContainer.Add(ToBeAffectedField);
-            ToBeAffectedField.BindProperty(curveProperty.FindPropertyRelative("ToAffect")); //?    
+            ToBeAffectedField.BindProperty(curveProperty.FindPropertyRelative("ToAffect")); //?
+
+            WrapModeField = new() { name = "WrapModeField" };
+            WrapModeField.RemoveFromClassList(alignedFieldUssClassName);
+            WrapModeField.style.width = 150;
+            WrapModeField.style.height = 75;
+            WrapModeField.style.flexGrow = 1;
+            CurveDataContainer.Add(WrapModeField);
+            WrapModeField.BindProperty(curveProperty.FindPropertyRelative("WrapMode"));
 
             KeyframeContainer = new() { name = "KeyframeContainer" };
             KeyframeContainer.style.left = 151;
@@ -200,29 +204,30 @@ namespace UITK_SimpleTimeline
             KeyframeContainer.style.flexShrink = -1;
             Add(KeyframeContainer);
 
-            SpawnKeyframeKnobs(value);
+            SpawnKeyframeKnobs(); //this works when the keyframes are already present, not when adding them?!?
             RegisterGenericMenus();
             MarkDirtyRepaint();
 
-            schedule.Execute(ResizeLabel).Until(() => o != null);
+            schedule.Execute(ResizeLabel).Until(() => o != null && w != null);
         }
 
         protected void RegenerateIcons()
         {
-            //go through elements of the list, place them around, and make sure they've got values 'n' shite
+            //remove all pre-existing timelineknobs before adding them again
             foreach (KeyValuePair<float, TimelineKnob<T>> kvp in KeyframeIcons)
             {
                 KeyframeContainer.Remove(kvp.Value);
             }
             KeyframeIcons.Clear();
-            SpawnKeyframeKnobs(curveProperty.managedReferenceValue as TypedTimelineCurve<T,U>);
+            //add knobs lmao
+            SpawnKeyframeKnobs();
         }
 
-        protected void SpawnKeyframeKnobs(TypedTimelineCurve<T, U> curve)
+        protected void SpawnKeyframeKnobs()
         {
-            if (curve == null || curve.Length <= 0) return;
-            Debug.Log("Curve keyframe length: " + curve.Length);
-            for(int i = 0; i < curve.Length; i++)
+            if (keyframesProperty == null) return;
+
+            for(int i = 0; i < keyframesProperty.arraySize; i++)
             {
                 Debug.Log("Curve keyframe index: " + i);
                 TimelineKnob<T> tKnob = new("", keyframesProperty.GetArrayElementAtIndex(i));
@@ -230,16 +235,20 @@ namespace UITK_SimpleTimeline
                 tKnob.transform.position = new Vector3(Helper.PixelWidthPerSeconds * time, 0, 0);
                 tKnob.DeleteKnobAction += delegate
                 {
+                    KeyframeIcons[time].RemoveFromHierarchy();
                     KeyframeIcons.Remove(time);
-                    curve.RemoveKeyframeFromCurve(time);
+                    TypedTimelineCurve<T, U> t = curveProperty.boxedValue as TypedTimelineCurve<T, U>;
+                    t.RemoveKeyframeFromCurve(time);
+                    curveProperty.boxedValue = t;
                 };
-                tKnob.RegisterCallback<PointerDownEvent>(evt =>
+                tKnob.RegisterCallback<PointerDownEvent>(evt => //by some divine mercy, works.
                 {
                     if (evt.button == 1) tKnob.DeleteMe.ShowAsContext();
                     else if (evt.button == 0) 
                     { 
                         Helper.ReceiveKeyframe?.Invoke(tKnob.KnobProperty); 
                     }
+                    evt.StopPropagation();
                 });
                 KeyframeIcons.Add(time, tKnob);
                 KeyframeContainer.Add(tKnob);
@@ -257,16 +266,11 @@ namespace UITK_SimpleTimeline
                     AddNewKeyframeMenu = new();
                     AddNewKeyframeMenu.AddItem(new GUIContent($"Add Keyframe ({value.SpawnKeyframeName()}) at {tToAddAt}"), false, delegate
                     {
-                        value = curveProperty.managedReferenceValue as TypedTimelineCurve<T, U>;
-                        value.AddKeyframeToCurve(tToAddAt);
-                        curveProperty.managedReferenceValue = value;
-                        Helper.WindowObject.ApplyModifiedProperties();
-                        keyframesProperty = curveProperty.FindPropertyRelative("keyframes");
-                        RegenerateIcons();
+                        AddKeyframeAtTime(tToAddAt);
                     });
                     AddNewKeyframeMenu.ShowAsContext();
+                    evt.StopPropagation();
                 }
-                evt.StopPropagation();
             });
 
             CurveDataContainer.RegisterCallback<PointerDownEvent>(evt =>
@@ -276,12 +280,22 @@ namespace UITK_SimpleTimeline
                     DeleteCurveMenu = new();
                     DeleteCurveMenu.AddItem(new GUIContent($"Delete Curve {myPropertyIndex}: {value.DeleteCurveName()}?!?"), false, delegate
                     {
-                        Helper.RemoveTimelineCurve?.Invoke(curveProperty.managedReferenceValue as TimelineCurve);
+                        Helper.RemoveTimelineCurve?.Invoke(curveProperty.boxedValue as TimelineCurve);
                     });
                     DeleteCurveMenu.ShowAsContext();
                     evt.StopPropagation();
                 }
             });
+        }
+
+        public void AddKeyframeAtTime(float t)
+        {
+            (curveProperty.boxedValue as TypedTimelineCurve<T, U>).AddKeyframeToCurve(t);
+            Helper.ApplyChangesToObject();
+            MarkDirtyRepaint();
+            //keyframesProperty = curveProperty.FindPropertyRelative("keyframes"); //make sure he's fresh
+            Debug.Log("Keyframe Property length? " + keyframesProperty.arraySize + "Boxedvalue length?!?" + (curveProperty.boxedValue as TypedTimelineCurve<T, U>).Length);
+            RegenerateIcons();
         }
 
         protected void ResizeLabel()
@@ -302,6 +316,20 @@ namespace UITK_SimpleTimeline
                 v.style.minHeight = 17;
                 v.style.minWidth = 90;
                 v.style.maxWidth = 145;
+
+                w = WrapModeField.Children().ToArray()[0];
+                w.style.flexDirection = FlexDirection.Column;
+                w.style.flexWrap = Wrap.Wrap;
+                Label l2 = w.Q<Label>();
+                l2.style.maxWidth = 145;
+                l2.style.minWidth = 50;
+                l2.style.flexGrow = -1;
+                l2.style.flexShrink = -1;
+                VisualElement v2 = w.Children().ToArray()[1];
+                v2.style.flexGrow = 1;
+                v2.style.minHeight = 17;
+                v2.style.minWidth = 90;
+                v2.style.maxWidth = 145;
             }
             catch
             {

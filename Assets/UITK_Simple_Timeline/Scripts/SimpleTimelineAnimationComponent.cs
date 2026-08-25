@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Threading;
-
 namespace UITK_SimpleTimeline
 {
     public class SimpleTimelineAnimationComponent : MonoBehaviour
@@ -9,7 +8,7 @@ namespace UITK_SimpleTimeline
         [SerializeField] private SimpleTimelineAsset[] timelineAssets;
         [Header("Settings")]
         [SerializeField, Tooltip("Decides if the component should play the timeline at index 0 on start.")] private bool playInitialOnStart = false;
-        [SerializeField, Tooltip("Decides if the currently playing timeline should be fully evaluated before swapping to a new one. [TimelineResult()]")] private bool finishAnimationOnSwap = true;
+        [SerializeField, Tooltip("Decides if the currently playing timeline should be fully evaluated before swapping to a new one. [Fires TimelineResult()]")] private bool finishAnimationOnSwap = true;
         private SimpleTimeline[] timelines;
         private Awaitable curTimeline = null;
         private int curIndex;
@@ -31,11 +30,11 @@ namespace UITK_SimpleTimeline
         {
             if (playInitialOnStart && timelines.Length > 0)
             {
-                curTimeline = timelines[0].RunThroughTimeline(new CancellationToken());
+                PlayTimeline(0);
             }
         }
 
-        public void PlayTimeline(int index)
+        public async void PlayTimeline(int index)
         {
             if (index < timelines.Length && index > 0)
             {
@@ -48,6 +47,7 @@ namespace UITK_SimpleTimeline
                 curIndex = index;
 
                 curTimeline = timelines[curIndex].RunThroughTimeline(new CancellationToken());
+                await curTimeline;
             }
             else
             {

@@ -626,7 +626,7 @@ namespace UITK_SimpleTimeline.Editor
                 {
                     Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue = thisTimeline.Curves[i];
                 }
-                Helper.WindowObject.ApplyModifiedProperties();
+                Helper.ApplyChangesToObject();
                 GenerateTimelineCurveFields();
             }
             catch
