@@ -19,7 +19,7 @@ namespace UITK_SimpleTimeline
         }
 
         public bool Loop;
-        public float Duration;
+        [Min(0)]public float Duration;
 
         private GameObject sceneObject;
         /// <summary>

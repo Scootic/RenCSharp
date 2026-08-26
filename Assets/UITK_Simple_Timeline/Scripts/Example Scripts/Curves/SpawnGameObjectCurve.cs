@@ -34,16 +34,20 @@ namespace UITK_SimpleTimeline
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "Spawn GO Curve is not yet valid!";
-            TimelineKeyframe<GOSpawnToken> goose = ClosestTwoKeyframes(time)[0];
-            if (!Mathf.Approximately(goose.Time, time))
+            try
             {
-                return $"Not Spawning GameObject: {ToAffect.name}";
+                TimelineKeyframe<GOSpawnToken> goose = ClosestTwoKeyframes(time)[0];
+                if (!Mathf.Approximately(goose.Time, time))
+                {
+                    return $"Not Spawning GameObject: {ToAffect.name}";
+                }
+                else
+                {
+                    return $"Spawning GameObject: {ToAffect.name} at, \nPos:{goose.Value.SpawnPos}" +
+                        $"\nRot:{goose.Value.SpawnRot}\nScale:{goose.Value.SpawnScale}";
+                }
             }
-            else
-            {
-                return $"Spawning GameObject: {ToAffect.name} at, \nPos:{goose.Value.SpawnPos}" +
-                    $"\nRot:{goose.Value.SpawnRot}\nScale:{goose.Value.SpawnScale}";
-            }
+            catch { return "Spawn GameObject Curve is boinked; probably doesn't have an assigned ToAffect Prefab."; }
         }
 
         public override string ToString()

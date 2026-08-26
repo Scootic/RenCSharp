@@ -55,6 +55,17 @@ namespace UITK_SimpleTimeline
                 if (keyframes[i].Time == time) keyframes.RemoveAt(i);
             }
         }
+
+        public override void CleanOutKeyframesAfterTime(float time)
+        {
+            keyframes.Sort();
+            for (int i = Length - 1; i >= 0; i--)
+            {
+                if (keyframes[i].Time <= time) break;
+                keyframes.RemoveAt(i);
+            }
+        }
+
         public void RemoveKeyframeFromCurve(int index)
         {
             keyframes.RemoveAt(index);
@@ -62,6 +73,10 @@ namespace UITK_SimpleTimeline
         public void RemoveKeyframeFromCurve(TimelineKeyframe<T> toRemove)
         {
             if (keyframes.Contains(toRemove)) keyframes.Remove(toRemove);
+        }
+        public override void SortKeyframes()
+        {
+            keyframes.Sort();
         }
 
         protected float[] KeyframeTimes
@@ -139,9 +154,10 @@ namespace UITK_SimpleTimeline
         }
 
         /// <summary>
-        /// Is the keyframe count greater than 2? You can't lerp between less-than-equal-to 1 value(s)!
+        /// Is the keyframe count greater than 2? You can't lerp between less-than-equal-to 1 value(s)! Also is there
+        /// actually something ToAffect?
         /// </summary>
-        protected bool ValidCurve => keyframes.Count >= 2;
+        protected bool ValidCurve => keyframes.Count >= 2 && ToAffect != null;
         #endregion
 
         #region StupidMath
@@ -181,7 +197,7 @@ namespace UITK_SimpleTimeline
     }
     
     [Serializable]
-    public abstract class TimelineCurve
+    public abstract class TimelineCurve : ILerpable
     {
         protected GameObject root;
 
@@ -213,6 +229,10 @@ namespace UITK_SimpleTimeline
         /// </summary>
         /// <returns></returns>
         public abstract string ToAffectName();
+
+        public abstract void SortKeyframes();
+
+        public abstract void CleanOutKeyframesAfterTime(float t);
 
         public abstract VisualElement UITKRepresentation(int index);
         /// <summary>

@@ -60,6 +60,15 @@ namespace UITK_SimpleTimeline.Editor
                 $"\n Duration: {Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue}" +
                 $"\n Loop: {Helper.SimpleTimelineProperty.FindPropertyRelative("Loop").boolValue} " +
                 $"\n Curve Count: {Helper.CurvesProperty.arraySize}");
+            //make sure to sort the keyframe lists to be in order. not *entirely* sure if it matters.
+            for(int i = 0; i< Helper.CurvesProperty.arraySize; i++)
+            {
+                SerializedProperty curveProperty = Helper.CurvesProperty.GetArrayElementAtIndex(i);
+                TimelineCurve tc = curveProperty.managedReferenceValue as TimelineCurve;
+                tc.SortKeyframes();
+                curveProperty.managedReferenceValue = tc;
+            }
+
             Helper.ApplyChangesToObject();
             //null serialized hogwash
             Helper.SimpleTimelineProperty = null;

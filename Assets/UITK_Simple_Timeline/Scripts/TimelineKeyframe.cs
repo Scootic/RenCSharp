@@ -13,14 +13,14 @@ namespace UITK_SimpleTimeline
         /// <summary>
         /// In seconds.
         /// </summary>
-        public float Time;
+        [Min(0)]public float Time;
         public float InSlope;
         public float OutSlope;
-
-        public TangentMode TangentMode;
 #if UNITY_EDITOR
-        public WeightedMode WeightedMode;
+        public TangentMode TangentMode;
 #endif
+        public WeightedMode WeightedMode;
+
         public float InWeight;
         public float OutWeight;
         public float InTangent;

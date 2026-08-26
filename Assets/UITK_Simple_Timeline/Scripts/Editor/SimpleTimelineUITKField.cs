@@ -1,7 +1,6 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -9,22 +8,19 @@ using UnityEngine.UIElements;
 using Helper = UITK_SimpleTimeline.SimpleTimelineUITK_Helper;
 namespace UITK_SimpleTimeline.Editor
 {
-    /// <summary>
-    /// Base SimpleTimelineField class. Only accessible as a UxmlElement for debugging inside of the UI builder; contains
-    /// no TimelineCurve types that can be added to the SimpleTimeline value.
-    /// </summary>
     [UxmlElement]
     public partial class SimpleTimelineUITKField : BaseField<SimpleTimeline>
     {
         protected readonly VisualElement SimpleTimelineInfoHolder, TimelineHolder, 
-            TimelineControlsHolder, KeyframeControlsHolder, CurrentTimePreview, ScrollViewContent;
+            TimelineControlsHolder, KeyframeControlsHolder, ScrollViewContent;
+        protected readonly GuidelineVisualElement CurrentTimePreview, EndTimePreview, GrayOverlay;
         protected readonly TimelineRuler TimelineRuler;
-        protected readonly IntegerField CurrentFrameField;
 
+        protected readonly IntegerField CurrentFrameField;
         protected readonly FloatField DurationField, CurrentSecondsField;
         protected readonly Toggle LoopField;
-
         protected readonly Button BackFrame, PlayPause, ForwardFrame;
+
         protected static Texture2D bckIco = null, fwdIco = null, playIco = null, pausIco = null;
 
         [SerializeField] protected SimpleTimeline thisTimeline = new();
@@ -48,6 +44,8 @@ namespace UITK_SimpleTimeline.Editor
         /// Is the timeline currently playing in the editor? (Is the red line moving???)
         /// </summary>
         protected bool playing = false;
+
+        protected VisualElement CurTimelineKnob;
 
         protected float curT = 0, currentZoom = 1f, originalScrollMax;
         protected readonly float minZoom = 0.5f, maxZoom = 3f, zoomStep = 0.1f;
@@ -262,7 +260,7 @@ namespace UITK_SimpleTimeline.Editor
             ScrollViewContent.style.backgroundRepeat = new BackgroundRepeat(Repeat.Repeat, Repeat.Repeat);
             ScrollViewContent.style.backgroundSize = new StyleBackgroundSize(new BackgroundSize(32, 32));
             ScrollViewContent.style.flexGrow = 1;
-            ScrollViewContent.style.right = -150f;
+            ScrollViewContent.style.right = -160f;
             ScrollViewContent.RegisterCallback<WheelEvent>(evt =>
             {
                 if (!evt.ctrlKey) return;
@@ -299,18 +297,13 @@ namespace UITK_SimpleTimeline.Editor
             });
             TimelineScrollView.Add(TimelineRuler);
 
-            CurrentTimePreview = new() { name = "TimePreview" };
-            CurrentTimePreview.style.backgroundColor = Color.red;
-            CurrentTimePreview.style.width = 1f;
-            CurrentTimePreview.style.maxWidth = 1f;
-            CurrentTimePreview.style.minHeight = 500;
-            CurrentTimePreview.style.maxHeight = 9999;
-            CurrentTimePreview.style.top = 0;
-            CurrentTimePreview.style.bottom = 0;
-            CurrentTimePreview.style.position = Position.Absolute;
-            CurrentTimePreview.style.left = 0f;//this is the boy that gets adjusted when draggening?
-            CurrentTimePreview.focusable = false;
-            CurrentTimePreview.pickingMode = PickingMode.Ignore;
+            GrayOverlay = new(50f, Helper.QuarterTransparentBlack) { name = "GrayOverlay" };
+            TimelineScrollView.Add(GrayOverlay);
+
+            EndTimePreview = new(Color.cyan) { name = "EndTimePreview" };
+            GrayOverlay.Add(EndTimePreview);
+
+            CurrentTimePreview = new(Color.red) { name = "TimePreview" };
             TimelineScrollView.Add(CurrentTimePreview);
 
             #endregion
@@ -531,7 +524,7 @@ namespace UITK_SimpleTimeline.Editor
             ScrollViewContent.style.backgroundRepeat = new BackgroundRepeat(Repeat.Repeat, Repeat.Repeat);
             ScrollViewContent.style.backgroundSize = new StyleBackgroundSize(new BackgroundSize(32, 32));
             ScrollViewContent.style.flexGrow = 1;
-            ScrollViewContent.style.right = -150f;
+            ScrollViewContent.style.right = -160f;
             ScrollViewContent.RegisterCallback<WheelEvent>(evt =>
             {
                 if (!evt.ctrlKey) return;
@@ -559,25 +552,20 @@ namespace UITK_SimpleTimeline.Editor
             {
                 if (((evt.pressedButtons & 1) == 1) && !playing) //do the red ruler drag that sets cur time!
                 {
-                    //x seconds = localPos.x / PixelWidthPerSeconds. multiply by 60 for frame? floor???
-                    CurrentFrameField.value = Mathf.FloorToInt(evt.localPosition.x /
-                        (float)Helper.PixelWidthPerSeconds * 60f);
+                    int frameValue = Mathf.FloorToInt(evt.localPosition.x / Helper.PixelWidthPerSeconds * 60f);
+                    frameValue = Mathf.Clamp(frameValue, 0, Mathf.FloorToInt(Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue * 60f));
+                    CurrentFrameField.value = frameValue;
                 }
             });
             TimelineScrollView.Add(TimelineRuler);
 
-            CurrentTimePreview = new() { name = "TimePreview" };
-            CurrentTimePreview.style.backgroundColor = Color.red;
-            CurrentTimePreview.style.width = 1f;
-            CurrentTimePreview.style.maxWidth = 1f;
-            CurrentTimePreview.style.minHeight = 500;
-            CurrentTimePreview.style.maxHeight = 9999;
-            CurrentTimePreview.style.top = 0;
-            CurrentTimePreview.style.bottom = 0;
-            CurrentTimePreview.style.position = Position.Absolute;
-            CurrentTimePreview.style.left = 0f;//this is the boy that gets adjusted when draggening?
-            CurrentTimePreview.focusable = false;
-            CurrentTimePreview.pickingMode = PickingMode.Ignore;
+            GrayOverlay = new(50f, Helper.QuarterTransparentBlack) { name = "GrayOverlay" };
+            TimelineScrollView.Add(GrayOverlay);
+
+            EndTimePreview = new(Color.cyan) { name = "EndTimePreview" };
+            GrayOverlay.Add(EndTimePreview);
+
+            CurrentTimePreview = new(Color.red) { name = "TimePreview" };
             TimelineScrollView.Add(CurrentTimePreview);
 
             #endregion
@@ -592,8 +580,17 @@ namespace UITK_SimpleTimeline.Editor
             //reset cur frame field
             CurrentFrameField.value = 0;
             CurrentSecondsField.value = 0;
-
-            ScrollViewContent.style.width = newDurInSeconds * (float)Helper.PixelWidthPerSeconds;
+            float newVal = newDurInSeconds * Helper.PixelWidthPerSeconds;
+            GrayOverlay.style.left = newVal;
+            ScrollViewContent.style.width = newVal + 50;
+            Helper.MaxPixelWidth = newVal;
+            for(int i = 0; i < Helper.CurvesProperty.arraySize; i++)
+            {
+                TimelineCurve c = Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue as TimelineCurve;
+                c.CleanOutKeyframesAfterTime(newDurInSeconds);
+                Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue = c;
+            }
+            Helper.ApplyChangesToObject();
         }
 
         public void AddNewTimelineCurve(TimelineCurve newCurve) 
@@ -665,14 +662,31 @@ namespace UITK_SimpleTimeline.Editor
                     Debug.LogWarning("Null lerpable?!? That, or the TimelineCurveField failed to construct, somehow.");
                 }
             }
+            GrayOverlay.BringToFront();
             CurrentTimePreview.BringToFront();
             MarkDirtyRepaint();
         }
-
-        protected void DisplayKeyframeInformation(SerializedProperty keyframeToDisplay)
+        //sets the current TimelineKeyframe<T> to edit and current timeline knob to affect based on those values.
+        protected void DisplayKeyframeInformation(SerializedProperty keyframeToDisplay, VisualElement ve)
         {
+            CurrentKeyframeField.UnregisterCallback<SerializedPropertyChangeEvent>(AdjustCurrentKeyframeBasedOnTime);
             CurrentKeyframeField.Unbind();
+            CurTimelineKnob = ve;
             CurrentKeyframeField.BindProperty(keyframeToDisplay);
+            CurrentKeyframeField.RegisterCallback<SerializedPropertyChangeEvent>(AdjustCurrentKeyframeBasedOnTime);
+        }
+        //basically the same method as dragging, except it happens when you change the Time value directly in the property
+        protected void AdjustCurrentKeyframeBasedOnTime(SerializedPropertyChangeEvent evt)
+        {
+            if (evt.changedProperty.displayName != "Time") return;
+            evt.changedProperty.floatValue = Mathf.Clamp(evt.changedProperty.floatValue, 0, Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue);
+            float t = evt.changedProperty.floatValue;
+            float timelineKnobHalfSize = CurTimelineKnob.style.width.value.value * 0.5f;
+            float x = t * Helper.PixelWidthPerSeconds - timelineKnobHalfSize;
+            x = Mathf.Clamp(x, -timelineKnobHalfSize, Helper.MaxPixelWidth);
+            Vector3 newPos = new(x, CurTimelineKnob.transform.position.y, CurTimelineKnob.transform.position.z);
+            CurTimelineKnob.transform.position = newPos;
+            Helper.ApplyChangesToObject();
         }
 
         protected void CreateAddNewCurveMenu()
@@ -689,7 +703,7 @@ namespace UITK_SimpleTimeline.Editor
                 //this mans should always be a stinkin' TimelineCurve. (God I hope...)
                 //Debug.Log($"Adding type {t.Name} to curve menu!");
                 object c = Activator.CreateInstance(t);
-                AddNewCurveMenu.AddItem(new GUIContent($"Add New {c.ToString()}"), false, delegate
+                AddNewCurveMenu.AddItem(new GUIContent($"Add New {c}"), false, delegate
                 {
                     TimelineCurve curve = c as TimelineCurve;
                     AddNewTimelineCurve(curve);

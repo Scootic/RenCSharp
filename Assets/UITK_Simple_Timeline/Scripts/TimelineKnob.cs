@@ -1,6 +1,5 @@
 #if UNITY_EDITOR
 using System;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,6 +11,8 @@ namespace UITK_SimpleTimeline
     {
         protected static TimelineKnob<T> clipboard = null;
         protected static Texture2D knobImage = null;
+        protected readonly float halfwayOffset;
+        protected PointerMoveEvent dragKnob;
         public Action DeleteKnobAction;
         public SerializedProperty KnobProperty;
         public GenericMenu DeleteMe
@@ -48,8 +49,8 @@ namespace UITK_SimpleTimeline
             if (knobImage == null) Debug.LogError("TimelineKnob.cs can't find timelinediamond.png. Did you move the UITK_Simple_Timeline from your root Asset folder?");
             style.backgroundImage = knobImage;
             style.position = Position.Absolute;
-            style.height = 25f;
-            style.width = 25f;
+            style.height = 35f;
+            style.width = 35f;
         }
         public TimelineKnob(string labelText, SerializedProperty knobProperty) : base(labelText, new VisualElement())
         {
@@ -61,46 +62,41 @@ namespace UITK_SimpleTimeline
             style.height = 35f;
             style.width = 35f;
             style.top = 15;
+            halfwayOffset = (style.width.value.value * 0.5f) - 2;
             KnobProperty = knobProperty;
-            RegisterCallback<PointerDownEvent>(async evt =>
-            {
-                await DragKnob(evt);
-            });
+            RegisterCallback<PointerMoveEvent>(DragKnob);
             Helper.ReceiveKeyframe += SelectKnobColoring;
         }
 
-        protected void SelectKnobColoring(SerializedProperty sp)
+        protected void SelectKnobColoring(SerializedProperty sp, VisualElement ve)
         {
             if(sp == KnobProperty)
             {
                 style.unityBackgroundImageTintColor = Helper.SelectedKeyframe;
+                BringToFront();
             }
             else
             {
                 style.unityBackgroundImageTintColor = Color.white;
             }
         }
-        protected async Task DragKnob(PointerDownEvent pme)
+        protected void DragKnob(PointerMoveEvent pme)
         {
-            float timeAtEventStart = (float)EditorApplication.timeSinceStartup;
-            Debug.Log($"Drag Event - DeltaTime {pme.deltaTime}");
-            while ((pme.pressedButtons & 1) == 1)
+            if ((pme.pressedButtons & 1) == 1 && style.unityBackgroundImageTintColor == Helper.SelectedKeyframe)
             {
-                Debug.Log("Inside the loop!");
-                if (EditorApplication.timeSinceStartup > 0.2f + timeAtEventStart)
-                {
-                    Vector3 curPos = transform.position;
-                    //assuming that origin is the center of the element?
-                    curPos = new Vector3(curPos.x + pme.deltaPosition.x, curPos.y, curPos.z);
-                    transform.position = curPos;
-                    float newTime = curPos.x / Helper.PixelWidthPerSeconds * 60f;
-                    newTime = Mathf.Clamp(newTime, 0, Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue);
-                    KnobProperty.FindPropertyRelative("Time").floatValue = newTime;
-                    Helper.ApplyChangesToObject();
-                }
-                await Task.Yield();
+                Vector3 curPos = transform.position;
+                //assuming that origin is the center of the element?
+                float newX = Mathf.Clamp(curPos.x + pme.deltaPosition.x, -halfwayOffset, Helper.MaxPixelWidth - halfwayOffset - 3);
+                newX = (float)Math.Round(newX, 1);
+                curPos = new Vector3(newX, curPos.y, curPos.z);
+                transform.position = curPos;
+                float newTime = (curPos.x + halfwayOffset + 2) / Helper.PixelWidthPerSeconds;
+                //super duper make sure time is clamped. good god...
+                newTime = Mathf.Clamp(newTime, 0, Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue);
+                KnobProperty.FindPropertyRelative("Time").floatValue = newTime;
+                Helper.ApplyChangesToObject();
+                value = KnobProperty.boxedValue as TimelineKeyframe<T>;
             }
-            return;
         }
     }
 }

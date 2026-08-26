@@ -9,6 +9,11 @@ using UnityEngine.UIElements;
 using Helper = UITK_SimpleTimeline.SimpleTimelineUITK_Helper;
 namespace UITK_SimpleTimeline
 {
+    /// <summary>
+    /// Only exists as a way to play with a functionless TimelineCurveField in the UIBuilder window for 
+    /// Debugging purposes. Please ignore unless you are having trouble with the sizing of any custom elements.
+    /// (My condolenses if you dare do battle with UITK for some archaic hogwash.)
+    /// </summary>
     [UxmlElement]
     public partial class TestTimelineCurveField : TimelineCurveField<Vector3, string>
     {
@@ -150,13 +155,13 @@ namespace UITK_SimpleTimeline
             style.position = Position.Absolute;
 
             CurveDataContainer = new() { name = "CurveDataContainer" };
-            CurveDataContainer.style.width = 150;
-            CurveDataContainer.style.minWidth = 150;
-            CurveDataContainer.style.maxWidth = 150;
-            CurveDataContainer.style.left = 0;
-            CurveDataContainer.style.right = 5;
+            CurveDataContainer.style.width = 160;
+            CurveDataContainer.style.minWidth = 160;
+            CurveDataContainer.style.maxWidth = 160;
+            CurveDataContainer.style.left = -25;
+            CurveDataContainer.style.right = 25;
             CurveDataContainer.style.height = 150;
-            CurveDataContainer.style.flexGrow = 0;
+            CurveDataContainer.style.flexGrow = 1;
             CurveDataContainer.style.flexShrink = 1;
             CurveDataContainer.style.backgroundColor = Helper.SecondLayerBG;
             CurveDataContainer.style.borderBottomColor = Helper.SecondLayerBorder;
@@ -173,8 +178,10 @@ namespace UITK_SimpleTimeline
             ToBeAffectedField.RemoveFromClassList(alignedFieldUssClassName);
             curveProperty = Helper.CurvesProperty.GetArrayElementAtIndex(index);
             keyframesProperty = curveProperty.FindPropertyRelative("keyframes");
-            ToBeAffectedField.style.width = 150;
+            ToBeAffectedField.style.width = 125;
             ToBeAffectedField.style.height = 75;
+            ToBeAffectedField.style.left = 25;
+            ToBeAffectedField.style.right = -25;
             ToBeAffectedField.style.flexWrap = Wrap.Wrap;
             ToBeAffectedField.style.flexGrow = 1;
             CurveDataContainer.Add(ToBeAffectedField);
@@ -182,7 +189,9 @@ namespace UITK_SimpleTimeline
 
             WrapModeField = new() { name = "WrapModeField" };
             WrapModeField.RemoveFromClassList(alignedFieldUssClassName);
-            WrapModeField.style.width = 150;
+            WrapModeField.style.width = 125;
+            WrapModeField.style.left = 25;
+            WrapModeField.style.right = -25;
             WrapModeField.style.height = 75;
             WrapModeField.style.flexGrow = 1;
             CurveDataContainer.Add(WrapModeField);
@@ -232,7 +241,7 @@ namespace UITK_SimpleTimeline
                 Debug.Log("Curve keyframe index: " + i);
                 TimelineKnob<T> tKnob = new("", keyframesProperty.GetArrayElementAtIndex(i));
                 float time = tKnob.value.Time;
-                tKnob.transform.position = new Vector3(Helper.PixelWidthPerSeconds * time, 0, 0);
+                tKnob.transform.position = new Vector3(Helper.PixelWidthPerSeconds * time - tKnob.style.width.value.value * 0.5f - 2, 0, 0);
                 tKnob.DeleteKnobAction += delegate
                 {
                     KeyframeIcons[time].RemoveFromHierarchy();
@@ -246,7 +255,7 @@ namespace UITK_SimpleTimeline
                     if (evt.button == 1) tKnob.DeleteMe.ShowAsContext();
                     else if (evt.button == 0) 
                     { 
-                        Helper.ReceiveKeyframe?.Invoke(tKnob.KnobProperty); 
+                        Helper.ReceiveKeyframe?.Invoke(tKnob.KnobProperty, tKnob); 
                     }
                     evt.StopPropagation();
                 });
@@ -283,6 +292,7 @@ namespace UITK_SimpleTimeline
                         Helper.RemoveTimelineCurve?.Invoke(curveProperty.boxedValue as TimelineCurve);
                     });
                     DeleteCurveMenu.ShowAsContext();
+                   
                     evt.StopPropagation();
                 }
             });
@@ -307,7 +317,7 @@ namespace UITK_SimpleTimeline
                 o.style.flexWrap = Wrap.Wrap;
                 Label l = o.Q<Label>();
                 l.text = value.ToAffectName();
-                l.style.maxWidth = 145;
+                l.style.maxWidth = 120;
                 l.style.minWidth = 50;
                 l.style.flexGrow = -1;
                 l.style.flexShrink = 1;
@@ -315,13 +325,13 @@ namespace UITK_SimpleTimeline
                 v.style.flexGrow = 1;
                 v.style.minHeight = 17;
                 v.style.minWidth = 90;
-                v.style.maxWidth = 145;
+                v.style.maxWidth = 120;
 
                 w = WrapModeField.Children().ToArray()[0];
                 w.style.flexDirection = FlexDirection.Column;
                 w.style.flexWrap = Wrap.Wrap;
                 Label l2 = w.Q<Label>();
-                l2.style.maxWidth = 145;
+                l2.style.maxWidth = 120;
                 l2.style.minWidth = 50;
                 l2.style.flexGrow = -1;
                 l2.style.flexShrink = -1;
@@ -329,7 +339,7 @@ namespace UITK_SimpleTimeline
                 v2.style.flexGrow = 1;
                 v2.style.minHeight = 17;
                 v2.style.minWidth = 90;
-                v2.style.maxWidth = 145;
+                v2.style.maxWidth = 120;
             }
             catch
             {
