@@ -26,7 +26,7 @@ namespace UITK_SimpleTimeline.Editor
                 property.FindPropertyRelative("Time").floatValue = evt.newValue;
             });
 
-            PropertyField valueField = new();
+            ScalingPropertyField valueField = new(230);
             valueField.BindProperty(property.FindPropertyRelative("Value"));
             ve.Add(valueField);
 

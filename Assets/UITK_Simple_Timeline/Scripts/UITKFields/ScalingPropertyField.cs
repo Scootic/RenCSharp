@@ -1,30 +1,186 @@
+#if UNITY_EDITOR
+using System.Linq;
+using System;
 using UnityEditor.UIElements;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Helper = UITK_SimpleTimeline.SimpleTimelineUITK_Helper;
 namespace UITK_SimpleTimeline
 {
     [UxmlElement]
     public partial class ScalingPropertyField : PropertyField
     {
-        protected ObjectField subField;
-        protected Label subLabel;
-        protected VisualElement dragDropBox;
+        protected VisualElement subField = null;
         protected readonly float width;
         public ScalingPropertyField()
         {
-            RegisterValueChangeCallback(ResizeElements);
+            RegisterValueChangeCallback(evt =>
+            {
+                subField = null;
+                schedule.Execute((Action)delegate { ResizeElementsOnSwap(evt); }).Until(() => subField != null);
+            });
+            subField = null;
+            schedule.Execute((Action)delegate { ResizeElements(); }).Until(() => subField != null);
         }
 
         public ScalingPropertyField(float w)
         {
             style.width = w;
             width = w;
-            RegisterValueChangeCallback(ResizeElements);
+            
+            RegisterValueChangeCallback(evt =>
+            {
+                subField = null;
+                schedule.Execute((Action)delegate { ResizeElementsOnSwap(evt); }).Until(() => subField != null);
+            });
+
+            subField = null;
+            schedule.Execute((Action)delegate { ResizeElements(); }).Until(() => subField != null);
         }
 
-        protected void ResizeElements(SerializedPropertyChangeEvent evt)
+        protected void ResizeElementsOnSwap(SerializedPropertyChangeEvent evt)
         {
+            Debug.Log("Resizing!");
+            subField = Children().ToArray()[0];
+            subField.style.flexDirection = FlexDirection.Column;
+            subField.style.flexWrap = Wrap.Wrap;
+            subField.style.top = 0;
+            subField.style.bottom = 0;
+            subField.style.left = 0;
+            subField.style.right = 0;
+            SerializedProperty newProp = evt.changedProperty;
+            //if the property is a struct
+            if (newProp.propertyType == SerializedPropertyType.Generic && !newProp.isArray)
+            {
+                Foldout f = subField.Q<Foldout>();
+                f.RemoveFromClassList("unity-foldout");
+                f.RemoveFromClassList("unity-foldout--depth-0");
 
+                Toggle t = f.Q<Toggle>();
+                t.value = true; //open that boy up by default
+                t.ClearClassList();
+
+                VisualElement structHolder = f.Children().ToArray()[1];
+                structHolder.RemoveFromClassList("unity-foldout__content");
+                structHolder.style.left = 0;
+                structHolder.style.right = 0;
+                structHolder.style.flexWrap = Wrap.Wrap;
+                structHolder.style.flexDirection = FlexDirection.Column;
+
+                foreach(VisualElement babyPF in structHolder.Children())
+                {
+                    babyPF.style.flexWrap = Wrap.Wrap;
+                    babyPF.style.flexDirection = FlexDirection.Column;
+                    babyPF.style.left = 0;
+                    babyPF.style.right = 15;
+
+                    VisualElement babyPFSub = babyPF.Children().First();
+                    babyPFSub.ClearClassList();
+                    babyPFSub.style.flexDirection = FlexDirection.Column;
+
+                    Label subbyLabel = babyPFSub.Q<Label>();
+                    subbyLabel.style.flexGrow = -1;
+                    subbyLabel.style.flexShrink = 1;
+
+                    VisualElement secondary = babyPF.Children().ToArray()[1];
+                    secondary.style.flexGrow = 1;
+                    secondary.style.flexShrink = -1;
+                }
+            }
+            //if it's just some class.
+            else
+            {
+                Label subLabel = subField.Q<Label>();
+                subLabel.style.maxWidth = width - 10;
+                subLabel.style.flexGrow = -1;
+                subLabel.style.flexShrink = 1;
+                subLabel.style.left = 10;
+                subLabel.style.right = 10;
+                subLabel.style.top = 0;
+                subLabel.style.bottom = 0;
+
+                VisualElement dragDropBox = subField.Children().ToArray()[1];
+                dragDropBox.style.flexGrow = 1;
+                dragDropBox.style.maxWidth = width - 10;
+                dragDropBox.style.left = 10;
+                dragDropBox.style.right = 10;
+                dragDropBox.style.top = 0;
+                dragDropBox.style.bottom = 0;
+            }
+        }
+        protected void ResizeElements()
+        {
+            Debug.Log("Resizing!");
+            subField = Children().ToArray()[0];
+            subField.style.flexDirection = FlexDirection.Column;
+            subField.style.flexWrap = Wrap.Wrap;
+            subField.style.top = 0;
+            subField.style.bottom = 0;
+            subField.style.left = 0;
+            subField.style.right = 0;
+
+            SerializedProperty stinker = Helper.GetBoundProperty(this);
+            //if the property is a struct
+            if (stinker.propertyType == SerializedPropertyType.Generic && !stinker.isArray)
+            {
+                Foldout f = subField.Q<Foldout>();
+                //f.RemoveFromClassList("unity-foldout");
+                //f.RemoveFromClassList("unity-foldout--depth-0");
+
+                Toggle t = f.Q<Toggle>();
+                t.value = true; //open that boy up by default
+                //t.ClearClassList();
+
+                VisualElement structHolder = f.Children().ToArray()[1];
+                //structHolder.RemoveFromClassList("unity-foldout__content");
+                structHolder.style.left = 0;
+                structHolder.style.right = 0;
+                structHolder.style.flexWrap = Wrap.Wrap;
+                structHolder.style.flexDirection = FlexDirection.Column;
+
+                foreach(VisualElement babyPF in structHolder.Children())
+                {
+                    //god i hope there's no sub-structs!
+                    babyPF.style.flexWrap = Wrap.Wrap;
+                    babyPF.style.flexDirection = FlexDirection.Column;
+                    babyPF.style.left = 0;
+                    babyPF.style.right = 15;
+
+                    VisualElement babyPFSub = babyPF.Children().First();
+                    babyPFSub.ClearClassList();
+                    babyPFSub.style.flexDirection = FlexDirection.Column;
+
+                    Label subbyLabel = babyPFSub.Q<Label>();
+                    subbyLabel.style.flexGrow = -1;
+                    subbyLabel.style.flexShrink = 1;
+
+                    VisualElement secondary = babyPF.Children().ToArray()[1];
+                    secondary.style.flexGrow = 1;
+                    secondary.style.flexShrink = -1;
+                }
+            }
+            //if it's just some class.
+            else
+            {
+                Label subLabel = subField.Q<Label>();
+                subLabel.style.maxWidth = width - 10;
+                subLabel.style.flexGrow = -1;
+                subLabel.style.flexShrink = 1;
+                subLabel.style.left = 10;
+                subLabel.style.right = 10;
+                subLabel.style.top = 0;
+                subLabel.style.bottom = 0;
+
+                VisualElement dragDropBox = subField.Children().ToArray()[1];
+                dragDropBox.style.flexGrow = 1;
+                dragDropBox.style.maxWidth = width - 10;
+                dragDropBox.style.left = 10;
+                dragDropBox.style.right = 10;
+                dragDropBox.style.top = 0;
+                dragDropBox.style.bottom = 0;
+            }
         }
     }
 }
+#endif

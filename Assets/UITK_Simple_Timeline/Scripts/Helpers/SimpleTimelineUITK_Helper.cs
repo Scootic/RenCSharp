@@ -1,6 +1,8 @@
 #if UNITY_EDITOR
 using System;
+using System.Reflection;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 namespace UITK_SimpleTimeline
@@ -48,6 +50,7 @@ namespace UITK_SimpleTimeline
 
         public static SerializedObject WindowObject;
         public static SerializedProperty SimpleTimelineProperty, CurvesProperty;
+
         /// <summary>
         /// Do every single function that's relevant to saving and updating all of the SerializedProperties so that your
         /// data is actually saved after you're done with the Editor Window.
@@ -57,6 +60,38 @@ namespace UITK_SimpleTimeline
             WindowObject.ApplyModifiedProperties();
             EditorUtility.SetDirty(WindowObject.targetObject);
             WindowObject.Update();
+        }
+
+        /// <summary>
+        /// Extract the SerializedProperty out of a PropertyField using Reflection, because Unity is so racist you can't just do that.
+        /// </summary>
+        /// <param name="field">The PropertyField you want to get the SerializedProperty out of.</param>
+        /// <returns>The bound SerializedProperty (m_SerializedProperty in the PropertyField class). Null if the process fails.</returns>
+        public static SerializedProperty GetBoundProperty(PropertyField field)
+        {
+            SerializedProperty toReturn;
+            FieldInfo spField;
+            BindingFlags bf = BindingFlags.NonPublic | BindingFlags.Instance;
+            try
+            {
+                spField = typeof(PropertyField).GetField("m_SerializedProperty", bf);
+            }
+            catch
+            {
+                Debug.LogWarning("FieldInfo couldn't grab the stinkin' m_SerializedProperty?!?!");
+                return null;
+            }
+            try
+            {
+                toReturn = spField.GetValue(field) as SerializedProperty;
+            }
+            catch
+            {
+                Debug.LogWarning("Given PropertyField can't handle getting its m_SerializedProperty read?!");
+                return null;
+            }
+
+            return toReturn;
         }
     }
 }
