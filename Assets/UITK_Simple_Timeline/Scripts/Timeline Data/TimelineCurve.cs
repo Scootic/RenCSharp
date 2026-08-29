@@ -28,7 +28,7 @@ namespace UITK_SimpleTimeline
         /// </summary>
         [SerializeField] protected List<TimelineKeyframe<T>> keyframes = new();
         public List<TimelineKeyframe<T>> Keyframes => keyframes;
-        public void AddKeyframeToCurve(float time)
+        public override void AddKeyframeToCurve(float time)
         {
             TimelineKeyframe<T> toAdd = new();
             toAdd.Time = time;
@@ -37,13 +37,14 @@ namespace UITK_SimpleTimeline
             {
                 if (time < keyframes[i].Time)
                 {
-                    //whenever inserting a keyframe, make it take the value of the previous one?
+                    //whenever inserting a keyframe, make it take the value of the one on its left?
                     if (i != 0) toAdd.Value = keyframes[i - 1].Value;
                     keyframes.Insert(i, toAdd); return;
                 }
             }
             //if we're adding a new keyframe to the "end" of a curve, make it have the same value as the previous last one.
             if(Length > 0) toAdd.Value = keyframes[Length - 1].Value;
+            //otherwise, just add a blank keyframe if it's the first of its kind.
             keyframes.Add(toAdd);
             Debug.Log("New keyframes length: " + Length);
         }
@@ -218,14 +219,14 @@ namespace UITK_SimpleTimeline
         /// Probably.
         /// </summary>
         /// <returns></returns>
-        public abstract string DeleteCurveName();
+        public abstract string ShorthandCurveName();
         /// <summary>
         /// String used to describe the T value (the value that is stored in each keyframe).
         /// </summary>
         /// <returns></returns>
         public abstract string SpawnKeyframeName();
         /// <summary>
-        /// String used to label the TimelineCurve when rendered in SimpleTimelineUITKField
+        /// String used to label the TimelineCurve's U value when rendered in SimpleTimelineUITKField
         /// </summary>
         /// <returns></returns>
         public abstract string ToAffectName();
@@ -233,6 +234,8 @@ namespace UITK_SimpleTimeline
         public abstract void SortKeyframes();
 
         public abstract void CleanOutKeyframesAfterTime(float t);
+
+        public abstract void AddKeyframeToCurve(float t);
 
         public abstract VisualElement UITKRepresentation(int index);
         /// <summary>

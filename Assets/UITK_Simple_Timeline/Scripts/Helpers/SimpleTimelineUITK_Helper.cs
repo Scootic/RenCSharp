@@ -57,9 +57,16 @@ namespace UITK_SimpleTimeline
         /// </summary>
         public static void ApplyChangesToObject()
         {
-            WindowObject.ApplyModifiedProperties();
-            EditorUtility.SetDirty(WindowObject.targetObject);
-            WindowObject.Update();
+            try
+            {
+                WindowObject.ApplyModifiedProperties();
+                EditorUtility.SetDirty(WindowObject.targetObject);
+                WindowObject.Update();
+            }
+            catch
+            {
+                Debug.LogWarning("The Helper doesn't have a WindowObject...");
+            }
         }
 
         /// <summary>

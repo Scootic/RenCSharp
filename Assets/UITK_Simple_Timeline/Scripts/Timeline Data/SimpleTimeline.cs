@@ -46,6 +46,12 @@ namespace UITK_SimpleTimeline
         //object.ToString?
         [SerializeReference] public List<TimelineCurve> Curves;
 
+        /// <summary>
+        /// An awaitable that goes through the timeline's curves, Evaluating() them at the seconds elapsed.
+        /// Advances every SPF in seconds (by default, SPF is 1/60 to replicate 60fps).
+        /// </summary>
+        /// <param name="ct">CancellationToken so you can bail out of the timeline whenever you feel like it.</param>
+        /// <returns>Diddly squat.</returns>
         public readonly async Awaitable RunThroughTimeline(CancellationToken ct)
         {
             float secondsElapsed = 0;
@@ -67,13 +73,60 @@ namespace UITK_SimpleTimeline
                 }
             }
         }
+        /// <summary>
+        /// Same as RunThroughTimeline(), but also logs the EvaluateMessage() at seconds elapsed while also
+        /// doing the Evaluate() behavior.
+        /// </summary>
+        /// <param name="ct">CancellationToken so you can bail out of the timeline whenever you feel like it.</param>
+        /// <returns>Diddly squat 2.</returns>
+        public readonly async Awaitable RunThroughTimelineDebug(CancellationToken ct)
+        {
+            float secondsElapsed = 0;
 
+            while(secondsElapsed < Duration || Loop)
+            {
+                if (ct.IsCancellationRequested) break;
+                await Awaitable.WaitForSecondsAsync(SPF);
+                secondsElapsed += SPF;
+
+                string msg = "";
+
+                foreach(TimelineCurve curve in Curves)
+                {
+                    msg += $"\n{curve.EvaluateMessage(secondsElapsed)}";
+                    curve.Evaluate(secondsElapsed);
+                }
+
+                Debug.Log(msg);
+
+                if(Loop && secondsElapsed >= Duration)
+                {
+                    secondsElapsed = 0;
+                }
+            }
+        }
+        /// <summary>
+        /// Evaluates the end of every curve in the timeline (Evaluate() at Duration).
+        /// </summary>
         public readonly void TimelineResult()
         {
             foreach(TimelineCurve curve in Curves)
             { 
                 curve.Evaluate(Duration);
             }
+        }
+        /// <summary>
+        /// Same as TimelineResult, but also Debug.Logs the EvaluateMessage() at Duration.
+        /// </summary>
+        public readonly void TimelineResultDebug()
+        {
+            string msg = "";
+            foreach(TimelineCurve curve in Curves)
+            {
+                msg += $"\n{curve.EvaluateMessage(Duration)}";
+                curve.Evaluate(Duration);
+            }
+            Debug.Log(msg);
         }
     }
 }

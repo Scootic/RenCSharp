@@ -3,7 +3,6 @@ using System.Linq;
 using System;
 using UnityEditor.UIElements;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.UIElements;
 using Helper = UITK_SimpleTimeline.SimpleTimelineUITK_Helper;
 namespace UITK_SimpleTimeline
@@ -15,11 +14,6 @@ namespace UITK_SimpleTimeline
         protected readonly float width;
         public ScalingPropertyField()
         {
-            RegisterValueChangeCallback(evt =>
-            {
-                subField = null;
-                schedule.Execute((Action)delegate { ResizeElementsOnSwap(evt); }).Until(() => subField != null);
-            });
             subField = null;
             schedule.Execute((Action)delegate { ResizeElements(); }).Until(() => subField != null);
         }
@@ -28,12 +22,6 @@ namespace UITK_SimpleTimeline
         {
             style.width = w;
             width = w;
-            
-            RegisterValueChangeCallback(evt =>
-            {
-                subField = null;
-                schedule.Execute((Action)delegate { ResizeElementsOnSwap(evt); }).Until(() => subField != null);
-            });
 
             subField = null;
             schedule.Execute((Action)delegate { ResizeElements(); }).Until(() => subField != null);
@@ -41,7 +29,7 @@ namespace UITK_SimpleTimeline
 
         protected void ResizeElementsOnSwap(SerializedPropertyChangeEvent evt)
         {
-            Debug.Log("Resizing!");
+            //Debug.Log("Resizing!");
             subField = Children().ToArray()[0];
             subField.style.flexDirection = FlexDirection.Column;
             subField.style.flexWrap = Wrap.Wrap;
@@ -111,7 +99,7 @@ namespace UITK_SimpleTimeline
         }
         protected void ResizeElements()
         {
-            Debug.Log("Resizing!");
+            //Debug.Log("Resizing!");
             subField = Children().ToArray()[0];
             subField.style.flexDirection = FlexDirection.Column;
             subField.style.flexWrap = Wrap.Wrap;
@@ -125,60 +113,84 @@ namespace UITK_SimpleTimeline
             if (stinker.propertyType == SerializedPropertyType.Generic && !stinker.isArray)
             {
                 Foldout f = subField.Q<Foldout>();
-                //f.RemoveFromClassList("unity-foldout");
-                //f.RemoveFromClassList("unity-foldout--depth-0");
+                f.style.left = 0;
+                f.style.right = 0;
+                f.style.flexWrap = Wrap.Wrap;
+                f.style.flexDirection = FlexDirection.Column;
 
                 Toggle t = f.Q<Toggle>();
                 t.value = true; //open that boy up by default
-                //t.ClearClassList();
 
-                VisualElement structHolder = f.Children().ToArray()[1];
-                //structHolder.RemoveFromClassList("unity-foldout__content");
-                structHolder.style.left = 0;
-                structHolder.style.right = 0;
-                structHolder.style.flexWrap = Wrap.Wrap;
-                structHolder.style.flexDirection = FlexDirection.Column;
+                VisualElement[] childPropertyFields = f.Children().ToArray();
 
-                foreach(VisualElement babyPF in structHolder.Children())
+                foreach(VisualElement babyPF in childPropertyFields)
                 {
+                    if (babyPF == t) continue;
+
                     //god i hope there's no sub-structs!
                     babyPF.style.flexWrap = Wrap.Wrap;
                     babyPF.style.flexDirection = FlexDirection.Column;
-                    babyPF.style.left = 0;
+                    babyPF.style.left = -15;
                     babyPF.style.right = 15;
 
                     VisualElement babyPFSub = babyPF.Children().First();
-                    babyPFSub.ClearClassList();
                     babyPFSub.style.flexDirection = FlexDirection.Column;
-
-                    Label subbyLabel = babyPFSub.Q<Label>();
-                    subbyLabel.style.flexGrow = -1;
-                    subbyLabel.style.flexShrink = 1;
-
-                    VisualElement secondary = babyPF.Children().ToArray()[1];
-                    secondary.style.flexGrow = 1;
-                    secondary.style.flexShrink = -1;
+                    try
+                    {
+                        Label subbyLabel = babyPFSub.Q<Label>();
+                        subbyLabel.style.flexGrow = -1;
+                        subbyLabel.style.flexShrink = 1;
+                    }
+                    catch
+                    {
+                        //no label element?
+                    }
+                    try
+                    {
+                        VisualElement secondary = babyPFSub.Children().ToArray()[1];
+                        secondary.style.flexGrow = 1;
+                        secondary.style.flexShrink = -1;
+                        secondary.style.flexDirection = FlexDirection.Column;
+                        secondary.style.flexWrap = Wrap.Wrap;
+                    }
+                    catch
+                    {
+                        //no secondary sub element?
+                    }
                 }
             }
-            //if it's just some class.
+            //if it's just some class. no sub-nesting necessary.
             else
             {
-                Label subLabel = subField.Q<Label>();
-                subLabel.style.maxWidth = width - 10;
-                subLabel.style.flexGrow = -1;
-                subLabel.style.flexShrink = 1;
-                subLabel.style.left = 10;
-                subLabel.style.right = 10;
-                subLabel.style.top = 0;
-                subLabel.style.bottom = 0;
-
-                VisualElement dragDropBox = subField.Children().ToArray()[1];
-                dragDropBox.style.flexGrow = 1;
-                dragDropBox.style.maxWidth = width - 10;
-                dragDropBox.style.left = 10;
-                dragDropBox.style.right = 10;
-                dragDropBox.style.top = 0;
-                dragDropBox.style.bottom = 0;
+                try
+                {
+                    Label subLabel = subField.Q<Label>();
+                    subLabel.style.maxWidth = width - 10;
+                    subLabel.style.flexGrow = -1;
+                    subLabel.style.flexShrink = 1;
+                    subLabel.style.left = 10;
+                    subLabel.style.right = 10;
+                    subLabel.style.top = 0;
+                    subLabel.style.bottom = 0;
+                }
+                catch
+                {
+                    //no subLabel?
+                }
+                try
+                {
+                    VisualElement dragDropBox = subField.Children().ToArray()[1];
+                    dragDropBox.style.flexGrow = 1;
+                    dragDropBox.style.maxWidth = width - 10;
+                    dragDropBox.style.left = 10;
+                    dragDropBox.style.right = 10;
+                    dragDropBox.style.top = 0;
+                    dragDropBox.style.bottom = 0;
+                }
+                catch
+                {
+                    //no drag-drop box???
+                }
             }
         }
     }

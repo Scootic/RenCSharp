@@ -7,13 +7,13 @@ namespace UITK_SimpleTimeline
     /// </summary>
     public class PositionCurve : TypedTimelineCurve<Vector3, string>, ILerpable
     {
-        public override string DeleteCurveName() => "Local Position Curve";
+        public override string ShorthandCurveName() => "Local Position Curve";
         public override string SpawnKeyframeName() => "Vector3 Keyframe";
         public override string ToAffectName() => "Hierarchy Path to Move";
         private Vector3 EvaluateV3(float time)
         {
             Vector3 toReturn = new();
-            if(root == null) { Debug.LogWarning("No root object for position curve!"); return toReturn; }
+            
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
             float[] tangents = GetTangents(toEval);
@@ -27,6 +27,7 @@ namespace UITK_SimpleTimeline
             float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
 
             toReturn = new(x, y, z);
+            if (root == null) { return toReturn; }
             Transform t = root.transform.Find(ToAffect);
             t.localPosition = toReturn;
             return toReturn;
@@ -55,13 +56,13 @@ namespace UITK_SimpleTimeline
     /// </summary>
     public class ScaleCurve : TypedTimelineCurve<Vector3, string>, ILerpable
     {
-        public override string DeleteCurveName() => "Local Scale Curve";
+        public override string ShorthandCurveName() => "Local Scale Curve";
         public override string SpawnKeyframeName() => "Vector3 Keyframe";
         public override string ToAffectName() => "Hierarchy Path to Scale";
         private Vector3 EvaluateV3(float time)
         {
             Vector3 toReturn = new();
-            if (root == null) { Debug.LogWarning("No root object for scale curve!"); return toReturn; }
+
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
             float[] tangents = GetTangents(toEval);
@@ -70,7 +71,7 @@ namespace UITK_SimpleTimeline
             float x = cubics[0] * toEval[0].Value.x + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.x;
             float y = cubics[0] * toEval[0].Value.y + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.y;
             float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
-
+            if (root == null) {return toReturn; }
             toReturn = new(x, y, z);
             Transform t = root.transform.Find(ToAffect);
             t.localScale = toReturn;
@@ -101,13 +102,13 @@ namespace UITK_SimpleTimeline
     /// </summary>
     public class RotationCurve : TypedTimelineCurve<Quaternion, string>, ILerpable
     {
-        public override string DeleteCurveName() => "Local Rotation Curve";
+        public override string ShorthandCurveName() => "Local Rotation Curve";
         public override string SpawnKeyframeName() => "Quaternion Keyframe";
         public override string ToAffectName() => "Hierarchy Path to Rotate";
         private Quaternion EvaluateQ(float time)
         {
             Quaternion toReturn = new();
-            if (root == null) { Debug.LogWarning("No root object for rotation curve!"); return toReturn; }
+
             TimelineKeyframe<Quaternion>[] toEval = ClosestTwoKeyframes(time);
 
             float[] tangents = GetTangents(toEval);
@@ -119,8 +120,7 @@ namespace UITK_SimpleTimeline
             float w = cubics[0] * toEval[0].Value.w + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.w;
 
             toReturn = new(x,y,z,w);
-            Transform t = root.transform.Find(ToAffect);
-            t.localRotation = toReturn;
+            if (root == null) { return toReturn; }
             return toReturn;
         }
 

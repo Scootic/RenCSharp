@@ -14,7 +14,7 @@ namespace UITK_SimpleTimeline
     /// </summary>
     public class SpawnGameObjectCurve : TypedTimelineCurve<GOSpawnToken,GameObject>, ILerpable
     {
-        public override string DeleteCurveName() => "Spawn GameObject Curve";
+        public override string ShorthandCurveName() => "Spawn GameObject Curve";
         public override string SpawnKeyframeName() => "Spawn Token Keyframe";
         public override string ToAffectName() => "Prefab to Spawn";
 
@@ -61,10 +61,11 @@ namespace UITK_SimpleTimeline
     [Serializable]
     public struct GOSpawnToken
     {
-        public Vector3 SpawnPos, SpawnScale;
+        public Vector3 SpawnPos;
+        public Vector3 SpawnScale;
         public Quaternion SpawnRot;
-        public bool SetToBeChildOfRoot;
-        public string name;
+        [Tooltip("Decides if the spawned prefab should be made a child of the root object of the timeline.")]public bool SetToBeChildOfRoot;
+        [Tooltip("The name the spawned GO will have when first spawned. Will likely be appended to prevent duplicates.")]public string name;
 
         public static GOSpawnToken Default
         {

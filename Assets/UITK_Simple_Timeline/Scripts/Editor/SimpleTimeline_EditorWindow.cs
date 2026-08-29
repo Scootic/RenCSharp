@@ -56,10 +56,18 @@ namespace UITK_SimpleTimeline.Editor
         private void OnDestroy()
         {
             //super duper make sure any changes made to the stinkin' simpletimeline are saved!
-            Debug.Log("Applying changes to SerializedO: " + Helper.WindowObject.targetObject.name + 
-                $"\n Duration: {Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue}" +
-                $"\n Loop: {Helper.SimpleTimelineProperty.FindPropertyRelative("Loop").boolValue} " +
-                $"\n Curve Count: {Helper.CurvesProperty.arraySize}");
+            try
+            {
+                Debug.Log("Applying changes to SerializedO: " + Helper.WindowObject.targetObject.name +
+                    $"\n Duration: {Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue}" +
+                    $"\n Loop: {Helper.SimpleTimelineProperty.FindPropertyRelative("Loop").boolValue} " +
+                    $"\n Curve Count: {Helper.CurvesProperty.arraySize}");
+            }
+            catch
+            {
+                Debug.LogWarning("Oh ye gods! The UITKHelper.WindowObject doesn't exist!"); 
+                return;
+            }
             //make sure to sort the keyframe lists to be in order. not *entirely* sure if it matters.
             for(int i = 0; i< Helper.CurvesProperty.arraySize; i++)
             {

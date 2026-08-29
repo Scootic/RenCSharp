@@ -33,10 +33,12 @@ namespace UITK_SimpleTimeline
         
         protected readonly VisualElement CurveDataContainer, KeyframeContainer;
         protected VisualElement o, w;
+        protected readonly Label TypeLabel;
         /// <summary>
         /// Should hold the data for the TimelineCurve's U value.
         /// </summary>
-        protected readonly PropertyField ToBeAffectedField, WrapModeField;
+        protected readonly PropertyField ToBeAffectedField;
+        protected readonly PropertyField WrapModeField;
         protected GenericMenu AddNewKeyframeMenu, DeleteCurveMenu;
 
         protected SerializedProperty curveProperty, keyframesProperty;
@@ -174,6 +176,16 @@ namespace UITK_SimpleTimeline
             CurveDataContainer.style.borderLeftWidth = 1;
             Add(CurveDataContainer);
 
+            TypeLabel = new() { name = "TypeLabel"};
+            TypeLabel.text = value.ShorthandCurveName();
+            TypeLabel.style.left = 25;
+            TypeLabel.style.right = -25;
+            TypeLabel.style.flexWrap = Wrap.Wrap;
+            TypeLabel.style.maxHeight = 30f;
+            TypeLabel.style.maxWidth = 125;
+            TypeLabel.style.whiteSpace = WhiteSpace.Normal;
+            CurveDataContainer.Add(TypeLabel);
+
             ToBeAffectedField = new() { name = "ToBeAffectedField" };
             ToBeAffectedField.RemoveFromClassList(alignedFieldUssClassName);
             curveProperty = Helper.CurvesProperty.GetArrayElementAtIndex(index);
@@ -287,7 +299,7 @@ namespace UITK_SimpleTimeline
                 if (evt.button == 1)
                 {
                     DeleteCurveMenu = new();
-                    DeleteCurveMenu.AddItem(new GUIContent($"Delete Curve {myPropertyIndex}: {value.DeleteCurveName()}?!?"), false, delegate
+                    DeleteCurveMenu.AddItem(new GUIContent($"Delete Curve {myPropertyIndex}: {value.ShorthandCurveName()}?!?"), false, delegate
                     {
                         Helper.RemoveTimelineCurve?.Invoke(curveProperty.boxedValue as TimelineCurve);
                     });

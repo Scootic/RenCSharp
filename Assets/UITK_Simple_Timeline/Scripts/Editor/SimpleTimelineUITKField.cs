@@ -19,9 +19,9 @@ namespace UITK_SimpleTimeline.Editor
         protected readonly IntegerField CurrentFrameField;
         protected readonly FloatField DurationField, CurrentSecondsField;
         protected readonly Toggle LoopField;
-        protected readonly Button BackFrame, PlayPause, ForwardFrame;
+        protected readonly Button BackFrame, PlayPause, ForwardFrame, AddKeyframesButton;
 
-        protected static Texture2D bckIco = null, fwdIco = null, playIco = null, pausIco = null;
+        protected static Texture2D bckIco = null, fwdIco = null, playIco = null, pausIco = null, keyfrIco = null;
 
         [SerializeField] protected SimpleTimeline thisTimeline = new();
 
@@ -198,6 +198,30 @@ namespace UITK_SimpleTimeline.Editor
             ForwardFrame.style.height = 50;
             ForwardFrame.style.width = 50;
             TimelineControlsHolder.Add(ForwardFrame);
+
+            AddKeyframesButton = new(() =>
+            {
+                if (!playing)
+                {
+                    for (int i = 0; i < Helper.CurvesProperty.arraySize; i++)
+                    {
+                        SerializedProperty sp = Helper.CurvesProperty.GetArrayElementAtIndex(i);
+                        TimelineCurve c = sp.managedReferenceValue as TimelineCurve;
+                        c.AddKeyframeToCurve(curT);
+                        sp.managedReferenceValue = c;
+                    }
+                    Helper.ApplyChangesToObject();
+                }
+            })
+            { name = "AddKeyframesButton" };
+            AddKeyframesButton.iconImage = keyfrIco;
+            Image ak = AddKeyframesButton.Q<Image>();
+            ak.scaleMode = ScaleMode.ScaleToFit;
+            ak.style.height = 45;
+            ak.style.width = 45;
+            AddKeyframesButton.style.height = 50;
+            AddKeyframesButton.style.width = 50;
+            TimelineControlsHolder.Add(AddKeyframesButton);
 
             CurrentFrameField = new("Frame:") { name = "CurrentFrameField" };
             CurrentFrameField.style.height = 50;
@@ -463,6 +487,31 @@ namespace UITK_SimpleTimeline.Editor
             ForwardFrame.style.width = 50;
             TimelineControlsHolder.Add(ForwardFrame);
 
+            AddKeyframesButton = new(() =>
+            {
+                if (!playing)
+                {
+                    Debug.Log("Placing keyframes in existing curves!");
+                    for(int i = 0; i < Helper.CurvesProperty.arraySize; i++)
+                    {
+                        SerializedProperty sp = Helper.CurvesProperty.GetArrayElementAtIndex(i);
+                        TimelineCurve c = sp.managedReferenceValue as TimelineCurve;
+                        c.AddKeyframeToCurve(curT);
+                        sp.managedReferenceValue = c;
+                    }
+                    Helper.ApplyChangesToObject();
+                }
+            })
+            { name = "AddKeyframesButton" };
+            AddKeyframesButton.iconImage = keyfrIco;
+            Image ak = AddKeyframesButton.Q<Image>();
+            ak.scaleMode = ScaleMode.ScaleToFit;
+            ak.style.height = 45;
+            ak.style.width = 45;
+            AddKeyframesButton.style.height = 50;
+            AddKeyframesButton.style.width = 50;
+            TimelineControlsHolder.Add(AddKeyframesButton);
+
             CurrentFrameField = new("Frame:") { name = "CurrentFrameField" };
             CurrentFrameField.style.height = 50;
             CurrentFrameField.focusable = true;
@@ -669,6 +718,7 @@ namespace UITK_SimpleTimeline.Editor
         //sets the current TimelineKeyframe<T> to edit and current timeline knob to affect based on those values.
         protected void DisplayKeyframeInformation(SerializedProperty keyframeToDisplay, VisualElement ve)
         {
+            Helper.ApplyChangesToObject();
             CurrentKeyframeField.UnregisterCallback<SerializedPropertyChangeEvent>(AdjustCurrentKeyframeBasedOnTime);
             CurrentKeyframeField.Unbind();
             CurTimelineKnob = ve;
@@ -713,14 +763,16 @@ namespace UITK_SimpleTimeline.Editor
 
         protected void GrabIcons()
         {
-            if(bckIco == null) bckIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+ "/bckicon.png");
-            if(!bckIco) Debug.LogError("SimpleTimelineUITKField.cs can't find bckicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
-            if(fwdIco == null) fwdIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+"/fwdicon.png");
-            if(!fwdIco) Debug.LogError("SimpleTimelineUITKField.cs can't find fwdicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
-            if(playIco == null) playIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+"/playicon.png");
-            if(!playIco) Debug.LogError("SimpleTimelineUITKField.cs can't find playicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
-            if(pausIco == null) pausIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+"/pauseicon.png");
-            if(!pausIco) Debug.LogError("SimpleTimelineUITKField.cs can't find pauseicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
+            if (bckIco == null) bckIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+ "/bckicon.png");
+            if (!bckIco) Debug.LogError("SimpleTimelineUITKField.cs can't find bckicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
+            if (fwdIco == null) fwdIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+"/fwdicon.png");
+            if (!fwdIco) Debug.LogError("SimpleTimelineUITKField.cs can't find fwdicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
+            if (playIco == null) playIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+"/playicon.png");
+            if (!playIco) Debug.LogError("SimpleTimelineUITKField.cs can't find playicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
+            if (pausIco == null) pausIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+"/pauseicon.png");
+            if (!pausIco) Debug.LogError("SimpleTimelineUITKField.cs can't find pauseicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
+            if (keyfrIco == null) keyfrIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath + "/placekeyframeicon.png");
+            if (!keyfrIco) Debug.LogError("SimpleTimelineUITKField.cs can't find placekeyframeicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
             if (Helper.FullRulerLength == null) Helper.FullRulerLength = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+"/fullrulerlength.png");
             if (!Helper.FullRulerLength) Debug.LogError("SimpleTimelineUITKField.cs can't find fullrulerlength.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
         }
@@ -744,10 +796,12 @@ namespace UITK_SimpleTimeline.Editor
 
             CurrentFrameField.value++;
 
+            string msg = "";
             foreach(TimelineCurve curve in thisTimeline.Curves)
             {
-                curve.EvaluateMessage(curT);
+                msg += $"\n{curve.EvaluateMessage(curT)}";
             }
+            Debug.Log(msg);
         }
     }
 }
