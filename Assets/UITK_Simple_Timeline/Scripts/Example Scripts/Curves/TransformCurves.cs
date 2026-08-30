@@ -71,8 +71,10 @@ namespace UITK_SimpleTimeline
             float x = cubics[0] * toEval[0].Value.x + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.x;
             float y = cubics[0] * toEval[0].Value.y + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.y;
             float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
-            if (root == null) {return toReturn; }
             toReturn = new(x, y, z);
+
+            if (root == null) {return toReturn; }
+            
             Transform t = root.transform.Find(ToAffect);
             t.localScale = toReturn;
             return toReturn;
@@ -121,6 +123,8 @@ namespace UITK_SimpleTimeline
 
             toReturn = new(x,y,z,w);
             if (root == null) { return toReturn; }
+            Transform t = root.transform.Find(ToAffect);
+            t.localRotation = toReturn;
             return toReturn;
         }
 
@@ -133,8 +137,7 @@ namespace UITK_SimpleTimeline
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "Rotation curve is not yet valid! Give him some keyframes!";
-
-            return $"{ToAffect}.localRot should be: {EvaluateQ(time)}";
+            return $"{ToAffect}.localRot should be: {EvaluateQ(time)}. ToAffect in root? {root.transform.Find(ToAffect)}";
         }
 
         public override string ToString()

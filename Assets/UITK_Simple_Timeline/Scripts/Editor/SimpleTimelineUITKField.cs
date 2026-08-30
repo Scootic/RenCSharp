@@ -491,15 +491,18 @@ namespace UITK_SimpleTimeline.Editor
             {
                 if (!playing)
                 {
-                    Debug.Log("Placing keyframes in existing curves!");
+                    //Debug.Log("Placing keyframes in existing curves!");
                     for(int i = 0; i < Helper.CurvesProperty.arraySize; i++)
                     {
                         SerializedProperty sp = Helper.CurvesProperty.GetArrayElementAtIndex(i);
-                        TimelineCurve c = sp.managedReferenceValue as TimelineCurve;
-                        c.AddKeyframeToCurve(curT);
-                        sp.managedReferenceValue = c;
+                        (sp.boxedValue as TimelineCurve).AddKeyframeToCurve(curT);
                     }
                     Helper.ApplyChangesToObject();
+                    foreach (VisualElement ve in TimelineCurveFields) 
+                    {
+                        IRegeneratableElement ire = ve as IRegeneratableElement;
+                        ire?.RegenerateElement();
+                    }
                 }
             })
             { name = "AddKeyframesButton" };
@@ -623,7 +626,7 @@ namespace UITK_SimpleTimeline.Editor
 
             schedule.Execute(PreviewTimelineUpdate).Every(16).StartingIn(0);
         }
-
+        //makes the timelineruler area grow based on the new duration.
         protected void UpdateTimelineScrollSizeBasedOnDuration(float newDurInSeconds)
         {
             //reset cur frame field
@@ -661,7 +664,7 @@ namespace UITK_SimpleTimeline.Editor
                 Debug.LogWarning($"Timeline.Curves doesn't contain {toRemove.ToString()}?!?");
             }
         }
-
+        //update the serializedproperties whenever we add/remove a timelinecurve from the field
         protected void UpdateCurvesProperty()
         {
             try
@@ -680,7 +683,7 @@ namespace UITK_SimpleTimeline.Editor
                 Debug.LogWarning("UpdateCurvesProperty went wrong. SOMEHOW?!?!");
             }
         }
-
+        //spawn all of them stinkin' TimelineCurveFields
         protected void GenerateTimelineCurveFields()
         {
             foreach(VisualElement curveField in TimelineCurveFields)
@@ -760,7 +763,7 @@ namespace UITK_SimpleTimeline.Editor
                 });
             }
         }
-
+        //try to get all of the Texture2Ds if the field is missing any one of them
         protected void GrabIcons()
         {
             if (bckIco == null) bckIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+ "/bckicon.png");
@@ -776,7 +779,7 @@ namespace UITK_SimpleTimeline.Editor
             if (Helper.FullRulerLength == null) Helper.FullRulerLength = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+"/fullrulerlength.png");
             if (!Helper.FullRulerLength) Debug.LogError("SimpleTimelineUITKField.cs can't find fullrulerlength.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
         }
-
+        //the same as the animation tab's preview, except the live playback because that would be some serious hogwash
         protected void PreviewTimelineUpdate()
         {
             if (!playing) return;

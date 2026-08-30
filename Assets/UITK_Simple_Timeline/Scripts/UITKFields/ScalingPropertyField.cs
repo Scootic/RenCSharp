@@ -132,30 +132,38 @@ namespace UITK_SimpleTimeline
                     babyPF.style.flexDirection = FlexDirection.Column;
                     babyPF.style.left = -15;
                     babyPF.style.right = 15;
+                    try
+                    {
+                        VisualElement babyPFSub = babyPF.Children().First();
+                        babyPFSub.style.flexDirection = FlexDirection.Column;
 
-                    VisualElement babyPFSub = babyPF.Children().First();
-                    babyPFSub.style.flexDirection = FlexDirection.Column;
-                    try
-                    {
-                        Label subbyLabel = babyPFSub.Q<Label>();
-                        subbyLabel.style.flexGrow = -1;
-                        subbyLabel.style.flexShrink = 1;
+                        try
+                        {
+                            Label subbyLabel = babyPFSub.Q<Label>();
+                            subbyLabel.style.flexGrow = -1;
+                            subbyLabel.style.flexShrink = 1;
+                        }
+                        catch
+                        {
+                            //no label element?
+                        }
+
+                        try
+                        {
+                            VisualElement secondary = babyPFSub.Children().ToArray()[1];
+                            secondary.style.flexGrow = 1;
+                            secondary.style.flexShrink = -1;
+                            secondary.style.flexDirection = FlexDirection.Column;
+                            secondary.style.flexWrap = Wrap.Wrap;
+                        }
+                        catch
+                        {
+                            //no secondary sub element?
+                        }
                     }
                     catch
                     {
-                        //no label element?
-                    }
-                    try
-                    {
-                        VisualElement secondary = babyPFSub.Children().ToArray()[1];
-                        secondary.style.flexGrow = 1;
-                        secondary.style.flexShrink = -1;
-                        secondary.style.flexDirection = FlexDirection.Column;
-                        secondary.style.flexWrap = Wrap.Wrap;
-                    }
-                    catch
-                    {
-                        //no secondary sub element?
+                        //no babyPFSub?!?
                     }
                 }
             }

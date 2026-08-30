@@ -21,14 +21,26 @@ namespace UITK_SimpleTimeline
         public override void Evaluate(float time)
         {
             if (!ValidCurve) return;
-            TimelineKeyframe<GOSpawnToken>[] keyframes = ClosestTwoKeyframes(time);
+            try
+            {
+                TimelineKeyframe<GOSpawnToken> keyframe = AtTime(time);
 
-            if (!Mathf.Approximately(keyframes[0].Time, time)) return; //make sure the time is comparable!
+                GameObject t;
+                if (keyframe.Value.SetToBeChildOfRoot)
+                {
+                    t = GameObject.Instantiate(ToAffect, Vector3.zero, Quaternion.identity, root.transform);
+                    t.transform.localPosition = keyframe.Value.SpawnPos;
+                    t.transform.localRotation = keyframe.Value.SpawnRot;
+                }
+                else
+                {
+                    t = GameObject.Instantiate(ToAffect, keyframe.Value.SpawnPos, keyframe.Value.SpawnRot);
+                }
 
-            GameObject t = GameObject.Instantiate(ToAffect, keyframes[0].Value.SpawnPos, 
-                keyframes[0].Value.SpawnRot, keyframes[0].Value.SetToBeChildOfRoot ? root.transform : null);
-            t.transform.localScale = keyframes[0].Value.SpawnScale;
-            t.name = keyframes[0].Value.name;
+                t.transform.localScale = keyframe.Value.SpawnScale;
+                t.name = keyframe.Value.name;
+            }
+            catch { return; }
         }
 
         public override string EvaluateMessage(float time)
@@ -36,20 +48,22 @@ namespace UITK_SimpleTimeline
             if (!ValidCurve) return "Spawn GO Curve is not yet valid!";
             try
             {
-                TimelineKeyframe<GOSpawnToken> goose = ClosestTwoKeyframes(time)[0];
-                if (!Mathf.Approximately(goose.Time, time))
+                GameObject guh = ToAffect;
+                try
                 {
-                    return $"Not Spawning GameObject: {ToAffect.name}";
+                    TimelineKeyframe<GOSpawnToken> goose = AtTime(time);
+                    return $"Spawned GameObject: {guh.name} at, \n\tPos:{goose.Value.SpawnPos}" +
+                        $"\n\tRot:{goose.Value.SpawnRot}\n\tScale:{goose.Value.SpawnScale}";
                 }
-                else
+                catch
                 {
-                    return $"Spawning GameObject: {ToAffect.name} at, \nPos:{goose.Value.SpawnPos}" +
-                        $"\nRot:{goose.Value.SpawnRot}\nScale:{goose.Value.SpawnScale}";
+                    return $"Not Spawning GameObject: {guh.name}";
                 }
             }
-            catch { return "Spawn GameObject Curve is boinked; probably doesn't have an assigned ToAffect Prefab."; }
+            catch { return "Spawn GameObject Curve is boinked; probably doesn't have an assigned ToAffect Prefab" +
+                    $" OR is getting some garbage indexes from ClosestTwoIndexes({time})."; }
         }
-
+        
         public override string ToString()
         {
             return "Spawn GameObject Curve";
@@ -59,7 +73,7 @@ namespace UITK_SimpleTimeline
     /// A struct holding all the information a GameObject should need to be instantiated.
     /// </summary>
     [Serializable]
-    public struct GOSpawnToken
+    public struct GOSpawnToken : IDefaultableNotNull<GOSpawnToken>
     {
         public Vector3 SpawnPos;
         public Vector3 SpawnScale;
@@ -67,14 +81,20 @@ namespace UITK_SimpleTimeline
         [Tooltip("Decides if the spawned prefab should be made a child of the root object of the timeline.")]public bool SetToBeChildOfRoot;
         [Tooltip("The name the spawned GO will have when first spawned. Will likely be appended to prevent duplicates.")]public string name;
 
-        public static GOSpawnToken Default
+        public readonly GOSpawnToken Default()
         {
-            get
-            {
-                GOSpawnToken t = new();
-                return t;
-            }
+            GOSpawnToken t = new();
+
+            t.SpawnPos = Vector3.zero;
+            t.SpawnScale = Vector3.one;
+            t.SpawnRot = Quaternion.identity;
+
+            t.SetToBeChildOfRoot = false;
+            t.name = "GameObject";
+
+            return t;
         }
+        
 
         public readonly override bool Equals(object obj)
         {

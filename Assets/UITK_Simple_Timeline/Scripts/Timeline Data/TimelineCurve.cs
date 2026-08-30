@@ -11,10 +11,12 @@ namespace UITK_SimpleTimeline
     /// <typeparam name="T">The type of value being lerped between.</typeparam>
     /// <typeparam name="U">The type of object that is affected by the T value.</typeparam>
     [Serializable]
-    public abstract class TypedTimelineCurve<T,U> : TimelineCurve, ILerpable where U : class
+    public abstract class TypedTimelineCurve<T,U> : TimelineCurve, ILerpable where U : notnull
     {
         public U ToAffect;
-        public WrapMode WrapMode = WrapMode.Clamp;
+        [Tooltip("Decides how keyframes lerp whenever the time is before the first keyframe," +
+            " or after the last keyframe.\nWrapMode.Clamp keeps things static in those extremes, whereas " +
+            "the other types of WrapModes cause keyframes to lerp beyond their border.")]public WrapMode WrappingMode = WrapMode.Clamp;
 
         public override VisualElement UITKRepresentation(int index)
         {
@@ -43,8 +45,14 @@ namespace UITK_SimpleTimeline
                 }
             }
             //if we're adding a new keyframe to the "end" of a curve, make it have the same value as the previous last one.
-            if(Length > 0) toAdd.Value = keyframes[Length - 1].Value;
+            if (Length > 0) toAdd.Value = keyframes[Length - 1].Value;
             //otherwise, just add a blank keyframe if it's the first of its kind.
+            else
+            {
+                IDefaultableNotNull<T> idnn = toAdd.Value as IDefaultableNotNull<T>;
+                if (idnn != null) toAdd.Value = idnn.Default();
+            }
+
             keyframes.Add(toAdd);
             Debug.Log("New keyframes length: " + Length);
         }
@@ -55,6 +63,14 @@ namespace UITK_SimpleTimeline
             {
                 if (keyframes[i].Time == time) keyframes.RemoveAt(i);
             }
+        }
+        public void RemoveKeyframeFromCurve(int index)
+        {
+            keyframes.RemoveAt(index);
+        }
+        public void RemoveKeyframeFromCurve(TimelineKeyframe<T> toRemove)
+        {
+            if (keyframes.Contains(toRemove)) keyframes.Remove(toRemove);
         }
 
         public override void CleanOutKeyframesAfterTime(float time)
@@ -67,14 +83,6 @@ namespace UITK_SimpleTimeline
             }
         }
 
-        public void RemoveKeyframeFromCurve(int index)
-        {
-            keyframes.RemoveAt(index);
-        }
-        public void RemoveKeyframeFromCurve(TimelineKeyframe<T> toRemove)
-        {
-            if (keyframes.Contains(toRemove)) keyframes.Remove(toRemove);
-        }
         public override void SortKeyframes()
         {
             keyframes.Sort();
@@ -94,6 +102,15 @@ namespace UITK_SimpleTimeline
         }
         public int Length => keyframes.Count;
         public TimelineKeyframe<T> AtIndex(int i) { return keyframes[i]; }
+
+        public TimelineKeyframe<T> AtTime(float t)
+        {
+            foreach(TimelineKeyframe<T> keyframe in keyframes)
+            {
+                if (ApproxFloat(keyframe.Time, t)) return keyframe;
+            }
+            return null;
+        }
         #endregion
 
         #region ClosestTwos
@@ -102,19 +119,49 @@ namespace UITK_SimpleTimeline
         /// </summary>
         /// <param name="time">Time in seconds.</param>
         /// <returns>An array holding two indexes, the one below/equal to the time, and the one above. For lerping!</returns>
-        protected int[] ClosestTwoIndexes(float time)
+        public override int[] ClosestTwoIndexes(float time)
         {
             if (!ValidCurve) return null;
+            //works if in-between two keyframes?
             int[] toReturn = new int[2];
             int index = Array.BinarySearch(KeyframeTimes, time);
             if (index < 0)
             {
                 index = ~index;
+                //Debug.Log($"Doing the weird bitwise chicanery because binary search gave a negative index?!? The bitfliped: {index}");
                 //index should now be the one higher than time?
                 toReturn[1] = index;
-                toReturn[0] = (index > 0) ? index - 1 : Length - 1;
+                if (time > KeyframeTimes[Length - 1]) //if the time has already passed the last key frame
+                {
+                    index = Length - 1;
+                    switch (WrappingMode) 
+                    {
+                        case WrapMode.Clamp: //clamp to basically lerp between itself (no motion)
+                            toReturn[0] = index;
+                            toReturn[1] = index;
+                            break;
+                        default: //otherwise loop back around, with the start key frame being the last value???
+                            toReturn[1] = 0;
+                            toReturn[0] = index;
+                            break;
+                    }
+                }else if(time < KeyframeTimes[0]) //if the time is before the first key frame
+                {
+                    switch (WrappingMode)
+                    {
+                        case WrapMode.Clamp:
+                            toReturn[0] = 0;
+                            toReturn[1] = 0;
+                            break;
+                        default:
+                            toReturn[0] = Length - 1;
+                            toReturn[1] = 0;
+                            break;
+                    }
+                }
+                else toReturn[0] = (index > 0) ? index - 1 : Length - 1;
             }
-            else
+            else//this else is never ever called?!?!
             {
                 if (Keyframes[index].Time < time)
                 {
@@ -237,6 +284,8 @@ namespace UITK_SimpleTimeline
 
         public abstract void AddKeyframeToCurve(float t);
 
+        public abstract int[] ClosestTwoIndexes(float t);
+
         public abstract VisualElement UITKRepresentation(int index);
         /// <summary>
         /// Should only really be used by in-scene components, like SimpleTimelineAnimationComponent.cs
@@ -247,6 +296,21 @@ namespace UITK_SimpleTimeline
 
         public WrapMode PreWrapMode = WrapMode.Default;
         public WrapMode PostWrapMode = WrapMode.Default;
+ 
+        /// <summary>
+        /// Attempts to see if two floats are "close enough," based on a given tolerance
+        /// </summary>
+        /// <param name="a">A float</param>
+        /// <param name="b">Another float</param>
+        /// <param name="tolerance">The largest acceptable deviation between float a and b to return true.</param>
+        /// <returns>Mathf.Abs(biggest - smallest) lessthan tolerance</returns>
+        public bool ApproxFloat(float a, float b, float tolerance = 0.01f)
+        {
+            float biggest = Mathf.Max(a, b);
+            float smallest = Mathf.Min(a, b);
+
+            return Mathf.Abs(biggest - smallest) < tolerance;
+        }
     }
 
 }

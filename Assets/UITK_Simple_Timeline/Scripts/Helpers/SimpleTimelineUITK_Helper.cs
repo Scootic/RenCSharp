@@ -25,7 +25,12 @@ namespace UITK_SimpleTimeline
         /// The amount of pixels that equals one second along the TimelineRuler
         /// </summary>
         public static readonly float PixelWidthPerSeconds = 32f; //?
+        /// <summary>
+        /// The expected maximum width of the TimelineRuler. Should be set whenever you resize that element
+        /// by setting a new duration.
+        /// </summary>
         public static float MaxPixelWidth;
+
         public static readonly Color SecondLayerBG = new(0.2f, 0.2f, 0.2f, 1);
         public static readonly Color SecondLayerBorder = new(0.1f, 0.1f, 0.1f, 1);
         public static readonly Color SelectedKeyframe = new(0.7f, 0.95f, 0, 1);

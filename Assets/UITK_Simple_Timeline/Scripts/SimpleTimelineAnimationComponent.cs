@@ -9,6 +9,7 @@ namespace UITK_SimpleTimeline
         [Header("Settings")]
         [SerializeField, Tooltip("Decides if the component should play the timeline at index 0 on start.")] private bool playInitialOnStart = false;
         [SerializeField, Tooltip("Decides if the currently playing timeline should be fully evaluated before swapping to a new one. [Fires TimelineResult()]")] private bool finishAnimationOnSwap = true;
+        [SerializeField, Tooltip("Decides if the SimpleTimeline should log EvaluationMessages() while playing.")] private bool debug = false;
         private SimpleTimeline[] timelines;
         private Awaitable curTimeline = null;
         private int curIndex;
@@ -36,7 +37,7 @@ namespace UITK_SimpleTimeline
 
         public async void PlayTimeline(int index)
         {
-            if (index < timelines.Length && index > 0)
+            if (index < timelines.Length && index >= 0)
             {
                 if (curTimeline != null && !curTimeline.IsCompleted)
                 {
@@ -46,7 +47,7 @@ namespace UITK_SimpleTimeline
 
                 curIndex = index;
 
-                curTimeline = timelines[curIndex].RunThroughTimeline(new CancellationToken());
+                curTimeline = debug? timelines[curIndex].RunThroughTimelineDebug(new CancellationToken()) : timelines[curIndex].RunThroughTimeline(new CancellationToken());
                 await curTimeline;
             }
             else
