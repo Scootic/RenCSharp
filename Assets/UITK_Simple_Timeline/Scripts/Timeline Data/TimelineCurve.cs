@@ -17,10 +17,8 @@ namespace UITK_SimpleTimeline
         [Tooltip("Decides how keyframes lerp whenever the time is before the first keyframe," +
             " or after the last keyframe.\nWrapMode.Clamp keeps things static in those extremes, whereas " +
             "the other types of WrapModes cause keyframes to lerp beyond their border.")]public WrapMode WrappingMode = WrapMode.Clamp;
-
         public override VisualElement UITKRepresentation(int index)
         {
-            //Debug.Log($"CurvesProp Length: {Helper.CurvesProperty.arraySize}.Is property at index {index} null? " + Helper.CurvesProperty.GetArrayElementAtIndex(index));
             return new TimelineCurveField<T,U>("", this, index);
         }
 
@@ -46,13 +44,13 @@ namespace UITK_SimpleTimeline
             }
             //if we're adding a new keyframe to the "end" of a curve, make it have the same value as the previous last one.
             if (Length > 0) toAdd.Value = keyframes[Length - 1].Value;
-            //otherwise, just add a blank keyframe if it's the first of its kind.
+            //make the new keyframe its default value if it's an IDefaultableNotNull type
             else
             {
                 IDefaultableNotNull<T> idnn = toAdd.Value as IDefaultableNotNull<T>;
                 if (idnn != null) toAdd.Value = idnn.Default();
             }
-
+            //otherwise, just add a blank keyframe if it's the first of its kind.
             keyframes.Add(toAdd);
             Debug.Log("New keyframes length: " + Length);
         }
@@ -111,6 +109,18 @@ namespace UITK_SimpleTimeline
             }
             return null;
         }
+
+        public float TimeToKeyframePercent(float absoluteTime, float keyframe1Time, float keyframe2Time)
+        {
+            float percent;
+
+            float timeAfterK1 = absoluteTime - keyframe1Time;
+            float distance = keyframe2Time - keyframe1Time;
+            percent = timeAfterK1 / distance;
+
+            return percent;
+        }
+       
         #endregion
 
         #region ClosestTwos
@@ -163,6 +173,7 @@ namespace UITK_SimpleTimeline
             }
             else//this else is never ever called?!?!
             {
+                Debug.Log("The forbidden else statement in TimelineCurve.ClosestTwoIndexes() has been called?!?");
                 if (Keyframes[index].Time < time)
                 {
                     toReturn[0] = index;
@@ -210,25 +221,6 @@ namespace UITK_SimpleTimeline
 
         #region StupidMath
         /// <summary>
-        /// returns the stinkin' expected cubic values for a curve.
-        /// </summary>
-        /// <param name="time">guh</param>
-        /// <returns>an array of length 4! A = i0, B = i1, C = i2, D = i3</returns>
-        public virtual float[] GetCubicValues(float time)
-        {
-            float[] result = new float[4];
-
-            float timeSqr = time * time;
-            float timeCub = timeSqr * time;
-
-            result[0] = 2 * timeCub - 3 * timeSqr + 1;
-            result[1] = timeCub - 2 * timeSqr + time;
-            result[2] = time - timeSqr;
-            result[3] = -2 * timeCub + 3 * timeSqr;
-
-            return result;
-        }
-        /// <summary>
         /// Returns the in-tangent and out-tangent values of two keyframes.
         /// </summary>
         /// <param name="frames">Keyframe Array of size 2</param>
@@ -239,6 +231,59 @@ namespace UITK_SimpleTimeline
             float difT = frames[1].Time - frames[0].Time;
             toReturn[0] = frames[0].OutTangent * difT;
             toReturn[1] = frames[1].InTangent * difT;
+            return toReturn;
+        }
+
+        /// <summary>
+        /// The math that provides a way to intepret between float values based on given time and tangents.
+        /// </summary>
+        /// <param name="startingValues"></param>
+        /// <param name="endingValues"></param>
+        /// <param name="time"></param>
+        /// <param name="startingTangent"></param>
+        /// <param name="endingTangent"></param>
+        /// <returns>An array of equal size to startingValues, containing the in-betweens.</returns>
+        public virtual float[] CubicHermiteSpline(float[] startingValues, float[] endingValues, float time, float startingTangent, float endingTangent)
+        {
+            float timeSqr = time * time;
+            float timeCub = timeSqr * time;
+
+            float[] toReturn = new float[startingValues.Length];
+
+            for (int i = 0; i < startingValues.Length; i++)
+            {
+                toReturn[i] = ((2 * timeCub - 3 * timeSqr + 1) * startingValues[i]) +
+                    ((timeCub - 2 * timeSqr + time) * startingTangent) +
+                    ((-2 * timeCub + 3 * timeSqr) * endingValues[i]) +
+                    ((timeCub - timeSqr) * endingTangent);
+            }
+
+            return toReturn;
+        }
+        /// <summary>
+        /// The math that provides a way to intepret between float values based on given time and tangents.
+        /// </summary>
+        /// <param name="startingValues"></param>
+        /// <param name="endingValues"></param>
+        /// <param name="time"></param>
+        /// <param name="startingTangent"></param>
+        /// <param name="endingTangent"></param>
+        /// <returns>An array of equal size to startingValues, containing the in-betweens.</returns>
+        public virtual float[] CubicHermiteSpline(Vector3 startingValues, Vector3 endingValues, float time, float startingTangent, float endingTangent)
+        {
+
+            float[] startingValuesF = new float[3];
+            float[] endingValuesF = new float[3];
+
+            startingValuesF[0] = startingValues.x;
+            startingValuesF[1] = startingValues.y;
+            startingValuesF[2] = startingValues.z;
+
+            endingValuesF[0] = endingValues.x;
+            endingValuesF[1] = endingValues.y;
+            endingValuesF[2] = endingValues.z;
+
+            float[] toReturn = CubicHermiteSpline(startingValuesF, endingValuesF, time, startingTangent, endingTangent);
             return toReturn;
         }
         #endregion
@@ -277,13 +322,26 @@ namespace UITK_SimpleTimeline
         /// </summary>
         /// <returns></returns>
         public abstract string ToAffectName();
-
+        /// <summary>
+        /// Re-order keyframes based on their time value (smallest time with smallest index, largest time with largest index).
+        /// </summary>
         public abstract void SortKeyframes();
-
+        /// <summary>
+        /// Get rid of all keyframes whose time value are larger than the given time.
+        /// </summary>
+        /// <param name="t">The given time in seconds.</param>
         public abstract void CleanOutKeyframesAfterTime(float t);
-
+        /// <summary>
+        /// Add a new keyframe to the curve at the given time.
+        /// </summary>
+        /// <param name="t">The given time in seconds.</param>
         public abstract void AddKeyframeToCurve(float t);
-
+        /// <summary>
+        /// Get the closest two indexes at the given time.
+        /// </summary>
+        /// <param name="t">The given time in seconds.</param>
+        /// <returns>Closest two indexes, index0 is to the left, index1 is to the right, unless given time
+        /// is larger the last keyframe, or smaller than the first.</returns>
         public abstract int[] ClosestTwoIndexes(float t);
 
         public abstract VisualElement UITKRepresentation(int index);
@@ -293,9 +351,6 @@ namespace UITK_SimpleTimeline
         /// </summary>
         /// <param name="go">GameObject (in-scene!) to set as root.</param>
         public void SetRootObject(GameObject go) { root = go; }
-
-        public WrapMode PreWrapMode = WrapMode.Default;
-        public WrapMode PostWrapMode = WrapMode.Default;
  
         /// <summary>
         /// Attempts to see if two floats are "close enough," based on a given tolerance

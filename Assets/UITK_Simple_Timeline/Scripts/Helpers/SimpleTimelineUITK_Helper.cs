@@ -70,7 +70,7 @@ namespace UITK_SimpleTimeline
             }
             catch
             {
-                Debug.LogWarning("The Helper doesn't have a WindowObject...");
+                Debug.LogWarning("The SimpleTimelineUITK_Helper doesn't have a WindowObject! Domain probably reloaded, try again.");
             }
         }
 

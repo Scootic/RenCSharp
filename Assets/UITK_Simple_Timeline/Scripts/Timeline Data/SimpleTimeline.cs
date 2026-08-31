@@ -8,7 +8,7 @@ namespace UITK_SimpleTimeline
     /// AnimationClip-style struct to handle animating things based on data that isn't in-scene (but also some in-scene things, too).
     /// </summary>
     [Serializable]
-    public struct SimpleTimeline
+    public struct SimpleTimeline : IDefaultableNotNull<SimpleTimeline>
     {
         public SimpleTimeline(float duration)
         {
@@ -16,6 +16,17 @@ namespace UITK_SimpleTimeline
             Duration = duration;
             sceneObject = null;
             Curves = new();
+        }
+
+        public readonly SimpleTimeline Default()
+        {
+            SimpleTimeline d = new();
+
+            d.Loop = false;
+            d.Duration = 10;
+            d.Curves = new();
+
+            return d;
         }
 
         public bool Loop;

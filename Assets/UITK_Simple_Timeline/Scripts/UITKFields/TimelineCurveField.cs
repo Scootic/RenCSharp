@@ -10,18 +10,7 @@ using Helper = UITK_SimpleTimeline.SimpleTimelineUITK_Helper;
 namespace UITK_SimpleTimeline
 {
     /// <summary>
-    /// Only exists as a way to play with a functionless TimelineCurveField in the UIBuilder window for 
-    /// Debugging purposes. Please ignore unless you are having trouble with the sizing of any custom elements.
-    /// (My condolenses if you dare do battle with UITK for some archaic hogwash.)
-    /// </summary>
-    [UxmlElement]
-    public partial class TestTimelineCurveField : TimelineCurveField<Vector3, string>
-    {
-
-    }
-
-    /// <summary>
-    /// god
+    /// guh
     /// </summary>
     /// <typeparam name="T">The values that are lerped</typeparam>
     /// <typeparam name="U">The object that is affected</typeparam>

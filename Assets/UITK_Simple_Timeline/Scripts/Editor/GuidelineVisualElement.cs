@@ -16,7 +16,7 @@ namespace UITK_SimpleTimeline.Editor
             style.width = 1f;
             style.maxWidth = 1f;
             style.minHeight = 500;
-            style.maxHeight = 99999;
+            //style.maxHeight = 99999;
             style.top = 0;
             style.bottom = 0;
             style.position = Position.Absolute;
@@ -30,7 +30,7 @@ namespace UITK_SimpleTimeline.Editor
             style.width = width;
             style.maxWidth = width;
             style.minHeight = 500;
-            style.maxHeight = 99999;
+            //style.maxHeight = 99999;
             style.top = 0;
             style.bottom = 0;
             style.position = Position.Absolute;
@@ -44,7 +44,7 @@ namespace UITK_SimpleTimeline.Editor
             style.width = 1f;
             style.maxWidth = 1f;
             style.minHeight = 500;
-            style.maxHeight = 99999;
+           //style.maxHeight = 99999;
             style.top = 0;
             style.bottom = 0;
             style.position = Position.Absolute;
@@ -58,7 +58,7 @@ namespace UITK_SimpleTimeline.Editor
             style.width = width;
             style.maxWidth = width;
             style.minHeight = 500;
-            style.maxHeight = 99999;
+            //style.maxHeight = 99999;
             style.top = 0;
             style.bottom = 0;
             style.position = Position.Absolute;

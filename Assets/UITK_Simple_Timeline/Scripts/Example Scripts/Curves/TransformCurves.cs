@@ -3,7 +3,7 @@ namespace UITK_SimpleTimeline
 {
     /// <summary>
     /// Example curve that affects a transform's position. Uses transform .Find() to parse GameObject hierarchy,
-    /// so if you want to get a child of a child use this pattern: child1/subchild2
+    /// so if you want to get a child of a child use this pattern: childN/subchild#
     /// </summary>
     public class PositionCurve : TypedTimelineCurve<Vector3, string>, ILerpable
     {
@@ -12,21 +12,23 @@ namespace UITK_SimpleTimeline
         public override string ToAffectName() => "Hierarchy Path to Move";
         private Vector3 EvaluateV3(float time)
         {
-            Vector3 toReturn = new();
+            Vector3 toReturn;
             
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
             float[] tangents = GetTangents(toEval);
+            /*
             float[] cubics = GetCubicValues(time);
-
-            //general pattern for evaluating float values from keyframes:
-            ///float example = cubics[0] * firstKeyFrameValue + cubics[1] * tangents[0] + cubics[2] * tangents[1]
-            ///+ cubics[3] * secondKeyFrameValue
             float x = cubics[0] * toEval[0].Value.x + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.x;
             float y = cubics[0] * toEval[0].Value.y + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.y;
             float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
 
-            toReturn = new(x, y, z);
+            toReturn = new(x, y, z);*/
+
+            float[] veccy = CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
+                TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1]);
+            toReturn = new(veccy[0], veccy[1], veccy[2]);
+
             if (root == null) { return toReturn; }
             Transform t = root.transform.Find(ToAffect);
             t.localPosition = toReturn;
@@ -61,17 +63,21 @@ namespace UITK_SimpleTimeline
         public override string ToAffectName() => "Hierarchy Path to Scale";
         private Vector3 EvaluateV3(float time)
         {
-            Vector3 toReturn = new();
+            Vector3 toReturn;
 
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
             float[] tangents = GetTangents(toEval);
+            /*
             float[] cubics = GetCubicValues(time);
             //???????
             float x = cubics[0] * toEval[0].Value.x + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.x;
             float y = cubics[0] * toEval[0].Value.y + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.y;
             float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
-            toReturn = new(x, y, z);
+            toReturn = new(x, y, z);*/
+            float[] veccy = CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
+                TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1]);
+            toReturn = new(veccy[0], veccy[1], veccy[2]);
 
             if (root == null) {return toReturn; }
             
@@ -109,10 +115,11 @@ namespace UITK_SimpleTimeline
         public override string ToAffectName() => "Hierarchy Path to Rotate";
         private Quaternion EvaluateQ(float time)
         {
-            Quaternion toReturn = new();
+            Quaternion toReturn;
 
             TimelineKeyframe<Quaternion>[] toEval = ClosestTwoKeyframes(time);
-
+            float perc = TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time);
+            /*
             float[] tangents = GetTangents(toEval);
             float[] cubics = GetCubicValues(time);
 
@@ -120,8 +127,9 @@ namespace UITK_SimpleTimeline
             float y = cubics[0] * toEval[0].Value.y + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.y;
             float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
             float w = cubics[0] * toEval[0].Value.w + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.w;
-
-            toReturn = new(x,y,z,w);
+            
+            toReturn = new(x,y,z,w);*/
+            toReturn = Quaternion.Slerp(toEval[0].Value, toEval[1].Value, perc);
             if (root == null) { return toReturn; }
             Transform t = root.transform.Find(ToAffect);
             t.localRotation = toReturn;
