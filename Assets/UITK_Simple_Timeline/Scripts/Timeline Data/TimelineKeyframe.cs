@@ -37,10 +37,11 @@ namespace UITK_SimpleTimeline
         {
             //doesn't set value at all?
             Keyframe toReturn = new();
-
+#pragma warning disable CS0618
             toReturn.time = tk.Time;
             toReturn.weightedMode = tk.WeightedMode;
             toReturn.tangentMode = (int)tk.TangentMode;
+#pragma warning restore CS0618
             toReturn.inWeight = tk.InWeight;
             toReturn.outWeight = tk.OutWeight;
             toReturn.inTangent = tk.InTangent;

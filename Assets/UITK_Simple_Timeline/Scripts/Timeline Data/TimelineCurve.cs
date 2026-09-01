@@ -52,7 +52,6 @@ namespace UITK_SimpleTimeline
             }
             //otherwise, just add a blank keyframe if it's the first of its kind.
             keyframes.Add(toAdd);
-            Debug.Log("New keyframes length: " + Length);
         }
 
         public void RemoveKeyframeFromCurve(float time)

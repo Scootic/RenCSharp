@@ -131,7 +131,7 @@ namespace RenCSharp
             Button_Inputs.ProgressTextBox -= ProgressToNextScreen;
             Button_Inputs.OpenConsole -= FlipPauseSequence;
             Object_Factory.ScrubDictionary(); //the dictionary is static, so we don't want to keep storing garbage forever.
-            FlagToken ft = new FlagToken(Flag_Manager.GetPersistentDataFlags); //save the persistent flags
+            FlagToken ft = new(Flag_Manager.GetPersistentDataFlags); //save the persistent flags
             for (int i = 0; i < ft.FlagIDs.Count; i++)
             {
                 Debug.Log("Saved PFlag: " + ft.FlagIDs[i] + ", Value: " + ft.FlagValues[i]);

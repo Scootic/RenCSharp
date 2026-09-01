@@ -30,8 +30,10 @@ namespace UITK_SimpleTimeline
             toReturn = new(veccy[0], veccy[1], veccy[2]);
 
             if (root == null) { return toReturn; }
+
             Transform t = root.transform.Find(ToAffect);
-            t.localPosition = toReturn;
+            if(!toReturn.HasNaN())t.localPosition = toReturn;
+
             return toReturn;
         }
 
@@ -80,9 +82,10 @@ namespace UITK_SimpleTimeline
             toReturn = new(veccy[0], veccy[1], veccy[2]);
 
             if (root == null) {return toReturn; }
-            
+
             Transform t = root.transform.Find(ToAffect);
-            t.localScale = toReturn;
+            if(!toReturn.HasNaN())t.localScale = toReturn;
+
             return toReturn;
         }
 
@@ -108,19 +111,19 @@ namespace UITK_SimpleTimeline
     /// Example curve that affects a transform's rotation. Uses transform .Find() to parse GameObject hierarchy,
     /// so if you want to get a child of a child use this pattern: child1/subchild2
     /// </summary>
-    public class RotationCurve : TypedTimelineCurve<Quaternion, string>, ILerpable
+    public class RotationCurve : TypedTimelineCurve<Vector3, string>, ILerpable
     {
         public override string ShorthandCurveName() => "Local Rotation Curve";
-        public override string SpawnKeyframeName() => "Quaternion Keyframe";
+        public override string SpawnKeyframeName() => "Euler Angle (Vec3) Keyframe";
         public override string ToAffectName() => "Hierarchy Path to Rotate";
         private Quaternion EvaluateQ(float time)
         {
             Quaternion toReturn;
 
-            TimelineKeyframe<Quaternion>[] toEval = ClosestTwoKeyframes(time);
+            TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
             float perc = TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time);
-            /*
-            float[] tangents = GetTangents(toEval);
+            
+            float[] tangents = GetTangents(toEval);/*
             float[] cubics = GetCubicValues(time);
 
             float x = cubics[0] * toEval[0].Value.x + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.x;
@@ -129,10 +132,16 @@ namespace UITK_SimpleTimeline
             float w = cubics[0] * toEval[0].Value.w + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.w;
             
             toReturn = new(x,y,z,w);*/
-            toReturn = Quaternion.Slerp(toEval[0].Value, toEval[1].Value, perc);
+
+            float[] veccy = CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
+                 TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1]);
+            Vector3 eulerToBe = new(veccy[0], veccy[1], veccy[2]);
+            toReturn = eulerToBe != Vector3.zero && !eulerToBe.HasNaN() ? Quaternion.Euler(eulerToBe) : Quaternion.identity;
             if (root == null) { return toReturn; }
+
             Transform t = root.transform.Find(ToAffect);
             t.localRotation = toReturn;
+
             return toReturn;
         }
 
@@ -145,7 +154,7 @@ namespace UITK_SimpleTimeline
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "Rotation curve is not yet valid! Give him some keyframes!";
-            return $"{ToAffect}.localRot should be: {EvaluateQ(time)}. ToAffect in root? {root.transform.Find(ToAffect)}";
+            return $"{ToAffect}.localRot should be: {EvaluateQ(time)}.";
         }
 
         public override string ToString()

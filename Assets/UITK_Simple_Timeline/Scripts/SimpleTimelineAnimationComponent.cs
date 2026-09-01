@@ -52,7 +52,7 @@ namespace UITK_SimpleTimeline
             }
             else
             {
-                Debug.LogWarning($"GameObject: {name} was given an index that was outside of timeline array range. ({index})");
+                Debug.LogWarning($"SimpleTimelineAnimationComponent: {name}, was given an index that was outside of timeline array range. ({index})");
             }
         }
 

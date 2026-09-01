@@ -79,7 +79,7 @@ namespace UITK_SimpleTimeline
         /// </summary>
         /// <param name="field">The PropertyField you want to get the SerializedProperty out of.</param>
         /// <returns>The bound SerializedProperty (m_SerializedProperty in the PropertyField class). Null if the process fails.</returns>
-        public static SerializedProperty GetBoundProperty(PropertyField field)
+        public static SerializedProperty GetBoundProperty(this PropertyField field)
         {
             SerializedProperty toReturn;
             FieldInfo spField;
@@ -104,6 +104,16 @@ namespace UITK_SimpleTimeline
             }
 
             return toReturn;
+        }
+
+        public static bool HasNaN(this Vector3 v3)
+        {
+            return float.IsNaN(v3.x) || float.IsNaN(v3.y) || float.IsNaN(v3.z);
+        }
+
+        public static bool HasNaN(this Quaternion q)
+        {
+            return float.IsNaN(q.x) || float.IsNaN(q.y) || float.IsNaN(q.z) || float.IsNaN(q.w);
         }
     }
 }

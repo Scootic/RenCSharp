@@ -314,7 +314,7 @@ namespace UITK_SimpleTimeline
             Helper.ApplyChangesToObject();
             MarkDirtyRepaint();
             //keyframesProperty = curveProperty.FindPropertyRelative("keyframes"); //make sure he's fresh
-            Debug.Log("Keyframe Property length? " + keyframesProperty.arraySize + "Boxedvalue length?!?" + (curveProperty.boxedValue as TypedTimelineCurve<T, U>).Length);
+            //Debug.Log("Keyframe Property length? " + keyframesProperty.arraySize + "Boxedvalue length?!?" + (curveProperty.boxedValue as TypedTimelineCurve<T, U>).Length);
             RegenerateElement();
         }
 

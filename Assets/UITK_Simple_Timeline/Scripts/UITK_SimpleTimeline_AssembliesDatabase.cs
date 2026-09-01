@@ -77,11 +77,11 @@ namespace UITK_SimpleTimeline
         {
             Do();
         }
-
+        /*
         private void OnEnable()
         {
             Do();
-        }
+        }*/
 
         [Serializable]
         private class RealAssemblyName
