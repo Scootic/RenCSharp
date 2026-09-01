@@ -17,14 +17,6 @@ namespace UITK_SimpleTimeline
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
             float[] tangents = GetTangents(toEval);
-            /*
-            float[] cubics = GetCubicValues(time);
-            float x = cubics[0] * toEval[0].Value.x + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.x;
-            float y = cubics[0] * toEval[0].Value.y + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.y;
-            float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
-
-            toReturn = new(x, y, z);*/
-
             float[] veccy = CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
                 TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1]);
             toReturn = new(veccy[0], veccy[1], veccy[2]);
@@ -70,13 +62,6 @@ namespace UITK_SimpleTimeline
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
             float[] tangents = GetTangents(toEval);
-            /*
-            float[] cubics = GetCubicValues(time);
-            //???????
-            float x = cubics[0] * toEval[0].Value.x + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.x;
-            float y = cubics[0] * toEval[0].Value.y + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.y;
-            float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
-            toReturn = new(x, y, z);*/
             float[] veccy = CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
                 TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1]);
             toReturn = new(veccy[0], veccy[1], veccy[2]);
@@ -123,15 +108,7 @@ namespace UITK_SimpleTimeline
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
             float perc = TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time);
             
-            float[] tangents = GetTangents(toEval);/*
-            float[] cubics = GetCubicValues(time);
-
-            float x = cubics[0] * toEval[0].Value.x + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.x;
-            float y = cubics[0] * toEval[0].Value.y + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.y;
-            float z = cubics[0] * toEval[0].Value.z + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.z;
-            float w = cubics[0] * toEval[0].Value.w + cubics[1] * tangents[0] + cubics[2] * tangents[1] + cubics[3] * toEval[1].Value.w;
-            
-            toReturn = new(x,y,z,w);*/
+            float[] tangents = GetTangents(toEval);
 
             float[] veccy = CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
                  TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1]);
