@@ -24,6 +24,21 @@ namespace UITK_SimpleTimeline.Editor
         {
 
         }
+
+        public float SplineAtTime(float time, float startingTangent, float endingTangent)
+        {
+            float timeSqr = time * time;
+            float timeCub = timeSqr * time;
+
+            float toReturn;
+
+            toReturn = ((2 * timeCub - 3 * timeSqr + 1) * 0) + //val1
+               ((timeCub - 2 * timeSqr + time) * startingTangent) +
+               ((-2 * timeCub + 3 * timeSqr) * 1) + //val2
+               ((timeCub - timeSqr) * endingTangent);
+
+            return toReturn;
+        }
     }
 }
 #endif
