@@ -12,9 +12,10 @@ namespace UITK_SimpleTimeline.Editor
     public partial class SimpleTimelineUITKField : BaseField<SimpleTimeline>
     {
         protected readonly VisualElement SimpleTimelineInfoHolder, TimelineHolder, 
-            TimelineControlsHolder, KeyframeControlsHolder, ScrollViewContent;
+            TimelineControlsHolder, ScrollViewContent;
         protected readonly GuidelineVisualElement CurrentTimePreview, EndTimePreview, GrayOverlay;
         protected readonly TimelineRuler TimelineRuler;
+        protected readonly TimelineKeyframe_CurveRenderer KeyframeCurvePreview;
 
         protected readonly IntegerField CurrentFrameField;
         protected readonly FloatField DurationField, CurrentSecondsField;
@@ -28,7 +29,7 @@ namespace UITK_SimpleTimeline.Editor
         /// <summary>
         /// The scrollable area
         /// </summary>
-        protected readonly ScrollView TimelineScrollView;
+        protected readonly ScrollView TimelineScrollView, KeyframeControlsHolder;
 
         /// <summary>
         /// Keyframe Knob property viewer.
@@ -415,6 +416,9 @@ namespace UITK_SimpleTimeline.Editor
             CurrentKeyframeField.style.flexWrap = Wrap.Wrap;
             KeyframeControlsHolder.Add(CurrentKeyframeField);
 
+            KeyframeCurvePreview = new() { name = "KeyframeCurvePreview"};
+            KeyframeControlsHolder.Add(KeyframeCurvePreview);
+
             #region TimelineHolder
             //holds all timeline chicanery
             TimelineHolder = new() { name = "TimelineHolder" };
@@ -727,6 +731,15 @@ namespace UITK_SimpleTimeline.Editor
             CurTimelineKnob = ve;
             CurrentKeyframeField.BindProperty(keyframeToDisplay);
             CurrentKeyframeField.RegisterCallback<SerializedPropertyChangeEvent>(AdjustCurrentKeyframeBasedOnTime);
+            int curveI = keyframeToDisplay.FindPropertyRelative("CurveIndex").intValue;
+            int curveK = keyframeToDisplay.FindPropertyRelative("KeyframeIndex").intValue;
+            SerializedProperty toRight = null;
+            SerializedProperty keyframeList = Helper.CurvesProperty.GetArrayElementAtIndex(curveI).FindPropertyRelative("keyframes");
+            if (curveK < keyframeList.arraySize - 1)
+            {
+                toRight = keyframeList.GetArrayElementAtIndex(curveK + 1);
+                KeyframeCurvePreview.ReceiveKeyframes(keyframeToDisplay, toRight);
+            }else KeyframeCurvePreview.ReceiveKeyframes(keyframeToDisplay, null);
         }
         //basically the same method as dragging, except it happens when you change the Time value directly in the property
         protected void AdjustCurrentKeyframeBasedOnTime(SerializedPropertyChangeEvent evt)

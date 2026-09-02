@@ -214,7 +214,7 @@ namespace UITK_SimpleTimeline
             KeyframeContainer.style.flexShrink = -1;
             Add(KeyframeContainer);
 
-            SpawnKeyframeKnobs(); //this works when the keyframes are already present, not when adding them?!?
+            SpawnKeyframeKnobs();
             RegisterGenericMenus();
             MarkDirtyRepaint();
 
@@ -239,8 +239,7 @@ namespace UITK_SimpleTimeline
 
             for(int i = 0; i < keyframesProperty.arraySize; i++)
             {
-                //Debug.Log("Curve keyframe index: " + i);
-                TimelineKnob<T> tKnob = new("", keyframesProperty.GetArrayElementAtIndex(i));
+                TimelineKnob<T> tKnob = new("", keyframesProperty.GetArrayElementAtIndex(i), i, myPropertyIndex);
                 float time = tKnob.value.Time;
                 tKnob.transform.position = new Vector3(Helper.PixelWidthPerSeconds * time - tKnob.style.width.value.value * 0.5f - 2, 0, 0);
                 tKnob.DeleteKnobAction += delegate
@@ -313,8 +312,6 @@ namespace UITK_SimpleTimeline
             (curveProperty.boxedValue as TypedTimelineCurve<T, U>).AddKeyframeToCurve(t);
             Helper.ApplyChangesToObject();
             MarkDirtyRepaint();
-            //keyframesProperty = curveProperty.FindPropertyRelative("keyframes"); //make sure he's fresh
-            //Debug.Log("Keyframe Property length? " + keyframesProperty.arraySize + "Boxedvalue length?!?" + (curveProperty.boxedValue as TypedTimelineCurve<T, U>).Length);
             RegenerateElement();
         }
 

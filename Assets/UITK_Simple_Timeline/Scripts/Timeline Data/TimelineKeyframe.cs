@@ -33,6 +33,7 @@ namespace UITK_SimpleTimeline
 
     public abstract class TimelineKeyframe : IComparable
     {
+        public int KeyframeIndex, CurveIndex;
         /// <summary>
         /// In seconds.
         /// </summary>

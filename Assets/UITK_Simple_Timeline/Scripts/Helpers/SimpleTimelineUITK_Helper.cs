@@ -33,7 +33,9 @@ namespace UITK_SimpleTimeline
 
         public static readonly Color SecondLayerBG = new(0.2f, 0.2f, 0.2f, 1);
         public static readonly Color SecondLayerBorder = new(0.1f, 0.1f, 0.1f, 1);
+        public static readonly Color ThirdLayerBorder = new(0.4f,0.4f,0.4f,1);
         public static readonly Color SelectedKeyframe = new(0.7f, 0.95f, 0, 1);
+        public static readonly Color NeonGreen = new(0,1,0, 1f);
         public static readonly Color HalfTransparentWhite = new(1, 1, 1, 0.5f);
         public static readonly Color QuarterTransparentBlack = new(0, 0, 0, 0.25f);
         public static readonly Color QuarterTransparentWhite = new(1, 1, 1, 0.25f);

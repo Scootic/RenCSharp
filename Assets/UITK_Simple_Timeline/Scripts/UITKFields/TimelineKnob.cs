@@ -15,6 +15,7 @@ namespace UITK_SimpleTimeline
         protected PointerMoveEvent dragKnob;
         public Action DeleteKnobAction;
         public SerializedProperty KnobProperty;
+        
         public GenericMenu DeleteMe
         {
             get
@@ -52,7 +53,7 @@ namespace UITK_SimpleTimeline
             style.height = 35f;
             style.width = 35f;
         }
-        public TimelineKnob(string labelText, SerializedProperty knobProperty) : base(labelText, new VisualElement())
+        public TimelineKnob(string labelText, SerializedProperty knobProperty, int kindex, int cindex) : base(labelText, new VisualElement())
         {
             value = knobProperty.boxedValue as TimelineKeyframe<T>;
             if (knobImage == null) knobImage = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath + "/timelinediamond.png");
@@ -64,6 +65,9 @@ namespace UITK_SimpleTimeline
             style.top = 15;
             halfwayOffset = (style.width.value.value * 0.5f) - 2;
             KnobProperty = knobProperty;
+            KnobProperty.FindPropertyRelative("KeyframeIndex").intValue = kindex;
+            KnobProperty.FindPropertyRelative("CurveIndex").intValue = cindex;
+            Helper.ApplyChangesToObject();
             RegisterCallback<PointerMoveEvent>(DragKnob);
             Helper.ReceiveKeyframe += SelectKnobColoring;
         }
