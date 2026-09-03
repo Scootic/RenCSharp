@@ -11,11 +11,14 @@ namespace UITK_SimpleTimeline.Editor
     {
         private const int lineResolution = 50;
         SerializedProperty l = null, r = null;
-        private TimelineKeyframe Left => l.boxedValue as TimelineKeyframe;
-        private TimelineKeyframe Right => r.boxedValue as TimelineKeyframe;
+        private TangentHandle outTanL, inTanR;
         private static Painter2D Painter;
         private Label label;
         private VisualElement tracker;
+
+        private TimelineKeyframe Left => l.boxedValue as TimelineKeyframe;
+        private TimelineKeyframe Right => r.boxedValue as TimelineKeyframe;
+
         public TimelineKeyframe_CurveRenderer()
         {
             style.borderBottomColor = Helper.ThirdLayerBorder;
@@ -53,6 +56,14 @@ namespace UITK_SimpleTimeline.Editor
                 tracker.style.width = 0;
                 Add(tracker);
 
+                outTanL = new(Vector2.zero,0f);
+                outTanL.GiveCurAngle += ReceiveLAngle;
+                inTanR = new(Vector2.down,180f);
+                inTanR.GiveCurAngle += ReceiveRAngle;
+
+                Add(outTanL);
+                Add(inTanR);
+
                 tracker.TrackPropertyValue(l, callback => { RegenerateElement(); });
                 tracker.TrackPropertyValue(r, callback => { RegenerateElement(); });
                 RegenerateElement();
@@ -60,6 +71,19 @@ namespace UITK_SimpleTimeline.Editor
             else
             {
                 style.backgroundImage = null;
+                style.minHeight = 50f;
+
+                if(outTanL != null)
+                {
+                    Remove(outTanL);
+                    outTanL = null;
+                }
+                if(inTanR != null)
+                {
+                    Remove(inTanR);
+                    inTanR = null;
+                }
+
                 if(Painter != null)
                 {
                     Painter.Clear();
@@ -86,12 +110,13 @@ namespace UITK_SimpleTimeline.Editor
 
         public void RegenerateElement()
         {
+            float minY = 0;
+            float maxY = 1;
             if (l == null || r == null)
             {
                 return;
             }
             if (Painter != null) { Painter.Clear(); Painter.Dispose(); }
-            Debug.Log("Painting!");
             Painter = new();
             Painter.lineWidth = 1f;
             Painter.lineCap = LineCap.Round;
@@ -104,24 +129,48 @@ namespace UITK_SimpleTimeline.Editor
             {
                 float percT = (float)i / (float)lineResolution;
                 Vector2 v2 = new(percT, SplineAtTime(percT, tangents[0], tangents[1]) * -1);
+                maxY = Mathf.Max(maxY, v2.y * -1);
+                minY = Mathf.Min(minY, v2.y * -1);
                 v2 *= 200f;
-                Debug.Log($"v2: {v2}");
                 Painter.LineTo(v2);
             }
             Painter.Stroke();
             VectorImage goose = ScriptableObject.CreateInstance<VectorImage>();
             Painter.SaveToVectorImage(goose);
+
+            float difference = maxY - minY;
+
             style.backgroundImage = new StyleBackground(Background.FromVectorImage(goose));
+            style.unityBackgroundScaleMode = ScaleMode.StretchToFill;
+            style.minHeight = difference;
+            style.backgroundPositionY = new BackgroundPosition(BackgroundPositionKeyword.Top,minY);
+        }
+
+        private void ReceiveLAngle(float angle)
+        {
+            l.FindPropertyRelative("OutTangent").floatValue = AngleToTangent(angle);
+            Helper.ApplyChangesToObject();
+        }
+
+        private void ReceiveRAngle(float angle)
+        {
+            r.FindPropertyRelative("InTangent").floatValue = AngleToTangent(angle);
+            Helper.ApplyChangesToObject();
+        }
+
+        private float AngleToTangent(float angle)
+        {
+            float toReturn = 0f;
+
+            return toReturn;
         }
 
         private float[] GetTangents()
         {
             float[] toReturn = new float[2];
-            Debug.Log($"RightTime: {Right.Time}, LeftTime: {Left.Time}");
             float difT = Right.Time - Left.Time;
             toReturn[0] = Left.OutTangent * difT;
             toReturn[1] = Right.InTangent * difT;
-            Debug.Log($"difT: {difT}, LeftOutTan: {toReturn[0]}, RightInTan: {toReturn[1]}");
             return toReturn;
         }
 
