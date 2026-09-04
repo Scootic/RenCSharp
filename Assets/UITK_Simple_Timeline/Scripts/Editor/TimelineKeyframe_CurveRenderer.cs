@@ -16,6 +16,8 @@ namespace UITK_SimpleTimeline.Editor
         private Label label;
         private VisualElement tracker;
 
+        private readonly FloatField tangentStrengthField;
+
         private TimelineKeyframe Left => l.boxedValue as TimelineKeyframe;
         private TimelineKeyframe Right => r.boxedValue as TimelineKeyframe;
 
@@ -34,13 +36,35 @@ namespace UITK_SimpleTimeline.Editor
             style.borderLeftWidth = 1;
             style.borderBottomWidth = 1;
             style.backgroundColor = Helper.SecondLayerBorder;
+
+            tangentStrengthField = new("Tangent Handles Strength");
+            tangentStrengthField.tooltip = "Defines how large the maximum/minimum tangent is whenever a handle is at a maxed out position.";
+            tangentStrengthField.value = EditorPrefs.GetFloat("uitk_tangentfieldstrength", 1f);
+            tangentStrengthField.RegisterValueChangedCallback(evt => { EditorPrefs.SetFloat("uitk_tangentfieldstrength", evt.newValue); });
+            tangentStrengthField.style.top = Length.Percent(100f);
+            tangentStrengthField.style.bottom = -20f;
+            Add(tangentStrengthField);
+
             ReceiveKeyframes(null,null);
         }
 
         public void ReceiveKeyframes(SerializedProperty newL, SerializedProperty newR)
         {
+            //no matter what, clean up the stinkin' tangent handles.
+            if (outTanL != null)
+            {
+                Remove(outTanL);
+                outTanL = null;
+            }
+            if (inTanR != null)
+            {
+                Remove(inTanR);
+                inTanR = null;
+            }
+
             if (newL != null && newR != null)
             {
+                tangentStrengthField.visible = true;
                 if (tracker != null) { Remove(tracker); tracker = null; }
 
                 if (label != null)
@@ -56,9 +80,9 @@ namespace UITK_SimpleTimeline.Editor
                 tracker.style.width = 0;
                 Add(tracker);
 
-                outTanL = new(Vector2.zero,0f);
+                outTanL = new(new Vector2(0, style.height.value.value),0f, GetLAngle(), "Handles the out-tangent for left keyframe (the selected one).");
                 outTanL.GiveCurAngle += ReceiveLAngle;
-                inTanR = new(Vector2.down,180f);
+                inTanR = new(new Vector2(style.width.value.value * 2f, style.height.value.value),180f, GetRAngle(), "Handles the in-tangent for right keyframe (the one to right of selected one).");
                 inTanR.GiveCurAngle += ReceiveRAngle;
 
                 Add(outTanL);
@@ -70,19 +94,9 @@ namespace UITK_SimpleTimeline.Editor
             }
             else
             {
+                tangentStrengthField.visible = false;
                 style.backgroundImage = null;
                 style.minHeight = 50f;
-
-                if(outTanL != null)
-                {
-                    Remove(outTanL);
-                    outTanL = null;
-                }
-                if(inTanR != null)
-                {
-                    Remove(inTanR);
-                    inTanR = null;
-                }
 
                 if(Painter != null)
                 {
@@ -123,12 +137,12 @@ namespace UITK_SimpleTimeline.Editor
             Painter.lineJoin = LineJoin.Round;
             Painter.strokeColor = Helper.NeonGreen;
             Painter.BeginPath();
-            float[] tangents = GetTangents();
+            float[] tangents = CurveMath.GetTangents(new TimelineKeyframe[]{Left,Right});
             Painter.MoveTo(Vector2.zero);
             for(int i = 0; i < lineResolution; i++)
             {
                 float percT = (float)i / (float)lineResolution;
-                Vector2 v2 = new(percT, SplineAtTime(percT, tangents[0], tangents[1]) * -1);
+                Vector2 v2 = new(percT, CurveMath.NormalizedCubicHermiteSpline(percT, tangents[0], tangents[1]) * -1);
                 maxY = Mathf.Max(maxY, v2.y * -1);
                 minY = Mathf.Min(minY, v2.y * -1);
                 v2 *= 200f;
@@ -141,52 +155,41 @@ namespace UITK_SimpleTimeline.Editor
             float difference = maxY - minY;
 
             style.backgroundImage = new StyleBackground(Background.FromVectorImage(goose));
+#pragma warning disable CS0618
             style.unityBackgroundScaleMode = ScaleMode.StretchToFill;
+#pragma warning restore
             style.minHeight = difference;
             style.backgroundPositionY = new BackgroundPosition(BackgroundPositionKeyword.Top,minY);
         }
 
         private void ReceiveLAngle(float angle)
         {
-            l.FindPropertyRelative("OutTangent").floatValue = AngleToTangent(angle);
+            //-90 is positive, 90 is negative
+            float angleNormalized = angle / -90f;
+            l.FindPropertyRelative("OutTangent").floatValue = angleNormalized * tangentStrengthField.value;
             Helper.ApplyChangesToObject();
+        }
+
+        private float GetLAngle()
+        {
+            float tangent = l.FindPropertyRelative("OutTangent").floatValue;
+            float angleNormalized = tangent / tangentStrengthField.value;
+            return Mathf.Clamp(angleNormalized * -90f, -90f, 90f);
         }
 
         private void ReceiveRAngle(float angle)
         {
-            r.FindPropertyRelative("InTangent").floatValue = AngleToTangent(angle);
+            //270 is positive, 90 is negative
+            float angleNormalized = (angle - 180) / 90f;
+            r.FindPropertyRelative("InTangent").floatValue = angleNormalized * tangentStrengthField.value;
             Helper.ApplyChangesToObject();
         }
 
-        private float AngleToTangent(float angle)
+        private float GetRAngle()
         {
-            float toReturn = 0f;
-
-            return toReturn;
-        }
-
-        private float[] GetTangents()
-        {
-            float[] toReturn = new float[2];
-            float difT = Right.Time - Left.Time;
-            toReturn[0] = Left.OutTangent * difT;
-            toReturn[1] = Right.InTangent * difT;
-            return toReturn;
-        }
-
-        private float SplineAtTime(float time, float startingTangent, float endingTangent)
-        {
-            float timeSqr = time * time;
-            float timeCub = timeSqr * time;
-
-            float toReturn;
-
-            toReturn = ((2 * timeCub - 3 * timeSqr + 1) * 0) + //val1
-               ((timeCub - 2 * timeSqr + time) * startingTangent) +
-               ((-2 * timeCub + 3 * timeSqr) * 1) + //val2
-               ((timeCub - timeSqr) * endingTangent);
-
-            return toReturn;
+            float tangent = r.FindPropertyRelative("InTangent").floatValue;
+            float angleNormalized = tangent / tangentStrengthField.value;
+            return Mathf.Clamp(angleNormalized * 90f + 180f, 90f, 270f);
         }
     }
 }

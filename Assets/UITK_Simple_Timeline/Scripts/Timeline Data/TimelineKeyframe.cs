@@ -1,9 +1,6 @@
 
 using System;
 using UnityEngine;
-#if UNITY_EDITOR
-using static UnityEditor.AnimationUtility;
-#endif
 namespace UITK_SimpleTimeline
 {
     [Serializable]
@@ -12,6 +9,11 @@ namespace UITK_SimpleTimeline
         public T Value;
         
 #if UNITY_EDITOR
+        /// <summary>
+        /// Deranged weirdo method to get a valueless unity keyframe out of a TimelineKeyframe<T>
+        /// </summary>
+        /// <param name="tk"></param>
+        /// <returns></returns>
         public static Keyframe GetKeyframeFromTK(TimelineKeyframe<T> tk)
         {
             //doesn't set value at all?
@@ -41,15 +43,13 @@ namespace UITK_SimpleTimeline
         public float InSlope;
         public float OutSlope;
 
-#if UNITY_EDITOR
-        public TangentMode TangentMode;
-#endif
-        public WeightedMode WeightedMode;
-
-        public float InWeight;
-        public float OutWeight;
+        public TimelineKeyframeTangentMode TangentMode;
         public float InTangent;
         public float OutTangent;
+
+        public WeightedMode WeightedMode;
+        public float InWeight;
+        public float OutWeight;
 
         public int CompareTo(object obj) //super dee duper make sure we're ordering our lists by time, because duh
         {

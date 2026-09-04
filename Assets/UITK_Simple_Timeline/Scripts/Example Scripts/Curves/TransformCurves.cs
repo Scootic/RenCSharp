@@ -16,7 +16,7 @@ namespace UITK_SimpleTimeline
             
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
-            float[] tangents = GetTangents(toEval);
+            float[] tangents = CurveMath.GetTangents(toEval);
             float[] veccy = CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
                 TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1]);
             toReturn = new(veccy[0], veccy[1], veccy[2]);
@@ -61,7 +61,7 @@ namespace UITK_SimpleTimeline
 
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
-            float[] tangents = GetTangents(toEval);
+            float[] tangents = CurveMath.GetTangents(toEval);
             float[] veccy = CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
                 TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1]);
             toReturn = new(veccy[0], veccy[1], veccy[2]);
@@ -108,7 +108,7 @@ namespace UITK_SimpleTimeline
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
             float perc = TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time);
             
-            float[] tangents = GetTangents(toEval);
+            float[] tangents = CurveMath.GetTangents(toEval);
 
             float[] veccy = CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
                  TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1]);

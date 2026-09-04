@@ -13,15 +13,6 @@ namespace UITK_SimpleTimeline
     public static class SimpleTimelineUITK_Helper 
     {
         /// <summary>
-        /// Get a current keyframe whenever you click on a TimelineKnob in the Editor Window
-        /// </summary>
-        public static Action<SerializedProperty, VisualElement> ReceiveKeyframe;
-        /// <summary>
-        /// Fires when you right-click delete a TimelineCurve from the Editor Window
-        /// </summary>
-        public static Action<TimelineCurve> RemoveTimelineCurve;
-
-        /// <summary>
         /// The amount of pixels that equals one second along the TimelineRuler
         /// </summary>
         public static readonly float PixelWidthPerSeconds = 32f; //?
@@ -47,8 +38,15 @@ namespace UITK_SimpleTimeline
         /// Should include the Assets folder as the root of the format: Assets/.../UITK_Simple_Timeline/EditorIcons
         /// </summary>
         public static readonly string EditorIconAssetPath = "Assets/UITK_Simple_Timeline/EditorIcons";
-
         public static readonly StyleLength Auto = new(StyleKeyword.Auto);
+        /// <summary>
+        /// Get a current keyframe whenever you click on a TimelineKnob in the Editor Window
+        /// </summary>
+        public static Action<SerializedProperty, VisualElement> ReceiveKeyframe;
+        /// <summary>
+        /// Fires when you right-click delete a TimelineCurve from the Editor Window
+        /// </summary>
+        public static Action<TimelineCurve> RemoveTimelineCurve;
         /// <summary>
         /// Texture used by the TimelineScrollView's content to be a slightly grayed out underlay to extend the ruler's
         /// measurements down without being too obtrusive. (Hopefully.)

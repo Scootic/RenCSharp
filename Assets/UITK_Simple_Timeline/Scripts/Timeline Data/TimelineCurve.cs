@@ -220,46 +220,6 @@ namespace UITK_SimpleTimeline
 
         #region StupidMath
         /// <summary>
-        /// Returns the in-tangent and out-tangent values of two keyframes.
-        /// </summary>
-        /// <param name="frames">Keyframe Array of size 2</param>
-        /// <returns>The tangents. OutTangent = i0, InTangent = i1</returns>
-        public virtual float[] GetTangents(TimelineKeyframe<T>[] frames)
-        {
-            float[] toReturn = new float[2];
-            float difT = frames[1].Time - frames[0].Time;
-            toReturn[0] = frames[0].OutTangent * difT;
-            toReturn[1] = frames[1].InTangent * difT;
-            return toReturn;
-        }
-
-        /// <summary>
-        /// The math that provides a way to intepret between float values based on given time and tangents.
-        /// </summary>
-        /// <param name="startingValues"></param>
-        /// <param name="endingValues"></param>
-        /// <param name="time"></param>
-        /// <param name="startingTangent"></param>
-        /// <param name="endingTangent"></param>
-        /// <returns>An array of equal size to startingValues, containing the in-betweens.</returns>
-        public virtual float[] CubicHermiteSpline(float[] startingValues, float[] endingValues, float time, float startingTangent, float endingTangent)
-        {
-            float timeSqr = time * time;
-            float timeCub = timeSqr * time;
-
-            float[] toReturn = new float[startingValues.Length];
-
-            for (int i = 0; i < startingValues.Length; i++)
-            {
-                toReturn[i] = ((2 * timeCub - 3 * timeSqr + 1) * startingValues[i]) +
-                    ((timeCub - 2 * timeSqr + time) * startingTangent) +
-                    ((-2 * timeCub + 3 * timeSqr) * endingValues[i]) +
-                    ((timeCub - timeSqr) * endingTangent);
-            }
-
-            return toReturn;
-        }
-        /// <summary>
         /// The math that provides a way to intepret between float values based on given time and tangents.
         /// </summary>
         /// <param name="startingValues"></param>
@@ -282,7 +242,7 @@ namespace UITK_SimpleTimeline
             endingValuesF[1] = endingValues.y;
             endingValuesF[2] = endingValues.z;
 
-            float[] toReturn = CubicHermiteSpline(startingValuesF, endingValuesF, time, startingTangent, endingTangent);
+            float[] toReturn = CurveMath.CubicHermiteSpline(startingValuesF, endingValuesF, time, startingTangent, endingTangent);
             return toReturn;
         }
         #endregion
