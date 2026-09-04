@@ -1,5 +1,7 @@
 #if UNITY_EDITOR
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -106,15 +108,27 @@ namespace UITK_SimpleTimeline
             return toReturn;
         }
 
-        public static bool HasNaN(this Vector3 v3)
+        public static bool IsSubclassOfGenericType(this Type toCheck, Type baseType)
         {
-            return float.IsNaN(v3.x) || float.IsNaN(v3.y) || float.IsNaN(v3.z);
+            while (toCheck != null && toCheck != typeof(object))
+            {
+                Type cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
+
+                if (baseType == cur) return true;
+
+                toCheck = toCheck.BaseType;
+            }
+            return false;
         }
 
-        public static bool HasNaN(this Quaternion q)
+        public static Type[] GetValidTimelineCurveTypes()
         {
-            return float.IsNaN(q.x) || float.IsNaN(q.y) || float.IsNaN(q.z) || float.IsNaN(q.w);
+            Assembly aToCheck = AppDomain.CurrentDomain.GetAssemblies()
+                .FirstOrDefault(a => a.GetName().Name == "UITKSimpleTimeline_Curves");
+
+            return aToCheck.GetTypes().Where(a => a.IsSubclassOfGenericType(typeof(TypedTimelineCurve<,>)) && !a.IsAbstract).ToArray();
         }
     }
+
 }
 #endif

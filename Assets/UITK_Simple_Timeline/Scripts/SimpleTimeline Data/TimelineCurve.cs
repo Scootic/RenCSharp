@@ -217,35 +217,6 @@ namespace UITK_SimpleTimeline
         /// </summary>
         protected bool ValidCurve => keyframes.Count >= 2 && ToAffect != null;
         #endregion
-
-        #region StupidMath
-        /// <summary>
-        /// The math that provides a way to intepret between float values based on given time and tangents.
-        /// </summary>
-        /// <param name="startingValues"></param>
-        /// <param name="endingValues"></param>
-        /// <param name="time"></param>
-        /// <param name="startingTangent"></param>
-        /// <param name="endingTangent"></param>
-        /// <returns>An array of equal size to startingValues, containing the in-betweens.</returns>
-        public virtual float[] CubicHermiteSpline(Vector3 startingValues, Vector3 endingValues, float time, float startingTangent, float endingTangent)
-        {
-
-            float[] startingValuesF = new float[3];
-            float[] endingValuesF = new float[3];
-
-            startingValuesF[0] = startingValues.x;
-            startingValuesF[1] = startingValues.y;
-            startingValuesF[2] = startingValues.z;
-
-            endingValuesF[0] = endingValues.x;
-            endingValuesF[1] = endingValues.y;
-            endingValuesF[2] = endingValues.z;
-
-            float[] toReturn = CurveMath.CubicHermiteSpline(startingValuesF, endingValuesF, time, startingTangent, endingTangent);
-            return toReturn;
-        }
-        #endregion
     }
     
     [Serializable]

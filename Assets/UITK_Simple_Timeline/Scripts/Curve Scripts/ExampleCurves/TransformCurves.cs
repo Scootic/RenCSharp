@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace UITK_SimpleTimeline
+namespace UITK_SimpleTimeline.Curves
 {
     /// <summary>
     /// Example curve that affects a transform's position. Uses transform .Find() to parse GameObject hierarchy,
@@ -17,9 +17,8 @@ namespace UITK_SimpleTimeline
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
             float[] tangents = CurveMath.GetTangents(toEval);
-            float[] veccy = CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
-                TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1]);
-            toReturn = new(veccy[0], veccy[1], veccy[2]);
+            toReturn = CurveMath.CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
+                TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1], toEval[0].TangentMode);
 
             if (root == null) { return toReturn; }
 
@@ -62,9 +61,9 @@ namespace UITK_SimpleTimeline
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
             float[] tangents = CurveMath.GetTangents(toEval);
-            float[] veccy = CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
-                TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1]);
-            toReturn = new(veccy[0], veccy[1], veccy[2]);
+
+            toReturn = CurveMath.CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
+                TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1], toEval[0].TangentMode);
 
             if (root == null) {return toReturn; }
 
@@ -106,13 +105,11 @@ namespace UITK_SimpleTimeline
             Quaternion toReturn;
 
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
-            float perc = TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time);
             
             float[] tangents = CurveMath.GetTangents(toEval);
 
-            float[] veccy = CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
-                 TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1]);
-            Vector3 eulerToBe = new(veccy[0], veccy[1], veccy[2]);
+            Vector3 eulerToBe = CurveMath.CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
+                TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1], toEval[0].TangentMode);
             toReturn = eulerToBe != Vector3.zero && !eulerToBe.HasNaN() ? Quaternion.Euler(eulerToBe) : Quaternion.identity;
             if (root == null) { return toReturn; }
 

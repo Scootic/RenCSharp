@@ -37,9 +37,11 @@ namespace UITK_SimpleTimeline.Editor
             style.borderBottomWidth = 1;
             style.backgroundColor = Helper.SecondLayerBorder;
 
-            tangentStrengthField = new("Tangent Handles Strength");
-            tangentStrengthField.tooltip = "Defines how large the maximum/minimum tangent is whenever a handle is at a maxed out position.";
-            tangentStrengthField.value = EditorPrefs.GetFloat("uitk_tangentfieldstrength", 1f);
+            tangentStrengthField = new("Tangent Handles Strength")
+            {
+                tooltip = "Defines how large the maximum/minimum tangent is whenever a handle is at a maxed out position.",
+                value = EditorPrefs.GetFloat("uitk_tangentfieldstrength", 1f)
+            };
             tangentStrengthField.RegisterValueChangedCallback(evt => { EditorPrefs.SetFloat("uitk_tangentfieldstrength", evt.newValue); });
             tangentStrengthField.style.top = Length.Percent(100f);
             tangentStrengthField.style.bottom = -20f;
@@ -142,7 +144,7 @@ namespace UITK_SimpleTimeline.Editor
             for(int i = 0; i < lineResolution; i++)
             {
                 float percT = (float)i / (float)lineResolution;
-                Vector2 v2 = new(percT, CurveMath.NormalizedCubicHermiteSpline(percT, tangents[0], tangents[1]) * -1);
+                Vector2 v2 = new(percT, CurveMath.NormalizedCubicHermiteSpline(percT, tangents[0], tangents[1], Left.TangentMode) * -1);
                 maxY = Mathf.Max(maxY, v2.y * -1);
                 minY = Mathf.Min(minY, v2.y * -1);
                 v2 *= 200f;

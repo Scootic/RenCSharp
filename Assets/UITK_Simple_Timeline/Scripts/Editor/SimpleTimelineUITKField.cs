@@ -758,13 +758,13 @@ namespace UITK_SimpleTimeline.Editor
         protected void CreateAddNewCurveMenu()
         {
             AddNewCurveMenu = new();
-            if (UITK_SimpleTimeline_AssembliesDatabase.GetValidTimelineCurveTypes == null) 
+            if (Helper.GetValidTimelineCurveTypes() == null) 
             {
                 AddNewCurveMenu.AddDisabledItem(new GUIContent("No Valid Curve Types?!? Try checking the SimpleTimelineUITK_AssemblyDatabase."));
                 return; 
             }
 
-            foreach (Type t in UITK_SimpleTimeline_AssembliesDatabase.GetValidTimelineCurveTypes)
+            foreach (Type t in Helper.GetValidTimelineCurveTypes())
             {
                 //this mans should always be a stinkin' TimelineCurve. (God I hope...)
                 //Debug.Log($"Adding type {t.Name} to curve menu!");

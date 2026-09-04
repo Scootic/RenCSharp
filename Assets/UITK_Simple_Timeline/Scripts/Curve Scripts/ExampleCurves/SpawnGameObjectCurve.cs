@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace UITK_SimpleTimeline
+namespace UITK_SimpleTimeline.Curves
 {
     /// <summary>
     /// Example curve that instantiates a Prefab at a position, rotation, with a certain scale, and a specific name.

@@ -350,8 +350,9 @@ namespace UITK_SimpleTimeline
             }
             catch
             {
-                //Log in-case you have dire expectations.
-                //Debug.LogWarning("Stupid ah label couldnae be found from ToBeAffectedField >:(");
+                //Log in-case you have dire expectations. Will always fire because of how the stupid PropertyFields work,
+                //but if the code actually works it will stop eventually and not just run forever.
+                ///Debug.LogWarning("Stupid ah label couldnae be found from ToBeAffectedField >:(");
             }
         }
     }
