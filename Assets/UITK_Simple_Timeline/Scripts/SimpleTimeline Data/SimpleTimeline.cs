@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using System.Threading;
-using System.Linq;
 namespace UITK_SimpleTimeline
 {
     /// <summary>
@@ -27,8 +26,7 @@ namespace UITK_SimpleTimeline
             Loop = copy.Loop;
             Duration = copy.Duration;
             sceneObject = null;
-            Curves = new();
-            Curves.CopyCurves(copy.Curves);
+            Curves = SimpleTimelineExtensions.DeepCopyListFromJSON(copy.Curves);
         }
 
         public readonly SimpleTimeline Default()

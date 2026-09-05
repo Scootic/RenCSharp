@@ -68,7 +68,7 @@ namespace UITK_SimpleTimeline
             return destination;
         }
 
-        public static List<TimelineCurve> CopyCurves(this List<TimelineCurve> destination, List<TimelineCurve> source)
+        public static List<TimelineCurve> CopyCurvesThroughReflection(this List<TimelineCurve> destination, List<TimelineCurve> source)
         {
             List<Type> validCurveTypes = UITK_SimpleTimeline_AssembliesDatabase.GetValidTimelineCurveTypes;
 
@@ -114,6 +114,45 @@ namespace UITK_SimpleTimeline
             }
 
             return destination;
+        }
+
+        public static T DeepCopyFromJSON<T>(T original) where T : class
+        {
+            if (original == null) return null;
+
+            string jason = JsonUtility.ToJson(original);
+
+            return JsonUtility.FromJson(jason, original.GetType()) as T;
+        }
+
+        public static List<T> DeepCopyListFromJSON<T>(List<T> originalList) where T : class
+        {
+            List<T> toReturn = new();
+
+            foreach(T obj in originalList)
+            {
+                toReturn.Add(DeepCopyFromJSON(obj));
+            }
+
+            return toReturn;
+        }
+
+        public static async Awaitable<T> DeepCopyFromJSONAsync<T>(T og) where T : class
+        {
+            await Awaitable.BackgroundThreadAsync();
+            return DeepCopyFromJSON(og);
+        }
+
+        public static async Awaitable<List<T>> DeepCopyListFromJSONAsync<T>(List<T> originalList) where T : class
+        {
+            List<T> toReturn = new();
+
+            foreach(T obj in originalList)
+            {
+                toReturn.Add(await DeepCopyFromJSONAsync(obj));
+            }
+            await Awaitable.MainThreadAsync();
+            return toReturn;
         }
 
         public static float[] ToArray(this Vector3 v3)
