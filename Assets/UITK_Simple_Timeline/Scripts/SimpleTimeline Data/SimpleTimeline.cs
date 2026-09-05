@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using System.Threading;
+using System.Threading.Tasks;
 namespace UITK_SimpleTimeline
 {
     /// <summary>
@@ -27,6 +28,18 @@ namespace UITK_SimpleTimeline
             Duration = copy.Duration;
             sceneObject = null;
             Curves = SimpleTimelineExtensions.DeepCopyListFromJSON(copy.Curves);
+        }
+
+        public static async Awaitable<SimpleTimeline> CopySimpleTimeline(SimpleTimeline copy)
+        {
+            return new()
+            {
+                Duration = copy.Duration,
+                Loop = copy.Loop,
+                sceneObject = null,
+                Curves = await SimpleTimelineExtensions.DeepCopyListFromJSONAsync(copy.Curves)
+            };
+
         }
 
         public readonly SimpleTimeline Default()

@@ -29,8 +29,7 @@ namespace UITK_SimpleTimeline.Examples
                 if (keyframe.Value.SetToBeChildOfRoot)
                 {
                     t = GameObject.Instantiate(ToAffect, Vector3.zero, Quaternion.identity, root.transform);
-                    t.transform.localPosition = keyframe.Value.SpawnPos;
-                    t.transform.localRotation = keyframe.Value.SpawnRot;
+                    t.transform.SetLocalPositionAndRotation(keyframe.Value.SpawnPos, keyframe.Value.SpawnRot);
                 }
                 else
                 {
@@ -83,16 +82,14 @@ namespace UITK_SimpleTimeline.Examples
 
         public readonly GOSpawnToken Default()
         {
-            GOSpawnToken t = new();
-
-            t.SpawnPos = Vector3.zero;
-            t.SpawnScale = Vector3.one;
-            t.SpawnRot = Quaternion.identity;
-
-            t.SetToBeChildOfRoot = false;
-            t.name = "GameObject";
-
-            return t;
+            return new()
+            {
+                SpawnPos = Vector3.zero,
+                SpawnRot = Quaternion.identity,
+                SpawnScale = Vector3.one,
+                SetToBeChildOfRoot = false,
+                name = "GameObject"
+            };
         }
         
 
