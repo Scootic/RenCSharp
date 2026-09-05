@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace UITK_SimpleTimeline.Curves
+namespace UITK_SimpleTimeline.Examples
 {
     /// <summary>
     /// Example curve that affects a transform's position. Uses transform .Find() to parse GameObject hierarchy,

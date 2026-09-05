@@ -17,6 +17,7 @@ namespace UITK_SimpleTimeline
             toReturn[1] = frames[1].InTangent * difT;
             return toReturn;
         }
+
         #region CubicHermiteSplines
         /// <summary>
         /// The math that provides a way to intepret between float values based on given time and tangents.
@@ -112,6 +113,7 @@ namespace UITK_SimpleTimeline
             }
         }
         #endregion
+
         #region Async
         /// <summary>
         /// Background thread version of single cubic hermite spline, only comparing and returning one value.
@@ -211,32 +213,6 @@ namespace UITK_SimpleTimeline
         {
             await Awaitable.BackgroundThreadAsync();
             return await CubicHermiteSplineAsync(0, 1, time, startingTangent, endingTangent, tangentMode);
-        }
-        #endregion
-        #region Extensions
-        public static float[] ToArray(this Vector3 v3)
-        {
-            return new float[] {v3.x, v3.y, v3.z};
-        }
-
-        public static Vector3 ToVector3(this float[] floatArray)
-        {
-            return floatArray.Length switch
-            {
-                0 => Vector3.zero,
-                1 => new Vector3(floatArray[0], 0),
-                2 => new Vector3(floatArray[0],floatArray[1]),
-                _ => new Vector3(floatArray[0], floatArray[1], floatArray[2])
-            };
-        }
-
-        public static bool HasNaN(this Vector3 v3)
-        {
-            return float.IsNaN(v3.x) || float.IsNaN(v3.y) || float.IsNaN(v3.z);
-        }
-        public static bool HasNaN(this Quaternion q)
-        {
-            return float.IsNaN(q.x) || float.IsNaN(q.y) || float.IsNaN(q.z) || float.IsNaN(q.w);
         }
         #endregion
     }

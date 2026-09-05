@@ -22,8 +22,10 @@ namespace UITK_SimpleTimeline
             //because they might not need them, AND it'd be bad to override other gameobjects.
             for (int i = 0; i < timelines.Length; i++)
             {
-                timelines[i] = timelineAssets[i].Timeline;
-                timelines[i].SetSceneObject = root;
+                timelines[i] = new SimpleTimeline(timelineAssets[i].Timeline)
+                {
+                    SetSceneObject = root
+                };
             }
         }
 
@@ -31,6 +33,9 @@ namespace UITK_SimpleTimeline
         {
             if (playInitialOnStart && timelines.Length > 0)
             {
+                foreach (SimpleTimeline st in timelines) {
+                    Debug.Log($"curve amnt: {st.Curves.Count}");
+                }
                 PlayTimeline(0);
             }
         }

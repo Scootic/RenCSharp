@@ -22,6 +22,11 @@ namespace UITK_SimpleTimeline
             return new TimelineCurveField<T,U>("", this, index);
         }
 
+        public override string ToString()
+        {
+            return "Generic Typed Timeline Curve";
+        }
+
         #region Keyframes
         /// <summary>
         /// PLEASE! PLEASE BY SORTED IN ORDER OF TIME! PLEASE!!!
@@ -295,6 +300,11 @@ namespace UITK_SimpleTimeline
             float smallest = Mathf.Min(a, b);
 
             return Mathf.Abs(biggest - smallest) < tolerance;
+        }
+
+        public override string ToString()
+        {
+            return "Abstract Timeline Curve";
         }
     }
 

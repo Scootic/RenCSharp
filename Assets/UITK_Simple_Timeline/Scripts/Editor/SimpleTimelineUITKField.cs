@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using AssemblyDatabase = UITK_SimpleTimeline.UITK_SimpleTimeline_AssembliesDatabase;
 using Helper = UITK_SimpleTimeline.SimpleTimelineUITK_Helper;
 namespace UITK_SimpleTimeline.Editor
 {
@@ -467,6 +468,7 @@ namespace UITK_SimpleTimeline.Editor
             {
                 playing = !playing;
                 PlayPause.iconImage = playing ? pausIco : playIco;
+                if (!playing) thisTimeline.TimelineInitial();
             }){ name = "Play/Pause" };
             PlayPause.iconImage = playIco;
             Image pp = PlayPause.Q<Image>();
@@ -758,13 +760,13 @@ namespace UITK_SimpleTimeline.Editor
         protected void CreateAddNewCurveMenu()
         {
             AddNewCurveMenu = new();
-            if (Helper.GetValidTimelineCurveTypes() == null) 
+            if (AssemblyDatabase.GetValidTimelineCurveTypes == null) 
             {
                 AddNewCurveMenu.AddDisabledItem(new GUIContent("No Valid Curve Types?!? Try checking the SimpleTimelineUITK_AssemblyDatabase."));
                 return; 
             }
 
-            foreach (Type t in Helper.GetValidTimelineCurveTypes())
+            foreach (Type t in AssemblyDatabase.GetValidTimelineCurveTypes)
             {
                 //this mans should always be a stinkin' TimelineCurve. (God I hope...)
                 //Debug.Log($"Adding type {t.Name} to curve menu!");

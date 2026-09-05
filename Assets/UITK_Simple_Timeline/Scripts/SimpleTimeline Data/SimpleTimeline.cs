@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using System.Threading;
+using System.Linq;
 namespace UITK_SimpleTimeline
 {
     /// <summary>
@@ -16,6 +17,18 @@ namespace UITK_SimpleTimeline
             Duration = duration;
             sceneObject = null;
             Curves = new();
+        }
+        /// <summary>
+        /// Copies the curves using SimpleTimelineExtensions' CopyClassListValuesThroughReflection
+        /// </summary>
+        /// <param name="copy"></param>
+        public SimpleTimeline(SimpleTimeline copy)
+        {
+            Loop = copy.Loop;
+            Duration = copy.Duration;
+            sceneObject = null;
+            Curves = new();
+            Curves.CopyCurves(copy.Curves);
         }
 
         public readonly SimpleTimeline Default()
@@ -136,6 +149,29 @@ namespace UITK_SimpleTimeline
             {
                 msg += $"\n{curve.EvaluateMessage(Duration)}";
                 curve.Evaluate(Duration);
+            }
+            Debug.Log(msg);
+        }
+        /// <summary>
+        /// Evaluates the beginning of every curve in the timeline (Evaluate() at 0).
+        /// </summary>
+        public readonly void TimelineInitial()
+        {
+            foreach(TimelineCurve curve in Curves)
+            {
+                curve.Evaluate(0);
+            }
+        }
+        /// <summary>
+        /// Same as TimelineInitial, but also Debug.Logs the EvaluateMessage() at 0.
+        /// </summary>
+        public readonly void TimelineInitialDebug()
+        {
+            string msg = "";
+            foreach (TimelineCurve curve in Curves)
+            {
+                msg += $"\n{curve.EvaluateMessage(0)}";
+                curve.Evaluate(0);
             }
             Debug.Log(msg);
         }

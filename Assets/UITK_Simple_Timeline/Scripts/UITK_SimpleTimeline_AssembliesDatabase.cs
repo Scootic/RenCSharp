@@ -9,7 +9,7 @@ namespace UITK_SimpleTimeline
     [CreateAssetMenu(menuName = "UITK_SimpleTimeline/Assembly Database")]
     public class UITK_SimpleTimeline_AssembliesDatabase : ScriptableObject
     {
-        private static Assembly[] assemblies;
+        private static Assembly[] assemblies = new Assembly[0];
         public static List<Type> GetValidTimelineCurveTypes
         {
             get
@@ -42,6 +42,17 @@ namespace UITK_SimpleTimeline
 
         void Do()
         {
+            if (assemblies.Length == assemblyAssets.Length) //if we have matching length already, check for discrepencies.
+            {
+                for(int i = 0; i < assemblies.Length; i++)
+                {
+                    string assemblyName = JsonUtility.FromJson<RealAssemblyName>(assemblyAssets[i].text).name;
+                    if (assemblies[i].GetName().Name == assemblyName) continue;
+                    assemblies[i] = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == assemblyName);
+                }
+
+                return;
+            }
             assemblies = new Assembly[assemblyAssets.Length];
 
             for(int i = 0; i < assemblies.Length; i++)
@@ -77,32 +88,16 @@ namespace UITK_SimpleTimeline
         {
             Do();
         }
-        /*
+
         private void OnEnable()
         {
             Do();
-        }*/
+        }
 
         [Serializable]
         private class RealAssemblyName
         {
             public string name;
-        }
-    }
-
-    public static class AssemblyDatabaseExtend
-    {
-        public static bool IsSubclassOfGenericType(this Type toCheck, Type baseType)
-        {
-            while (toCheck != null && toCheck != typeof(object))
-            {
-                Type cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
-
-                if (baseType == cur) return true;
-
-                toCheck = toCheck.BaseType;
-            }
-            return false;
         }
     }
 }
