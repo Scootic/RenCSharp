@@ -11,7 +11,7 @@ namespace UITK_SimpleTimeline.Editor
         private bool isQuaternionLocked;
         private SerializedProperty qtProperty;
         private Vector3Field rotationField;
-
+        //why is this 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             isQuaternionLocked = false;
