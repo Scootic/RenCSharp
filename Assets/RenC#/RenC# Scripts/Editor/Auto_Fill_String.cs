@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 //Stolen from: https://www.clonefactor.com/wordpress/program/c/1809
-namespace RenCSharp
+namespace RenCSharp.Editor
 {
     public sealed class EditorExtend
     {

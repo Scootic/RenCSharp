@@ -21,7 +21,7 @@ namespace UITK_SimpleTimeline
         /// <summary>
         /// Copies the curves using SimpleTimelineExtensions' CopyClassListValuesThroughReflection
         /// </summary>
-        /// <param name="copy"></param>
+        /// <param name="copy">The SimpleTimeline you want to copy.</param>
         public SimpleTimeline(SimpleTimeline copy)
         {
             Loop = copy.Loop;
@@ -29,7 +29,11 @@ namespace UITK_SimpleTimeline
             sceneObject = null;
             Curves = SimpleTimelineExtensions.DeepCopyListFromJSON(copy.Curves);
         }
-
+        /// <summary>
+        /// Awaitable that copies the curves using SimpleTimelineExtensions' CopyClassListValuesThroughReflection
+        /// </summary>
+        /// <param name="copy">The SimpleTimeline you want to copy.</param>
+        /// <returns>The copy of the given SimpleTimeline.</returns>
         public static async Awaitable<SimpleTimeline> CopySimpleTimeline(SimpleTimeline copy)
         {
             return new()
@@ -89,6 +93,11 @@ namespace UITK_SimpleTimeline
         /// <returns>Diddly squat.</returns>
         public readonly async Awaitable RunThroughTimeline(CancellationToken ct)
         {
+            foreach (TimelineCurve tc in Curves) 
+            {
+                tc.OnPlay();
+            }
+
             float secondsElapsed = 0;
 
             while(secondsElapsed < Duration || Loop)
@@ -116,6 +125,11 @@ namespace UITK_SimpleTimeline
         /// <returns>Diddly squat 2.</returns>
         public readonly async Awaitable RunThroughTimelineDebug(CancellationToken ct)
         {
+            foreach (TimelineCurve tc in Curves)
+            {
+                tc.OnPlay();
+            }
+
             float secondsElapsed = 0;
 
             while(secondsElapsed < Duration || Loop)

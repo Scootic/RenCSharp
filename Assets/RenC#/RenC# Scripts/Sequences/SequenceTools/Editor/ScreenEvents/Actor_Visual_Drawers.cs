@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using RenCSharp.Actors;
+using RenCSharp.Editor;
 namespace RenCSharp.Sequences.Editor
 {
     [CustomPropertyDrawer(typeof(Spawn_Actor))]
@@ -29,16 +30,19 @@ namespace RenCSharp.Sequences.Editor
 
             actorProperty = property.FindPropertyRelative("actorToSpawn");
             theSequence = actorProperty.serializedObject;
-            actorField = new ObjectField("Actor:");
-            actorField.objectType = typeof(Actor);
-            actorField.value = actorProperty.boxedValue as Object;
+            actorField = new ObjectField("Actor:") { 
+                objectType = typeof(Actor), 
+                value = actorProperty.boxedValue as Object,
+            };
             assignedActor = actorField.value as Actor; //?
             container.Add(actorField);
 
             spawnOffset = property.FindPropertyRelative("spawnOffset");
-            spawnOffsetField = new Vector3Field("Spawn Offset:");
-            spawnOffsetField.tooltip = "Spawn Offset in local space.";
-            spawnOffsetField.value = spawnOffset.vector3Value;
+            spawnOffsetField = new Vector3Field("Spawn Offset:")
+            {
+                tooltip = "Spawn Offset in local space.",
+                value = spawnOffset.vector3Value
+            };
             container.Add(spawnOffsetField);
             spawnOffsetField.RegisterValueChangedCallback(evt =>
             {
@@ -48,9 +52,11 @@ namespace RenCSharp.Sequences.Editor
             });
             
             fadeInTime = property.FindPropertyRelative("fadeInTime");
-            fadeInTimeField = new FloatField("Fade in Time:");
-            fadeInTimeField.tooltip = "Time in seconds it takes for the actor to fade in.";
-            fadeInTimeField.value = fadeInTime.floatValue;
+            fadeInTimeField = new FloatField("Fade in Time:")
+            {
+                tooltip = "Time in seconds it takes for the actor to fade in.",
+                value = fadeInTime.floatValue
+            };
             container.Add(fadeInTimeField);
             fadeInTimeField.RegisterValueChangedCallback(evt =>
             {
@@ -131,9 +137,9 @@ namespace RenCSharp.Sequences.Editor
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             EditorGUI.BeginProperty(position, label, property);
-            Rect dDownRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+            Rect dDownRect = new(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
             DropDownMenu(dDownRect, property);
-            Rect newR = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, position.height);
+            Rect newR = new(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, position.height);
             EditorGUI.PropertyField(newR, property, new GUIContent("Spawn Actor"), true);
 
             spawnOffset = property.FindPropertyRelative("spawnOffset");
@@ -145,10 +151,10 @@ namespace RenCSharp.Sequences.Editor
 
             EditorGUI.BeginChangeCheck();
 
-            Rect actRect = new Rect(newR.x, newR.y + (EditorGUIUtility.singleLineHeight * 1), newR.width, EditorGUIUtility.singleLineHeight * 2);
-            Rect spawnRect = new Rect(newR.x, newR.y + (EditorGUIUtility.singleLineHeight * 2.5f), newR.width, EditorGUIUtility.singleLineHeight * 2);
-            Rect fadeInRect = new Rect(newR.x, newR.y + (EditorGUIUtility.singleLineHeight * 4), newR.width, EditorGUIUtility.singleLineHeight * 2);
-            Rect sprinRect = new Rect(newR.x, newR.y + (EditorGUIUtility.singleLineHeight * 5.5f), newR.width, EditorGUIUtility.singleLineHeight * 2);
+            Rect actRect = new(newR.x, newR.y + (EditorGUIUtility.singleLineHeight * 1), newR.width, EditorGUIUtility.singleLineHeight * 2);
+            Rect spawnRect = new(newR.x, newR.y + (EditorGUIUtility.singleLineHeight * 2.5f), newR.width, EditorGUIUtility.singleLineHeight * 2);
+            Rect fadeInRect = new(newR.x, newR.y + (EditorGUIUtility.singleLineHeight * 4), newR.width, EditorGUIUtility.singleLineHeight * 2);
+            Rect sprinRect = new(newR.x, newR.y + (EditorGUIUtility.singleLineHeight * 5.5f), newR.width, EditorGUIUtility.singleLineHeight * 2);
 
             EditorGUI.PropertyField(actRect, actorProperty, new GUIContent("Actor to Spawn"), true);
             EditorGUI.PropertyField(spawnRect, spawnOffset, new GUIContent("SpawnOffset"), true);
@@ -177,7 +183,7 @@ namespace RenCSharp.Sequences.Editor
                 {
                     string stringAtI = sprindexArray.GetArrayElementAtIndex(i).stringValue;
                     string[] src = assignedActor.Visuals[i].visualIDs.ToArray();
-                    Rect justAfterArray = new Rect(sprinRect.x, sprinRect.y + (EditorGUIUtility.singleLineHeight * (i + 1) + EditorGUIUtility.standardVerticalSpacing * (i + 1)), newR.width, EditorGUIUtility.singleLineHeight);
+                    Rect justAfterArray = new(sprinRect.x, sprinRect.y + (EditorGUIUtility.singleLineHeight * (i + 1) + EditorGUIUtility.standardVerticalSpacing * (i + 1)), newR.width, EditorGUIUtility.singleLineHeight);
                     //string log = "Exising IDs: ";
                     //foreach(string s in src)
                     //{
@@ -214,9 +220,7 @@ namespace RenCSharp.Sequences.Editor
             atfExists = false;
 
             actorProperty = property.FindPropertyRelative("actorToAlter");
-            actorField = new ObjectField("Actor:");
-            actorField.objectType = typeof(Actor);
-            actorField.value = actorProperty.boxedValue as Object;
+            actorField = new ObjectField("Actor:") { objectType = typeof(Actor), value = actorProperty.boxedValue as Object };
             container.Add(actorField);
 
             sprindexArray = property.FindPropertyRelative("visualSpriteIndexes");
@@ -290,9 +294,9 @@ namespace RenCSharp.Sequences.Editor
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             EditorGUI.BeginProperty(position, label, property);
-            Rect dDownRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+            Rect dDownRect = new(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
             DropDownMenu(dDownRect, property);
-            Rect newR = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, position.height);
+            Rect newR = new(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, position.height);
             EditorGUI.PropertyField(newR, property, new GUIContent("Change Actor Expression"), true);
 
 
@@ -303,8 +307,8 @@ namespace RenCSharp.Sequences.Editor
             EditorGUI.BeginChangeCheck();
 
             //if(actorToAlter != null) Debug.Log(actorToAlter.ActorName);
-            Rect actRect = new Rect(newR.x, newR.y + EditorGUIUtility.singleLineHeight, newR.width, EditorGUIUtility.singleLineHeight * 2);
-            Rect sprinRect = new Rect(newR.x, newR.y + (EditorGUIUtility.singleLineHeight * 2.5f), newR.width, EditorGUIUtility.singleLineHeight * 2);
+            Rect actRect = new(newR.x, newR.y + EditorGUIUtility.singleLineHeight, newR.width, EditorGUIUtility.singleLineHeight * 2);
+            Rect sprinRect = new(newR.x, newR.y + (EditorGUIUtility.singleLineHeight * 2.5f), newR.width, EditorGUIUtility.singleLineHeight * 2);
 
             EditorGUI.PropertyField(actRect, actorProperty, new GUIContent("Actor to Alter"), true);
             EditorGUI.PropertyField(sprinRect, sprindexArray, new GUIContent("Visual Sprite Indexes"), true);
@@ -331,7 +335,7 @@ namespace RenCSharp.Sequences.Editor
                 {
                     string stringAtI = sprindexArray.GetArrayElementAtIndex(i).stringValue;
                     string[] src = actorToAlter.Visuals[i].visualIDs.ToArray();
-                    Rect justAfterArray = new Rect(sprinRect.x, sprinRect.y + (EditorGUIUtility.singleLineHeight * (i + 1) + 
+                    Rect justAfterArray = new(sprinRect.x, sprinRect.y + (EditorGUIUtility.singleLineHeight * (i + 1) + 
                         EditorGUIUtility.standardVerticalSpacing * (i + 1)), newR.width, EditorGUIUtility.singleLineHeight);
                     sprindexArray.GetArrayElementAtIndex(i).stringValue =
                         EditorExtend.TextFieldAutoComplete(justAfterArray, stringAtI, src, 10);

@@ -37,7 +37,7 @@ namespace UITK_SimpleTimeline.Editor
         /// </summary>
         protected readonly PropertyField CurrentKeyframeField;
         //? the guys that'll be displayed in the scroll view?
-        protected readonly List<VisualElement>TimelineCurveFields = new();
+        protected readonly List<VisualElement>DoubleTypedTimelineCurveFields = new();
         /// <summary>
         /// Right-click inside TimelineScrollView.
         /// </summary>
@@ -333,7 +333,7 @@ namespace UITK_SimpleTimeline.Editor
             TimelineScrollView.Add(CurrentTimePreview);
 
             #endregion
-            //GenerateTimelineCurveFields(); no timelinecurves to generate with!
+            //GenerateDoubleTypedTimelineCurveFields(); no timelinecurves to generate with!
 
             schedule.Execute(PreviewTimelineUpdate).Every(16).StartingIn(0);
         }
@@ -504,7 +504,7 @@ namespace UITK_SimpleTimeline.Editor
                         (sp.boxedValue as TimelineCurve).AddKeyframeToCurve(curT);
                     }
                     Helper.ApplyChangesToObject();
-                    foreach (VisualElement ve in TimelineCurveFields) 
+                    foreach (VisualElement ve in DoubleTypedTimelineCurveFields) 
                     {
                         IRegeneratableElement ire = ve as IRegeneratableElement;
                         ire?.RegenerateElement();
@@ -627,7 +627,7 @@ namespace UITK_SimpleTimeline.Editor
             TimelineScrollView.Add(CurrentTimePreview);
 
             #endregion
-            GenerateTimelineCurveFields();
+            GenerateDoubleTypedTimelineCurveFields();
             UpdateTimelineScrollSizeBasedOnDuration(Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue);
 
             schedule.Execute(PreviewTimelineUpdate).Every(16).StartingIn(0);
@@ -682,17 +682,17 @@ namespace UITK_SimpleTimeline.Editor
                     Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue = thisTimeline.Curves[i];
                 }
                 Helper.ApplyChangesToObject();
-                GenerateTimelineCurveFields();
+                GenerateDoubleTypedTimelineCurveFields();
             }
             catch
             {
                 Debug.LogWarning("UpdateCurvesProperty went wrong. SOMEHOW?!?!");
             }
         }
-        //spawn all of them stinkin' TimelineCurveFields
-        protected void GenerateTimelineCurveFields()
+        //spawn all of them stinkin' DoubleTypedTimelineCurveFields
+        protected void GenerateDoubleTypedTimelineCurveFields()
         {
-            foreach(VisualElement curveField in TimelineCurveFields)
+            foreach(VisualElement curveField in DoubleTypedTimelineCurveFields)
             {
                 try
                 {
@@ -704,7 +704,7 @@ namespace UITK_SimpleTimeline.Editor
                     continue;
                 }
             }
-            TimelineCurveFields.Clear();
+            DoubleTypedTimelineCurveFields.Clear();
             if (Helper.CurvesProperty == null) return;
             for(int i = 0; i < Helper.CurvesProperty.arraySize; i++)
             {
@@ -713,11 +713,11 @@ namespace UITK_SimpleTimeline.Editor
                     TimelineCurve lerpable = Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue as TimelineCurve;
                     VisualElement rep = lerpable.UITKRepresentation(i);
                     TimelineScrollView.Add(rep); //adding to the timeline scrollview should place it in the content section? i hope?
-                    TimelineCurveFields.Add(rep);//? i at 0 should be timeline ruler
+                    DoubleTypedTimelineCurveFields.Add(rep);//? i at 0 should be timeline ruler
                 }
                 catch
                 {
-                    Debug.LogWarning("Null lerpable?!? That, or the TimelineCurveField failed to construct, somehow.");
+                    Debug.LogWarning("Null lerpable?!? That, or the DoubleTypedTimelineCurveField failed to construct, somehow.");
                 }
             }
             GrayOverlay.BringToFront();

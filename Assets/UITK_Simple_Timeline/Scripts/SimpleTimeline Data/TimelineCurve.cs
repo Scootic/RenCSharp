@@ -11,22 +11,37 @@ namespace UITK_SimpleTimeline
     /// <typeparam name="T">The type of value being lerped between.</typeparam>
     /// <typeparam name="U">The type of object that is affected by the T value.</typeparam>
     [Serializable]
-    public abstract class TypedTimelineCurve<T,U> : TimelineCurve, ILerpable where U : notnull
+    public abstract class TypedTimelineCurve<T,U> : TypedTimelineCurve<T>, ILerpable where U : notnull
     {
         public U ToAffect;
-        [Tooltip("Decides how keyframes lerp whenever the time is before the first keyframe," +
-            " or after the last keyframe.\nWrapMode.Clamp keeps things static in those extremes, whereas " +
-            "the other types of WrapModes cause keyframes to lerp beyond their border.")]public WrapMode WrappingMode = WrapMode.Clamp;
+        
 #if UNITY_EDITOR
         public override VisualElement UITKRepresentation(int index)
         {
-            return new TimelineCurveField<T,U>("", this, index);
+            return new DoubleTypedTimelineCurveField<T,U>("", this, index);
         }
 #endif
         public override string ToString()
         {
-            return "Generic Typed Timeline Curve";
+            return "Generic Two-Typed Timeline Curve";
         }
+
+        /// <summary>
+        /// Is the keyframe count greater than 2? You can't lerp between less-than-equal-to 1 value(s)! Also is there
+        /// actually something ToAffect?
+        /// </summary>
+        protected override bool ValidCurve => keyframes.Count >= 2 && ToAffect != null;
+    }
+
+    [Serializable]
+    public abstract class TypedTimelineCurve<T> : TimelineCurve, ILerpable where T : notnull
+    {
+#if UNITY_EDITOR
+        public override VisualElement UITKRepresentation(int index)
+        {
+            return new SingleTypedTimelineCurveField<T>("", this, index);
+        }
+#endif
 
         #region Keyframes
         /// <summary>
@@ -108,7 +123,7 @@ namespace UITK_SimpleTimeline
 
         public TimelineKeyframe<T> AtTime(float t)
         {
-            foreach(TimelineKeyframe<T> keyframe in keyframes)
+            foreach (TimelineKeyframe<T> keyframe in keyframes)
             {
                 if (ApproxFloat(keyframe.Time, t)) return keyframe;
             }
@@ -125,7 +140,7 @@ namespace UITK_SimpleTimeline
 
             return percent;
         }
-       
+
         #endregion
 
         #region ClosestTwos
@@ -149,7 +164,7 @@ namespace UITK_SimpleTimeline
                 if (time > KeyframeTimes[Length - 1]) //if the time has already passed the last key frame
                 {
                     index = Length - 1;
-                    switch (WrappingMode) 
+                    switch (WrappingMode)
                     {
                         case WrapMode.Clamp: //clamp to basically lerp between itself (no motion)
                             toReturn[0] = index;
@@ -160,7 +175,8 @@ namespace UITK_SimpleTimeline
                             toReturn[0] = index;
                             break;
                     }
-                }else if(time < KeyframeTimes[0]) //if the time is before the first key frame
+                }
+                else if (time < KeyframeTimes[0]) //if the time is before the first key frame
                 {
                     switch (WrappingMode)
                     {
@@ -221,14 +237,25 @@ namespace UITK_SimpleTimeline
         /// Is the keyframe count greater than 2? You can't lerp between less-than-equal-to 1 value(s)! Also is there
         /// actually something ToAffect?
         /// </summary>
-        protected bool ValidCurve => keyframes.Count >= 2 && ToAffect != null;
+        protected virtual bool ValidCurve => keyframes.Count >= 2;
         #endregion
+
+        public override string ToString()
+        {
+            return "Generic Typed Timeline Curve";
+        }
     }
-    
+
+
     [Serializable]
     public abstract class TimelineCurve : ILerpable
     {
         protected GameObject root;
+
+        [Tooltip("Decides how keyframes lerp whenever the time is before the first keyframe," +
+            " or after the last keyframe.\nWrapMode.Clamp keeps things static in those extremes, whereas " +
+            "the other types of WrapModes cause keyframes to lerp beyond their border.")]
+        public WrapMode WrappingMode = WrapMode.Clamp;
 
         /// <summary>
         /// Basically the same thing as AnimationCurve.Evaluate, 'cept it doesn't return a float. When involved
@@ -288,6 +315,10 @@ namespace UITK_SimpleTimeline
         /// </summary>
         /// <param name="go">GameObject (in-scene!) to set as root.</param>
         public void SetRootObject(GameObject go) { root = go; }
+        /// <summary>
+        /// Called by SimpleTimeline whenever it's played, before any evaluation.
+        /// </summary>
+        public virtual void OnPlay() { }
  
         /// <summary>
         /// Attempts to see if two floats are "close enough," based on a given tolerance

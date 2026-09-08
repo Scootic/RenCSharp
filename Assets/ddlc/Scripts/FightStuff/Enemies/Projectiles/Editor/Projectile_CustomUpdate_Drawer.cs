@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using UnityEditor;
-namespace RenCSharp.Combat.Enemies
+using RenCSharp.Editor;
+namespace RenCSharp.Combat.Enemies.Editor
 {
     [CustomPropertyDrawer(typeof(Projectile_CustomUpdate))]
     public class Projectile_CustomUpdate_Drawer : PolymorphicPropertyDrawer<Projectile_CustomUpdate>

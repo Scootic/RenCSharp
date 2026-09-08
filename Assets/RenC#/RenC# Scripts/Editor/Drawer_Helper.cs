@@ -1,6 +1,6 @@
 #if UNITY_EDITOR
 using UnityEditor;
-namespace RenCSharp
+namespace RenCSharp.Editor
 {
     /// <summary>
     /// Used by custom property drawers to make sure that there's no repeated useful functions lying around in multiple scripts.

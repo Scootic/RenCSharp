@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace RenCSharp
+namespace RenCSharp.Editor
 {
     /// <summary>
     /// MAY OR MAY NOT BE GROSS IF YOUR INSPEcTOR WINDOW IS ScALED SLIGHTLY INcONVENIENTLY!

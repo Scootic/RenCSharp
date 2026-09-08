@@ -8,7 +8,7 @@ using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-namespace RenCSharp
+namespace RenCSharp.Editor
 {
     ///Author: Scootic Rowlann
     /// <summary>

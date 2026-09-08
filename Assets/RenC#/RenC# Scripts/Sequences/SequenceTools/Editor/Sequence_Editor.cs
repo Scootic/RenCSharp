@@ -2,6 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 using UEditor = UnityEditor.Editor;
+using RenCSharp.Editor;
 namespace RenCSharp.Sequences.Editor
 {
     /// <summary>

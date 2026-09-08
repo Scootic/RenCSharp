@@ -43,14 +43,14 @@ namespace RenCSharp
                 else
                 {
                     Debug.LogWarning($"No compontent of type: {component.GetType()} found on object: {name}.");
-                    component = default(T);
+                    component = default;
                     return false;
                 }
             }
             else
             {
                 Debug.LogWarning($"Couldn't find an object of name: {name}.");
-                component = default(T);
+                component = default;
                 return false;
             }
         }
