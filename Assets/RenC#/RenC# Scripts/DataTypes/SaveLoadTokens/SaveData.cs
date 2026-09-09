@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 namespace RenCSharp
 {
     /// <summary>
@@ -33,10 +34,27 @@ namespace RenCSharp
         /// <summary>
         /// Values for ReplaceText dict
         /// </summary>
-        public string [] ReplacingTexts;
+        public string[] ReplacingTexts;
         /// <summary>
-        /// Raw byte value of the .png of screenshot when saving
+        /// Raw bytes value of the .png of screenshot when saving
         /// </summary>
         public byte[] SaveScreenshot;
+        /// <summary>
+        /// Exists as a way for you to save any custom data without having to alter the SaveData struct. Essentially, convert
+        /// data you want using JsonUtility, then convert it back. Keep track of your index! <br/><br/>
+        /// (A dict would be nice if it *could* be serialized!)
+        /// </summary>
+        public List<string> CustomJSONData;
+        /// <summary>
+        /// Exists to make sure that the CustomJSONData size is actually big enough so you can keep track of your indexes.
+        /// </summary>
+        /// <param name="newCount">The new .Count you want the CustomJSONData list to have.</param>
+        public readonly void ScaleCustomJSONToCount(int newCount)
+        {
+            while(CustomJSONData.Count < newCount)
+            {
+                CustomJSONData.Add(null);
+            }
+        }
     }
 }

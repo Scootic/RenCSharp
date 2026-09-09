@@ -8,7 +8,7 @@ namespace UITK_SimpleTimeline
     /// Stupid evil lerper of cubic type. Remember to give your custom types a ToString(), and to add their Assemblies
     /// to the UITK_SimpleTimeline_AssemblyDatabase asset.
     /// </summary>
-    /// <typeparam name="T">The type of value being lerped between.</typeparam>
+    /// <typeparam name="T">The type of value being lerped between. (Keyframe Values)</typeparam>
     /// <typeparam name="U">The type of object that is affected by the T value.</typeparam>
     [Serializable]
     public abstract class TypedTimelineCurve<T,U> : TypedTimelineCurve<T>, ILerpable where U : notnull
@@ -32,7 +32,11 @@ namespace UITK_SimpleTimeline
         /// </summary>
         protected override bool ValidCurve => keyframes.Count >= 2 && ToAffect != null;
     }
-
+    /// <summary>
+    /// Stupid evil lerper of cubic type. Remember to give your custom types a ToString(), and to add their Assemblies
+    /// to the UITK_SimpleTimeline_AssemblyDatabase asset.
+    /// </summary>
+    /// <typeparam name="T">The type of value being lerped between. (Keyframe Values)</typeparam>
     [Serializable]
     public abstract class TypedTimelineCurve<T> : TimelineCurve, ILerpable where T : notnull
     {

@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using System;
 namespace RenCSharp
 {
     /// <summary>
@@ -11,6 +12,18 @@ namespace RenCSharp
     public static class SaveLoad
     {
         private static readonly BinaryFormatter bf = new();
+
+        /// <summary>
+        /// Action that serves as an extension for other classes to save custom data to a SaveData that's being saved to a file.
+        /// Invoked by the Save method, which passes in the SaveData that it's trying to save.
+        /// </summary>
+        public static Action<SaveData> SaveCustomData;
+        /// <summary>
+        /// Action that serves as an extension for other classes to retrieve custom data from a SaveData that's being loaded
+        /// from a file. Invoked by all Load methods, which passes in the CustomJsonData contained in the loaded SaveData.
+        /// </summary>
+        public static Action<List<string>> LoadCustomData;
+
         /// <summary>
         /// Save a SaveData struct to a file in the persistent datapath.
         /// </summary>
@@ -23,6 +36,7 @@ namespace RenCSharp
             Regex.Replace(subFolder, "[ <>?*]", "_");
             string filePath = Application.persistentDataPath + "/" + (subFolder != "" ? subFolder + "/" : "") + fileName + ".sav";
             sd.FileName = fileName;
+            SaveCustomData?.Invoke(sd);
             Debug.Log("Saving data to: " + filePath);
             if(subFolder != "" && !Directory.Exists(Application.persistentDataPath + "/" + subFolder))
             {
@@ -40,7 +54,7 @@ namespace RenCSharp
         {
             string filePath = Application.persistentDataPath + "/persistentFlags.fla";
             Debug.Log("Saving Persistent Flags!");
-            FileStream fs = new FileStream(filePath, FileMode.Create);
+            FileStream fs = new(filePath, FileMode.Create);
             bf.Serialize(fs, ft);
             fs.Close();
         }
@@ -56,10 +70,18 @@ namespace RenCSharp
             sd = new SaveData();
             if (!File.Exists(filePath)) { Debug.LogWarning("No file at: " + filePath); return false; }
 
-            FileStream fs = new FileStream(filePath, FileMode.Open);
+            FileStream fs = new(filePath, FileMode.Open);
             sd = (SaveData) bf.Deserialize(fs);
             Debug.Log("Found save data at: " + filePath);
             fs.Close();
+            try
+            {
+                LoadCustomData?.Invoke(sd.CustomJSONData);
+            }
+            catch
+            {
+                Debug.LogWarning($"SaveData: {sd.FileName} doesn't contain a CustomJSONData list.");
+            }
             return true;
         }
 
@@ -85,6 +107,14 @@ namespace RenCSharp
             }
 
             await Awaitable.MainThreadAsync();
+            try
+            {
+                LoadCustomData?.Invoke(sd.Value.CustomJSONData);
+            }
+            catch
+            {
+                Debug.LogWarning($"SaveData: {sd.Value.FileName} doesn't contain a CustomJSONData list.");
+            }
             return sd;
         }
 
@@ -99,10 +129,18 @@ namespace RenCSharp
         {
             if(!File.Exists(filePath) || !filePath.Contains(".sav")) { Debug.LogWarning("No/Bad file at: " + filePath); sd = null; return false; }
 
-            FileStream fs = new FileStream(filePath, FileMode.Open);
+            FileStream fs = new(filePath, FileMode.Open);
             sd = (SaveData) bf.Deserialize(fs);
             fs.Close();
             if (sd == null) return false;
+            try
+            {
+                LoadCustomData?.Invoke(sd.Value.CustomJSONData);
+            }
+            catch
+            {
+                Debug.LogWarning($"SaveData: {sd.Value.FileName} doesn't contain a CustomJSONData list.");
+            }
             return true;
         }
 
@@ -116,7 +154,7 @@ namespace RenCSharp
             FlagToken ft = new();
             if (!File.Exists(Application.persistentDataPath + "/persistentFlags.fla")) return ft;
 
-            FileStream fs = new FileStream(Application.persistentDataPath + "/persistentFlags.fla", FileMode.Open);
+            FileStream fs = new(Application.persistentDataPath + "/persistentFlags.fla", FileMode.Open);
             ft = (FlagToken)bf.Deserialize(fs);
             fs.Close();
             return ft;

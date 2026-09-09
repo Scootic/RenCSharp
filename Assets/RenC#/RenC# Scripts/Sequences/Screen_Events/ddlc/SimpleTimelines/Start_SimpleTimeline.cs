@@ -16,6 +16,7 @@ namespace RenCSharp.Sequences
         {
             activeTimeline = timelineToRunThrough.Timeline.RunThroughTimeline(new CancellationToken());
             if (endWithScreen) Script_Manager.ProgressScreenEvent += PanicStop;
+            if (timelineToRunThrough.Timeline.Loop) SimpleTimeline_AnimationSaveLoader.AddAnimation(timelineToRunThrough.Timeline);
             await activeTimeline; //start it?
         }
 
@@ -23,6 +24,10 @@ namespace RenCSharp.Sequences
         {
             activeTimeline.Cancel();
             timelineToRunThrough.Timeline.TimelineResult();
+            if (SimpleTimeline_AnimationSaveLoader.ContainsAnimation(timelineToRunThrough.Timeline))
+            {
+                SimpleTimeline_AnimationSaveLoader.RemoveAnimation(timelineToRunThrough.Timeline);
+            }
         }
 
         public override string ToString()
