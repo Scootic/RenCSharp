@@ -20,7 +20,7 @@ namespace RenCSharp
         public static Action<SaveData> SaveCustomData;
         /// <summary>
         /// Action that serves as an extension for other classes to retrieve custom data from a SaveData that's being loaded
-        /// from a file. Invoked by all Load methods, which passes in the CustomJsonData contained in the loaded SaveData.
+        /// from a file. Not invoked by Load methods, but is called by Script_Manager during its Load method. 
         /// </summary>
         public static Action<List<string>> LoadCustomData;
 
@@ -74,14 +74,7 @@ namespace RenCSharp
             sd = (SaveData) bf.Deserialize(fs);
             Debug.Log("Found save data at: " + filePath);
             fs.Close();
-            try
-            {
-                LoadCustomData?.Invoke(sd.CustomJSONData);
-            }
-            catch
-            {
-                Debug.LogWarning($"SaveData: {sd.FileName} doesn't contain a CustomJSONData list.");
-            }
+            
             return true;
         }
 
@@ -107,14 +100,7 @@ namespace RenCSharp
             }
 
             await Awaitable.MainThreadAsync();
-            try
-            {
-                LoadCustomData?.Invoke(sd.Value.CustomJSONData);
-            }
-            catch
-            {
-                Debug.LogWarning($"SaveData: {sd.Value.FileName} doesn't contain a CustomJSONData list.");
-            }
+
             return sd;
         }
 
@@ -133,14 +119,7 @@ namespace RenCSharp
             sd = (SaveData) bf.Deserialize(fs);
             fs.Close();
             if (sd == null) return false;
-            try
-            {
-                LoadCustomData?.Invoke(sd.Value.CustomJSONData);
-            }
-            catch
-            {
-                Debug.LogWarning($"SaveData: {sd.Value.FileName} doesn't contain a CustomJSONData list.");
-            }
+
             return true;
         }
 

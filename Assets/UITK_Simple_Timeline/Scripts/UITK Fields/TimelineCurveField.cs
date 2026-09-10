@@ -367,13 +367,13 @@ namespace UITK_SimpleTimeline
         protected readonly Dictionary<float,TimelineKnob<T>> KeyframeIcons;
         
         protected readonly VisualElement CurveDataContainer, KeyframeContainer;
-        protected VisualElement o, w;
         protected readonly Label TypeLabel;
         protected readonly PropertyField WrapModeField;
         protected GenericMenu AddNewKeyframeMenu, DeleteCurveMenu;
 
         protected SerializedProperty curveProperty, keyframesProperty;
         protected readonly int myPropertyIndex;
+        protected VisualElement w;
 
         public SingleTypedTimelineCurveField() : this(null) { }
         //grumpus constructor that's bad!
@@ -494,8 +494,7 @@ namespace UITK_SimpleTimeline
             CurveDataContainer.style.borderLeftWidth = 1;
             Add(CurveDataContainer);
 
-            TypeLabel = new() { name = "TypeLabel"};
-            TypeLabel.text = value.ShorthandCurveName();
+            TypeLabel = new() { name = "TypeLabel", text = value.ShorthandCurveName()};
             TypeLabel.style.left = 25;
             TypeLabel.style.right = -25;
             TypeLabel.style.flexWrap = Wrap.Wrap;
@@ -503,6 +502,9 @@ namespace UITK_SimpleTimeline
             TypeLabel.style.maxWidth = 125;
             TypeLabel.style.whiteSpace = WhiteSpace.Normal;
             CurveDataContainer.Add(TypeLabel);
+
+            curveProperty = Helper.CurvesProperty.GetArrayElementAtIndex(index);
+            keyframesProperty = curveProperty.FindPropertyRelative("keyframes");
 
             WrapModeField = new() { name = "WrapModeField" };
             WrapModeField.RemoveFromClassList(alignedFieldUssClassName);
@@ -533,6 +535,8 @@ namespace UITK_SimpleTimeline
             SpawnKeyframeKnobs();
             RegisterGenericMenus();
             MarkDirtyRepaint();
+
+            schedule.Execute(ResizeLabel).Until(() => w != null);
         }
 
         public void RegenerateElement()
@@ -627,6 +631,30 @@ namespace UITK_SimpleTimeline
             Helper.ApplyChangesToObject();
             MarkDirtyRepaint();
             RegenerateElement();
+        }
+
+        protected void ResizeLabel()
+        {
+            try
+            {
+                w = WrapModeField.Children().ToArray()[0];
+                w.style.flexDirection = FlexDirection.Column;
+                w.style.flexWrap = Wrap.Wrap;
+                Label l2 = w.Q<Label>();
+                l2.style.maxWidth = 120;
+                l2.style.minWidth = 50;
+                l2.style.flexGrow = -1;
+                l2.style.flexShrink = -1;
+                VisualElement v2 = w.Children().ToArray()[1];
+                v2.style.flexGrow = 1;
+                v2.style.minHeight = 17;
+                v2.style.minWidth = 90;
+                v2.style.maxWidth = 120;
+            }
+            catch
+            {
+                //lmao
+            }
         }
     }
 }

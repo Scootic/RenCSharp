@@ -29,7 +29,7 @@ namespace UITK_SimpleTimeline
 
                 foreach(Assembly a in assemblies)
                 {
-                    Type[] validTypes = a.GetTypes().Where(a => a.IsSubclassOfGenericType(typeof(TypedTimelineCurve<,>)) && !a.IsAbstract).ToArray();
+                    Type[] validTypes = a.GetTypes().Where(a => a.IsSubclassOf(typeof(TimelineCurve)) && !a.IsAbstract).ToArray();
                     //Debug.Log($"Valid Type Length in Assembly {a.FullName}: {validTypes.Length}");
                     foreach(Type t in validTypes)
                     {

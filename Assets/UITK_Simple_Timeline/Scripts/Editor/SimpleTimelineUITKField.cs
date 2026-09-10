@@ -37,11 +37,11 @@ namespace UITK_SimpleTimeline.Editor
         /// </summary>
         protected readonly PropertyField CurrentKeyframeField;
         //? the guys that'll be displayed in the scroll view?
-        protected readonly List<VisualElement>DoubleTypedTimelineCurveFields = new();
+        protected readonly List<VisualElement>TypedTimelineCurveFields = new();
         /// <summary>
         /// Right-click inside TimelineScrollView.
         /// </summary>
-        protected GenericMenu AddNewCurveMenu;
+        protected GenericMenu TimelineContentMenu;
         /// <summary>
         /// Is the timeline currently playing in the editor? (Is the red line moving???)
         /// </summary>
@@ -50,7 +50,7 @@ namespace UITK_SimpleTimeline.Editor
         protected VisualElement CurTimelineKnob;
 
         protected float curT = 0, currentZoom = 1f, originalScrollMax;
-        protected readonly float minZoom = 0.5f, maxZoom = 3f, zoomStep = 0.1f;
+        protected readonly float minZoom = 0.1f, maxZoom = 3f, zoomStep = 0.1f;
        
         public SimpleTimelineUITKField() : this(null) { }
 
@@ -265,7 +265,7 @@ namespace UITK_SimpleTimeline.Editor
             TimelineControlsHolder.Add(CurrentSecondsField);
             #endregion
 
-            CreateAddNewCurveMenu();
+            CreateTimelineContentMenu();
             TimelineScrollView = new() { name = "TimelineScrollView" };
             TimelineScrollView.style.backgroundColor = Helper.SecondLayerBorder;
             TimelineScrollView.style.minHeight = 235;
@@ -287,24 +287,12 @@ namespace UITK_SimpleTimeline.Editor
             ScrollViewContent.style.backgroundSize = new StyleBackgroundSize(new BackgroundSize(32, 32));
             ScrollViewContent.style.flexGrow = 1;
             ScrollViewContent.style.right = -160f;
-            ScrollViewContent.RegisterCallback<WheelEvent>(evt =>
-            {
-                if (!evt.ctrlKey) return;
-
-                if (evt.delta.y < 0) currentZoom += zoomStep;
-                else if (evt.delta.y > 0) currentZoom -= zoomStep;
-                currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
-                ScrollViewContent.transform.scale = new Vector3(currentZoom, 1, 1);
-                TimelineScrollView.horizontalScroller.highValue = originalScrollMax / currentZoom;
-                //float ogValue = TimelineScrollView.horizontalScroller.value;
-                //TimelineScrollView.horizontalScroller.value = ogValue * currentZoom;
-                evt.StopPropagation();
-            });
+            ScrollViewContent.RegisterCallback<WheelEvent>(ScaleTimeline);
             TimelineScrollView.RegisterCallback<PointerDownEvent>(evt =>
             {
                 if (evt.button == 1) //if right click
                 {
-                    AddNewCurveMenu.ShowAsContext();
+                    TimelineContentMenu.ShowAsContext();
                     evt.StopPropagation();
                 }
             });
@@ -504,7 +492,7 @@ namespace UITK_SimpleTimeline.Editor
                         (sp.boxedValue as TimelineCurve).AddKeyframeToCurve(curT);
                     }
                     Helper.ApplyChangesToObject();
-                    foreach (VisualElement ve in DoubleTypedTimelineCurveFields) 
+                    foreach (VisualElement ve in TypedTimelineCurveFields) 
                     {
                         IRegeneratableElement ire = ve as IRegeneratableElement;
                         ire?.RegenerateElement();
@@ -561,7 +549,7 @@ namespace UITK_SimpleTimeline.Editor
             TimelineControlsHolder.Add(CurrentSecondsField);
             #endregion
 
-            CreateAddNewCurveMenu();
+            CreateTimelineContentMenu();
             TimelineScrollView = new() { name = "TimelineScrollView" };
             TimelineScrollView.style.backgroundColor = Helper.SecondLayerBorder;
             TimelineScrollView.style.minHeight = 235;
@@ -583,24 +571,12 @@ namespace UITK_SimpleTimeline.Editor
             ScrollViewContent.style.backgroundSize = new StyleBackgroundSize(new BackgroundSize(32, 32));
             ScrollViewContent.style.flexGrow = 1;
             ScrollViewContent.style.right = -160f;
-            ScrollViewContent.RegisterCallback<WheelEvent>(evt =>
-            {
-                if (!evt.ctrlKey) return;
-
-                if (evt.delta.y < 0) currentZoom += zoomStep;
-                else if(evt.delta.y > 0) currentZoom -= zoomStep;
-                currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
-                ScrollViewContent.transform.scale = new Vector3(currentZoom, 1, 1);
-                TimelineScrollView.horizontalScroller.highValue = originalScrollMax / currentZoom;
-                //float ogValue = TimelineScrollView.horizontalScroller.value;
-                //TimelineScrollView.horizontalScroller.value = ogValue * currentZoom;
-                evt.StopPropagation();
-            });
+            ScrollViewContent.RegisterCallback<WheelEvent>(ScaleTimeline);
             TimelineScrollView.RegisterCallback<PointerDownEvent>(evt =>
             {
                 if (evt.button == 1) //if right click
                 {
-                    AddNewCurveMenu.ShowAsContext();
+                    TimelineContentMenu.ShowAsContext();
                 }
             });
             TimelineHolder.Add(TimelineScrollView);
@@ -627,7 +603,7 @@ namespace UITK_SimpleTimeline.Editor
             TimelineScrollView.Add(CurrentTimePreview);
 
             #endregion
-            GenerateDoubleTypedTimelineCurveFields();
+            GenerateTypedTimelineCurveFields();
             UpdateTimelineScrollSizeBasedOnDuration(Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue);
 
             schedule.Execute(PreviewTimelineUpdate).Every(16).StartingIn(0);
@@ -682,17 +658,17 @@ namespace UITK_SimpleTimeline.Editor
                     Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue = thisTimeline.Curves[i];
                 }
                 Helper.ApplyChangesToObject();
-                GenerateDoubleTypedTimelineCurveFields();
+                GenerateTypedTimelineCurveFields();
             }
             catch
             {
-                Debug.LogWarning("UpdateCurvesProperty went wrong. SOMEHOW?!?!");
+                Debug.LogError("Update Curves Property failed somehow?!?");
             }
         }
         //spawn all of them stinkin' DoubleTypedTimelineCurveFields
-        protected void GenerateDoubleTypedTimelineCurveFields()
+        protected void GenerateTypedTimelineCurveFields()
         {
-            foreach(VisualElement curveField in DoubleTypedTimelineCurveFields)
+            foreach(VisualElement curveField in TypedTimelineCurveFields)
             {
                 try
                 {
@@ -704,7 +680,7 @@ namespace UITK_SimpleTimeline.Editor
                     continue;
                 }
             }
-            DoubleTypedTimelineCurveFields.Clear();
+            TypedTimelineCurveFields.Clear();
             if (Helper.CurvesProperty == null) return;
             for(int i = 0; i < Helper.CurvesProperty.arraySize; i++)
             {
@@ -713,7 +689,7 @@ namespace UITK_SimpleTimeline.Editor
                     TimelineCurve lerpable = Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue as TimelineCurve;
                     VisualElement rep = lerpable.UITKRepresentation(i);
                     TimelineScrollView.Add(rep); //adding to the timeline scrollview should place it in the content section? i hope?
-                    DoubleTypedTimelineCurveFields.Add(rep);//? i at 0 should be timeline ruler
+                    TypedTimelineCurveFields.Add(rep);//? i at 0 should be timeline ruler
                 }
                 catch
                 {
@@ -757,12 +733,12 @@ namespace UITK_SimpleTimeline.Editor
             Helper.ApplyChangesToObject();
         }
 
-        protected void CreateAddNewCurveMenu()
+        protected void CreateTimelineContentMenu()
         {
-            AddNewCurveMenu = new();
+            TimelineContentMenu = new();
             if (AssemblyDatabase.GetValidTimelineCurveTypes == null) 
             {
-                AddNewCurveMenu.AddDisabledItem(new GUIContent("No Valid Curve Types?!? Try checking the SimpleTimelineUITK_AssemblyDatabase."));
+                TimelineContentMenu.AddDisabledItem(new GUIContent("No Valid Curve Types?!? Try checking the SimpleTimelineUITK_AssemblyDatabase."));
                 return; 
             }
 
@@ -771,12 +747,21 @@ namespace UITK_SimpleTimeline.Editor
                 //this mans should always be a stinkin' TimelineCurve. (God I hope...)
                 //Debug.Log($"Adding type {t.Name} to curve menu!");
                 object c = Activator.CreateInstance(t);
-                AddNewCurveMenu.AddItem(new GUIContent($"Add New {c}"), false, delegate
+                TimelineContentMenu.AddItem(new GUIContent($"Add New {c}"), false, delegate
                 {
                     TimelineCurve curve = c as TimelineCurve;
                     AddNewTimelineCurve(curve);
                 });
             }
+
+            TimelineContentMenu.AddSeparator("");
+            TimelineContentMenu.AddItem(new GUIContent("Reset Timeline Scale"), false, delegate
+            {
+                currentZoom = 1;
+                ScrollViewContent.transform.scale = Vector3.one;
+                Helper.OnTimelineScale?.Invoke(Vector3.one);
+                TimelineScrollView.horizontalScroller.highValue = originalScrollMax;
+            });
         }
         //try to get all of the Texture2Ds if the field is missing any one of them
         protected void GrabIcons()
@@ -820,6 +805,21 @@ namespace UITK_SimpleTimeline.Editor
                 msg += $"\n{curve.EvaluateMessage(curT)}";
             }
             Debug.Log(msg);
+        }
+
+        protected void ScaleTimeline(WheelEvent evt)
+        {
+            if (!evt.ctrlKey) { return; }
+
+            if (evt.delta.y < 0) currentZoom += zoomStep;
+            else if (evt.delta.y > 0) currentZoom -= zoomStep;
+            currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
+            ScrollViewContent.transform.scale = new Vector3(currentZoom, 1, 1);
+            Helper.OnTimelineScale?.Invoke(ScrollViewContent.transform.scale);
+            TimelineScrollView.horizontalScroller.highValue = originalScrollMax / currentZoom;
+            //float ogValue = TimelineScrollView.horizontalScroller.value;
+            //TimelineScrollView.horizontalScroller.value = ogValue * currentZoom;
+            evt.StopPropagation();
         }
     }
 }

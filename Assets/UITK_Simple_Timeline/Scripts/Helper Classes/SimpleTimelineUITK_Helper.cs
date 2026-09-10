@@ -49,6 +49,10 @@ namespace UITK_SimpleTimeline
         /// </summary>
         public static Action<TimelineCurve> RemoveTimelineCurve;
         /// <summary>
+        /// Fires whenever you scale the Timeline with mousewheel, passing in the current Vec3 transform scale.
+        /// </summary>
+        public static Action<Vector3> OnTimelineScale;
+        /// <summary>
         /// Texture used by the TimelineScrollView's content to be a slightly grayed out underlay to extend the ruler's
         /// measurements down without being too obtrusive. (Hopefully.)
         /// </summary>

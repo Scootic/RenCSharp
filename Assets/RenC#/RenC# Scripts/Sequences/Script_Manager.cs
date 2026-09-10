@@ -655,6 +655,16 @@ namespace RenCSharp
             SequenceAsset.WaitForCompletion();
             if (SequenceAsset.Status == AsyncOperationStatus.Succeeded) currentSequence = (Sequence)SequenceAsset.Result;
             else SequenceAsset.Release();
+
+            try
+            {
+                SaveLoad.LoadCustomData?.Invoke(sd.CustomJSONData);
+            }
+            catch
+            {
+                Debug.LogWarning($"SaveData: {sd.FileName} doesn't contain a CustomJSONData list.");
+            }
+
             loaded = true;
             SetSpeed(PlayerPrefs.GetFloat("TextSpeed", textSpeed), false); //makes sure to reset speed, in case the text is in the middle of some garbage.
             Textbox_String.PauseTextbox(false);

@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 using RenCSharp.Editor;
 using RenCSharp.Actors;
 using UnityEditor.UIElements;
+using UnityEngine;
 namespace RenCSharp.Sequences.Editor
 {
     [CustomPropertyDrawer(typeof(VisualIndexes))]
@@ -16,7 +17,7 @@ namespace RenCSharp.Sequences.Editor
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             viProperty = property;
-            leElement = new();
+            leElement = new() { name = "VisualIndex Property Element"};
 
             ObjectField actorField = new()
             {
@@ -31,22 +32,29 @@ namespace RenCSharp.Sequences.Editor
                 viProperty.serializedObject.ApplyModifiedProperties();
                 SetAutoTextFields();
             });
-
+            Debug.Log($"actortosetpropert{viProperty.FindPropertyRelative("ActorToSet")}");
             leElement.Add(actorField);
-
-            autoTextFields = new AutoTextField[viProperty.FindPropertyRelative("indexes").arraySize];
-            List<List<string>> AutoTexts = ((VisualIndexes)viProperty.boxedValue).GetAutoTexts;
-
-            for(int i = 0; i < autoTextFields.Length; i++)
+            try
             {
-                autoTextFields[i] = new AutoTextField($"Layer {i}:", AutoTexts[i]);
-                autoTextFields[i].RegisterValueChangedCallback(evt => 
-                {
+               
+                autoTextFields = new AutoTextField[viProperty.FindPropertyRelative("ActorToSet").FindPropertyRelative("Visuals").arraySize];
+            }
+            catch
+            {
+                return leElement;
+            }
+            List<List<string>> AutoTexts = ((VisualIndexes)viProperty.boxedValue).GetAutoTexts;
+            
+            for (int i = 0; i < autoTextFields.Length; i++)
+            {
+               autoTextFields[i] = new AutoTextField($"Layer {i}:", AutoTexts[i]);
+               autoTextFields[i].RegisterValueChangedCallback(evt =>
+               {
                     viProperty.FindPropertyRelative("indexes").GetArrayElementAtIndex(i).stringValue = evt.newValue;
                     viProperty.serializedObject.ApplyModifiedProperties();
-                }
-                );
-                leElement.Add(autoTextFields[i]);
+               }
+               );
+               leElement.Add(autoTextFields[i]);
             }
 
             return leElement;
@@ -54,13 +62,17 @@ namespace RenCSharp.Sequences.Editor
 
         private void SetAutoTextFields()
         {
+            Debug.Log("Setting auto text fields for the VisualIndexes drawer");
             //remove any existing autotextfields for being complete and utter hogwash
             for (int i = leElement.childCount - 1; i > 1; i--)
             {
                 leElement.RemoveAt(i);
             }
-
-            autoTextFields = new AutoTextField[viProperty.FindPropertyRelative("indexes").arraySize];
+            try
+            {
+                autoTextFields = new AutoTextField[viProperty.FindPropertyRelative("ActorToSet").FindPropertyRelative("Visuals").arraySize];
+            }
+            catch { return; }
             List<List<string>> AutoTexts = ((VisualIndexes)viProperty.boxedValue).GetAutoTexts;
 
             for (int i = 0; i < autoTextFields.Length; i++)

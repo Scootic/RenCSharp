@@ -24,6 +24,7 @@ namespace UITK_SimpleTimeline
 
                 toReturn.AddItem(new GUIContent($"Delete Knob at {value.Time}s."), false, delegate
                 {
+                    Helper.OnTimelineScale -= OnScale; //?
                     DeleteKnobAction.Invoke();
                 });
 
@@ -70,6 +71,7 @@ namespace UITK_SimpleTimeline
             Helper.ApplyChangesToObject();
             RegisterCallback<PointerMoveEvent>(DragKnob);
             Helper.ReceiveKeyframe += SelectKnobColoring;
+            Helper.OnTimelineScale += OnScale;
         }
 
         protected void SelectKnobColoring(SerializedProperty sp, VisualElement ve)
@@ -90,17 +92,27 @@ namespace UITK_SimpleTimeline
             {
                 Vector3 curPos = transform.position;
                 //assuming that origin is the center of the element?
-                float newX = Mathf.Clamp(curPos.x + pme.deltaPosition.x, -halfwayOffset, Helper.MaxPixelWidth - halfwayOffset - 3);
-                newX = (float)Math.Round(newX, 1);
+                float newX = Mathf.Clamp(curPos.x + pme.deltaPosition.x, -halfwayOffset - 4, Helper.MaxPixelWidth - halfwayOffset - 4);
+                newX = transform.scale.x switch //?
+                {
+                    > 2 => (float)Math.Round(newX, 0),
+                    >= 1 => (float)Math.Round(newX, 1),
+                    _ => newX
+                }; 
                 curPos = new Vector3(newX, curPos.y, curPos.z);
                 transform.position = curPos;
-                float newTime = (curPos.x + halfwayOffset + 2) / Helper.PixelWidthPerSeconds;
+                float newTime = (curPos.x + halfwayOffset + 4) / Helper.PixelWidthPerSeconds;
                 //super duper make sure time is clamped. good god...
                 newTime = Mathf.Clamp(newTime, 0, Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue);
                 KnobProperty.FindPropertyRelative("Time").floatValue = newTime;
                 Helper.ApplyChangesToObject();
                 value = KnobProperty.boxedValue as TimelineKeyframe<T>;
             }
+        }
+
+        protected void OnScale(Vector3 currentScale)
+        {
+            transform.scale = new(1 / currentScale.x, 1 / currentScale.y, 1 / currentScale.z);
         }
     }
 }

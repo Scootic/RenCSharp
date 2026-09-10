@@ -14,6 +14,8 @@ namespace RenCSharp.Sequences
         {
             get
             {
+                if (ActorToSet == null) return null;
+
                 List<List<string>> toReturn = new();
 
                 foreach (SpriteArray layerindexes in ActorToSet.Visuals)
@@ -41,6 +43,6 @@ namespace RenCSharp.Sequences
 
         public readonly int Length => indexes.Count;
         public List<string> indexes;
-        public Actor ActorToSet;
+        [SerializeField] public Actor ActorToSet;
     }
 }

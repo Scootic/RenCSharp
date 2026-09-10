@@ -7,15 +7,21 @@ namespace RenCSharp.Sequences
     public class SimpleTimeline_AnimationSaveLoader : MonoBehaviour
     {
         private static readonly HashSet<SimpleTimeline> activeTimelines = new();
+        private static SimpleTimeline_AnimationSaveLoader instance;
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
         {
+            if(instance == null)
+            {
+                instance = this;
+            }else if(instance != this)
+            {
+                Destroy(this);
+            }
             SaveLoad.SaveCustomData += SaveAnimations;
             SaveLoad.LoadCustomData += LoadAnimations;
         }
 
-        // Update is called once per frame
         void OnDisable()
         {
             SaveLoad.SaveCustomData -= SaveAnimations;

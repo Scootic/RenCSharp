@@ -111,10 +111,10 @@ namespace UITK_SimpleTimeline.Editor
                     label = new();
                     label.style.whiteSpace = WhiteSpace.Normal;
                     label.style.flexWrap = Wrap.Wrap;
-
+                   
                     if(newL == null)
                     {
-                        label.text = "Select a keyframe to preview its curve.";
+                        label.text = "Select a keyframe that has an element to its right to preview its curve.";
                     }else if(newR == null)
                     {
                         label.text = "No keyframe to the right of selected keyframe.";

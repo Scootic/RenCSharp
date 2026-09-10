@@ -6,7 +6,7 @@ namespace UITK_SimpleTimeline
 {
     /// <summary>
     /// Stupid evil lerper of cubic type. Remember to give your custom types a ToString(), and to add their Assemblies
-    /// to the UITK_SimpleTimeline_AssemblyDatabase asset.
+    /// to the UITK_SimpleTimeline_AssemblyDatabase asset. Double typed.
     /// </summary>
     /// <typeparam name="T">The type of value being lerped between. (Keyframe Values)</typeparam>
     /// <typeparam name="U">The type of object that is affected by the T value.</typeparam>
@@ -34,7 +34,7 @@ namespace UITK_SimpleTimeline
     }
     /// <summary>
     /// Stupid evil lerper of cubic type. Remember to give your custom types a ToString(), and to add their Assemblies
-    /// to the UITK_SimpleTimeline_AssemblyDatabase asset.
+    /// to the UITK_SimpleTimeline_AssemblyDatabase asset. Single typed.
     /// </summary>
     /// <typeparam name="T">The type of value being lerped between. (Keyframe Values)</typeparam>
     [Serializable]
