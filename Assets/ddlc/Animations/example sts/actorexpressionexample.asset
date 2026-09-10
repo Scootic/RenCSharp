@@ -13,9 +13,29 @@ MonoBehaviour:
   m_Name: actorexpressionexample
   m_EditorClassIdentifier: 
   Timeline:
-    Loop: 0
-    Duration: 0
-    Curves: []
+    Loop: 1
+    Duration: 2
+    Curves:
+    - rid: 7219385869072597095
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 7219385869072597095
+      type: {class: ActorExpressionCurve, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        WrappingMode: 1
+        keyframes:
+        - KeyframeIndex: 0
+          CurveIndex: 0
+          Time: 0
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 0
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          Value:
+            indexes: []
+            ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
