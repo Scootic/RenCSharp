@@ -3,6 +3,7 @@ namespace RenCSharp.Sequences
 {
     public class ActorExpressionCurve : TypedTimelineCurve<VisualIndexes>, ILerpable
     {
+        protected override int ExcludedKeyframeTangentModes() => 15; //exclude all but cliff
         public override string ShorthandCurveName() => "Change Actor Expression Curve";
         public override string SpawnKeyframeName() => "Visual Indexes Keyframe";
         public override string ToAffectName() => "";

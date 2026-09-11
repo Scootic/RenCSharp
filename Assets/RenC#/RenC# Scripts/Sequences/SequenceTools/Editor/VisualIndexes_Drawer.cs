@@ -5,7 +5,6 @@ using UnityEngine.UIElements;
 using RenCSharp.Editor;
 using RenCSharp.Actors;
 using UnityEditor.UIElements;
-using UnityEngine;
 namespace RenCSharp.Sequences.Editor
 {
     [CustomPropertyDrawer(typeof(VisualIndexes))]
@@ -13,13 +12,14 @@ namespace RenCSharp.Sequences.Editor
     {
         private AutoTextField[] autoTextFields;
         private SerializedProperty viProperty;
+        private ObjectField actorField;
         private VisualElement leElement;
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             viProperty = property;
             leElement = new() { name = "VisualIndex Property Element"};
 
-            ObjectField actorField = new()
+            actorField = new()
             {
                 objectType = typeof(Actor),
                 value = viProperty.FindPropertyRelative("ActorToSet").boxedValue as Actor
@@ -29,40 +29,20 @@ namespace RenCSharp.Sequences.Editor
                 VisualIndexes vi = (VisualIndexes)viProperty.boxedValue;
                 vi.SetActor = evt.newValue as Actor;
                 viProperty.boxedValue = vi;
-                viProperty.serializedObject.ApplyModifiedProperties();
+                viProperty.serializedObject.ApplyModifiedProperties(); //works...?
                 SetAutoTextFields();
             });
-            Debug.Log($"actortosetpropert{viProperty.FindPropertyRelative("ActorToSet")}");
-            leElement.Add(actorField);
-            try
-            {
-               
-                autoTextFields = new AutoTextField[viProperty.FindPropertyRelative("ActorToSet").FindPropertyRelative("Visuals").arraySize];
-            }
-            catch
-            {
-                return leElement;
-            }
-            List<List<string>> AutoTexts = ((VisualIndexes)viProperty.boxedValue).GetAutoTexts;
-            
-            for (int i = 0; i < autoTextFields.Length; i++)
-            {
-               autoTextFields[i] = new AutoTextField($"Layer {i}:", AutoTexts[i]);
-               autoTextFields[i].RegisterValueChangedCallback(evt =>
-               {
-                    viProperty.FindPropertyRelative("indexes").GetArrayElementAtIndex(i).stringValue = evt.newValue;
-                    viProperty.serializedObject.ApplyModifiedProperties();
-               }
-               );
-               leElement.Add(autoTextFields[i]);
-            }
 
+            leElement.Add(actorField);
+            if (actorField.value != null)
+            {
+                SetAutoTextFields();
+            }
             return leElement;
         }
 
         private void SetAutoTextFields()
         {
-            Debug.Log("Setting auto text fields for the VisualIndexes drawer");
             //remove any existing autotextfields for being complete and utter hogwash
             for (int i = leElement.childCount - 1; i > 1; i--)
             {
@@ -70,20 +50,30 @@ namespace RenCSharp.Sequences.Editor
             }
             try
             {
-                autoTextFields = new AutoTextField[viProperty.FindPropertyRelative("ActorToSet").FindPropertyRelative("Visuals").arraySize];
+                int length = ((Actor)actorField.value).Visuals.Length;
+                autoTextFields = new AutoTextField[length];
             }
             catch { return; }
             List<List<string>> AutoTexts = ((VisualIndexes)viProperty.boxedValue).GetAutoTexts;
-
+            if (viProperty.FindPropertyRelative("indexes").arraySize != AutoTexts.Count)
+            {
+                viProperty.FindPropertyRelative("indexes").arraySize = AutoTexts.Count;
+                viProperty.serializedObject.ApplyModifiedProperties();
+            }
             for (int i = 0; i < autoTextFields.Length; i++)
             {
-                autoTextFields[i] = new AutoTextField($"Layer {i}:", AutoTexts[i]);
+                int oldI = i;
+                autoTextFields[i] = new AutoTextField($"Layer {oldI}:", AutoTexts[i], FlexDirection.Column);
                 autoTextFields[i].RegisterValueChangedCallback(evt => 
                 {
-                    viProperty.FindPropertyRelative("indexes").GetArrayElementAtIndex(i).stringValue = evt.newValue;
+                    VisualIndexes vi = (VisualIndexes)viProperty.boxedValue;
+                    vi.indexes[oldI] = evt.newValue;
+                    viProperty.boxedValue = vi;
                     viProperty.serializedObject.ApplyModifiedProperties();
                 }
                 );
+                autoTextFields[i].SetText = viProperty.FindPropertyRelative("indexes").GetArrayElementAtIndex(oldI).stringValue;
+                
                 leElement.Add(autoTextFields[i]);
             }
         }

@@ -3,6 +3,7 @@ namespace RenCSharp.Sequences
 {
     public class PauseSequenceCurve : TypedTimelineCurve<bool>
     {
+        protected override int ExcludedKeyframeTangentModes() => 15; //exclude all but cliff
         public override string ShorthandCurveName() => ToString();
         public override string SpawnKeyframeName() => "Bool Keyframe";
         public override string ToAffectName() => "";

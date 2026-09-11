@@ -40,6 +40,13 @@ namespace UITK_SimpleTimeline
     [Serializable]
     public abstract class TypedTimelineCurve<T> : TimelineCurve, ILerpable where T : notnull
     {
+        /// <summary>
+        /// 0 to include all.
+        /// <br/><br/>15 to exclude all but Cliff.
+        /// </summary>
+        /// <returns></returns>
+        protected virtual int ExcludedKeyframeTangentModes() => 0;
+
 #if UNITY_EDITOR
         public override VisualElement UITKRepresentation(int index)
         {

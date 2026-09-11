@@ -32,7 +32,7 @@ namespace RenCSharp.Sequences
             set
             {
                 ActorToSet = value;
-                indexes = new List<string>(ActorToSet.Visuals.Length);
+                indexes = new string[ActorToSet.Visuals.Length];
             }
         }
 
@@ -41,8 +41,8 @@ namespace RenCSharp.Sequences
             return ActorToSet.Visuals[index].ReturnSprite(s);
         }
 
-        public readonly int Length => indexes.Count;
-        public List<string> indexes;
+        public readonly int Length => indexes.Length;
+        [SerializeField] public string[] indexes;
         [SerializeField] public Actor ActorToSet;
     }
 }

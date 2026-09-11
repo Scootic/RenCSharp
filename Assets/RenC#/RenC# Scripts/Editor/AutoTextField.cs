@@ -21,6 +21,13 @@ namespace RenCSharp.Editor
         private const string dropdownFieldClassName = "autotextfield__input-dropdown";
         private const int cacheListMax = 10;
 
+        public string SetText { set 
+            { 
+                inputField.value = value;
+                dropdownField.value = value;
+            } 
+        }
+
         public AutoTextField() : this(null) { }
 
         public AutoTextField(string labelText) : base(labelText, new VisualElement())
@@ -66,6 +73,34 @@ namespace RenCSharp.Editor
             dropdownField = new();
             dropdownField.AddToClassList(dropdownFieldClassName);
             dropdownField.RegisterCallback<ChangeEvent<string>>(evt => 
+            {
+                OnKeyInput(evt.newValue);
+            });
+
+            DropdownFieldBG = dropdownField.Q<VisualElement>().Children().First();
+
+            ContentElement.Add(dropdownField);
+            dropdownField.style.minWidth = 100f;
+        }
+
+        public AutoTextField(string labelText, List<string> autoText, FlexDirection flexDir = FlexDirection.Row) : base(labelText, new VisualElement())
+        {
+            validAutoText = autoText;
+
+            AddToClassList(alignedFieldUssClassName);
+
+            ContentElement = this.Q<VisualElement>(className: inputUssClassName);
+            ContentElement.style.flexDirection = flexDir;
+
+            inputField = new();
+            inputField.AddToClassList(inputFieldClassName);
+            ContentElement.Add(inputField);
+            inputField.style.minWidth = 100f;
+            inputField.RegisterValueChangedCallback(evt => OnKeyInput(evt.newValue));
+
+            dropdownField = new();
+            dropdownField.AddToClassList(dropdownFieldClassName);
+            dropdownField.RegisterCallback<ChangeEvent<string>>(evt =>
             {
                 OnKeyInput(evt.newValue);
             });

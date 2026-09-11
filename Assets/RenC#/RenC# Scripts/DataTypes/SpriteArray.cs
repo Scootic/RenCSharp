@@ -13,7 +13,7 @@ namespace RenCSharp
         public List<Sprite> layer;
         public List<string> visualIDs;
 
-        public Sprite ReturnSprite(string id)
+        public readonly Sprite ReturnSprite(string id)
         {
             Sprite fellow = layer[0];
 
