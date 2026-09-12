@@ -1,6 +1,7 @@
 
 using System;
 using UnityEngine;
+using TangentMode = UITK_SimpleTimeline.TimelineKeyframeTangentMode;
 namespace UITK_SimpleTimeline
 {
     [Serializable]
@@ -17,18 +18,19 @@ namespace UITK_SimpleTimeline
         public static Keyframe GetKeyframeFromTK(TimelineKeyframe<T> tk)
         {
             //doesn't set value at all?
-            Keyframe toReturn = new();
+            return new()
+            {
 #pragma warning disable CS0618
-            toReturn.time = tk.Time;
-            toReturn.weightedMode = tk.WeightedMode;
-            toReturn.tangentMode = (int)tk.TangentMode;
-#pragma warning restore CS0618
-            toReturn.inWeight = tk.InWeight;
-            toReturn.outWeight = tk.OutWeight;
-            toReturn.inTangent = tk.InTangent;
-            toReturn.outTangent = tk.OutTangent;
+                time = tk.Time,
+                weightedMode = tk.WeightedMode,
+                tangentMode = (int)tk.TangentMode,
 
-            return toReturn;
+#pragma warning restore CS0618
+                inWeight = tk.InWeight,
+                outWeight = tk.OutWeight,
+                inTangent = tk.InTangent,
+                outTangent = tk.OutTangent
+            };
         }
 #endif
     }
@@ -43,13 +45,16 @@ namespace UITK_SimpleTimeline
         public float InSlope;
         public float OutSlope;
 
-        public TimelineKeyframeTangentMode TangentMode;
+        public TangentMode TangentMode;
         public float InTangent;
         public float OutTangent;
 
         public WeightedMode WeightedMode;
         public float InWeight;
         public float OutWeight;
+
+        public int ExcludedTangentModes;
+        public TangentMode DefaultTangentMode;
 
         public int CompareTo(object obj) //super dee duper make sure we're ordering our lists by time, because duh
         {

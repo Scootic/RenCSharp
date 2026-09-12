@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72803af6ba98e434fbbd7462d7a3b5d8, type: 3}
-  m_Name: actorexpressionexample
+  m_Name: sayoritesthop
   m_EditorClassIdentifier: 
   Timeline:
     Loop: 1
-    Duration: 4
+    Duration: 2.5
     Curves:
-    - rid: 7219385869072597095
-    - rid: 7219385900199051326
+    - rid: 7219385918982455384
+    - rid: 7219385918982455385
   references:
     version: 2
     RefIds:
-    - rid: 7219385869072597095
+    - rid: 7219385918982455384
       type: {class: ActorExpressionCurve, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         WrappingMode: 1
@@ -31,110 +31,102 @@ MonoBehaviour:
           Time: 0
           InSlope: 0
           OutSlope: 0
-          TangentMode: 0
+          TangentMode: 16
           InTangent: 0
           OutTangent: 0
           WeightedMode: 0
           InWeight: 0
           OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
           Value:
             indexes:
-            - skyDown
-            - skyDown
-            - smile
-            - EMPTY
+            - skyUp
+            - skyUp
+            - content
+            - 
             ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         - KeyframeIndex: 1
           CurveIndex: 0
           Time: 0.5
           InSlope: 0
           OutSlope: 0
-          TangentMode: 0
+          TangentMode: 16
           InTangent: 0
           OutTangent: 0
           WeightedMode: 0
           InWeight: 0
           OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
           Value:
             indexes:
-            - skyDown
-            - skyDown
-            - smile
-            - EMPTY
+            - skyUp
+            - skyUp
+            - content
+            - 
             ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         - KeyframeIndex: 2
           CurveIndex: 0
           Time: 1
           InSlope: 0
           OutSlope: 0
-          TangentMode: 0
+          TangentMode: 16
           InTangent: 0
           OutTangent: 0
           WeightedMode: 0
           InWeight: 0
           OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
+          Value:
+            indexes:
+            - skyUp
+            - skyDown
+            - smileSpeak
+            - 
+            ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        - KeyframeIndex: 3
+          CurveIndex: 0
+          Time: 1.53125
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 16
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
           Value:
             indexes:
             - skyDown
-            - skyDown
-            - smile
-            - EMPTY
+            - skyUp
+            - smileSpeak
+            - 
             ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        - KeyframeIndex: 3
+        - KeyframeIndex: 4
           CurveIndex: 0
           Time: 2
           InSlope: 0
           OutSlope: 0
-          TangentMode: 0
+          TangentMode: 16
           InTangent: 0
           OutTangent: 0
           WeightedMode: 0
           InWeight: 0
           OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
           Value:
             indexes:
             - skyDown
-            - skyDown
-            - smile
-            - EMPTY
+            - skyUp
+            - smileSpeak
+            - 
             ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        - KeyframeIndex: 4
-          CurveIndex: 0
-          Time: 2.5
-          InSlope: 0
-          OutSlope: 0
-          TangentMode: 0
-          InTangent: 0
-          OutTangent: 0
-          WeightedMode: 0
-          InWeight: 0
-          OutWeight: 0
-          Value:
-            indexes:
-            - skyDown
-            - skyDown
-            - smile
-            - EMPTY
-            ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        - KeyframeIndex: 5
-          CurveIndex: 0
-          Time: 3
-          InSlope: 0
-          OutSlope: 0
-          TangentMode: 0
-          InTangent: 0
-          OutTangent: 0
-          WeightedMode: 0
-          InWeight: 0
-          OutWeight: 0
-          Value:
-            indexes:
-            - skyDown
-            - skyDown
-            - smile
-            - EMPTY
-            ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-    - rid: 7219385900199051326
+    - rid: 7219385918982455385
       type: {class: ActorLocalPositionCurve, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         WrappingMode: 1
@@ -144,71 +136,69 @@ MonoBehaviour:
           Time: 0
           InSlope: 0
           OutSlope: 0
-          TangentMode: 0
+          TangentMode: 1
           InTangent: 0
-          OutTangent: 3
+          OutTangent: 0
           WeightedMode: 0
           InWeight: 0
           OutWeight: 0
+          ExcludedTangentModes: 0
+          DefaultTangentMode: 1
           Value: {x: 0, y: 0, z: 0}
         - KeyframeIndex: 1
           CurveIndex: 1
           Time: 0.5
           InSlope: 0
           OutSlope: 0
-          TangentMode: 0
+          TangentMode: 1
           InTangent: 0
-          OutTangent: 3
+          OutTangent: 0
           WeightedMode: 0
           InWeight: 0
           OutWeight: 0
+          ExcludedTangentModes: 0
+          DefaultTangentMode: 1
           Value: {x: -100, y: 100, z: 0}
         - KeyframeIndex: 2
           CurveIndex: 1
           Time: 1
           InSlope: 0
           OutSlope: 0
-          TangentMode: 0
+          TangentMode: 1
           InTangent: 0
           OutTangent: 0
           WeightedMode: 0
           InWeight: 0
           OutWeight: 0
+          ExcludedTangentModes: 0
+          DefaultTangentMode: 1
           Value: {x: -200, y: 0, z: 0}
         - KeyframeIndex: 3
+          CurveIndex: 1
+          Time: 1.5
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 1
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 0
+          DefaultTangentMode: 1
+          Value: {x: -100, y: 100, z: 0}
+        - KeyframeIndex: 4
           CurveIndex: 1
           Time: 2
           InSlope: 0
           OutSlope: 0
-          TangentMode: 0
-          InTangent: 0
-          OutTangent: 3
-          WeightedMode: 0
-          InWeight: 0
-          OutWeight: 0
-          Value: {x: -200, y: 0, z: 0}
-        - KeyframeIndex: 4
-          CurveIndex: 1
-          Time: 2.4375
-          InSlope: 0
-          OutSlope: 0
-          TangentMode: 0
-          InTangent: 0
-          OutTangent: 3
-          WeightedMode: 0
-          InWeight: 0
-          OutWeight: 0
-          Value: {x: -100, y: 100, z: 0}
-        - KeyframeIndex: 5
-          CurveIndex: 1
-          Time: 3
-          InSlope: 0
-          OutSlope: 0
-          TangentMode: 0
+          TangentMode: 1
           InTangent: 0
           OutTangent: 0
           WeightedMode: 0
           InWeight: 0
           OutWeight: 0
+          ExcludedTangentModes: 0
+          DefaultTangentMode: 1
           Value: {x: 0, y: 0, z: 0}
         ToAffect: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}

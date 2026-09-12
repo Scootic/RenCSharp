@@ -6,6 +6,7 @@ namespace RenCSharp.Sequences
     public class Start_SimpleTimeline : Screen_Event
     {
         [SerializeField] private bool endWithScreen;
+        [SerializeField] private bool debug = false;
         /// <summary>
         /// Openable through drawer shenanigans!
         /// </summary>
@@ -14,7 +15,8 @@ namespace RenCSharp.Sequences
 
         public override async void DoEvent()
         {
-            activeTimeline = timelineToRunThrough.Timeline.RunThroughTimeline(new CancellationToken());
+            activeTimeline = debug ? timelineToRunThrough.Timeline.RunThroughTimelineDebug(new CancellationToken()): 
+                timelineToRunThrough.Timeline.RunThroughTimeline(new CancellationToken());
             if (endWithScreen) Script_Manager.ProgressScreenEvent += PanicStop;
             if (timelineToRunThrough.Timeline.Loop) SimpleTimeline_AnimationSaveLoader.AddAnimation(timelineToRunThrough.Timeline);
             await activeTimeline; //start it?

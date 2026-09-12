@@ -1,9 +1,10 @@
 #if UNITY_EDITOR
-using UnityEngine;
-using static UnityEditor.AnimationUtility;
 using UnityEditor;
+using UnityEngine;
+using System;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using TangentMode = UITK_SimpleTimeline.TimelineKeyframeTangentMode;
 namespace UITK_SimpleTimeline.Editor
 {
     [CustomPropertyDrawer(typeof(TimelineKeyframe<>))]
@@ -34,8 +35,25 @@ namespace UITK_SimpleTimeline.Editor
             outSlopeField.BindProperty(property.FindPropertyRelative("OutSlope"));
             ve.Add(outSlopeField);
 
-            PropertyField tangentModeField = new();
-            tangentModeField.BindProperty(property.FindPropertyRelative("TangentMode"));
+            EnumField tangentModeField = new("TangentMode", (TangentMode)property.FindPropertyRelative("TangentMode").boxedValue);
+            tangentModeField.RegisterValueChangedCallback(evt =>
+            {
+                int excluded = property.FindPropertyRelative("ExcludedTangentModes").intValue;
+                int toCheck = Convert.ToInt32(evt.newValue);
+                if ((excluded & toCheck) == toCheck)
+                {
+                    Debug.LogWarning("Selected TangentMode is not valid for this type of TimelineCurve. Setting to default");
+                    TangentMode def = (TangentMode)property.FindPropertyRelative("DefaultTangentMode").boxedValue;
+                    property.FindPropertyRelative("TangentMode").boxedValue = def;
+                    tangentModeField.value = def;
+                }
+                else
+                {
+                    property.FindPropertyRelative("TangentMode").boxedValue = (TangentMode)evt.newValue;
+                }
+                property.serializedObject.ApplyModifiedProperties();
+                property.serializedObject.Update();
+            });
             ve.Add(tangentModeField);
 
             PropertyField inTangentField = new();

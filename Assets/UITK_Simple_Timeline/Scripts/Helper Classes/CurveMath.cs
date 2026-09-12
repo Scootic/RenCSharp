@@ -108,6 +108,10 @@ namespace UITK_SimpleTimeline
                     toReturn = Mathf.Clamp(toReturn, min, max);
                     return toReturn;
 
+                case TangentMode.Cliff:
+                    toReturn = time < 1 ? leftValue : rightValue;
+                    return toReturn;
+
                 default:
                     return 0;
             }
@@ -157,6 +161,10 @@ namespace UITK_SimpleTimeline
                     float min = Mathf.Min(leftValue, rightValue);
                     float max = min == leftValue ? rightValue : leftValue;
                     toReturn = Mathf.Clamp(toReturn, min, max);
+                    return toReturn;
+
+                case TangentMode.Cliff:
+                    toReturn = time < 1 ? leftValue : rightValue;
                     return toReturn;
 
                 default:

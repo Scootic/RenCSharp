@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca23d3e41cd5424c9ec72c610ef25a4, type: 3}
+  m_Name: TestAnimatinos
+  m_EditorClassIdentifier: 
+  autoFocusSpeaker: 1
+  screens:
+  - speaker: {fileID: 0}
+    dialog: The sequence is for testing animations.
+    ScreenActions:
+    - rid: 7219385918982455296
+    - rid: 7219385918982455297
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 7219385918982455298
+  - speaker: {fileID: 0}
+    dialog: Sayori jumpy test animation
+    ScreenActions:
+    - rid: 7219385918982455299
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions: []
+  playerChoices:
+  - choiceText: 
+    resultingSequence: {fileID: 0}
+    conditions: []
+  myself:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 7219385918982455296
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 6ee01de7f8e52c941ad9723485a99ec0
+          m_SubObjectName: mctown_castle13_masterbedroombath
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 0
+        fadeDuration: 1
+    - rid: 7219385918982455297
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 683a5fdb69bac1b43899893cf4c69c3c
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 1
+        fadeTime: 1
+        setToSameTime: 0
+    - rid: 7219385918982455298
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        fadeInTime: 0
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+        - EMPTY
+    - rid: 7219385918982455299
+      type: {class: Start_SimpleTimeline, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        endWithScreen: 0
+        debug: 0
+        timelineToRunThrough: {fileID: 11400000, guid: 7109a110cc52a524aafdf17f8cd1d9f2, type: 2}

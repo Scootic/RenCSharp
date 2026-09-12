@@ -6,7 +6,6 @@ namespace RenCSharp.Sequences
 {
     public class ActorLocalPositionCurve : TypedTimelineCurve<Vector3, Actor>
     {
-
         public override string ShorthandCurveName() => "Actor Local Position Curve";
         public override string SpawnKeyframeName() => "Vector3 Keyframe";
         public override string ToAffectName() => "Actor to Move";
@@ -35,7 +34,8 @@ namespace RenCSharp.Sequences
         public override void Evaluate(float time)
         {
             if (!ValidCurve) return;
-            if(root != null) root.transform.localPosition = EvaluateV3(time);
+            Vector3 eval = EvaluateV3(time);
+            if(root && !eval.HasNaN()) root.transform.localPosition = eval;
         }
 
         public override string EvaluateMessage(float time)
@@ -79,7 +79,8 @@ namespace RenCSharp.Sequences
         public override void Evaluate(float time)
         {
             if (!ValidCurve) return;
-            root.transform.localScale = EvaluateV3(time);
+            Vector3 eval = EvaluateV3(time);
+            if(root && !eval.HasNaN())root.transform.localScale = EvaluateV3(time);
         }
 
         public override string EvaluateMessage(float time)
@@ -123,7 +124,8 @@ namespace RenCSharp.Sequences
         public override void Evaluate(float time)
         {
             if (!ValidCurve) return;
-            root.transform.rotation = Quaternion.Euler(EvaluateV3(time));
+            Vector3 eval = EvaluateV3(time);
+            if(root && !eval.HasNaN())root.transform.rotation = Quaternion.Euler(EvaluateV3(time));
         }
 
         public override string EvaluateMessage(float time)

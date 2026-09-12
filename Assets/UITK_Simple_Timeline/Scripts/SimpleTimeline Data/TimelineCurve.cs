@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
+using TangentMode = UITK_SimpleTimeline.TimelineKeyframeTangentMode;
 namespace UITK_SimpleTimeline
 {
     /// <summary>
@@ -47,6 +48,8 @@ namespace UITK_SimpleTimeline
         /// <returns></returns>
         protected virtual int ExcludedKeyframeTangentModes() => 0;
 
+        protected virtual TangentMode DefaultTangentMode() => TangentMode.Free;
+
 #if UNITY_EDITOR
         public override VisualElement UITKRepresentation(int index)
         {
@@ -62,8 +65,13 @@ namespace UITK_SimpleTimeline
         public List<TimelineKeyframe<T>> Keyframes => keyframes;
         public override void AddKeyframeToCurve(float time)
         {
-            TimelineKeyframe<T> toAdd = new();
-            toAdd.Time = time;
+            TimelineKeyframe<T> toAdd = new()
+            {
+                Time = time,
+                DefaultTangentMode = DefaultTangentMode(),
+                TangentMode = DefaultTangentMode(),
+                ExcludedTangentModes = ExcludedKeyframeTangentModes()
+            };
 
             for (int i = 0; i < Length; i++)
             {

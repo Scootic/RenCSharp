@@ -14,6 +14,9 @@ namespace UITK_SimpleTimeline.Examples
     /// </summary>
     public class SpawnGameObjectCurve : TypedTimelineCurve<GOSpawnToken,GameObject>, ILerpable
     {
+        protected override int ExcludedKeyframeTangentModes() => 15;
+        protected override TimelineKeyframeTangentMode DefaultTangentMode() => TimelineKeyframeTangentMode.Cliff;
+      
         public override string ShorthandCurveName() => "Spawn GameObject Curve";
         public override string SpawnKeyframeName() => "Spawn Token Keyframe";
         public override string ToAffectName() => "Prefab to Spawn";

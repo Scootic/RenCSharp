@@ -56,6 +56,10 @@ namespace RenCSharp.Sequences
             HashSet<SimpleTimeline> t = JsonUtility.FromJson<HashSet<SimpleTimeline>>(jasonData[0]);
             if(t != null) 
             { 
+                foreach(SimpleTimeline st in activeTimelines)
+                {
+                    st.RunThroughTimeline(new CancellationToken()).Cancel();
+                }
                 activeTimelines.Clear();
                 foreach(SimpleTimeline st in t)
                 {

@@ -693,7 +693,7 @@ namespace UITK_SimpleTimeline.Editor
                 }
                 catch
                 {
-                    Debug.LogWarning("Null lerpable?!? That, or the DoubleTypedTimelineCurveField failed to construct, somehow.");
+                    Debug.LogWarning("Null lerpable?!? That, or the TimelineCurveField failed to construct, somehow.");
                 }
             }
             GrayOverlay.BringToFront();

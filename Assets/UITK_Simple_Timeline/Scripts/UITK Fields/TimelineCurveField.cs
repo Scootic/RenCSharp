@@ -165,8 +165,7 @@ namespace UITK_SimpleTimeline
             CurveDataContainer.style.borderLeftWidth = 1;
             Add(CurveDataContainer);
 
-            TypeLabel = new() { name = "TypeLabel"};
-            TypeLabel.text = value.ShorthandCurveName();
+            TypeLabel = new() { name = "TypeLabel", text = value.ShorthandCurveName()};
             TypeLabel.style.left = 25;
             TypeLabel.style.right = -25;
             TypeLabel.style.flexWrap = Wrap.Wrap;
