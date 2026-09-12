@@ -6,15 +6,18 @@ namespace RenCSharp.Sequences
 {
     public class ActorLocalPositionCurve : TypedTimelineCurve<Vector3, Actor>
     {
-        public override string ShorthandCurveName() => "Actor Local Position Curve";
-        public override string SpawnKeyframeName() => "Vector3 Keyframe";
+        public override string ShorthandCurveName() => "Actor Relative Position Curve";
+        public override string SpawnKeyframeName() => "Offset from Original Position (Vec3) Keyframe";
         public override string ToAffectName() => "Actor to Move";
+
+        private Vector3 ogWorldPos;
 
         public override void OnPlay()
         {
             if (Object_Factory.TryGetObject(ToAffect.name, out GameObject go)) 
             {
                 SetRootObject(go);
+                ogWorldPos = go.transform.position;
             }
             else
             {
@@ -35,7 +38,7 @@ namespace RenCSharp.Sequences
         {
             if (!ValidCurve) return;
             Vector3 eval = EvaluateV3(time);
-            if(root && !eval.HasNaN()) root.transform.localPosition = eval;
+            if(root && !eval.HasNaN()) root.transform.position = eval + ogWorldPos;
         }
 
         public override string EvaluateMessage(float time)
@@ -46,7 +49,7 @@ namespace RenCSharp.Sequences
 
         public override string ToString()
         {
-            return "Actor/Local Position Curve";
+            return "Actor/Relative Position Curve";
         }
     }
     public class ActorLocalScaleCurve : TypedTimelineCurve<Vector3, Actor>
