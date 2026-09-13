@@ -19,7 +19,7 @@ namespace UITK_SimpleTimeline.Editor
         protected readonly TimelineKeyframe_CurveRenderer KeyframeCurvePreview;
 
         protected readonly IntegerField CurrentFrameField;
-        protected readonly FloatField DurationField, CurrentSecondsField;
+        protected readonly FloatField DurationField, PlaybackSpeedField, CurrentSecondsField;
         protected readonly Toggle LoopField;
         protected readonly Button BackFrame, PlayPause, ForwardFrame, AddKeyframesButton;
 
@@ -108,6 +108,18 @@ namespace UITK_SimpleTimeline.Editor
                 thisTimeline.Loop = evt.newValue; 
             });
             SimpleTimelineInfoHolder.Add(LoopField);
+
+            PlaybackSpeedField = new("Playback Speed:") { name = "PlaybackSpeed" };
+            PlaybackSpeedField.style.color = Color.white;
+            PlaybackSpeedField.style.width = 225;
+            PlaybackSpeedField.value = Helper.SimpleTimelineProperty.FindPropertyRelative("PlaybackSpeed").floatValue;
+            PlaybackSpeedField.RegisterValueChangedCallback(evt =>
+            {
+                Helper.SimpleTimelineProperty.FindPropertyRelative("PlaybackSpeed").floatValue = evt.newValue;
+                Helper.WindowObject.ApplyModifiedProperties();
+                thisTimeline.PlaybackSpeed = evt.newValue;
+            });
+            SimpleTimelineInfoHolder.Add(PlaybackSpeedField);
             #endregion
 
             KeyframeControlsHolder = new() { name = "KeyframeControls" };
@@ -335,6 +347,7 @@ namespace UITK_SimpleTimeline.Editor
             curT = 0;
             //Helper.ReceiveKeyframe = null;
             Helper.ReceiveKeyframe += DisplayKeyframeInformation;
+            Helper.CurTimelineScale = Vector3.one;
             style.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1);
             style.flexDirection = FlexDirection.Column;
 
@@ -385,6 +398,18 @@ namespace UITK_SimpleTimeline.Editor
                 thisTimeline.Loop = evt.newValue; 
             });
             SimpleTimelineInfoHolder.Add(LoopField);
+
+            PlaybackSpeedField = new("Playback Speed:") { name = "PlaybackSpeed" };
+            PlaybackSpeedField.style.color = Color.white;
+            PlaybackSpeedField.style.width = 225;
+            PlaybackSpeedField.value = Helper.SimpleTimelineProperty.FindPropertyRelative("PlaybackSpeed").floatValue;
+            PlaybackSpeedField.RegisterValueChangedCallback(evt =>
+            {
+                Helper.SimpleTimelineProperty.FindPropertyRelative("PlaybackSpeed").floatValue = evt.newValue;
+                Helper.WindowObject.ApplyModifiedProperties();
+                thisTimeline.PlaybackSpeed = evt.newValue;
+            });
+            SimpleTimelineInfoHolder.Add(PlaybackSpeedField);
             #endregion
 
             KeyframeControlsHolder = new() { name = "KeyframeControls" };
@@ -816,6 +841,7 @@ namespace UITK_SimpleTimeline.Editor
             currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
             ScrollViewContent.transform.scale = new Vector3(currentZoom, 1, 1);
             Helper.OnTimelineScale?.Invoke(ScrollViewContent.transform.scale);
+            Helper.CurTimelineScale = ScrollViewContent.transform.scale;
             TimelineScrollView.horizontalScroller.highValue = originalScrollMax / currentZoom;
             //float ogValue = TimelineScrollView.horizontalScroller.value;
             //TimelineScrollView.horizontalScroller.value = ogValue * currentZoom;

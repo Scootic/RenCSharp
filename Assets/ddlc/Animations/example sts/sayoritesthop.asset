@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timeline:
     Loop: 1
-    Duration: 2.5
+    Duration: 3
+    PlaybackSpeed: 1
     Curves:
     - rid: 7219385918982455384
     - rid: 7219385918982455385
@@ -82,13 +83,13 @@ MonoBehaviour:
           Value:
             indexes:
             - skyUp
-            - skyDown
-            - smileSpeak
+            - skyUp
+            - content
             - 
             ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         - KeyframeIndex: 3
           CurveIndex: 0
-          Time: 1.53125
+          Time: 1.5
           InSlope: 0
           OutSlope: 0
           TangentMode: 16
@@ -101,14 +102,34 @@ MonoBehaviour:
           DefaultTangentMode: 16
           Value:
             indexes:
-            - skyDown
             - skyUp
-            - smileSpeak
+            - skyUp
+            - content
             - 
             ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         - KeyframeIndex: 4
           CurveIndex: 0
           Time: 2
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 16
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
+          Value:
+            indexes:
+            - skyUp
+            - skyUp
+            - content
+            - 
+            ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        - KeyframeIndex: 5
+          CurveIndex: 0
+          Time: 2.5
           InSlope: 0
           OutSlope: 0
           TangentMode: 16
@@ -186,10 +207,24 @@ MonoBehaviour:
           OutWeight: 0
           ExcludedTangentModes: 0
           DefaultTangentMode: 1
-          Value: {x: -100, y: 100, z: 0}
+          Value: {x: -200, y: 0, z: 0}
         - KeyframeIndex: 4
           CurveIndex: 1
           Time: 2
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 1
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 0
+          DefaultTangentMode: 1
+          Value: {x: -100, y: 100, z: 0}
+        - KeyframeIndex: 5
+          CurveIndex: 1
+          Time: 2.5
           InSlope: 0
           OutSlope: 0
           TangentMode: 1

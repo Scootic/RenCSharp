@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using System.Threading;
-using System.Threading.Tasks;
 namespace UITK_SimpleTimeline
 {
     /// <summary>
@@ -11,10 +10,37 @@ namespace UITK_SimpleTimeline
     [Serializable]
     public struct SimpleTimeline : IDefaultableNotNull<SimpleTimeline>
     {
+        public bool Loop;
+        [Min(0)] public float Duration, PlaybackSpeed;
+        /// <summary>
+        /// Should only be used by the SimpleTimelineComponent, or another Scene-based script.
+        /// </summary>
+        private GameObject sceneObject;
+        /// <summary>
+        /// Seconds per frame. Ie. "I want 60FPS! Do: 1f / 60f."
+        /// </summary>
+        public const float SPF = 1f / 60f;
+        //figure out how to add timelinecurves of specific types and actually be able to interpret that?
+        //object.ToString?
+        [SerializeReference] public List<TimelineCurve> Curves;
+        public GameObject SetSceneObject
+        {
+            set
+            {
+                sceneObject = value;
+                foreach (TimelineCurve curve in Curves)
+                {
+                    curve.SetRootObject(sceneObject);
+                }
+            }
+        }
+        public readonly bool HasSceneObject => sceneObject != null;
+
         public SimpleTimeline(float duration)
         {
             Loop = false;
             Duration = duration;
+            PlaybackSpeed = 1;
             sceneObject = null;
             Curves = new();
         }
@@ -26,6 +52,7 @@ namespace UITK_SimpleTimeline
         {
             Loop = copy.Loop;
             Duration = copy.Duration;
+            PlaybackSpeed = copy.PlaybackSpeed;
             sceneObject = null;
             Curves = SimpleTimelineExtensions.DeepCopyListFromJSON(copy.Curves);
         }
@@ -40,6 +67,7 @@ namespace UITK_SimpleTimeline
             {
                 Duration = copy.Duration,
                 Loop = copy.Loop,
+                PlaybackSpeed = copy.PlaybackSpeed,
                 sceneObject = null,
                 Curves = await SimpleTimelineExtensions.DeepCopyListFromJSONAsync(copy.Curves)
             };
@@ -48,42 +76,14 @@ namespace UITK_SimpleTimeline
 
         public readonly SimpleTimeline Default()
         {
-            SimpleTimeline d = new();
-
-            d.Loop = false;
-            d.Duration = 10;
-            d.Curves = new();
-
-            return d;
+            return new() 
+            {
+                Loop = false,
+                Duration = 10,
+                Curves = new(),
+                PlaybackSpeed = 1f
+            };
         }
-
-        public bool Loop;
-        [Min(0)]public float Duration;
-
-        private GameObject sceneObject;
-        /// <summary>
-        /// Should only be used by the SimpleTimelineComponent, or another Scene-based script.
-        /// </summary>
-        public GameObject SetSceneObject 
-        { 
-            set 
-            { 
-                sceneObject = value; 
-                foreach(TimelineCurve curve in Curves)
-                {
-                    curve.SetRootObject(sceneObject);
-                }
-            } 
-        }
-        public readonly bool HasSceneObject => sceneObject != null;
-
-        /// <summary>
-        /// Seconds per frame. Ie. "I want 60FPS! Do: 1f / 60f."
-        /// </summary>
-        public const float SPF = 1f / 60f;
-        //figure out how to add timelinecurves of specific types and actually be able to interpret that?
-        //object.ToString?
-        [SerializeReference] public List<TimelineCurve> Curves;
 
         /// <summary>
         /// An awaitable that goes through the timeline's curves, Evaluating() them at the seconds elapsed.
@@ -98,13 +98,13 @@ namespace UITK_SimpleTimeline
                 tc.OnPlay();
             }
 
-            float secondsElapsed = 0;
+            float secondsElapsed = - SPF * PlaybackSpeed; //start the timeline BEFORE 0 so we can evaluate at 0 and not just skip over.
 
             while(secondsElapsed < Duration || Loop)
             {
                 if (ct.IsCancellationRequested) break;
                 await Awaitable.WaitForSecondsAsync(SPF);
-                secondsElapsed += SPF;
+                secondsElapsed += SPF * PlaybackSpeed;
 
                 foreach(TimelineCurve curve in Curves)
                 {
@@ -113,7 +113,7 @@ namespace UITK_SimpleTimeline
 
                 if(Loop && secondsElapsed >= Duration)
                 {
-                    secondsElapsed = 0;
+                    secondsElapsed = -SPF * PlaybackSpeed;
                 }
             }
         }
@@ -130,13 +130,13 @@ namespace UITK_SimpleTimeline
                 tc.OnPlay();
             }
 
-            float secondsElapsed = 0;
+            float secondsElapsed = - SPF * PlaybackSpeed;
 
             while(secondsElapsed < Duration || Loop)
             {
                 if (ct.IsCancellationRequested) break;
                 await Awaitable.WaitForSecondsAsync(SPF);
-                secondsElapsed += SPF;
+                secondsElapsed += SPF * PlaybackSpeed;
 
                 string msg = "";
 
@@ -150,7 +150,7 @@ namespace UITK_SimpleTimeline
 
                 if(Loop && secondsElapsed >= Duration)
                 {
-                    secondsElapsed = 0;
+                    secondsElapsed = -SPF * PlaybackSpeed;
                 }
             }
         }

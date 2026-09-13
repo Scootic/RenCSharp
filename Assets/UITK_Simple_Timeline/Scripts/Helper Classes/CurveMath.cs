@@ -108,8 +108,8 @@ namespace UITK_SimpleTimeline
                     toReturn = Mathf.Clamp(toReturn, min, max);
                     return toReturn;
 
-                case TangentMode.Cliff:
-                    toReturn = time < 1 ? leftValue : rightValue;
+                case TangentMode.Cliff: //could probably just say return leftVal at all times...
+                    toReturn = time < 0.99f ? leftValue : rightValue;
                     return toReturn;
 
                 default:

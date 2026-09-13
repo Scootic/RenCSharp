@@ -240,7 +240,7 @@ namespace UITK_SimpleTimeline
             {
                 TimelineKnob<T> tKnob = new("", keyframesProperty.GetArrayElementAtIndex(i), i, myPropertyIndex);
                 float time = tKnob.value.Time;
-                tKnob.transform.position = new Vector3(Helper.PixelWidthPerSeconds * time - tKnob.style.width.value.value * 0.5f - 2, 0, 0);
+                tKnob.transform.position = new Vector3(Helper.PixelWidthPerSeconds * time - tKnob.style.width.value.value * 0.5f, 0, 0);
                 tKnob.DeleteKnobAction += delegate
                 {
                     KeyframeIcons[time].RemoveFromHierarchy();
@@ -258,6 +258,7 @@ namespace UITK_SimpleTimeline
                     }
                     evt.StopPropagation();
                 });
+                tKnob.transform.scale = new Vector3(1f / Helper.CurTimelineScale.x, 1f / Helper.CurTimelineScale.y, 1f / Helper.CurTimelineScale.z);
                 KeyframeIcons.Add(time, tKnob);
                 KeyframeContainer.Add(tKnob);
             }

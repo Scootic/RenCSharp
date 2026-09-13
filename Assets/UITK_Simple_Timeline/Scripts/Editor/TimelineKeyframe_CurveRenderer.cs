@@ -9,7 +9,7 @@ namespace UITK_SimpleTimeline.Editor
     [UxmlElement]
     public partial class TimelineKeyframe_CurveRenderer : VisualElement, IRegeneratableElement
     {
-        private const int lineResolution = 50;
+        private const int lineResolution = 150;
         SerializedProperty l = null, r = null;
         private TangentHandle outTanL, inTanR;
         private static Painter2D Painter;
@@ -67,6 +67,7 @@ namespace UITK_SimpleTimeline.Editor
             if (newL != null && newR != null)
             {
                 tangentStrengthField.visible = true;
+                style.maxHeight = style.width.value.value * 2f;
                 if (tracker != null) { Remove(tracker); tracker = null; }
 
                 if (label != null)
@@ -99,6 +100,7 @@ namespace UITK_SimpleTimeline.Editor
                 tangentStrengthField.visible = false;
                 style.backgroundImage = null;
                 style.minHeight = 50f;
+                style.maxHeight = 50f;
 
                 if(Painter != null)
                 {
@@ -133,11 +135,13 @@ namespace UITK_SimpleTimeline.Editor
                 return;
             }
             if (Painter != null) { Painter.Clear(); Painter.Dispose(); }
-            Painter = new();
-            Painter.lineWidth = 1f;
-            Painter.lineCap = LineCap.Round;
-            Painter.lineJoin = LineJoin.Round;
-            Painter.strokeColor = Helper.NeonGreen;
+            Painter = new() 
+            { 
+                lineWidth = 1f, 
+                lineCap = LineCap.Round, 
+                lineJoin = LineJoin.Round, 
+                strokeColor = Helper.NeonGreen 
+            };
             Painter.BeginPath();
             float[] tangents = CurveMath.GetTangents(new TimelineKeyframe[]{Left,Right});
             Painter.MoveTo(Vector2.zero);

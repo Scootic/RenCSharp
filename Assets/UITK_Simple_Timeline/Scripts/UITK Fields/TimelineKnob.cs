@@ -51,8 +51,8 @@ namespace UITK_SimpleTimeline
             if (knobImage == null) Debug.LogError("TimelineKnob.cs can't find timelinediamond.png. Did you move the UITK_Simple_Timeline from your root Asset folder?");
             style.backgroundImage = knobImage;
             style.position = Position.Absolute;
-            style.height = 35f;
-            style.width = 35f;
+            style.height = 15f;
+            style.width = 15f;
         }
         public TimelineKnob(string labelText, SerializedProperty knobProperty, int kindex, int cindex) : base(labelText, new VisualElement())
         {
@@ -61,8 +61,8 @@ namespace UITK_SimpleTimeline
             if (knobImage == null) Debug.LogError("TimelineKnob.cs can't find timelinediamond.png. Did you move the UITK_Simple_Timeline from your root Asset folder?");
             style.backgroundImage = knobImage;
             style.position = Position.Absolute;
-            style.height = 35f;
-            style.width = 35f;
+            style.height = 15f;
+            style.width = 15f;
             style.top = 15;
             halfwayOffset = (style.width.value.value * 0.5f) - 2;
             KnobProperty = knobProperty;
@@ -92,16 +92,16 @@ namespace UITK_SimpleTimeline
             {
                 Vector3 curPos = transform.position;
                 //assuming that origin is the center of the element?
+                //Debug.Log($"deltapos x: {pme.deltaPosition.x}");
                 float newX = Mathf.Clamp(curPos.x + pme.deltaPosition.x, -halfwayOffset - 4, Helper.MaxPixelWidth - halfwayOffset - 4);
-                newX = transform.scale.x switch //?
+                
+                float newTime = (newX + halfwayOffset + 2) / Helper.PixelWidthPerSeconds;
+                newTime = transform.scale.x switch //?
                 {
-                    > 2 => (float)Math.Round(newX, 0),
-                    >= 1 => (float)Math.Round(newX, 1),
-                    _ => newX
-                }; 
-                curPos = new Vector3(newX, curPos.y, curPos.z);
-                transform.position = curPos;
-                float newTime = (curPos.x + halfwayOffset + 4) / Helper.PixelWidthPerSeconds;
+                    > 2 => (float)Math.Round(newTime, 0),
+                    >= 1 => (float)Math.Round(newTime, 1),
+                    _ => newTime
+                };
                 //super duper make sure time is clamped. good god...
                 newTime = Mathf.Clamp(newTime, 0, Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue);
                 KnobProperty.FindPropertyRelative("Time").floatValue = newTime;
