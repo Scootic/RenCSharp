@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 using TangentMode = UITK_SimpleTimeline.TimelineKeyframeTangentMode;
@@ -246,6 +245,35 @@ namespace UITK_SimpleTimeline
     }
 
     [Serializable]
+    public abstract class ArrayTimelineCurve<T, U> : ArrayTimelineCurve<T>, ILerpable where T : IList<T> where U : notnull
+    {
+        public U ToAffect;
+#if UNITY_EDITOR
+        public override VisualElement UITKRepresentation(int index)
+        {
+            return new DoubleTypedArrayTimelineCurveField<T, U>("", this, index);
+        }
+#endif
+        protected override bool ValidCurve
+        {
+            get
+            {
+                if (ToAffect == null) return false;
+                for (int i = 0; i < keyframes.Length; i++)
+                {
+                    if (keyframes[i].Count < 2) return false;
+                }
+                return true;
+            }
+        }
+
+        public override string ToString()
+        {
+            return "Generic Array Double Typed Timeline Curve";
+        }
+    }
+
+    [Serializable]
     public abstract class ArrayTimelineCurve<T> : TimelineCurve, ILerpable where T : IList<T>
     {
 #if UNITY_EDITOR
@@ -255,7 +283,7 @@ namespace UITK_SimpleTimeline
         }
 #endif
 
-        [SerializeField] private List<TimelineKeyframe<T>>[] keyframes = new List<TimelineKeyframe<T>>[0];
+        [SerializeField] protected List<TimelineKeyframe<T>>[] keyframes = new List<TimelineKeyframe<T>>[0];
         public List<TimelineKeyframe<T>>[] Keyframes => keyframes;
 
         public override void AddKeyframeToCurve(float t)
