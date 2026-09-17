@@ -662,7 +662,7 @@ namespace UITK_SimpleTimeline
     /// </summary>
     /// <typeparam name="T">The values that are lerped</typeparam>
     [UxmlElement]
-    public partial class DoubleTypedArrayTimelineCurveField<T,U> : BaseField<ArrayTimelineCurve<T,U>>, IRegeneratableElement where T : IList<T> where U : notnull
+    public partial class DoubleTypedArrayTimelineCurveField<T,U> : BaseField<ArrayTimelineCurve<T,U>>, IRegeneratableElement where T : notnull where U : notnull
     {
         //public Action DeleteMeAction;
         protected readonly Dictionary<float,TimelineKnob<T>>[] KeyframeIcons;
@@ -875,9 +875,9 @@ namespace UITK_SimpleTimeline
 
             for(int i = 0; i < keyframesProperty.arraySize; i++)
             {
-                for (int j = 0; j < keyframesProperty.GetArrayElementAtIndex(i).arraySize; j++)
+                for (int j = 0; j < keyframesProperty.GetArrayElementAtIndex(i).FindPropertyRelative("List").arraySize; j++)
                 {
-                    TimelineKnob<T> tKnob = new("", keyframesProperty.GetArrayElementAtIndex(i).GetArrayElementAtIndex(j),
+                    TimelineKnob<T> tKnob = new("", keyframesProperty.GetArrayElementAtIndex(i).FindPropertyRelative("List").GetArrayElementAtIndex(j),
                         j, myPropertyIndex);
                     float time = tKnob.value.Time;
                     tKnob.transform.position = new Vector3(Helper.PixelWidthPerSeconds * time - tKnob.style.width.value.value * 0.5f - 2, 0, 0);
@@ -1019,7 +1019,7 @@ namespace UITK_SimpleTimeline
     /// </summary>
     /// <typeparam name="T">The values that are lerped</typeparam>
     [UxmlElement]
-    public partial class SingleTypedArrayTimelineCurveField<T> : BaseField<ArrayTimelineCurve<T>>, IRegeneratableElement where T : IList<T>
+    public partial class SingleTypedArrayTimelineCurveField<T> : BaseField<ArrayTimelineCurve<T>>, IRegeneratableElement where T : notnull
     {
         //public Action DeleteMeAction;
         protected readonly Dictionary<float,TimelineKnob<T>>[] KeyframeIcons;
@@ -1217,11 +1217,11 @@ namespace UITK_SimpleTimeline
         {
             if (keyframesProperty == null) return;
 
-            for(int i = 0; i < keyframesProperty.arraySize; i++)
+            for (int i = 0; i < keyframesProperty.arraySize; i++)
             {
-                for (int j = 0; j < keyframesProperty.GetArrayElementAtIndex(i).arraySize; j++)
+                for (int j = 0; j < keyframesProperty.GetArrayElementAtIndex(i).FindPropertyRelative("List").arraySize; j++)
                 {
-                    TimelineKnob<T> tKnob = new("", keyframesProperty.GetArrayElementAtIndex(i).GetArrayElementAtIndex(j),
+                    TimelineKnob<T> tKnob = new("", keyframesProperty.GetArrayElementAtIndex(i).FindPropertyRelative("List").GetArrayElementAtIndex(j),
                         j, myPropertyIndex);
                     float time = tKnob.value.Time;
                     tKnob.transform.position = new Vector3(Helper.PixelWidthPerSeconds * time - tKnob.style.width.value.value * 0.5f - 2, 0, 0);

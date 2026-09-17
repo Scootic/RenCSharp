@@ -1,9 +1,72 @@
 using RenCSharp.Actors;
 using UITK_SimpleTimeline;
 using UnityEngine;
-
 namespace RenCSharp.Sequences
 {
+    public class ActorLocalPositionArrayCurve : ArrayTimelineCurve<float, Actor>
+    {
+        public override int DefaultArrayLength() => 3;
+        public override string[] SpawnKeyframeNames()
+        {
+            return new string[]
+            {
+                "X Keyframe",
+                "Y Keyframe",
+                "Z Keyframe"
+            };
+        }
+        public override string SpawnKeyframeName() => "No?";
+        public override string ToAffectName() => "Actor to Move";
+        public override string ShorthandCurveName() => "Actor Relative Position Curve";
+
+        public override void OnPlay()
+        {
+            if (Object_Factory.TryGetObject(ToAffect.name, out GameObject go))
+            {
+                SetRootObject(go);
+                ogWorldPos = go.transform.position;
+            }
+            else
+            {
+                Debug.LogWarning($"Cannot animate Actor: {ToAffect.name}, because it's not present in the scene.");
+            }
+        }
+
+        private Vector3 EvaluateV3(float time)
+        {
+            TimelineKeyframe<float>[][] toEval = ArrayClosestTwoKeyframes(time);
+            float[] toConvert = new float[3];
+            for (int i = 0; i < toConvert.Length; i++)
+            {
+                float[] tangents = CurveMath.GetTangents(toEval[i]);
+                toConvert[i] = CurveMath.CubicHermiteSpline(toEval[i][0].Value, toEval[i][1].Value,
+                    TimeToKeyframePercent(time, toEval[i][0].Time, toEval[i][1].Time), tangents[0], tangents[1],
+                    toEval[i][0].TangentMode);
+            }
+            return toConvert.ToVector3();
+        }
+
+        public override void Evaluate(float time)
+        {
+            if (!ValidCurve) return;
+            Vector3 eval = EvaluateV3(time);
+            if (root && !eval.HasNaN()) root.transform.position = eval + ogWorldPos;
+        }
+
+        public override string EvaluateMessage(float time)
+        {
+            if (!ValidCurve) return "Actor Local Scale Curve is not valid.";
+            return $"Actor: {ToAffect.name}'s local scale at {time}: {EvaluateV3(time)}";
+        }
+
+        private Vector3 ogWorldPos;
+
+        public override string ToString()
+        {
+            return "Actor/Relative Position Array Curve";
+        }
+    }
+
     public class ActorLocalPositionCurve : TypedTimelineCurve<Vector3, Actor>
     {
         public override string ShorthandCurveName() => "Actor Relative Position Curve";

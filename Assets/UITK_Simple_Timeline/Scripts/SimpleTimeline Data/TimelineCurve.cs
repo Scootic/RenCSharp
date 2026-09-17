@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -245,7 +246,7 @@ namespace UITK_SimpleTimeline
     }
 
     [Serializable]
-    public abstract class ArrayTimelineCurve<T, U> : ArrayTimelineCurve<T>, ILerpable where T : IList<T> where U : notnull
+    public abstract class ArrayTimelineCurve<T, U> : ArrayTimelineCurve<T>, ILerpable where T : notnull where U : notnull
     {
         public U ToAffect;
 #if UNITY_EDITOR
@@ -274,7 +275,7 @@ namespace UITK_SimpleTimeline
     }
 
     [Serializable]
-    public abstract class ArrayTimelineCurve<T> : TimelineCurve, ILerpable where T : IList<T>
+    public abstract class ArrayTimelineCurve<T> : TimelineCurve, ILerpable where T : notnull
     {
 #if UNITY_EDITOR
         public override VisualElement UITKRepresentation(int index)
@@ -283,8 +284,8 @@ namespace UITK_SimpleTimeline
         }
 #endif
 
-        [SerializeField] protected List<TimelineKeyframe<T>>[] keyframes = new List<TimelineKeyframe<T>>[0];
-        public List<TimelineKeyframe<T>>[] Keyframes => keyframes;
+        [SerializeField] protected TList<TimelineKeyframe<T>>[] keyframes = new TList<TimelineKeyframe<T>>[0];
+        public TList<TimelineKeyframe<T>>[] Keyframes => keyframes;
 
         public override void AddKeyframeToCurve(float t)
         {
@@ -351,9 +352,17 @@ namespace UITK_SimpleTimeline
             }
         }
 
+        public override void CleanOutKeyframesAfterTime(float t)
+        {
+            for(int i = 0; i < keyframes.Length; i++)
+            {
+                CleanOutKeyframesAfterTime(t, i);
+            }
+        }
+
         public override void SortKeyframes()
         {
-            foreach (List<TimelineKeyframe<T>> curve in keyframes)
+            foreach (TList<TimelineKeyframe<T>> curve in keyframes)
             {
                 curve.Sort();
             }
@@ -373,7 +382,7 @@ namespace UITK_SimpleTimeline
         public List<TimelineKeyframe<T>> AtTime(float t)
         {
             List<TimelineKeyframe<T>> toReturn = new();
-            foreach(List<TimelineKeyframe<T>> list in keyframes)
+            foreach(TList<TimelineKeyframe<T>> list in keyframes)
             {
                 foreach(TimelineKeyframe<T> keyframe in list)
                 {
@@ -477,8 +486,15 @@ namespace UITK_SimpleTimeline
             }
             return toReturn;
         }
-
-        public int SetKeyframesArrayLength { set { keyframes = new List<TimelineKeyframe<T>>[value]; } }
+        /// <summary>
+        /// Overrides all stuff to create a new array of appropriate size.
+        /// </summary>
+        public int SetKeyframesArrayLength { set { keyframes = new TList<TimelineKeyframe<T>>[value];
+                for(int i = 0; i < keyframes.Length; i++)
+                {
+                    keyframes[i] = new TList<TimelineKeyframe<T>>(0);
+                }
+            } }
 
         public abstract int DefaultArrayLength();
 
@@ -562,7 +578,7 @@ namespace UITK_SimpleTimeline
         /// Get rid of all keyframes whose time value are larger than the given time.
         /// </summary>
         /// <param name="t">The given time in seconds.</param>
-        public abstract void CleanOutKeyframesAfterTime(float t);
+        public virtual void CleanOutKeyframesAfterTime(float t) { Debug.LogWarning("Clean out Keyframes After Time not implemented!"); return; }
         /// <summary>
         /// Only exists for ArrayTimelineCurves. Similar behavior to CleanOutKeyframesAfterTime only affecting a certain layer.
         /// </summary>
@@ -573,7 +589,7 @@ namespace UITK_SimpleTimeline
         /// Add a new keyframe to the curve at the given time.
         /// </summary>
         /// <param name="t">The given time in seconds.</param>
-        public abstract void AddKeyframeToCurve(float t);
+        public virtual void AddKeyframeToCurve(float t) { Debug.LogWarning("Add Keyframe To Curve not implemented!"); return; }
         /// <summary>
         /// Only exists for ArrayTimelineCurves. Similar behavior to AddKeyframeToCurve, adding a keyframe to a specific layer.
         /// </summary>
@@ -587,7 +603,7 @@ namespace UITK_SimpleTimeline
         /// <param name="t">The given time in seconds.</param>
         /// <returns>Closest two indexes, index0 is to the left, index1 is to the right, unless given time
         /// is larger the last keyframe, or smaller than the first.</returns>
-        public abstract int[] ClosestTwoIndexes(float t);
+        public virtual int[] ClosestTwoIndexes(float t) { Debug.LogWarning("Closest Two Indexes not implemented!"); return null; }
         public virtual int[][] ArrayClosestTwoIndexes(float t) { return new int[0][]; }
 #if UNITY_EDITOR
         public abstract VisualElement UITKRepresentation(int index);
@@ -634,5 +650,83 @@ namespace UITK_SimpleTimeline
             return "Abstract Timeline Curve";
         }
     }
+    /// <summary>
+    /// Only exists as a wrapper for Unity's Evile Serialization
+    /// </summary>
+    /// <typeparam name="T">notnull type :(</typeparam>
+    #nullable enable
+    [Serializable]
+    public struct TList<T> : IList<T> where T : class?
+    {
+        public List<T?> List;
 
+        public TList(int length)
+        {
+            List = new List<T?>();
+            while(List.Count < length)
+            {
+                List.Add(null);
+            }
+        }
+
+        public readonly T this[int index] { get 
+            {
+                return List[index]; 
+            } set { List[index] = value; } }
+
+        public readonly void Sort()
+        {
+            List.Sort();
+        }
+
+        public readonly void CopyTo(T[] array, int arrayIndex)
+        {
+            List.CopyTo(array, arrayIndex);
+        }
+
+        readonly IEnumerator IEnumerable.GetEnumerator()
+        {
+            return List.GetEnumerator();
+        }
+
+        public readonly IEnumerator<T> GetEnumerator()
+        {
+            return List.GetEnumerator();
+        }
+
+        public readonly int Count => List.Count;
+
+        public readonly void Insert(int i, T item)
+        {
+            List.Insert(i, item);
+        }
+
+        public readonly void Clear() { List.Clear(); }
+
+        public readonly bool Contains(T item) { return List.Contains(item); }
+
+        public readonly bool Remove(T item)
+        {
+            if (Contains(item)) { List.Remove(item); return true; }
+            return false;
+        }
+
+        public readonly bool IsReadOnly => false;
+
+        public readonly void RemoveAt(int i)
+        {
+            List.RemoveAt(i);
+        }
+
+        public readonly int IndexOf(T item)
+        {
+            return List.IndexOf(item);
+        }
+
+        public readonly void Add(T item)
+        {
+            List.Add(item);
+        }
+    }
+#nullable disable
 }
