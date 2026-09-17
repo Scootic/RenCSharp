@@ -18,7 +18,7 @@ MonoBehaviour:
     PlaybackSpeed: 1.666
     Curves:
     - rid: 7219385918982455384
-    - rid: 7219385918982455385
+    - rid: 7219386032966860860
   references:
     version: 2
     RefIds:
@@ -167,107 +167,26 @@ MonoBehaviour:
             - smile
             - 
             ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-    - rid: 7219385918982455385
-      type: {class: ActorLocalPositionCurve, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 7219386032966860860
+      type: {class: ActorLocalPositionArrayCurve, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         WrappingMode: 1
         keyframes:
-        - KeyframeIndex: 0
-          CurveIndex: 1
-          Time: 0
-          InSlope: 0
-          OutSlope: 0
-          TangentMode: 1
-          InTangent: 0
-          OutTangent: 0
-          WeightedMode: 0
-          InWeight: 0
-          OutWeight: 0
-          ExcludedTangentModes: 0
-          DefaultTangentMode: 1
-          Value: {x: 0, y: 0, z: 0}
-        - KeyframeIndex: 1
-          CurveIndex: 1
-          Time: 0.5
-          InSlope: 0
-          OutSlope: 0
-          TangentMode: 1
-          InTangent: 0
-          OutTangent: 5
-          WeightedMode: 0
-          InWeight: 0
-          OutWeight: 0
-          ExcludedTangentModes: 0
-          DefaultTangentMode: 1
-          Value: {x: -50, y: 100, z: 0}
-        - KeyframeIndex: 2
-          CurveIndex: 1
-          Time: 1
-          InSlope: 0
-          OutSlope: 0
-          TangentMode: 1
-          InTangent: 0
-          OutTangent: 5
-          WeightedMode: 0
-          InWeight: 0
-          OutWeight: 0
-          ExcludedTangentModes: 0
-          DefaultTangentMode: 1
-          Value: {x: -100, y: 0, z: 0}
-        - KeyframeIndex: 3
-          CurveIndex: 1
-          Time: 1.5
-          InSlope: 0
-          OutSlope: 0
-          TangentMode: 1
-          InTangent: 0
-          OutTangent: 5
-          WeightedMode: 0
-          InWeight: 0
-          OutWeight: 0
-          ExcludedTangentModes: 0
-          DefaultTangentMode: 1
-          Value: {x: -100, y: 0, z: 0}
-        - KeyframeIndex: 4
-          CurveIndex: 1
-          Time: 2
-          InSlope: 0
-          OutSlope: 0
-          TangentMode: 1
-          InTangent: 0
-          OutTangent: 5
-          WeightedMode: 0
-          InWeight: 0
-          OutWeight: 0
-          ExcludedTangentModes: 0
-          DefaultTangentMode: 1
-          Value: {x: 0, y: 100, z: 0}
-        - KeyframeIndex: 5
-          CurveIndex: 1
-          Time: 2.53125
-          InSlope: 0
-          OutSlope: 0
-          TangentMode: 1
-          InTangent: 0
-          OutTangent: 5
-          WeightedMode: 0
-          InWeight: 0
-          OutWeight: 0
-          ExcludedTangentModes: 0
-          DefaultTangentMode: 1
-          Value: {x: 100, y: 0, z: 0}
-        - KeyframeIndex: 6
-          CurveIndex: 1
-          Time: 3
-          InSlope: 0
-          OutSlope: 0
-          TangentMode: 1
-          InTangent: 0
-          OutTangent: 0
-          WeightedMode: 0
-          InWeight: 0
-          OutWeight: 0
-          ExcludedTangentModes: 0
-          DefaultTangentMode: 1
-          Value: {x: 0, y: 0, z: 0}
-        ToAffect: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        - List:
+          - KeyframeIndex: 0
+            CurveIndex: 0
+            Time: 0.2
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 0
+        - List: []
+        - List: []
+        ToAffect: {fileID: 0}
