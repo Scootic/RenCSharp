@@ -217,7 +217,7 @@ namespace UITK_SimpleTimeline
                 try
                 {
                     Label subLabel = subField.Q<Label>();
-                    subLabel.style.maxWidth = width - 10;
+                    subLabel.style.maxWidth = width - 20;
                     subLabel.style.flexGrow = -1;
                     subLabel.style.flexShrink = 1;
                     subLabel.style.left = 10;
@@ -233,7 +233,8 @@ namespace UITK_SimpleTimeline
                 {
                     VisualElement dragDropBox = subField.Children().ToArray()[1];
                     dragDropBox.style.flexGrow = 1;
-                    dragDropBox.style.maxWidth = width - 10;
+                    dragDropBox.style.minHeight = 18;
+                    dragDropBox.style.maxWidth = width - 20;
                     dragDropBox.style.left = 10;
                     dragDropBox.style.right = 10;
                     dragDropBox.style.top = 0;

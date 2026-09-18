@@ -39,6 +39,10 @@ namespace UITK_SimpleTimeline
     {
         public int KeyframeIndex, CurveIndex;
         /// <summary>
+        /// Optional, only used by stinkin' ArrayTimelineCurves.
+        /// </summary>
+        public int ArrayIndex;
+        /// <summary>
         /// In seconds.
         /// </summary>
         [Min(0)] public float Time;

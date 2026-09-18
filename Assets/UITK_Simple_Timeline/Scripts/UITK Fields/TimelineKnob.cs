@@ -74,7 +74,7 @@ namespace UITK_SimpleTimeline
             Helper.OnTimelineScale += OnScale;
         }
 
-        protected void SelectKnobColoring(SerializedProperty sp, VisualElement ve)
+        protected void SelectKnobColoring(SerializedProperty sp, VisualElement ve, bool b)
         {
             if(sp == KnobProperty)
             {

@@ -18,18 +18,18 @@ namespace RenCSharp.Sequences
             if (!ValidCurve) return;
             try
             {
-                TimelineKeyframe<VisualIndexes> toEval = AtTime(time);
-                if (!Object_Factory.TryGetComponent(toEval.Value.ActorToSet.name, out uie)) 
+                VisualIndexes toEval = EvaluateValue(time);
+                if (!Object_Factory.TryGetComponent(toEval.ActorToSet.name, out uie)) 
                 {
-                    Debug.LogWarning($"Couldn't find {toEval.Value.ActorToSet.name}");
+                    Debug.LogWarning($"Couldn't find {toEval.ActorToSet.name}");
                     return; 
                 }
 
-                for (int i = 0; i < toEval.Value.Length; i++)
+                for (int i = 0; i < toEval.Length; i++)
                 {
-                    string s = toEval.Value.indexes[i];
+                    string s = toEval.indexes[i];
                     if (s == string.Empty) continue;
-                    uie.Images[i].sprite = toEval.Value.SpriteAtIndex(i,s);
+                    uie.Images[i].sprite = toEval.SpriteAtIndex(i,s);
                 }
             }
             catch
@@ -38,14 +38,19 @@ namespace RenCSharp.Sequences
             }
         }
 
+        public override VisualIndexes EvaluateValue(float time)
+        {
+            TimelineKeyframe<VisualIndexes> toEval = AtTime(time);
+            return toEval.Value;
+        }
+
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "";
             try
             {
-                TimelineKeyframe<VisualIndexes> toEval = AtTime(time);
                 string msg = "Should be setting Actor Expression to be: ";
-                foreach(string s in toEval.Value.indexes)
+                foreach(string s in EvaluateValue(time).indexes)
                 {
                     msg += "\n" + s;
                 }

@@ -10,7 +10,7 @@ namespace UITK_SimpleTimeline.Examples
         public override string ShorthandCurveName() => "Local Position Curve";
         public override string SpawnKeyframeName() => "Vector3 Keyframe";
         public override string ToAffectName() => "Hierarchy Path to Move";
-        private Vector3 EvaluateV3(float time)
+        public override Vector3 EvaluateValue(float time)
         {
             Vector3 toReturn;
             
@@ -20,24 +20,21 @@ namespace UITK_SimpleTimeline.Examples
             toReturn = CurveMath.CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
                 TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1], toEval[0].TangentMode);
 
-            if (root == null) { return toReturn; }
-
-            Transform t = root.transform.Find(ToAffect);
-            if(!toReturn.HasNaN())t.localPosition = toReturn;
-
             return toReturn;
         }
 
         public override void Evaluate(float time)
         {
-            if (!ValidCurve) return;
-            EvaluateV3(time);
+            if (!ValidCurve || !root) return;
+            Transform t = root.transform.Find(ToAffect);
+            Vector3 toReturn = EvaluateValue(time);
+            if (!toReturn.HasNaN()) t.localPosition = toReturn;
         }
 
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "Local position curve not yet valid! Give it some keyframes!";
-            return $"{ToAffect}.localPos should be: {EvaluateV3(time)}";
+            return $"{ToAffect}.localPos should be: {EvaluateValue(time)}";
         }
 
         public override string ToString()
@@ -54,36 +51,31 @@ namespace UITK_SimpleTimeline.Examples
         public override string ShorthandCurveName() => "Local Scale Curve";
         public override string SpawnKeyframeName() => "Vector3 Keyframe";
         public override string ToAffectName() => "Hierarchy Path to Scale";
-        private Vector3 EvaluateV3(float time)
+        public override Vector3 EvaluateValue(float time)
         {
             Vector3 toReturn;
 
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
             float[] tangents = CurveMath.GetTangents(toEval);
-
             toReturn = CurveMath.CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
                 TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1], toEval[0].TangentMode);
-
-            if (root == null) {return toReturn; }
-
-            Transform t = root.transform.Find(ToAffect);
-            if(!toReturn.HasNaN())t.localScale = toReturn;
-
             return toReturn;
         }
 
-        public override void Evaluate(float t)
+        public override void Evaluate(float time)
         {
-            if (!ValidCurve) return;
-            EvaluateV3(t);
+            if (!ValidCurve || !root) return;
+            Vector3 toReturn = EvaluateValue(time);
+            Transform t = root.transform.Find(ToAffect);
+            if (!toReturn.HasNaN()) t.localScale = toReturn;
         }
 
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "Local scale curve not yet valid! Give it some keyframes!";
 
-            return $"{ToAffect}.localScale should be: {EvaluateV3(time)}";
+            return $"{ToAffect}.localScale should be: {EvaluateValue(time)}";
         }
 
         public override string ToString()
@@ -100,35 +92,31 @@ namespace UITK_SimpleTimeline.Examples
         public override string ShorthandCurveName() => "Local Rotation Curve";
         public override string SpawnKeyframeName() => "Euler Angle (Vec3) Keyframe";
         public override string ToAffectName() => "Hierarchy Path to Rotate";
-        private Quaternion EvaluateQ(float time)
-        {
-            Quaternion toReturn;
 
+        public override Vector3 EvaluateValue(float time)
+        {
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
-            
+
             float[] tangents = CurveMath.GetTangents(toEval);
 
             Vector3 eulerToBe = CurveMath.CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
                 TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1], toEval[0].TangentMode);
-            toReturn = eulerToBe != Vector3.zero && !eulerToBe.HasNaN() ? Quaternion.Euler(eulerToBe) : Quaternion.identity;
-            if (root == null) { return toReturn; }
-
-            Transform t = root.transform.Find(ToAffect);
-            t.localRotation = toReturn;
-
-            return toReturn;
+            return eulerToBe;
         }
 
         public override void Evaluate(float time)
         {
-            if (!ValidCurve) return;
-            EvaluateQ(time);
+            if (!ValidCurve || !root) return;
+
+            Transform t = root.transform.Find(ToAffect);
+            Vector3 eulerToBe = EvaluateValue(time);
+            t.localRotation = eulerToBe != Vector3.zero && !eulerToBe.HasNaN() ? Quaternion.Euler(eulerToBe) : Quaternion.identity;
         }
 
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "Rotation curve is not yet valid! Give him some keyframes!";
-            return $"{ToAffect}.localRot should be: {EvaluateQ(time)}.";
+            return $"{ToAffect}.localRot should be: {EvaluateValue(time)}.";
         }
 
         public override string ToString()

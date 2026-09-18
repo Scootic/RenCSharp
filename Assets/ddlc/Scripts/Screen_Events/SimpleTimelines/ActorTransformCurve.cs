@@ -32,7 +32,7 @@ namespace RenCSharp.Sequences
             }
         }
 
-        private Vector3 EvaluateV3(float time)
+        public override float[] EvaluateValue(float time)
         {
             TimelineKeyframe<float>[][] toEval = ArrayClosestTwoKeyframes(time);
             float[] toConvert = new float[3];
@@ -43,20 +43,20 @@ namespace RenCSharp.Sequences
                     TimeToKeyframePercent(time, toEval[i][0].Time, toEval[i][1].Time), tangents[0], tangents[1],
                     toEval[i][0].TangentMode);
             }
-            return toConvert.ToVector3();
+            return toConvert;
         }
 
         public override void Evaluate(float time)
         {
             if (!ValidCurve) return;
-            Vector3 eval = EvaluateV3(time);
+            Vector3 eval = EvaluateValue(time).ToVector3();
             if (root && !eval.HasNaN()) root.transform.position = eval + ogWorldPos;
         }
 
         public override string EvaluateMessage(float time)
         {
-            if (!ValidCurve) return "Actor Local Scale Curve is not valid.";
-            return $"Actor: {ToAffect.name}'s local scale at {time}: {EvaluateV3(time)}";
+            if (!ValidCurve) return "Actor Local Position Curve is not valid.";
+            return $"Actor: {ToAffect.name}'s local position at {time}: {EvaluateValue(time).ToVector3()}";
         }
 
         private Vector3 ogWorldPos;
@@ -88,7 +88,7 @@ namespace RenCSharp.Sequences
             }
         }
 
-        private Vector3 EvaluateV3(float time)
+        public override Vector3 EvaluateValue(float time)
         {
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
@@ -100,14 +100,14 @@ namespace RenCSharp.Sequences
         public override void Evaluate(float time)
         {
             if (!ValidCurve) return;
-            Vector3 eval = EvaluateV3(time);
+            Vector3 eval = EvaluateValue(time);
             if(root && !eval.HasNaN()) root.transform.position = eval + ogWorldPos;
         }
 
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "Actor Local Position Curve is not valid.";
-            return $"Actor: {ToAffect.name}'s local position at {time}: {EvaluateV3(time)}";
+            return $"Actor: {ToAffect.name}'s local position at {time}: {EvaluateValue(time)}";
         }
 
         public override string ToString()
@@ -133,7 +133,7 @@ namespace RenCSharp.Sequences
             }
         }
 
-        private Vector3 EvaluateV3(float time)
+        public override Vector3 EvaluateValue(float time)
         {
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
@@ -145,14 +145,14 @@ namespace RenCSharp.Sequences
         public override void Evaluate(float time)
         {
             if (!ValidCurve) return;
-            Vector3 eval = EvaluateV3(time);
-            if(root && !eval.HasNaN())root.transform.localScale = EvaluateV3(time);
+            Vector3 eval = EvaluateValue(time);
+            if(root && !eval.HasNaN())root.transform.localScale = eval;
         }
 
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "Actor Local Scale Curve is not valid.";
-            return $"Actor: {ToAffect.name}'s local scale at {time}: {EvaluateV3(time)}";
+            return $"Actor: {ToAffect.name}'s local scale at {time}: {EvaluateValue(time)}";
         }
 
         public override string ToString()
@@ -178,7 +178,7 @@ namespace RenCSharp.Sequences
             }
         }
 
-        private Vector3 EvaluateV3(float time)
+        public override Vector3 EvaluateValue(float time)
         {
             TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
 
@@ -190,14 +190,14 @@ namespace RenCSharp.Sequences
         public override void Evaluate(float time)
         {
             if (!ValidCurve) return;
-            Vector3 eval = EvaluateV3(time);
-            if(root && !eval.HasNaN())root.transform.rotation = Quaternion.Euler(EvaluateV3(time));
+            Vector3 eval = EvaluateValue(time);
+            if(root && !eval.HasNaN())root.transform.rotation = eval != Vector3.zero ? Quaternion.Euler(EvaluateValue(time)) : Quaternion.identity;
         }
 
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "Actor Local Rotation Curve is not valid.";
-            return $"Actor: {ToAffect.name}'s local rotation at {time}: {EvaluateV3(time)}";
+            return $"Actor: {ToAffect.name}'s local rotation at {time}: {EvaluateValue(time)}";
         }
 
         public override string ToString()

@@ -709,24 +709,17 @@ namespace UITK_SimpleTimeline.Editor
             if (Helper.CurvesProperty == null) return;
             for(int i = 0; i < Helper.CurvesProperty.arraySize; i++)
             {
-                try 
-                { 
-                    TimelineCurve lerpable = Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue as TimelineCurve;
-                    VisualElement rep = lerpable.UITKRepresentation(i);
-                    TimelineScrollView.Add(rep); //adding to the timeline scrollview should place it in the content section? i hope?
-                    TypedTimelineCurveFields.Add(rep);//? i at 0 should be timeline ruler
-                }
-                catch
-                {
-                    Debug.LogWarning("Null lerpable?!? That, or the TimelineCurveField failed to construct, somehow.");
-                }
+                TimelineCurve lerpable = Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue as TimelineCurve;
+                VisualElement rep = lerpable.UITKRepresentation(i);
+                TimelineScrollView.Add(rep); //adding to the timeline scrollview should place it in the content section? i hope?
+                TypedTimelineCurveFields.Add(rep);//? i at 0 should be timeline ruler
             }
             GrayOverlay.BringToFront();
             CurrentTimePreview.BringToFront();
             MarkDirtyRepaint();
         }
         //sets the current TimelineKeyframe<T> to edit and current timeline knob to affect based on those values.
-        protected void DisplayKeyframeInformation(SerializedProperty keyframeToDisplay, VisualElement ve)
+        protected void DisplayKeyframeInformation(SerializedProperty keyframeToDisplay, VisualElement ve, bool arrayKeyframe = false)
         {
             Helper.ApplyChangesToObject();
             CurrentKeyframeField.UnregisterCallback<SerializedPropertyChangeEvent>(AdjustCurrentKeyframeBasedOnTime);
@@ -737,12 +730,20 @@ namespace UITK_SimpleTimeline.Editor
             int curveI = keyframeToDisplay.FindPropertyRelative("CurveIndex").intValue;
             int curveK = keyframeToDisplay.FindPropertyRelative("KeyframeIndex").intValue;
             SerializedProperty toRight = null;
-            SerializedProperty keyframeList = Helper.CurvesProperty.GetArrayElementAtIndex(curveI).FindPropertyRelative("keyframes");
-            if (curveK < keyframeList.arraySize - 1)
+            SerializedProperty keyframeList;
+            if (!arrayKeyframe) keyframeList = Helper.CurvesProperty.GetArrayElementAtIndex(curveI).FindPropertyRelative("keyframes");
+            else 
+            {
+                int arrayIndex = keyframeToDisplay.FindPropertyRelative("ArrayIndex").intValue;
+                keyframeList = Helper.CurvesProperty.GetArrayElementAtIndex(curveI).FindPropertyRelative("keyframes")
+                    .GetArrayElementAtIndex(arrayIndex).FindPropertyRelative("List");
+            }
+            if (curveK < keyframeList.arraySize - 1 && keyframeList.arraySize > 1)
             {
                 toRight = keyframeList.GetArrayElementAtIndex(curveK + 1);
                 KeyframeCurvePreview.ReceiveKeyframes(keyframeToDisplay, toRight);
-            }else KeyframeCurvePreview.ReceiveKeyframes(keyframeToDisplay, null);
+            }
+            else KeyframeCurvePreview.ReceiveKeyframes(keyframeToDisplay, null);
         }
         //basically the same method as dragging, except it happens when you change the Time value directly in the property
         protected void AdjustCurrentKeyframeBasedOnTime(SerializedPropertyChangeEvent evt)

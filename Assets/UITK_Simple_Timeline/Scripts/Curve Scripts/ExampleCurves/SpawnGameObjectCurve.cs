@@ -24,25 +24,28 @@ namespace UITK_SimpleTimeline.Examples
         public override void Evaluate(float time)
         {
             if (!ValidCurve) return;
-            try
+            GOSpawnToken toSpawn = EvaluateValue(time);
+            if (!toSpawn.ActuallySpawn) return;
+
+            GameObject t;
+            if (toSpawn.SetToBeChildOfRoot)
             {
-                TimelineKeyframe<GOSpawnToken> keyframe = AtTime(time);
-
-                GameObject t;
-                if (keyframe.Value.SetToBeChildOfRoot)
-                {
-                    t = GameObject.Instantiate(ToAffect, Vector3.zero, Quaternion.identity, root.transform);
-                    t.transform.SetLocalPositionAndRotation(keyframe.Value.SpawnPos, keyframe.Value.SpawnRot);
-                }
-                else
-                {
-                    t = GameObject.Instantiate(ToAffect, keyframe.Value.SpawnPos, keyframe.Value.SpawnRot);
-                }
-
-                t.transform.localScale = keyframe.Value.SpawnScale;
-                t.name = keyframe.Value.name;
+                t = GameObject.Instantiate(ToAffect, Vector3.zero, Quaternion.identity, root.transform);
+                t.transform.SetLocalPositionAndRotation(toSpawn.SpawnPos, toSpawn.SpawnRot);
             }
-            catch { return; }
+            else
+            {
+                t = GameObject.Instantiate(ToAffect, toSpawn.SpawnPos, toSpawn.SpawnRot);
+            }
+
+            t.transform.localScale = toSpawn.SpawnScale;
+            t.name = toSpawn.name;
+        }
+
+        public override GOSpawnToken EvaluateValue(float time)
+        {
+            TimelineKeyframe<GOSpawnToken> keyframe = AtTime(time);
+            return keyframe.Value;
         }
 
         public override string EvaluateMessage(float time)
@@ -50,20 +53,15 @@ namespace UITK_SimpleTimeline.Examples
             if (!ValidCurve) return "Spawn GO Curve is not yet valid!";
             try
             {
-                GameObject guh = ToAffect;
-                try
-                {
-                    TimelineKeyframe<GOSpawnToken> goose = AtTime(time);
-                    return $"Spawned GameObject: {guh.name} at, \n\tPos:{goose.Value.SpawnPos}" +
-                        $"\n\tRot:{goose.Value.SpawnRot}\n\tScale:{goose.Value.SpawnScale}";
+                    GOSpawnToken toEval = EvaluateValue(time);
+                    return $"Spawned GameObject: {ToAffect.name} at, \n\tPos:{toEval.SpawnPos}" +
+                        $"\n\tRot:{toEval.SpawnRot}\n\tScale:{toEval.SpawnScale}";
                 }
                 catch
                 {
-                    return $"Not Spawning GameObject: {guh.name}";
+                    return $"Not Spawning GameObject: {ToAffect.name}";
                 }
-            }
-            catch { return "Spawn GameObject Curve is boinked; probably doesn't have an assigned ToAffect Prefab" +
-                    $" OR is getting some garbage indexes from ClosestTwoIndexes({time})."; }
+
         }
         
         public override string ToString()
@@ -77,6 +75,7 @@ namespace UITK_SimpleTimeline.Examples
     [Serializable]
     public struct GOSpawnToken : IDefaultableNotNull<GOSpawnToken>
     {
+        [Tooltip("Pretty please set me to true...")]public bool ActuallySpawn;
         public Vector3 SpawnPos;
         public Vector3 SpawnScale;
         public Quaternion SpawnRot;
@@ -87,6 +86,7 @@ namespace UITK_SimpleTimeline.Examples
         {
             return new()
             {
+                ActuallySpawn = false,
                 SpawnPos = Vector3.zero,
                 SpawnRot = Quaternion.identity,
                 SpawnScale = Vector3.one,

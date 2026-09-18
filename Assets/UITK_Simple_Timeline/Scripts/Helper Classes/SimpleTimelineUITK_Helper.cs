@@ -1,6 +1,5 @@
 #if UNITY_EDITOR
 using System;
-using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -43,7 +42,7 @@ namespace UITK_SimpleTimeline
         /// <summary>
         /// Get a current keyframe whenever you click on a TimelineKnob in the Editor Window
         /// </summary>
-        public static Action<SerializedProperty, VisualElement> ReceiveKeyframe;
+        public static Action<SerializedProperty, VisualElement, bool> ReceiveKeyframe;
         /// <summary>
         /// Fires when you right-click delete a TimelineCurve from the Editor Window
         /// </summary>
@@ -111,7 +110,7 @@ namespace UITK_SimpleTimeline
 
             return toReturn;
         }
-
+        /*
         public static bool IsSubclassOfGenericType(this Type toCheck, Type baseType)
         {
             while (toCheck != null && toCheck != typeof(object))
@@ -123,15 +122,7 @@ namespace UITK_SimpleTimeline
                 toCheck = toCheck.BaseType;
             }
             return false;
-        }
-
-        public static Type[] GetValidTimelineCurveTypes()
-        {
-            Assembly aToCheck = AppDomain.CurrentDomain.GetAssemblies()
-                .FirstOrDefault(a => a.GetName().Name == "UITKSimpleTimeline_Curves");
-
-            return aToCheck.GetTypes().Where(a => a.IsSubclassOfGenericType(typeof(TypedTimelineCurve<,>)) && !a.IsAbstract).ToArray();
-        }
+        }*/
     }
 
 }

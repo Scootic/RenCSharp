@@ -11,31 +11,24 @@ namespace RenCSharp.Sequences
         public override void Evaluate(float time)
         {
             if (!ValidCurve) return;
-            try
-            {
-                TimelineKeyframe<bool> atTime = AtTime(time);
-                if(atTime.Value)Script_Manager.SM.PauseSequence(false);
-                else Script_Manager.SM.UnpauseSequence();
-            }
-            catch
-            {
-                return;
-            }
+
+            if(EvaluateValue(time))Script_Manager.SM.PauseSequence(false);
+            else Script_Manager.SM.UnpauseSequence();
+
+        }
+
+        public override bool EvaluateValue(float time)
+        {
+            TimelineKeyframe<bool> atTime = AtTime(time);
+            return atTime.Value;
         }
 
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "Pause Sequence Curve not yet valid.";
-            try
-            {
-                TimelineKeyframe<bool> atTime = AtTime(time);
-                if (atTime.Value) return "Pausing Sequence";
-                else return "Unpausing Sequence";
-            }
-            catch
-            {
-                return "Not flipping SM Pause.";
-            }
+
+            if (EvaluateValue(time)) return "Pausing Sequence";
+            else return "Unpausing Sequence";
         }
 
 

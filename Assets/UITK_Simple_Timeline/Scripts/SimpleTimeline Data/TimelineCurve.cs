@@ -48,6 +48,7 @@ namespace UITK_SimpleTimeline
             return new SingleTypedTimelineCurveField<T>("", this, index);
         }
 #endif
+        public abstract T EvaluateValue(float time);
 
         #region Keyframes
         /// <summary>
@@ -284,8 +285,10 @@ namespace UITK_SimpleTimeline
         }
 #endif
 
-        [SerializeField] protected TList<TimelineKeyframe<T>>[] keyframes = new TList<TimelineKeyframe<T>>[0];
-        public TList<TimelineKeyframe<T>>[] Keyframes => keyframes;
+        [SerializeField] protected TimelineListWrapper<TimelineKeyframe<T>>[] keyframes = new TimelineListWrapper<TimelineKeyframe<T>>[0];
+        public TimelineListWrapper<TimelineKeyframe<T>>[] Keyframes => keyframes;
+
+        public abstract T[] EvaluateValue(float time);
 
         public override void AddKeyframeToCurve(float t)
         {
@@ -302,7 +305,8 @@ namespace UITK_SimpleTimeline
                 Time = t,
                 DefaultTangentMode = DefaultTangentMode(),
                 TangentMode = DefaultTangentMode(),
-                ExcludedTangentModes = ExcludedKeyframeTangentModes()
+                ExcludedTangentModes = ExcludedKeyframeTangentModes(),
+                ArrayIndex = index
             };
 
             for (int i = 0; i < keyframes[index].Count; i++)
@@ -362,7 +366,7 @@ namespace UITK_SimpleTimeline
 
         public override void SortKeyframes()
         {
-            foreach (TList<TimelineKeyframe<T>> curve in keyframes)
+            foreach (TimelineListWrapper<TimelineKeyframe<T>> curve in keyframes)
             {
                 curve.Sort();
             }
@@ -382,7 +386,7 @@ namespace UITK_SimpleTimeline
         public List<TimelineKeyframe<T>> AtTime(float t)
         {
             List<TimelineKeyframe<T>> toReturn = new();
-            foreach(TList<TimelineKeyframe<T>> list in keyframes)
+            foreach(TimelineListWrapper<TimelineKeyframe<T>> list in keyframes)
             {
                 foreach(TimelineKeyframe<T> keyframe in list)
                 {
@@ -489,10 +493,10 @@ namespace UITK_SimpleTimeline
         /// <summary>
         /// Overrides all stuff to create a new array of appropriate size.
         /// </summary>
-        public int SetKeyframesArrayLength { set { keyframes = new TList<TimelineKeyframe<T>>[value];
+        public int SetKeyframesArrayLength { set { keyframes = new TimelineListWrapper<TimelineKeyframe<T>>[value];
                 for(int i = 0; i < keyframes.Length; i++)
                 {
-                    keyframes[i] = new TList<TimelineKeyframe<T>>(0);
+                    keyframes[i] = new TimelineListWrapper<TimelineKeyframe<T>>(0);
                 }
             } }
 
@@ -650,83 +654,5 @@ namespace UITK_SimpleTimeline
             return "Abstract Timeline Curve";
         }
     }
-    /// <summary>
-    /// Only exists as a wrapper for Unity's Evile Serialization
-    /// </summary>
-    /// <typeparam name="T">notnull type :(</typeparam>
-    #nullable enable
-    [Serializable]
-    public struct TList<T> : IList<T> where T : class?
-    {
-        public List<T?> List;
-
-        public TList(int length)
-        {
-            List = new List<T?>();
-            while(List.Count < length)
-            {
-                List.Add(null);
-            }
-        }
-
-        public readonly T this[int index] { get 
-            {
-                return List[index]; 
-            } set { List[index] = value; } }
-
-        public readonly void Sort()
-        {
-            List.Sort();
-        }
-
-        public readonly void CopyTo(T[] array, int arrayIndex)
-        {
-            List.CopyTo(array, arrayIndex);
-        }
-
-        readonly IEnumerator IEnumerable.GetEnumerator()
-        {
-            return List.GetEnumerator();
-        }
-
-        public readonly IEnumerator<T> GetEnumerator()
-        {
-            return List.GetEnumerator();
-        }
-
-        public readonly int Count => List.Count;
-
-        public readonly void Insert(int i, T item)
-        {
-            List.Insert(i, item);
-        }
-
-        public readonly void Clear() { List.Clear(); }
-
-        public readonly bool Contains(T item) { return List.Contains(item); }
-
-        public readonly bool Remove(T item)
-        {
-            if (Contains(item)) { List.Remove(item); return true; }
-            return false;
-        }
-
-        public readonly bool IsReadOnly => false;
-
-        public readonly void RemoveAt(int i)
-        {
-            List.RemoveAt(i);
-        }
-
-        public readonly int IndexOf(T item)
-        {
-            return List.IndexOf(item);
-        }
-
-        public readonly void Add(T item)
-        {
-            List.Add(item);
-        }
-    }
-#nullable disable
+    
 }
