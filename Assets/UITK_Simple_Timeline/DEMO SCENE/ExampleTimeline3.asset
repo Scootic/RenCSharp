@@ -28,9 +28,11 @@ MonoBehaviour:
       type: {class: RotationCurve, ns: UITK_SimpleTimeline.Examples, asm: UITKSimpleTimeline_Examples}
       data:
         WrappingMode: 1
+        TemporaryRep: {x: 0, y: 236.28665, z: 0}
         keyframes:
         - KeyframeIndex: 0
           CurveIndex: 0
+          ArrayIndex: 0
           Time: 0
           InSlope: 0
           OutSlope: 0
@@ -45,6 +47,7 @@ MonoBehaviour:
           Value: {x: 0, y: 0, z: 0}
         - KeyframeIndex: 1
           CurveIndex: 0
+          ArrayIndex: 0
           Time: 15
           InSlope: 0
           OutSlope: 0
@@ -62,9 +65,16 @@ MonoBehaviour:
       type: {class: SpawnGameObjectCurve, ns: UITK_SimpleTimeline.Examples, asm: UITKSimpleTimeline_Examples}
       data:
         WrappingMode: 1
+        TemporaryRep:
+          SpawnPos: {x: 2, y: 10, z: 0}
+          SpawnScale: {x: 1, y: 1, z: 1}
+          SpawnRot: {x: 0, y: 0, z: 0}
+          SetToBeChildOfRoot: 1
+          name: GameObject
         keyframes:
         - KeyframeIndex: 0
           CurveIndex: 1
+          ArrayIndex: 0
           Time: 1.4
           InSlope: 0
           OutSlope: 0
@@ -79,11 +89,12 @@ MonoBehaviour:
           Value:
             SpawnPos: {x: 2, y: 10, z: 0}
             SpawnScale: {x: 1, y: 1, z: 1}
-            SpawnRot: {x: 0, y: 0, z: 0, w: 1}
+            SpawnRot: {x: 0, y: 0, z: 0}
             SetToBeChildOfRoot: 1
             name: GameObject
         - KeyframeIndex: 1
           CurveIndex: 1
+          ArrayIndex: 0
           Time: 6.15
           InSlope: 0
           OutSlope: 0
@@ -98,11 +109,12 @@ MonoBehaviour:
           Value:
             SpawnPos: {x: -2, y: 10, z: 0}
             SpawnScale: {x: 1, y: 1, z: 1}
-            SpawnRot: {x: 0, y: 0, z: 0, w: 1}
+            SpawnRot: {x: 0, y: 0, z: 0}
             SetToBeChildOfRoot: 1
             name: GameObject
         - KeyframeIndex: 2
           CurveIndex: 1
+          ArrayIndex: 0
           Time: 11.8
           InSlope: 0
           OutSlope: 0
@@ -117,7 +129,7 @@ MonoBehaviour:
           Value:
             SpawnPos: {x: 0, y: 10, z: -2}
             SpawnScale: {x: 1, y: 1, z: 1}
-            SpawnRot: {x: 0, y: 0, z: 0, w: 1}
+            SpawnRot: {x: 0, y: 0, z: 0}
             SetToBeChildOfRoot: 1
             name: GameObject
         ToAffect: {fileID: 3823822571307690289, guid: c605021d68c3e9341bb5fb04951bb5ab, type: 3}
@@ -125,9 +137,11 @@ MonoBehaviour:
       type: {class: ScaleCurve, ns: UITK_SimpleTimeline.Examples, asm: UITKSimpleTimeline_Examples}
       data:
         WrappingMode: 1
+        TemporaryRep: {x: 1.2460248, y: 1.2460248, z: 1.2460248}
         keyframes:
         - KeyframeIndex: 0
           CurveIndex: 2
+          ArrayIndex: 0
           Time: 0
           InSlope: 0
           OutSlope: 0
@@ -142,6 +156,7 @@ MonoBehaviour:
           Value: {x: 1, y: 1, z: 1}
         - KeyframeIndex: 1
           CurveIndex: 2
+          ArrayIndex: 0
           Time: 3.9625
           InSlope: 0
           OutSlope: 0
@@ -156,6 +171,7 @@ MonoBehaviour:
           Value: {x: 1.5, y: 1.5, z: 1.5}
         - KeyframeIndex: 2
           CurveIndex: 2
+          ArrayIndex: 0
           Time: 7.5
           InSlope: 0
           OutSlope: 0
@@ -170,6 +186,7 @@ MonoBehaviour:
           Value: {x: 1, y: 1, z: 1}
         - KeyframeIndex: 3
           CurveIndex: 2
+          ArrayIndex: 0
           Time: 11.675
           InSlope: 0
           OutSlope: 0
@@ -184,6 +201,7 @@ MonoBehaviour:
           Value: {x: 0.5, y: 0.5, z: 0.5}
         - KeyframeIndex: 4
           CurveIndex: 2
+          ArrayIndex: 0
           Time: 15
           InSlope: 0
           OutSlope: 0
@@ -201,9 +219,11 @@ MonoBehaviour:
       type: {class: PositionCurve, ns: UITK_SimpleTimeline.Examples, asm: UITKSimpleTimeline_Examples}
       data:
         WrappingMode: 1
+        TemporaryRep: {x: -2, y: 1.562484, z: 0}
         keyframes:
         - KeyframeIndex: 0
           CurveIndex: 3
+          ArrayIndex: 0
           Time: 0
           InSlope: 0
           OutSlope: 0
@@ -218,6 +238,7 @@ MonoBehaviour:
           Value: {x: -2, y: 3, z: 0}
         - KeyframeIndex: 1
           CurveIndex: 3
+          ArrayIndex: 0
           Time: 3.9
           InSlope: 0
           OutSlope: 0
@@ -232,6 +253,7 @@ MonoBehaviour:
           Value: {x: -2, y: 0, z: 0}
         - KeyframeIndex: 2
           CurveIndex: 3
+          ArrayIndex: 0
           Time: 7.5
           InSlope: 0
           OutSlope: 0
@@ -246,6 +268,7 @@ MonoBehaviour:
           Value: {x: -2, y: 3, z: 0}
         - KeyframeIndex: 3
           CurveIndex: 3
+          ArrayIndex: 0
           Time: 11.51875
           InSlope: 0
           OutSlope: 0
@@ -260,6 +283,7 @@ MonoBehaviour:
           Value: {x: -2, y: 6, z: 0}
         - KeyframeIndex: 4
           CurveIndex: 3
+          ArrayIndex: 0
           Time: 15
           InSlope: 0
           OutSlope: 0

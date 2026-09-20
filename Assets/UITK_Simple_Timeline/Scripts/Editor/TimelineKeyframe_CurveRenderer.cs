@@ -23,10 +23,10 @@ namespace UITK_SimpleTimeline.Editor
 
         public TimelineKeyframe_CurveRenderer()
         {
-            style.borderBottomColor = Helper.ThirdLayerBorder;
-            style.borderRightColor = Helper.ThirdLayerBorder;
-            style.borderLeftColor = Helper.ThirdLayerBorder;
-            style.borderTopColor = Helper.ThirdLayerBorder;
+            style.borderBottomColor = Helper.DefaultThirdLayerBorder;
+            style.borderRightColor = Helper.DefaultThirdLayerBorder;
+            style.borderLeftColor = Helper.DefaultThirdLayerBorder;
+            style.borderTopColor = Helper.DefaultThirdLayerBorder;
             style.height = Length.Percent(100);
             style.width = Length.Percent(100);
             style.flexGrow = 1;
@@ -35,7 +35,7 @@ namespace UITK_SimpleTimeline.Editor
             style.borderRightWidth = 1;
             style.borderLeftWidth = 1;
             style.borderBottomWidth = 1;
-            style.backgroundColor = Helper.SecondLayerBorder;
+            style.backgroundColor = Helper.DefaultSecondLayerBorder;
 
             tangentStrengthField = new("Tangent Handles Strength")
             {

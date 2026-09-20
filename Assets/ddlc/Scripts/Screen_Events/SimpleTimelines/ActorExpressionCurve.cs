@@ -18,7 +18,7 @@ namespace RenCSharp.Sequences
             if (!ValidCurve) return;
             try
             {
-                VisualIndexes toEval = EvaluateValue(time);
+                VisualIndexes toEval = AtTime(time).Value;
                 if (!Object_Factory.TryGetComponent(toEval.ActorToSet.name, out uie)) 
                 {
                     Debug.LogWarning($"Couldn't find {toEval.ActorToSet.name}");
@@ -37,11 +37,15 @@ namespace RenCSharp.Sequences
                 return;
             }
         }
-
+        /// <summary>
+        /// only exists for uitk preview
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
         public override VisualIndexes EvaluateValue(float time)
         {
-            TimelineKeyframe<VisualIndexes> toEval = AtTime(time);
-            return toEval.Value;
+            TimelineKeyframe<VisualIndexes>[] closest = ClosestTwoKeyframes(time);
+            return closest[0].Value;
         }
 
         public override string EvaluateMessage(float time)

@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using RenCSharp.Editor;
@@ -38,13 +39,20 @@ namespace RenCSharp.Sequences.Editor
             {
                 SetAutoTextFields();
             }
+            //so that if the VisualIndexes property itself changes, override autotext fields.
+            leElement.TrackPropertyValue(viProperty, evt =>
+            {
+                actorField.value = evt.FindPropertyRelative("ActorToSet").boxedValue as Actor; //????
+                SetAutoTextFields();
+            });
+
             return leElement;
         }
 
         private void SetAutoTextFields()
         {
             //remove any existing autotextfields for being complete and utter hogwash
-            for (int i = leElement.childCount - 1; i > 1; i--)
+            for (int i = leElement.childCount - 1; i >= 1; i--)
             {
                 leElement.RemoveAt(i);
             }
@@ -75,6 +83,7 @@ namespace RenCSharp.Sequences.Editor
                 autoTextFields[i].SetText = viProperty.FindPropertyRelative("indexes").GetArrayElementAtIndex(oldI).stringValue;
                 
                 leElement.Add(autoTextFields[i]);
+                Debug.Log($"ATF FlexiDir: {autoTextFields[i].style.flexDirection}");
             }
         }
     }

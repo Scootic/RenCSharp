@@ -24,43 +24,53 @@ namespace UITK_SimpleTimeline.Examples
         public override void Evaluate(float time)
         {
             if (!ValidCurve) return;
-            GOSpawnToken toSpawn = EvaluateValue(time);
-            if (!toSpawn.ActuallySpawn) return;
-
-            GameObject t;
-            if (toSpawn.SetToBeChildOfRoot)
+            try
             {
-                t = GameObject.Instantiate(ToAffect, Vector3.zero, Quaternion.identity, root.transform);
-                t.transform.SetLocalPositionAndRotation(toSpawn.SpawnPos, toSpawn.SpawnRot);
-            }
-            else
-            {
-                t = GameObject.Instantiate(ToAffect, toSpawn.SpawnPos, toSpawn.SpawnRot);
-            }
+                GOSpawnToken toSpawn = AtTime(time).Value;
+                Quaternion rot = toSpawn.SpawnRot != Vector3.zero && !toSpawn.SpawnRot.HasNaN() ? Quaternion.Euler(toSpawn.SpawnRot) : Quaternion.identity;
+                GameObject t;
+                if (toSpawn.SetToBeChildOfRoot)
+                {
+                    t = GameObject.Instantiate(ToAffect, Vector3.zero, Quaternion.identity, root.transform);
+                    t.transform.SetLocalPositionAndRotation(toSpawn.SpawnPos, rot);
+                }
+                else
+                {
+                    t = GameObject.Instantiate(ToAffect, toSpawn.SpawnPos, rot);
+                }
 
-            t.transform.localScale = toSpawn.SpawnScale;
-            t.name = toSpawn.name;
+                t.transform.localScale = toSpawn.SpawnScale;
+                t.name = toSpawn.name;
+            }
+            catch
+            {
+                return;
+            }
         }
-
+        /// <summary>
+        /// Technically only exists for UITK record/preview function
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns>Left keyframe's value. Since it's only a spawn on exact frame.</returns>
         public override GOSpawnToken EvaluateValue(float time)
         {
-            TimelineKeyframe<GOSpawnToken> keyframe = AtTime(time);
-            return keyframe.Value;
+            TimelineKeyframe<GOSpawnToken>[] closest = ClosestTwoKeyframes(time);
+            return closest[0].Value;
         }
 
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "Spawn GO Curve is not yet valid!";
             try
+            {   
+                GOSpawnToken toEval = AtTime(time).Value;
+                return $"Spawned GameObject: {ToAffect.name} at, \n\tPos:{toEval.SpawnPos}" +
+                    $"\n\tRot:{toEval.SpawnRot}\n\tScale:{toEval.SpawnScale}";
+            }
+            catch
             {
-                    GOSpawnToken toEval = EvaluateValue(time);
-                    return $"Spawned GameObject: {ToAffect.name} at, \n\tPos:{toEval.SpawnPos}" +
-                        $"\n\tRot:{toEval.SpawnRot}\n\tScale:{toEval.SpawnScale}";
-                }
-                catch
-                {
-                    return $"Not Spawning GameObject: {ToAffect.name}";
-                }
+                return $"Not Spawning GameObject: {ToAffect.name}";
+            }
 
         }
         
@@ -75,10 +85,9 @@ namespace UITK_SimpleTimeline.Examples
     [Serializable]
     public struct GOSpawnToken : IDefaultableNotNull<GOSpawnToken>
     {
-        [Tooltip("Pretty please set me to true...")]public bool ActuallySpawn;
         public Vector3 SpawnPos;
         public Vector3 SpawnScale;
-        public Quaternion SpawnRot;
+        public Vector3 SpawnRot;
         [Tooltip("Decides if the spawned prefab should be made a child of the root object of the timeline.")]public bool SetToBeChildOfRoot;
         [Tooltip("The name the spawned GO will have when first spawned. Will likely be appended to prevent duplicates.")]public string name;
 
@@ -86,9 +95,8 @@ namespace UITK_SimpleTimeline.Examples
         {
             return new()
             {
-                ActuallySpawn = false,
                 SpawnPos = Vector3.zero,
-                SpawnRot = Quaternion.identity,
+                SpawnRot = Vector3.zero,
                 SpawnScale = Vector3.one,
                 SetToBeChildOfRoot = false,
                 name = "GameObject"

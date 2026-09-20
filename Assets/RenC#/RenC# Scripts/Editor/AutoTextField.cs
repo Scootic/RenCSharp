@@ -83,7 +83,7 @@ namespace RenCSharp.Editor
             dropdownField.style.minWidth = 100f;
         }
 
-        public AutoTextField(string labelText, List<string> autoText, FlexDirection flexDir = FlexDirection.Row) : base(labelText, new VisualElement())
+        public AutoTextField(string labelText, List<string> autoText, FlexDirection flexDir) : base(labelText, new VisualElement())
         {
             validAutoText = autoText;
 
@@ -91,6 +91,7 @@ namespace RenCSharp.Editor
 
             ContentElement = this.Q<VisualElement>(className: inputUssClassName);
             ContentElement.style.flexDirection = flexDir;
+            style.flexDirection = flexDir;
 
             inputField = new();
             inputField.AddToClassList(inputFieldClassName);

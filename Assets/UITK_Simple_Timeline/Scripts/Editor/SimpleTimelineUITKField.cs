@@ -21,11 +21,13 @@ namespace UITK_SimpleTimeline.Editor
         protected readonly IntegerField CurrentFrameField;
         protected readonly FloatField DurationField, PlaybackSpeedField, CurrentSecondsField;
         protected readonly Toggle LoopField;
-        protected readonly Button BackFrame, PlayPause, ForwardFrame, AddKeyframesButton;
+        protected readonly Button BackFrame, PlayPause, ForwardFrame, AddKeyframesButton, RecordButton;
 
-        protected static Texture2D bckIco = null, fwdIco = null, playIco = null, pausIco = null, keyfrIco = null;
+        protected static Texture2D bckIco = null, fwdIco = null, playIco = null, pausIco = null, keyfrIco = null, 
+            recOffIco = null, recOnIco = null;
 
         [SerializeField] protected SimpleTimeline thisTimeline = new();
+        [SerializeField] protected List<IRepresentValue> timelineCurveFieldRVs = new();
 
         /// <summary>
         /// The scrollable area
@@ -59,7 +61,9 @@ namespace UITK_SimpleTimeline.Editor
             playing = false;
             curT = 0;
             Helper.ReceiveKeyframe = null;
+            Helper.Recording = false;
             Helper.ReceiveKeyframe += DisplayKeyframeInformation;
+            Helper.CurT = 0;
             style.backgroundColor = new Color(0.3f, 0.3f, 0.3f, 1);
             style.flexDirection = FlexDirection.Column;
 
@@ -75,10 +79,10 @@ namespace UITK_SimpleTimeline.Editor
 
             #region TimelineInfoHolder
             SimpleTimelineInfoHolder = new() { name = "SimpleTimelineInfoHolder" };
-            SimpleTimelineInfoHolder.style.backgroundColor = Helper.SecondLayerBG;
+            SimpleTimelineInfoHolder.style.backgroundColor = Helper.DefaultSecondLayerBG;
             SimpleTimelineInfoHolder.style.borderBottomWidth = 1;
-            SimpleTimelineInfoHolder.style.borderBottomColor = Helper.SecondLayerBorder;
-            SimpleTimelineInfoHolder.style.borderRightColor = Helper.SecondLayerBorder;
+            SimpleTimelineInfoHolder.style.borderBottomColor = Helper.DefaultSecondLayerBorder;
+            SimpleTimelineInfoHolder.style.borderRightColor = Helper.DefaultSecondLayerBorder;
             SimpleTimelineInfoHolder.style.borderRightWidth = 1;
             SimpleTimelineInfoHolder.style.minWidth = 0;
             SimpleTimelineInfoHolder.style.minHeight = 0;
@@ -123,11 +127,11 @@ namespace UITK_SimpleTimeline.Editor
             #endregion
 
             KeyframeControlsHolder = new() { name = "KeyframeControls" };
-            KeyframeControlsHolder.style.backgroundColor = Helper.SecondLayerBG;
-            KeyframeControlsHolder.style.borderRightColor = Helper.SecondLayerBorder;
+            KeyframeControlsHolder.style.backgroundColor = Helper.DefaultSecondLayerBG;
+            KeyframeControlsHolder.style.borderRightColor = Helper.DefaultSecondLayerBorder;
             KeyframeControlsHolder.style.borderRightWidth = 1;
             KeyframeControlsHolder.style.borderTopWidth = 1;
-            KeyframeControlsHolder.style.borderTopColor = Helper.SecondLayerBorder;
+            KeyframeControlsHolder.style.borderTopColor = Helper.DefaultSecondLayerBorder;
             KeyframeControlsHolder.style.minWidth = 0;
             KeyframeControlsHolder.style.bottom = 0;
             KeyframeControlsHolder.style.flexGrow = 1;
@@ -157,10 +161,10 @@ namespace UITK_SimpleTimeline.Editor
             #region TimelineControlsHolder
             //holds the play/pause button and stuff!
             TimelineControlsHolder = new() { name = "TimelineControlsHolder" };
-            TimelineControlsHolder.style.backgroundColor = Helper.SecondLayerBG;
-            TimelineControlsHolder.style.borderRightColor = Helper.SecondLayerBorder;
-            TimelineControlsHolder.style.borderLeftColor = Helper.SecondLayerBorder;
-            TimelineControlsHolder.style.borderBottomColor = Helper.SecondLayerBorder;
+            TimelineControlsHolder.style.backgroundColor = Helper.DefaultSecondLayerBG;
+            TimelineControlsHolder.style.borderRightColor = Helper.DefaultSecondLayerBorder;
+            TimelineControlsHolder.style.borderLeftColor = Helper.DefaultSecondLayerBorder;
+            TimelineControlsHolder.style.borderBottomColor = Helper.DefaultSecondLayerBorder;
             TimelineControlsHolder.style.borderRightWidth = 1;
             TimelineControlsHolder.style.borderLeftWidth = 1;
             TimelineControlsHolder.style.borderBottomWidth = 1;
@@ -237,6 +241,22 @@ namespace UITK_SimpleTimeline.Editor
             AddKeyframesButton.style.width = 50;
             TimelineControlsHolder.Add(AddKeyframesButton);
 
+            RecordButton = new(() =>
+            {
+                Helper.Recording = !Helper.Recording;
+                SetColors(Helper.Recording);
+                RecordButton.iconImage = Helper.Recording ? recOnIco : recOffIco;
+            })
+            { name = "RecordButton"};
+            RecordButton.iconImage = recOffIco;
+            Image rb = RecordButton.Q<Image>();
+            rb.scaleMode = ScaleMode.ScaleToFit;
+            rb.style.height = 45;
+            rb.style.width = 45;
+            RecordButton.style.height = 50;
+            RecordButton.style.width = 50;
+            TimelineControlsHolder.Add(RecordButton);
+
             CurrentFrameField = new("Frame:") { name = "CurrentFrameField" };
             CurrentFrameField.style.height = 50;
             CurrentFrameField.focusable = true;
@@ -279,7 +299,7 @@ namespace UITK_SimpleTimeline.Editor
 
             CreateTimelineContentMenu();
             TimelineScrollView = new() { name = "TimelineScrollView" };
-            TimelineScrollView.style.backgroundColor = Helper.SecondLayerBorder;
+            TimelineScrollView.style.backgroundColor = Helper.DefaultSecondLayerBorder;
             TimelineScrollView.style.minHeight = 235;
             TimelineScrollView.style.maxHeight = 9999;
             TimelineScrollView.style.minWidth = 500;
@@ -311,16 +331,7 @@ namespace UITK_SimpleTimeline.Editor
             TimelineHolder.Add(TimelineScrollView);
 
             TimelineRuler = new() { name = "TimelineRuler" };
-            TimelineRuler.RegisterCallback<PointerMoveEvent>(evt =>
-            {
-                if (((evt.pressedButtons & 1) == 1) && !playing) //do the red ruler drag that sets cur time!
-                {
-                    //x seconds = localPos.x / PixelWidthPerSeconds. multiply by 60 for frame? floor???
-                    CurrentFrameField.value = Mathf.FloorToInt(evt.localPosition.x /
-                        (float)Helper.PixelWidthPerSeconds * 60f);
-                    evt.StopPropagation();
-                }
-            });
+            TimelineRuler.RegisterCallback<PointerMoveEvent>(MoveCurTimeRuler);
             TimelineScrollView.Add(TimelineRuler);
 
             GrayOverlay = new(50f, Helper.QuarterTransparentBlack) { name = "GrayOverlay" };
@@ -342,7 +353,9 @@ namespace UITK_SimpleTimeline.Editor
         {
             thisTimeline = (SimpleTimeline)Helper.SimpleTimelineProperty.boxedValue;
             //Helper.RemoveTimelineCurve = null;
-            Helper.RemoveTimelineCurve += RemoveTimelineCurve; 
+            Helper.RemoveTimelineCurve += RemoveTimelineCurve;
+            Helper.Recording = false;
+            Helper.CurT = 0;
             playing = false;
             curT = 0;
             //Helper.ReceiveKeyframe = null;
@@ -363,10 +376,10 @@ namespace UITK_SimpleTimeline.Editor
 
             #region TimelineInfoHolder
             SimpleTimelineInfoHolder = new() { name = "SimpleTimelineInfoHolder" };
-            SimpleTimelineInfoHolder.style.backgroundColor = Helper.SecondLayerBG;
+            SimpleTimelineInfoHolder.style.backgroundColor = Helper.DefaultSecondLayerBG;
             SimpleTimelineInfoHolder.style.borderBottomWidth = 1;
-            SimpleTimelineInfoHolder.style.borderBottomColor = Helper.SecondLayerBorder;
-            SimpleTimelineInfoHolder.style.borderRightColor = Helper.SecondLayerBorder;
+            SimpleTimelineInfoHolder.style.borderBottomColor = Helper.DefaultSecondLayerBorder;
+            SimpleTimelineInfoHolder.style.borderRightColor = Helper.DefaultSecondLayerBorder;
             SimpleTimelineInfoHolder.style.borderRightWidth = 1;
             SimpleTimelineInfoHolder.style.minWidth = 0;
             SimpleTimelineInfoHolder.style.minHeight = 0;
@@ -413,11 +426,11 @@ namespace UITK_SimpleTimeline.Editor
             #endregion
 
             KeyframeControlsHolder = new() { name = "KeyframeControls" };
-            KeyframeControlsHolder.style.backgroundColor = Helper.SecondLayerBG;
-            KeyframeControlsHolder.style.borderRightColor = Helper.SecondLayerBorder;
+            KeyframeControlsHolder.style.backgroundColor = Helper.DefaultSecondLayerBG;
+            KeyframeControlsHolder.style.borderRightColor = Helper.DefaultSecondLayerBorder;
             KeyframeControlsHolder.style.borderRightWidth = 1;
             KeyframeControlsHolder.style.borderTopWidth = 1;
-            KeyframeControlsHolder.style.borderTopColor = Helper.SecondLayerBorder;
+            KeyframeControlsHolder.style.borderTopColor = Helper.DefaultSecondLayerBorder;
             KeyframeControlsHolder.style.minWidth = 0;
             KeyframeControlsHolder.style.bottom = 0;
             KeyframeControlsHolder.style.flexGrow = 1;
@@ -452,10 +465,10 @@ namespace UITK_SimpleTimeline.Editor
             #region TimelineControlsHolder
             //holds the play/pause button and stuff!
             TimelineControlsHolder = new() { name = "TimelineControlsHolder" };
-            TimelineControlsHolder.style.backgroundColor = Helper.SecondLayerBG;
-            TimelineControlsHolder.style.borderRightColor = Helper.SecondLayerBorder;
-            TimelineControlsHolder.style.borderLeftColor = Helper.SecondLayerBorder;
-            TimelineControlsHolder.style.borderBottomColor = Helper.SecondLayerBorder;
+            TimelineControlsHolder.style.backgroundColor = Helper.DefaultSecondLayerBG;
+            TimelineControlsHolder.style.borderRightColor = Helper.DefaultSecondLayerBorder;
+            TimelineControlsHolder.style.borderLeftColor = Helper.DefaultSecondLayerBorder;
+            TimelineControlsHolder.style.borderBottomColor = Helper.DefaultSecondLayerBorder;
             TimelineControlsHolder.style.borderRightWidth = 1;
             TimelineControlsHolder.style.borderLeftWidth = 1;
             TimelineControlsHolder.style.borderBottomWidth = 1;
@@ -534,6 +547,22 @@ namespace UITK_SimpleTimeline.Editor
             AddKeyframesButton.style.width = 50;
             TimelineControlsHolder.Add(AddKeyframesButton);
 
+            RecordButton = new(() =>
+            {
+                Helper.Recording = !Helper.Recording;
+                SetColors(Helper.Recording);
+                RecordButton.iconImage = Helper.Recording ? recOnIco : recOffIco;
+            })
+            { name = "RecordButton"};
+            RecordButton.iconImage = recOffIco;
+            Image rb = RecordButton.Q<Image>();
+            rb.scaleMode = ScaleMode.ScaleToFit;
+            rb.style.height = 45;
+            rb.style.width = 45;
+            RecordButton.style.height = 50;
+            RecordButton.style.width = 50;
+            TimelineControlsHolder.Add(RecordButton);
+
             CurrentFrameField = new("Frame:") { name = "CurrentFrameField" };
             CurrentFrameField.style.height = 50;
             CurrentFrameField.focusable = true;
@@ -551,9 +580,14 @@ namespace UITK_SimpleTimeline.Editor
             CurrentFrameField.RegisterValueChangedCallback(evt =>
             {
                 curT = (float)evt.newValue / 60f;
+                Helper.CurT = curT;
                 CurrentSecondsField.value = curT;
                 //divide frame by 60, then multiply by PixelWidthPerSeconds?
                 CurrentTimePreview.style.left = curT * (float)Helper.PixelWidthPerSeconds;
+                foreach(IRepresentValue irv in timelineCurveFieldRVs)
+                {
+                    irv.RepresentValue(curT);
+                }
             });
             TimelineControlsHolder.Add(CurrentFrameField);
 
@@ -576,7 +610,7 @@ namespace UITK_SimpleTimeline.Editor
 
             CreateTimelineContentMenu();
             TimelineScrollView = new() { name = "TimelineScrollView" };
-            TimelineScrollView.style.backgroundColor = Helper.SecondLayerBorder;
+            TimelineScrollView.style.backgroundColor = Helper.DefaultSecondLayerBorder;
             TimelineScrollView.style.minHeight = 235;
             TimelineScrollView.style.maxHeight = 9999;
             TimelineScrollView.style.minWidth = 500;
@@ -607,15 +641,7 @@ namespace UITK_SimpleTimeline.Editor
             TimelineHolder.Add(TimelineScrollView);
 
             TimelineRuler = new() { name = "TimelineRuler" };
-            TimelineRuler.RegisterCallback<PointerMoveEvent>(evt =>
-            {
-                if (((evt.pressedButtons & 1) == 1) && !playing) //do the red ruler drag that sets cur time!
-                {
-                    int frameValue = Mathf.FloorToInt(evt.localPosition.x / Helper.PixelWidthPerSeconds * 60f);
-                    frameValue = Mathf.Clamp(frameValue, 0, Mathf.FloorToInt(Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue * 60f));
-                    CurrentFrameField.value = frameValue;
-                }
-            });
+            TimelineRuler.RegisterCallback<PointerMoveEvent>(MoveCurTimeRuler);
             TimelineScrollView.Add(TimelineRuler);
 
             GrayOverlay = new(50f, Helper.QuarterTransparentBlack) { name = "GrayOverlay" };
@@ -651,7 +677,7 @@ namespace UITK_SimpleTimeline.Editor
             }
             Helper.ApplyChangesToObject();
         }
-
+        #region TimelineCurve Stuff
         public void AddNewTimelineCurve(TimelineCurve newCurve) 
         {
             if (thisTimeline.Curves == null) thisTimeline.Curves = new();
@@ -705,11 +731,13 @@ namespace UITK_SimpleTimeline.Editor
                     continue;
                 }
             }
+            timelineCurveFieldRVs.Clear();
             TypedTimelineCurveFields.Clear();
             if (Helper.CurvesProperty == null) return;
             for(int i = 0; i < Helper.CurvesProperty.arraySize; i++)
             {
                 TimelineCurve lerpable = Helper.CurvesProperty.GetArrayElementAtIndex(i).managedReferenceValue as TimelineCurve;
+                timelineCurveFieldRVs.Add(lerpable.UITKRepresentation(i) as IRepresentValue);
                 VisualElement rep = lerpable.UITKRepresentation(i);
                 TimelineScrollView.Add(rep); //adding to the timeline scrollview should place it in the content section? i hope?
                 TypedTimelineCurveFields.Add(rep);//? i at 0 should be timeline ruler
@@ -719,6 +747,7 @@ namespace UITK_SimpleTimeline.Editor
             MarkDirtyRepaint();
         }
         //sets the current TimelineKeyframe<T> to edit and current timeline knob to affect based on those values.
+        #endregion
         protected void DisplayKeyframeInformation(SerializedProperty keyframeToDisplay, VisualElement ve, bool arrayKeyframe = false)
         {
             Helper.ApplyChangesToObject();
@@ -802,13 +831,17 @@ namespace UITK_SimpleTimeline.Editor
             if (!pausIco) Debug.LogError("SimpleTimelineUITKField.cs can't find pauseicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
             if (keyfrIco == null) keyfrIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath + "/placekeyframeicon.png");
             if (!keyfrIco) Debug.LogError("SimpleTimelineUITKField.cs can't find placekeyframeicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
+            if (recOffIco == null) recOffIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath + "/recordofficon.png");
+            if (!recOffIco) Debug.LogError("SimpleTimelineUITKField.cs can't find recordofficon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
+            if (recOnIco == null) recOnIco = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath + "/recordonicon.png");
+            if(!recOnIco) Debug.LogError("SimpleTimelineUITKField.cs can't find recordonicon.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
             if (Helper.FullRulerLength == null) Helper.FullRulerLength = AssetDatabase.LoadAssetAtPath<Texture2D>(Helper.EditorIconAssetPath+"/fullrulerlength.png");
             if (!Helper.FullRulerLength) Debug.LogError("SimpleTimelineUITKField.cs can't find fullrulerlength.png. Did you move the UITK_Simple_Timeline folder from the root Asset folder?");
         }
         //the same as the animation tab's preview, except the live playback because that would be some serious hogwash
         protected void PreviewTimelineUpdate()
         {
-            if (!playing) return;
+            if (!playing || Helper.Recording) return;
             if (curT >= DurationField.value)
             {
                 curT = 0;
@@ -833,6 +866,38 @@ namespace UITK_SimpleTimeline.Editor
             Debug.Log(msg);
         }
 
+        protected void SetColors(bool recording)
+        {
+            if (recording)
+            {
+                BackFrame.style.backgroundColor = Helper.RecordingButton;
+                PlayPause.style.backgroundColor = Helper.RecordingButton;
+                ForwardFrame.style.backgroundColor = Helper.RecordingButton;
+                BackFrame.style.backgroundColor = Helper.RecordingButton;
+                RecordButton.style.backgroundColor = Helper.RecordingButton;
+                AddKeyframesButton.style.backgroundColor = Helper.RecordingButton;
+
+                TimelineControlsHolder.style.backgroundColor = Helper.RecordingSecondLayerBG;
+                TimelineControlsHolder.style.borderRightColor = Helper.RecordingSecondLayerBorder;
+                TimelineControlsHolder.style.borderLeftColor = Helper.RecordingSecondLayerBorder;
+                TimelineControlsHolder.style.borderBottomColor = Helper.RecordingSecondLayerBorder;
+            }
+            else
+            {
+                BackFrame.style.backgroundColor = Helper.DefaultButton;
+                PlayPause.style.backgroundColor = Helper.DefaultButton;
+                ForwardFrame.style.backgroundColor = Helper.DefaultButton;
+                BackFrame.style.backgroundColor = Helper.DefaultButton;
+                RecordButton.style.backgroundColor = Helper.DefaultButton;
+                AddKeyframesButton.style.backgroundColor = Helper.DefaultButton;
+
+                TimelineControlsHolder.style.backgroundColor = Helper.DefaultSecondLayerBG;
+                TimelineControlsHolder.style.borderRightColor = Helper.DefaultSecondLayerBorder;
+                TimelineControlsHolder.style.borderLeftColor = Helper.DefaultSecondLayerBorder;
+                TimelineControlsHolder.style.borderBottomColor = Helper.DefaultSecondLayerBorder;
+            }
+        }
+
         protected void ScaleTimeline(WheelEvent evt)
         {
             if (!evt.ctrlKey) { return; }
@@ -847,6 +912,16 @@ namespace UITK_SimpleTimeline.Editor
             //float ogValue = TimelineScrollView.horizontalScroller.value;
             //TimelineScrollView.horizontalScroller.value = ogValue * currentZoom;
             evt.StopPropagation();
+        }
+
+        protected void MoveCurTimeRuler(PointerMoveEvent evt)
+        {
+            if (((evt.pressedButtons & 1) == 1) && !playing) //do the red ruler drag that sets cur time!
+            {
+                int frameValue = Mathf.FloorToInt(evt.localPosition.x / Helper.PixelWidthPerSeconds * 60f);
+                frameValue = Mathf.Clamp(frameValue, 0, Mathf.FloorToInt(Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue * 60f));
+                CurrentFrameField.value = frameValue;
+            }
         }
     }
 }

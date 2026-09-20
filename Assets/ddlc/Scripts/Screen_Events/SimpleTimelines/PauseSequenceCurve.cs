@@ -11,10 +11,16 @@ namespace RenCSharp.Sequences
         public override void Evaluate(float time)
         {
             if (!ValidCurve) return;
-
-            if(EvaluateValue(time))Script_Manager.SM.PauseSequence(false);
-            else Script_Manager.SM.UnpauseSequence();
-
+            try
+            {
+                bool b = AtTime(time).Value;
+                if (b) Script_Manager.SM.PauseSequence(false);
+                else Script_Manager.SM.UnpauseSequence();
+            }
+            catch
+            {
+                return;
+            }
         }
 
         public override bool EvaluateValue(float time)
@@ -26,9 +32,16 @@ namespace RenCSharp.Sequences
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "Pause Sequence Curve not yet valid.";
-
-            if (EvaluateValue(time)) return "Pausing Sequence";
-            else return "Unpausing Sequence";
+            try
+            {
+                bool b = AtTime(time).Value;
+                if (b) return "Pausing Sequence.";
+                else return "Unpausing Sequence.";
+            }
+            catch
+            {
+                return "Neither pausing nor unpausing Sequence!";
+            }
         }
 
 

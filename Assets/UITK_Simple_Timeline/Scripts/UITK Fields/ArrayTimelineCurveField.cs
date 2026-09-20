@@ -14,17 +14,19 @@ namespace UITK_SimpleTimeline
     /// </summary>
     /// <typeparam name="T">The values that are lerped</typeparam>
     [UxmlElement]
-    public partial class DoubleTypedArrayTimelineCurveField<T, U> : BaseField<ArrayTimelineCurve<T, U>>, IRegeneratableElement where T : notnull where U : notnull
+    public partial class DoubleTypedArrayTimelineCurveField<T, U> : BaseField<ArrayTimelineCurve<T, U>>, IRepresentValue, IRegeneratableElement where T : notnull where U : notnull
     {
         //public Action DeleteMeAction;
         protected readonly Dictionary<float, TimelineKnob<T>>[] KeyframeIcons;
 
-        protected readonly VisualElement CurveDataContainer, KeyframeContainer;
+        protected readonly VisualElement KeyframeContainer;
+        protected readonly ScrollView CurveDataContainer;
         protected readonly Label TypeLabel;
         protected readonly PropertyField WrapModeField, ToBeAffectedField;
+        protected readonly ScalingPropertyField PlaybackRepField;
         protected GenericMenu AddNewKeyframeMenu, DeleteCurveMenu;
 
-        protected SerializedProperty curveProperty, keyframesProperty;
+        protected SerializedProperty curveProperty, keyframesProperty, playbackProperty;
         protected readonly int myPropertyIndex;
         protected VisualElement o, w;
 
@@ -47,11 +49,11 @@ namespace UITK_SimpleTimeline
             style.width = Helper.Auto;
             style.minWidth = 150;
             style.maxWidth = 9999999999;
-            style.backgroundColor = Helper.SecondLayerBG;
-            style.borderBottomColor = Helper.SecondLayerBorder;
-            style.borderLeftColor = Helper.SecondLayerBorder;
-            style.borderTopColor = Helper.SecondLayerBorder;
-            style.borderRightColor = Helper.SecondLayerBorder;
+            style.backgroundColor = Helper.DefaultSecondLayerBG;
+            style.borderBottomColor = Helper.DefaultSecondLayerBorder;
+            style.borderLeftColor = Helper.DefaultSecondLayerBorder;
+            style.borderTopColor = Helper.DefaultSecondLayerBorder;
+            style.borderRightColor = Helper.DefaultSecondLayerBorder;
             style.borderRightWidth = 1;
             style.borderBottomWidth = 1;
             style.borderTopWidth = 1;
@@ -68,11 +70,11 @@ namespace UITK_SimpleTimeline
             CurveDataContainer.style.height = 150;
             CurveDataContainer.style.flexGrow = 0;
             CurveDataContainer.style.flexShrink = 1;
-            CurveDataContainer.style.backgroundColor = Helper.SecondLayerBG;
-            CurveDataContainer.style.borderBottomColor = Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderRightColor = Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderTopColor = Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderLeftColor = Helper.SecondLayerBorder;
+            CurveDataContainer.style.backgroundColor = Helper.DefaultSecondLayerBG;
+            CurveDataContainer.style.borderBottomColor = Helper.DefaultSecondLayerBorder;
+            CurveDataContainer.style.borderRightColor = Helper.DefaultSecondLayerBorder;
+            CurveDataContainer.style.borderTopColor = Helper.DefaultSecondLayerBorder;
+            CurveDataContainer.style.borderLeftColor = Helper.DefaultSecondLayerBorder;
             CurveDataContainer.style.borderBottomWidth = 1;
             CurveDataContainer.style.borderRightWidth = 1;
             CurveDataContainer.style.borderTopWidth = 1;
@@ -85,7 +87,7 @@ namespace UITK_SimpleTimeline
             KeyframeContainer.style.height = 150;
             KeyframeContainer.style.maxHeight = 150;
             KeyframeContainer.style.position = Position.Absolute;
-            KeyframeContainer.style.backgroundColor = Helper.SecondLayerBorder;
+            KeyframeContainer.style.backgroundColor = Helper.DefaultSecondLayerBorder;
             KeyframeContainer.style.backgroundImage = Helper.FullRulerLength;
             KeyframeContainer.style.unityBackgroundImageTintColor = Helper.HalfTransparentWhite;
             KeyframeContainer.style.backgroundPositionX = new StyleBackgroundPosition(new BackgroundPosition(BackgroundPositionKeyword.Left, 0f));
@@ -120,11 +122,11 @@ namespace UITK_SimpleTimeline
             style.width = Helper.Auto;
             style.minWidth = 150;
             style.maxWidth = 9999999999;
-            style.backgroundColor = Helper.SecondLayerBG;
-            style.borderBottomColor = Helper.SecondLayerBorder;
-            style.borderLeftColor = Helper.SecondLayerBorder;
-            style.borderTopColor = Helper.SecondLayerBorder;
-            style.borderRightColor = Helper.SecondLayerBorder;
+            style.backgroundColor = Helper.DefaultSecondLayerBG;
+            style.borderBottomColor = Helper.DefaultSecondLayerBorder;
+            style.borderLeftColor = Helper.DefaultSecondLayerBorder;
+            style.borderTopColor = Helper.DefaultSecondLayerBorder;
+            style.borderRightColor = Helper.DefaultSecondLayerBorder;
             style.borderRightWidth = 1;
             style.borderBottomWidth = 1;
             style.borderTopWidth = 1;
@@ -141,11 +143,11 @@ namespace UITK_SimpleTimeline
             CurveDataContainer.style.height = 150;
             CurveDataContainer.style.flexGrow = 1;
             CurveDataContainer.style.flexShrink = 1;
-            CurveDataContainer.style.backgroundColor = Helper.SecondLayerBG;
-            CurveDataContainer.style.borderBottomColor = Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderRightColor = Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderTopColor = Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderLeftColor = Helper.SecondLayerBorder;
+            CurveDataContainer.style.backgroundColor = Helper.DefaultSecondLayerBG;
+            CurveDataContainer.style.borderBottomColor = Helper.DefaultSecondLayerBorder;
+            CurveDataContainer.style.borderRightColor = Helper.DefaultSecondLayerBorder;
+            CurveDataContainer.style.borderTopColor = Helper.DefaultSecondLayerBorder;
+            CurveDataContainer.style.borderLeftColor = Helper.DefaultSecondLayerBorder;
             CurveDataContainer.style.borderBottomWidth = 1;
             CurveDataContainer.style.borderRightWidth = 1;
             CurveDataContainer.style.borderTopWidth = 1;
@@ -163,13 +165,14 @@ namespace UITK_SimpleTimeline
 
             curveProperty = Helper.CurvesProperty.GetArrayElementAtIndex(index);
             keyframesProperty = curveProperty.FindPropertyRelative("keyframes");
+            playbackProperty = curveProperty.FindPropertyRelative("TemporaryRep");
 
             ToBeAffectedField = new() { name = "ToBeAffectedField" };
             ToBeAffectedField.RemoveFromClassList(alignedFieldUssClassName);
             curveProperty = Helper.CurvesProperty.GetArrayElementAtIndex(index);
             keyframesProperty = curveProperty.FindPropertyRelative("keyframes");
             ToBeAffectedField.style.width = 125;
-            ToBeAffectedField.style.height = 75;
+            ToBeAffectedField.style.height = 40;
             ToBeAffectedField.style.left = 25;
             ToBeAffectedField.style.right = -25;
             ToBeAffectedField.style.flexWrap = Wrap.Wrap;
@@ -182,10 +185,18 @@ namespace UITK_SimpleTimeline
             WrapModeField.style.width = 125;
             WrapModeField.style.left = 25;
             WrapModeField.style.right = -25;
-            WrapModeField.style.height = 75;
+            WrapModeField.style.height = 40;
             WrapModeField.style.flexGrow = 1;
             CurveDataContainer.Add(WrapModeField);
             WrapModeField.BindProperty(curveProperty.FindPropertyRelative("WrappingMode"));
+
+            playbackProperty.arraySize = curve.DefaultArrayLength();
+            playbackProperty.serializedObject.ApplyModifiedProperties();
+            playbackProperty.serializedObject.Update();
+            PlaybackRepField = new(125, playbackProperty) { name = "PlaybackField" };
+            PlaybackRepField.style.left = 25;
+            PlaybackRepField.style.right = -25;
+            CurveDataContainer.Add(PlaybackRepField);
 
             KeyframeContainer = new() { name = "KeyframeContainer" };
             KeyframeContainer.style.left = 151;
@@ -193,7 +204,7 @@ namespace UITK_SimpleTimeline
             KeyframeContainer.style.height = 150;
             KeyframeContainer.style.maxHeight = 150;
             KeyframeContainer.style.position = Position.Absolute;
-            KeyframeContainer.style.backgroundColor = Helper.SecondLayerBorder;
+            KeyframeContainer.style.backgroundColor = Helper.DefaultSecondLayerBorder;
             KeyframeContainer.style.backgroundImage = Helper.FullRulerLength;
             KeyframeContainer.style.unityBackgroundImageTintColor = Helper.HalfTransparentWhite;
             KeyframeContainer.style.backgroundPositionX = new StyleBackgroundPosition(new BackgroundPosition(BackgroundPositionKeyword.Left, 0f));
@@ -243,7 +254,7 @@ namespace UITK_SimpleTimeline
                     {
                         KeyframeIcons[oldIndex][time].RemoveFromHierarchy();
                         KeyframeIcons[oldIndex].Remove(time);
-                        ArrayTimelineCurve<T> t = curveProperty.boxedValue as ArrayTimelineCurve<T>;
+                        ArrayTimelineCurve<T,U> t = curveProperty.boxedValue as ArrayTimelineCurve<T,U>;
                         t.RemoveKeyframeFromCurve(time, oldIndex);
                         curveProperty.boxedValue = t;
                     };
@@ -279,11 +290,15 @@ namespace UITK_SimpleTimeline
                             AddKeyframeAtTime(tToAddAt, index);
                         });
                     }
+                    AddNewKeyframeMenu.AddItem(new GUIContent($"Add All Keyframes at {tToAddAt}"), false, delegate
+                    {
+                        AddKeyframeAtTime(tToAddAt);
+                    });
                     AddNewKeyframeMenu.AddSeparator("");
                     AddNewKeyframeMenu.AddItem(new GUIContent($"Closest Two Keyframes at {tToAddAt}"), false, delegate
                     {
                         string msg = $"The closest keyframes at {tToAddAt} are: ";
-                        ArrayTimelineCurve<T> me = curveProperty.boxedValue as ArrayTimelineCurve<T>;
+                        ArrayTimelineCurve<T,U> me = curveProperty.boxedValue as ArrayTimelineCurve<T,U>;
                         int[][] array = me.ArrayClosestTwoIndexes(tToAddAt);
                         for (int i = 0; i < array.Length; i++)
                         {
@@ -316,7 +331,7 @@ namespace UITK_SimpleTimeline
 
         public void AddKeyframeAtTime(float t)
         {
-            (curveProperty.boxedValue as ArrayTimelineCurve<T>).AddKeyframeToCurve(t);
+            (curveProperty.boxedValue as ArrayTimelineCurve<T,U>).AddKeyframeToCurve(t);
             Helper.ApplyChangesToObject();
             MarkDirtyRepaint();
             RegenerateElement();
@@ -324,10 +339,22 @@ namespace UITK_SimpleTimeline
 
         public void AddKeyframeAtTime(float t, int i)
         {
-            (curveProperty.boxedValue as ArrayTimelineCurve<T>).AddKeyframeToCurve(t, i);
+            (curveProperty.boxedValue as ArrayTimelineCurve<T,U>).AddKeyframeToCurve(t, i);
             Helper.ApplyChangesToObject();
             MarkDirtyRepaint();
             RegenerateElement();
+        }
+
+        public void RepresentValue(float t)
+        {
+            for (int i = 0; i < playbackProperty.arraySize; i++)
+            {
+                playbackProperty.GetArrayElementAtIndex(i).boxedValue = (curveProperty.boxedValue as ArrayTimelineCurve<T,U>).EvaluateValue(t)[i];
+            }
+            playbackProperty.serializedObject.ApplyModifiedProperties();
+            playbackProperty.serializedObject.Update();
+            //Helper.ApplyChangesToObject();
+            MarkDirtyRepaint();
         }
 
         protected void ResizeLabel()
@@ -376,17 +403,19 @@ namespace UITK_SimpleTimeline
     /// </summary>
     /// <typeparam name="T">The values that are lerped</typeparam>
     [UxmlElement]
-    public partial class SingleTypedArrayTimelineCurveField<T> : BaseField<ArrayTimelineCurve<T>>, IRegeneratableElement where T : notnull
+    public partial class SingleTypedArrayTimelineCurveField<T> : BaseField<ArrayTimelineCurve<T>>, IRepresentValue, IRegeneratableElement where T : notnull
     {
         //public Action DeleteMeAction;
         protected readonly Dictionary<float, TimelineKnob<T>>[] KeyframeIcons;
 
-        protected readonly VisualElement CurveDataContainer, KeyframeContainer;
+        protected readonly VisualElement KeyframeContainer;
+        protected readonly ScrollView CurveDataContainer;
         protected readonly Label TypeLabel;
         protected readonly PropertyField WrapModeField;
+        protected readonly ScalingPropertyField PlaybackRepField;
         protected GenericMenu AddNewKeyframeMenu, DeleteCurveMenu;
 
-        protected SerializedProperty curveProperty, keyframesProperty;
+        protected SerializedProperty curveProperty, keyframesProperty, playbackProperty;
         protected readonly int myPropertyIndex;
         protected VisualElement w;
 
@@ -409,11 +438,11 @@ namespace UITK_SimpleTimeline
             style.width = Helper.Auto;
             style.minWidth = 150;
             style.maxWidth = 9999999999;
-            style.backgroundColor = Helper.SecondLayerBG;
-            style.borderBottomColor = Helper.SecondLayerBorder;
-            style.borderLeftColor = Helper.SecondLayerBorder;
-            style.borderTopColor = Helper.SecondLayerBorder;
-            style.borderRightColor = Helper.SecondLayerBorder;
+            style.backgroundColor = Helper.DefaultSecondLayerBG;
+            style.borderBottomColor = Helper.DefaultSecondLayerBorder;
+            style.borderLeftColor = Helper.DefaultSecondLayerBorder;
+            style.borderTopColor = Helper.DefaultSecondLayerBorder;
+            style.borderRightColor = Helper.DefaultSecondLayerBorder;
             style.borderRightWidth = 1;
             style.borderBottomWidth = 1;
             style.borderTopWidth = 1;
@@ -430,11 +459,11 @@ namespace UITK_SimpleTimeline
             CurveDataContainer.style.height = 150;
             CurveDataContainer.style.flexGrow = 0;
             CurveDataContainer.style.flexShrink = 1;
-            CurveDataContainer.style.backgroundColor = Helper.SecondLayerBG;
-            CurveDataContainer.style.borderBottomColor = Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderRightColor = Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderTopColor = Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderLeftColor = Helper.SecondLayerBorder;
+            CurveDataContainer.style.backgroundColor = Helper.DefaultSecondLayerBG;
+            CurveDataContainer.style.borderBottomColor = Helper.DefaultSecondLayerBorder;
+            CurveDataContainer.style.borderRightColor = Helper.DefaultSecondLayerBorder;
+            CurveDataContainer.style.borderTopColor = Helper.DefaultSecondLayerBorder;
+            CurveDataContainer.style.borderLeftColor = Helper.DefaultSecondLayerBorder;
             CurveDataContainer.style.borderBottomWidth = 1;
             CurveDataContainer.style.borderRightWidth = 1;
             CurveDataContainer.style.borderTopWidth = 1;
@@ -447,7 +476,7 @@ namespace UITK_SimpleTimeline
             KeyframeContainer.style.height = 150;
             KeyframeContainer.style.maxHeight = 150;
             KeyframeContainer.style.position = Position.Absolute;
-            KeyframeContainer.style.backgroundColor = Helper.SecondLayerBorder;
+            KeyframeContainer.style.backgroundColor = Helper.DefaultSecondLayerBorder;
             KeyframeContainer.style.backgroundImage = Helper.FullRulerLength;
             KeyframeContainer.style.unityBackgroundImageTintColor = Helper.HalfTransparentWhite;
             KeyframeContainer.style.backgroundPositionX = new StyleBackgroundPosition(new BackgroundPosition(BackgroundPositionKeyword.Left, 0f));
@@ -478,11 +507,11 @@ namespace UITK_SimpleTimeline
             style.width = Helper.Auto;
             style.minWidth = 150;
             style.maxWidth = 9999999999;
-            style.backgroundColor = Helper.SecondLayerBG;
-            style.borderBottomColor = Helper.SecondLayerBorder;
-            style.borderLeftColor = Helper.SecondLayerBorder;
-            style.borderTopColor = Helper.SecondLayerBorder;
-            style.borderRightColor = Helper.SecondLayerBorder;
+            style.backgroundColor = Helper.DefaultSecondLayerBG;
+            style.borderBottomColor = Helper.DefaultSecondLayerBorder;
+            style.borderLeftColor = Helper.DefaultSecondLayerBorder;
+            style.borderTopColor = Helper.DefaultSecondLayerBorder;
+            style.borderRightColor = Helper.DefaultSecondLayerBorder;
             style.borderRightWidth = 1;
             style.borderBottomWidth = 1;
             style.borderTopWidth = 1;
@@ -499,11 +528,11 @@ namespace UITK_SimpleTimeline
             CurveDataContainer.style.height = 150;
             CurveDataContainer.style.flexGrow = 1;
             CurveDataContainer.style.flexShrink = 1;
-            CurveDataContainer.style.backgroundColor = Helper.SecondLayerBG;
-            CurveDataContainer.style.borderBottomColor = Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderRightColor = Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderTopColor = Helper.SecondLayerBorder;
-            CurveDataContainer.style.borderLeftColor = Helper.SecondLayerBorder;
+            CurveDataContainer.style.backgroundColor = Helper.DefaultSecondLayerBG;
+            CurveDataContainer.style.borderBottomColor = Helper.DefaultSecondLayerBorder;
+            CurveDataContainer.style.borderRightColor = Helper.DefaultSecondLayerBorder;
+            CurveDataContainer.style.borderTopColor = Helper.DefaultSecondLayerBorder;
+            CurveDataContainer.style.borderLeftColor = Helper.DefaultSecondLayerBorder;
             CurveDataContainer.style.borderBottomWidth = 1;
             CurveDataContainer.style.borderRightWidth = 1;
             CurveDataContainer.style.borderTopWidth = 1;
@@ -521,16 +550,26 @@ namespace UITK_SimpleTimeline
 
             curveProperty = Helper.CurvesProperty.GetArrayElementAtIndex(index);
             keyframesProperty = curveProperty.FindPropertyRelative("keyframes");
+            playbackProperty = curveProperty.FindPropertyRelative("TemporaryRep");
 
             WrapModeField = new() { name = "WrapModeField" };
             WrapModeField.RemoveFromClassList(alignedFieldUssClassName);
             WrapModeField.style.width = 125;
             WrapModeField.style.left = 25;
             WrapModeField.style.right = -25;
-            WrapModeField.style.height = 75;
+            WrapModeField.style.height = 40;
             WrapModeField.style.flexGrow = 1;
             CurveDataContainer.Add(WrapModeField);
             WrapModeField.BindProperty(curveProperty.FindPropertyRelative("WrappingMode"));
+
+            playbackProperty.arraySize = curve.DefaultArrayLength();
+            playbackProperty.serializedObject.ApplyModifiedProperties();
+            playbackProperty.serializedObject.Update();
+
+            PlaybackRepField = new(125, playbackProperty) { name = "PlaybackField" };
+            PlaybackRepField.style.left = 25;
+            PlaybackRepField.style.right = -25;
+            CurveDataContainer.Add(PlaybackRepField);
 
             KeyframeContainer = new() { name = "KeyframeContainer" };
             KeyframeContainer.style.left = 151;
@@ -538,7 +577,7 @@ namespace UITK_SimpleTimeline
             KeyframeContainer.style.height = 150;
             KeyframeContainer.style.maxHeight = 150;
             KeyframeContainer.style.position = Position.Absolute;
-            KeyframeContainer.style.backgroundColor = Helper.SecondLayerBorder;
+            KeyframeContainer.style.backgroundColor = Helper.DefaultSecondLayerBorder;
             KeyframeContainer.style.backgroundImage = Helper.FullRulerLength;
             KeyframeContainer.style.unityBackgroundImageTintColor = Helper.HalfTransparentWhite;
             KeyframeContainer.style.backgroundPositionX = new StyleBackgroundPosition(new BackgroundPosition(BackgroundPositionKeyword.Left, 0f));
@@ -624,6 +663,10 @@ namespace UITK_SimpleTimeline
                             AddKeyframeAtTime(tToAddAt, index);
                         });
                     }
+                    AddNewKeyframeMenu.AddItem(new GUIContent($"Add All Keyframes at {tToAddAt}"), false, delegate
+                    {
+                        AddKeyframeAtTime(tToAddAt);
+                    });
                     AddNewKeyframeMenu.AddSeparator("");
                     AddNewKeyframeMenu.AddItem(new GUIContent($"Closest Two Keyframes at {tToAddAt}"), false, delegate
                     {
@@ -673,6 +716,18 @@ namespace UITK_SimpleTimeline
             Helper.ApplyChangesToObject();
             MarkDirtyRepaint();
             RegenerateElement();
+        }
+
+        public void RepresentValue(float t)
+        {
+            for(int i = 0; i < playbackProperty.arraySize; i++)
+            {
+                playbackProperty.GetArrayElementAtIndex(i).boxedValue = (curveProperty.boxedValue as ArrayTimelineCurve<T>).EvaluateValue(t)[i];
+            }
+            playbackProperty.serializedObject.ApplyModifiedProperties();
+            playbackProperty.serializedObject.Update();
+            //Helper.ApplyChangesToObject();
+            MarkDirtyRepaint();
         }
 
         protected void ResizeLabel()

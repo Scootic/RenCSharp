@@ -88,7 +88,7 @@ namespace UITK_SimpleTimeline
         }
         protected void DragKnob(PointerMoveEvent pme)
         {
-            if ((pme.pressedButtons & 1) == 1 && style.unityBackgroundImageTintColor == Helper.SelectedKeyframe)
+            if ((pme.pressedButtons & 1) == 1 && style.unityBackgroundImageTintColor == Helper.SelectedKeyframe && !Helper.Recording)
             {
                 Vector3 curPos = transform.position;
                 //assuming that origin is the center of the element?

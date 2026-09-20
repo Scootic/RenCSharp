@@ -20,11 +20,18 @@ namespace UITK_SimpleTimeline
         /// The expected maximum width of the TimelineRuler. Should be set whenever you resize that element
         /// by setting a new duration.
         /// </summary>
-        public static float MaxPixelWidth;
+        public static float MaxPixelWidth, CurT;
 
-        public static readonly Color SecondLayerBG = new(0.2f, 0.2f, 0.2f, 1);
-        public static readonly Color SecondLayerBorder = new(0.1f, 0.1f, 0.1f, 1);
-        public static readonly Color ThirdLayerBorder = new(0.4f,0.4f,0.4f,1);
+        public static readonly Color DefaultSecondLayerBG = new(0.2f, 0.2f, 0.2f, 1);
+        public static readonly Color DefaultSecondLayerBorder = new(0.1f, 0.1f, 0.1f, 1);
+        public static readonly Color DefaultThirdLayerBorder = new(0.4f,0.4f,0.4f,1);
+        public static readonly Color DefaultButton = new(0.345f,0.345f,0.345f,1);
+
+        public static readonly Color RecordingSecondLayerBG = new(0.2f,0,0,1);
+        public static readonly Color RecordingSecondLayerBorder = new(0.1f,0,0,1);
+        public static readonly Color RecordingThirdLayerBorder = new(0.4f,0,0,1);
+        public static readonly Color RecordingButton = new(0.345f,0,0,1);
+
         public static readonly Color SelectedKeyframe = new(0.7f, 0.95f, 0, 1);
         public static readonly Color NeonGreen = new(0,1,0, 1f);
         public static readonly Color HalfTransparentWhite = new(1, 1, 1, 0.5f);
@@ -52,6 +59,7 @@ namespace UITK_SimpleTimeline
         /// </summary>
         public static Action<Vector3> OnTimelineScale;
         public static Vector3 CurTimelineScale;
+        public static bool Recording;
         /// <summary>
         /// Texture used by the TimelineScrollView's content to be a slightly grayed out underlay to extend the ruler's
         /// measurements down without being too obtrusive. (Hopefully.)

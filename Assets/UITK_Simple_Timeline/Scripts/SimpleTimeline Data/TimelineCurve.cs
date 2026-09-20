@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -47,6 +46,10 @@ namespace UITK_SimpleTimeline
         {
             return new SingleTypedTimelineCurveField<T>("", this, index);
         }
+        /// <summary>
+        /// Only to be used by TimelineCurveFields to preview
+        /// </summary>
+        [SerializeField] protected T TemporaryRep;
 #endif
         public abstract T EvaluateValue(float time);
 
@@ -84,6 +87,19 @@ namespace UITK_SimpleTimeline
                 if (idnn != null) toAdd.Value = idnn.Default();
             }
             //otherwise, just add a blank keyframe if it's the first of its kind.
+            keyframes.Add(toAdd);
+        }
+
+        public void AddKeyframeToCurve(float time, T value)
+        {
+            TimelineKeyframe<T> toAdd = new()
+            {
+                Time = time,
+                DefaultTangentMode = DefaultTangentMode(),
+                TangentMode = DefaultTangentMode(),
+                ExcludedTangentModes = ExcludedKeyframeTangentModes(),
+                Value = value
+            };
             keyframes.Add(toAdd);
         }
 
@@ -283,6 +299,11 @@ namespace UITK_SimpleTimeline
         {
             return new SingleTypedArrayTimelineCurveField<T>("", this, index);
         }
+
+        /// <summary>
+        /// Only to be used by TimelineCurveFields to preview
+        /// </summary>
+        [SerializeField] protected T[] TemporaryRep;
 #endif
 
         [SerializeField] protected TimelineListWrapper<TimelineKeyframe<T>>[] keyframes = new TimelineListWrapper<TimelineKeyframe<T>>[0];
@@ -296,6 +317,28 @@ namespace UITK_SimpleTimeline
             {
                 AddKeyframeToCurve(t, i);
             }
+        }
+
+        public void AddKeyframeToCurve(float t, T[] values)
+        {
+            for(int i = 0; i <keyframes.Length; i++)
+            {
+                AddKeyframeToCurve(t, i, values[i]);
+            }
+        }
+
+        public void AddKeyframeToCurve(float t, int index, T value)
+        {
+            TimelineKeyframe<T> toAdd = new()
+            {
+                Time = t,
+                DefaultTangentMode = DefaultTangentMode(),
+                TangentMode = DefaultTangentMode(),
+                ExcludedTangentModes = ExcludedKeyframeTangentModes(),
+                ArrayIndex = index,
+                Value = value
+            };
+            keyframes[index].Add(toAdd);
         }
 
         public override void AddKeyframeToCurve(float t, int index)
@@ -405,7 +448,7 @@ namespace UITK_SimpleTimeline
                 for (int i = 0; i < allTimes.Length; i++)
                 {
                     allTimes[i] = new float[keyframes[i].Count];
-                    for (int j = 0; j < allTimes[i].Length; i++)
+                    for (int j = 0; j < allTimes[i].Length; j++)
                     {
                         allTimes[i][j] = keyframes[i][j].Time;
                     }
@@ -422,7 +465,7 @@ namespace UITK_SimpleTimeline
             {
                 //works if in-between two keyframes?
                 toReturn[i] = new int[2];
-                int index = Array.BinarySearch(KeyframeTimes, t);
+                int index = Array.BinarySearch(KeyframeTimes[i], t);
                 if (index < 0)
                 {
                     index = ~index;
@@ -460,9 +503,9 @@ namespace UITK_SimpleTimeline
                     }
                     else toReturn[i][0] = (index > 0) ? index - 1 : keyframes[i].Count - 1;
                 }
-                else//this else is never ever called?!?!
+                else
                 {
-                    Debug.Log("The forbidden else statement in TimelineCurve.ClosestTwoIndexes() has been called?!?");
+                    //Debug.Log("The forbidden else statement in TimelineCurve.ClosestTwoIndexes() has been called?!?");
                     if (Keyframes[i][index].Time < t)
                     {
                         toReturn[i][0] = index;
@@ -485,6 +528,7 @@ namespace UITK_SimpleTimeline
             int[][] indexes = ArrayClosestTwoIndexes(time);
             for (int i = 0; i < keyframes.Length; i++)
             {
+                toReturn[i] = new TimelineKeyframe<T>[2];
                 toReturn[i][0] = keyframes[i][indexes[i][0]];
                 toReturn[i][1] = keyframes[i][indexes[i][1]];
             }

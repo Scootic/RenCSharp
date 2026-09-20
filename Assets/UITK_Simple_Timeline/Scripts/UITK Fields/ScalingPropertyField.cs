@@ -3,6 +3,7 @@ using System.Linq;
 using System;
 using UnityEditor.UIElements;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.UIElements;
 using Helper = UITK_SimpleTimeline.SimpleTimelineUITK_Helper;
 namespace UITK_SimpleTimeline
@@ -22,6 +23,16 @@ namespace UITK_SimpleTimeline
         {
             style.width = w;
             width = w;
+
+            subField = null;
+            schedule.Execute((Action)delegate { ResizeElements(); }).Until(() => subField != null);
+        }
+        public ScalingPropertyField(float w, SerializedProperty toBind)
+        {
+            style.width = w;
+            width = w;
+
+            this.BindProperty(toBind);
 
             subField = null;
             schedule.Execute((Action)delegate { ResizeElements(); }).Until(() => subField != null);
@@ -90,6 +101,7 @@ namespace UITK_SimpleTimeline
 
                 VisualElement dragDropBox = subField.Children().ToArray()[1];
                 dragDropBox.style.flexGrow = 1;
+                dragDropBox.style.flexDirection = FlexDirection.Column;
                 dragDropBox.style.maxWidth = width - 10;
                 dragDropBox.style.left = 10;
                 dragDropBox.style.right = 10;
@@ -211,6 +223,21 @@ namespace UITK_SimpleTimeline
                     }
                 }
             }
+            else if (stinker.isArray)
+            {
+                VisualElement scrollParent = this.Q<VisualElement>("unity-content-container");
+                //Debug.Log($"scrollParent for array scalingpf: {scrollParent}");
+                for(int i = 0; i < stinker.arraySize; i++)
+                {
+                    VisualElement listElement = scrollParent.Children().ToArray()[i].Children().ToArray()[1]; //yuck!
+                    PropertyField pf = listElement.Q<PropertyField>();
+                    Label l = pf.Q<Label>();
+                    l.text = i.ToString();
+                    l.style.maxWidth = 20f;
+                    l.style.minWidth = 20f;
+                    l.style.width = 20f;
+                }
+            }
             //if it's just some class. no sub-nesting necessary.
             else
             {
@@ -234,6 +261,7 @@ namespace UITK_SimpleTimeline
                     VisualElement dragDropBox = subField.Children().ToArray()[1];
                     dragDropBox.style.flexGrow = 1;
                     dragDropBox.style.minHeight = 18;
+                    dragDropBox.style.flexDirection = FlexDirection.Column;
                     dragDropBox.style.maxWidth = width - 20;
                     dragDropBox.style.left = 10;
                     dragDropBox.style.right = 10;
