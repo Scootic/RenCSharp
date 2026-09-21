@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-
 namespace UITK_SimpleTimeline.Editor
 {
     /// <summary>
@@ -15,10 +14,8 @@ namespace UITK_SimpleTimeline.Editor
             style.backgroundColor = Color.white;
             style.width = 1f;
             style.maxWidth = 1f;
-            style.minHeight = 500;
-            //style.maxHeight = 99999;
             style.top = 0;
-            style.bottom = 0;
+            style.bottom = -20;
             style.position = Position.Absolute;
             style.left = 0f;//this is the boy that gets adjusted when draggening?
             focusable = false;
@@ -29,10 +26,8 @@ namespace UITK_SimpleTimeline.Editor
             style.backgroundColor = Color.white;
             style.width = width;
             style.maxWidth = width;
-            style.minHeight = 500;
-            //style.maxHeight = 99999;
             style.top = 0;
-            style.bottom = 0;
+            style.bottom = -20;
             style.position = Position.Absolute;
             style.left = 0f;//this is the boy that gets adjusted when draggening?
             focusable = false;
@@ -43,10 +38,8 @@ namespace UITK_SimpleTimeline.Editor
             style.backgroundColor = c;
             style.width = 1f;
             style.maxWidth = 1f;
-            style.minHeight = 500;
-           //style.maxHeight = 99999;
             style.top = 0;
-            style.bottom = 0;
+            style.bottom = -20;
             style.position = Position.Absolute;
             style.left = 0f;//this is the boy that gets adjusted when draggening?
             focusable = false;
@@ -57,10 +50,8 @@ namespace UITK_SimpleTimeline.Editor
             style.backgroundColor = c;
             style.width = width;
             style.maxWidth = width;
-            style.minHeight = 500;
-            //style.maxHeight = 99999;
             style.top = 0;
-            style.bottom = 0;
+            style.bottom = -20;
             style.position = Position.Absolute;
             style.left = 0f;//this is the boy that gets adjusted when draggening?
             focusable = false;
