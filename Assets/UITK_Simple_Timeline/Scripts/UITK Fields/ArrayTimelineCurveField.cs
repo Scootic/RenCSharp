@@ -197,6 +197,24 @@ namespace UITK_SimpleTimeline
             PlaybackRepField.style.left = 25;
             PlaybackRepField.style.right = -25;
             CurveDataContainer.Add(PlaybackRepField);
+            PlaybackRepField.TrackPropertyValue(playbackProperty, delegate
+            {
+                if (!Helper.Recording) return;//if not recording, do nothing
+                for (int i = 0; i < playbackProperty.arraySize; i++)
+                {
+                    T bv = (T)playbackProperty.GetArrayElementAtIndex(i).boxedValue;
+                    if (bv.Equals(value.EvaluateValue(Helper.CurT)[i])) continue;//if it's an expected value on the curve, don't care
+                    if (!KeyframeIcons[i].ContainsKey(Helper.CurT))//if we don't already have keyframe there
+                    {
+                        AddKeyframeAtTime(Helper.CurT,i, bv);
+                    }
+                    else
+                    {
+                        SetKeyframeAtTime(Helper.CurT, i, bv);
+                    }
+                }
+            }
+            );
 
             KeyframeContainer = new() { name = "KeyframeContainer" };
             KeyframeContainer.style.left = 151;
@@ -340,6 +358,22 @@ namespace UITK_SimpleTimeline
         public void AddKeyframeAtTime(float t, int i)
         {
             (curveProperty.boxedValue as ArrayTimelineCurve<T,U>).AddKeyframeToCurve(t, i);
+            Helper.ApplyChangesToObject();
+            MarkDirtyRepaint();
+            RegenerateElement();
+        }
+
+        public void AddKeyframeAtTime(float t, int i, T value)
+        {
+            (curveProperty.boxedValue as ArrayTimelineCurve<T, U>).AddKeyframeToCurve(t, i, value);
+            Helper.ApplyChangesToObject();
+            MarkDirtyRepaint();
+            RegenerateElement();
+        }
+
+        public void SetKeyframeAtTime(float t, int i, T value)
+        {
+            (curveProperty.boxedValue as ArrayTimelineCurve<T, U>).SetKeyframeAtTime(t, i, value);
             Helper.ApplyChangesToObject();
             MarkDirtyRepaint();
             RegenerateElement();
@@ -570,6 +604,24 @@ namespace UITK_SimpleTimeline
             PlaybackRepField.style.left = 25;
             PlaybackRepField.style.right = -25;
             CurveDataContainer.Add(PlaybackRepField);
+            PlaybackRepField.TrackPropertyValue(playbackProperty, delegate
+            {
+                if (!Helper.Recording) return;//if not recording, do nothing
+                for (int i = 0; i < playbackProperty.arraySize; i++)
+                {
+                    T bv = (T)playbackProperty.GetArrayElementAtIndex(i).boxedValue;
+                    if (bv.Equals(value.EvaluateValue(Helper.CurT)[i])) continue;//if it's an expected value on the curve, don't care
+                    if (!KeyframeIcons[i].ContainsKey(Helper.CurT))//if we don't already have keyframe there
+                    {
+                        AddKeyframeAtTime(Helper.CurT, i, bv);
+                    }
+                    else
+                    {
+                        SetKeyframeAtTime(Helper.CurT, i, bv);
+                    }
+                }
+            }
+            );
 
             KeyframeContainer = new() { name = "KeyframeContainer" };
             KeyframeContainer.style.left = 151;
@@ -713,6 +765,21 @@ namespace UITK_SimpleTimeline
         public void AddKeyframeAtTime(float t, int i)
         {
             (curveProperty.boxedValue as ArrayTimelineCurve<T>).AddKeyframeToCurve(t, i);
+            Helper.ApplyChangesToObject();
+            MarkDirtyRepaint();
+            RegenerateElement();
+        }
+
+        public void AddKeyframeAtTime(float t, int i, T value)
+        {
+            (curveProperty.boxedValue as ArrayTimelineCurve<T>).AddKeyframeToCurve(t, i, value);
+            Helper.ApplyChangesToObject();
+            MarkDirtyRepaint();
+            RegenerateElement();
+        }
+        public void SetKeyframeAtTime(float t, int i, T value)
+        {
+            (curveProperty.boxedValue as ArrayTimelineCurve<T>).SetKeyframeAtTime(t, i, value);
             Helper.ApplyChangesToObject();
             MarkDirtyRepaint();
             RegenerateElement();

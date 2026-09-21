@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -55,7 +56,7 @@ namespace UITK_SimpleTimeline.Editor
         protected readonly float minZoom = 0.1f, maxZoom = 3f, zoomStep = 0.1f;
        
         public SimpleTimelineUITKField() : this(null) { }
-
+        //gunky constructor only for previewing changes in UIBuilder
         public SimpleTimelineUITKField(string labelText) : base(labelText, new VisualElement())
         {
             playing = false;
@@ -177,7 +178,7 @@ namespace UITK_SimpleTimeline.Editor
             {
                 if (!playing) CurrentFrameField.value = Mathf.Max(CurrentFrameField.value - 1, 0);
             })
-            { name = "GoBackAFrame" };
+            { name = "GoBackAFrame", tooltip = "Go Back a Frame" };
             BackFrame.iconImage = bckIco;
             Image bf = BackFrame.Q<Image>();
             bf.scaleMode = ScaleMode.ScaleToFit;
@@ -351,6 +352,7 @@ namespace UITK_SimpleTimeline.Editor
 
         public SimpleTimelineUITKField(string labelText, SimpleTimeline st) : base(labelText, new VisualElement())
         {
+            CurTimelineKnob = null;
             thisTimeline = (SimpleTimeline)Helper.SimpleTimelineProperty.boxedValue;
             //Helper.RemoveTimelineCurve = null;
             Helper.RemoveTimelineCurve += RemoveTimelineCurve;
@@ -387,7 +389,7 @@ namespace UITK_SimpleTimeline.Editor
             SimpleTimelineInfoHolder.style.maxWidth = 235;
             Add(SimpleTimelineInfoHolder);
 
-            DurationField = new("Duration:") { name = "TimelineDuration" };
+            DurationField = new("Duration:") { name = "TimelineDuration", tooltip = "How long the animation is in seconds." };
             DurationField.style.color = Color.white;
             DurationField.style.width = 225;
             DurationField.value = Helper.SimpleTimelineProperty.FindPropertyRelative("Duration").floatValue;
@@ -412,7 +414,8 @@ namespace UITK_SimpleTimeline.Editor
             });
             SimpleTimelineInfoHolder.Add(LoopField);
 
-            PlaybackSpeedField = new("Playback Speed:") { name = "PlaybackSpeed" };
+            PlaybackSpeedField = new("Playback Speed:") { name = "PlaybackSpeed", 
+                tooltip = "How fast the animation goes through frames. >1 for faster, <1 for slower." };
             PlaybackSpeedField.style.color = Color.white;
             PlaybackSpeedField.style.width = 225;
             PlaybackSpeedField.value = Helper.SimpleTimelineProperty.FindPropertyRelative("PlaybackSpeed").floatValue;
@@ -480,8 +483,7 @@ namespace UITK_SimpleTimeline.Editor
             BackFrame = new(() =>
             {
                 if (!playing) CurrentFrameField.value = Mathf.Max(CurrentFrameField.value - 1,0);
-            }){ name = "GoBackAFrame" };
-            BackFrame.iconImage = bckIco;
+            }){ name = "GoBackAFrame", tooltip = "Go Back a Frame", iconImage = bckIco };
             Image bf = BackFrame.Q<Image>();
             bf.scaleMode = ScaleMode.ScaleToFit;
             bf.style.height = 45;
@@ -494,9 +496,9 @@ namespace UITK_SimpleTimeline.Editor
             {
                 playing = !playing;
                 PlayPause.iconImage = playing ? pausIco : playIco;
+                PlayPause.tooltip = playing ? "Pause the Animation" : "Play the Animation";
                 if (!playing) thisTimeline.TimelineInitial();
-            }){ name = "Play/Pause" };
-            PlayPause.iconImage = playIco;
+            }){ name = "Play/Pause", tooltip = "Play the Animation", iconImage = playIco };
             Image pp = PlayPause.Q<Image>();
             pp.scaleMode = ScaleMode.ScaleToFit;
             pp.style.height = 45;
@@ -509,8 +511,7 @@ namespace UITK_SimpleTimeline.Editor
             { 
                 if (!playing) CurrentFrameField.value = Mathf.Min(CurrentFrameField.value + 1, Mathf.FloorToInt(DurationField.value * 60)); 
             }
-            ){ name = "GoForwardAFrame" };
-            ForwardFrame.iconImage = fwdIco;
+            ){ name = "GoForwardAFrame", tooltip = "Go Forward a Frame", iconImage = fwdIco };
             Image ff = ForwardFrame.Q<Image>();
             ff.scaleMode = ScaleMode.ScaleToFit;
             ff.style.height = 45;
@@ -537,8 +538,7 @@ namespace UITK_SimpleTimeline.Editor
                     }
                 }
             })
-            { name = "AddKeyframesButton" };
-            AddKeyframesButton.iconImage = keyfrIco;
+            { name = "AddKeyframesButton", tooltip = $"Add New Keyframes for Each Curve at Current Time", iconImage = keyfrIco };
             Image ak = AddKeyframesButton.Q<Image>();
             ak.scaleMode = ScaleMode.ScaleToFit;
             ak.style.height = 45;
@@ -552,9 +552,9 @@ namespace UITK_SimpleTimeline.Editor
                 Helper.Recording = !Helper.Recording;
                 SetColors(Helper.Recording);
                 RecordButton.iconImage = Helper.Recording ? recOnIco : recOffIco;
+                RecordButton.tooltip = Helper.Recording ? "Disable Recording" : "Enable Recording";
             })
-            { name = "RecordButton"};
-            RecordButton.iconImage = recOffIco;
+            { name = "RecordButton", tooltip = "Enable Recording", iconImage = recOffIco};
             Image rb = RecordButton.Q<Image>();
             rb.scaleMode = ScaleMode.ScaleToFit;
             rb.style.height = 45;
@@ -637,6 +637,7 @@ namespace UITK_SimpleTimeline.Editor
                 {
                     TimelineContentMenu.ShowAsContext();
                 }
+                else if (evt.button == 0 && CurTimelineKnob != null) DisplayKeyframeInformation(null, null, false);
             });
             TimelineHolder.Add(TimelineScrollView);
 
@@ -753,6 +754,15 @@ namespace UITK_SimpleTimeline.Editor
             Helper.ApplyChangesToObject();
             CurrentKeyframeField.UnregisterCallback<SerializedPropertyChangeEvent>(AdjustCurrentKeyframeBasedOnTime);
             CurrentKeyframeField.Unbind();
+            if(keyframeToDisplay == null)
+            {
+                CurTimelineKnob.style.unityBackgroundImageTintColor = Color.white;
+                CurTimelineKnob = null;
+                CurrentKeyframeField.Children().ToArray()[0].RemoveFromHierarchy();
+                CurrentKeyframeField.MarkDirtyRepaint();
+                KeyframeCurvePreview.ReceiveKeyframes(null, null);
+                return;
+            }
             CurTimelineKnob = ve;
             CurrentKeyframeField.BindProperty(keyframeToDisplay);
             CurrentKeyframeField.RegisterCallback<SerializedPropertyChangeEvent>(AdjustCurrentKeyframeBasedOnTime);

@@ -204,6 +204,21 @@ namespace UITK_SimpleTimeline
             PlaybackRepField.style.left = 25;
             PlaybackRepField.style.right = -25;
             CurveDataContainer.Add(PlaybackRepField);
+            PlaybackRepField.TrackPropertyValue(playbackProperty, delegate
+            {
+                if (!Helper.Recording) return;//if not recording, do nothing
+                T bv = (T)playbackProperty.boxedValue;
+                if (bv.Equals(value.EvaluateValue(Helper.CurT))) return;//if it's an expected value on the curve, don't care
+                if (!KeyframeIcons.ContainsKey(Helper.CurT))//if we don't already have keyframe there
+                {
+                    AddKeyframeAtTime(Helper.CurT, bv);
+                }
+                else
+                {
+                    SetKeyframeAtTime(Helper.CurT, bv);
+                }
+            }
+            );
 
             KeyframeContainer = new() { name = "KeyframeContainer" };
             KeyframeContainer.style.left = 151;
@@ -318,6 +333,21 @@ namespace UITK_SimpleTimeline
         public void AddKeyframeAtTime(float t)
         {
             (curveProperty.boxedValue as TypedTimelineCurve<T, U>).AddKeyframeToCurve(t);
+            Helper.ApplyChangesToObject();
+            MarkDirtyRepaint();
+            RegenerateElement();
+        }
+
+        public void AddKeyframeAtTime(float t, T value)
+        {
+            (curveProperty.boxedValue as TypedTimelineCurve<T,U>).AddKeyframeToCurve(t, value);
+            Helper.ApplyChangesToObject();
+            MarkDirtyRepaint();
+            RegenerateElement();
+        }
+        protected void SetKeyframeAtTime(float t, T value)
+        {
+            (curveProperty.boxedValue as TypedTimelineCurve<T>).SetKeyframeAtTime(t, value);
             Helper.ApplyChangesToObject();
             MarkDirtyRepaint();
             RegenerateElement();
@@ -539,6 +569,21 @@ namespace UITK_SimpleTimeline
             PlaybackRepField = new(125, playbackProperty) { name = "PlaybackField" };
             PlaybackRepField.style.left = 25;
             PlaybackRepField.style.right = -25;
+            PlaybackRepField.TrackPropertyValue(playbackProperty, delegate 
+            {
+                if (!Helper.Recording) return;//if not recording, do nothing
+                T bv = (T)playbackProperty.boxedValue;
+                if (bv.Equals(value.EvaluateValue(Helper.CurT))) return;//if it's an expected value on the curve, don't care
+                if (!KeyframeIcons.ContainsKey(Helper.CurT))//if we don't already have keyframe there
+                {
+                    AddKeyframeAtTime(Helper.CurT, bv);
+                }
+                else
+                {
+                    SetKeyframeAtTime(Helper.CurT, bv);
+                }
+            }
+            );
             CurveDataContainer.Add(PlaybackRepField);
 
             KeyframeContainer = new() { name = "KeyframeContainer" };
@@ -653,6 +698,21 @@ namespace UITK_SimpleTimeline
         public void AddKeyframeAtTime(float t)
         {
             (curveProperty.boxedValue as TypedTimelineCurve<T>).AddKeyframeToCurve(t);
+            Helper.ApplyChangesToObject();
+            MarkDirtyRepaint();
+            RegenerateElement();
+        }
+        public void AddKeyframeAtTime(float t, T value)
+        {
+            (curveProperty.boxedValue as TypedTimelineCurve<T>).AddKeyframeToCurve(t,value);
+            Helper.ApplyChangesToObject();
+            MarkDirtyRepaint();
+            RegenerateElement();
+        }
+
+        protected void SetKeyframeAtTime(float t, T value)
+        {
+            (curveProperty.boxedValue as TypedTimelineCurve<T>).SetKeyframeAtTime(t,value);
             Helper.ApplyChangesToObject();
             MarkDirtyRepaint();
             RegenerateElement();

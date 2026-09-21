@@ -20,7 +20,8 @@ namespace UITK_SimpleTimeline
         /// The expected maximum width of the TimelineRuler. Should be set whenever you resize that element
         /// by setting a new duration.
         /// </summary>
-        public static float MaxPixelWidth, CurT;
+        public static float MaxPixelWidth;
+        public static float CurT;
 
         public static readonly Color DefaultSecondLayerBG = new(0.2f, 0.2f, 0.2f, 1);
         public static readonly Color DefaultSecondLayerBorder = new(0.1f, 0.1f, 0.1f, 1);
