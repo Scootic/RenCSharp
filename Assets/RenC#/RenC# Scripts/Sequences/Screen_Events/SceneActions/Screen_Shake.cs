@@ -27,8 +27,8 @@ namespace RenCSharp.Sequences
             if(Object_Factory.TryGetObject("Background", out GameObject go))
             {
                 bgTrans = go.transform;
-                shaker = Script_Manager.SM.StartCoroutine(ShakeThatScreen());
-                Script_Manager.ProgressScreenEvent += PanicStop;
+                shaker = Sequence_Manager.SM.StartCoroutine(ShakeThatScreen());
+                Sequence_Manager.ProgressScreenEvent += PanicStop;
             }
             else
             {
@@ -60,13 +60,13 @@ namespace RenCSharp.Sequences
 
         private void PanicStop()
         {
-            if(shaker != null) Script_Manager.SM.StopCoroutine(shaker);
+            if(shaker != null) Sequence_Manager.SM.StopCoroutine(shaker);
             if (bgTrans != null)
             {
                 bgTrans.localPosition = Vector3.zero;
                 bgTrans.localScale = prevScale;
             }
-            Script_Manager.ProgressScreenEvent -= PanicStop;
+            Sequence_Manager.ProgressScreenEvent -= PanicStop;
         }
 
         public override string ToString()

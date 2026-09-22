@@ -17,7 +17,7 @@ namespace RenCSharp.Sequences
         {
             activeTimeline = debug ? timelineToRunThrough.Timeline.RunThroughTimelineDebug(new CancellationToken()): 
                 timelineToRunThrough.Timeline.RunThroughTimeline(new CancellationToken());
-            if (endWithScreen) Script_Manager.ProgressScreenEvent += PanicStop;
+            if (endWithScreen) Sequence_Manager.ProgressScreenEvent += PanicStop;
             if (timelineToRunThrough.Timeline.Loop) SimpleTimeline_AnimationSaveLoader.AddAnimation(timelineToRunThrough.Timeline);
             await activeTimeline; //start it?
         }

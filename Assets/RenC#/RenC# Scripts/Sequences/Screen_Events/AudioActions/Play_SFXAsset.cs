@@ -34,9 +34,9 @@ namespace RenCSharp.Sequences
 
             if (loop && loopDuration > 0)
             {
-                stopLoopRoutine = Script_Manager.SM.StartCoroutine(HandleLoopDuration());
+                stopLoopRoutine = Sequence_Manager.SM.StartCoroutine(HandleLoopDuration());
             }
-            if (stopOnScreenProgress) Script_Manager.ProgressScreenEvent += PanicStopSFX;
+            if (stopOnScreenProgress) Sequence_Manager.ProgressScreenEvent += PanicStopSFX;
         }
 
         protected IEnumerator HandleLoopDuration()
@@ -54,7 +54,7 @@ namespace RenCSharp.Sequences
 
         protected void PanicStopSFX()
         {
-            if (stopLoopRoutine != null) Script_Manager.SM.StopCoroutine(stopLoopRoutine);
+            if (stopLoopRoutine != null) Sequence_Manager.SM.StopCoroutine(stopLoopRoutine);
             if (is3D) Audio_Manager.AM.Stop3DSFX(sfxAsset);
             else Audio_Manager.AM.Stop2DSFX(sfxAsset);
         }

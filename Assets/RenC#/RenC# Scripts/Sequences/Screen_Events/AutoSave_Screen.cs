@@ -8,13 +8,13 @@ namespace RenCSharp.Sequences
         public override void DoEvent()
         {
             Debug.Log("Autosaving game!");
-            Script_Manager.ProgressScreenEvent += PanicStop;
+            Sequence_Manager.ProgressScreenEvent += PanicStop;
         }
 
         private void PanicStop()
         {
-            Script_Manager.SM.SaveGameData(fileName, true);
-            Script_Manager.ProgressScreenEvent -= PanicStop;
+            Sequence_Manager.SM.SaveGameData(fileName, true);
+            Sequence_Manager.ProgressScreenEvent -= PanicStop;
         }
 
         public override string ToString()

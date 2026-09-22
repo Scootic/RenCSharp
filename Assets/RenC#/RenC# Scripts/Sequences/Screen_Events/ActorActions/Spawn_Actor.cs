@@ -7,7 +7,7 @@ using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp.Sequences
 {
     /// <summary>
-    /// Spawns an actor into the scene using an Actor SO, an index that is passed to the Script_Manager as a place to spawn, and indexes for
+    /// Spawns an actor into the scene using an Actor SO, an index that is passed to the Sequence_Manager as a place to spawn, and indexes for
     /// the appearance that the actor will take on.
     /// </summary>
     [Serializable]
@@ -23,10 +23,10 @@ namespace RenCSharp.Sequences
             //don't spawn another of an actor that already exists. save/load moment?
             if (Object_Factory.TryGetObject(actorToSpawn.name, out GameObject go)) return;
 
-            go = Object_Factory.SpawnObject(actorToSpawn.ActorPrefab, actorToSpawn.name, Script_Manager.SM.ActorHolder);
+            go = Object_Factory.SpawnObject(actorToSpawn.ActorPrefab, actorToSpawn.name, Sequence_Manager.SM.ActorHolder);
             go.transform.position += spawnOffset;
             UI_Element uie = go.GetComponent<UI_Element>();
-            Script_Manager.SM.activeActors.Add(actorToSpawn);
+            Sequence_Manager.SM.activeActors.Add(actorToSpawn);
 
             for (int i = 0; i < visualSpriteIndexes.Length; i++) //loop through all sprites and assign thoroughly, only assign visuals to how many we have
             {
@@ -34,8 +34,8 @@ namespace RenCSharp.Sequences
                 //no friggin' clue why we need to check if i fits inside the stinkin' arrays. unity is just racist sometimes IG
                 else if (uie.Images.Length < i && actorToSpawn.Visuals.Length < i) uie.Images[i].sprite = actorToSpawn.Visuals[i].layer[0]; //grab default sprite if there's nothing assigned
             }
-            fadeIn = Script_Manager.SM.StartCoroutine(FadeIn(uie));
-            Script_Manager.ProgressScreenEvent += delegate { PanicStop(uie); };
+            fadeIn = Sequence_Manager.SM.StartCoroutine(FadeIn(uie));
+            Sequence_Manager.ProgressScreenEvent += delegate { PanicStop(uie); };
         }
 
         private IEnumerator FadeIn(UI_Element uie)
@@ -64,7 +64,7 @@ namespace RenCSharp.Sequences
 
         private void PanicStop(UI_Element uie)
         {
-            if(fadeIn != null) Script_Manager.SM.StopCoroutine(fadeIn);
+            if(fadeIn != null) Sequence_Manager.SM.StopCoroutine(fadeIn);
             if (uie == null) return; //?????
             foreach(Image image in uie.Images) { image.color = Color.white; }
         }

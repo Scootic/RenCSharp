@@ -14,8 +14,8 @@ namespace RenCSharp.Sequences
             try
             {
                 bool b = AtTime(time).Value;
-                if (b) Script_Manager.SM.PauseSequence(false);
-                else Script_Manager.SM.UnpauseSequence();
+                if (b) Sequence_Manager.SM.PauseSequence(false);
+                else Sequence_Manager.SM.UnpauseSequence();
             }
             catch
             {

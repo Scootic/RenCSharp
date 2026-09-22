@@ -20,7 +20,7 @@ namespace RenCSharp
         public static Action<SaveData> SaveCustomData;
         /// <summary>
         /// Action that serves as an extension for other classes to retrieve custom data from a SaveData that's being loaded
-        /// from a file. Not invoked by Load methods, but is called by Script_Manager during its Load method. 
+        /// from a file. Not invoked by Load methods, but is called by Sequence_Manager during its Load method. 
         /// </summary>
         public static Action<List<string>> LoadCustomData;
 

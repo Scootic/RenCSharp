@@ -20,7 +20,7 @@ namespace RenCSharp.Sequences
         public override void DoEvent()
         {
             if (!Object_Factory.TryGetObject(actorToRemove.name, out fellaToRemove)) return;
-            Script_Manager.SM.activeActors.Remove(actorToRemove);
+            Sequence_Manager.SM.activeActors.Remove(actorToRemove);
             List<Image> imgPo = new();
             Image img = fellaToRemove.transform.GetChild(0).GetComponent<Image>();
             imgPo.Add(img);
@@ -32,8 +32,8 @@ namespace RenCSharp.Sequences
 
             if (fellaToRemove != null)
             {
-                fadeOut = Script_Manager.SM.StartCoroutine(FadeOut(imgPo));
-                Script_Manager.ProgressScreenEvent += PanicStop;
+                fadeOut = Sequence_Manager.SM.StartCoroutine(FadeOut(imgPo));
+                Sequence_Manager.ProgressScreenEvent += PanicStop;
             }
             else
             {
@@ -60,7 +60,7 @@ namespace RenCSharp.Sequences
 
         private void PanicStop()
         {
-            if (fadeOut != null) Script_Manager.SM.StopCoroutine(fadeOut);
+            if (fadeOut != null) Sequence_Manager.SM.StopCoroutine(fadeOut);
             if (fellaToRemove != null) Object_Factory.RemoveObject(actorToRemove.name);
         }
 

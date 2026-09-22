@@ -28,7 +28,7 @@ namespace RenCSharp.Menus
             int menuIndex = superIndex % 10;
             int containerIndex = (superIndex - menuIndex) / 10;
             menucontainers[containerIndex].MenuParent.SetActive(true);
-            if(Script_Manager.SM != null) Script_Manager.SM.PauseSequence();
+            if(Sequence_Manager.SM != null) Sequence_Manager.SM.PauseSequence();
             if (curMenu != null) curMenu.OnMenuClose();
             curMenu = menucontainers[containerIndex].AllMenus[menuIndex];
             curMenu.OnMenuOpen();
@@ -36,7 +36,7 @@ namespace RenCSharp.Menus
 
         public void CloseMenus()
         {
-            if(Script_Manager.SM != null) Script_Manager.SM.UnpauseSequence();
+            if(Sequence_Manager.SM != null) Sequence_Manager.SM.UnpauseSequence();
             foreach(MenusContainer mc in menucontainers)
             {
                 mc.MenuParent.SetActive(false);

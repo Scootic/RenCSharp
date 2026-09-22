@@ -14,7 +14,7 @@ namespace RenCSharp.Menus
         public override async Awaitable OnMenuOpen()
         {
             historyMenu.SetActive(true);
-            History t = Script_Manager.SM.CurrentHistory;
+            History t = Sequence_Manager.SM.CurrentHistory;
             RectTransform rt = historyHolder.GetComponent<RectTransform>();
             Debug.Log("History lengther: " + t.DialogBoxes.Length);
             for (int i = 0; i < t.HistoryLength; i++)

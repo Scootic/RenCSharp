@@ -11,7 +11,7 @@ namespace RenCSharp.Sequences
         public override void DoEvent()
         {
             SpawnGuy();
-            //Script_Manager.ProgressScreenEvent += SpawnGuy;
+            //Sequence_Manager.ProgressScreenEvent += SpawnGuy;
         }
 
         private void SpawnGuy()

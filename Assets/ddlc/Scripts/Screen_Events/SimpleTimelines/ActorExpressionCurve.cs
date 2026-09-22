@@ -1,5 +1,5 @@
 using UITK_SimpleTimeline;
-using UnityEngine;
+//using UnityEngine;
 namespace RenCSharp.Sequences
 {
     public class ActorExpressionCurve : TypedTimelineCurve<VisualIndexes>, ILerpable
@@ -21,7 +21,7 @@ namespace RenCSharp.Sequences
                 VisualIndexes toEval = AtTime(time).Value;
                 if (!Object_Factory.TryGetComponent(toEval.ActorToSet.name, out uie)) 
                 {
-                    Debug.LogWarning($"Couldn't find {toEval.ActorToSet.name}");
+                    //Debug.LogWarning($"Couldn't find {toEval.ActorToSet.name}");
                     return; 
                 }
 

@@ -10,7 +10,7 @@ namespace RenCSharp.Sequences
 
         public override async void DoEvent()
         {
-            await Script_Manager.SM.SaveGameAsync(autoSaveName, true);
+            await Sequence_Manager.SM.SaveGameAsync(autoSaveName, true);
             Fight_Manager.FM.StartAFight(enemyToLoad);
         }
 

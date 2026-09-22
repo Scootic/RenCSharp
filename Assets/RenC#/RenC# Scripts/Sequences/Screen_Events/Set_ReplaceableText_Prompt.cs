@@ -13,8 +13,8 @@ namespace RenCSharp.Sequences
         private string replacingText;
         public override void DoEvent()
         {
-            Script_Manager.SM.PauseSequence(false);
-            uie = Object_Factory.SpawnObject(replacerPrefab, "Replacer Field", Script_Manager.SM.PlayerChoiceHolder).GetComponent<UI_Element>();
+            Sequence_Manager.SM.PauseSequence(false);
+            uie = Object_Factory.SpawnObject(replacerPrefab, "Replacer Field", Sequence_Manager.SM.PlayerChoiceHolder).GetComponent<UI_Element>();
             uie.Buttons[0].interactable = false;
             uie.Texts[0].text = queryText;
             inputter = uie.transform.GetChild(0).GetComponent<TMP_InputField>();
@@ -30,7 +30,7 @@ namespace RenCSharp.Sequences
         void SetTheString()
         {
             Textbox_String.AddReplacableText(textToReplace, replacingText);
-            Script_Manager.SM.UnpauseSequence();
+            Sequence_Manager.SM.UnpauseSequence();
             Object_Factory.RemoveObject("Replacer Field");
         }
 

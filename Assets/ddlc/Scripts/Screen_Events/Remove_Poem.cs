@@ -13,7 +13,7 @@ namespace RenCSharp.Sequences
         {
             gone = false;
             RemoveGuy();
-            Script_Manager.ProgressScreenEvent += RemoveGuy;
+            Sequence_Manager.ProgressScreenEvent += RemoveGuy;
         }
 
         private void RemoveGuy()

@@ -169,9 +169,9 @@ namespace RenCSharp.Menus
         private void Load(SaveData sd)
         {
             //if (!openMenu.IsCompleted) openMenu.Cancel();
-            if (Script_Manager.SM != null)
+            if (Sequence_Manager.SM != null)
             {
-                Script_Manager.SM.LoadGame(sd);
+                Sequence_Manager.SM.LoadGame(sd);
                 Menu_Manager.MM.CloseMenus(); //close after a save being loaded is probably the most sensible.
             }
             else
@@ -205,7 +205,7 @@ namespace RenCSharp.Menus
 
         public void Save()
         {
-            Script_Manager.SM.SaveGameData(fileName, false);
+            Sequence_Manager.SM.SaveGameData(fileName, false);
             OnMenuClose();
             _ = OnMenuOpen();
         }

@@ -30,6 +30,7 @@ namespace RenCSharp.Sequences
 
         public static void AddAnimation(SimpleTimeline st)
         {
+            Debug.Log("Adding ST to active timelines");
             activeTimelines.Add(st);
         }
 
@@ -55,21 +56,24 @@ namespace RenCSharp.Sequences
         {
             foreach (SimpleTimeline st in activeTimelines)
             {
+                Debug.Log("Cancelling an active ST!");
                 st.RunThroughTimeline(new CancellationToken()).Cancel();
             }
             activeTimelines.Clear();
+            try
+            {
+                HashSet<SimpleTimeline> t = JsonUtility.FromJson<HashSet<SimpleTimeline>>(jasonData[0]);
 
-            HashSet<SimpleTimeline> t = JsonUtility.FromJson<HashSet<SimpleTimeline>>(jasonData[0]);
-            if(t != null) 
-            { 
-                
-                foreach(SimpleTimeline st in t)
+                foreach (SimpleTimeline st in t)
                 {
                     _ = st.RunThroughTimeline(new CancellationToken());
                     activeTimelines.Add(st);
                 }
             }
-            else Debug.LogError("Couldn't load SimpleTimeline Hashset from the stupid save data!");
+            catch
+            {
+                Debug.Log("No stinkin' jason data to start new animations with :(");
+            }
         }
     }
 }

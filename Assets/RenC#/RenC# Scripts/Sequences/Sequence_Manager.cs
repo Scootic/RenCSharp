@@ -18,7 +18,7 @@ namespace RenCSharp
     /// like sequences that only have 1 screen in them. If you really desparetely need a 1 screen sequence, just include a completely empty screen
     /// as the second screen, or the first.
     /// </summary>
-    public sealed class Script_Manager : MonoBehaviour
+    public sealed class Sequence_Manager : MonoBehaviour
     {
         [SerializeField] private Sequence currentSequence; //set before runtime for first sequence of unity scene
         private int curScreenIndex = 0;
@@ -73,7 +73,7 @@ namespace RenCSharp
         private bool interruptable = true;
         private List<ParticleToken> activeParticles = new();
 
-        public static Script_Manager SM;
+        public static Sequence_Manager SM;
         public static Action ProgressScreenEvent, EndOfAllSequencesEvent;
         public static Action<bool> SequencePausedEvent;
         public Transform ActorHolder => actorHolder;

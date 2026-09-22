@@ -24,14 +24,14 @@ namespace RenCSharp.Sequences
 
             GameObject guh = await Object_Factory.SpawnParticleObject(overrideParticles, particlesName, placeToSpawn, spawnPosition, fellaToSpawnPrefab.AssetGUID, overridingParticles.AssetGUID);
 
-            if (deleteOnScreenProgression) Script_Manager.ProgressScreenEvent += PanicStop;
+            if (deleteOnScreenProgression) Sequence_Manager.ProgressScreenEvent += PanicStop;
         }
 
         private void PanicStop()
         {
             Object_Factory.RemoveObject(particlesName);
 
-            Script_Manager.ProgressScreenEvent -= PanicStop;
+            Sequence_Manager.ProgressScreenEvent -= PanicStop;
         }
 
         public override string ToString()

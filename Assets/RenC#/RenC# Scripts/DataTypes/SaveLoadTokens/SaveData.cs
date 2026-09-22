@@ -11,7 +11,7 @@ namespace RenCSharp
     public struct SaveData 
     {
         /// <summary>
-        /// The current screen index of the current sequence, so that the Script_Manager knows what screen the player is on.
+        /// The current screen index of the current sequence, so that the Sequence_Manager knows what screen the player is on.
         /// </summary>
         public int CurrentScreenIndex;
         /// <summary>

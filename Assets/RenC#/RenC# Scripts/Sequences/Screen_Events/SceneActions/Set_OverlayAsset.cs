@@ -40,8 +40,8 @@ namespace RenCSharp.Sequences
             }
 
             overlay = go.GetComponent<Animated_Image_Handler>();
-            fadeImage = Script_Manager.SM.StartCoroutine(FadeIn(overlay.Image, spriteGUIDs));
-            if (endWithScreen) Script_Manager.ProgressScreenEvent += PanicStop;
+            fadeImage = Sequence_Manager.SM.StartCoroutine(FadeIn(overlay.Image, spriteGUIDs));
+            if (endWithScreen) Sequence_Manager.ProgressScreenEvent += PanicStop;
         }
 
         private void PanicStop()
@@ -49,7 +49,7 @@ namespace RenCSharp.Sequences
             Debug.LogWarning("Set overlay panic stopped!");
             overlay.Image.color = Color.white;
             overlay.ReceiveAnimationInformation(spriteGUIDs, subObjectGUIDS, secondsPerFrame);
-            if (fadeImage != null) Script_Manager.SM.StopCoroutine(fadeImage);
+            if (fadeImage != null) Sequence_Manager.SM.StopCoroutine(fadeImage);
         }
 
         private IEnumerator FadeIn(Image overlayImg, string[] spriteGUIDs)

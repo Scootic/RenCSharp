@@ -35,7 +35,7 @@ namespace RenCSharp.Sequences.Editor
         private float curT, timeToAutoSave = 120f;
         private Gradient screenListGradient;
 
-        private readonly string _filePath = "Assets/RenC#/RenC# Scripts/Sequences/SequenceTools/UIToolkit for Sequences/Sequence_EditorWindow.uxml";
+        private readonly string _filePath = "Assets/RenC#/RenC# Scripts/Sequences/Editor/Sequence_EditorWindow.uxml";
 
         [MenuItem("Window/Sequence Editor")]
         public static void OpenWindow()
@@ -198,7 +198,8 @@ namespace RenCSharp.Sequences.Editor
             }
             catch (NullReferenceException)
             {
-                Debug.LogError($"Couldn't find VisualTreeAsset at: {_filePath}. Either you moved or deleted it. Too bad!");
+                Debug.LogError($"Couldn't find VisualTreeAsset at: {_filePath}. Either you moved or deleted it. Too bad! " +
+                    $"Change _filePath in Sequence_EditorWindow.cs or move the file back.");
                 return;
             }
             curT = 0;

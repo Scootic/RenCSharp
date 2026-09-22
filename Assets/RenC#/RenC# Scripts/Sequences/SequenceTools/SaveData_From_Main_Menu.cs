@@ -23,9 +23,9 @@ namespace RenCSharp.Sequences
         /// <param name="lsm"></param>
         void StopSM(Scene s, LoadSceneMode lsm)
         {
-            if (Script_Manager.SM != null)
+            if (Sequence_Manager.SM != null)
             {
-                Script_Manager.SM.LoadGame(SD);
+                Sequence_Manager.SM.LoadGame(SD);
                 Debug.Log("Should be loading aan scene!");
                 Object_Factory.RemoveObject(gameObject.name);
             }

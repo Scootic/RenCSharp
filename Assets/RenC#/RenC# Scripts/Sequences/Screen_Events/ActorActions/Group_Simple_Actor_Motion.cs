@@ -47,8 +47,8 @@ namespace RenCSharp.Sequences
 
             t = 0;
             valid = true;
-            motion = Script_Manager.SM.StartCoroutine(Animate());
-            Script_Manager.ProgressScreenEvent += ResetToOG;
+            motion = Sequence_Manager.SM.StartCoroutine(Animate());
+            Sequence_Manager.ProgressScreenEvent += ResetToOG;
         }
 
         private IEnumerator Animate()

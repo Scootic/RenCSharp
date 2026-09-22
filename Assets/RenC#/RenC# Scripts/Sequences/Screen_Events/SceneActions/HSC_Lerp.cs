@@ -36,8 +36,8 @@ namespace RenCSharp.Sequences
                 oldTin = hscMat.GetFloat("_tin");
                 oldColor = image.color;
                 t = 0;
-                transitionRoutine = Script_Manager.SM.StartCoroutine(LerpHSC());
-                Script_Manager.ProgressScreenEvent += PanicStop;
+                transitionRoutine = Sequence_Manager.SM.StartCoroutine(LerpHSC());
+                Sequence_Manager.ProgressScreenEvent += PanicStop;
             }
             else
             {
@@ -47,9 +47,9 @@ namespace RenCSharp.Sequences
 
         private void PanicStop()
         {
-            if (transitionRoutine != null) Script_Manager.SM.StopCoroutine(transitionRoutine);
+            if (transitionRoutine != null) Sequence_Manager.SM.StopCoroutine(transitionRoutine);
             SetToEnd();
-            Script_Manager.ProgressScreenEvent -= PanicStop;
+            Sequence_Manager.ProgressScreenEvent -= PanicStop;
         }
 
         private IEnumerator LerpHSC()

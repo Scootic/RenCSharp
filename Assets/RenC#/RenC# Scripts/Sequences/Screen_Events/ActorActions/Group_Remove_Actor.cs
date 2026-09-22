@@ -24,7 +24,7 @@ namespace RenCSharp.Sequences
             foreach (Actor actorToRemove in actorsToRemove)
             {
                 if (!Object_Factory.TryGetObject(actorToRemove.name, out GameObject go)) return;
-                Script_Manager.SM.activeActors.Remove(actorToRemove);
+                Sequence_Manager.SM.activeActors.Remove(actorToRemove);
                 fellasToRemove.Add(go);
 
                 Image img = go.transform.GetChild(0).GetComponent<Image>();
@@ -36,8 +36,8 @@ namespace RenCSharp.Sequences
                 }
             }
 
-            fadeOut = Script_Manager.SM.StartCoroutine(FadeOut(imgPo));
-            Script_Manager.ProgressScreenEvent += PanicStop;
+            fadeOut = Sequence_Manager.SM.StartCoroutine(FadeOut(imgPo));
+            Sequence_Manager.ProgressScreenEvent += PanicStop;
         }
 
         private IEnumerator FadeOut(List<Image> imgPo)
@@ -62,7 +62,7 @@ namespace RenCSharp.Sequences
 
         private void PanicStop()
         {
-            if (fadeOut != null) Script_Manager.SM.StopCoroutine(fadeOut);
+            if (fadeOut != null) Sequence_Manager.SM.StopCoroutine(fadeOut);
             foreach (Actor act in actorsToRemove)
             {
                 Object_Factory.RemoveObject(act.name);
