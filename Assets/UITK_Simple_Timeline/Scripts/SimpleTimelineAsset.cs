@@ -1,5 +1,6 @@
+using System.Threading;
 using UnityEngine;
-
+using UnityEngine.AddressableAssets;
 namespace UITK_SimpleTimeline
 {
     /// <summary>
@@ -11,11 +12,39 @@ namespace UITK_SimpleTimeline
     [CreateAssetMenu(menuName = "UITK_SimpleTimeline/SimpleTimeline Asset")]
     public class SimpleTimelineAsset : ScriptableObject
     {
+        public AssetReference Myself = null;
         public SimpleTimeline Timeline = new(5);
+        private Awaitable activeTimeline;
+        private readonly CancellationTokenSource myCTS = new();
 
         public SimpleTimelineAsset(SimpleTimeline timeline)
         {
             Timeline = timeline;
         }
+
+        public Awaitable SetActiveTimeline { set { activeTimeline = value; } }
+
+        public async void PlayTimeline(bool debug = false)
+        {
+            activeTimeline = debug ? Timeline.RunThroughTimelineDebug(myCTS.Token) : Timeline.RunThroughTimeline(myCTS.Token);
+            await activeTimeline;
+        }
+
+        public void StopTimeline()
+        {
+            myCTS.Cancel();
+        }
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            Debug.Log("On validate sta");
+            Myself ??= this.SetObjectAddressable();
+        }
+
+        private void OnEnable()
+        {
+            Myself ??= this.SetObjectAddressable();
+        }
+#endif
     }
 }

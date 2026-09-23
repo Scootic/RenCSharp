@@ -2,9 +2,13 @@
 using System;
 using System.Reflection;
 using UnityEditor;
+using UnityEditor.AddressableAssets.Settings;
+using UnityEditor.AddressableAssets;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
+using UObject = UnityEngine.Object;
 namespace UITK_SimpleTimeline
 {
     /// <summary>
@@ -119,19 +123,21 @@ namespace UITK_SimpleTimeline
 
             return toReturn;
         }
-        /*
-        public static bool IsSubclassOfGenericType(this Type toCheck, Type baseType)
+
+        public static AssetReference SetObjectAddressable(this UObject obj, string intendedAssetGroupName = "")
         {
-            while (toCheck != null && toCheck != typeof(object))
-            {
-                Type cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
+            AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
+            string assetPath = AssetDatabase.GetAssetPath(obj);
+            string assetGUID = AssetDatabase.AssetPathToGUID(assetPath);
 
-                if (baseType == cur) return true;
+            AddressableAssetGroup intendedAssetGroup = intendedAssetGroupName == "" ? settings.DefaultGroup : settings.FindGroup(intendedAssetGroupName);
+            AddressableAssetEntry entry = settings.CreateOrMoveEntry(assetGUID, intendedAssetGroup);
+            entry.address = assetGUID;
+            settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved | AddressableAssetSettings.ModificationEvent.EntryCreated, entry, true);
+            AssetDatabase.SaveAssets();
 
-                toCheck = toCheck.BaseType;
-            }
-            return false;
-        }*/
+            return settings.CreateAssetReference(entry.guid);
+        }
     }
 
 }

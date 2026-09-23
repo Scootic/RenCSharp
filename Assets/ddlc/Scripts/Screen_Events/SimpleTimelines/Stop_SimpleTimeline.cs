@@ -11,13 +11,12 @@ namespace RenCSharp.Sequences
         [SerializeField] private SimpleTimelineAsset timelineToStop;
 
         public override void DoEvent()
-        {
-            timelineToStop.Timeline.RunThroughTimeline(new CancellationToken()).Cancel();
-            timelineToStop.Timeline.TimelineResult();
-            if (SimpleTimeline_AnimationSaveLoader.ContainsAnimation(timelineToStop.Timeline))
+        {   
+            if (SimpleTimeline_AnimationSaveLoader.ContainsAnimation(timelineToStop))
             {
-                SimpleTimeline_AnimationSaveLoader.RemoveAnimation(timelineToStop.Timeline);
+                SimpleTimeline_AnimationSaveLoader.RemoveAnimation(timelineToStop);
             }
+            timelineToStop.StopTimeline();
         }
 
         public override string ToString()

@@ -71,7 +71,7 @@ namespace RenCSharp.Sequences.Editor
             curT = 0;
             //change the stinking thing to display new stuff!
 
-            SerializedObject so = new SerializedObject(_target);
+            SerializedObject so = new(_target);
             AllTheExtractScreens = new();
             AllTheExtractPlayerChoices = new();
             autoSpeakerToggle.value = _target.AutoFocusSpeaker;
@@ -102,7 +102,7 @@ namespace RenCSharp.Sequences.Editor
         {
             if (_target != null)
             {
-                SerializedObject so = new SerializedObject(_target);
+                SerializedObject so = new(_target);
                 SerializedProperty screensProp = so.FindProperty("screens");
                 screenScrollView.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
                 screenScrollView.pickingMode = PickingMode.Ignore;
@@ -151,7 +151,7 @@ namespace RenCSharp.Sequences.Editor
         { 
             if(_target != null)
             {
-                SerializedObject so = new SerializedObject(_target);
+                SerializedObject so = new(_target);
                 SerializedProperty playerchoicesProp = so.FindProperty("playerChoices");
                 playerchoiceScrollView.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
 
@@ -309,7 +309,7 @@ namespace RenCSharp.Sequences.Editor
                 {
                     temp[i] = _target.PlayerChoices[i];
                 }
-                temp[_target.PlayerChoices.Length] = new Player_Choice();
+                temp[_target.PlayerChoices.Length] = new();
                 _target.SetPlayerChoices = temp;
                 InitPlayerChoiceListView();
                 

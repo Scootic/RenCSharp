@@ -93,28 +93,39 @@ namespace UITK_SimpleTimeline
         /// <returns>Diddly squat.</returns>
         public readonly async Awaitable RunThroughTimeline(CancellationToken ct)
         {
-            foreach (TimelineCurve tc in Curves) 
+            try
             {
-                tc.OnPlay();
-            }
-
-            float secondsElapsed = - SPF * PlaybackSpeed; //start the timeline BEFORE 0 so we can evaluate at 0 and not just skip over.
-
-            while(secondsElapsed < Duration || Loop)
-            {
-                if (ct.IsCancellationRequested) break;
-                await Awaitable.WaitForSecondsAsync(SPF);
-                secondsElapsed += SPF * PlaybackSpeed;
-
-                foreach(TimelineCurve curve in Curves)
+                foreach (TimelineCurve tc in Curves)
                 {
-                    curve.Evaluate(secondsElapsed);
+                    tc.OnPlay();
                 }
 
-                if(Loop && secondsElapsed >= Duration)
+                float secondsElapsed = -SPF * PlaybackSpeed; //start the timeline BEFORE 0 so we can evaluate at 0 and not just skip over.
+
+                while (secondsElapsed < Duration || Loop)
                 {
-                    secondsElapsed = -SPF * PlaybackSpeed;
+                    if (ct.IsCancellationRequested)
+                    {
+                        TimelineResult();
+                        break;
+                    }
+                    await Awaitable.WaitForSecondsAsync(SPF);
+                    secondsElapsed += SPF * PlaybackSpeed;
+
+                    foreach (TimelineCurve curve in Curves)
+                    {
+                        curve.Evaluate(secondsElapsed);
+                    }
+
+                    if (Loop && secondsElapsed >= Duration)
+                    {
+                        secondsElapsed = -SPF * PlaybackSpeed;
+                    }
                 }
+            }catch
+            {
+                TimelineResult();
+                return;
             }
         }
         /// <summary>
@@ -125,33 +136,45 @@ namespace UITK_SimpleTimeline
         /// <returns>Diddly squat 2.</returns>
         public readonly async Awaitable RunThroughTimelineDebug(CancellationToken ct)
         {
-            foreach (TimelineCurve tc in Curves)
+            try
             {
-                tc.OnPlay();
+                foreach (TimelineCurve tc in Curves)
+                {
+                    tc.OnPlay();
+                }
+
+                float secondsElapsed = -SPF * PlaybackSpeed;
+
+                while (secondsElapsed < Duration || Loop)
+                {
+                    if (ct.IsCancellationRequested)
+                    {
+                        TimelineResultDebug();
+                        break;
+                    }
+                    await Awaitable.WaitForSecondsAsync(SPF);
+                    secondsElapsed += SPF * PlaybackSpeed;
+
+                    string msg = "";
+
+                    foreach (TimelineCurve curve in Curves)
+                    {
+                        msg += $"\n{curve.EvaluateMessage(secondsElapsed)}";
+                        curve.Evaluate(secondsElapsed);
+                    }
+
+                    Debug.Log(msg);
+
+                    if (Loop && secondsElapsed >= Duration)
+                    {
+                        secondsElapsed = -SPF * PlaybackSpeed;
+                    }
+                }
             }
-
-            float secondsElapsed = - SPF * PlaybackSpeed;
-
-            while(secondsElapsed < Duration || Loop)
+            catch
             {
-                if (ct.IsCancellationRequested) break;
-                await Awaitable.WaitForSecondsAsync(SPF);
-                secondsElapsed += SPF * PlaybackSpeed;
-
-                string msg = "";
-
-                foreach(TimelineCurve curve in Curves)
-                {
-                    msg += $"\n{curve.EvaluateMessage(secondsElapsed)}";
-                    curve.Evaluate(secondsElapsed);
-                }
-
-                Debug.Log(msg);
-
-                if(Loop && secondsElapsed >= Duration)
-                {
-                    secondsElapsed = -SPF * PlaybackSpeed;
-                }
+                TimelineResultDebug();
+                return;
             }
         }
         /// <summary>

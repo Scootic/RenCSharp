@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using System.Collections.Generic;
 using UITK_SimpleTimeline;
 using System.Threading;
@@ -6,7 +7,7 @@ namespace RenCSharp.Sequences
 {
     public class SimpleTimeline_AnimationSaveLoader : MonoBehaviour
     {
-        private static readonly HashSet<SimpleTimeline> activeTimelines = new();
+        private static readonly HashSet<SimpleTimelineAsset> activeTimelineAssets = new();
         private static SimpleTimeline_AnimationSaveLoader instance;
 
         void Awake()
@@ -28,46 +29,53 @@ namespace RenCSharp.Sequences
             SaveLoad.LoadCustomData -= LoadAnimations;
         }
 
-        public static void AddAnimation(SimpleTimeline st)
+        public static void AddAnimation(SimpleTimelineAsset st)
         {
             Debug.Log("Adding ST to active timelines");
-            activeTimelines.Add(st);
+            activeTimelineAssets.Add(st);
         }
 
-        public static void RemoveAnimation(SimpleTimeline st)
+        public static void RemoveAnimation(SimpleTimelineAsset st)
         {
-            activeTimelines.Remove(st);
+            activeTimelineAssets.Remove(st);
         }
 
-        public static bool ContainsAnimation(SimpleTimeline st)
+        public static bool ContainsAnimation(SimpleTimelineAsset st)
         {
-            return activeTimelines.Contains(st);
+            return activeTimelineAssets.Contains(st);
         }
 
         void SaveAnimations(SaveData sd)
         {
-            if (sd.CustomJSONData == null) sd.CustomJSONData = new();
+            sd.CustomJSONData ??= new();
             if (sd.CustomJSONData.Count < 1) sd.ScaleCustomJSONToCount(1);
-            sd.CustomJSONData[0] = JsonUtility.ToJson(activeTimelines);
+            string[] assetRefs = new string[activeTimelineAssets.Count];
+            int i = 0;
+            foreach(SimpleTimelineAsset sta in activeTimelineAssets)
+            {
+                assetRefs[i] = sta.Myself.AssetGUID;
+                i++;
+            }
+            sd.CustomJSONData[0] = JsonUtility.ToJson(assetRefs);
             Debug.Log("Saving SimpleTimeline animations: " + sd.CustomJSONData[0]);
         }
 
-        void LoadAnimations(List<string> jasonData)
+        async void LoadAnimations(List<string> jasonData)
         {
-            foreach (SimpleTimeline st in activeTimelines)
+            foreach(SimpleTimelineAsset sta in activeTimelineAssets)
             {
-                Debug.Log("Cancelling an active ST!");
-                st.RunThroughTimeline(new CancellationToken()).Cancel();
+                sta.StopTimeline();
             }
-            activeTimelines.Clear();
+            activeTimelineAssets.Clear();
             try
             {
-                HashSet<SimpleTimeline> t = JsonUtility.FromJson<HashSet<SimpleTimeline>>(jasonData[0]);
+                string[] t = JsonUtility.FromJson<string[]>(jasonData[0]);
 
-                foreach (SimpleTimeline st in t)
+                foreach (string star in t)
                 {
-                    _ = st.RunThroughTimeline(new CancellationToken());
-                    activeTimelines.Add(st);
+                    SimpleTimelineAsset goober = await Addressables.LoadAssetAsync<SimpleTimelineAsset>(star).Task;
+                    activeTimelineAssets.Add(goober);
+                    goober.PlayTimeline(false);
                 }
             }
             catch

@@ -11,24 +11,20 @@ namespace RenCSharp.Sequences
         /// Openable through drawer shenanigans!
         /// </summary>
         [SerializeField] private SimpleTimelineAsset timelineToRunThrough;
-        private Awaitable activeTimeline;
 
-        public override async void DoEvent()
+        public override void DoEvent()
         {
-            activeTimeline = debug ? timelineToRunThrough.Timeline.RunThroughTimelineDebug(new CancellationToken()): 
-                timelineToRunThrough.Timeline.RunThroughTimeline(new CancellationToken());
+            timelineToRunThrough.PlayTimeline(debug);
+            if (timelineToRunThrough.Timeline.Loop) SimpleTimeline_AnimationSaveLoader.AddAnimation(timelineToRunThrough);
             if (endWithScreen) Sequence_Manager.ProgressScreenEvent += PanicStop;
-            if (timelineToRunThrough.Timeline.Loop) SimpleTimeline_AnimationSaveLoader.AddAnimation(timelineToRunThrough.Timeline);
-            await activeTimeline; //start it?
         }
 
         void PanicStop()
         {
-            activeTimeline.Cancel();
-            timelineToRunThrough.Timeline.TimelineResult();
-            if (SimpleTimeline_AnimationSaveLoader.ContainsAnimation(timelineToRunThrough.Timeline))
+            timelineToRunThrough.StopTimeline();
+            if (SimpleTimeline_AnimationSaveLoader.ContainsAnimation(timelineToRunThrough))
             {
-                SimpleTimeline_AnimationSaveLoader.RemoveAnimation(timelineToRunThrough.Timeline);
+                SimpleTimeline_AnimationSaveLoader.RemoveAnimation(timelineToRunThrough);
             }
         }
 
