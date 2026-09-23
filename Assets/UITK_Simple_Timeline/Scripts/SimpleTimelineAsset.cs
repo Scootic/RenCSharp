@@ -37,13 +37,18 @@ namespace UITK_SimpleTimeline
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            Debug.Log("On validate sta");
-            Myself ??= this.SetObjectAddressable();
+            if (string.IsNullOrEmpty(Myself.AssetGUID))
+            {
+                Myself = this.SetObjectAddressable();
+            }
         }
 
         private void OnEnable()
         {
-            Myself ??= this.SetObjectAddressable();
+            if (string.IsNullOrEmpty(Myself.AssetGUID))
+            {
+                Myself = this.SetObjectAddressable();
+            }
         }
 #endif
     }

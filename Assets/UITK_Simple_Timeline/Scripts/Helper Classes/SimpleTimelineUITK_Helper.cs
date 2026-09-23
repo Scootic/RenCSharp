@@ -132,11 +132,13 @@ namespace UITK_SimpleTimeline
 
             AddressableAssetGroup intendedAssetGroup = intendedAssetGroupName == "" ? settings.DefaultGroup : settings.FindGroup(intendedAssetGroupName);
             AddressableAssetEntry entry = settings.CreateOrMoveEntry(assetGUID, intendedAssetGroup);
-            entry.address = assetGUID;
+            entry.address = assetPath;
             settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved | AddressableAssetSettings.ModificationEvent.EntryCreated, entry, true);
             AssetDatabase.SaveAssets();
 
-            return settings.CreateAssetReference(entry.guid);
+            AssetReference toReturn = settings.CreateAssetReference(entry.guid);
+
+            return toReturn;
         }
     }
 
