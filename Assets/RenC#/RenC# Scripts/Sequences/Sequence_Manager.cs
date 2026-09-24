@@ -730,10 +730,11 @@ namespace RenCSharp
 
         private SaveData SaveData(string saveFileName)
         {
-            if (saveFileName == null) saveFileName = "SaveData"; //default to prevent extreme BS
+            saveFileName ??= "SaveData"; //default to prevent extreme BS
             saving = true;
 
             SaveData manToSave = new();
+            SaveLoad.SaveCustomData?.Invoke(manToSave); //do this before any transformations are saved?
             ScreenToken st = new();
 
             manToSave.CurrentScreenIndex = curScreenIndex; //:)
@@ -849,7 +850,7 @@ namespace RenCSharp
 
         private byte[] GetScreenShot()
         {
-            Texture2D toReturn = new Texture2D(UScreen.width, UScreen.height, TextureFormat.ARGB32, false);
+            Texture2D toReturn = new(UScreen.width, UScreen.height, TextureFormat.ARGB32, false);
             toReturn.ReadPixels(new Rect(0, 0, UScreen.width, UScreen.height), 0, 0);
             toReturn.Apply();
             toReturn = Evil_Texture_Resizer.Scaled(toReturn, 640, 480, FilterMode.Trilinear);

@@ -127,7 +127,7 @@ namespace UITK_SimpleTimeline
                 return;
             }
 
-            SerializedProperty stinker = Helper.GetBoundProperty(this);
+            SerializedProperty stinker = this.GetBoundProperty();
             //if the property is a struct that's a foldout
             //the WORST try-catch nesting in history!
             if (stinker.propertyType == SerializedPropertyType.Generic && !stinker.isArray)

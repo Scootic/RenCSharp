@@ -1,18 +1,12 @@
 #if UNITY_EDITOR
 using System;
-using System.Reflection;
 using UnityEditor;
-using UnityEditor.AddressableAssets.Settings;
-using UnityEditor.AddressableAssets;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
-using UObject = UnityEngine.Object;
 namespace UITK_SimpleTimeline
 {
     /// <summary>
-    /// Helper class that... helps.
+    /// Helper class that... helps. Abbreviate with a using statement (using Helper = SimpleTimelineUITK_Helper)
     /// </summary>
     public static class SimpleTimelineUITK_Helper 
     {
@@ -26,7 +20,7 @@ namespace UITK_SimpleTimeline
         /// </summary>
         public static float MaxPixelWidth;
         public static float CurT;
-
+        #region Editor UI Colors
         public static readonly Color DefaultSecondLayerBG = new(0.2f, 0.2f, 0.2f, 1);
         public static readonly Color DefaultSecondLayerBorder = new(0.1f, 0.1f, 0.1f, 1);
         public static readonly Color DefaultThirdLayerBorder = new(0.4f,0.4f,0.4f,1);
@@ -42,7 +36,7 @@ namespace UITK_SimpleTimeline
         public static readonly Color HalfTransparentWhite = new(1, 1, 1, 0.5f);
         public static readonly Color QuarterTransparentBlack = new(0, 0, 0, 0.25f);
         public static readonly Color QuarterTransparentWhite = new(1, 1, 1, 0.25f);
-
+        #endregion
         /// <summary>
         /// The asset path to load all of the editor icon assets. Change this if you, for some reason, move
         /// the EditorIcons folder from outside of the UITK_Simple_Timeline folder, or otherwise nest it.
@@ -76,7 +70,8 @@ namespace UITK_SimpleTimeline
 
         /// <summary>
         /// Do every single function that's relevant to saving and updating all of the SerializedProperties so that your
-        /// data is actually saved after you're done with the Editor Window.
+        /// data is actually saved after you're done with the Editor Window. Is every single one of them needed? Probably not,
+        /// but this stupid hogwash wouldn't work without it! (trust)
         /// </summary>
         public static void ApplyChangesToObject()
         {
@@ -91,56 +86,6 @@ namespace UITK_SimpleTimeline
                 Debug.LogWarning("The SimpleTimelineUITK_Helper doesn't have a WindowObject! Domain probably reloaded, try again.");
             }
         }
-
-        /// <summary>
-        /// Extract the SerializedProperty out of a PropertyField using Reflection, because Unity is so racist you can't just do that.
-        /// </summary>
-        /// <param name="field">The PropertyField you want to get the SerializedProperty out of.</param>
-        /// <returns>The bound SerializedProperty (m_SerializedProperty in the PropertyField class). Null if the process fails.</returns>
-        public static SerializedProperty GetBoundProperty(this PropertyField field)
-        {
-            SerializedProperty toReturn;
-            FieldInfo spField;
-            BindingFlags bf = BindingFlags.NonPublic | BindingFlags.Instance;
-            try
-            {
-                spField = typeof(PropertyField).GetField("m_SerializedProperty", bf);
-            }
-            catch
-            {
-                Debug.LogWarning("FieldInfo couldn't grab the stinkin' m_SerializedProperty?!?!");
-                return null;
-            }
-            try
-            {
-                toReturn = spField.GetValue(field) as SerializedProperty;
-            }
-            catch
-            {
-                Debug.LogWarning("Given PropertyField can't handle getting its m_SerializedProperty read?!");
-                return null;
-            }
-
-            return toReturn;
-        }
-
-        public static AssetReference SetObjectAddressable(this UObject obj, string intendedAssetGroupName = "")
-        {
-            AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
-            string assetPath = AssetDatabase.GetAssetPath(obj);
-            string assetGUID = AssetDatabase.AssetPathToGUID(assetPath);
-
-            AddressableAssetGroup intendedAssetGroup = intendedAssetGroupName == "" ? settings.DefaultGroup : settings.FindGroup(intendedAssetGroupName);
-            AddressableAssetEntry entry = settings.CreateOrMoveEntry(assetGUID, intendedAssetGroup);
-            entry.address = assetPath;
-            settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved | AddressableAssetSettings.ModificationEvent.EntryCreated, entry, true);
-            AssetDatabase.SaveAssets();
-
-            AssetReference toReturn = settings.CreateAssetReference(entry.guid);
-
-            return toReturn;
-        }
     }
-
 }
 #endif

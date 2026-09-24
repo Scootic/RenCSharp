@@ -12,10 +12,15 @@ namespace UITK_SimpleTimeline
     [CreateAssetMenu(menuName = "UITK_SimpleTimeline/SimpleTimeline Asset")]
     public class SimpleTimelineAsset : ScriptableObject
     {
-        public AssetReference Myself = null;
+        /// <summary>
+        /// Public AssetRef in case you need to load SimpleTimelineAssets in a more complex manner.
+        /// </summary>
+        public AssetReference Myself => myself;
+        [SerializeField, Tooltip("Should be set automatically during asset creation.")] private AssetReference myself = null;
         public SimpleTimeline Timeline = new(5);
+        
         private Awaitable activeTimeline;
-        private readonly CancellationTokenSource myCTS = new();
+        private CancellationTokenSource myCTS = new();
 
         public SimpleTimelineAsset(SimpleTimeline timeline)
         {
@@ -24,30 +29,32 @@ namespace UITK_SimpleTimeline
 
         public Awaitable SetActiveTimeline { set { activeTimeline = value; } }
 
-        public async void PlayTimeline(bool debug = false)
+        public async void PlayTimeline(bool debug = false, float initTime = 0)
         {
-            activeTimeline = debug ? Timeline.RunThroughTimelineDebug(myCTS.Token) : Timeline.RunThroughTimeline(myCTS.Token);
+            myCTS ??= new();
+            activeTimeline = debug ? Timeline.RunThroughTimelineDebug(myCTS.Token, initTime) : Timeline.RunThroughTimeline(myCTS.Token, initTime);
             await activeTimeline;
         }
 
         public void StopTimeline()
         {
             myCTS.Cancel();
+            myCTS = new(); //?
         }
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            if (string.IsNullOrEmpty(Myself.AssetGUID))
+            if (string.IsNullOrEmpty(myself.AssetGUID) && !Application.isPlaying)
             {
-                Myself = this.SetObjectAddressable();
+                myself = this.SetObjectAddressable();
             }
         }
 
         private void OnEnable()
         {
-            if (string.IsNullOrEmpty(Myself.AssetGUID))
+            if (string.IsNullOrEmpty(myself.AssetGUID) && !Application.isPlaying)
             {
-                Myself = this.SetObjectAddressable();
+                myself = this.SetObjectAddressable();
             }
         }
 #endif

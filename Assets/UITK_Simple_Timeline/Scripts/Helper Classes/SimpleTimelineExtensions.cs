@@ -1,9 +1,10 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 namespace UITK_SimpleTimeline
 {
     public static class SimpleTimelineExtensions
     {
+        #region JSON Copying
         /// <summary>
         /// Copies some sort of class by making an instance of a string using the JsonUtility.ToJson, and then returning
         /// that copy string as the original type using .FromJson. Useful for copying [SerializeReference] values 
@@ -85,7 +86,9 @@ namespace UITK_SimpleTimeline
             await Awaitable.MainThreadAsync();
             return toReturn;
         }
+        #endregion
 
+        #region Transform Extensions
         public static float[] ToArray(this Vector3 v3)
         {
             return new float[] { v3.x, v3.y, v3.z };
@@ -110,5 +113,6 @@ namespace UITK_SimpleTimeline
         {
             return float.IsNaN(q.x) || float.IsNaN(q.y) || float.IsNaN(q.z) || float.IsNaN(q.w);
         }
+        #endregion
     }
 }

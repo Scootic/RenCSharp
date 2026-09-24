@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using UnityEditor;
 namespace UITK_SimpleTimeline
 {
-    [CreateAssetMenu(menuName = "UITK_SimpleTimeline/Assembly Database")]
+    [CreateAssetMenu(menuName = "UITK_SimpleTimeline/Utilities/Assembly Database")]
     public class UITK_SimpleTimeline_AssembliesDatabase : ScriptableObject
     {
         private static UITK_SimpleTimeline_AssembliesDatabase instance;
@@ -49,7 +49,7 @@ namespace UITK_SimpleTimeline
         {
             if(instance == null) instance = AssetDatabase.LoadAssetAtPath<UITK_SimpleTimeline_AssembliesDatabase>(DatabasePath);
 
-            if(!instance)
+            if (!instance)
             {
                 Debug.LogWarning($"UITK_SimpleTimeline_AssembliesDatabase.cs couldn't find Assembly Database singleton at path: {DatabasePath}." +
                     $" Did you move it from the root asset folder or delete it?");

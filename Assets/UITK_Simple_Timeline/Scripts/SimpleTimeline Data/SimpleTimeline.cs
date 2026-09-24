@@ -6,6 +6,8 @@ namespace UITK_SimpleTimeline
 {
     /// <summary>
     /// AnimationClip-style struct to handle animating things based on data that isn't in-scene (but also some in-scene things, too).
+    /// If you want to reference a SimpleTimeline without using a SimpleTimelineAsset, you'll want to keep track of some sort of
+    /// CancellationTokenSources- that's how you'll be able to stop the Awaitable that runs through the timeline data.
     /// </summary>
     [Serializable]
     public struct SimpleTimeline : IDefaultableNotNull<SimpleTimeline>
@@ -23,6 +25,10 @@ namespace UITK_SimpleTimeline
         //figure out how to add timelinecurves of specific types and actually be able to interpret that?
         //object.ToString?
         [SerializeReference] public List<TimelineCurve> Curves;
+        /// <summary>
+        /// Used to tie an object inside an active scene to all of the TimelineCurves inside of a SimpleTimeline.
+        /// Useful if you're trying to animate an in-scene object directly.
+        /// </summary>
         public GameObject SetSceneObject
         {
             set
@@ -36,12 +42,16 @@ namespace UITK_SimpleTimeline
         }
         public readonly bool HasSceneObject => sceneObject != null;
 
+        private float secondsElapsed;
+        public readonly float SecondsElapsed => secondsElapsed;
+
         public SimpleTimeline(float duration)
         {
             Loop = false;
             Duration = duration;
             PlaybackSpeed = 1;
             sceneObject = null;
+            secondsElapsed = 0;
             Curves = new();
         }
         /// <summary>
@@ -53,6 +63,7 @@ namespace UITK_SimpleTimeline
             Loop = copy.Loop;
             Duration = copy.Duration;
             PlaybackSpeed = copy.PlaybackSpeed;
+            secondsElapsed = 0;
             sceneObject = null;
             Curves = SimpleTimelineExtensions.DeepCopyListFromJSON(copy.Curves);
         }
@@ -90,8 +101,9 @@ namespace UITK_SimpleTimeline
         /// Advances every SPF in seconds (by default, SPF is 1/60 to replicate 60fps).
         /// </summary>
         /// <param name="ct">CancellationToken so you can bail out of the timeline whenever you feel like it.</param>
+        /// <param name="initialTime">min 0 please</param>
         /// <returns>Diddly squat.</returns>
-        public readonly async Awaitable RunThroughTimeline(CancellationToken ct)
+        public async Awaitable RunThroughTimeline(CancellationToken ct, float initialTime = 0)
         {
             try
             {
@@ -100,7 +112,7 @@ namespace UITK_SimpleTimeline
                     tc.OnPlay();
                 }
 
-                float secondsElapsed = -SPF * PlaybackSpeed; //start the timeline BEFORE 0 so we can evaluate at 0 and not just skip over.
+                secondsElapsed = initialTime -(SPF * PlaybackSpeed); //start the timeline BEFORE 0 so we can evaluate at 0 and not just skip over.
 
                 while (secondsElapsed < Duration || Loop)
                 {
@@ -133,8 +145,9 @@ namespace UITK_SimpleTimeline
         /// doing the Evaluate() behavior.
         /// </summary>
         /// <param name="ct">CancellationToken so you can bail out of the timeline whenever you feel like it.</param>
+        /// <param name="initialTime">min 0 please</param>
         /// <returns>Diddly squat 2.</returns>
-        public readonly async Awaitable RunThroughTimelineDebug(CancellationToken ct)
+        public async Awaitable RunThroughTimelineDebug(CancellationToken ct, float initialTime = 0)
         {
             try
             {
@@ -143,7 +156,7 @@ namespace UITK_SimpleTimeline
                     tc.OnPlay();
                 }
 
-                float secondsElapsed = -SPF * PlaybackSpeed;
+                secondsElapsed = initialTime -(SPF * PlaybackSpeed);
 
                 while (secondsElapsed < Duration || Loop)
                 {

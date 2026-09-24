@@ -15,9 +15,13 @@ namespace RenCSharp
 
         /// <summary>
         /// Action that serves as an extension for other classes to save custom data to a SaveData that's being saved to a file.
-        /// Invoked by the Save method, which passes in the SaveData that it's trying to save.
+        /// Invoked by the Sequence_Manager when saving before anything else, mostly as a timing thing.
         /// </summary>
         public static Action<SaveData> SaveCustomData;
+        /// <summary>
+        /// Action that's invoked after the save file is saved in SaveLoad's Save method. Yippee.
+        /// </summary>
+        public static Action SavingDoneEvent;
         /// <summary>
         /// Action that serves as an extension for other classes to retrieve custom data from a SaveData that's being loaded
         /// from a file. Not invoked by Load methods, but is called by Sequence_Manager during its Load method. 
@@ -36,7 +40,6 @@ namespace RenCSharp
             Regex.Replace(subFolder, "[ <>?*]", "_");
             string filePath = Application.persistentDataPath + "/" + (subFolder != "" ? subFolder + "/" : "") + fileName + ".sav";
             sd.FileName = fileName;
-            SaveCustomData?.Invoke(sd);
             Debug.Log("Saving data to: " + filePath);
             if(subFolder != "" && !Directory.Exists(Application.persistentDataPath + "/" + subFolder))
             {
@@ -45,6 +48,7 @@ namespace RenCSharp
             FileStream fs = new(filePath, FileMode.Create);
             bf.Serialize(fs, sd);
             fs.Close();
+            SavingDoneEvent?.Invoke();
         }
         /// <summary>
         /// Saves a flag token containing flags that apply regardless of save file. Use at your own discretion.

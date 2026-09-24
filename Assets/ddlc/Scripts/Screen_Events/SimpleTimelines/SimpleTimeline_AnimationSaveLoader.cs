@@ -3,13 +3,14 @@ using UnityEngine.AddressableAssets;
 using System.Collections.Generic;
 using UITK_SimpleTimeline;
 using System.Threading;
+using System;
 namespace RenCSharp.Sequences
 {
     public class SimpleTimeline_AnimationSaveLoader : MonoBehaviour
     {
-        private static readonly HashSet<SimpleTimelineAsset> activeTimelineAssets = new();
+        private static readonly List<SimpleTimelineAsset> activeTimelineAssets = new();
         private static SimpleTimeline_AnimationSaveLoader instance;
-
+        private Action curRedoAnims;
         void Awake()
         {
             if(instance == null)
@@ -45,19 +46,34 @@ namespace RenCSharp.Sequences
             return activeTimelineAssets.Contains(st);
         }
 
+        void RedoAnimations(float[] times)
+        {
+            for(int i = 0; i < activeTimelineAssets.Count; i++)
+            {
+                activeTimelineAssets[i].PlayTimeline(false, times[i]);
+            }
+
+            SaveLoad.SavingDoneEvent -= curRedoAnims;
+        }
+
         void SaveAnimations(SaveData sd)
         {
+            float[] times = new float[activeTimelineAssets.Count];
+            string[] assetRefs = new string[activeTimelineAssets.Count];
+            for (int i = 0; i < activeTimelineAssets.Count; i++)
+            {
+                activeTimelineAssets[i].StopTimeline();
+                activeTimelineAssets[i].Timeline.TimelineInitial(); //essentially undo an animation while we're saving.
+                times[i] = activeTimelineAssets[i].Timeline.SecondsElapsed;
+                assetRefs[i] = activeTimelineAssets[i].Myself.AssetGUID;
+            }
             sd.CustomJSONData ??= new();
             if (sd.CustomJSONData.Count < 1) sd.ScaleCustomJSONToCount(1);
-            string[] assetRefs = new string[activeTimelineAssets.Count];
-            int i = 0;
-            foreach(SimpleTimelineAsset sta in activeTimelineAssets)
-            {
-                assetRefs[i] = sta.Myself.AssetGUID;
-                i++;
-            }
+            
             sd.CustomJSONData[0] = JsonUtility.ToJson(assetRefs);
             Debug.Log("Saving SimpleTimeline animations: " + sd.CustomJSONData[0]);
+            curRedoAnims = () => { RedoAnimations(times); };
+            SaveLoad.SavingDoneEvent += curRedoAnims;   
         }
 
         async void LoadAnimations(List<string> jasonData)
