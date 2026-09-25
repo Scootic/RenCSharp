@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72803af6ba98e434fbbd7462d7a3b5d8, type: 3}
+  m_Name: SayoBounceInPlace
+  m_EditorClassIdentifier: 
+  myself:
+    m_AssetGUID: d8d4d8cc9c9581d49ad35ec4db251f32
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  Timeline:
+    Loop: 1
+    Duration: 1
+    PlaybackSpeed: 1.33
+    Curves:
+    - rid: 7219386219025137664
+  references:
+    version: 2
+    RefIds:
+    - rid: 7219386219025137664
+      type: {class: ActorLocalPositionArrayCurve, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        WrappingMode: 1
+        TemporaryRep:
+        - 0
+        - 0
+        - 0
+        keyframes:
+        - List: []
+        - List: []
+        - List: []
+        ToAffect: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}

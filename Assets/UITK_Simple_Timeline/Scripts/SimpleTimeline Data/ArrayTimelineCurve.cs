@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using TangentMode = UITK_SimpleTimeline.TimelineKeyframeTangentMode;
 namespace UITK_SimpleTimeline
 {
     [Serializable]
@@ -22,9 +21,9 @@ namespace UITK_SimpleTimeline
                 if (ToAffect == null) return false;
                 for (int i = 0; i < keyframes.Length; i++)
                 {
-                    if (keyframes[i].Count < 2) return false;
+                    if (keyframes[i].Count >= 2) return true;
                 }
-                return true;
+                return false;
             }
         }
 
@@ -215,12 +214,15 @@ namespace UITK_SimpleTimeline
             for (int i = 0; i < keyframes.Length; i++)
             {
                 //works if in-between two keyframes?
-                toReturn[i] = new int[2];
+                toReturn[i] = new int[] {-1,-1};//default -1,-1 to be replaced later
+
+                if (keyframes[i].List.Count <= 0) continue;
+
                 int index = Array.BinarySearch(KeyframeTimes[i], t);
+
                 if (index < 0)
                 {
                     index = ~index;
-                    //Debug.Log($"Doing the weird bitwise chicanery because binary search gave a negative index?!? The bitfliped: {index}");
                     //index should now be the one higher than time?
                     toReturn[i][1] = index;
                     if (t > KeyframeTimes[i][keyframes[i].Count - 1]) //if the time has already passed the last key frame
@@ -256,7 +258,6 @@ namespace UITK_SimpleTimeline
                 }
                 else
                 {
-                    //Debug.Log("The forbidden else statement in TimelineCurve.ClosestTwoIndexes() has been called?!?");
                     if (Keyframes[i][index].Time < t)
                     {
                         toReturn[i][0] = index;
@@ -279,6 +280,7 @@ namespace UITK_SimpleTimeline
             int[][] indexes = ArrayClosestTwoIndexes(time);
             for (int i = 0; i < keyframes.Length; i++)
             {
+                if (indexes[i][0] == -1) continue;
                 toReturn[i] = new TimelineKeyframe<T>[2];
                 toReturn[i][0] = keyframes[i][indexes[i][0]];
                 toReturn[i][1] = keyframes[i][indexes[i][1]];
@@ -308,9 +310,9 @@ namespace UITK_SimpleTimeline
             {
                 for (int i = 0; i < keyframes.Length; i++)
                 {
-                    if (keyframes[i].Count < 2) return false;
+                    if (keyframes[i].Count >= 2) return true;
                 }
-                return true;
+                return false;
             }
         }
 

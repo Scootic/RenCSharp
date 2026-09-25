@@ -44,7 +44,7 @@ namespace UITK_SimpleTimeline
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            if (string.IsNullOrEmpty(myself.AssetGUID) && !Application.isPlaying)
+            if (string.IsNullOrEmpty(myself.AssetGUID) && !Application.isPlaying && !(UnityEditor.EditorApplication.isCompiling || UnityEditor.EditorApplication.isUpdating))
             {
                 myself = this.SetObjectAddressable();
             }
@@ -52,7 +52,7 @@ namespace UITK_SimpleTimeline
 
         private void OnEnable()
         {
-            if (string.IsNullOrEmpty(myself.AssetGUID) && !Application.isPlaying)
+            if (string.IsNullOrEmpty(myself.AssetGUID) && !Application.isPlaying && !(UnityEditor.EditorApplication.isCompiling || UnityEditor.EditorApplication.isUpdating))
             {
                 myself = this.SetObjectAddressable();
             }

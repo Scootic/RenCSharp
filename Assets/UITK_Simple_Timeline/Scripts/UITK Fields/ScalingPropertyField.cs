@@ -225,17 +225,24 @@ namespace UITK_SimpleTimeline
             }
             else if (stinker.isArray)
             {
-                VisualElement scrollParent = this.Q<VisualElement>("unity-content-container");
-                //Debug.Log($"scrollParent for array scalingpf: {scrollParent}");
-                for(int i = 0; i < stinker.arraySize; i++)
+                try
                 {
-                    VisualElement listElement = scrollParent.Children().ToArray()[i].Children().ToArray()[1]; //yuck!
-                    PropertyField pf = listElement.Q<PropertyField>();
-                    Label l = pf.Q<Label>();
-                    l.text = i.ToString();
-                    l.style.maxWidth = 20f;
-                    l.style.minWidth = 20f;
-                    l.style.width = 20f;
+                    VisualElement scrollParent = this.Q<VisualElement>("unity-content-container");
+                    //Debug.Log($"scrollParent for array scalingpf: {scrollParent}");
+                    for(int i = 0; i < stinker.arraySize; i++)
+                    {
+                        VisualElement listElement = scrollParent.Children().ToArray()[i].Children().ToArray()[1]; //yuck!
+                        PropertyField pf = listElement.Q<PropertyField>();
+                        Label l = pf.Q<Label>();
+                        l.text = i.ToString();
+                        l.style.maxWidth = 20f;
+                        l.style.minWidth = 20f;
+                        l.style.width = 20f;
+                    }
+                }
+                catch
+                {
+                    //upset
                 }
             }
             //if it's just some class. no sub-nesting necessary.

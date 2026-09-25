@@ -24,12 +24,16 @@ MonoBehaviour:
     ScreenActions:
     - rid: 7219385918982455298
   - speaker: {fileID: 0}
-    dialog: Sayori jumpy test animation
+    dialog: Sayori dancy test animation
     ScreenActions:
     - rid: 7219385918982455299
   - speaker: {fileID: 0}
     dialog: Sayori's done dancing now.
     ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: Sayo hop animation
+    ScreenActions:
+    - rid: 7219386219025137718
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 0}
@@ -84,3 +88,9 @@ MonoBehaviour:
         endWithScreen: 1
         debug: 0
         timelineToRunThrough: {fileID: 11400000, guid: 7109a110cc52a524aafdf17f8cd1d9f2, type: 2}
+    - rid: 7219386219025137718
+      type: {class: Start_SimpleTimeline, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        endWithScreen: 1
+        debug: 0
+        timelineToRunThrough: {fileID: 11400000, guid: d8d4d8cc9c9581d49ad35ec4db251f32, type: 2}

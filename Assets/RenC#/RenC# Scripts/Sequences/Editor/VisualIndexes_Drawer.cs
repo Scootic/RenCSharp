@@ -1,6 +1,5 @@
 #if UNITY_EDITOR
 using UnityEditor;
-using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using RenCSharp.Editor;
@@ -83,7 +82,7 @@ namespace RenCSharp.Sequences.Editor
                 autoTextFields[i].SetText = viProperty.FindPropertyRelative("indexes").GetArrayElementAtIndex(oldI).stringValue;
                 
                 leElement.Add(autoTextFields[i]);
-                Debug.Log($"ATF FlexiDir: {autoTextFields[i].style.flexDirection}");
+                //Debug.Log($"ATF FlexiDir: {autoTextFields[i].style.flexDirection}");
             }
         }
     }

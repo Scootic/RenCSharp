@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TangentMode = UITK_SimpleTimeline.TimelineKeyframeTangentMode;
 namespace UITK_SimpleTimeline
@@ -5,16 +6,48 @@ namespace UITK_SimpleTimeline
     public static class CurveMath
     {
         /// <summary>
-        /// Returns the in-tangent and out-tangent values of two keyframes.
+        /// Returns the in-tangent and out-tangent values of two keyframes, multiplied by the magnitude difference between two keyframes.
+        /// <br/><br/>IMagnitudeDifference interface is for custom classes that you want to be able to compare the magnitudes of. If the T
+        /// type is not a valid type (float, vector2, vector3, or IMagnitude), the tangents will by default be scaled by 1 (which is to say, not).
         /// </summary>
         /// <param name="frames">Keyframe Array of size 2</param>
         /// <returns>The tangents. OutTangent = i0, InTangent = i1</returns>
+        public static float[] GetTangents<T>(TimelineKeyframe<T>[] frames)
+        {
+            float[] toReturn = new float[2];
+            float dif = 1;
+            switch (frames[0].Value) //scale the tangents by the difference in magnitudes.
+            {
+                case float f:
+                    if (frames[1].Value is float f2) dif = f2 - f;
+                    break;
+                case Vector3 v3:
+                    if (frames[1].Value is Vector3 v3_2) dif = (v3_2 - v3).magnitude;
+                    break;
+                case Vector2 v2:
+                    if (frames[1].Value is Vector2 v2_2) dif = (v2_2 - v2).magnitude;
+                    break;
+                case IMagnitudeDifference<T> imd:
+                    dif = imd.Difference(frames[0].Value, frames[1].Value);
+                    break;
+                default:
+                    dif = 1;
+                    break;
+            }
+            toReturn[0] = frames[0].OutTangent * dif;
+            toReturn[1] = frames[1].InTangent * dif;
+            return toReturn;
+        }
+        /// <summary>
+        /// Untyped version of GetTangents() using only abstract Keyframes. Returns the in-tangent and out-tangent, without multiplying tangent strength.
+        /// </summary>
+        /// <param name="frames"></param>
+        /// <returns></returns>
         public static float[] GetTangents(TimelineKeyframe[] frames)
         {
             float[] toReturn = new float[2];
-            float difT = frames[1].Time - frames[0].Time;
-            toReturn[0] = frames[0].OutTangent * difT;
-            toReturn[1] = frames[1].InTangent * difT;
+            toReturn[0] = frames[0].OutTangent;
+            toReturn[1] = frames[1].InTangent;
             return toReturn;
         }
 
@@ -75,7 +108,7 @@ namespace UITK_SimpleTimeline
         /// <param name="endingTangent">The right in-tangent.</param>
         /// <param name="tangentMode">Determines how tangents affect the curve.</param>
         /// <returns></returns>
-        public static float CubicHermiteSpline(float leftValue, float rightValue, float time, float startingTangent, float endingTangent, TangentMode tangentMode) 
+        public static float CubicHermiteSpline(float leftValue, float rightValue, float time, float startingTangent, float endingTangent, TangentMode tangentMode, bool debug = false) 
         {
             float toReturn;
             float timeSqr = time * time;
@@ -87,6 +120,10 @@ namespace UITK_SimpleTimeline
                     ((timeCub - 2 * timeSqr + time) * startingTangent) + //startTan
                     ((-2 * timeCub + 3 * timeSqr) * rightValue) + //val2
                     ((timeCub - timeSqr) * endingTangent); //endTan
+                    if (debug) Debug.Log($"Val1 {(2 * timeCub - 3 * timeSqr + 1) * leftValue} + " +
+                        $"startTan {(timeCub - 2 * timeSqr + time) * startingTangent} " +
+                        $"+ Val2 {(-2 * timeCub + 3 * timeSqr) * rightValue} " +
+                        $"+ endTan {(timeCub - timeSqr) * endingTangent} = {toReturn}");
                     return toReturn;
 
                 case TangentMode.Auto:

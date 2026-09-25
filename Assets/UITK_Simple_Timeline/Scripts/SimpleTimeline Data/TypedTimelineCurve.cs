@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using TangentMode = UITK_SimpleTimeline.TimelineKeyframeTangentMode;
 namespace UITK_SimpleTimeline
 {
     /// <summary>
@@ -218,7 +217,7 @@ namespace UITK_SimpleTimeline
             }
             else//this else is never ever called?!?!
             {
-                Debug.Log("The forbidden else statement in TimelineCurve.ClosestTwoIndexes() has been called?!?");
+                //Debug.Log("The forbidden else statement in TimelineCurve.ClosestTwoIndexes() has been called?!?");
                 if (Keyframes[index].Time < time)
                 {
                     toReturn[0] = index;

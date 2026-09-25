@@ -38,6 +38,7 @@ namespace RenCSharp.Sequences
             float[] toConvert = new float[3];
             for (int i = 0; i < toConvert.Length; i++)
             {
+                if (toEval[i] == null) continue;
                 float[] tangents = CurveMath.GetTangents(toEval[i]);
                 toConvert[i] = CurveMath.CubicHermiteSpline(toEval[i][0].Value, toEval[i][1].Value,
                     TimeToKeyframePercent(time, toEval[i][0].Time, toEval[i][1].Time), tangents[0], tangents[1],
@@ -66,7 +67,7 @@ namespace RenCSharp.Sequences
             return "Actor/Relative Position Array Curve";
         }
     }
-
+    /*
     public class ActorLocalPositionCurve : TypedTimelineCurve<Vector3, Actor>
     {
         public override string ShorthandCurveName() => "Actor Relative Position Curve";
@@ -114,7 +115,7 @@ namespace RenCSharp.Sequences
         {
             return "Actor/Relative Position Curve";
         }
-    }
+    }*/
     public class ActorLocalScaleCurve : TypedTimelineCurve<Vector3, Actor>
     {
         public override string ShorthandCurveName() => "Actor Local Scale Curve";
