@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72803af6ba98e434fbbd7462d7a3b5d8, type: 3}
   m_Name: sayoritestdance
   m_EditorClassIdentifier: 
+  myself:
+    m_AssetGUID: 7109a110cc52a524aafdf17f8cd1d9f2
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
   Timeline:
     Loop: 1
     Duration: 3
@@ -19,12 +25,6 @@ MonoBehaviour:
     Curves:
     - rid: 7219385918982455384
     - rid: 7219386032966860860
-  myself:
-    m_AssetGUID: 
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_SubObjectGUID: 
-    m_EditorAssetChanged: 0
   references:
     version: 2
     RefIds:
@@ -35,8 +35,8 @@ MonoBehaviour:
         TemporaryRep:
           indexes:
           - skyDown
-          - skyUp
-          - smileSpeak
+          - skyDown
+          - smile
           - 
           ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         keyframes:
@@ -171,7 +171,7 @@ MonoBehaviour:
       data:
         WrappingMode: 1
         TemporaryRep:
-        - 174.75998
+        - 0
         - 0
         - 0
         keyframes:

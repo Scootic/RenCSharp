@@ -20,8 +20,8 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   Timeline:
     Loop: 1
-    Duration: 1
-    PlaybackSpeed: 1.33
+    Duration: 1.1
+    PlaybackSpeed: 3
     Curves:
     - rid: 7219386219025137664
   references:
@@ -30,13 +30,58 @@ MonoBehaviour:
     - rid: 7219386219025137664
       type: {class: ActorLocalPositionArrayCurve, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        WrappingMode: 1
+        WrappingMode: 2
         TemporaryRep:
         - 0
         - 0
         - 0
         keyframes:
         - List: []
-        - List: []
+        - List:
+          - KeyframeIndex: 0
+            CurveIndex: 0
+            ArrayIndex: 1
+            Time: 0
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 3.7037027
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 0
+          - KeyframeIndex: 1
+            CurveIndex: 0
+            ArrayIndex: 1
+            Time: 0.5
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 125
+          - KeyframeIndex: 2
+            CurveIndex: 0
+            ArrayIndex: 1
+            Time: 1
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0.14414893
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 0
         - List: []
         ToAffect: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
