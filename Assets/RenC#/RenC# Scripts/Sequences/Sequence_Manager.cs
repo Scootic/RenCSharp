@@ -40,7 +40,7 @@ namespace RenCSharp
         [SerializeField] private Transform playerchoiceHolder;
         
         [Header("Actors")]
-        [SerializeField] private Transform actorHolder;
+        [SerializeField] private Transform actorCanvas;
         [SerializeField] private AnimationCurve actorScalingKurve;
         private Actor curActor;
         [HideInInspector] public List<Actor> activeActors = new(); //nasty!
@@ -76,7 +76,6 @@ namespace RenCSharp
         public static Sequence_Manager SM;
         public static Action ProgressScreenEvent, EndOfAllSequencesEvent;
         public static Action<bool> SequencePausedEvent;
-        public Transform ActorHolder => actorHolder;
         public History CurrentHistory => curHist;
         public Transform PlayerChoiceHolder => playerchoiceHolder;
         //certified singleton moment
@@ -92,6 +91,7 @@ namespace RenCSharp
             }
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder); //profoundly sad
             Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder);//horrid
+            Object_Factory.SpawnObject(new GameObject(), "Actor Holder", actorCanvas);
             FlagToken ft = new();
             Flag_Manager.ReceiveFlagToken(ft.FlagTokenToDictionary(SaveLoad.LoadPersistentFlags()), true); //safety thing, make sure we have persistent flags
 
@@ -583,7 +583,7 @@ namespace RenCSharp
 
             Debug.Log("Amount of actors we should be loading: " + std.ActiveActors.Count);
             activeActors = new();
-
+            Object_Factory.TryGetComponent("Actor Holder", out Transform actorHolder);
             foreach (ActorToken at in std.ActiveActors) //spawn in all of the actors that were chillin' like villain before
             {
                 Debug.Log("Loading an actor:\n" + at.ToString());

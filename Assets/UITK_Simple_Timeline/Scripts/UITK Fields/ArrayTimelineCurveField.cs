@@ -266,6 +266,7 @@ namespace UITK_SimpleTimeline
                     TimelineKnob<T> tKnob = new("", keyframesProperty.GetArrayElementAtIndex(i).FindPropertyRelative("List").GetArrayElementAtIndex(j),
                         j, myPropertyIndex);
                     float time = tKnob.value.Time;
+                    if (KeyframeIcons[i].ContainsKey(time)) continue;
                     tKnob.transform.position = new Vector3(Helper.PixelWidthPerSeconds * time - tKnob.style.width.value.value * 0.5f - 2, 0, 0);
                     tKnob.style.top = 15 + (15 * i);
                     tKnob.DeleteKnobAction += delegate
@@ -285,6 +286,7 @@ namespace UITK_SimpleTimeline
                         }
                         evt.StopPropagation();
                     });
+
                     KeyframeIcons[i].Add(time, tKnob);
                     KeyframeContainer.Add(tKnob);
                 }

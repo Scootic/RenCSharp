@@ -25,6 +25,7 @@ namespace RenCSharp.Editor
             { 
                 inputField.value = value;
                 dropdownField.value = value;
+                DropdownFieldBG.style.backgroundColor = validAutoText.Contains(dropdownField.value) ? CoolColors.selectedForestColor : CoolColors.grayGUI;
             } 
         }
 
@@ -70,7 +71,7 @@ namespace RenCSharp.Editor
             inputField.style.minWidth = 100f;
             inputField.RegisterValueChangedCallback(evt => OnKeyInput(evt.newValue));
 
-            dropdownField = new();
+            dropdownField = new() { choices = autoText};
             dropdownField.AddToClassList(dropdownFieldClassName);
             dropdownField.RegisterCallback<ChangeEvent<string>>(evt => 
             {
@@ -99,7 +100,7 @@ namespace RenCSharp.Editor
             inputField.style.minWidth = 100f;
             inputField.RegisterValueChangedCallback(evt => OnKeyInput(evt.newValue));
 
-            dropdownField = new();
+            dropdownField = new() { choices = autoText };
             dropdownField.AddToClassList(dropdownFieldClassName);
             dropdownField.RegisterCallback<ChangeEvent<string>>(evt =>
             {
@@ -170,7 +171,7 @@ namespace RenCSharp.Editor
             }
 
             bool prevVis = dropdownField.visible;
-            bool valueInList = cacheList.Contains(inputField.value);
+            bool valueInList = cacheList.Contains(inputField.value) || cacheList.Contains(dropdownField.value);
 
             dropdownField.visible = cacheList.Count > 0 && newVal != "";
             dropdownField.enabledSelf = dropdownField.visible;

@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using RenCSharp.Editor;
@@ -39,11 +40,12 @@ namespace RenCSharp.Sequences.Editor
                 SetAutoTextFields();
             }
             //so that if the VisualIndexes property itself changes, override autotext fields.
-            leElement.TrackPropertyValue(viProperty, evt =>
+            ///?!?!?!?!?!?!? absolute hogwash that don't work
+            /*leElement.TrackPropertyValue(viProperty, evt =>
             {
                 actorField.value = evt.FindPropertyRelative("ActorToSet").boxedValue as Actor; //????
                 SetAutoTextFields();
-            });
+            });*/
 
             return leElement;
         }
@@ -60,7 +62,7 @@ namespace RenCSharp.Sequences.Editor
                 int length = ((Actor)actorField.value).Visuals.Length;
                 autoTextFields = new AutoTextField[length];
             }
-            catch { return; }
+            catch { Debug.LogError("Failed to get Actor Visuals length?"); return; }
             List<List<string>> AutoTexts = ((VisualIndexes)viProperty.boxedValue).GetAutoTexts;
             if (viProperty.FindPropertyRelative("indexes").arraySize != AutoTexts.Count)
             {
@@ -70,8 +72,8 @@ namespace RenCSharp.Sequences.Editor
             for (int i = 0; i < autoTextFields.Length; i++)
             {
                 int oldI = i;
-                autoTextFields[i] = new AutoTextField($"Layer {oldI}:", AutoTexts[i], FlexDirection.Column);
-                autoTextFields[i].RegisterValueChangedCallback(evt => 
+                autoTextFields[oldI] = new AutoTextField($"Layer {oldI}:", AutoTexts[oldI], FlexDirection.Column);
+                autoTextFields[oldI].RegisterValueChangedCallback(evt => 
                 {
                     VisualIndexes vi = (VisualIndexes)viProperty.boxedValue;
                     vi.indexes[oldI] = evt.newValue;
@@ -79,10 +81,9 @@ namespace RenCSharp.Sequences.Editor
                     viProperty.serializedObject.ApplyModifiedProperties();
                 }
                 );
-                autoTextFields[i].SetText = viProperty.FindPropertyRelative("indexes").GetArrayElementAtIndex(oldI).stringValue;
+                autoTextFields[oldI].SetText = viProperty.FindPropertyRelative("indexes").GetArrayElementAtIndex(oldI).stringValue;
                 
-                leElement.Add(autoTextFields[i]);
-                //Debug.Log($"ATF FlexiDir: {autoTextFields[i].style.flexDirection}");
+                leElement.Add(autoTextFields[oldI]);
             }
         }
     }

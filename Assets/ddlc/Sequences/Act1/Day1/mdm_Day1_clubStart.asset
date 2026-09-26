@@ -747,16 +747,16 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: Sayori wraps her arms around me, jumping up and down.
     ScreenActions:
-    - rid: 8612954527079858302
+    - rid: 7219386234770292797
   - speaker: {fileID: 0}
     dialog: 'Alright, that answers my question about Sayori not staring at me: she''s
       still my friend!'
-    ScreenActions:
-    - rid: 8612954527079858303
+    ScreenActions: []
   - speaker: {fileID: 0}
     dialog: Would it be gross to say I missed her hugs?
     ScreenActions:
     - rid: 8612954527079858307
+    - rid: 7219386234770292798
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: Well that makes it official, then. Welcome to the Literature Club!
     ScreenActions:
@@ -828,8 +828,8 @@ MonoBehaviour:
   myself:
     m_AssetGUID: 993c959d6380590458c69d4002df6a99
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 1
   references:
     version: 2
@@ -1048,8 +1048,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 4f09cc94363340d459ef2681fc443d19
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -1062,14 +1062,24 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 4f09cc94363340d459ef2681fc443d19
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+    - rid: 7219386234770292797
+      type: {class: Start_SimpleTimeline, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        endWithScreen: 0
+        debug: 0
+        timelineToRunThrough: {fileID: 11400000, guid: d8d4d8cc9c9581d49ad35ec4db251f32, type: 2}
+    - rid: 7219386234770292798
+      type: {class: Stop_SimpleTimeline, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        timelineToStop: {fileID: 11400000, guid: d8d4d8cc9c9581d49ad35ec4db251f32, type: 2}
     - rid: 8164893234914656308
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2785,92 +2795,6 @@ MonoBehaviour:
         - uniDown
         - smile
         - 
-    - rid: 8612954527079858302
-      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        localMotionOffset: {x: 0, y: 100, z: 0}
-        motionDuration: 0.5
-        motionPathX:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        motionPathY:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 4.08805
-            outSlope: 4.08805
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.0375
-          - serializedVersion: 3
-            time: 1.0041687
-            value: 0
-            inSlope: -3.96202
-            outSlope: -3.96202
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.033196997
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        motionPathZ:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        target: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        loopOnScreen: 1
-    - rid: 8612954527079858303
-      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        localMotionOffset: {x: 0, y: 100, z: 0}
-        motionDuration: 0.5
-        motionPathX:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        motionPathY:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0.0041656494
-            value: 0.0023498535
-            inSlope: 3.3963816
-            outSlope: 3.3963816
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.033473793
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: -4.339627
-            outSlope: -4.339627
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.025104553
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        motionPathZ:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        target: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        loopOnScreen: 1
     - rid: 8612954527079858304
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -3023,8 +2947,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -3034,8 +2958,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 9d18ee034d9bea149886efe3a7a02057
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 0.5
         setToSameTime: 0
@@ -3045,8 +2969,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 51f2b1be4fb05b142acbbe506e86b1d2
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -3056,8 +2980,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 0.5
         setToSameTime: 0
@@ -3067,8 +2991,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 9d18ee034d9bea149886efe3a7a02057
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 0.5
         setToSameTime: 0
@@ -3078,8 +3002,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 51f2b1be4fb05b142acbbe506e86b1d2
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -3089,8 +3013,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: dd6c8e5b87af36a418069980751df3b4
           m_SubObjectName: school_corridor_background
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -3101,23 +3025,23 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
           m_SubObjectName: glitchanim_0
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
           m_SubObjectName: glitchanim_1
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
           m_SubObjectName: glitchanim_2
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
           m_SubObjectName: glitchanim_3
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 0.5
@@ -3129,8 +3053,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: b520dd2a984ff1445b8e8874f212ecfa
           m_SubObjectName: Classroom_05_day
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -3141,8 +3065,8 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
           m_SubObjectName: emptypng
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 0.5
@@ -3154,23 +3078,23 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
           m_SubObjectName: glitchanim_0
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
           m_SubObjectName: glitchanim_1
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
           m_SubObjectName: glitchanim_2
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
           m_SubObjectName: glitchanim_3
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 0.5
@@ -3182,8 +3106,8 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
           m_SubObjectName: emptypng
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 0.5
