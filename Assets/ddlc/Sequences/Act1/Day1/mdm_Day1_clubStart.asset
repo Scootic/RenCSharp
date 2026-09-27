@@ -153,11 +153,13 @@ MonoBehaviour:
     ScreenActions:
     - rid: 8612954489503350914
     - rid: 8612954489503350915
+    - rid: 7219386258315018354
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: And this is Yuri, the smartest in the club!
     ScreenActions:
     - rid: 8612954489503350919
     - rid: 8612954489503350920
+    - rid: 7219386258315018355
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: D-don't say things like that...
     ScreenActions:
@@ -171,6 +173,7 @@ MonoBehaviour:
     dialog: And you remember me, right?
     ScreenActions:
     - rid: 8612954489503350923
+    - rid: 7219386258315018356
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Well, obviously. Which class was it again, English last year?
     ScreenActions: []
@@ -1080,6 +1083,108 @@ MonoBehaviour:
       type: {class: Stop_SimpleTimeline, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         timelineToStop: {fileID: 11400000, guid: d8d4d8cc9c9581d49ad35ec4db251f32, type: 2}
+    - rid: 7219386258315018354
+      type: {class: Zoom_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        toZoomOn:
+          ActorToFocus: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+          xPos: 300
+          yPos: -0
+          zPos: -0
+          zoomScale: 1.5
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        zoomDuration: 1
+    - rid: 7219386258315018355
+      type: {class: Zoom_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        toZoomOn:
+          ActorToFocus: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+          xPos: -66.66667
+          yPos: -0
+          zPos: -0
+          zoomScale: 1.5
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        zoomDuration: 1
+    - rid: 7219386258315018356
+      type: {class: Zoom_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        toZoomOn:
+          ActorToFocus: {fileID: 0}
+          xPos: 0
+          yPos: 0
+          zPos: 0
+          zoomScale: 1
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        zoomDuration: 1
     - rid: 8164893234914656308
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1385,7 +1490,7 @@ MonoBehaviour:
       data:
         actorToAlter: {fileID: 11400000, guid: cd908b1d4341a3a499ce3d9070013ac2, type: 2}
         visualSpriteIndexes:
-        - uniUp
+        - uniDown
         - uniUp
         - smile
         - 
@@ -1454,6 +1559,7 @@ MonoBehaviour:
         - uniSmug
         - uniDown
         - grimace
+        - 
     - rid: 8612954489503350921
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:

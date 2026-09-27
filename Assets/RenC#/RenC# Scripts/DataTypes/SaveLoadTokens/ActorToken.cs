@@ -18,7 +18,7 @@ namespace RenCSharp
             VisualIndexes = visualIndexes;
         }
 
-        public override string ToString()
+        public readonly override string ToString()
         {
             string stuff = "";
 

@@ -24,7 +24,7 @@ namespace RenCSharp.Sequences
             if (Object_Factory.TryGetObject(actorToSpawn.name, out GameObject go)) return;
             if (!Object_Factory.TryGetComponent("Actor Holder", out Transform t)) return;
             go = Object_Factory.SpawnObject(actorToSpawn.ActorPrefab, actorToSpawn.name,t);
-            go.transform.position += spawnOffset;
+            go.transform.localPosition += spawnOffset;
             UI_Element uie = go.GetComponent<UI_Element>();
             Sequence_Manager.SM.activeActors.Add(actorToSpawn);
 

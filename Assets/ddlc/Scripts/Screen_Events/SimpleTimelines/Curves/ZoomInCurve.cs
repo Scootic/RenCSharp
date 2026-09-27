@@ -1,7 +1,5 @@
-using System;
 using UITK_SimpleTimeline;
 using UnityEngine;
-
 namespace RenCSharp.Sequences
 {
     public class ZoomInCurve : TypedTimelineCurve<ZoomInstruction>
@@ -24,22 +22,27 @@ namespace RenCSharp.Sequences
         {
             TimelineKeyframe<ZoomInstruction>[] keyframes = ClosestTwoKeyframes(time);
             if (!ValidCurve) return new float[4];
+            float percTime = TimeToKeyframePercent(time, keyframes[0].Time, keyframes[1].Time);
             float[] tangents = CurveMath.GetTangents(keyframes);
             return CurveMath.CubicHermiteSpline(keyframes[0].Value, keyframes[1].Value,
-                TimeToKeyframePercent(time, keyframes[0].Time, keyframes[1].Time), tangents[0], tangents[1], keyframes[0].TangentMode);
+                percTime, tangents[0], tangents[1], keyframes[0].TangentMode);
         }
 
         public override void Evaluate(float time)
         {
             ZoomInstruction eval = EvaluateValue(time);
-            actorParent.localPosition = eval.ScaledActorHolderPosition();
-            actorParent.localScale = eval.ZoomScale();
+            Vector3 zoomScale = eval.ZoomScale();
+            Vector3 actorPos = eval.ScaledActorHolderPosition();
+            Vector3 unscaledPos = eval.UnscaledPosition();
 
-            bgObj.localPosition = eval.UnscaledPosition();
-            bgObj.localScale = eval.ZoomScale();
-
-            overlayObj.localPosition = eval.UnscaledPosition();
-            overlayObj.localScale = eval.ZoomScale();
+            if(!actorPos.HasNaN())actorParent.localPosition = actorPos;
+            if (!unscaledPos.HasNaN()) { bgObj.localPosition = unscaledPos; overlayObj.localPosition = unscaledPos; }
+            if (!zoomScale.HasNaN()) 
+            {
+                actorParent.localScale = zoomScale;
+                bgObj.localScale = zoomScale;
+                overlayObj.localScale = zoomScale; 
+            }
         }
 
         public override string EvaluateMessage(float time)
@@ -50,52 +53,6 @@ namespace RenCSharp.Sequences
         public override string ToString()
         {
             return "Camera Zoom Curve";
-        }
-    }
-    [Serializable]
-    public struct ZoomInstruction : IDefaultableNotNull<ZoomInstruction>
-    {
-        public float xPos, yPos, zPos;
-        public float zoomScale;
-
-        public readonly ZoomInstruction Default()
-        {
-            return new()
-            {
-                xPos = 0,
-                yPos = 0,
-                zPos = 0,
-                zoomScale = 1
-            };
-        }
-
-        public readonly Vector3 UnscaledPosition()
-        {
-            return new() { x = xPos, y = yPos, z = zPos };
-        }
-
-        public readonly Vector3 ScaledActorHolderPosition()
-        {
-            return new() { x = xPos * zoomScale, y = yPos * zoomScale, z = zPos * zoomScale };
-        }
-
-        public readonly Vector3 ZoomScale()
-        {
-            return new() { x = zoomScale, y = zoomScale, z = zoomScale };
-        }
-
-        public static implicit operator float[](ZoomInstruction zi)
-        {
-            return new float[] { zi.xPos, zi.yPos, zi.zPos, zi.zoomScale};
-        }
-
-        public static implicit operator ZoomInstruction(float[] f)
-        {
-            if (f.Length != 4) { 
-                Debug.LogWarning("Attempting to implicitly convert a float array to ZoomInstruction that doesn't have a length" +
-                    " of 4. Returning an empty ZoomInstruction."); 
-                return new(); }
-            return new() { xPos = f[0],yPos = f[1],zPos = f[2], zoomScale = f[3] };
         }
     }
 }

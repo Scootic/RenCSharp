@@ -134,6 +134,8 @@ namespace UITK_SimpleTimeline
                         secondsElapsed = -SPF * PlaybackSpeed;
                     }
                 }
+
+                TimelineResult();
             }catch
             {
                 TimelineResult();
@@ -183,6 +185,8 @@ namespace UITK_SimpleTimeline
                         secondsElapsed = -SPF * PlaybackSpeed;
                     }
                 }
+
+                TimelineResultDebug();
             }
             catch
             {

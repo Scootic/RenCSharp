@@ -33,10 +33,11 @@ MonoBehaviour:
       data:
         WrappingMode: 1
         TemporaryRep:
-          xPos: 398.23224
+          ActorToFocus: {fileID: 0}
+          xPos: 0
           yPos: 0
           zPos: 0
-          zoomScale: 1.4977903
+          zoomScale: 1
         keyframes:
         - KeyframeIndex: 0
           CurveIndex: 0
@@ -53,6 +54,7 @@ MonoBehaviour:
           ExcludedTangentModes: 0
           DefaultTangentMode: 1
           Value:
+            ActorToFocus: {fileID: 0}
             xPos: 0
             yPos: 0
             zPos: 0
@@ -72,6 +74,7 @@ MonoBehaviour:
           ExcludedTangentModes: 0
           DefaultTangentMode: 1
           Value:
+            ActorToFocus: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
             xPos: 400
             yPos: 0
             zPos: 0
@@ -91,6 +94,7 @@ MonoBehaviour:
           ExcludedTangentModes: 0
           DefaultTangentMode: 1
           Value:
+            ActorToFocus: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
             xPos: 400
             yPos: 0
             zPos: 0
@@ -110,6 +114,7 @@ MonoBehaviour:
           ExcludedTangentModes: 0
           DefaultTangentMode: 1
           Value:
+            ActorToFocus: {fileID: 0}
             xPos: 0
             yPos: 0
             zPos: 0
@@ -119,10 +124,77 @@ MonoBehaviour:
       data:
         WrappingMode: 1
         TemporaryRep:
-          indexes: []
-          ActorToSet: {fileID: 0}
+          indexes:
+          - skyDown
+          - skyDown
+          - bored
+          - 
+          ActorToSet: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
         keyframes:
         - KeyframeIndex: 0
+          CurveIndex: 1
+          ArrayIndex: 0
+          Time: 0
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 16
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
+          Value:
+            indexes:
+            - 
+            - 
+            - 
+            - 
+            ActorToSet: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        - KeyframeIndex: 1
+          CurveIndex: 1
+          ArrayIndex: 0
+          Time: 2.6
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 16
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
+          Value:
+            indexes:
+            - skyDown
+            - skyDown
+            - bored
+            - 
+            ActorToSet: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        - KeyframeIndex: 2
+          CurveIndex: 1
+          ArrayIndex: 0
+          Time: 5
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 16
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
+          Value:
+            indexes:
+            - skyDown
+            - skyDown
+            - lookAwayMelancholy
+            - 
+            ActorToSet: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        - KeyframeIndex: 3
           CurveIndex: 1
           ArrayIndex: 0
           Time: 7
@@ -138,8 +210,8 @@ MonoBehaviour:
           DefaultTangentMode: 16
           Value:
             indexes:
-            - sk
-            - 
-            - 
+            - skyDown
+            - skyDown
+            - blank
             - 
             ActorToSet: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}

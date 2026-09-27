@@ -91,7 +91,7 @@ namespace RenCSharp
             }
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder); //profoundly sad
             Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder);//horrid
-            Object_Factory.SpawnObject(new GameObject(), "Actor Holder", actorCanvas);
+            Object_Factory.SpawnObject(new(), "Actor Holder", actorCanvas);
             FlagToken ft = new();
             Flag_Manager.ReceiveFlagToken(ft.FlagTokenToDictionary(SaveLoad.LoadPersistentFlags()), true); //safety thing, make sure we have persistent flags
 
@@ -154,14 +154,21 @@ namespace RenCSharp
         #region SequenceHandling
         public void StartSequence()
         {
-            Debug.Log("Started Sequence: " + currentSequence.name);
-            curScreenIndex = 0;
-            Sequences.Screen screen = currentSequence.Screens[0];
-            foreach (Screen_Event se in screen.ScreenActions)
+            try
             {
-                se.DoEvent();
+                RenConsole.Log("Started Sequence: " + currentSequence.name, LogSeverity.LogPositive);
+                curScreenIndex = 0;
+                Sequences.Screen screen = currentSequence.Screens[0];
+                foreach (Screen_Event se in screen.ScreenActions)
+                {
+                    se.DoEvent();
+                }
+                StartCoroutine(RunThroughScreen(screen));
             }
-            StartCoroutine(RunThroughScreen(screen));
+            catch
+            {
+                RenConsole.Log("Oh ye gods! No new sequence to start!", LogSeverity.LogError);
+            }
         }
         /// <summary>
         /// alternates the pause state. not explicit, unlike pausesequence and unpausesequence. use those other methods if you can.
@@ -468,6 +475,7 @@ namespace RenCSharp
             Object_Factory.ScrubDictionary();
             Audio_Manager.AM.StopAllSFX();
 
+            Transform actorHolder = Object_Factory.SpawnObject(new(), "Actor Holder", actorCanvas).transform;
             Animated_Image_Handler ov = Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Animated_Image_Handler>();
             Animated_Image_Handler bg = Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder).GetComponent<Animated_Image_Handler>();
 
@@ -492,6 +500,17 @@ namespace RenCSharp
             curScreenIndex = sd.CurrentScreenIndex;
             ScreenToken std = sd.ScreenInformation;
             AsyncOperationHandle SequenceAsset;
+
+            try
+            {
+                actorHolder.ReceiveToken(std.MovingTransforms[0]);
+                bg.transform.ReceiveToken(std.MovingTransforms[1]);
+                ov.transform.ReceiveToken(std.MovingTransforms[2]);
+            }
+            catch
+            {
+                Debug.LogWarning($"Save Data: {sd.FileName} doesn't contain the MovingTransforms array. Fudge!");
+            }
 
             //handle overlay and background
             ov.ReceiveAnimationInformation(std.OverlayAssetKeys, std.OverlaySubobjectKeys,std.OverlaySPF);
@@ -583,7 +602,6 @@ namespace RenCSharp
 
             Debug.Log("Amount of actors we should be loading: " + std.ActiveActors.Count);
             activeActors = new();
-            Object_Factory.TryGetComponent("Actor Holder", out Transform actorHolder);
             foreach (ActorToken at in std.ActiveActors) //spawn in all of the actors that were chillin' like villain before
             {
                 Debug.Log("Loading an actor:\n" + at.ToString());
@@ -734,8 +752,13 @@ namespace RenCSharp
             saving = true;
 
             SaveData manToSave = new();
-            SaveLoad.SaveCustomData?.Invoke(manToSave); //do this before any transformations are saved?
-            ScreenToken st = new();
+            SaveLoad.SaveCustomData?.Invoke(manToSave); //do this before any transformations or other hogwash nonsenses are saved?
+            ScreenToken st = new() { MovingTransforms = new TransformToken[3] };
+
+            if(Object_Factory.TryGetComponent("Actor Holder", out Transform t))
+            {
+                st.MovingTransforms[0] = new TransformToken(t);
+            }
 
             manToSave.CurrentScreenIndex = curScreenIndex; //:)
             manToSave.CurrentFlags = new FlagToken(Flag_Manager.GetSaveDataFlags);
@@ -774,6 +797,7 @@ namespace RenCSharp
                 bgcolor[2] = bgI.color.g;
                 bgcolor[3] = bgI.color.a;
                 st.BackgroundColor = bgcolor;
+                st.MovingTransforms[1] = new TransformToken(bg.transform);
             }
             //save overlay data
             if (Object_Factory.TryGetObject("Overlay", out GameObject ov))
@@ -797,6 +821,7 @@ namespace RenCSharp
                 ovcolor[2] = ovI.color.b;
                 ovcolor[3] = ovI.color.a;
                 st.OverlayColor = ovcolor;
+                st.MovingTransforms[2] = new TransformToken(ov.transform);
             }
 
             st.MusicAssetKey = Audio_Manager.AM.SongAssetGUID;

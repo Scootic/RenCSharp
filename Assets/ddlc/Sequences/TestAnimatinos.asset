@@ -34,6 +34,17 @@ MonoBehaviour:
     dialog: Sayo hop animation
     ScreenActions:
     - rid: 7219386219025137718
+  - speaker: {fileID: 0}
+    dialog: spawn the boy
+    ScreenActions:
+    - rid: 7219386258315018240
+    - rid: 7219386258315018241
+    - rid: 7219386258315018242
+  - speaker: {fileID: 0}
+    dialog: zoom
+    ScreenActions:
+    - rid: 7219386258315018243
+    - rid: 7219386258315018244
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 0}
@@ -94,3 +105,49 @@ MonoBehaviour:
         endWithScreen: 1
         debug: 0
         timelineToRunThrough: {fileID: 11400000, guid: d8d4d8cc9c9581d49ad35ec4db251f32, type: 2}
+    - rid: 7219386258315018240
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: -400, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+        - EMPTY
+    - rid: 7219386258315018241
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 400, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+        - EMPTY
+    - rid: 7219386258315018242
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - smile
+        - 
+    - rid: 7219386258315018243
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - blank
+        - 
+    - rid: 7219386258315018244
+      type: {class: Start_SimpleTimeline, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        endWithScreen: 1
+        debug: 0
+        timelineToRunThrough: {fileID: 11400000, guid: e30543f5bced4424988dcbacfe761eff, type: 2}
