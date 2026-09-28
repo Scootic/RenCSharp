@@ -66,11 +66,11 @@ namespace RenCSharp.Combat.Enemies.Editor
             }
         }
         private Rect visualPreviewHolderRect = Rect.zero, visualPreviewArenaRect;
-        private readonly float knobVerticalOffsetMult = 50f, previewRotateKnobSize = 50f;
-        private static readonly Vector2 minWindowSize = new Vector2(400f, 200f);
+        private readonly float knobVerticalOffsetMult = 50f, previewRotateKnobSize = 50f, previewMoveKnobSize = 30f;
+        private static readonly Vector2 minWindowSize = new(400f, 200f);
 
-        private static Texture saveIcon, placeKnobIcon, arenaPreviewTexture, projectilePreviewTexture, singlePixel;
-        private readonly static string assetPathToEditorIcons = "Assets/ddlc/Visuals/Editor/";
+        private static Texture saveIcon, placeKnobIcon, arenaPreviewTexture, projectileMovePreviewTexture, projectileRotatePreviewTexture, singlePixel;
+        private readonly static string assetPathToEditorIcons = "Assets/ddlc/Visuals/Editor/"; //????????
 
         private static readonly Color spawnC = new(1, 0.3f, 0, 1);
         private static readonly Color afterSpawnC = new(0.86f, 0.86f, 0.86f, 1);
@@ -179,7 +179,7 @@ namespace RenCSharp.Combat.Enemies.Editor
                 }
             }
 
-            Vector2 timeAndOffset = new Vector2(timeItSpawnsAt, largestY);
+            Vector2 timeAndOffset = new(timeItSpawnsAt, largestY);
             projectiles.Add(timeAndOffset, toAdd);
             GrabAKnob(projectiles[timeAndOffset], timeAndOffset);
         }
@@ -195,7 +195,7 @@ namespace RenCSharp.Combat.Enemies.Editor
                     largestY = kvp.Key.y + knobVerticalOffsetMult;
                 }
             }
-            Vector2 timeAndOffset = new Vector2(timeItSpawnsAt, largestY);
+            Vector2 timeAndOffset = new(timeItSpawnsAt, largestY);
             projectiles.Add(timeAndOffset, toPlace);
             GrabAKnob(projectiles[timeAndOffset], timeAndOffset);
         }
@@ -250,7 +250,7 @@ namespace RenCSharp.Combat.Enemies.Editor
                 ProjectileKnob toAdd = new(targetToEdit.SpawnPoints[i], targetToEdit.InitialDirections[i], stinker);
                 float timeItSpawnsAt = targetToEdit.SecondsPerProjectileSpawn * Mathf.Floor((float)i / targetToEdit.ProjectilesPerSpawn);
                 
-                Vector2 timeAndOffset = new Vector2(timeItSpawnsAt, (i % targetToEdit.ProjectilesPerSpawn) * knobVerticalOffsetMult);
+                Vector2 timeAndOffset = new(timeItSpawnsAt, (i % targetToEdit.ProjectilesPerSpawn) * knobVerticalOffsetMult);
                 projectiles.Add(timeAndOffset, toAdd);
             }
 
@@ -277,20 +277,26 @@ namespace RenCSharp.Combat.Enemies.Editor
 
             if (_simpleTimeArea == null) InitTimeArea(false, false, true, true);
             _simpleTimeArea.hRangeMax = eatd.AttackDuration;
-
-            List<Base_Projectile> storedProjectiles = eatd.ProjectilesThatSpawn.ToList();
-            SortedDictionary<int, ProjectileFrameData> timeline = eatd.GetTimelineInformation;
-
-            foreach(KeyValuePair<int, ProjectileFrameData> frameData in timeline)
+            try
             {
-                ProjectileSnub[] snubs = frameData.Value.ProjectilesSpawnedAtFrame;
-                for(int i = 0; i < snubs.Length; i++)
+                List<Base_Projectile> storedProjectiles = eatd.ProjectilesThatSpawn.ToList();
+                SortedDictionary<int, ProjectileFrameData> timeline = eatd.GetTimelineInformation;
+
+                foreach (KeyValuePair<int, ProjectileFrameData> frameData in timeline)
                 {
-                    ProjectileKnob toAdd = new(snubs[i].SpawnPosition, snubs[i].InitialDirection, storedProjectiles[snubs[i].ProjectileIndex]);
-                    float timeItSpawnsAt = (float)frameData.Key / _frameRate;
-                    Vector2 timeAndOffset = new Vector2(timeItSpawnsAt, i * knobVerticalOffsetMult);
-                    projectiles.Add(timeAndOffset, toAdd);
+                    ProjectileSnub[] snubs = frameData.Value.ProjectilesSpawnedAtFrame;
+                    for (int i = 0; i < snubs.Length; i++)
+                    {
+                        ProjectileKnob toAdd = new(snubs[i].SpawnPosition, snubs[i].InitialDirection, storedProjectiles[snubs[i].ProjectileIndex]);
+                        float timeItSpawnsAt = (float)frameData.Key / _frameRate;
+                        Vector2 timeAndOffset = new(timeItSpawnsAt, i * knobVerticalOffsetMult);
+                        projectiles.Add(timeAndOffset, toAdd);
+                    }
                 }
+            }
+            catch
+            {
+                //guh?!?
             }
         }
         /// <summary>
@@ -324,12 +330,17 @@ namespace RenCSharp.Combat.Enemies.Editor
                     projectilesToSave.Add(pk.ProjectileToSpawn);
                 }
 
-                ProjectileSnub newSnub = new();
-                newSnub.ProjectileIndex = projectilesToSave.IndexOf(pk.ProjectileToSpawn);
-                newSnub.SpawnPosition = pk.SpawnPosition;
-                newSnub.InitialDirection = pk.InitialDirection;
+                ProjectileSnub newSnub = new()
+                {
+                    ProjectileIndex = projectilesToSave.IndexOf(pk.ProjectileToSpawn),
+                    SpawnPosition = pk.SpawnPosition,
+                    InitialDirection = pk.InitialDirection
+                };
 
-                if (prevPos.x == knob.Key.x && !knob.Equals(projectiles.Last())) { snubs.Add(newSnub); prevPos = knob.Key; continue; }
+                if (prevPos.x == knob.Key.x && !knob.Equals(projectiles.Last())) 
+                { 
+                    snubs.Add(newSnub); prevPos = knob.Key; continue; 
+                }
 
                 if (prevPos.x != knob.Key.x)
                 {
@@ -343,7 +354,7 @@ namespace RenCSharp.Combat.Enemies.Editor
                 //seems to not include the true last knob if there's multiple on a single frame???
                 if (knob.Equals(projectiles.Last()))
                 {
-                    //snubs.Add(newSnub);
+                    if(projectiles.Count == 1) snubs.Add(newSnub);
                     pfd.ProjectilesSpawnedAtFrame = snubs.ToArray();
                     frameDatasToSave.Add((int)(knob.Key.x * _frameRate), pfd);
                 }
@@ -415,11 +426,14 @@ namespace RenCSharp.Combat.Enemies.Editor
             Color ogGUIc = GUI.color;
             Matrix4x4 ogMatrix = GUI.matrix;
             Vector2 arenaDimensions = arenaDimensionsProperty.vector2Value * previewRectScale;
-            Vector2 arenaPos = new Vector2((visualPreviewHolderRect.width * 0.5f) - (arenaDimensions.x * 0.5f), (visualPreviewHolderRect.height * 0.5f) - (arenaDimensions.y * 0.5f));
+            Vector2 arenaPos = new((visualPreviewHolderRect.width * 0.5f) - (arenaDimensions.x * 0.5f), (visualPreviewHolderRect.height * 0.5f) - (arenaDimensions.y * 0.5f));
             
             visualPreviewArenaRect = new Rect(arenaPos.x, arenaPos.y, arenaDimensions.x, arenaDimensions.y);
             //draw the representation of the arena
             GUI.DrawTexture(visualPreviewArenaRect, arenaPreviewTexture);
+            ///<summary>
+            ///The center of the attack area preview.
+            ///</summary>
             Vector2 trueOrigin = visualPreviewArenaRect.center;
 
             Rect guideLineRect;
@@ -450,9 +464,9 @@ namespace RenCSharp.Combat.Enemies.Editor
             }
 
             //declare things to be re-used during foreach loop. less gc?
-            Vector2 drawPos, flipYPos, offsetPos, rotatePoint, projOrigin, dirAtTime, rotateKnobPosition, newDir;
+            Vector2 drawPos, flipYPos, offsetPos, rotatePoint, projOrigin, dirAtTime, rotateKnobPosition, newDir, newPos, moveKnobPosition;
             Vector3 flipYDir, normalizedFlipYDir;
-            Rect drawProjectile, rotateKnobRect, interactRect, projectileDisplayTextureRect;
+            Rect drawProjectile, rotateKnobRect, rotInteractRect, projectileDisplayTextureRect, moveKnobRect;
             Texture projectileDisplayTexture;
 
             Beam_Projectile beamP;
@@ -510,21 +524,32 @@ namespace RenCSharp.Combat.Enemies.Editor
                         rotateKnobRect = new Rect(rotateKnobPosition.x, rotateKnobPosition.y,
                             previewRotateKnobSize, previewRotateKnobSize);
                         rotatePoint = rotateKnobPosition + new Vector2(previewRotateKnobSize * 0.5f, previewRotateKnobSize * 0.5f);
-                        interactRect = new Rect(rotatePoint.x - previewRotateKnobSize * 0.75f, rotatePoint.y - previewRotateKnobSize * 0.75f, previewRotateKnobSize * 1.5f, previewRotateKnobSize * 1.5f);
-
+                        rotInteractRect = new Rect(rotatePoint.x - previewRotateKnobSize * 0.75f, rotatePoint.y - previewRotateKnobSize * 0.75f, previewRotateKnobSize * 1.5f, previewRotateKnobSize * 1.5f);
+                        moveKnobPosition = new Vector2(drawProjectile.center.x - previewMoveKnobSize * 0.5f, drawProjectile.center.y - previewMoveKnobSize * 0.5f);
+                        moveKnobRect = new Rect(moveKnobPosition.x, moveKnobPosition.y, previewMoveKnobSize, previewMoveKnobSize);
                         //if we're draggin' on the knob (euphemism???)
-                        if (cur.type == EventType.MouseDrag && interactRect.Contains(cur.mousePosition))
-                        {
-                            //normalize mousepos relative to the rotate knob pos, move pos, and apply to the initdir.
-                            newDir = (cur.mousePosition - drawProjectile.center);
-                            //flipY because x,y,z worldspace UI is a dream that we can never reach!
-                            newDir = new Vector2(newDir.x, newDir.y * -1).normalized;
-                            pk.InitialDirection = newDir;
-                            cur.Use();
+                        if (cur.type == EventType.MouseDrag) 
+                        {  
+                           if(rotInteractRect.Contains(cur.mousePosition))
+                           {
+                                //normalize mousepos relative to the rotate knob pos, move pos, and apply to the initdir.
+                                newDir = (cur.mousePosition - drawProjectile.center);
+                                //flipY because x,y,z worldspace UI is a dream that we can never reach!
+                                newDir = new Vector2(newDir.x, newDir.y * -1).normalized;
+                                pk.InitialDirection = newDir;
+                                cur.Use(); 
+                           }
+                           else if(moveKnobRect.Contains(cur.mousePosition))
+                           {
+                                newPos = (new Vector2(cur.delta.x, cur.delta.y * -1) / previewRectScale) + new Vector2(pk.SpawnPosition.x, pk.SpawnPosition.y);
+                                pk.SpawnPosition = newPos;
+                                cur.Use();
+                           }
                         }
 
+                        GUI.DrawTexture(moveKnobRect, projectileMovePreviewTexture, ScaleMode.StretchToFill, true, 0, afterSpawnC, 0, 0);
                         GUIUtility.RotateAroundPivot(TrigHelper.GetDegreeFromVector(normalizedFlipYDir, 270), rotatePoint);
-                        GUI.DrawTexture(rotateKnobRect, projectilePreviewTexture, ScaleMode.StretchToFill, true, 0, afterSpawnC, 0, 0);
+                        GUI.DrawTexture(rotateKnobRect, projectileRotatePreviewTexture, ScaleMode.StretchToFill, true, 0, afterSpawnC, 0, 0);
                         GUI.matrix = ogMatrix;
                     }
                 }
@@ -661,7 +686,8 @@ namespace RenCSharp.Combat.Enemies.Editor
             PlaceKnobContent = new GUIContent(placeKnobIcon, "Place a new Projectile in the Timeline.");
             arenaPreviewTexture = EditorGUIUtility.Load(assetPathToEditorIcons + "arenapreview.png") as Texture;
             singlePixel = EditorGUIUtility.Load(assetPathToEditorIcons + "singlepixel.png") as Texture;
-            projectilePreviewTexture = EditorGUIUtility.Load(assetPathToEditorIcons + "projectilepreview.png") as Texture;
+            projectileRotatePreviewTexture = EditorGUIUtility.Load(assetPathToEditorIcons + "projectilepreview.png") as Texture;
+            projectileMovePreviewTexture = EditorGUIUtility.Load(assetPathToEditorIcons + "projectilemovepreview.png") as Texture;
 
             //set up timeline stuffs
             activeTimeline = new SerializedObject(this);
@@ -1011,8 +1037,8 @@ namespace RenCSharp.Combat.Enemies.Editor
 
         public void DisplayKnob(EnemyAttackTimeLineEditor timeArea, Vector2 timeAndOffset, bool selected = false)
         {
-            Vector2 pos = new Vector2(timeArea.TimeToPixel(timeAndOffset.x), timeAndOffset.y + 100f);
-            Rect drawRect = new Rect(pos.x - (knobSize * 0.5f) - timeArea._rectTimeAreaRuler.x, pos.y - knobSize * 0.5f, knobSize, knobSize);
+            Vector2 pos = new(timeArea.TimeToPixel(timeAndOffset.x), timeAndOffset.y + 100f);
+            Rect drawRect = new(pos.x - (knobSize * 0.5f) - timeArea._rectTimeAreaRuler.x, pos.y - knobSize * 0.5f, knobSize, knobSize);
             GUI.DrawTexture(drawRect, knobImage, ScaleMode.ScaleToFit, true, 0, selected ? CoolColors.selectedOliveColor : Color.white, 0, 0);
             Event cur = Event.current;
             if (!drawRect.Contains(cur.mousePosition) || cur.type != EventType.MouseUp) return; //bail if it's a bad event type

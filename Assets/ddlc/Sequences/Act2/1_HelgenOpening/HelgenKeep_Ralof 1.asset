@@ -330,7 +330,8 @@ MonoBehaviour:
   - speaker: {fileID: 0}
     dialog: While I fought the battlemage, Ralof and the other Stormcloak took care
       of the other two Imperials.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 7219386282008903768
   - speaker: {fileID: 0}
     dialog: Ralof starts moving on to the next room, without taking a pause.
     ScreenActions: []
@@ -508,8 +509,8 @@ MonoBehaviour:
   myself:
     m_AssetGUID: 15008195702255d498c7e9a61c046a90
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   references:
     version: 2
@@ -520,8 +521,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 468aea67a488b4644baaa92bbdf4118c
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -534,14 +535,25 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 32fc600949d70124e806a10f09f18422
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
         loop: 0
         stopOnScreenProgress: 0
         loopDuration: 1
+    - rid: 7219386282008903768
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 381a98c41c893784889ef0d98676af3c
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
     - rid: 9079474599036452922
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -620,6 +632,7 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: fde2dc6ba332b214fb451fdb1f6bc2b0, type: 2}
+        autoSaveName: '!AutoSave_Fight'
     - rid: 9079474705638883387
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -632,6 +645,7 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: bebc94122d17eb342b563cf66af5436f, type: 2}
+        autoSaveName: '!AutoSave_Fight'
     - rid: 9079474705638883504
       type: {class: Conditional_Screen_Overrider, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -773,6 +787,7 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: c23759af2e88b8744be3c9acb67d593e, type: 2}
+        autoSaveName: '!AutoSave_Fight'
     - rid: 9079474705638883526
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -810,8 +825,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 381a98c41c893784889ef0d98676af3c
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -821,8 +836,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -832,8 +847,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 381a98c41c893784889ef0d98676af3c
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -843,8 +858,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -854,8 +869,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 381a98c41c893784889ef0d98676af3c
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -865,8 +880,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 791116a661dfe9549b471ecdd1a1ed28
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -876,8 +891,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 381a98c41c893784889ef0d98676af3c
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -887,8 +902,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 05a05d43ce3caf54bb66fa61b71eb60d
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
@@ -898,8 +913,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 2df149d294a52d9478800939edacf8d5
           m_SubObjectName: helgenkeep1
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -910,8 +925,8 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 7ae89b6f8c3126d4fa85dd1e398805c6
           m_SubObjectName: vignet
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 0.5
@@ -923,8 +938,8 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
           m_SubObjectName: emptypng
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 0.5
@@ -936,8 +951,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 17356841e6445694c806d0f1d3ee77da
           m_SubObjectName: helgenkeep2
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -948,8 +963,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: fa0529e653942c44da3af5edd3a70f43
           m_SubObjectName: helgenkeep3
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -960,8 +975,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 49614aa063affeb4d8561fbe7bcbc7a1
           m_SubObjectName: helgenkeep4
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -972,8 +987,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 00964ae34967298428ce68c250b114e8
           m_SubObjectName: helgenkeep5
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -984,8 +999,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 645d94a1c8803fa4ab56eb4c9c1678aa
           m_SubObjectName: helgenkeep6
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -996,8 +1011,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: efaac02f7233f1a46b329adaf3561a82
           m_SubObjectName: helgenkeep7
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1008,8 +1023,8 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 7ae89b6f8c3126d4fa85dd1e398805c6
           m_SubObjectName: vignet
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 0.5
@@ -1021,8 +1036,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: efaac02f7233f1a46b329adaf3561a82
           m_SubObjectName: helgenkeep7
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -1033,8 +1048,8 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
           m_SubObjectName: emptypng
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 0.5
@@ -1046,8 +1061,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: d9542d60f355d9848ae736f54d73121d
           m_SubObjectName: helgenkeep8
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -1058,8 +1073,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 5a97278dbbb3ce24e9b633390135144c
           m_SubObjectName: escapekeep
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
