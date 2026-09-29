@@ -12,28 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
   m_Name: ForswornArcher
   m_EditorClassIdentifier: 
-  scriptedAttacks: []
-  scriptedFlavorTexts: []
-  randomAttacks: []
-  randomFlavorTexts: []
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 08528a87888f7144484c8d52d0f53743, type: 2}
+  scriptedFlavorTexts:
+  - The dastardly Forsworn archer fires arrows imbued with druidic wrath toward Sayori!
+  randomAttacks:
+  - {fileID: 11400000, guid: 74f6ce3cd1f268641a5f229c32651290, type: 2}
+  - {fileID: 11400000, guid: ad0531223b3e97b42b8eafeae0da5bd2, type: 2}
+  - {fileID: 11400000, guid: 8151829b802938c4ab5d22038dbd52a6, type: 2}
+  - {fileID: 11400000, guid: 661d7368c6c35a544b6c9bff099ea170, type: 2}
+  randomFlavorTexts:
+  - The Forsworn archer readies another volley-!
+  - One has to wonder how deep are their quivers...
+  - The Forsworn archer's left eye turns blue...?
+  - The Forsworn archer's right eye turns orange?!? (Since when was that a thing!)
   maxHealth: 75
   visualInformation:
   - {fileID: 21300000, guid: 198982a409a10194090c10b3e83cddd3, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
-  defeatText: With a blow from Sayori's mace, the life leaves the eyes of the Forsworn
-    Archer.
+  defeatText: With a final blow from Sayori's mace, the life leaves the eyes of the
+    Forsworn Archer.
   nameText: Forsworn Archer
   blurbText: This lad took some serious fall damage! And brain damage, too :(
   hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
   uiParticleObjFab:
     m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   hitParticleObjFab:
     m_AssetGUID: 5c1c468a2868c7d4fb619d948854ab27
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0

@@ -546,8 +546,8 @@ MonoBehaviour:
   myself:
     m_AssetGUID: 5eb94b297ca7f9f42a8b9306790476d3
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   references:
     version: 2
@@ -558,8 +558,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 9c2898f5b3dca9e428785c89cf80eefc
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -572,8 +572,8 @@ MonoBehaviour:
         sfxToStop:
           m_AssetGUID: 
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         is3D: 0
         fadeOut: 1
@@ -583,8 +583,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 86a78e702bb6fbc42b126503c54b49ec
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -597,8 +597,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 9cfd126c92a35f7409a5b3029cc62ac6
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -611,8 +611,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 0870b8a3e6ad3fb4e81793692c20e863
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -625,8 +625,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: a9cf81a1e296f0341b286752e451c7ad
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -1498,6 +1498,7 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: be0b9843b2833c34981c472ade54c4e9, type: 2}
+        autoSaveName: '!AutoSave_Fight'
     - rid: 9079474842872840341
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1521,7 +1522,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - sighSpeak
+        - angry
         - 
     - rid: 9079474842872840350
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
@@ -1583,8 +1584,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 05a05d43ce3caf54bb66fa61b71eb60d
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 4
         setToSameTime: 0
@@ -1594,8 +1595,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
@@ -1605,8 +1606,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
@@ -1616,8 +1617,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
@@ -1627,8 +1628,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: e0a4c357a680b0d4599165228cde15d6
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
@@ -1638,8 +1639,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -1649,8 +1650,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
@@ -1660,8 +1661,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: fd9cd9df14ec8814b838aa2fd5ca067e
           m_SubObjectName: whiterun1
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -1672,8 +1673,8 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 1e39ac913664afa4e9b4756e5117b10d
           m_SubObjectName: blackpng
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         overlayText: 'Act 2 - Episode 2: Dungeons and Draugr and Dragons'
         fadeTime: 4
@@ -1685,8 +1686,8 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
           m_SubObjectName: emptypng
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 2
@@ -1698,8 +1699,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 6734c85e8bf5ccc4e838d74674ced594
           m_SubObjectName: whiterunoutskirts
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1710,8 +1711,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: a7d152b1a05e977468dcd4c2dc96a34c
           m_SubObjectName: whiterunroadsigns
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1722,8 +1723,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: ebb4690dbc9ed1f4d80c00cc512fb9c9
           m_SubObjectName: barrowapproach
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1734,8 +1735,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: db390d4515f03c34280d534f4297e44a
           m_SubObjectName: barrowbandit
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1746,8 +1747,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: ef92f858974b29c479bedbac28ae0b50
           m_SubObjectName: barrowlocation
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1758,8 +1759,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 105b225be0690da4dbf9f274def02502
           m_SubObjectName: barrowentrance
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3

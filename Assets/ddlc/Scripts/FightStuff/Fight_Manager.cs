@@ -303,11 +303,12 @@ namespace RenCSharp.Combat
         private IEnumerator EnemyAttackTimelineRoutine(EnemyAttackTimelineData eatd)
         {
             float t = 0;
-            int frame = 0;
+            int frame;
             List<Base_Projectile> projectiles = eatd.ProjectilesThatSpawn.ToList();
             SortedDictionary<int, ProjectileFrameData> keyFrames = eatd.GetTimelineInformation;
+            int[] keys = keyFrames.Keys.ToArray();
             int loops = 0;
-
+          
             while (t <= (eatd.AttackDuration * eatd.Loops) && fighting)
             {
                 t += Time.deltaTime;
@@ -315,6 +316,12 @@ namespace RenCSharp.Combat
                 frame = Mathf.FloorToInt(t * 60f) - Mathf.FloorToInt(eatd.AttackDuration * 60f * loops); //since timelines are defaulted to 60fps
                 if (keyFrames.ContainsKey(frame))
                 {
+                    frame = eatd.ProjectileSpawnPositionMethod switch
+                    {
+                        AttackSpawnSelectionMethod.TrueRandom => keys[Random.Range(0, keyFrames.Count)],
+                        AttackSpawnSelectionMethod.NoRepeatRandom => keys[RandomHelper.NoRepeatRoll("attackSpawnRoll", keyFrames.Count)],
+                        _ => frame
+                    };
                     foreach(ProjectileSnub ps in keyFrames[frame].ProjectilesSpawnedAtFrame)
                     {
                         Base_Projectile temp = Object_Pooling.Spawn(projectiles[ps.ProjectileIndex].gameObject, Vector3.zero, Quaternion.identity).GetComponent<Base_Projectile>();

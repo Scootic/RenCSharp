@@ -1,12 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
-using System.Reflection;
 using UnityEditor;
-using DMTimeArea;
-using TimeUtility = DMTimeArea.TimeUtility;
-
 namespace DMTimeArea
 {
     public abstract class SimpleTimeArea : EditorWindow
@@ -86,7 +80,7 @@ namespace DMTimeArea
         {
             get
             {
-                float width = base.position.width - sequencerHeaderWidth;
+                float width = position.width - sequencerHeaderWidth;
                 return new Rect(_rectTimeAreaContent.x, _rectTimeAreaContent.y, Mathf.Max(width, kTimeAreaMinWidth), _rectTimeAreaContent.height);
             }
         }
@@ -110,12 +104,12 @@ namespace DMTimeArea
         public int RunningFrame
         {
             get
-            {
-                return TimeUtility.ToFrames(this.RunningTime, (double)this._frameRate);
+            {   
+                return TimeUtility.ToFrames(RunningTime, _frameRate);
             }
             set
             {
-                this.RunningTime = (float)TimeUtility.FromFrames(Mathf.Max(0, value), (double)this._frameRate);
+                RunningTime = (float)TimeUtility.FromFrames(Mathf.Max(0, value), _frameRate);
             }
         }
 
@@ -123,7 +117,7 @@ namespace DMTimeArea
         {
             if (!IsLockedMoveFrame)
             {
-                this.RunningFrame--;
+                RunningFrame--;
             }
         }
 
@@ -131,7 +125,7 @@ namespace DMTimeArea
         {
             if (!IsLockedMoveFrame)
             {
-                this.RunningFrame++;
+                RunningFrame++;
             }
         }
 
@@ -139,11 +133,11 @@ namespace DMTimeArea
         {
             get
             {
-                return TimeUtility.ToFrames(this.CutOffTime, (double)this._frameRate);
+                return TimeUtility.ToFrames(CutOffTime, _frameRate);
             }
             set
             {
-                this.CutOffTime = (float)TimeUtility.FromFrames(Mathf.Max(0, value), (double)this._frameRate);
+                CutOffTime = (float)TimeUtility.FromFrames(Mathf.Max(0, value), _frameRate);
             }
         }
 
@@ -151,7 +145,7 @@ namespace DMTimeArea
         {
             get
             {
-                return this._simpleTimeArea.scale;
+                return _simpleTimeArea.scale;
             }
         }
 
@@ -159,7 +153,7 @@ namespace DMTimeArea
         {
             get
             {
-                return this._simpleTimeArea.translation;
+                return _simpleTimeArea.translation;
             }
         }
 
@@ -178,10 +172,10 @@ namespace DMTimeArea
             GUI.Box(_rectTimeAreaContent, GUIContent.none, new GUIStyle("CurveEditorBackground"));
             // EditorGUI.DrawRect(_rectTimeAreaContent, new Color(0.16f, 0.16f, 0.16f, 1f));
             // EditorGUI.DrawRect(_rectTimeAreaContent, DMTimeLineStyles)
-            _simpleTimeArea.mRect = this._timeAreaBounds;
+            _simpleTimeArea.mRect = _timeAreaBounds;
             _simpleTimeArea.BeginViewGUI();
             _simpleTimeArea.SetTickMarkerRanges();
-            _simpleTimeArea.DrawMajorTicks(this._rectTimeAreaTotal, (float)_frameRate);
+            _simpleTimeArea.DrawMajorTicks(_rectTimeAreaTotal, _frameRate);
             // DrawVerticalTickLine();
             _simpleTimeArea.EndViewGUI();
 
@@ -198,17 +192,17 @@ namespace DMTimeArea
             string text;
             if (_simpleTimeArea != null)
             {
-                double time01 = setBeginTime ? this.RunningTime : this.CutOffTime;
-                text = this.TimeAsString(time01, "F2");
-                bool flag = TimeUtility.OnFrameBoundary(time01, (double)this._frameRate);
-                if (this._timeInFrames)
+                double time01 = setBeginTime ? RunningTime : CutOffTime;
+                text = TimeAsString(time01, "F2");
+                bool flag = TimeUtility.OnFrameBoundary(time01, _frameRate);
+                if (_timeInFrames)
                 {
                     if (flag)
                     {
                         text = setBeginTime ? RunningFrame.ToString() : CutOffFrame.ToString();
                     }
                     else
-                        text = TimeUtility.ToExactFrames(time01, (double)this._frameRate).ToString("F2");
+                        text = TimeUtility.ToExactFrames(time01, _frameRate).ToString("F2");
                 }
             }
             else
@@ -225,8 +219,8 @@ namespace DMTimeArea
                 if (_timeInFrames)
                 {
                     int frame = setBeginTime ? RunningFrame : CutOffFrame;
-                    double d = 0.0;
-                    if (double.TryParse(text2, out d))
+                    
+                    if (double.TryParse(text2, out double d))
                         frame = Math.Max(0, (int)Math.Floor(d));
 
                     if (setBeginTime)
@@ -236,7 +230,7 @@ namespace DMTimeArea
                 }
                 else
                 {
-                    double num = TimeUtility.ParseTimeCode(text2, (double)this._frameRate, -1.0);
+                    double num = TimeUtility.ParseTimeCode(text2, _frameRate, -1.0);
                     if (num > 0.0)
                     {
                         if (setBeginTime)
@@ -251,27 +245,27 @@ namespace DMTimeArea
         public float TimeToTimeAreaPixel(double time)
         {
             float num = (float)time;
-            num *= this.timeAreaScale.x;
-            return num + (this.timeAreaTranslation.x + this.sequencerHeaderWidth);
+            num *= timeAreaScale.x;
+            return num + (timeAreaTranslation.x + sequencerHeaderWidth);
         }
 
         public float TimeToScreenSpacePixel(double time)
         {
             float num = (float)time;
-            num *= this.timeAreaScale.x;
-            return num + this.timeAreaTranslation.x;
+            num *= timeAreaScale.x;
+            return num + timeAreaTranslation.x;
         }
 
         public string TimeAsString(double timeValue, string format = "F2")
         {
             string result;
-            if (this._timeInFrames)
+            if (_timeInFrames)
             {
-                result = TimeUtility.TimeAsFrames(timeValue, (double)this._frameRate, format);
+                result = TimeUtility.TimeAsFrames(timeValue, (double)_frameRate, format);
             }
             else
             {
-                result = TimeUtility.TimeAsTimeCode(timeValue, (double)this._frameRate, format);
+                result = TimeUtility.TimeAsTimeCode(timeValue, (double)_frameRate, format);
             }
             return result;
         }
@@ -303,20 +297,20 @@ namespace DMTimeArea
 
         public float TimeAreaPixelToTime(float pixel)
         {
-            return this.PixelToTime(pixel);
+            return PixelToTime(pixel);
         }
 
         public double GetSnappedTimeAtMousePosition(Vector2 mousePos)
         {
-            return this.SnapToFrameIfRequired((double)this.ScreenSpacePixelToTimeAreaTime(mousePos.x));
+            return SnapToFrameIfRequired((double)ScreenSpacePixelToTimeAreaTime(mousePos.x));
         }
 
         public double SnapToFrameIfRequired(double time)
         {
             double result;
-            if (this._frameSnap)
+            if (_frameSnap)
             {
-                result = TimeUtility.FromFrames(TimeUtility.ToFrames(time, (double)this._frameRate), (double)this._frameRate);
+                result = TimeUtility.FromFrames(TimeUtility.ToFrames(time, _frameRate), _frameRate);
             }
             else
             {
@@ -327,17 +321,17 @@ namespace DMTimeArea
 
         public float ScreenSpacePixelToTimeAreaTime(float p)
         {
-            p -= this._timeAreaBounds.x;
-            return this.TrackSpacePixelToTimeAreaTime(p);
+            p -= _timeAreaBounds.x;
+            return TrackSpacePixelToTimeAreaTime(p);
         }
 
         public float TrackSpacePixelToTimeAreaTime(float p)
         {
-            p -= this.timeAreaTranslation.x;
+            p -= timeAreaTranslation.x;
             float result;
-            if (this.timeAreaScale.x > 0f)
+            if (timeAreaScale.x > 0f)
             {
-                result = p / this.timeAreaScale.x;
+                result = p / timeAreaScale.x;
             }
             else
             {
@@ -357,7 +351,7 @@ namespace DMTimeArea
             if (_simpleTimeArea == null)
             {
                 // create new timeArea
-                this._simpleTimeArea = new TimeArea(false)
+                _simpleTimeArea = new TimeArea(false)
                 {
                     hRangeLocked = hLocked,
                     vRangeLocked = vLocked,
@@ -370,12 +364,12 @@ namespace DMTimeArea
                     vRangeMax = float.PositiveInfinity,
                     mRect = _timeAreaBounds,
                 };
-                this._simpleTimeArea.hTicks.SetTickModulosForFrameRate(this._frameRate);
+                _simpleTimeArea.hTicks.SetTickModulosForFrameRate(this._frameRate);
                 // show time range begin seconds to end seconds(xxs - xxs)
-                this._simpleTimeArea.SetShownHRange(-1, 5f);
-                this._simpleTimeArea.SetShownVRange(0, 100f);
+                _simpleTimeArea.SetShownHRange(-1, 5f);
+                _simpleTimeArea.SetShownVRange(0, 100f);
 
-                Debug.Log("------>## Init Simple Time Area ##");
+                //Debug.Log("------>## Init Simple Time Area ##");
             }
         }
 

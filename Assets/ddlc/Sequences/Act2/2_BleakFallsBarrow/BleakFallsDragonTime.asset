@@ -28,11 +28,12 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: 'Well, you''ve just been telling me: "yeah" each time.'
     ScreenActions:
-    - rid: 9079474951791575247
+    - rid: 7219386302268178492
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: ... Natsuki...
     ScreenActions:
     - rid: 9079474951791575248
+    - rid: 7219386302268178493
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: That's because I think he's going to be just fine!
     ScreenActions:
@@ -190,7 +191,7 @@ MonoBehaviour:
       pick on me for being small...
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-    dialog: And if even my very own father is total piece of <NoiseText=3,1>shit</NoiseText>,
+    dialog: And if even my very own father is a total piece of <NoiseText=3,1>shit</NoiseText>,
       why would I ever want to talk to one or be friends with one...!
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
@@ -267,7 +268,7 @@ MonoBehaviour:
     dialog: Who's not beating the "liking {mc}" allegations now, huh?
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-    dialog: Look, he's like a solid 7/10.
+    dialog: Look, he's like a solid 6/10.
     ScreenActions:
     - rid: 9079474951791575291
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
@@ -882,8 +883,8 @@ MonoBehaviour:
   myself:
     m_AssetGUID: 0509fc1364743134c83d8590d8f07a72
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   references:
     version: 2
@@ -1110,8 +1111,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: dfabdf9e321262b478dd7cb54a783384
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -1124,14 +1125,32 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 1c07d0ab4ded6cc4a9c6cd95a2a69e8e
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
         loop: 0
         stopOnScreenProgress: 0
         loopDuration: 1
+    - rid: 7219386302268178492
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - closedEyeFrustratedSpeak
+        - 
+    - rid: 7219386302268178493
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - scowl
+        - 
     - rid: 7856103115750375505
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1179,15 +1198,6 @@ MonoBehaviour:
         - skySmug
         - concernBlush
         - 
-    - rid: 9079474951791575247
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - smile
-        - 
     - rid: 9079474951791575248
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1196,6 +1206,7 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - grinSweat
+        - 
     - rid: 9079474951791575249
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1204,6 +1215,7 @@ MonoBehaviour:
         - skyDown
         - skyUp
         - sternSpeak
+        - 
     - rid: 9079474951791575250
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1948,6 +1960,7 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: 4b1ec60d7c132024492b3657e3dddc81, type: 2}
+        autoSaveName: '!AutoSave_Fight'
     - rid: 9079475045585125473
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2171,6 +2184,7 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: 1c1a167480658f04192eeba07a78b0f4, type: 2}
+        autoSaveName: '!AutoSave_Fight'
     - rid: 9079475045585125498
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2721,8 +2735,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 63856e1ac10661c41a9339bc19594687
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
@@ -2732,8 +2746,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2743,8 +2757,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: f8519e3a69adce64c895baee5f5fda99
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
@@ -2754,8 +2768,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2765,8 +2779,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 242eec1aaa8c1fd41832783905b45d54
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2776,8 +2790,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: f8519e3a69adce64c895baee5f5fda99
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2787,8 +2801,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2798,8 +2812,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2809,8 +2823,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: ad5ac629158c6194990b78c283c19236
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
@@ -2820,8 +2834,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2831,8 +2845,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: e0a4c357a680b0d4599165228cde15d6
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2842,8 +2856,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 05a05d43ce3caf54bb66fa61b71eb60d
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
@@ -2853,8 +2867,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: e82cf2abd98ac45439666764a84213a5
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2864,8 +2878,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 0
         setToSameTime: 0
@@ -2875,8 +2889,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 07169a44e565b2e46a97c1e0d18c4997
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2886,8 +2900,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
@@ -2897,8 +2911,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 1570d8359ab50134c8ce556aa53ac25d
           m_SubObjectName: whiterun2
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2909,8 +2923,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 71ca2acef93a0314bae11db92197ec10
           m_SubObjectName: whiterundragonsreach
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2921,8 +2935,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 61ff70e0032a7244483ec877c86c1555
           m_SubObjectName: whiterunwizard
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2933,8 +2947,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 31669af4b987f89408ac769e3a1f9bb7
           m_SubObjectName: whiteruncommand
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2945,8 +2959,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 1570d8359ab50134c8ce556aa53ac25d
           m_SubObjectName: whiterun2
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2957,8 +2971,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: fd9cd9df14ec8814b838aa2fd5ca067e
           m_SubObjectName: whiterun1
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2969,8 +2983,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 6734c85e8bf5ccc4e838d74674ced594
           m_SubObjectName: whiterunoutskirts
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2981,8 +2995,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: a841c2f9e4678d34ca1215f1d689e7d8
           m_SubObjectName: whiterunwatchtower
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2993,8 +3007,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: a7d152b1a05e977468dcd4c2dc96a34c
           m_SubObjectName: whiterunroadsigns
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -3005,8 +3019,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: a841c2f9e4678d34ca1215f1d689e7d8
           m_SubObjectName: whiterunwatchtower
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -3017,8 +3031,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: e41fd2b68ceaaef49b7469e68089cffb
           m_SubObjectName: whiterundeaddragonwatchtower
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 1

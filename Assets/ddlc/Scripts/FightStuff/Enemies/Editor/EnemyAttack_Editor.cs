@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using RenCSharp.Combat.Interfaces;
 using RenCSharp.EXPERIMENTAL;
 using System.Collections.Generic;
 using UnityEditor;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace RenCSharp.Combat.Enemies.Editor
 {
     [CustomEditor(typeof(EnemyAttackTimelineData))]
-    public class EnemyAttackTimelineData_Editor : UnityEditor.Editor
+    public class EnemyAttackTimelineData_Editor : UnityEditor.Editor, IEditorValidate
     {
         private EnemyAttackTimelineData _me;
 
@@ -16,7 +17,7 @@ namespace RenCSharp.Combat.Enemies.Editor
         private void OnEnable()
         {
             _me = target as EnemyAttackTimelineData;
-            SerializedObject so = new SerializedObject(_me);
+            SerializedObject so = new(_me);
             arenaDimensionsProperty = so.FindProperty("arenaDimensions");
             controlTypeProperty = so.FindProperty("controlType");
             attackDurationProperty = so.FindProperty("attackDuration");
@@ -26,6 +27,28 @@ namespace RenCSharp.Combat.Enemies.Editor
             keyframesProperty = so.FindProperty("keyframes");
             frameDataProperty = so.FindProperty("frameData");
             loopsProperty = so.FindProperty("loops");
+        }
+
+        public void OnEditorValidate()
+        {
+            serializedObject.Update();
+            serializedObject.ApplyModifiedProperties();
+            EditorUtility.SetDirty(_me);
+                                     
+            //genuinely so insulted i need to do all of this |
+            //to repaint the stinker                         v
+            SerializedObject so = new(_me);
+            arenaDimensionsProperty = so.FindProperty("arenaDimensions");
+            controlTypeProperty = so.FindProperty("controlType");
+            attackDurationProperty = so.FindProperty("attackDuration");
+            projectileSpawnMethodProperty = so.FindProperty("projectileSpawnPositionMethod");
+            projectileIndexMethodProperty = so.FindProperty("projectileIndexMethod");
+            projectilesThatSpawnProperty = so.FindProperty("projectilesThatSpawn");
+            keyframesProperty = so.FindProperty("keyframes");
+            frameDataProperty = so.FindProperty("frameData");
+            loopsProperty = so.FindProperty("loops");
+
+            Repaint();
         }
 
         public override void OnInspectorGUI()

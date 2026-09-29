@@ -485,8 +485,8 @@ MonoBehaviour:
     dialog: (Now, let's see if I can't use the extra power from that soul to try
       and wrap my head around the fire breath shout...)
     ScreenActions:
-    - rid: 8164893214562320582
-    - rid: 8164893214562320583
+    - rid: 7219386302268178543
+    - rid: 7219386302268178544
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: '{mc}, wasn''t there a bunch of gold in the last dragon we fought?'
     ScreenActions:
@@ -523,20 +523,38 @@ MonoBehaviour:
   myself:
     m_AssetGUID: 5207222008a9bb345bc3f7ed80b259e7
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   references:
     version: 2
     RefIds:
+    - rid: 7219386302268178543
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - lookAwayMelancholy
+        - 
+    - rid: 7219386302268178544
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - shockSurprise
+        - 
     - rid: 8164893192264351879
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         songAsset:
           m_AssetGUID: feeada3eec1077e46ac720749659a790
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
@@ -546,9 +564,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: f7c1f6d42243309489f6cac3f1caf2fb
           m_SubObjectName: tomarkarth1
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -831,9 +849,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 7aba60206c08b574ca1ba030159dc401
           m_SubObjectName: tomarkarth2
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -844,9 +862,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 3075eeedd65e1b84f85c0a5822ad3355
           m_SubObjectName: tomarkarth3
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -857,9 +875,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 4c585e46d94478d40808872682ed78c0
           m_SubObjectName: tomarkarth4
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -942,9 +960,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 22d2e4f9d4ed9dc4487da42f83b8d73e
           m_SubObjectName: tomarkarth5
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -973,8 +991,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -1038,8 +1056,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 0af9dd82a7bc5994990bd52cb54e6a11
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -1569,8 +1587,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: a5e67aa0a36f9a74a8236a126620bcbe
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 1
@@ -1661,8 +1679,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 270816adc61064a4ea84976685025c76
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 1
@@ -1906,8 +1924,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: ad5ac629158c6194990b78c283c19236
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -1917,8 +1935,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: dfabdf9e321262b478dd7cb54a783384
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: -1, y: 0, z: 0}
         baseVolume: 0.7
@@ -1967,8 +1985,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: dfabdf9e321262b478dd7cb54a783384
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         position: {x: -1, y: 0, z: 0}
         baseVolume: 1
@@ -2233,8 +2251,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -2501,8 +2519,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 468aea67a488b4644baaa92bbdf4118c
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -2516,8 +2534,8 @@ MonoBehaviour:
         fellaToSpawnPrefab:
           m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         particlesName: particles
         placeToSpawnName: Overlay
@@ -2526,8 +2544,8 @@ MonoBehaviour:
         overridingParticles:
           m_AssetGUID: 966bbe4754a6b8f47b107686d02d9918
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
     - rid: 8164893214562320569
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
@@ -2734,6 +2752,7 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: 180d0f3b69dab1347a0affd3fee0d74d, type: 2}
+        autoSaveName: '!AutoSave_Fight'
     - rid: 8164893214562320579
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2749,32 +2768,14 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 22d2e4f9d4ed9dc4487da42f83b8d73e
           m_SubObjectName: tomarkarth5
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 1
         fadeDuration: 1
     - rid: 8164893214562320581
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        visualSpriteIndexes:
-        - 
-        - 
-        - lookAwayMelancholy
-        - 
-    - rid: 8164893214562320582
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-        visualSpriteIndexes:
-        - 
-        - 
-        - closeEyeSad
-        - 
-    - rid: 8164893214562320583
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
@@ -2800,8 +2801,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2811,8 +2812,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: e82cf2abd98ac45439666764a84213a5
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -2904,8 +2905,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0

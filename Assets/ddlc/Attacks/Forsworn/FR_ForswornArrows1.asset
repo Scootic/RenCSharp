@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1f9f3aa6e6a5af4d88f6a38c71a9dbe, type: 3}
-  m_Name: ForswornArrows1
+  m_Name: FR_ForswornArrows1
   m_EditorClassIdentifier: 
   arenaDimensions: {x: 500, y: 500}
   controlType:
     rid: 7219386282008903680
-  attackDuration: 5
+  attackDuration: 8
   secondsPerProjectileSpawn: 0.5
   projectilesPerSpawn: 1
   projectilesThatSpawn:
@@ -25,13 +25,33 @@ MonoBehaviour:
   indexes: 
   projectileSpawnPositionMethod: 1
   projectileIndexMethod: 1
-  keyframes: 00000000
+  keyframes: 000000001e0000003c000000d2000000f00000000e010000
   frameData:
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: -720, y: 368, z: 0}
       InitialDirection: {x: 0.9284767, y: -0.37139067, z: 0}
       ProjectileIndex: 0
-  loops: 1
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -744, y: 40, z: 0}
+      InitialDirection: {x: 0.9887671, y: -0.14946479, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -240, y: -400, z: 0}
+      InitialDirection: {x: 0.033878844, y: 0.99942595, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 516, y: 396, z: 0}
+      InitialDirection: {x: -0.83205026, y: -0.5547002, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 648, y: -396, z: 0}
+      InitialDirection: {x: -0.8360479, y: 0.54865646, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 0, y: -516, z: 0}
+      InitialDirection: {x: 0, y: 1, z: 0}
+      ProjectileIndex: 0
+  loops: 2
   debug: 0
   references:
     version: 2

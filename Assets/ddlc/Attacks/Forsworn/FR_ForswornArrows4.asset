@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f9f3aa6e6a5af4d88f6a38c71a9dbe, type: 3}
+  m_Name: FR_ForswornArrows4
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 450, y: 450}
+  controlType:
+    rid: 7219386302268178535
+  attackDuration: 7
+  secondsPerProjectileSpawn: 0.5
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 8204135625514222407, guid: bf274f217166ab542b42922c8283faa1, type: 3}
+  spawnPoints: []
+  initialDirections: []
+  indexes: 
+  projectileSpawnPositionMethod: 1
+  projectileIndexMethod: 1
+  keyframes: 000000005a000000b40000000e010000
+  frameData:
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 700, y: 12, z: 0}
+      InitialDirection: {x: -0.9994801, y: 0.032241292, z: 0}
+      ProjectileIndex: 0
+    - SpawnPosition: {x: -660, y: 384, z: 0}
+      InitialDirection: {x: 0.873568, y: -0.48670217, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -192, y: 504, z: 0}
+      InitialDirection: {x: -0.12033137, y: -0.99273384, z: 0}
+      ProjectileIndex: 0
+    - SpawnPosition: {x: -272, y: -460, z: 0}
+      InitialDirection: {x: 0.4940094, y: 0.8694566, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 520, y: -432, z: 0}
+      InitialDirection: {x: -0.77937573, y: 0.62655693, z: 0}
+      ProjectileIndex: 0
+    - SpawnPosition: {x: 404, y: 460, z: 0}
+      InitialDirection: {x: -0.63857245, y: -0.7695617, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -564, y: -380, z: 0}
+      InitialDirection: {x: 0.52326304, y: 0.8521713, z: 0}
+      ProjectileIndex: 0
+  loops: 1
+  debug: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 7219386302268178535
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500
