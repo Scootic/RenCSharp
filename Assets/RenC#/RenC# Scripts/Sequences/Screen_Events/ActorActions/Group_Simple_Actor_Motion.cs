@@ -41,7 +41,7 @@ namespace RenCSharp.Sequences
 
             for(int i = 0; i < actorObjs.Count; i++)
             {
-                ogPos[i] = actorObjs[i].transform.position;
+                ogPos[i] = actorObjs[i].transform.localPosition;
                 desPos[i] = ogPos[i] + motionOffset;
             }
 
@@ -62,7 +62,7 @@ namespace RenCSharp.Sequences
 
                     for (int i = 0; i < actorObjs.Count; i++)
                     {
-                        actorObjs[i].transform.position = CurveLerp(ogPos[i], desPos[i], eval);
+                        actorObjs[i].transform.localPosition = CurveLerp(ogPos[i], desPos[i], eval);
                     }
 
                     yield return null;
@@ -70,7 +70,7 @@ namespace RenCSharp.Sequences
 
                 for (int i = 0; i < actorObjs.Count; i++)
                 {
-                    actorObjs[i].transform.position = CurveLerp(ogPos[i], desPos[i], 1);
+                    actorObjs[i].transform.localPosition = CurveLerp(ogPos[i], desPos[i], 1);
                 }
             }
             else
@@ -82,7 +82,7 @@ namespace RenCSharp.Sequences
 
                     for (int i = 0; i < actorObjs.Count; i++)
                     {
-                        actorObjs[i].transform.position = CurveLerp(ogPos[i], desPos[i], eval);
+                        actorObjs[i].transform.localPosition = CurveLerp(ogPos[i], desPos[i], eval);
                     }
 
                     if (t >= motionDuration) dir = -1;
@@ -93,7 +93,7 @@ namespace RenCSharp.Sequences
 
                 for (int i = 0; i < actorObjs.Count; i++)
                 {
-                    actorObjs[i].transform.position = CurveLerp(ogPos[i], desPos[i], 0);
+                    actorObjs[i].transform.localPosition = CurveLerp(ogPos[i], desPos[i], 0);
                 }
             }
         }
@@ -103,7 +103,7 @@ namespace RenCSharp.Sequences
             float x = Mathf.LerpUnclamped(a.x, b.x, xCurve.Evaluate(eval));
             float y = Mathf.LerpUnclamped(a.y, b.y, yCurve.Evaluate(eval));
             float z = Mathf.LerpUnclamped(a.z, b.z, zCurve.Evaluate(eval));
-            Vector3 pos = new Vector3(x, y, z);
+            Vector3 pos = new(x, y, z);
             return pos;
         }
 
@@ -114,8 +114,9 @@ namespace RenCSharp.Sequences
             for(int i = 0; i < actorObjs.Count; i++)
             {
                 float eval = loopOnScreen ? 0 : 1;
-                if (actorObjs[i] != null) actorObjs[i].transform.position = CurveLerp(ogPos[i], desPos[i],eval);
+                if (actorObjs[i] != null) actorObjs[i].transform.localPosition = CurveLerp(ogPos[i], desPos[i],eval);
             }
+            Sequence_Manager.SM.StopCoroutine(motion);
         }
 
         public override string ToString()

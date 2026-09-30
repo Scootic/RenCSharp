@@ -27,7 +27,7 @@ namespace RenCSharp.Sequences
         {
             if (Object_Factory.TryGetObject(target.name, out actorObj))
             {
-                ogPos = actorObj.transform.position;
+                ogPos = actorObj.transform.localPosition;
                 desPos = ogPos + localMotionOffset;
                 t = 0;
                 valid = true;
@@ -48,10 +48,10 @@ namespace RenCSharp.Sequences
                 {
                     t += Time.deltaTime;
                     eval = t / motionDuration;
-                    actorObj.transform.position = SetPosition(eval);
+                    actorObj.transform.localPosition = SetPosition(eval);
                     yield return null;
                 }
-                if (actorObj != null) actorObj.transform.position = SetPosition(1f);
+                if (actorObj != null) actorObj.transform.localPosition = SetPosition(1f);
             }
             else //if we DO loop, end at start of curve
             {
@@ -61,10 +61,10 @@ namespace RenCSharp.Sequences
                     eval = t / motionDuration;
                     if (t > motionDuration) dir = -1;
                     else if (t < 0) dir = 1;
-                    actorObj.transform.position = SetPosition(eval);
+                    actorObj.transform.localPosition = SetPosition(eval);
                     yield return null;
                 }
-                if(actorObj != null) actorObj.transform.position = SetPosition(0f);
+                if(actorObj != null) actorObj.transform.localPosition = SetPosition(0f);
             }
         }
 
@@ -82,8 +82,8 @@ namespace RenCSharp.Sequences
         {
             valid = false;
             if (actorObj == null) return;
-            if (loopOnScreen) actorObj.transform.position = SetPosition(0f);
-            else actorObj.transform.position = SetPosition(1f);
+            if (loopOnScreen) actorObj.transform.localPosition = SetPosition(0f);
+            else actorObj.transform.localPosition = SetPosition(1f);
         }
 
         public override string ToString()

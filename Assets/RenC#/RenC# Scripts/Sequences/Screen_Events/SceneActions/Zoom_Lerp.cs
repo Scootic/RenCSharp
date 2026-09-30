@@ -21,9 +21,9 @@ namespace RenCSharp.Sequences
             float perc;
             float t = 0;
 
-            if (!Object_Factory.TryGetComponent("Actor Holder", out actors)) yield break;
+            if(!Object_Factory.TryGetComponent("Actor Holder", out actors)) yield break;
             if(!Object_Factory.TryGetComponent("Background", out bg)) yield break;
-            if (!Object_Factory.TryGetComponent("Overlay", out ov)) yield break;
+            if(!Object_Factory.TryGetComponent("Overlay", out ov)) yield break;
 
             Vector3 ogActPos = actors.localPosition;
             Vector3 ogBGPos = bg.localPosition;
@@ -35,7 +35,7 @@ namespace RenCSharp.Sequences
             while(t < zoomDuration)
             {
                 t += Time.deltaTime;
-                perc = curve.Evaluate(t);
+                perc = curve.Evaluate(t / zoomDuration);
 
                 actors.localPosition = Vector3.Lerp(ogActPos, toZoomOn.ScaledActorHolderPosition(), perc);
                 bg.localPosition = Vector3.Lerp(ogBGPos, toZoomOn.UnscaledPosition(), perc);
