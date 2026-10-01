@@ -43,6 +43,7 @@ namespace RenCSharp
         [SerializeField] private Transform actorCanvas;
         [SerializeField] private AnimationCurve actorScalingKurve;
         private Actor curActor;
+        private readonly GameObject actorHolderFab = new();
         [HideInInspector] public List<Actor> activeActors = new(); //nasty!
 
         [Header("Full Graphic Stuff")]
@@ -474,8 +475,7 @@ namespace RenCSharp
             //go through every single GO spawned by Object_Factory, and banish them.
             Object_Factory.ScrubDictionary();
             Audio_Manager.AM.StopAllSFX();
-
-            Transform actorHolder = Object_Factory.SpawnObject(new(), "Actor Holder", actorCanvas).transform;
+            Transform actorHolder = Object_Factory.SpawnObject(actorHolderFab, "Actor Holder", actorCanvas).transform;
             Animated_Image_Handler ov = Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Animated_Image_Handler>();
             Animated_Image_Handler bg = Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder).GetComponent<Animated_Image_Handler>();
 
