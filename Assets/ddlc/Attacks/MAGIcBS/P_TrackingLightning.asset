@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f9f3aa6e6a5af4d88f6a38c71a9dbe, type: 3}
+  m_Name: P_TrackingLightning
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 600, y: 350}
+  controlType:
+    rid: 6136300765852205139
+  attackDuration: 5
+  secondsPerProjectileSpawn: 0.5
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 711264266446520143, guid: 005e917f37fbb9b4b9485c35f4ab10cb, type: 3}
+  spawnPoints: []
+  initialDirections: []
+  indexes: 
+  projectileSpawnPositionMethod: 1
+  projectileIndexMethod: 1
+  keyframes: 000000003c00000078000000b4000000f0000000
+  frameData:
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -312, y: 308, z: 0}
+      InitialDirection: {x: 0.2948001, y: -0.95555896, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 76, y: 372, z: 0}
+      InitialDirection: {x: -0.36310738, y: -0.93174726, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 44, y: -124, z: 0}
+      InitialDirection: {x: -0.9999229, y: 0.012421402, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -52, y: 16, z: 0}
+      InitialDirection: {x: 0.87914854, y: -0.4765478, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 200, y: 324, z: 0}
+      InitialDirection: {x: 0.101327635, y: -0.99485314, z: 0}
+      ProjectileIndex: 0
+  loops: 2
+  debug: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 6136300765852205139
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500

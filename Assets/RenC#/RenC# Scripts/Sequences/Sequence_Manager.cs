@@ -42,8 +42,8 @@ namespace RenCSharp
         [Header("Actors")]
         [SerializeField] private Transform actorCanvas;
         [SerializeField] private AnimationCurve actorScalingKurve;
+        [SerializeField] private GameObject actorHolderFab;
         private Actor curActor;
-        private readonly GameObject actorHolderFab = new();
         [HideInInspector] public List<Actor> activeActors = new(); //nasty!
 
         [Header("Full Graphic Stuff")]
@@ -92,7 +92,7 @@ namespace RenCSharp
             }
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder); //profoundly sad
             Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder);//horrid
-            Object_Factory.SpawnObject(new(), "Actor Holder", actorCanvas);
+            Object_Factory.SpawnObject(actorHolderFab, "Actor Holder", actorCanvas);
             FlagToken ft = new();
             Flag_Manager.ReceiveFlagToken(ft.FlagTokenToDictionary(SaveLoad.LoadPersistentFlags()), true); //safety thing, make sure we have persistent flags
 
