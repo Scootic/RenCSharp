@@ -9,7 +9,7 @@ namespace RenCSharp.Combat.Enemies
         [SerializeField, Tooltip("How far the boomerang will go, along lifespan duration.")] private float distanceFromSpawn;
         [SerializeField] private float arcHeight = 300f;
         [SerializeField, Min(0), Tooltip("Should be the same as projectile lifetime, probably.")] private float travelDuration = 10;
-        [SerializeField] private AnimationCurve animateBezCurve;
+        [SerializeField] private AnimationCurve animateBezCurve = Animation_Helper.EaseOut;
         [SerializeField] private BezierCurveType curveType = BezierCurveType.SimpleArc;
 
         private float eval;
@@ -26,7 +26,7 @@ namespace RenCSharp.Combat.Enemies
         public override void MovementBehavior()
         {
             t += Time.deltaTime;
-            eval = t / travelDuration;
+            eval = animateBezCurve.Evaluate(t / travelDuration);
             Vector3 newPos = TrigHelper.BezPos(boundingPositions, eval);
             if (movementSetsRotation)
             {
@@ -41,13 +41,13 @@ namespace RenCSharp.Combat.Enemies
         {
             if (flipY)
             {
-                initialDirection = new Vector2(initialDirection.x, initialDirection.y * -1);
-                spawnPos = new Vector3(spawnPos.x, spawnPos.y * -1);
+                initialDirection = new(initialDirection.x, initialDirection.y * -1);
+                spawnPos = new(spawnPos.x, spawnPos.y * -1);
             }
 
-            Vector3 dir = new Vector3(initialDirection.x, initialDirection.y, 0);
+            Vector3 dir = new(initialDirection.x, initialDirection.y, 0);
             boundingPositions = BoundingBezierPositions.BoundingPositions4(curveType, spawnPos, dir, distanceFromSpawn, flipY ? arcHeight * -1 : arcHeight);
-            eval = time / travelDuration;
+            eval = animateBezCurve.Evaluate(time / travelDuration);
             Vector3 pos = TrigHelper.BezPos(boundingPositions, eval);
 
             if(eval == 0)
@@ -58,10 +58,10 @@ namespace RenCSharp.Combat.Enemies
             {
                 Vector3 olderPos = TrigHelper.BezPos(boundingPositions, eval - 0.01f);
                 Vector3 dirToFramePos = pos - olderPos;
-                dirAtTime = new Vector2(dirToFramePos.x, dirToFramePos.y);
+                dirAtTime = new(dirToFramePos.x, dirToFramePos.y);
             }
 
-            return new Vector2(pos.x, pos.y); 
+            return new(pos.x, pos.y); 
         }
 
         public override string ToString()

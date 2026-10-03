@@ -26,6 +26,7 @@ namespace RenCSharp.Combat.Enemies
         /// <param name="time">Seconds after spawn.</param>
         /// <param name="initialDirection">Initial movement direction</param>
         /// <param name="spawnPos">The position being assumed as spawn.</param>
+        /// <param name="dirAtTime">The estimated movement direction at the given time.</param>
         /// <param name="flipY">Decides whether or not to flip any y values involved (both initDir and spawnPos). Useful for
         /// GUI-type environments that for some god awful reason put origin in top-left of element instead of center</param>
         /// <returns></returns>
@@ -37,6 +38,9 @@ namespace RenCSharp.Combat.Enemies
         protected Transform projectileTransform;
         protected Rigidbody projectileRigidbody;
         protected Vector3 moveDir;
+
+        public float GetSpeed => speed;
+        public float SetSpeed { set => speed = value; }
 
         public override string ToString()
         {

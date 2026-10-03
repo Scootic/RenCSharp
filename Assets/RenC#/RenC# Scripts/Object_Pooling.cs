@@ -8,14 +8,11 @@ namespace RenCSharp
     /// </summary>
     public static class Object_Pooling
     {
-        private static Dictionary<GameObject, Pool> _thePools = new Dictionary<GameObject, Pool>();
+        private static Dictionary<GameObject, Pool> _thePools = new();
 
         public static GameObject Spawn(GameObject obj, Vector3 position, Quaternion rotation)
         {
-            if (_thePools == null)
-            {
-                _thePools = new Dictionary<GameObject, Pool>();
-            }
+            _thePools ??= new Dictionary<GameObject, Pool>();
 
             if (_thePools.ContainsKey(obj) == false)
             {
@@ -23,6 +20,18 @@ namespace RenCSharp
             }
 
             return _thePools[obj].Spawn(position, rotation);
+        }
+
+        public static T Spawn<T>(GameObject obj, Vector3 position, Quaternion rotation) where T : Component
+        {
+            _thePools ??= new Dictionary<GameObject, Pool>();
+
+            if (_thePools.ContainsKey(obj) == false)
+            {
+                _thePools.Add(obj, new Pool(obj));
+            }
+
+            return _thePools[obj].Spawn(position, rotation).GetComponent<T>();
         }
 
         public static IEnumerator DespawnOverTime(GameObject obj, float timeToDespawn, bool b = false)
@@ -50,12 +59,11 @@ namespace RenCSharp
 
         public static void Despawn(GameObject obj, bool b = false)
         {
-            IRemovableObject id = obj.GetComponent<IRemovableObject>();
-            if (id != null)
+            if (obj.TryGetComponent(out IRemovableObject id)) //?
             {
-                id.OnRemove(b);
+                id?.OnRemove(b); 
             }
-
+            
             if(obj.TryGetComponent(out PoolMember pm))
             {
                 pm.MyPool.Despawn(obj);
@@ -68,8 +76,8 @@ namespace RenCSharp
 
         private class Pool
         {
-            private GameObject _prefab;
-            private Stack<GameObject> _inactiveObjects;
+            private readonly GameObject _prefab;
+            private readonly Stack<GameObject> _inactiveObjects;
             private int _count = 0;
 
             public Pool(GameObject prefab)
@@ -100,8 +108,7 @@ namespace RenCSharp
                 }
 
                 obj.SetActive(true);
-                obj.transform.position = position;
-                obj.transform.rotation = rotation;
+                obj.transform.SetPositionAndRotation(position, rotation);
 
                 return obj;
             }

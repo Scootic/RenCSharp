@@ -285,12 +285,15 @@ namespace RenCSharp.Combat
                         Vector3 spawnPosition = ea.SpawnPoints[randI];
                         Vector3 ogProjDir = ea.InitialDirections[randI];
 
-                        Base_Projectile cur = Object_Pooling.Spawn(projToSpawn.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Base_Projectile>();
+                        Base_Projectile cur = Object_Pooling.Spawn<Base_Projectile>(projToSpawn.gameObject, Vector3.zero, Quaternion.identity);
                         cur.transform.SetParent(playerHolder);
                         cur.transform.localPosition = spawnPosition;
                         cur.UpdateMoveDir(ogProjDir, true);
-                        Vector3 soundSpawnPos = Camera.main.transform.position + cur.transform.localPosition.normalized;
-                        Audio_Manager.AM.Play3DSFX(cur.SpawnSound, soundSpawnPos, false, false, cur.SpawnSoundVol, 0.9f, 1.1f);
+                        if (cur.SpawnSound)
+                        {
+                            Vector3 soundSpawnPos = Camera.main.transform.position + cur.transform.localPosition.normalized;
+                            Audio_Manager.AM.Play3DSFX(cur.SpawnSound, soundSpawnPos, false, false, cur.SpawnSoundVol, 0.9f, 1.1f);
+                        }
                         AddProjectileToList(cur.gameObject);
                         StartCoroutine(Object_Pooling.DespawnOverTime(cur.gameObject, cur.Lifetime));
                     }
@@ -328,8 +331,11 @@ namespace RenCSharp.Combat
                         temp.transform.SetParent(playerHolder);
                         temp.transform.localPosition = ps.SpawnPosition;
                         temp.UpdateMoveDir(ps.InitialDirection, true);
-                        Vector3 spawnSoundPos = Camera.main.transform.position + temp.transform.localPosition.normalized;
-                        Audio_Manager.AM.Play3DSFX(temp.SpawnSound, spawnSoundPos, false, false, temp.SpawnSoundVol, 0.9f, 1.1f);
+                        if (temp.SpawnSound)
+                        {
+                            Vector3 spawnSoundPos = Camera.main.transform.position + temp.transform.localPosition.normalized;
+                            Audio_Manager.AM.Play3DSFX(temp.SpawnSound, spawnSoundPos, false, false, temp.SpawnSoundVol, 0.9f, 1.1f);
+                        }
                         AddProjectileToList(temp.gameObject);
                         StartCoroutine(Object_Pooling.DespawnOverTime(temp.gameObject, temp.Lifetime));
                     }

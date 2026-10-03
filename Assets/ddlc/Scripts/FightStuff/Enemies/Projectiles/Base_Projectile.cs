@@ -90,7 +90,7 @@ namespace RenCSharp.Combat.Enemies
             myRB = GetComponent<Rigidbody>();
             movementType.SetProjectileRigidbody = myRB;
             if (sprite == null) sprite = GetComponentInChildren<Image>();
-            if (despawnType == null) despawnType = new Empty_Projectile_DespawnType();
+            despawnType ??= new Empty_Projectile_DespawnType();
             spawnInRoutine = StartCoroutine(EnableTriggerOverTime());
             if (updateTypes.Count <= 0) return;
             foreach(Projectile_CustomUpdate pcu in updateTypes)
@@ -222,11 +222,6 @@ namespace RenCSharp.Combat.Enemies
             StopCoroutine(spawnInRoutine);
             transform.localScale = endScale;
             sprite.color = endC;
-        }
-
-        public void OnValidate()
-        {
-            
         }
     }
 }

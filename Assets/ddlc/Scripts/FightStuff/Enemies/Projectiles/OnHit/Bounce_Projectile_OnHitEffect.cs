@@ -25,15 +25,13 @@ namespace RenCSharp.Combat.Enemies
 
             if (projectileRigidbody != null) //assume if we give the rigidbody that the movement type is physics, which should scale
             {
-                reflection = Vector3.Reflect(projectileRigidbody.linearVelocity, thogcross);
-                reflection *= -1;
+                reflection = Vector3.Reflect(projectileRigidbody.linearVelocity, thogcross) * -1;
                 Vector3 updatedForce = TrigHelper.ClampVector(reflection * reboundStrength, maxSpeed);
                 projectile.UpdateMoveDir(updatedForce);
             }
             else //otherwise, assume we're just straightline or sumthing, update the movedir to another normalized value.
             {
-                reflection = Vector3.Reflect(projectile.GetMoveDir, thogcross);
-                reflection *= -1;
+                reflection = Vector3.Reflect(projectile.GetMoveDir, thogcross) * -1;
                 projectile.UpdateMoveDir(reflection);
             }
 
