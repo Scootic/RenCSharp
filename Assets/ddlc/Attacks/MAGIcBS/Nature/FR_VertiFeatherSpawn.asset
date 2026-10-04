@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f9f3aa6e6a5af4d88f6a38c71a9dbe, type: 3}
+  m_Name: FR_VertiFeatherSpawn
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 200, y: 600}
+  controlType:
+    rid: 6136300815367798851
+  attackDuration: 3.25
+  secondsPerProjectileSpawn: 0.5
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 8204135625514222407, guid: 42f1f547a4bf1d24e9a13299c46b5736, type: 3}
+  spawnPoints: []
+  initialDirections: []
+  indexes: 
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  keyframes: 0000000030000000530000007100000089000000a7000000
+  frameData:
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -588, y: 244, z: 0}
+      InitialDirection: {x: 1, y: -0, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 660, y: 164, z: 0}
+      InitialDirection: {x: -1, y: -0, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -568, y: 84, z: 0}
+      InitialDirection: {x: 1, y: -0, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 704, y: -16, z: 0}
+      InitialDirection: {x: -0.99980783, y: 0.019604074, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -596, y: -64, z: 0}
+      InitialDirection: {x: 0.9991085, y: -0.04221585, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 604, y: -244, z: 0}
+      InitialDirection: {x: -0.9993629, y: -0.03569153, z: 0}
+      ProjectileIndex: 0
+  loops: 3
+  debug: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 6136300815367798851
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500

@@ -475,9 +475,9 @@ namespace RenCSharp.Combat.Enemies.Editor
             }
 
             //declare things to be re-used during foreach loop. less gc?
-            Vector2 drawPos, flipYPos, offsetPos, rotatePoint, projOrigin, dirAtTime, rotateKnobPosition, newDir, newPos, moveKnobPosition;
+            Vector2 drawPos, flipYPos, offsetPos, projSpawnPos, rotatePoint, projOrigin, dirAtTime, rotateKnobPosition, newDir, newPos, moveKnobPosition;
             Vector3 flipYDir, normalizedFlipYDir;
-            Rect drawProjectile, rotateKnobRect, rotInteractRect, projectileDisplayTextureRect, moveKnobRect;
+            Rect drawProjectile, rotateKnobRect, rotInteractRect, projectileDisplayTextureRect, moveKnobRect, projSpawnRect;
             Texture projectileDisplayTexture;
 
             Beam_Projectile beamP;
@@ -495,10 +495,10 @@ namespace RenCSharp.Combat.Enemies.Editor
                 beamP = pk.ProjectileToSpawn as Beam_Projectile;
                 //don't render (or do math!!!) if before proj spawn! Or, you know, if the the projectile is null. Don't render nulls. It don't like it.
                 if (t > bp.Lifetime || t < 0) { GUI.matrix = ogMatrix; continue; }
-
+                //Arena 0,0 affected by projectile size delta.
                 projOrigin = new Vector2((visualPreviewHolderRect.width * 0.5f) - (bp.SizeDelta.x * previewRectScale * 0.5f), 
                     (visualPreviewHolderRect.height * 0.5f) - (bp.SizeDelta.y * previewRectScale * 0.5f));
-                drawPos = new Vector2(projOrigin.x + pk.SpawnPosition.x * previewRectScale, projOrigin.y + pk.SpawnPosition.y * previewRectScale);
+                //drawPos = new Vector2(projOrigin.x + pk.SpawnPosition.x * previewRectScale, projOrigin.y + pk.SpawnPosition.y * previewRectScale);
 
                 flipYPos = new Vector3(pk.SpawnPosition.x, pk.SpawnPosition.y * -1);
                 flipYDir = new Vector3(pk.InitialDirection.x, pk.InitialDirection.y * -1);
@@ -509,6 +509,7 @@ namespace RenCSharp.Combat.Enemies.Editor
                 dirAtTime = flipYDir;
 
                 cToDraw = projectileSpawnedFrame ? spawnC : afterSpawnC;
+                if(pk == curKnob) cToDraw = CoolColors.selectedOliveColor;
                 switch (bp.GetHitType)
                 {
                     case ProjectileHitType.StayStill:
@@ -519,12 +520,11 @@ namespace RenCSharp.Combat.Enemies.Editor
                         break;
                 }
                 //get the expected offset that comes from being a moving projectile at t seconds of its lifespan.
+                projSpawnPos = drawPos;
                 offsetPos = bp.GetMovementType.GetPositionAtTime(t, pk.InitialDirection, pk.SpawnPosition, out dirAtTime, true) * previewRectScale;
                 drawPos = new Vector2(projOrigin.x + offsetPos.x, projOrigin.y + offsetPos.y);
                 drawProjectile = new Rect(drawPos.x, drawPos.y, bp.SizeDelta.x * previewRectScale, bp.SizeDelta.y * previewRectScale);
-                
-                
-
+                projSpawnRect = new Rect(projSpawnPos.x, projSpawnPos.y, bp.SizeDelta.x * previewRectScale, bp.SizeDelta.y * previewRectScale);
                 //make sure the representation is rotated to match the initial direction (updating the rotation as it would in game probably isn't *that* important)
                 rotatePoint = drawPos + new Vector2(bp.SizeDelta.x * 0.5f * previewRectScale, bp.SizeDelta.y * 0.5f * previewRectScale);
                 GUIUtility.RotateAroundPivot(TrigHelper.GetDegreeFromVector(dirAtTime, 270), rotatePoint);
@@ -570,46 +570,42 @@ namespace RenCSharp.Combat.Enemies.Editor
 
                 GUI.matrix = ogMatrix;
 
-                if (pk == curKnob)
+                if (pk == curKnob) //gross second instance of if curKnob because of drawing timing
                 {
-                    //also draw some sort of rotation aid for knubs that are already present, please!
-                    cToDraw = CoolColors.selectedOliveColor;
-                    if (projectileSpawnedFrame)
-                    {
-                        normalizedFlipYDir = flipYDir.normalized;
-                        rotateKnobPosition = new Vector2(drawProjectile.center.x + (normalizedFlipYDir.x * previewRotateKnobSize) - previewRotateKnobSize * 0.5f,
-                            drawProjectile.center.y + (normalizedFlipYDir.y * previewRotateKnobSize) - previewRotateKnobSize * 0.5f);
-                        rotateKnobRect = new Rect(rotateKnobPosition.x, rotateKnobPosition.y,
-                            previewRotateKnobSize, previewRotateKnobSize);
-                        rotatePoint = rotateKnobPosition + new Vector2(previewRotateKnobSize * 0.5f, previewRotateKnobSize * 0.5f);
-                        rotInteractRect = new Rect(rotatePoint.x - previewRotateKnobSize * 0.75f, rotatePoint.y - previewRotateKnobSize * 0.75f, previewRotateKnobSize * 1.5f, previewRotateKnobSize * 1.5f);
-                        moveKnobPosition = new Vector2(drawProjectile.center.x - previewMoveKnobSize * 0.5f, drawProjectile.center.y - previewMoveKnobSize * 0.5f);
-                        moveKnobRect = new Rect(moveKnobPosition.x, moveKnobPosition.y, previewMoveKnobSize, previewMoveKnobSize);
+                    //also draw some sort of rotation aid for knubs that are already present, please
+                    normalizedFlipYDir = flipYDir.normalized;
+                    rotateKnobPosition = new Vector2(projSpawnRect.center.x + (normalizedFlipYDir.x * previewRotateKnobSize) - previewRotateKnobSize * 0.5f,
+                        projSpawnRect.center.y + (normalizedFlipYDir.y * previewRotateKnobSize) - previewRotateKnobSize * 0.5f);
+                    rotateKnobRect = new Rect(rotateKnobPosition.x, rotateKnobPosition.y,
+                        previewRotateKnobSize, previewRotateKnobSize);
+                    rotatePoint = rotateKnobPosition + new Vector2(previewRotateKnobSize * 0.5f, previewRotateKnobSize * 0.5f);
+                    rotInteractRect = new Rect(rotatePoint.x - previewRotateKnobSize * 0.75f, rotatePoint.y - previewRotateKnobSize * 0.75f, previewRotateKnobSize * 1.5f, previewRotateKnobSize * 1.5f);
+                    moveKnobPosition = new Vector2(projSpawnRect.center.x - previewMoveKnobSize * 0.5f, projSpawnRect.center.y - previewMoveKnobSize * 0.5f);
+                    moveKnobRect = new Rect(moveKnobPosition.x, moveKnobPosition.y, previewMoveKnobSize, previewMoveKnobSize);
                         //if we're draggin' on the knob (euphemism???)
-                        if (cur.type == EventType.MouseDrag)
+                    if (cur.type == EventType.MouseDrag)
+                    {
+                        if (rotInteractRect.Contains(cur.mousePosition))
                         {
-                            if (rotInteractRect.Contains(cur.mousePosition))
-                            {
-                                //normalize mousepos relative to the rotate knob pos, move pos, and apply to the initdir.
-                                newDir = (cur.mousePosition - drawProjectile.center);
-                                //flipY because x,y,z worldspace UI is a dream that we can never reach!
-                                newDir = new Vector2(newDir.x, newDir.y * -1).normalized;
-                                pk.InitialDirection = newDir;
-                                cur.Use();
-                            }
-                            else if (moveKnobRect.Contains(cur.mousePosition))
-                            {
-                                newPos = (new Vector2(cur.delta.x, cur.delta.y * -1) / previewRectScale) + new Vector2(pk.SpawnPosition.x, pk.SpawnPosition.y);
-                                pk.SpawnPosition = newPos;
-                                cur.Use();
-                            }
+                            //normalize mousepos relative to the rotate knob pos, move pos, and apply to the initdir.
+                            newDir = (cur.mousePosition - projSpawnRect.center);
+                            //flipY because x,y,z worldspace UI is a dream that we can never reach!
+                            newDir = new Vector2(newDir.x, newDir.y * -1).normalized;
+                            pk.InitialDirection = newDir;
+                            cur.Use();
                         }
-
-                        GUI.DrawTexture(moveKnobRect, projectileMovePreviewTexture, ScaleMode.StretchToFill, true, 0, Color.cyan, 0, 0);
-                        GUIUtility.RotateAroundPivot(TrigHelper.GetDegreeFromVector(normalizedFlipYDir, 270), rotatePoint);
-                        GUI.DrawTexture(rotateKnobRect, projectileRotatePreviewTexture, ScaleMode.StretchToFill, true, 0, Color.cyan, 0, 0);
-                        GUI.matrix = ogMatrix;
+                        else if (moveKnobRect.Contains(cur.mousePosition))
+                        {
+                            newPos = (new Vector2(cur.delta.x, cur.delta.y * -1) / previewRectScale) + new Vector2(pk.SpawnPosition.x, pk.SpawnPosition.y);
+                            pk.SpawnPosition = newPos;
+                            cur.Use();
+                        }
                     }
+
+                    GUI.DrawTexture(moveKnobRect, projectileMovePreviewTexture, ScaleMode.StretchToFill, true, 0, Color.cyan, 0, 0);
+                    GUIUtility.RotateAroundPivot(TrigHelper.GetDegreeFromVector(normalizedFlipYDir, 270), rotatePoint);
+                    GUI.DrawTexture(rotateKnobRect, projectileRotatePreviewTexture, ScaleMode.StretchToFill, true, 0, Color.magenta, 0, 0);
+                    GUI.matrix = ogMatrix;
                 }
 
                 GUI.color = ogGUIc;
