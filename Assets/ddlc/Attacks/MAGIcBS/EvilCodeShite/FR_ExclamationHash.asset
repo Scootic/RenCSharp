@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f9f3aa6e6a5af4d88f6a38c71a9dbe, type: 3}
+  m_Name: FR_ExclamationHash
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 600, y: 600}
+  controlType:
+    rid: 6136300878837055544
+  attackDuration: 13.5
+  secondsPerProjectileSpawn: 0.5
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 8204135625514222407, guid: f25ff2ee1db78ee4680724fd98f1cf1f, type: 3}
+  spawnPoints: []
+  initialDirections: []
+  indexes: 
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  keyframes: 000000004c000000a2000000ea0000002c01000068010000a4010000e00100004c020000b8020000
+  frameData:
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -272, y: 324, z: 0}
+      InitialDirection: {x: 0.31622776, y: -0.9486833, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -240, y: -440, z: 0}
+      InitialDirection: {x: 0.3980931, y: 0.917345, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 304, y: 316, z: 0}
+      InitialDirection: {x: -0.4472136, y: -0.8944272, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 280, y: -344, z: 0}
+      InitialDirection: {x: -0.5206074, y: 0.8537962, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -88, y: -16, z: 0}
+      InitialDirection: {x: -0.9920835, y: -0.12558019, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 132, y: -12, z: 0}
+      InitialDirection: {x: 0.9867059, y: -0.16251627, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -16, y: -172, z: 0}
+      InitialDirection: {x: -0.0464614, y: -0.9989201, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -20, y: 140, z: 0}
+      InitialDirection: {x: -0.01281946, y: 0.99991786, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 400, y: 220, z: 0}
+      InitialDirection: {x: -0.9887991, y: -0.1492527, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -352, y: -244, z: 0}
+      InitialDirection: {x: 0.99942595, y: 0.033878844, z: 0}
+      ProjectileIndex: 0
+  loops: 1
+  debug: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 6136300878837055544
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500

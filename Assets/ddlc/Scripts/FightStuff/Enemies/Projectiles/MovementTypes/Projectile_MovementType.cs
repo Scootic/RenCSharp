@@ -38,6 +38,7 @@ namespace RenCSharp.Combat.Enemies
         protected Transform projectileTransform;
         protected Rigidbody projectileRigidbody;
         protected Vector3 moveDir;
+        public Vector3 GetMoveDir => moveDir;
 
         public float GetSpeed => speed;
         public float SetSpeed { set => speed = value; }

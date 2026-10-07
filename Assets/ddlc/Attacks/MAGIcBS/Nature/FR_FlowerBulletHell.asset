@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f9f3aa6e6a5af4d88f6a38c71a9dbe, type: 3}
+  m_Name: FR_FlowerBulletHell
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 550, y: 550}
+  controlType:
+    rid: 6136300878837055542
+  attackDuration: 13.5
+  secondsPerProjectileSpawn: 0.5
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 8190228511264376471, guid: 747990962f006f640892635ee99d10a7, type: 3}
+  spawnPoints: []
+  initialDirections: []
+  indexes: 
+  projectileSpawnPositionMethod: 1
+  projectileIndexMethod: 1
+  keyframes: 0000000078000000f000000068010000e001000058020000d0020000
+  frameData:
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -548, y: 460, z: 0}
+      InitialDirection: {x: -0.16439898, y: -0.98639387, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -240, y: 340, z: 0}
+      InitialDirection: {x: 0.9007687, y: -0.43429917, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 752, y: -76, z: 0}
+      InitialDirection: {x: -0.30113137, y: -0.9535827, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -304, y: -420, z: 0}
+      InitialDirection: {x: 0.49301255, y: 0.8700222, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 484, y: 460, z: 0}
+      InitialDirection: {x: 0, y: -1, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -680, y: 420, z: 0}
+      InitialDirection: {x: 0.99705446, y: -0.0766965, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 52, y: 440, z: 0}
+      InitialDirection: {x: -0.13093837, y: -0.9913905, z: 0}
+      ProjectileIndex: 0
+  loops: 1
+  debug: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 6136300878837055542
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 550

@@ -32,6 +32,7 @@ namespace RenCSharp.Combat.Enemies
             else //otherwise, assume we're just straightline or sumthing, update the movedir to another normalized value.
             {
                 reflection = Vector3.Reflect(projectile.GetMoveDir, thogcross) * -1;
+                Debug.Log($"CurMoveDir: {projectile.GetMoveDir}, NewMoveDir: {reflection}");
                 projectile.UpdateMoveDir(reflection);
             }
 

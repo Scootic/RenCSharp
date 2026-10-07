@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f9f3aa6e6a5af4d88f6a38c71a9dbe, type: 3}
+  m_Name: FR_QuestionMarkHash
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 600, y: 600}
+  controlType:
+    rid: 6136300878837055543
+  attackDuration: 12.5
+  secondsPerProjectileSpawn: 0.5
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 8204135625514222407, guid: 2b075fe484ee8dc4abbff5ff749c8bad, type: 3}
+  spawnPoints: []
+  initialDirections: []
+  indexes: 
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  keyframes: 000000007d000000020100009101000015020000
+  frameData:
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -256, y: 240, z: 0}
+      InitialDirection: {x: 0.49812448, y: -0.86710554, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 76, y: 16, z: 0}
+      InitialDirection: {x: -0.27472112, y: -0.96152395, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 480, y: 300, z: 0}
+      InitialDirection: {x: -0.9670745, y: -0.2544933, z: 0}
+      ProjectileIndex: 0
+    - SpawnPosition: {x: -244, y: -244, z: 0}
+      InitialDirection: {x: 0.9761871, y: 0.21693046, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 52, y: 116, z: 0}
+      InitialDirection: {x: -0.21903835, y: -0.9757163, z: 0}
+      ProjectileIndex: 0
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 356, y: -28, z: 0}
+      InitialDirection: {x: -0.46256602, y: -0.8865848, z: 0}
+      ProjectileIndex: 0
+  loops: 1
+  debug: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 6136300878837055543
+      type: {class: FreeRoam, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500

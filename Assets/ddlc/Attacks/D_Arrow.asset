@@ -17,6 +17,7 @@ MonoBehaviour:
     rid: 9079474705638883481
   attackDuration: 10
   secondsPerProjectileSpawn: 1
+  projectilesPerSpawn: 1
   projectilesThatSpawn:
   - {fileID: 8204135625514222407, guid: ab8571686c2fac043a02eb75f11b2e50, type: 3}
   spawnPoints:
@@ -28,8 +29,8 @@ MonoBehaviour:
   initialDirections:
   - {x: -1, y: 0, z: 0}
   - {x: 0, y: -1, z: 0}
-  - {x: -1, y: -1, z: 0}
-  - {x: 1, y: -1, z: 0}
+  - {x: -0.744, y: -0.744, z: 0}
+  - {x: 0.744, y: -0.744, z: 0}
   - {x: 1, y: 0, z: 0}
   indexes: 0000000000000000000000000000000000000000
   projectileSpawnPositionMethod: 1

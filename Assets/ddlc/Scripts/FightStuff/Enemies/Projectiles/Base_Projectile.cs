@@ -35,7 +35,7 @@ namespace RenCSharp.Combat.Enemies
         [SerializeField] protected ProjectileHitType hitType = ProjectileHitType.Normal;
 
         protected IDamage receiver;
-        protected Vector3 moveDir, endScale;
+        protected Vector3 endScale;
         protected Color endC;
         protected Collider myCol;
         protected Coroutine spawnInRoutine;
@@ -44,7 +44,7 @@ namespace RenCSharp.Combat.Enemies
         public float ColliderEnableTime => colliderEnableTime;
         public float SpawnSoundVol => spawnSoundVol;
         public AudioClip SpawnSound => spawnSound;
-        public Vector3 GetMoveDir => moveDir;
+        public Vector3 GetMoveDir => movementType.GetMoveDir;
         public Projectile_MovementType GetMovementType => movementType;
         public Vector2 SizeDelta => gameObject.GetComponent<RectTransform>().sizeDelta;
         public Texture DisplayTexture {

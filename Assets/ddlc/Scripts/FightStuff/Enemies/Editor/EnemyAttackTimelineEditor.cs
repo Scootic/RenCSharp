@@ -572,7 +572,6 @@ namespace RenCSharp.Combat.Enemies.Editor
 
                 if (pk == curKnob) //gross second instance of if curKnob because of drawing timing
                 {
-                    //also draw some sort of rotation aid for knubs that are already present, please
                     normalizedFlipYDir = flipYDir.normalized;
                     rotateKnobPosition = new Vector2(projSpawnRect.center.x + (normalizedFlipYDir.x * previewRotateKnobSize) - previewRotateKnobSize * 0.5f,
                         projSpawnRect.center.y + (normalizedFlipYDir.y * previewRotateKnobSize) - previewRotateKnobSize * 0.5f);

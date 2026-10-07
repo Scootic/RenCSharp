@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
+  m_Name: ForswornHagraven1
+  m_EditorClassIdentifier: 
+  scriptedAttacks:
+  - {fileID: 11400000, guid: c88c309a81e8fdd4582d938455368bc7, type: 2}
+  - {fileID: 11400000, guid: 6b6814c02db77c3438a3c6ce23702e93, type: 2}
+  - {fileID: 11400000, guid: 87652c06a9601c2488151bd2a80f10a8, type: 2}
+  - {fileID: 11400000, guid: 4530c55e3d361224f8ca373df56b4c47, type: 2}
+  - {fileID: 11400000, guid: e0ccde5f145f42d41b843a27ae9421a3, type: 2}
+  - {fileID: 11400000, guid: 32de2a6cbba66e846869a1a9b2957a28, type: 2}
+  - {fileID: 11400000, guid: 80a6c743afb0b9b4286fd383d7dcfad9, type: 2}
+  scriptedFlavorTexts:
+  - The Hagraven shoots out her feathers.
+  - The Hagraven launches her feathers in an arc, descending them upon {mc} and Sayori.
+  - The Hagraven, demonstrating some of her druidic magic, flings sharp leaves at
+    the pair.
+  - The Hagraven attempts a more concentrated burst of leaves, requiring the use
+    of a shield to defend against them.
+  - The Hagraven flings out her feathers toward the flanks.
+  - The Hagraven grows terrible flowers from the ground, which fire out their petals
+    in a painful manner.
+  - The flowers just keep coming, with a root tangling around {mc}'s leg. He is forced
+    to defend with his shield-!
+  randomAttacks:
+  - {fileID: 11400000, guid: c88c309a81e8fdd4582d938455368bc7, type: 2}
+  - {fileID: 11400000, guid: 32de2a6cbba66e846869a1a9b2957a28, type: 2}
+  - {fileID: 11400000, guid: 87652c06a9601c2488151bd2a80f10a8, type: 2}
+  - {fileID: 11400000, guid: e0ccde5f145f42d41b843a27ae9421a3, type: 2}
+  - {fileID: 11400000, guid: 6b6814c02db77c3438a3c6ce23702e93, type: 2}
+  - {fileID: 11400000, guid: 80a6c743afb0b9b4286fd383d7dcfad9, type: 2}
+  - {fileID: 11400000, guid: 4530c55e3d361224f8ca373df56b4c47, type: 2}
+  randomFlavorTexts:
+  - The Hagraven shoots out her feathers. Again.
+  - The Hagraven grows flowers from the ground. Again.
+  - The Hagraven flings sharp leaves. Again.
+  - The Hagraven flings out feathers toward the flanks. Again.
+  - The Hagraven launchers her feathers in an arc from above. Again.
+  - The Hagraven attempts to root {mc} while growing flowers. Again. (Friggin' botanists...)
+  - The Hagraven attempts another concentrated burst of leaves.
+  maxHealth: 130
+  visualInformation:
+  - {fileID: 21300000, guid: 6a8c176029b044a42b60109255076a0e, type: 3}
+  enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
+  defeatText: The witch staggers back, recomposing herself to continue the fight.
+  nameText: Hagraven Leader
+  blurbText: Who gave her the right to be this magically capable?!?
+  hurtedSound: {fileID: 8300000, guid: e3f9c8208d46092408268e8459362a27, type: 3}
+  uiParticleObjFab:
+    m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  hitParticleObjFab:
+    m_AssetGUID: 5c1c468a2868c7d4fb619d948854ab27
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
