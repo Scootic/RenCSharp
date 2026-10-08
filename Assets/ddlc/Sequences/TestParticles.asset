@@ -15,13 +15,13 @@ MonoBehaviour:
   autoFocusSpeaker: 1
   screens:
   - speaker: {fileID: 0}
-    dialog: This is a sequence for testing out particles.
+    dialog: 
     ScreenActions:
     - rid: 268099459762618440
     - rid: 268099459762618441
     - rid: 268099459762618442
-  - speaker: {fileID: 11400000, guid: 0afee15b7c0b2ad4481946e7b9820870, type: 2}
-    dialog: Rain from sky particles.
+  - speaker: {fileID: 0}
+    dialog: 
     ScreenActions:
     - rid: 268099459762618454
     - rid: 4972360430703870061
@@ -116,11 +116,17 @@ MonoBehaviour:
     ScreenActions:
     - rid: 1790118386653986823
   - speaker: {fileID: 0}
+    dialog: mechheart particles
+    ScreenActions:
+    - rid: 6136300904519827456
+    - rid: 6136300904519827457
+    - rid: 6136300904519827513
+  - speaker: {fileID: 0}
     dialog: 
     ScreenActions: []
   playerChoices:
   - choiceText: 
-    resultingSequence: {fileID: 11400000, guid: daff6a8c44dc89c41925dd353bc26227, type: 2}
+    resultingSequence: {fileID: 0}
     conditions: []
   myself:
     m_AssetGUID: ad15edbf47634ff4b84300d464ea57c5
@@ -261,7 +267,7 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         particlesName: particles
         placeToSpawnName: Overlay
-        deleteOnScreenProgression: 0
+        deleteOnScreenProgression: 1
         overrideParticles: 1
         overridingParticles:
           m_AssetGUID: 1352fece545877c488fd22a30953a20b
@@ -1074,6 +1080,57 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+    - rid: 6136300904519827456
+      type: {class: Set_OverlayAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        imagesToSet:
+        - m_AssetGUID: a8c989035262b91458585d364ce0ea52
+          m_SubObjectName: daheart_0
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 1
+        - m_AssetGUID: a8c989035262b91458585d364ce0ea52
+          m_SubObjectName: daheart_1
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 1
+        - m_AssetGUID: a8c989035262b91458585d364ce0ea52
+          m_SubObjectName: daheart_2
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 1
+        overlayText: 
+        fadeTime: 0.5
+        endWithScreen: 1
+        secondsPerFrame: 0.1
+    - rid: 6136300904519827457
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+        particlesName: hearr
+        placeToSpawnName: Background
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: f1da26a8f3887754eb8a032d206f116c
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+    - rid: 6136300904519827513
+      type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToRemove: {fileID: 11400000, guid: 0ad912a4f92445545a2225f1d74898be, type: 2}
+        fadeTime: 0.5
     - rid: 7856103004196307002
       type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
       data:
