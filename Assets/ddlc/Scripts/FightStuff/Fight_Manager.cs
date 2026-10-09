@@ -47,7 +47,7 @@ namespace RenCSharp.Combat
         private bool fighting, lostFight, playerTurn, singleAttack, passedScript; //probably stupid to have ALL of these
         private Coroutine flavorTextRoutine;
         private GameObject playerObj;
-        private List<GameObject> activeProj = new();
+        private readonly List<GameObject> activeProj = new();
 
         public bool PlayerTurn => playerTurn;
         public bool Fighting => fighting;
