@@ -15,14 +15,16 @@ namespace RenCSharp.Tags
         /// </summary>
         /// <param name="text">The TMPro Mesh. Actually need this guy fr.</param>
         /// <param name="speedValue">Frequency of sine wave.</param>
-        protected static void SineText(TextMeshProUGUI text, string speedValue)
+        /// <param name="yAmpValue">Optional y-amplitude multiplier (how big the sine wave jumps up/down)</param>
+        protected static void SineText(TextMeshProUGUI text, string speedValue, string yAmpValue = "5")
         {
             if(float.TryParse(speedValue, out float speed))
             {
                 Event_Bus.AddVoidEvent("LoadedSave", PanicStop);
                 Event_Bus.AddVoidEvent("ProgressScreen", PanicStop);
                 Event_Bus.AddSingleObjEvent("TextboxNewChar", AddCharToSineList);
-                routines.Add(TagRoutineHandler.TRH.StartCoroutine(SineTextRoutine(text, speed)));
+                float yAmp = float.TryParse(yAmpValue, out yAmp) ? yAmp : 5f;
+                routines.Add(TagRoutineHandler.TRH.StartCoroutine(SineTextRoutine(text, speed, yAmp)));
             }
             else
             {
@@ -61,10 +63,10 @@ namespace RenCSharp.Tags
             Event_Bus.TryRemoveSingleObjEvent("TextboxNewChar");
         }
 
-        private static IEnumerator SineTextRoutine(TextMeshProUGUI text, float speed)
+        private static IEnumerator SineTextRoutine(TextMeshProUGUI text, float speed, float yAmp)
         {
             Mesh mesh = text.mesh;
-            string ogSTR = text.text;
+            //string ogSTR = text.text;
             while (text.text.Length >= 1) //since new texboxes make the text itself become empty, it should stop when ever screen progresses.
             {
                 text.ForceMeshUpdate();
@@ -72,7 +74,7 @@ namespace RenCSharp.Tags
                 foreach(TMP_CharacterInfo c in affectedSineChars)
                 {
                     int index = c.vertexIndex;
-                    Vector3 offset = SineWobble(Time.time * speed + c.index * Mathf.PI * 0.5f); //offset guys by partial rotations of unit kirkle
+                    Vector3 offset = SineWobble(Time.time * speed + c.index * Mathf.PI * 0.5f, yAmp); //offset guys by partial rotations of unit kirkle
                     vertices[index] += offset;
                     vertices[index + 1] += offset;
                     vertices[index + 2] += offset;
@@ -89,9 +91,9 @@ namespace RenCSharp.Tags
             routines = new();
         }
 
-        private static Vector3 SineWobble(float t)
+        private static Vector3 SineWobble(float t, float yAmp = 5)
         {
-            return new Vector3(Mathf.Cos(t), Mathf.Sin(t) * 5, 0);
+            return new Vector3(Mathf.Cos(t), Mathf.Sin(t) * yAmp, 0);
         }
     }
 }

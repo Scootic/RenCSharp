@@ -71,7 +71,7 @@ namespace RenCSharp.Sequences
             if (sd.CustomJSONData.Count < 1) sd.ScaleCustomJSONToCount(1);
             
             sd.CustomJSONData[0] = JsonUtility.ToJson(assetRefs);
-            Debug.Log("Saving SimpleTimeline animations: " + sd.CustomJSONData[0]);
+            //Debug.Log("Saving SimpleTimeline animations: " + sd.CustomJSONData[0]);
             curRedoAnims = () => { RedoAnimations(times); };
             SaveLoad.SavingDoneEvent += curRedoAnims;   
         }

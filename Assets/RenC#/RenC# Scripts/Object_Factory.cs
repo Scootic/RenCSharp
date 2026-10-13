@@ -12,7 +12,7 @@ namespace RenCSharp
     /// </summary>
     public static class Object_Factory 
     {
-        private static Dictionary<string, GameObject> activeGameObjects = new Dictionary<string, GameObject>();
+        private static readonly Dictionary<string, GameObject> activeGameObjects = new();
 
         public static bool TryGetObject(string name, out GameObject GO)
         {
@@ -133,27 +133,31 @@ namespace RenCSharp
 
         public static async Awaitable<GameObject> SpawnObjectAsync(GameObject prefab, string name, Transform parent = null)
         {
-            await Awaitable.MainThreadAsync();
             if (activeGameObjects.ContainsKey(name)) return null;
+            await Awaitable.MainThreadAsync(); //make sure on main thread to do unity api call
             GameObject t = GameObject.Instantiate(prefab, parent);
             t.name = name;
             activeGameObjects.Add(name, t);
             return t;
         }
 
-        public static void RemoveObject(string name)
+        public static void RemoveObject(string name, bool debug = false)
         {
             if (activeGameObjects.ContainsKey(name))
             {
                 GameObject t = activeGameObjects[name];
-                if (t == null) return;
+                if (t == null) 
+                { 
+                    activeGameObjects.Remove(name); //clear out a null object if we're still wasting dictionary space on it somehow
+                    return; 
+                }
                 if (t.TryGetComponent(out IRemovableObject iroh))
                 {
                     iroh.OnRemove();
                 }
                 activeGameObjects.Remove(name);
                 GameObject.Destroy(t);
-                Debug.Log("Removed object of name: " + name);
+                if(debug) Debug.Log("Removed object of name: " + name);
             } else Debug.LogWarning("No active gameobject of name: " + name);
         }
 
@@ -170,7 +174,8 @@ namespace RenCSharp
         }
 
         /// <summary>
-        /// Very dangerous. Only should be used OnDisable for SM or sum thang;
+        /// Very dangerous. Only should be used OnDisable for SM or sum thang. 
+        /// Destroys every single managed GameObject in dictionary.
         /// </summary>
         public static void ScrubDictionary()
         {

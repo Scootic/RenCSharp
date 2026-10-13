@@ -50,9 +50,10 @@ namespace RenCSharp
             amended = TagParser.CleanOutFlags(amended);
 
             textBox.text = amended; //insert text that will be shown over time
-
-            textBox.maxVisibleCharacters = 0;
             textBox.ForceMeshUpdate();
+            //textBox.maxVisibleCharacters = 0;
+            HideAllLetters(textBox);
+            
             JumpToEndOfTextbox = false;
 
             while (i < textBox.text.Length && !JumpToEndOfTextbox) //while running through a textbox (player hasn't done nothing)
@@ -73,6 +74,7 @@ namespace RenCSharp
                         string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
                         while (textBox.text[i] != '>')
                         {
+                            //textBox.textInfo.characterInfo[i].isVisible = false;
                             i++;
                             tag += textBox.text[i];
                         }
@@ -87,8 +89,9 @@ namespace RenCSharp
                     }
                     else //just add the char and move on if it's a regular ah character
                     {
-                        textBox.maxVisibleCharacters++;
-                        textBox.ForceMeshUpdate();
+                        //textBox.maxVisibleCharacters++;
+                        ShowALetter(textBox, i);
+                        ///textBox.ForceMeshUpdate();
                         //only care about passing in a stupid char for the event if event actually exists
                         if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                         {
@@ -132,7 +135,8 @@ namespace RenCSharp
                 }
                 else //just add the char and move on if it's a regular ah character
                 {
-                    textBox.maxVisibleCharacters++;
+                    //textBox.maxVisibleCharacters++;
+                    ShowALetter(textBox, i);
                     //only care about passing in a stupid char for the event if event actually exists
                     if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                     {
@@ -144,7 +148,7 @@ namespace RenCSharp
                 }
             }
             textBox.ForceMeshUpdate();
-            textBox.maxVisibleCharacters = textBox.text.Length; //please show everything if we aren't already!
+            //textBox.maxVisibleCharacters = textBox.text.Length; //please show everything if we aren't already!
         }
         /// <summary>
         /// Async version of the RunThroughText coroutine. Basically all of the same logic, but instead of being
@@ -166,8 +170,10 @@ namespace RenCSharp
 
             textBox.text = amended; //insert text that will be shown over time
 
-            textBox.maxVisibleCharacters = 0;
+            //textBox.maxVisibleCharacters = 0;
             textBox.ForceMeshUpdate();
+            HideAllLetters(textBox);
+            
             JumpToEndOfTextbox = false;
 
             while (i < textBox.text.Length && !JumpToEndOfTextbox) //while running through a textbox (player hasn't done nothing)
@@ -202,8 +208,9 @@ namespace RenCSharp
                     }
                     else //just add the char and move on if it's a regular ah character
                     {
-                        textBox.maxVisibleCharacters++;
-                        textBox.ForceMeshUpdate();
+                        //textBox.maxVisibleCharacters++;
+                        //textBox.ForceMeshUpdate();
+                        ShowALetter(textBox, i);
                         //only care about passing in a stupid char for the event if event actually exists
                         if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                         {
@@ -247,7 +254,8 @@ namespace RenCSharp
                 }
                 else //just add the char and move on if it's a regular ah character
                 {
-                    textBox.maxVisibleCharacters++;
+                    //textBox.maxVisibleCharacters++;
+                    ShowALetter(textBox, i);
                     //only care about passing in a stupid char for the event if event actually exists
                     if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                     {
@@ -259,7 +267,54 @@ namespace RenCSharp
                 }
             }
             textBox.ForceMeshUpdate();
-            textBox.maxVisibleCharacters = textBox.text.Length; //please show everything if we aren't already!
+            //textBox.maxVisibleCharacters = textBox.text.Length; //please show everything if we aren't already!
+        }
+
+        private static void HideAllLetters(TextMeshProUGUI textToHide)
+        {
+            TMP_CharacterInfo[] charsToBeHiding = textToHide.textInfo.characterInfo;
+            TMP_TextInfo text = textToHide.textInfo;    
+            Color32[] vertiColors;
+            for(int i = 0; i < charsToBeHiding.Length; i++)
+            {
+                int matInd = charsToBeHiding[i].materialReferenceIndex;
+                if (text.meshInfo[matInd].colors32 != null)
+                {
+                    vertiColors = text.meshInfo[matInd].colors32;
+                    for (int j = 0; j < vertiColors.Length; j++)
+                    {
+                        vertiColors[j].a = 0;
+                    }
+                }
+                else
+                {
+                    vertiColors = new Color32[text.meshInfo[matInd].vertexCount];
+                    for(int j = 0; j < vertiColors.Length; j++)
+                    {
+                        vertiColors[j].r = 255;
+                        vertiColors[j].g = 255;
+                        vertiColors[j].b = 255;
+                        vertiColors[j].a = 0;
+                    }
+                }
+                text.meshInfo[matInd].colors32 = vertiColors;
+            }
+            textToHide.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+        }
+
+        private static void ShowALetter(TextMeshProUGUI text, int i)
+        {
+            TMP_CharacterInfo charToShow = text.textInfo.characterInfo[i];
+            TMP_TextInfo textInfo = text.textInfo;
+
+            Color32[] vertiColors = textInfo.meshInfo[charToShow.materialReferenceIndex].colors32;
+            for(int j = charToShow.vertexIndex; j < charToShow.vertexIndex + 4; j++)
+            {
+                vertiColors[j].a = 255;
+            }
+            textInfo.meshInfo[charToShow.materialReferenceIndex].colors32 = vertiColors;
+
+            text.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
         }
 
         /// <summary>

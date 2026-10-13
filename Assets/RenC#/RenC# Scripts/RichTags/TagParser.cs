@@ -145,7 +145,7 @@ namespace RenCSharp.Tags
                     {
                         if(i >= chars.Length)
                         {
-                            Debug.LogWarning("The tag parser found a random '[' symbol, that never closes! " +
+                            Debug.LogWarning("The tag parser found a random '[' symbol that never closes! " +
                                 "Very scary. You're going to be getting an empty string for this!");
                             return "";
                         }
@@ -168,7 +168,7 @@ namespace RenCSharp.Tags
         {
             if(TagRoutineHandler.TRH.Debug) Debug.Log("Length of valid tag types: " + allTags.Length);
             string[] split = Regex.Split(tag, "[=,]"); //0 should be function name, 1+ is arguments
-            List<object> splitNoFirst = new List<object>();
+            List<object> splitNoFirst = new();
             for (int i = 1; i < split.Length; i++)
             {
                 splitNoFirst.Add(split[i]);
@@ -193,7 +193,11 @@ namespace RenCSharp.Tags
                 if(TagRoutineHandler.TRH.Debug) Debug.Log("This type (" + T.FullName + "), says method: " + method);
                 if(method != null) 
                 {
-                    if(fire) method.Invoke(instance, splitNoFirst.ToArray()); //invoke on the instance obj?
+                    while(splitNoFirst.Count < method.GetParameters().Length)
+                    {
+                        splitNoFirst.Add(""); //just add empty arguments to fill up. might cause problems if you don't set default checks
+                    }
+                    if(fire) method.Invoke(instance, splitNoFirst.ToArray()); //fire the method
                     return true;
                 }
             }

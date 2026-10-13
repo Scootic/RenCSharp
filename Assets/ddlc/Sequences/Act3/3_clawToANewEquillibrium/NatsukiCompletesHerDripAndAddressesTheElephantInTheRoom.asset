@@ -666,8 +666,8 @@ MonoBehaviour:
     dialog: <SineText=0.5>Oh, I forgot. No, I didn't see her today.</SineText>
     ScreenActions:
     - rid: 6136300924959981834
-    - rid: 6136300924959981835
-    - rid: 6136300924959981836
+    - rid: 6136301013200797771
+    - rid: 6136301013200797772
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: ... On that disappointing note, wanna grab dinner?
     ScreenActions:
@@ -789,8 +789,8 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
     dialog: I dunno, does Tilma have something for you to do?
     ScreenActions:
-    - rid: 6136300947077857307
-    - rid: 6136300947077857308
+    - rid: 6136301013200797773
+    - rid: 6136301013200797774
   - speaker: {fileID: 11400000, guid: 6dd6201afbe165745bd64197b76cdf48, type: 2}
     dialog: I don't know.
     ScreenActions:
@@ -4012,24 +4012,6 @@ MonoBehaviour:
         - 
         - lookAwayPity
         - 
-    - rid: 6136300924959981835
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        visualSpriteIndexes:
-        - 
-        - 
-        - lookAwaySmile
-        - 
-    - rid: 6136300924959981836
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-        visualSpriteIndexes:
-        - 
-        - 
-        - lookAwayGrin
-        - 
     - rid: 6136300924959981837
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -4240,8 +4222,8 @@ MonoBehaviour:
           m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
-        fadeTransition: 3
-        fadeDuration: 1
+        fadeTransition: 0
+        fadeDuration: 3
     - rid: 6136300947077857284
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -4511,24 +4493,6 @@ MonoBehaviour:
         - 
         - blank
         - 
-    - rid: 6136300947077857307
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
-        visualSpriteIndexes:
-        - 
-        - 
-        - 
-        - 
-    - rid: 6136300947077857308
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: 6dd6201afbe165745bd64197b76cdf48, type: 2}
-        visualSpriteIndexes:
-        - 
-        - 
-        - grumpySpeak
-        - 
     - rid: 6136300947077857309
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -4622,3 +4586,39 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
         - {fileID: 11400000, guid: db46f9c9f9769b944946c389f5c0fbec, type: 2}
         fadeTime: 0.5
+    - rid: 6136301013200797771
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - lookAwayGrin
+        - 
+    - rid: 6136301013200797772
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - lookAwayMelancholySmileSpeak
+        - 
+    - rid: 6136301013200797773
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - grumpySpeak
+        - 
+    - rid: 6136301013200797774
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: 6dd6201afbe165745bd64197b76cdf48, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - blank
+        - 
