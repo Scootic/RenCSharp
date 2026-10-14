@@ -65,25 +65,50 @@ namespace RenCSharp.Tags
 
         private static IEnumerator SineTextRoutine(TextMeshProUGUI text, float speed, float yAmp)
         {
-            Mesh mesh = text.mesh;
+            //Mesh mesh = text.mesh;
             //string ogSTR = text.text;
+            Vector3 offset = Vector3.zero;
+            Vector3[] vertices;
+            TMP_TextInfo info = text.textInfo;
+            TMP_MeshInfo[] meshInfo = info.meshInfo;
+
             while (text.text.Length >= 1) //since new texboxes make the text itself become empty, it should stop when ever screen progresses.
             {
-                text.ForceMeshUpdate();
-                Vector3[] vertices = mesh.vertices;
-                foreach(TMP_CharacterInfo c in affectedSineChars)
+                //text.ForceMeshUpdate();
+                //vertices = mesh.vertices;
+                for(int i = 0; i < affectedSineChars.Count; i++)
                 {
-                    int index = c.vertexIndex;
-                    Vector3 offset = SineWobble(Time.time * speed + c.index * Mathf.PI * 0.5f, yAmp); //offset guys by partial rotations of unit kirkle
-                    vertices[index] += offset;
-                    vertices[index + 1] += offset;
-                    vertices[index + 2] += offset;
-                    vertices[index + 3] += offset;
+                    int matInd = affectedSineChars[i].materialReferenceIndex;
+                    int vertInd = affectedSineChars[i].vertexIndex;
+                    if (meshInfo[matInd].vertices != null)
+                    {
+                        vertices = meshInfo[matInd].vertices;
+                        for(int j = vertInd; j < vertInd + 4; j++)
+                        {
+                            vertices[j] -= offset;
+                        }
+                        offset = SineWobble(Time.time * speed + vertInd * Mathf.PI * 0.5f, yAmp); //offset guys by partial rotations of unit kirkle
+                        for(int j = vertInd; j < vertInd + 4; j++)
+                        {
+                            vertices[j] += offset;
+                        }
+                        meshInfo[matInd].vertices = vertices;
+                    }
+                    //int index = c.vertexIndex;
+                    //for(int j = index; j < index + 4; j++)
+                    //{
+                    //    vertices[j] -= offset;
+                    //}
+                    //offset = SineWobble(Time.time * speed + i * Mathf.PI * 0.5f, yAmp); //offset guys by partial rotations of unit kirkle
+                    //for(int j = index; j < index + 4; j++) //go through the four vertex corners of the character
+                    //{
+                    //    vertices[j] += offset;
+                    //}
                 }
 
-                mesh.vertices = vertices;
-                text.canvasRenderer.SetMesh(mesh);
-                
+                //mesh.vertices = vertices;
+                //text.canvasRenderer.SetMesh(mesh);
+                text.UpdateVertexData(TMP_VertexDataUpdateFlags.Vertices);
                 yield return null;
             }
 

@@ -41,8 +41,11 @@ namespace RenCSharp
         /// <returns>Peace in our time.</returns>
         public static IEnumerator RunThroughText(TextMeshProUGUI textBox, string endText)
         {
+            while (pausedTextbox) yield return null; //?????????
+
             float t = 0;
-            int i = 0;
+            int i = 0; //"real" string char index
+            int charI = 0; //tmp char index (excludes built-in rich tags)
             string amended = endText;
             TagParser.SetCurrentTextMesh = textBox;
 
@@ -52,11 +55,11 @@ namespace RenCSharp
             textBox.text = amended; //insert text that will be shown over time
             textBox.ForceMeshUpdate();
             //textBox.maxVisibleCharacters = 0;
-            HideAllLetters(textBox);
-            
+            HideLetters(textBox);
+
             JumpToEndOfTextbox = false;
 
-            while (i < textBox.text.Length && !JumpToEndOfTextbox) //while running through a textbox (player hasn't done nothing)
+            while (charI < textBox.textInfo.characterCount && !JumpToEndOfTextbox && i < textBox.text.Length) //while running through a textbox (player hasn't done nothing)
             {
                 //only run through text if the SM is unpaused
                 while (pausedTextbox)
@@ -64,6 +67,147 @@ namespace RenCSharp
                     yield return null;
                 }
 
+                t += Time.deltaTime;
+                //add one character at a time, depending on text speed
+                if (t >= TextSpeed)
+                {
+                    t = 0;
+                    if (textBox.text[i] == ' ')
+                    {
+                        ShowALetter(textBox, charI);
+                        i++;
+                        charI++;
+                    }
+                    else if (textBox.text[i] == '<') //we've found a rich text tag
+                    {
+                        Debug.Log("Touched rich tag?");
+                        string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
+                        while (textBox.text[i] != '>')
+                        {
+                            //textBox.textInfo.characterInfo[i].isVisible = false;
+                            i++;
+                            tag += textBox.text[i];
+                        }
+
+                        if (TagParser.Parse(tag))
+                        {
+                            //string s = Regex.Replace(textBox.text, tag, "");
+                            //textBox.text = s;
+                            //textBox.ForceMeshUpdate(true);
+                            //i -= tag.Length - 1;
+                            //if(charI != 0) charI -= tag.Length - 1;
+                            for(int j = i; j >= charI; j--)
+                            {
+                                ExcludeALetter(textBox, i);
+                            }
+                        }
+                        //charI -= tag.Length - 1;
+                    }
+                    else //just add the char and move on if it's a regular ah character
+                    {
+                        ShowALetter(textBox, charI);
+                        ///textBox.ForceMeshUpdate();
+                        //only care about passing in a stupid char for the event if event actually exists
+                        if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
+                        {
+                            ///int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i, true); //since the text string gets rid of valid tags???
+                            try
+                            {
+                                TMP_CharacterInfo c = textBox.textInfo.characterInfo[charI];
+                                Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
+                            }
+                            catch
+                            {
+                                Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
+                            }
+                        }
+                        charI++;
+                        i++;
+                    }
+                }
+
+                yield return null;
+            }
+
+            JumpToEndOfTextbox = true;
+
+            while(charI < textBox.textInfo.characterCount && i < textBox.text.Length) //just run through everything in a single frame if player skipped ahead.
+            {
+                if (textBox.text[i] == ' ')
+                {
+                    i++;
+                    charI++;
+                }
+                else if (textBox.text[i] == '<') //we've found a rich text tag
+                {
+                    string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
+                    while (textBox.text[i] != '>')
+                    {
+                        i++;
+                        tag += textBox.text[i];
+                    }
+
+                    if (TagParser.Parse(tag))
+                    {
+                        string s = Regex.Replace(textBox.text, tag, "");
+                        textBox.text = s;
+                        //textBox.ForceMeshUpdate();
+                        i -= tag.Length - 1; //??
+                        if(charI != 0)charI -= tag.Length - 1;
+                    }
+                }
+                else //just add the char and move on if it's a regular ah character
+                {
+                    //textBox.maxVisibleCharacters++;
+                    ShowALetter(textBox, charI);
+                    //only care about passing in a stupid char for the event if event actually exists
+                    if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
+                    {
+                        ///int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i);
+                        TMP_CharacterInfo c = textBox.textInfo.characterInfo[charI];
+                        stu.Invoke((object)c);
+                    }
+                    i++;
+                    charI++;
+                }
+            }
+            textBox.ForceMeshUpdate();
+            //textBox.maxVisibleCharacters = textBox.text.Length; //please show everything if we aren't already!
+        }
+        /// <summary>
+        /// Async version of the RunThroughText coroutine. Basically all of the same logic, but instead of being
+        /// handled as a coroutine, it relies on the Awaitable functions (ie. 'await Awaitable.NextFrameAsync' instead of 'yield
+        /// return null').
+        /// </summary>
+        /// <param name="textBox">The text area being populated by text.</param>
+        /// <param name="endText">How the final text display will look (tags not withstanding).</param>
+        /// <returns>War in our time?!?</returns>
+        public static async Awaitable RunThroughTextAsync(TextMeshProUGUI textBox, string endText)
+        {
+            while (pausedTextbox) await Awaitable.NextFrameAsync();
+            float t = 0;
+            int i = 0;
+            int charI = 0;
+            string amended = endText;
+            TagParser.SetCurrentTextMesh = textBox;
+
+            amended = ReplaceableText(amended);
+            amended = TagParser.CleanOutFlags(amended);
+
+            textBox.text = amended; //insert text that will be shown over time
+
+            //textBox.maxVisibleCharacters = 0;
+            textBox.ForceMeshUpdate();
+            HideLetters(textBox);
+
+            
+            JumpToEndOfTextbox = false;
+
+            while (charI < textBox.textInfo.characterCount && !JumpToEndOfTextbox) //while running through a textbox (player hasn't done nothing)
+            {
+                //only run through text if the SM is unpaused
+                while (pausedTextbox) await Awaitable.NextFrameAsync();
+  
                 t += Time.deltaTime;
                 //add one character at a time, depending on text speed
                 if (t >= TextSpeed)
@@ -83,22 +227,25 @@ namespace RenCSharp
                         {
                             string s = Regex.Replace(textBox.text, tag, "");
                             textBox.text = s;
-                            textBox.ForceMeshUpdate();
-                            i -= tag.Length - 1; //??
+                            textBox.ForceMeshUpdate(true);
+                            i -= tag.Length - 1;
+                            if(charI != 0)charI -= tag.Length - 1;
+                            HideLetters(textBox, charI);
                         }
+                        //charI -= tag.Length - 1;
                     }
                     else //just add the char and move on if it's a regular ah character
                     {
                         //textBox.maxVisibleCharacters++;
-                        ShowALetter(textBox, i);
+                        ShowALetter(textBox, charI);
                         ///textBox.ForceMeshUpdate();
                         //only care about passing in a stupid char for the event if event actually exists
                         if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                         {
-                            int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i, true); //since the text string gets rid of valid tags???
+                            ///int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i, true); //since the text string gets rid of valid tags???
                             try
                             {
-                                TMP_CharacterInfo c = textBox.textInfo.characterInfo[goodI];
+                                TMP_CharacterInfo c = textBox.textInfo.characterInfo[charI];
                                 Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
                             }
                             catch
@@ -106,125 +253,7 @@ namespace RenCSharp
                                 Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
                             }
                         }
-                        i++;
-                    }
-                }
-
-                yield return null;
-            }
-
-            JumpToEndOfTextbox = true;
-
-            while(i < textBox.text.Length) //just run through everything in a single frame if player skipped ahead.
-            {
-                if (textBox.text[i] == '<') //we've found a rich text tag
-                {
-                    string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
-                    while (textBox.text[i] != '>')
-                    {
-                        i++;
-                        tag += textBox.text[i];
-                    }
-
-                    if (TagParser.Parse(tag))
-                    {
-                        string s = Regex.Replace(textBox.text, tag, "");
-                        textBox.text = s;
-                        i -= tag.Length - 1; //??
-                    }
-                }
-                else //just add the char and move on if it's a regular ah character
-                {
-                    //textBox.maxVisibleCharacters++;
-                    ShowALetter(textBox, i);
-                    //only care about passing in a stupid char for the event if event actually exists
-                    if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
-                    {
-                        int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i);
-                        TMP_CharacterInfo c = textBox.textInfo.characterInfo[goodI];
-                        stu.Invoke((object)c);
-                    }
-                    i++;
-                }
-            }
-            textBox.ForceMeshUpdate();
-            //textBox.maxVisibleCharacters = textBox.text.Length; //please show everything if we aren't already!
-        }
-        /// <summary>
-        /// Async version of the RunThroughText coroutine. Basically all of the same logic, but instead of being
-        /// handled as a coroutine, it relies on the Awaitable functions (ie. 'await Awaitable.NextFrameAsync' instead of 'yield
-        /// return null').
-        /// </summary>
-        /// <param name="textBox">The text area being populated by text.</param>
-        /// <param name="endText">How the final text display will look (tags not withstanding).</param>
-        /// <returns>War in our time?!?</returns>
-        public static async Awaitable RunThroughTextAsync(TextMeshProUGUI textBox, string endText)
-        {
-            float t = 0;
-            int i = 0;
-            string amended = endText;
-            TagParser.SetCurrentTextMesh = textBox;
-
-            amended = ReplaceableText(amended);
-            amended = TagParser.CleanOutFlags(amended);
-
-            textBox.text = amended; //insert text that will be shown over time
-
-            //textBox.maxVisibleCharacters = 0;
-            textBox.ForceMeshUpdate();
-            HideAllLetters(textBox);
-            
-            JumpToEndOfTextbox = false;
-
-            while (i < textBox.text.Length && !JumpToEndOfTextbox) //while running through a textbox (player hasn't done nothing)
-            {
-                //only run through text if the SM is unpaused
-                while (pausedTextbox)
-                {
-                    await Awaitable.NextFrameAsync();
-                }
-
-                t += Time.deltaTime;
-                //add one character at a time, depending on text speed
-                if (t >= TextSpeed)
-                {
-                    t = 0;
-                    if (textBox.text[i] == '<') //we've found a rich text tag
-                    {
-                        string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
-                        while (textBox.text[i] != '>')
-                        {
-                            i++;
-                            tag += textBox.text[i];
-                        }
-
-                        if (TagParser.Parse(tag))
-                        {
-                            string s = Regex.Replace(textBox.text, tag, "");
-                            textBox.text = s;
-                            textBox.ForceMeshUpdate();
-                            i -= tag.Length - 1; //??
-                        }
-                    }
-                    else //just add the char and move on if it's a regular ah character
-                    {
-                        //textBox.maxVisibleCharacters++;
-                        //textBox.ForceMeshUpdate();
-                        ShowALetter(textBox, i);
-                        //only care about passing in a stupid char for the event if event actually exists
-                        if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
-                        {
-                            int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i, true); //since the text string gets rid of valid tags???
-                            try
-                            {
-                                TMP_CharacterInfo c = textBox.textInfo.characterInfo[goodI];
-                                Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
-                            }
-                            catch
-                            {
-                                Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
-                            }
-                        }
+                        charI++;
                         i++;
                     }
                 }
@@ -234,7 +263,7 @@ namespace RenCSharp
 
             JumpToEndOfTextbox = true;
 
-            while (i < textBox.text.Length) //just run through everything in a single frame if player skipped ahead.
+            while (charI < textBox.textInfo.characterCount) //just run through everything in a single frame if player skipped ahead.
             {
                 if (textBox.text[i] == '<') //we've found a rich text tag
                 {
@@ -249,33 +278,43 @@ namespace RenCSharp
                     {
                         string s = Regex.Replace(textBox.text, tag, "");
                         textBox.text = s;
+                        textBox.ForceMeshUpdate();
                         i -= tag.Length - 1; //??
+                        if(charI != 0)charI -= tag.Length - 1;
                     }
                 }
                 else //just add the char and move on if it's a regular ah character
                 {
                     //textBox.maxVisibleCharacters++;
-                    ShowALetter(textBox, i);
+                    ShowALetter(textBox, charI);
                     //only care about passing in a stupid char for the event if event actually exists
                     if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                     {
-                        int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i);
-                        TMP_CharacterInfo c = textBox.textInfo.characterInfo[goodI];
+                        ///int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i);
+                        TMP_CharacterInfo c = textBox.textInfo.characterInfo[charI];
                         stu.Invoke((object)c);
                     }
                     i++;
+                    charI++;
                 }
             }
             textBox.ForceMeshUpdate();
             //textBox.maxVisibleCharacters = textBox.text.Length; //please show everything if we aren't already!
         }
 
-        private static void HideAllLetters(TextMeshProUGUI textToHide)
+        private static void HideLetters(TextMeshProUGUI textToHide, int afterIndex = 0)
         {
-            TMP_CharacterInfo[] charsToBeHiding = textToHide.textInfo.characterInfo;
-            TMP_TextInfo text = textToHide.textInfo;    
+            TMP_TextInfo text = textToHide.textInfo;
+            TMP_CharacterInfo[] charsToBeHiding = text.characterInfo;
+            char[] chars = new char[text.characterCount];
+            for (int i = afterIndex; i < chars.Length; i++)
+            {
+                chars[i] = charsToBeHiding[i].character;
+            }
+            Debug.Log("Chars that we are hiding: " + chars.ArrayToString());
+               
             Color32[] vertiColors;
-            for(int i = 0; i < charsToBeHiding.Length; i++)
+            for(int i = afterIndex; i < text.characterCount; i++)
             {
                 int matInd = charsToBeHiding[i].materialReferenceIndex;
                 if (text.meshInfo[matInd].colors32 != null)
@@ -302,19 +341,51 @@ namespace RenCSharp
             textToHide.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
         }
 
+        private static void ExcludeALetter(TextMeshProUGUI text, int i)
+        {
+            try
+            {
+                TMP_CharacterInfo charToExclude = text.textInfo.characterInfo[i];
+                int matInd = charToExclude.materialReferenceIndex;
+                int vertInd = charToExclude.vertexIndex;
+                Vector3[] verts = text.textInfo.meshInfo[matInd].vertices;
+
+                for(int j = vertInd; j < vertInd + 4; j++)
+                {
+                    verts[j] = verts[vertInd];
+                }
+
+                text.textInfo.meshInfo[matInd].vertices = verts;
+
+                text.UpdateVertexData(TMP_VertexDataUpdateFlags.Vertices);
+            }
+            catch
+            {
+                Debug.LogWarning($"Bad Char Index! Index: {i}");
+            }
+        }
+
         private static void ShowALetter(TextMeshProUGUI text, int i)
         {
-            TMP_CharacterInfo charToShow = text.textInfo.characterInfo[i];
-            TMP_TextInfo textInfo = text.textInfo;
-
-            Color32[] vertiColors = textInfo.meshInfo[charToShow.materialReferenceIndex].colors32;
-            for(int j = charToShow.vertexIndex; j < charToShow.vertexIndex + 4; j++)
+            try
             {
-                vertiColors[j].a = 255;
-            }
-            textInfo.meshInfo[charToShow.materialReferenceIndex].colors32 = vertiColors;
+                TMP_CharacterInfo charToShow = text.textInfo.characterInfo[i];
+                Debug.Log("Char to show: " + charToShow.character + " Index: " + i);
 
-            text.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+                TMP_TextInfo textInfo = text.textInfo;
+
+                Color32[] vertiColors = textInfo.meshInfo[charToShow.materialReferenceIndex].colors32;
+                for (int j = charToShow.vertexIndex; j < charToShow.vertexIndex + 4; j++)
+                {
+                    vertiColors[j].a = 255;
+                }
+                textInfo.meshInfo[charToShow.materialReferenceIndex].colors32 = vertiColors;
+                text.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+            }
+            catch
+            {
+                Debug.LogWarning($"Bad Char Index! Index: {i}");
+            }
         }
 
         /// <summary>

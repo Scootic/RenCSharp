@@ -352,7 +352,7 @@ namespace RenCSharp
                 speakerNameBoxScaler.ScaleTextHolder();
                 if (currentSequence.AutoFocusSpeaker && !prevActorIscurSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so
             }
-            if(curActor == null) //if no actor assigned, assume it's narration, so no name to our dialog box
+            else //if no actor assigned, assume it's narration, so no name to our dialog box
             {
                 speakerNameBox.color = defaultTextBoxColor;
                 speakerNameBox.material = null;
