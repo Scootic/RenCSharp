@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Reflection;
 using System.Linq;
 using System;
+using TMPro;
 namespace RenCSharp
 {
     /// <summary>
@@ -112,6 +113,7 @@ namespace RenCSharp
         }
         /// <summary>
         /// Goes through every single sub module and reflects it, because the ParticleSystem component is actually really evil.
+        /// I'd be surprised if this was at all performant.
         /// </summary>
         /// <param name="destination"></param>
         /// <param name="src"></param>
@@ -148,6 +150,27 @@ namespace RenCSharp
             destination.customData.CopyStructValuesThroughReflection(src.customData);
 
             return destination;
+        }
+        /// <summary>
+        /// For specific use with the VertextPredictor method in Textbox_String.cs...?
+        /// </summary>
+        /// <param name="taker">Component that takes data</param>
+        /// <param name="toCopy">Component data to be copied</param>
+        /// <returns>Copied version</returns>
+        public static TMP_Text CopyTMPSettings(this TMP_Text taker, TMP_Text toCopy)
+        {
+            taker.font = toCopy.font;
+            taker.fontSize = toCopy.fontSize;
+            taker.fontStyle = toCopy.fontStyle;
+            taker.alignment = toCopy.alignment;
+
+            taker.textWrappingMode = toCopy.textWrappingMode;
+            taker.margin = toCopy.margin;
+
+            taker.rectTransform.sizeDelta = toCopy.rectTransform.sizeDelta;
+            taker.rectTransform.pivot = toCopy.rectTransform.pivot;
+
+            return taker;
         }
     }
 }

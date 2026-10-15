@@ -11,7 +11,7 @@ namespace RenCSharp.Tags
         private static List<TMP_CharacterInfo> affectedSineChars = new();
         private static List<Coroutine> routines = new();
         /// <summary>
-        /// Sweet baby rays.
+        /// Start the character collecting process and turn on the sine wobble coroutine.
         /// </summary>
         /// <param name="text">The TMPro Mesh. Actually need this guy fr.</param>
         /// <param name="speedValue">Frequency of sine wave.</param>
@@ -65,39 +65,35 @@ namespace RenCSharp.Tags
 
         private static IEnumerator SineTextRoutine(TextMeshProUGUI text, float speed, float yAmp)
         {
-            //Mesh mesh = text.mesh;
+            Mesh mesh = text.mesh;
             //string ogSTR = text.text;
-            Vector3 offset = Vector3.zero;
+            Vector3 offset;
             Vector3[] vertices;
-            TMP_TextInfo info = text.textInfo;
-            TMP_MeshInfo[] meshInfo = info.meshInfo;
-
+            Vector3[] ogVerts = new Vector3[0];
             while (text.text.Length >= 1) //since new texboxes make the text itself become empty, it should stop when ever screen progresses.
             {
                 //text.ForceMeshUpdate();
-                //vertices = mesh.vertices;
-                for(int i = 0; i < affectedSineChars.Count; i++)
+                vertices = mesh.vertices;
+                foreach(TMP_CharacterInfo c in affectedSineChars)
                 {
-                    int matInd = affectedSineChars[i].materialReferenceIndex;
-                    int vertInd = affectedSineChars[i].vertexIndex;
-                    if (meshInfo[matInd].vertices != null)
+                    if (ogVerts.Length == 0) ogVerts = vertices;
+
+                    //if (vertices != null)
+                    //{
+                    //vertices = meshInfo[matInd].vertices
+                    for(int j = c.vertexIndex; j < c.vertexIndex + 4; j++)
                     {
-                        vertices = meshInfo[matInd].vertices;
-                        for(int j = vertInd; j < vertInd + 4; j++)
-                        {
-                            vertices[j] -= offset;
-                        }
-                        offset = SineWobble(Time.time * speed + vertInd * Mathf.PI * 0.5f, yAmp); //offset guys by partial rotations of unit kirkle
-                        for(int j = vertInd; j < vertInd + 4; j++)
-                        {
-                            vertices[j] += offset;
-                        }
-                        meshInfo[matInd].vertices = vertices;
+                        offset = SineWobble(Time.time * speed + (c.vertexIndex / 4) * Mathf.PI * 0.5f, yAmp); //offset guys by partial rotations of unit kirkle
+                            //Debug.Log($"offset: {offset}, c.vertInd: {c.vertexIndex}");
+                        vertices[j] = ogVerts[j] + offset;
+                        ogVerts[j] = vertices[j] - offset;
                     }
+                        //meshInfo[matInd].vertices = vertices;
+                    //}
                     //int index = c.vertexIndex;
                     //for(int j = index; j < index + 4; j++)
                     //{
-                    //    vertices[j] -= offset;
+                    //   vertices[j] -= offset;
                     //}
                     //offset = SineWobble(Time.time * speed + i * Mathf.PI * 0.5f, yAmp); //offset guys by partial rotations of unit kirkle
                     //for(int j = index; j < index + 4; j++) //go through the four vertex corners of the character
@@ -106,9 +102,9 @@ namespace RenCSharp.Tags
                     //}
                 }
 
-                //mesh.vertices = vertices;
-                //text.canvasRenderer.SetMesh(mesh);
-                text.UpdateVertexData(TMP_VertexDataUpdateFlags.Vertices);
+                mesh.vertices = vertices;
+                text.canvasRenderer.SetMesh(mesh);
+                //text.UpdateVertexData(TMP_VertexDataUpdateFlags.Vertices);
                 yield return null;
             }
 

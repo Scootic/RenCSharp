@@ -72,13 +72,7 @@ namespace RenCSharp
                 if (t >= TextSpeed)
                 {
                     t = 0;
-                    if (textBox.text[i] == ' ')
-                    {
-                        ShowALetter(textBox, charI);
-                        i++;
-                        charI++;
-                    }
-                    else if (textBox.text[i] == '<') //we've found a rich text tag
+                    if (textBox.text[i] == '<') //we've found a rich text tag
                     {
                         Debug.Log("Touched rich tag?");
                         string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
@@ -86,20 +80,21 @@ namespace RenCSharp
                         {
                             //textBox.textInfo.characterInfo[i].isVisible = false;
                             i++;
+                            //charI++;
                             tag += textBox.text[i];
                         }
 
                         if (TagParser.Parse(tag))
                         {
-                            //string s = Regex.Replace(textBox.text, tag, "");
+                            string s = Regex.Replace(textBox.text, tag, "");
                             //textBox.text = s;
                             //textBox.ForceMeshUpdate(true);
                             //i -= tag.Length - 1;
-                            //if(charI != 0) charI -= tag.Length - 1;
-                            for(int j = i; j >= charI; j--)
-                            {
-                                ExcludeALetter(textBox, i);
-                            }
+                            //HideLetters(textBox,charI);
+                      
+                            ExcludeLetters(textBox, charI, i, s);
+                            if (charI != 0) charI -= tag.Length - 1;
+
                         }
                         //charI -= tag.Length - 1;
                     }
@@ -133,12 +128,7 @@ namespace RenCSharp
 
             while(charI < textBox.textInfo.characterCount && i < textBox.text.Length) //just run through everything in a single frame if player skipped ahead.
             {
-                if (textBox.text[i] == ' ')
-                {
-                    i++;
-                    charI++;
-                }
-                else if (textBox.text[i] == '<') //we've found a rich text tag
+                if (textBox.text[i] == '<') //we've found a rich text tag
                 {
                     string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
                     while (textBox.text[i] != '>')
@@ -171,7 +161,7 @@ namespace RenCSharp
                     charI++;
                 }
             }
-            textBox.ForceMeshUpdate();
+            //textBox.ForceMeshUpdate();
             //textBox.maxVisibleCharacters = textBox.text.Length; //please show everything if we aren't already!
         }
         /// <summary>
@@ -341,28 +331,76 @@ namespace RenCSharp
             textToHide.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
         }
 
-        private static void ExcludeALetter(TextMeshProUGUI text, int i)
+        private static void ExcludeLetters(TextMeshProUGUI text, int startI, int endI, string expectedText)
         {
             try
             {
-                TMP_CharacterInfo charToExclude = text.textInfo.characterInfo[i];
-                int matInd = charToExclude.materialReferenceIndex;
-                int vertInd = charToExclude.vertexIndex;
-                Vector3[] verts = text.textInfo.meshInfo[matInd].vertices;
-
-                for(int j = vertInd; j < vertInd + 4; j++)
+                TMP_CharacterInfo[] chars = text.textInfo.characterInfo;
+                TMP_CharacterInfo charToExclude;
+                int matInd, vertInd;
+                Vector3[] verts = new Vector3[0];
+                //do the hiding part
+                for(int i = startI; i < endI; i++)
                 {
-                    verts[j] = verts[vertInd];
+                    charToExclude = chars[i];
+                    matInd = charToExclude.materialReferenceIndex;
+                    vertInd = charToExclude.vertexIndex;
+                    verts = text.textInfo.meshInfo[matInd].vertices;
+
+                    for (int j = vertInd; j < vertInd + 4; j++)
+                    {
+                        verts[j] = verts[vertInd];
+                    }
+
+                    text.textInfo.meshInfo[matInd].vertices = verts; //why is meshInfo an array like this...
                 }
 
-                text.textInfo.meshInfo[matInd].vertices = verts;
+                Vector3[] expectedVerts = PredictVertices(expectedText, text);
+
+                for(int i = endI; i < text.textInfo.characterCount; i++)
+                {
+                    verts[i] = expectedVerts[i - endI];
+                }
+
+                Mesh goose = text.mesh;
+                goose.vertices = verts;
+                text.canvasRenderer.SetMesh(goose);
 
                 text.UpdateVertexData(TMP_VertexDataUpdateFlags.Vertices);
             }
             catch
             {
-                Debug.LogWarning($"Bad Char Index! Index: {i}");
+                Debug.LogWarning($"Bad Char Index! Index: {startI}");
             }
+        }
+
+        private static Vector3[] PredictVertices(string toPredict, TextMeshProUGUI settings)
+        {
+            //not entirely sure why the robots are insistant upon having an actual GO in scene. maybe forcemeshupdate
+            //doesn't do squat on "floating" components?
+            GameObject temp = new("t") { hideFlags = HideFlags.HideAndDontSave};
+            //mite be expensive???
+            TextMeshProUGUI ttmp = temp.AddComponent<TextMeshProUGUI>();
+            ttmp.CopyTMPSettings(settings);
+            ttmp.text = toPredict;
+            ttmp.ForceMeshUpdate(); //guh...
+
+            Vector3[] expectedVerts = new Vector3[ttmp.textInfo.characterCount * 4];
+            TMP_CharacterInfo tci;
+            int vertI;
+            for (int i = 0; i < ttmp.textInfo.characterCount; i++)
+            {
+                tci = ttmp.textInfo.characterInfo[i];
+                vertI = i * 4;
+
+                expectedVerts[vertI] = tci.bottomLeft;
+                expectedVerts[vertI + 1] = tci.topLeft;
+                expectedVerts[vertI + 2] = tci.topRight;
+                expectedVerts[vertI + 3] = tci.bottomRight;
+            }
+
+            GameObject.DestroyImmediate(temp);
+            return expectedVerts;
         }
 
         private static void ShowALetter(TextMeshProUGUI text, int i)

@@ -557,7 +557,7 @@ namespace RenCSharp
             }
 
             Image bgI = bg.Image;
-            Material bgStinker = new Material(bgI.material);
+            Material bgStinker = new(bgI.material);
             bgI.material = bgStinker;
             if(std.BackgroundHSC != null)
             {
