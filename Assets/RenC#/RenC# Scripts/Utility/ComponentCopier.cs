@@ -166,7 +166,8 @@ namespace RenCSharp
 
             taker.textWrappingMode = toCopy.textWrappingMode;
             taker.margin = toCopy.margin;
-
+            //copy position to be extra safe about vertex parity??
+            taker.rectTransform.position = toCopy.rectTransform.position;
             taker.rectTransform.sizeDelta = toCopy.rectTransform.sizeDelta;
             taker.rectTransform.pivot = toCopy.rectTransform.pivot;
 

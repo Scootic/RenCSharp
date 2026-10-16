@@ -11,7 +11,7 @@ namespace RenCSharp.Sequences
     /// the appearance that the actor will take on.
     /// </summary>
     [Serializable]
-    public class Spawn_Actor : Screen_Event
+    public class Spawn_Actor : Screen_Event, IUndo
     {
         [SerializeField] private Actor actorToSpawn;
         [SerializeField,Tooltip("For coroutine to make the actor fade in. 0 for instantaneous spawning."), Min(0)] private float fadeInTime = 0.5f;
@@ -67,6 +67,11 @@ namespace RenCSharp.Sequences
             if(fadeIn != null) Sequence_Manager.SM.StopCoroutine(fadeIn);
             if (uie == null) return; //?????
             foreach(Image image in uie.Images) { image.color = Color.white; }
+        }
+
+        public void Undo()
+        {
+            Object_Factory.RemoveObject(actorToSpawn.name);
         }
 
         public override string ToString()

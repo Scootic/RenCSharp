@@ -66,26 +66,31 @@ namespace RenCSharp.Tags
         private static IEnumerator NoiseTextRoutine(TextMeshProUGUI text, float maxDist, float acceptableDeviation)
         {
             Mesh mesh = text.mesh;
+            //string ogSTR = text.text;
+            Vector3 offset;
+            Vector3[] vertices;
+            Vector3[] ogVerts = new Vector3[0];
+            yield return null; //wait a single frame to let vertex adjustment happen first?
 
-            while (text.text.Length >= 1) //end the routine with a new screen, and reset the chars.
+            while (text.text.Length >= 1) //since new texboxes make the text itself become empty, it should stop when ever screen progresses.
             {
-                text.ForceMeshUpdate();
-                Vector3[] verts = mesh.vertices;
-
-                //Debug.Log("charListLength: " + affectedNoiseChars.Count);
-
-                foreach(TMP_CharacterInfo c in affectedNoiseChars)
+                //text.ForceMeshUpdate();
+                vertices = mesh.vertices;
+                foreach (TMP_CharacterInfo c in affectedNoiseChars)
                 {
-                    int index = c.vertexIndex;
-                    Vector3 offset = EvilNoise(maxDist, acceptableDeviation);
-                    verts[index] += offset;
-                    verts[index + 1] += offset;
-                    verts[index + 2] += offset;
-                    verts[index + 3] += offset;
-                }
-                mesh.vertices = verts;
-                text.canvasRenderer.SetMesh(mesh);
+                    if (ogVerts.Length == 0) ogVerts = vertices;
 
+                    offset = EvilNoise(maxDist, acceptableDeviation);
+                    for (int j = c.vertexIndex; j < c.vertexIndex + 4; j++)
+                    { 
+                        vertices[j] = ogVerts[j] + offset;
+                        ogVerts[j] = vertices[j] - offset;
+                    }
+                }
+
+                mesh.vertices = vertices;
+                text.canvasRenderer.SetMesh(mesh);
+                //text.UpdateVertexData(TMP_VertexDataUpdateFlags.Vertices);
                 yield return null;
             }
 

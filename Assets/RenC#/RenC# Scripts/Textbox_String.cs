@@ -41,20 +41,20 @@ namespace RenCSharp
         /// <returns>Peace in our time.</returns>
         public static IEnumerator RunThroughText(TextMeshProUGUI textBox, string endText)
         {
-            while (pausedTextbox) yield return null; //?????????
+            while (pausedTextbox) yield return null; //No friggin' idea why this is necessary for first runtime screen?????????
 
             float t = 0;
             int i = 0; //"real" string char index
-            int charI = 0; //tmp char index (excludes built-in rich tags)
+            int charI = 0; //tmp_charInfo index (excludes built-in rich tags already... nightmare parsing)
             string amended = endText;
+            string s = "";
             TagParser.SetCurrentTextMesh = textBox;
 
             amended = ReplaceableText(amended);
             amended = TagParser.CleanOutFlags(amended);
 
-            textBox.text = amended; //insert text that will be shown over time
+            textBox.text = amended; //set the text that will be show over time/mangled horrifically by tags
             textBox.ForceMeshUpdate();
-            //textBox.maxVisibleCharacters = 0;
             HideLetters(textBox);
 
             JumpToEndOfTextbox = false;
@@ -78,22 +78,23 @@ namespace RenCSharp
                         string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
                         while (textBox.text[i] != '>')
                         {
-                            //textBox.textInfo.characterInfo[i].isVisible = false;
                             i++;
-                            //charI++;
                             tag += textBox.text[i];
                         }
 
-                        if (TagParser.Parse(tag))
+                        if (TagParser.Parse(tag) && i != textBox.text.Length - 1)
                         {
-                            string s = Regex.Replace(textBox.text, tag, "");
+                            s = s == "" ? Regex.Replace(textBox.text, tag, "") : Regex.Replace(s, tag, "");
                             //textBox.text = s;
                             //textBox.ForceMeshUpdate(true);
                             //i -= tag.Length - 1;
                             //HideLetters(textBox,charI);
-                      
+                            
                             ExcludeLetters(textBox, charI, i, s);
-                            if (charI != 0) charI -= tag.Length - 1;
+                            //charI = Mathf.Min(charI + tag.Length, textBox.textInfo.characterCount - 1);
+                            charI += tag.Length - 1;//?
+                            //i = Mathf.Min(i + tag.Length, textBox.text.Length);
+                            //if (charI != 0) charI -= tag.Length - 1;
 
                         }
                         //charI -= tag.Length - 1;
@@ -101,11 +102,9 @@ namespace RenCSharp
                     else //just add the char and move on if it's a regular ah character
                     {
                         ShowALetter(textBox, charI);
-                        ///textBox.ForceMeshUpdate();
                         //only care about passing in a stupid char for the event if event actually exists
                         if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                         {
-                            ///int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i, true); //since the text string gets rid of valid tags???
                             try
                             {
                                 TMP_CharacterInfo c = textBox.textInfo.characterInfo[charI];
@@ -136,14 +135,22 @@ namespace RenCSharp
                         i++;
                         tag += textBox.text[i];
                     }
-
-                    if (TagParser.Parse(tag))
+                    //don't need to bother excluding things if the last letter of tag is the last letter of the string?
+                    //might leave a gap big enough to cause smaller text size, but might be preferrable to FURTHER index chicanery
+                    if (TagParser.Parse(tag) && i != textBox.text.Length - 1)
                     {
-                        string s = Regex.Replace(textBox.text, tag, "");
-                        textBox.text = s;
-                        //textBox.ForceMeshUpdate();
-                        i -= tag.Length - 1; //??
-                        if(charI != 0)charI -= tag.Length - 1;
+                        s = s == "" ? Regex.Replace(textBox.text, tag, "") : Regex.Replace(s, tag, "");
+                        //textBox.text = s;
+                        //textBox.ForceMeshUpdate(true);
+                        //i -= tag.Length - 1;
+                        //HideLetters(textBox,charI);
+
+                        ExcludeLetters(textBox, charI, i, s);
+                        //charI = Mathf.Min(charI + tag.Length, textBox.textInfo.characterCount - 1);
+                        charI += tag.Length - 1;
+                        //i = Mathf.Min(i + tag.Length, textBox.text.Length);
+                        //if (charI != 0) charI -= tag.Length - 1;
+
                     }
                 }
                 else //just add the char and move on if it's a regular ah character
@@ -153,7 +160,6 @@ namespace RenCSharp
                     //only care about passing in a stupid char for the event if event actually exists
                     if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                     {
-                        ///int goodI = TagParser.StringIndexExcludeBuiltinTags(textBox.text, i);
                         TMP_CharacterInfo c = textBox.textInfo.characterInfo[charI];
                         stu.Invoke((object)c);
                     }
@@ -161,8 +167,6 @@ namespace RenCSharp
                     charI++;
                 }
             }
-            //textBox.ForceMeshUpdate();
-            //textBox.maxVisibleCharacters = textBox.text.Length; //please show everything if we aren't already!
         }
         /// <summary>
         /// Async version of the RunThroughText coroutine. Basically all of the same logic, but instead of being
@@ -333,57 +337,61 @@ namespace RenCSharp
 
         private static void ExcludeLetters(TextMeshProUGUI text, int startI, int endI, string expectedText)
         {
-            try
-            {
-                TMP_CharacterInfo[] chars = text.textInfo.characterInfo;
-                TMP_CharacterInfo charToExclude;
-                int matInd, vertInd;
-                Vector3[] verts = new Vector3[0];
+            TMP_CharacterInfo[] chars = text.textInfo.characterInfo;
+            TMP_CharacterInfo charToExclude;
+            int matInd, vertInd;
+            Vector3[] verts = new Vector3[0];
                 //do the hiding part
-                for(int i = startI; i < endI; i++)
-                {
-                    charToExclude = chars[i];
-                    matInd = charToExclude.materialReferenceIndex;
-                    vertInd = charToExclude.vertexIndex;
-                    verts = text.textInfo.meshInfo[matInd].vertices;
-
-                    for (int j = vertInd; j < vertInd + 4; j++)
-                    {
-                        verts[j] = verts[vertInd];
-                    }
-
-                    text.textInfo.meshInfo[matInd].vertices = verts; //why is meshInfo an array like this...
-                }
-
-                Vector3[] expectedVerts = PredictVertices(expectedText, text);
-
-                for(int i = endI; i < text.textInfo.characterCount; i++)
-                {
-                    verts[i] = expectedVerts[i - endI];
-                }
-
-                Mesh goose = text.mesh;
-                goose.vertices = verts;
-                text.canvasRenderer.SetMesh(goose);
-
-                text.UpdateVertexData(TMP_VertexDataUpdateFlags.Vertices);
-            }
-            catch
+            for(int i = startI; i < endI; i++)
             {
-                Debug.LogWarning($"Bad Char Index! Index: {startI}");
+                charToExclude = chars[i];
+                matInd = charToExclude.materialReferenceIndex;
+                vertInd = charToExclude.vertexIndex;
+                verts = text.textInfo.meshInfo[matInd].vertices;
+
+                for (int j = vertInd; j < vertInd + 4; j++)
+                {
+                    verts[j] = verts[vertInd];
+                }
+
+                text.textInfo.meshInfo[matInd].vertices = verts; //why is meshInfo an array like this...
             }
+                //vertices for a textbox that excludes the stinkin' letters
+            text.UpdateVertexData(TMP_VertexDataUpdateFlags.Vertices);
+            Vector3[] expectedVerts = PredictVertices(expectedText, text);
+
+            Debug.Log($"Current first mesh verts?: {verts[0]},{verts[1]},{verts[2]},{verts[3]}. Mesh VCount: {verts.Length}");
+            Debug.Log($"Expected first mesh verts: {expectedVerts[0]},{expectedVerts[1]},{expectedVerts[2]},{expectedVerts[3]}. Mesh VCount: {expectedVerts.Length}");
+
+            for(int i = 0; i < expectedVerts.Length; i++)
+            {
+                //endI * 4 because endI is a char, not a vert...?
+                try
+                {
+                    verts[i + (endI * 4)] = expectedVerts[i];
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+            //mesh setting because meshInfo[] is really dumb and bad and I hate it! (overlays are overrated anyway... probably.)
+            Mesh goose = text.mesh;
+            goose.vertices = verts;
+            text.canvasRenderer.SetMesh(goose);
         }
 
         private static Vector3[] PredictVertices(string toPredict, TextMeshProUGUI settings)
         {
-            //not entirely sure why the robots are insistant upon having an actual GO in scene. maybe forcemeshupdate
-            //doesn't do squat on "floating" components?
-            GameObject temp = new("t") { hideFlags = HideFlags.HideAndDontSave};
-            //mite be expensive???
+            //i'm pretty sure the reason we need an existant GO is because TMPUGUI forcemeshupdate doesn't do squat on "floating"
+            //components. also it won't work on objects that were literally just constructed, so we use an empty object already
+            //spawned by Sequence_Manager on Awake/LoadGame.
+            Object_Factory.TryGetObject("EMPTY", out GameObject temp);
             TextMeshProUGUI ttmp = temp.AddComponent<TextMeshProUGUI>();
             ttmp.CopyTMPSettings(settings);
             ttmp.text = toPredict;
             ttmp.ForceMeshUpdate(); //guh...
+            Debug.LogWarning("Text: " + ttmp.text + ", textinfo chr count: " + ttmp.textInfo.characterCount + ", textLength " + ttmp.text.Length + ", textinfo chrArrayLength " + ttmp.textInfo.characterInfo.Length);
 
             Vector3[] expectedVerts = new Vector3[ttmp.textInfo.characterCount * 4];
             TMP_CharacterInfo tci;
@@ -392,14 +400,14 @@ namespace RenCSharp
             {
                 tci = ttmp.textInfo.characterInfo[i];
                 vertI = i * 4;
-
+                //struct garbage is why we can't nested for... D; so sad
                 expectedVerts[vertI] = tci.bottomLeft;
                 expectedVerts[vertI + 1] = tci.topLeft;
                 expectedVerts[vertI + 2] = tci.topRight;
                 expectedVerts[vertI + 3] = tci.bottomRight;
             }
 
-            GameObject.DestroyImmediate(temp);
+            GameObject.Destroy(ttmp);
             return expectedVerts;
         }
 

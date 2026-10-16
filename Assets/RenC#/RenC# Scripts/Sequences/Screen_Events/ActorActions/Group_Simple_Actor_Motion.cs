@@ -2,10 +2,9 @@ using RenCSharp.Actors;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UITK_SimpleTimeline;
 namespace RenCSharp.Sequences
 {
-    public class Group_Simple_Actor_Motion : Screen_Event
+    public class Group_Simple_Actor_Motion : Screen_Event, IUndo
     {
         [SerializeField] private Vector3 motionOffset;
         [SerializeField] private float motionDuration;
@@ -117,6 +116,25 @@ namespace RenCSharp.Sequences
                 if (actorObjs[i] != null) actorObjs[i].transform.localPosition = CurveLerp(ogPos[i], desPos[i],eval);
             }
             Sequence_Manager.SM.StopCoroutine(motion);
+        }
+
+        public void Undo()
+        {
+            if (actorObjs.Count < targets.Length)
+            {
+                for(int i = actorObjs.Count; i < targets.Length; i++)
+                {
+                    if (Object_Factory.TryGetObject(targets[i].name, out GameObject t)) actorObjs.Add(t);
+                    else Debug.LogWarning("GUUUH");
+                }
+            }
+
+            for (int i = 0; i < actorObjs.Count; i++)
+            {
+                if (actorObjs[i] == null) continue;
+                actorObjs[i].transform.localPosition -= new Vector3(motionOffset.x * xCurve.Evaluate(1), 
+                    motionOffset.y * yCurve.Evaluate(1),motionOffset.z * zCurve.Evaluate(1));
+            }
         }
 
         public override string ToString()

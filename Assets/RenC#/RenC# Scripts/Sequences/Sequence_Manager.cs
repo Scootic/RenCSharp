@@ -93,6 +93,7 @@ namespace RenCSharp
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder); //profoundly sad
             Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder);//horrid
             Object_Factory.SpawnObject(actorHolderFab, "Actor Holder", actorCanvas);
+            Object_Factory.SpawnObject(actorHolderFab, "EMPTY", dialogBox.transform);
             FlagToken ft = new();
             Flag_Manager.ReceiveFlagToken(ft.FlagTokenToDictionary(SaveLoad.LoadPersistentFlags()), true); //safety thing, make sure we have persistent flags
 
@@ -478,6 +479,7 @@ namespace RenCSharp
             Transform actorHolder = Object_Factory.SpawnObject(actorHolderFab, "Actor Holder", actorCanvas).transform;
             Animated_Image_Handler ov = Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder).GetComponent<Animated_Image_Handler>();
             Animated_Image_Handler bg = Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder).GetComponent<Animated_Image_Handler>();
+            Object_Factory.SpawnObject(actorHolderFab, "EMPTY", dialogBox.transform);
 
             //grab flags
             FlagToken ft = sd.CurrentFlags;
@@ -517,7 +519,7 @@ namespace RenCSharp
             bg.ReceiveAnimationInformation(std.BackgroundAssetKeys, std.BackgroundSubobjectKeys,std.BackgroundSPF);
 
             Image ovI = ov.Image;
-            Material ovStinker = new Material(ovI.material);
+            Material ovStinker = new(ovI.material);
             ovI.material = ovStinker;
             if(std.OverlayHSC != null)
             {
@@ -639,7 +641,7 @@ namespace RenCSharp
                         break;
                     }
 
-                    Vector3 localPos = new Vector3(pt.XPos, pt.YPos, pt.ZPos);
+                    Vector3 localPos = new(pt.XPos, pt.YPos, pt.ZPos);
                     Debug.Log("Local position from particle save data: " + localPos);
                     _ = Object_Factory.SpawnParticleObject(true, pt.ParticleName, guh.transform, localPos, pt.UIParticleGUID, pt.ParticleSystemGUIDs[0]);
                 }
@@ -653,7 +655,7 @@ namespace RenCSharp
             {
                 foreach(SFXToken sfxt in std.ActiveESFX)
                 {
-                    Vector3 position = new Vector3(sfxt.xPos, sfxt.yPos, sfxt.zPos);
+                    Vector3 position = new(sfxt.xPos, sfxt.yPos, sfxt.zPos);
                     bool is3D = position != Vector3.zero;
 
                     if (is3D)
@@ -691,6 +693,13 @@ namespace RenCSharp
             ///StartCoroutine(RunThroughScreen(currentSequence.Screens[curScreenIndex]));
             Textbox_String.JumpToEndOfTextbox = true;
             paused = false;
+            //undoes instructions if applicable (because save data is storing stuff.)
+            foreach(Screen_Event se in currentSequence.Screens[curScreenIndex].ScreenActions)
+            {
+                IUndo undo = se as IUndo;
+                undo?.Undo();
+            }
+
             //go back one to progress into the screen.
             curScreenIndex--;
             ProgressToNextScreen();

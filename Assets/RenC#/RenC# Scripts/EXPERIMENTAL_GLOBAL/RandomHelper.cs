@@ -4,8 +4,8 @@ namespace RenCSharp.EXPERIMENTAL
 {
     public static class RandomHelper 
     {
-        private static Dictionary<string, int> prevIRolls = new();
-        private static Dictionary<string, float> prevFRolls = new();
+        private static readonly Dictionary<string, int> prevIRolls = new();
+        private static readonly Dictionary<string, float> prevFRolls = new();
         /// <summary>
         /// Rolls an integer that will be different than the previous int rolled under a string index.
         /// </summary>

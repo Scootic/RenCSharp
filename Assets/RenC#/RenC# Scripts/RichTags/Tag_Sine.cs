@@ -70,6 +70,8 @@ namespace RenCSharp.Tags
             Vector3 offset;
             Vector3[] vertices;
             Vector3[] ogVerts = new Vector3[0];
+            yield return null; //wait a single frame to let vertex adjustment happen first?
+
             while (text.text.Length >= 1) //since new texboxes make the text itself become empty, it should stop when ever screen progresses.
             {
                 //text.ForceMeshUpdate();

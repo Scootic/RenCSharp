@@ -1,7 +1,7 @@
 using RenCSharp.Actors;
 using System.Collections;
 using UnityEngine;
-using UITK_SimpleTimeline;
+
 namespace RenCSharp.Sequences
 {
     /// <summary>
@@ -9,7 +9,7 @@ namespace RenCSharp.Sequences
     /// an animation curve. The animation curve can end at where it starts, meaning simple hop animations are possible. Additionally, the lerping is
     /// unclamped, meaning you can have negative values in your animation curve.
     /// </summary>
-    public class Simple_Actor_Motion : Screen_Event
+    public class Simple_Actor_Motion : Screen_Event, IUndo 
     {
         [SerializeField] protected Vector3 localMotionOffset;
         [SerializeField, Min(0.01f)] protected float motionDuration = 1;
@@ -84,6 +84,13 @@ namespace RenCSharp.Sequences
             if (actorObj == null) return;
             if (loopOnScreen) actorObj.transform.localPosition = SetPosition(0f);
             else actorObj.transform.localPosition = SetPosition(1f);
+        }
+
+        public void Undo()
+        {
+            if (actorObj == null && !Object_Factory.TryGetObject(target.name,out actorObj)) return;
+            actorObj.transform.localPosition -= new Vector3(motionPathX.Evaluate(1) * localMotionOffset.x,
+                motionPathY.Evaluate(1) * localMotionOffset.y, motionPathZ.Evaluate(1) * localMotionOffset.z);
         }
 
         public override string ToString()
