@@ -35,6 +35,7 @@ namespace RenCSharp.Tags
         private static void AddCharToSineList(object chara) 
         { 
             TMP_CharacterInfo c = (TMP_CharacterInfo)chara;
+            Debug.Log("Adding char to sine list: " + c.character);
             affectedSineChars.Add(c);
         }
 

@@ -74,6 +74,8 @@ namespace RenCSharp
         private bool interruptable = true;
         private List<ParticleToken> activeParticles = new();
 
+        private readonly Vector3Int textJump = new(0, 10000, 0);
+
         public static Sequence_Manager SM;
         public static Action ProgressScreenEvent, EndOfAllSequencesEvent;
         public static Action<bool> SequencePausedEvent;
@@ -340,27 +342,14 @@ namespace RenCSharp
 
             Textbox_String.JumpToEndOfTextbox = false; //set up to make sure we can skip properly and not just constantly move on before reaching end of text
 
+            SetTextboxColors();
             if (curActor != null) //if we have an actor, we can put a name to our dialog box, and set the appropriate colors
             {
                 speakerNameBox.gameObject.SetActive(curActor.ActorName != "");
-                speakerNameBox.color = curActor.TextboxColor;
-                speakerNameBox.material = curActor.TextboxMaterial;
-                dialogBox.color = curActor.TextboxColor;
-                dialogField.font = curActor.ActorFont;
-                dialogBox.material = curActor.TextboxMaterial;
                 string s = TagParser.CleanOutTags(curActor.ActorName,false);
                 speakerNameField.text = Textbox_String.ReplaceableText(s);
                 speakerNameBoxScaler.ScaleTextHolder();
                 if (currentSequence.AutoFocusSpeaker && !prevActorIscurSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so
-            }
-            else //if no actor assigned, assume it's narration, so no name to our dialog box
-            {
-                speakerNameBox.color = defaultTextBoxColor;
-                speakerNameBox.material = null;
-                speakerNameBox.gameObject.SetActive(false);
-                dialogBox.color = defaultTextBoxColor;
-                dialogField.font = defaultFont;
-                dialogBox.material = null;
             }
 
             if(screen.Dialog.Length == 0) //hover on empty screens until the transition or whatever is finished
@@ -402,6 +391,28 @@ namespace RenCSharp
             }
             ProgressToNextScreen();
         }
+
+        private void SetTextboxColors()
+        {
+            if(curActor != null)
+            {
+                speakerNameBox.color = curActor.TextboxColor;
+                speakerNameBox.material = curActor.TextboxMaterial;
+                dialogBox.color = curActor.TextboxColor;
+                dialogField.font = curActor.ActorFont;
+                dialogBox.material = curActor.TextboxMaterial;
+            }
+            else
+            {
+                speakerNameBox.color = defaultTextBoxColor;
+                speakerNameBox.material = null;
+                speakerNameBox.gameObject.SetActive(false);
+                dialogBox.color = defaultTextBoxColor;
+                dialogField.font = defaultFont;
+                dialogBox.material = null;
+            }
+        }
+
         private void UpdateHistory(string speaker, string text)
         {
             //first, see if there's any space in the arrays
@@ -701,6 +712,7 @@ namespace RenCSharp
             }
 
             //go back one to progress into the screen.
+            dialogField.ForceMeshUpdate();
             curScreenIndex--;
             ProgressToNextScreen();
             Event_Bus.TryFireVoidEvent("LoadedSave");
@@ -954,7 +966,15 @@ namespace RenCSharp
         #endregion
         private void ToggleDialogUI(bool b)
         {
-            dialogBox.transform.parent.gameObject.SetActive(!b);
+            //dialogBox.transform.parent.gameObject.SetActive(!b);
+            if (b)//if pause
+            {
+                dialogBox.transform.localPosition -= textJump;
+            }
+            else
+            {
+                dialogBox.transform.localPosition += textJump;
+            }
         }
 
         public void FlipAuto(bool b)

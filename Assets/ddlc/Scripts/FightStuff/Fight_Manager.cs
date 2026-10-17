@@ -39,8 +39,7 @@ namespace RenCSharp.Combat
         [SerializeField] private Transform playerHealthBarHolder;
         [SerializeField] private Image[] playerActionButtonsToReveal;
 
-        private int curAttackIndex;
-        private int prevAttackPosRoll, dir;
+        private int curAttackIndex, prevAttackPosRoll, dir;
         private EnemyObject curEnemy;
         private Player_Object curPlayer;
 

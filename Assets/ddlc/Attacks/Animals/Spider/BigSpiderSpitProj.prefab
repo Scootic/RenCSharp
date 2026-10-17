@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8266305171280315681}
   - component: {fileID: 1534405015989188444}
   - component: {fileID: 8369066790937870399}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: BigSpiderSpitProj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,12 +144,16 @@ MonoBehaviour:
   despawnType:
     rid: 268099750562628345
   updateTypes: []
+  customUpdateWhileInactive: 1
+  customUpdateWhileActive: 1
+  movementWhileInactive: 1
+  movementWhileActive: 1
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 4
   lifetime: 3
   spawnSoundVol: 0.34
-  colliderEnableTime: 0.2
+  colliderEnableTime: 1
   spawnSound: {fileID: 8300000, guid: 423b21b2e4f93cb43afb71d66b3d1b4b, type: 3}
   sprite: {fileID: 8204080492186913528}
   hitType: 0
@@ -160,6 +164,7 @@ MonoBehaviour:
       type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
         speed: 500
+        movementSetsRotation: 1
     - rid: 268099750562628345
       type: {class: Explode_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
