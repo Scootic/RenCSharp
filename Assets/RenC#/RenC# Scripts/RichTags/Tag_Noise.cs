@@ -97,11 +97,11 @@ namespace RenCSharp.Tags
             PanicStop();
             routines = new();
         }
-        private static Vector3 EvilNoise(float maximumer, float deviation)
+        private static Vector3 EvilNoise(float maximumer, float deviation = 0.25f)
         {
             return new Vector3(
-                RandomHelper.NoRepeatRoll("xRandNoise", -maximumer, maximumer, 0.25f),
-                RandomHelper.NoRepeatRoll("yRandNoise", -maximumer, maximumer, 0.25f),
+                RandomHelper.NoRepeatRoll("xRandNoise", -maximumer, maximumer, deviation),
+                RandomHelper.NoRepeatRoll("yRandNoise", -maximumer, maximumer, deviation),
                 0);
         }
     }

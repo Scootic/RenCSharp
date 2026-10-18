@@ -75,5 +75,39 @@ namespace RenCSharp.EXPERIMENTAL
             if (!persistent) curFlags = dict;
             else persistentFlags = dict;
         }
+
+        /// <summary>
+        /// Removes any flag pattern ( [flagName] ) from a string, replacing all [flagName] instances with the number assigned to the flag instead.
+        /// </summary>
+        /// <param name="sToClean">String you want scrubbed.</param>
+        /// <returns>The string with flag values inserted where they belong, lmao.</returns>
+        public static string CleanOutFlags(string sToClean)
+        {
+            string sToReturn = "";
+            char[] chars = sToClean.ToCharArray();
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (chars[i] != '[') sToReturn += chars[i];
+                else
+                {
+                    string possibleFlag = "";
+                    i++; //move on to not include the [ bracket.
+                    while (chars[i] != ']')
+                    {
+                        if (i >= chars.Length)
+                        {
+                            Debug.LogWarning("The tag parser found a random '[' symbol that never closes! " +
+                                "Very scary. You're going to be getting an empty string for this!");
+                            return "";
+                        }
+                        possibleFlag += chars[i];
+                        i++;
+                    }
+                    string flagString = Flag_Manager.GetFlag(possibleFlag).ToString();
+                    sToReturn += flagString;
+                }
+            }
+            return sToReturn;
+        }
     }
 }

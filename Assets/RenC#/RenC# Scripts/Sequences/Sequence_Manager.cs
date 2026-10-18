@@ -712,6 +712,7 @@ namespace RenCSharp
             }
 
             //go back one to progress into the screen.
+            dialogField.text = "";
             dialogField.ForceMeshUpdate();
             curScreenIndex--;
             ProgressToNextScreen();
