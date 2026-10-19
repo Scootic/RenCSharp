@@ -49,14 +49,24 @@ namespace RenCSharp.EXPERIMENTAL
         {
             return (Mathf.Approximately(a.x, b.x) && Mathf.Approximately(a.y, b.y) && Mathf.Approximately(a.z, b.z));
         }
-
+        /// <summary>
+        /// Interprets a vector as a point on a unit circle, getting the corresponding degree angle.
+        /// </summary>
+        /// <param name="v2"></param>
+        /// <param name="degreeOffset">The initial degree offset (will be added to the vector result)</param>
+        /// <returns>Degree Angle: ATan(v2) + degreeOffset</returns>
         public static float GetDegreeFromVector(Vector2 v2, float degreeOffset = 90)
         {
             if (v2 == Vector2.zero) return 0;
             v2.Normalize();
             return Mathf.Atan2(v2.y, v2.x) * Mathf.Rad2Deg + degreeOffset;
         }
-
+        /// <summary>
+        /// Interprets a vector as a point on a unit circle, getting the corresponding degree angle.
+        /// </summary>
+        /// <param name="v3"></param>
+        /// <param name="degreeOffset">The initial degree offset (will be added to the vector result)</param>
+        /// <returns>Degree Angle: ATan(v3) + degreeOffset</returns>
         public static float GetDegreeFromVector(Vector3 v3, float degreeOffset = 90)
         {
             if (v3 == Vector3.zero) return 0;
@@ -71,7 +81,7 @@ namespace RenCSharp.EXPERIMENTAL
         /// <returns>A quaternion with a euler angle z being relative and 0 x + 0 y.</returns>
         public static Quaternion GetQuaternion(Vector2 v2, float degreeOffset = 90)
         {
-            Vector3 euler = new Vector3(0, 0, GetDegreeFromVector(v2, degreeOffset));
+            Vector3 euler = new(0, 0, GetDegreeFromVector(v2, degreeOffset));
             return Quaternion.Euler(euler);
         }
         /// <summary>
@@ -81,7 +91,7 @@ namespace RenCSharp.EXPERIMENTAL
         /// <returns>A quaternion with a euler angle z being relative and 0 x + 0 y. If V3 is 0, return quat.identity</returns>
         public static Quaternion GetQuaternion(Vector3 v3, float degreeOffset = 90)
         {
-            Vector3 euler = new Vector3(0, 0, GetDegreeFromVector(v3, degreeOffset));
+            Vector3 euler = new(0, 0, GetDegreeFromVector(v3, degreeOffset));
             return Quaternion.Euler(euler);
         }
 
@@ -124,7 +134,7 @@ namespace RenCSharp.EXPERIMENTAL
         /// <returns>The vector3 that's percent% along the bezier curve.</returns>
         public static Vector3 BezPos(Transform[] boundingPoints, float percent)
         {
-            Vector3 posToReturn = Vector3.zero; //default value because Vector3s can't be null for some stupid dumbass reason of doom
+            Vector3 posToReturn = Vector3.zero; //default value because Vector3s can't be null for some stupid dumb reason of doom
 
             //convert transforms to positions, because duh
             Vector3[] rawPositions = new Vector3[boundingPoints.Length];
@@ -158,7 +168,6 @@ namespace RenCSharp.EXPERIMENTAL
             posToReturn = recursiveLayer[0];
             return posToReturn;
         }
-
         /// <summary>
         /// Get the position along a Bezier curve, based on an array of world positions.
         /// </summary>
@@ -167,7 +176,6 @@ namespace RenCSharp.EXPERIMENTAL
         /// <returns>The vector3 that's percent% along the bezier curve.</returns>
         public static Vector3 BezPos(Vector3[] boundingPoints, float percent)
         {
-
             //do initial step based on the rawPositions array
             Vector3[] recursiveLayer = new Vector3[boundingPoints.Length - 1];
             for (int i = 0; i < recursiveLayer.Length; i++)
@@ -175,7 +183,6 @@ namespace RenCSharp.EXPERIMENTAL
                 //store the lerped values between n1 and n2, n2 and n3, n3 and n4, etc. until finished.
                 recursiveLayer[i] = Vector3.Lerp(boundingPoints[i], boundingPoints[i + 1], percent);
             }
-
             //once the initial recursiveLayer array has been setup, make a subarray to store the next step in bezier curve.
             //once subarray is finished, replace og recursiveLayer with the sublayer.
             //repeat until you are left with a single value.
@@ -188,19 +195,30 @@ namespace RenCSharp.EXPERIMENTAL
                 }
                 recursiveLayer = subLayer;
             }
-
             //return the single value found after (potentially) many lerps.
             return recursiveLayer[0];
+            
+        }
+        /// <summary>
+        /// Takes a 0-1 range float (a percent) and converts it to a byte. (0f = 0, 1f = 255)
+        /// </summary>
+        /// <param name="perc">Given float percentage (ranges from 0 to 1)</param>
+        /// <returns>Byte based on given float.</returns>
+        public static byte PercentToByte(float perc)
+        {
+            perc = Mathf.Clamp01(perc);
+            return (byte)Mathf.RoundToInt(perc * 255);
         }
     }
-    //Incredibly bad. I think it has something to do with each object getting their own job operation?
+    //Incredibly bad. I think it has something to do with each object getting their own job operation, instead of multiple
+    //objects doing math in one job???
     [BurstCompile]
     public struct BezierPositionJob : IJobParallelForTransform
     {
         [ReadOnly] public NativeArray<Vector3> boundingPositions;
         [ReadOnly] public float percentAlongCurve;
 
-        public void Execute(int index, TransformAccess transform)
+        public readonly void Execute(int index, TransformAccess transform)
         {
             NativeArray<Vector3> recursiveLayer = new NativeArray<Vector3>(boundingPositions, Allocator.Temp);
             for(int i = recursiveLayer.Length - 2; i >= 0; i--)

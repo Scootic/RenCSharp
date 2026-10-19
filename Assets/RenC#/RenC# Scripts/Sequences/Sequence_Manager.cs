@@ -751,7 +751,7 @@ namespace RenCSharp
             string fileName = (string)string_saveFileName;
             if (!saving)
             {
-                SaveData sd = SaveData((string)string_saveFileName);
+                SaveData sd = SaveData(fileName);
                 await Awaitable.EndOfFrameAsync();
                 sd.SaveScreenshot = GetScreenShot();
                 menuBase.SetActive(!auto);
@@ -795,7 +795,7 @@ namespace RenCSharp
             manToSave.ReplacedTexts = replacerKeys.ToArray();
             manToSave.ReplacingTexts = replacerValues.ToArray();
 
-            //grab the cursequence. horrid! USES THE ASSET REFERENcE WE DONE STORED. MAYBE IT WORK? MAYBE IT NO :)
+            //grab the cursequence. horrid! :)
             manToSave.CurrentSequenceAsset = currentSequence.Myself.AssetGUID;
             //save bg data
             if (Object_Factory.TryGetObject("Background", out GameObject bg))
@@ -861,7 +861,7 @@ namespace RenCSharp
                         visualIndexes.Add(actor.Visuals[i].layer.IndexOf(uie.Images[i].sprite)); //HIDEOUS
                     }
                     ActorToken newt = new(go.transform.position, actor.Myself.AssetGUID, visualIndexes.ToArray());
-                    Debug.Log("ActorToken I'm adding to list: \n" + newt.ToString());
+                    //Debug.Log("ActorToken I'm adding to list: \n" + newt.ToString());
                     actorTokens.Add(newt);
                 }
                 else if (Object_Factory.TryGetObject(actor.ActorName, out GameObject goo)) //back up, in case of silly shenaniganas
@@ -878,7 +878,7 @@ namespace RenCSharp
             }
             //handle particles
             st.ActiveParticles = activeParticles;
-
+            /*
             string particleLog = "Adding particles to save data: \n";
 
             foreach (ParticleToken pt in st.ActiveParticles)
@@ -886,7 +886,7 @@ namespace RenCSharp
                 particleLog += $"Particle: {pt.ParticleName}\n";
             }
 
-            Debug.Log(particleLog);
+            Debug.Log(particleLog);*/
 
             st.ActiveActors = actorTokens;
             st.ActiveESFX = Audio_Manager.AM.GetLoopingSFXGUIDs;
@@ -945,7 +945,6 @@ namespace RenCSharp
 
         private IEnumerator FlashButton(int scrindex)
         {
-            Color slightlyTrans = new Color(1, 1, 1, 0.4f);
             float t = 0;
             bool dir = true;
             Image pd = progressDialogButton.GetComponent<Image>();
@@ -957,7 +956,7 @@ namespace RenCSharp
                 if (t >= 1) dir = false;
                 else if (t <= 0) dir = true;
 
-                pd.color = Color.Lerp(Color.white, slightlyTrans, t);
+                pd.color = Color.Lerp(Color.white, CoolColors.pointFourTransWhiteGUI, t);
 
                 yield return null;
             }
@@ -967,17 +966,22 @@ namespace RenCSharp
         #endregion
         private void ToggleDialogUI(bool b)
         {
-            //dialogBox.transform.parent.gameObject.SetActive(!b);
-            if (b)//if pause
+            //if paused. the "and position.y >= -half of canvas height" prevents repeatedly setting pause to true by menus.
+            //doesn't just set the object to be inactive because TMP will force mesh to update when re-enabling,
+            //even when (ESPECIALLY WHEN) we don't want it to.
+            if (b && dialogBox.rectTransform.localPosition.y >= -(dialogBox.canvas.renderingDisplaySize.y * 0.5f))
             {
                 dialogBox.transform.localPosition -= textJump;
             }
-            else
+            else if(!b)
             {
                 dialogBox.transform.localPosition += textJump;
             }
         }
-
+        /// <summary>
+        /// Flips whether or not the textbox should progress without player input.
+        /// </summary>
+        /// <param name="b">true to auto progress, false to not</param>
         public void FlipAuto(bool b)
         {
             auto = b;

@@ -25,6 +25,7 @@ namespace RenCSharp
         /// char to be displayed by RunThroughText().
         /// </summary>
         public static float TextSpeed = 0.1f;
+        private static float ShowCharSpeed => Mathf.Max(0.2f, TextSpeed);
         /// <summary>
         /// Makes the coroutine skip past the filling in char by char and just displays final text
         /// </summary>
@@ -37,6 +38,11 @@ namespace RenCSharp
         /// Regex used when excluding custom rich-tags from being rendered in-game. Declared in class to do less GC.
         /// </summary>
         private static Regex excludeTagEx;
+        /// <summary>
+        /// Determines the curve by which characters fade in over time when shown.
+        /// </summary>
+        private static AnimationCurve characterFadeInCurve = Animation_Helper.EaseOut;
+        public static AnimationCurve SetCharacterFadeInCurve { set { characterFadeInCurve = value; } }
         /// <summary>
         /// Does animated text for a textbox, one character at a time. can be forced to fill in every other character by setting
         /// JumpToEndOfTextbox to true. Idles on a character if pausedTextbox is true.
@@ -69,10 +75,7 @@ namespace RenCSharp
             while (charI < textBox.textInfo.characterCount && !JumpToEndOfTextbox && i < textBox.text.Length) //while running through a textbox (player hasn't done nothing)
             {
                 //only run through text if unpaused
-                while (pausedTextbox)
-                {
-                    yield return null;
-                }
+                while (pausedTextbox) yield return null;
 
                 t += Time.deltaTime;
                 //add one character at a time, depending on text speed
@@ -88,20 +91,21 @@ namespace RenCSharp
                             i++;
                             tag += textBox.text[i];
                         }
-
+                        i++;
                         if (TagParser.Parse(tag))
                         {
-                            Debug.Log("Touched rich tag!");
+                            ///Debug.Log("Touched rich tag!");
                             excludeTagEx = new Regex(tag);
                             s = excludeTagEx.Replace(s, "", 1);
-                            i++;
-                            ExcludeLetters(textBox, charI, i, s);
+                            ExcludeLetters(textBox, charI, charI + tag.Length, s);
                             charI += tag.Length;//?
                         }
                     }
                     else //just add the char and move on if it's a regular ah character
                     {
-                        ShowALetter(textBox, charI);
+                        ///Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}");
+                        if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
+                        else ShowALetter(textBox, charI);
                         //only care about passing in a stupid char for the event if event actually exists
                         if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                         {
@@ -135,19 +139,21 @@ namespace RenCSharp
                         i++;
                         tag += textBox.text[i];
                     }
+                    i++;
                     //don't need to bother excluding things if the last letter of tag is the last letter of the string?
                     //might leave a gap big enough to cause smaller text size, but might be preferrable to FURTHER index chicanery
                     if (TagParser.Parse(tag))
                     {
                         excludeTagEx = new Regex(tag);
                         s = excludeTagEx.Replace(s, "", 1);
-                        i++;
+                        
                         ExcludeLetters(textBox, charI, i, s);
                         charI += tag.Length; //
                     }
                 }
                 else //just add the char and move on if it's a regular ah character
                 {
+                    ///Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}");
                     //textBox.maxVisibleCharacters++;
                     ShowALetter(textBox, charI);
                     //only care about passing in a stupid char for the event if event actually exists
@@ -174,7 +180,7 @@ namespace RenCSharp
 
             float t = 0;
             int i = 0; //"real" string char index
-            int charI = 0; //tmp_charInfo index (excludes built-in rich tags already... nightmare parsing)
+            int charI = 0; //tmp_charInfo index (excludes built-in rich tags already... nightmare nightmare parsing!)
             string amended = endText;
 
             TagParser.SetCurrentTextMesh = textBox;
@@ -188,15 +194,12 @@ namespace RenCSharp
 
             JumpToEndOfTextbox = false;
 
-            string s = textBox.text;
+            string s = amended;
 
             while (charI < textBox.textInfo.characterCount && !JumpToEndOfTextbox && i < textBox.text.Length) //while running through a textbox (player hasn't done nothing)
             {
-                //only run through text if the SM is unpaused
-                while (pausedTextbox)
-                {
-                    await Awaitable.NextFrameAsync();
-                }
+                //only run through text if unpaused
+                while (pausedTextbox) await Awaitable.NextFrameAsync();
 
                 t += Time.deltaTime;
                 //add one character at a time, depending on text speed
@@ -205,42 +208,35 @@ namespace RenCSharp
                     t = 0;
                     if (textBox.text[i] == '<') //we've found a rich text tag
                     {
-                        Debug.Log("Touched rich tag?");
+                        //Debug.Log("Touched rich tag?");
                         string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
                         while (textBox.text[i] != '>')
                         {
                             i++;
                             tag += textBox.text[i];
                         }
-
+                        i++;
                         if (TagParser.Parse(tag))
                         {
+                            ///Debug.Log("Touched rich tag!");
                             excludeTagEx = new Regex(tag);
                             s = excludeTagEx.Replace(s, "", 1);
-                            //textBox.text = s;
-                            //textBox.ForceMeshUpdate(true);
-                            //i -= tag.Length - 1;
-                            //HideLetters(textBox,charI);
-                            i++;
-                            ExcludeLetters(textBox, charI, i, s);
-                            //charI = Mathf.Min(charI + tag.Length, textBox.textInfo.characterCount - 1);
+                            ExcludeLetters(textBox, charI, charI + tag.Length, s);
                             charI += tag.Length;//?
-                            //i = Mathf.Min(i + tag.Length, textBox.text.Length);
-                            //if (charI != 0) charI -= tag.Length - 1;
-
                         }
-                        //charI -= tag.Length - 1;
                     }
                     else //just add the char and move on if it's a regular ah character
                     {
-                        ShowALetter(textBox, charI);
+                        ///Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}");
+                        if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
+                        else ShowALetter(textBox, charI);
                         //only care about passing in a stupid char for the event if event actually exists
                         if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                         {
                             try
                             {
-                                TMP_CharacterInfo c = textBox.textInfo.characterInfo[charI];
-                                Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)c);
+                                //pass in the current character if applicable.
+                                Event_Bus.TryFireSingleObjEvent("TextboxNewChar", (object)textBox.textInfo.characterInfo[charI]);
                             }
                             catch
                             {
@@ -267,58 +263,44 @@ namespace RenCSharp
                         i++;
                         tag += textBox.text[i];
                     }
+                    i++;
                     //don't need to bother excluding things if the last letter of tag is the last letter of the string?
                     //might leave a gap big enough to cause smaller text size, but might be preferrable to FURTHER index chicanery
                     if (TagParser.Parse(tag))
                     {
                         excludeTagEx = new Regex(tag);
                         s = excludeTagEx.Replace(s, "", 1);
-                        //textBox.text = s;
-                        //textBox.ForceMeshUpdate(true);
-                        //i -= tag.Length - 1;
-                        //HideLetters(textBox,charI);
-                        i++;
+
                         ExcludeLetters(textBox, charI, i, s);
-                        //charI = Mathf.Min(charI + tag.Length, textBox.textInfo.characterCount - 1);
                         charI += tag.Length; //
-
-                        //i = Mathf.Min(i + tag.Length, textBox.text.Length);
-                        //if (charI != 0) charI -= tag.Length - 1;
-
                     }
                 }
                 else //just add the char and move on if it's a regular ah character
                 {
+                    ///Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}");
                     //textBox.maxVisibleCharacters++;
                     ShowALetter(textBox, charI);
                     //only care about passing in a stupid char for the event if event actually exists
                     if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                     {
-                        TMP_CharacterInfo c = textBox.textInfo.characterInfo[charI];
-                        stu.Invoke((object)c);
+                        stu.Invoke((object)textBox.textInfo.characterInfo[charI]);
                     }
                     i++;
                     charI++;
                 }
             }
         }
+        #region MeshManipulationStuff
         /// <summary>
         /// "Hides" every single char in a TMP_Text by setting every single char's vertex colors to be alpha = 0.
         /// </summary>
         /// <param name="textToHide">The text component whose characters you want hidden.</param>
         /// <param name="afterIndex"></param>
-        private static void HideLetters(TMP_Text textToHide, int afterIndex = 0)
+        private static void HideLetters(TMP_Text textToHide, int afterIndex = 0, bool debug = false)
         {
             TMP_TextInfo text = textToHide.textInfo;
             TMP_CharacterInfo[] charsToBeHiding = text.characterInfo;
-            /*
-            char[] chars = new char[text.characterCount];
-            for (int i = afterIndex; i < chars.Length; i++)
-            {
-                chars[i] = charsToBeHiding[i].character;
-            }
-            Debug.Log("Chars that we are hiding: " + chars.ArrayToString());
-            */ 
+            
             Color32[] vertiColors;
             for(int i = afterIndex; i < text.characterCount; i++)
             {
@@ -345,6 +327,15 @@ namespace RenCSharp
                 text.meshInfo[matInd].colors32 = vertiColors;
             }
             textToHide.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+
+            if (!debug) return;
+            char[] chars = new char[text.characterCount];
+            for (int i = afterIndex; i < chars.Length; i++)
+            {
+                chars[i] = charsToBeHiding[i].character;
+            }
+            Debug.Log("Chars that we are hiding: " + chars.ArrayToString());
+            
         }
 
         private static void ExcludeLetters(TMP_Text text, int startI, int endI, string expectedText)
@@ -354,12 +345,12 @@ namespace RenCSharp
             TMP_CharacterInfo charToExclude;
             int matInd, vertInd;
             Vector3[] verts = new Vector3[0];
-            string s = "";
+            ///string s = "";
             //do the hiding part
             for(int i = startI; i < endI; i++)
             {
                 charToExclude = chars[i];
-                s += charToExclude.character;
+                ///s += charToExclude.character;
                 matInd = charToExclude.materialReferenceIndex;
                 vertInd = charToExclude.vertexIndex;
                 verts = text.textInfo.meshInfo[matInd].vertices;
@@ -371,39 +362,31 @@ namespace RenCSharp
 
                 text.textInfo.meshInfo[matInd].vertices = verts; //why is meshInfo an array like this...
             }
-            Debug.Log("Excluding chars: " + s);
+            ///Debug.Log("Excluding chars: " + s);
             //vertices for a textbox that excludes the stinkin' letters
             text.UpdateVertexData(TMP_VertexDataUpdateFlags.Vertices);
-            if (endI == text.text.Length) { Debug.Log("Found tag is end of string. Not truncating."); return; } //don't bother spending cpu adjusting further letters if endI is last letter.
+            //don't bother spending cpu adjusting further letters if endI is last letter.
+            if (endI == text.text.Length) { Debug.Log("Found tag is end of string. Not truncating."); return; } 
             Vector3[] expectedVerts = PredictVertices(expectedText, text);
-
-            //Debug.Log($"Current first mesh verts?: {verts[0]},{verts[1]},{verts[2]},{verts[3]}. Mesh VCount: {verts.Length}");
-            //Debug.Log($"Expected first mesh verts: {expectedVerts[0]},{expectedVerts[1]},{expectedVerts[2]},{expectedVerts[3]}. Mesh VCount: {expectedVerts.Length}");
-            //I HAVE GENUINELY NO IDEA WHY YOU NEED TO DO ENDI + 1 FOR IT TO WORK?!?!?
-
-            //starting at endI itself means that the verts taken will be offset by one char to the right (The start of the sentence
-            //would be set to the second letter position, and so on and so forth).
-            //It's extra weird because the hiding method ends before it reaches endI, so no one ever touches it?!?
-            //TMP IS SO FRIGGIN' CRAZY
-            string s2 = "";
-            string s3 = "";
+            ///string s2 = "";
+            ///string s3 = "";
             int vertexGap = (text.textInfo.characterCount - TagParser.CleanedOutBuiltInTagsLength(expectedText)) * 4;
             //when rich tag is after start, last char takes on the verts of the first...?
             for(int i = endI; i < text.textInfo.characterCount; i++)
             {
                 try
                 {
+                    //if we don't skip spaces, sometimes letters show up where we don't want them.
+                    //fairly certain this is because how vertices are assigned in memory for spaces involves BS chicanery that
+                    //links them to other characters (because spaces don't need to be rendered at all, even if we need to keep track
+                    //of them)
+                    if (chars[i].character == ' ') continue; 
                     vertInd = chars[i].vertexIndex; //the vertInd isn't fully linear...????????????
-                    s2 += chars[i].character;
+                    ///s2 += chars[i].character;
                     for (int j = vertInd; j < vertInd + 4; j++)
                     {
-                        //if((j - firstVertInd) < 0) { firstVertInd = 0; } //if, for some god awful reason, the vertices are split like a total bith.
-                    s3 += ($"Char: {chars[i].character}, VertexInd: " + vertInd + $", (ind{j} - vertexGap): " + (j - vertexGap) + ", expectedVertsL: " + expectedVerts.Length + ", vertsL: " + verts.Length + "\n");
-
-                    //if (!(vertInd < firstVertInd)) 
+                        ///s3 += ($"Char: {chars[i].character}, VertexInd: " + vertInd + $", (ind{j} - vertexGap): " + (j - vertexGap) + ", expectedVertsL: " + expectedVerts.Length + ", vertsL: " + verts.Length + "\n");
                         verts[j] = expectedVerts[j - vertexGap];
-                        ///verts[j] = expectedVerts[(i - endI) * 4 + (j - vertInd)];
-                    //else verts[j] = expectedVerts[j];
                     }
                 }
                 catch
@@ -414,8 +397,8 @@ namespace RenCSharp
                     continue;
                 }
             }
-            Debug.Log(s3);
-            Debug.Log("Characters being truncated: " + s2);
+            ///Debug.Log(s3);
+            ///Debug.Log("Characters being truncated: " + s2);
             //mesh setting because meshInfo[] is really dumb and bad and I hate it! (overlays are overrated anyway... probably.)
             Mesh goose = text.mesh;
             goose.vertices = verts;
@@ -428,7 +411,7 @@ namespace RenCSharp
         /// <param name="settings">The TMP_Text whose settings you want taken into account.</param>
         /// <param name="TMPType">False for TextMeshProUGUI, True for TextMeshPro</param>
         /// <returns>The predicted string's mesh's vertices array.</returns>
-        private static Vector3[] PredictVertices(string toPredict, TMP_Text settings, bool TMPType = false)
+        private static Vector3[] PredictVertices(string toPredict, TMP_Text settings, bool TMPType = false, bool debug = false)
         {
             //i'm pretty sure the reason we need an existent GO is because TMPUGUI forcemeshupdate doesn't do squat on "floating"
             //components. also it won't work on objects that were literally just constructed, so we use an empty object already
@@ -441,12 +424,13 @@ namespace RenCSharp
             }
             if (!temp.TryGetComponent(out TMP_Text ttmp))
             {
+                //add component if we don't already have one (it'll be destroyed by end, so idk man)
                 ttmp = !TMPType ? temp.AddComponent<TextMeshProUGUI>() : temp.AddComponent<TextMeshPro>();
             }
             ttmp.CopyTMPSettings(settings);
             ttmp.text = toPredict;
             ttmp.ForceMeshUpdate(); //guh...
-            Debug.LogWarning("Text: '" + ttmp.text + "', textinfo chr count: " + ttmp.textInfo.characterCount + ", textLength " + ttmp.text.Length + ", textinfo chrArrayLength " + ttmp.textInfo.characterInfo.Length);
+            if(debug) Debug.LogWarning("Text: '" + ttmp.text + "', textinfo chr count: " + ttmp.textInfo.characterCount + ", textLength " + ttmp.text.Length + ", textinfo chrArrayLength " + ttmp.textInfo.characterInfo.Length);
             
             Vector3[] expectedVerts;
             expectedVerts = ttmp.mesh.vertices;
@@ -454,13 +438,11 @@ namespace RenCSharp
             return expectedVerts;
         }
 
-        private static void ShowALetter(TMP_Text text, int i)
+        private static void ShowALetter(TMP_Text text, int i, bool debug = false)
         {
             try
             {
                 TMP_CharacterInfo charToShow = text.textInfo.characterInfo[i];
-                //Debug.Log("Char to show: " + charToShow.character + " Index: " + i);
-
                 TMP_TextInfo textInfo = text.textInfo;
 
                 Color32[] vertiColors = textInfo.meshInfo[charToShow.materialReferenceIndex].colors32;
@@ -470,13 +452,75 @@ namespace RenCSharp
                 }
                 textInfo.meshInfo[charToShow.materialReferenceIndex].colors32 = vertiColors;
                 text.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+                if (!debug) return;
+                Debug.Log("Char to show: " + charToShow.character + " Index: " + i);
             }
             catch
             {
-                Debug.LogWarning($"Bad Char Index! Index: {i}");
+                Debug.LogWarning($"Bad Char Index! Can't be showing that letter. Index: {i}");
             }
         }
+        //technically works when done as a yield return, but the desired behavior is for this to happen independently of
+        //RunThroughText (and RunThroughTextAsync). By right of the while loop taking into account whether or not the alpha
+        //is maxed, it's self-closing.
+        /*
+        private static IEnumerator FadeInALetter(TMP_Text text, int i)
+        {
+            float t = 0;
+            TMP_CharacterInfo charToShow = text.textInfo.characterInfo[i];
+            Color32[] vertiColors = text.textInfo.meshInfo[charToShow.materialReferenceIndex].colors32;
+            byte c;
 
+            while (t < ShowCharSpeed && vertiColors[charToShow.vertexIndex].a != 255)
+            {
+                vertiColors = text.textInfo.meshInfo[charToShow.materialReferenceIndex].colors32;
+
+                c = TrigHelper.PercentToByte(characterFadeInCurve.Evaluate(t / ShowCharSpeed));
+                for (int j = charToShow.vertexIndex; j < charToShow.vertexIndex + 4; j++)
+                {
+                    vertiColors[j].a = c;
+                }
+
+                t += Time.deltaTime;
+                text.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+                yield return null;
+            }
+            if (vertiColors[charToShow.vertexIndex].a == 255) yield break;
+            for (int j = charToShow.vertexIndex; j < charToShow.vertexIndex + 4; j++)
+            {
+                vertiColors[j].a = 255;
+            }
+            text.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+        }*/
+        private static async Awaitable FadeInALetterAsync(TMP_Text text, int i)
+        {
+            float t = 0;
+            TMP_CharacterInfo charToShow = text.textInfo.characterInfo[i];
+            Color32[] vertiColors = text.textInfo.meshInfo[charToShow.materialReferenceIndex].colors32;
+            byte c;
+
+            while (t < ShowCharSpeed && vertiColors[charToShow.vertexIndex].a != 255)
+            {
+                vertiColors = text.textInfo.meshInfo[charToShow.materialReferenceIndex].colors32;
+
+                c = TrigHelper.PercentToByte(characterFadeInCurve.Evaluate(t / ShowCharSpeed));
+                for (int j = charToShow.vertexIndex; j < charToShow.vertexIndex + 4; j++)
+                {
+                    vertiColors[j].a = c;
+                }
+
+                t += Time.deltaTime;
+                text.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+                await Awaitable.NextFrameAsync();
+            }
+            if (vertiColors[charToShow.vertexIndex].a == 255) return;
+            for (int j = charToShow.vertexIndex; j < charToShow.vertexIndex + 4; j++)
+            {
+                vertiColors[j].a = 255;
+            }
+            text.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+        }
+        #endregion
         /// <summary>
         /// Goes through a string, and replaces all instances of keys in the replaceabletexts dictionary with their values.
         /// Ie. Replace {mc} with the name stored in savedata, etc.

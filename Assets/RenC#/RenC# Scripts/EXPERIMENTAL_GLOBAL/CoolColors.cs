@@ -10,6 +10,7 @@ namespace RenCSharp.EXPERIMENTAL
         #region Transparent Colors
         public static readonly Color transparent = new(1, 1, 1, 0);
         public static readonly Color slightTransWhiteGUI = new(1, 1, 1, 0.3f);
+        public static readonly Color pointFourTransWhiteGUI = new(1, 1, 1, 0.4f);
         public static readonly Color _75PercentBlack = new(0, 0, 0, 0.75f);
         public static readonly Color _50PercentBlack = new(0, 0, 0, 0.5f);
 
