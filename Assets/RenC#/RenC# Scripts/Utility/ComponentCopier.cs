@@ -10,6 +10,7 @@ namespace RenCSharp
     /// </summary>
     public static class ComponentCopier
     {
+        public static readonly BindingFlags copyFlags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Default;
         /// <summary>
         /// Probably can only copy values that are public/serializefielded. use carefully.
         /// </summary>
@@ -34,12 +35,10 @@ namespace RenCSharp
         {
             Type type = typeof(T);
 
-            BindingFlags flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Default;
-
-            FieldInfo[] fields = type.GetFields(flags)
+            FieldInfo[] fields = type.GetFields(copyFlags)
                 .Where(field => field.IsPublic || field.GetCustomAttribute<SerializeField>() != null || field.IsPrivate).ToArray(); //grab every single body?
 
-            PropertyInfo[] propertyInfos = type.GetProperties(flags);
+            PropertyInfo[] propertyInfos = type.GetProperties(copyFlags);
 
             foreach(PropertyInfo property in propertyInfos)
             {
@@ -81,12 +80,10 @@ namespace RenCSharp
         {
             Type type = typeof(T);
 
-            BindingFlags flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Default;
-
-            FieldInfo[] fields = type.GetFields(flags)
+            FieldInfo[] fields = type.GetFields(copyFlags)
                 .Where(field => field.IsPublic || field.GetCustomAttribute<SerializeField>() != null || field.IsPrivate).ToArray(); //grab every single body?
 
-            PropertyInfo[] propertyInfos = type.GetProperties(flags);
+            PropertyInfo[] propertyInfos = type.GetProperties(copyFlags);
 
             foreach(PropertyInfo property in propertyInfos)
             {
@@ -152,7 +149,7 @@ namespace RenCSharp
             return destination;
         }
         /// <summary>
-        /// For specific use with the VertextPredictor method in Textbox_String.cs...?
+        /// For specific use with the VertexPredictor method in Textbox_String.cs...?
         /// </summary>
         /// <param name="taker">Component that takes data</param>
         /// <param name="toCopy">Component data to be copied</param>
@@ -161,6 +158,8 @@ namespace RenCSharp
         {
             taker.font = toCopy.font;
             taker.fontSize = toCopy.fontSize;
+            taker.fontSizeMin = toCopy.fontSizeMin;
+            taker.fontSizeMax = toCopy.fontSizeMax;
             taker.fontStyle = toCopy.fontStyle;
             taker.alignment = toCopy.alignment;
 
@@ -172,6 +171,17 @@ namespace RenCSharp
             taker.rectTransform.pivot = toCopy.rectTransform.pivot;
 
             return taker;
+        }
+        /// <summary>
+        /// For specific use with the FontsizePredictor method in Textbox_String.cs...?
+        /// </summary>
+        /// <param name="textToCheck">Component whose real run-time font size you want checked.</param>
+        /// <returns>The real run-time font size of the text component. (Affected by rich tags and what-not.)</returns>
+        public static float GetCurrentFontSize(this TMP_Text textToCheck)
+        {
+            Type t = textToCheck.GetType();
+            FieldInfo m_currentFontSize = t.GetField("m_currentFontSize", copyFlags);
+            return (float)m_currentFontSize.GetValue(textToCheck);
         }
     }
 }

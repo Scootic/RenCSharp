@@ -8,8 +8,9 @@ namespace RenCSharp.Tags
 {
     public class Tag_Sine : Base_Tag
     {
-        private static List<TMP_CharacterInfo> affectedSineChars = new();
-        private static List<Coroutine> routines = new();
+        //somehow only get these boys to the coroutine that needs 'em...
+        private static readonly List<List<TMP_CharacterInfo>> affectedSineChars = new();
+        private static readonly List<Coroutine> routines = new();
         /// <summary>
         /// Start the character collecting process and turn on the sine wobble coroutine.
         /// </summary>
@@ -23,8 +24,9 @@ namespace RenCSharp.Tags
                 Event_Bus.AddVoidEvent("LoadedSave", PanicStop);
                 Event_Bus.AddVoidEvent("ProgressScreen", PanicStop);
                 Event_Bus.AddSingleObjEvent("TextboxNewChar", AddCharToSineList);
+                affectedSineChars.Add(new());
                 float yAmp = float.TryParse(yAmpValue, out yAmp) ? yAmp : 5f;
-                routines.Add(TagRoutineHandler.TRH.StartCoroutine(SineTextRoutine(text, speed, yAmp)));
+                routines.Add(TagRoutineHandler.TRH.StartCoroutine(SineTextRoutine(text, speed, yAmp, affectedSineChars.Count- 1)));
             }
             else
             {
@@ -36,7 +38,9 @@ namespace RenCSharp.Tags
         { 
             TMP_CharacterInfo c = (TMP_CharacterInfo)chara;
             //Debug.Log("Adding char to sine list: " + c.character);
-            affectedSineChars.Add(c);
+            if (affectedSineChars[^affectedSineChars.Count].Contains(c) || c.character == ' ') return;
+            //char 0 = 0,1,2,3; char 1 = 4,5,6,7
+            affectedSineChars[^affectedSineChars.Count].Add(c); //we only need to add this boy to the latest coroutine.
         }
 
         private static void PanicStop()
@@ -45,7 +49,8 @@ namespace RenCSharp.Tags
             {
                 if(r != null) TagRoutineHandler.TRH.StopCoroutine(r);
             }
-
+            routines.Clear();
+            EndSineText();
             if (Event_Bus.TryGetVoidEvent("LoadedSave", out Action fella))
             {
                 fella -= PanicStop;
@@ -55,35 +60,37 @@ namespace RenCSharp.Tags
             {
                 goober -= PanicStop;
             }
-
-            affectedSineChars = new();
+            affectedSineChars.Clear();
         }
-
+        //Called by TagParser: </SineText>
         protected static void EndSineText()
         {
             Event_Bus.TryRemoveSingleObjEvent("TextboxNewChar");
         }
 
-        private static IEnumerator SineTextRoutine(TextMeshProUGUI text, float speed, float yAmp)
+        private static IEnumerator SineTextRoutine(TextMeshProUGUI text, float speed, float yAmp, int charList)
         {
-            Mesh mesh = text.mesh;
             Vector3 offset;
             Vector3[] vertices;
-            Vector3[] ogVerts = new Vector3[0];
+            TMP_CharacterInfo c;
+            int div4;
             yield return null; //wait a single frame to let character-truncating vertex adjustment happen first
-
-            while (text.text.Length >= 1) //pretty sure this could just be a while true...
+            Mesh mesh = text.mesh;
+            
+            Vector3[] originalVertices = text.canvasRenderer.GetMesh().vertices;
+            while (true) //go forever until stopped. ProgressScreen and LoadSave events called by SM will do it!
             {
                 vertices = mesh.vertices;
-                foreach(TMP_CharacterInfo c in affectedSineChars)
+                for (int i = 0; i < affectedSineChars[charList].Count; i++)
                 {
-                    if (ogVerts.Length == 0) ogVerts = vertices;
-
-                    for(int j = c.vertexIndex; j < c.vertexIndex + 4; j++)
+                    //if (originalVertices.Length == 0) originalVertices = vertices; 
+                    c = affectedSineChars[charList][i];
+                    div4 = c.vertexIndex / 4; //used as part of the time offset for the sine wobble, essentially offset per character
+                    offset = SineWobble(Time.time * speed + div4 * Mathf.PI * 0.5f, yAmp); //offset guys by partial rotations of unit circle
+                    for (int j = c.vertexIndex; j < c.vertexIndex + 4; j++)
                     {
-                        offset = SineWobble(Time.time * speed + (c.vertexIndex / 4) * Mathf.PI * 0.5f, yAmp); //offset guys by partial rotations of unit circle
-                        vertices[j] = ogVerts[j] + offset;
-                        ogVerts[j] = vertices[j] - offset;
+                        vertices[j] = originalVertices[j] + offset;
+                        //originalVertices[j] = vertices[j] - offset;
                     }
                 }
 
@@ -91,9 +98,6 @@ namespace RenCSharp.Tags
                 text.canvasRenderer.SetMesh(mesh);
                 yield return null;
             }
-
-            PanicStop();
-            routines = new();
         }
 
         private static Vector3 SineWobble(float t, float yAmp = 5)

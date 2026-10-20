@@ -8,8 +8,8 @@ namespace RenCSharp.Tags
 {
     public class Tag_Noise : Base_Tag
     {
-        private static List<TMP_CharacterInfo> affectedNoiseChars = new();
-        private static List<Coroutine> routines = new();
+        private static readonly List<List<TMP_CharacterInfo>> affectedNoiseChars = new();
+        private static readonly List<Coroutine> routines = new();
         /// <summary>
         /// Fuggin' rando AF!!!!
         /// </summary>
@@ -23,7 +23,8 @@ namespace RenCSharp.Tags
                 Event_Bus.AddVoidEvent("LoadedSave", PanicStop);
                 Event_Bus.AddVoidEvent("ProgressScreen", PanicStop);
                 Event_Bus.AddSingleObjEvent("TextboxNewChar", AddCharToNoiseList);
-                routines.Add(TagRoutineHandler.TRH.StartCoroutine(NoiseTextRoutine(text, maxDist, devi)));
+                affectedNoiseChars.Add(new());
+                routines.Add(TagRoutineHandler.TRH.StartCoroutine(NoiseTextRoutine(text, maxDist, devi, affectedNoiseChars.Count - 1)));
             }
             else
             {
@@ -42,7 +43,7 @@ namespace RenCSharp.Tags
             {
                 if(r != null) TagRoutineHandler.TRH.StopCoroutine(r);
             }
-
+            EndNoiseText();
             if (Event_Bus.TryGetVoidEvent("LoadedSave", out Action fella))
             {
                 fella -= PanicStop;
@@ -53,49 +54,45 @@ namespace RenCSharp.Tags
                 goober -= PanicStop;
             }
 
-            affectedNoiseChars = new();
+            affectedNoiseChars.Clear();
         }
 
         private static void AddCharToNoiseList(object chara)
         {
             TMP_CharacterInfo c = (TMP_CharacterInfo)chara;
+            if (affectedNoiseChars[^affectedNoiseChars.Count].Contains(c) || c.character == ' ') return;
             //Debug.Log("Inputting char to list: " + c.character);
-            affectedNoiseChars.Add(c);
+            affectedNoiseChars[^affectedNoiseChars.Count].Add(c);
         }
 
-        private static IEnumerator NoiseTextRoutine(TextMeshProUGUI text, float maxDist, float acceptableDeviation)
+        private static IEnumerator NoiseTextRoutine(TextMeshProUGUI text, float maxDist, float acceptableDeviation, int charList)
         {
-            Mesh mesh = text.mesh;
-            //string ogSTR = text.text;
             Vector3 offset;
             Vector3[] vertices;
-            Vector3[] ogVerts = new Vector3[0];
-            yield return null; //wait a single frame to let vertex adjustment happen first?
+            TMP_CharacterInfo c;
+            yield return null; //wait a single frame to let character-truncating vertex adjustment happen first
+            Mesh mesh = text.mesh;
 
-            while (text.text.Length >= 1) //since new texboxes make the text itself become empty, it should stop when ever screen progresses.
+            Vector3[] originalVertices = text.canvasRenderer.GetMesh().vertices;
+            while (true) //go forever until stopped. ProgressScreen and LoadSave events called by SM will do it!
             {
-                //text.ForceMeshUpdate();
                 vertices = mesh.vertices;
-                foreach (TMP_CharacterInfo c in affectedNoiseChars)
+                for (int i = 0; i < affectedNoiseChars[charList].Count; i++)
                 {
-                    if (ogVerts.Length == 0) ogVerts = vertices;
-
-                    offset = EvilNoise(maxDist, acceptableDeviation);
+                    //if (originalVertices.Length == 0) originalVertices = vertices; 
+                    c = affectedNoiseChars[charList][i];
+                    offset = EvilNoise(maxDist, acceptableDeviation); //offset guys by partial rotations of unit circle
                     for (int j = c.vertexIndex; j < c.vertexIndex + 4; j++)
-                    { 
-                        vertices[j] = ogVerts[j] + offset;
-                        ogVerts[j] = vertices[j] - offset;
+                    {
+                        vertices[j] = originalVertices[j] + offset;
+                        //originalVertices[j] = vertices[j] - offset;
                     }
                 }
 
                 mesh.vertices = vertices;
                 text.canvasRenderer.SetMesh(mesh);
-                //text.UpdateVertexData(TMP_VertexDataUpdateFlags.Vertices);
                 yield return null;
             }
-
-            PanicStop();
-            routines = new();
         }
         private static Vector3 EvilNoise(float maximumer, float deviation = 0.25f)
         {
