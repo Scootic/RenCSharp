@@ -53,7 +53,7 @@ namespace RenCSharp
         /// <param name="textBox">The text area being populated by the text.</param>
         /// <param name="endText">The stupid dumb string that the textbox will be filled with</param>
         /// <returns>Peace in our time.</returns>
-        public static IEnumerator RunThroughText(TMP_Text textBox, string endText)
+        public static IEnumerator RunThroughText(TMP_Text textBox, string endText, bool debugTextbox = false)
         {
             while (pausedTextbox) yield return null; //No friggin' idea why this is necessary for first runtime screen?????????
 
@@ -102,13 +102,13 @@ namespace RenCSharp
                             ///Debug.Log("Touched rich tag!");
                             excludeTagEx = new Regex(tag);
                             s = excludeTagEx.Replace(s, "", 1);
-                            ExcludeLetters(textBox, charI, charI + tag.Length, s, true);
+                            ExcludeLetters(textBox, charI, charI + tag.Length, s, debugTextbox);
                             charI += tag.Length;//?
                         }
                     }
                     if (i >= textBox.text.Length) break;
                     curChar = textBox.textInfo.characterInfo[charI];
-                        Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}, Text L: {textBox.text.Length}");
+                        if(debugTextbox)Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}, Text L: {textBox.text.Length}");
                         if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
                         else ShowALetter(textBox, charI);
                         //only care about passing in a stupid char for the event if event actually exists
@@ -151,12 +151,12 @@ namespace RenCSharp
                     {
                         excludeTagEx = new Regex(tag);
                         s = excludeTagEx.Replace(s, "", 1);
-                        ExcludeLetters(textBox, charI, charI + tag.Length, s);
+                        ExcludeLetters(textBox, charI, charI + tag.Length, s, debugTextbox);
                         charI += tag.Length; //
                     }
                 }
                 if (i >= textBox.text.Length) break;
-                Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}, TextL: {textBox.text.Length}");
+                if(debugTextbox) Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}, TextL: {textBox.text.Length}");
 
                 ///Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}");
                 if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
@@ -187,7 +187,7 @@ namespace RenCSharp
         /// <param name="textBox">The text area being populated by text.</param>
         /// <param name="endText">How the final text display will look (tags not withstanding).</param>
         /// <returns>War in our time?!?</returns>
-        public static async Awaitable RunThroughTextAsync(TMP_Text textBox, string endText)
+        public static async Awaitable RunThroughTextAsync(TMP_Text textBox, string endText, bool debugTextbox = false)
         {
             while (pausedTextbox) await Awaitable.NextFrameAsync(); //No friggin' idea why this is necessary for first runtime screen?????????
 
@@ -203,6 +203,7 @@ namespace RenCSharp
             amended = Flag_Manager.CleanOutFlags(amended);
 
             textBox.text = amended; //set the text that will be show over time/mangled horrifically by tags
+            textBox.fontSize = PredictFontSize(TagParser.CleanOutTags(amended, false, false), textBox);
             textBox.ForceMeshUpdate();
             HideLetters(textBox);
 
@@ -230,37 +231,36 @@ namespace RenCSharp
                             tag += textBox.text[i];
                         }
                         i++;
-                        if (TagParser.Parse(tag))
+                        if (await TagParser.ParseAsync(tag))
                         {
                             ///Debug.Log("Touched rich tag!");
                             excludeTagEx = new Regex(tag);
                             s = excludeTagEx.Replace(s, "", 1);
-                            ExcludeLetters(textBox, charI, charI + tag.Length, s);
+                            ExcludeLetters(textBox, charI, charI + tag.Length, s, debugTextbox);
                             charI += tag.Length;//?
                         }
                     }
-                    else //just add the char and move on if it's a regular ah character
+                    if (i >= textBox.text.Length) break;
+                    curChar = textBox.textInfo.characterInfo[charI];
+                    if (debugTextbox) Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}, Text L: {textBox.text.Length}");
+                    if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
+                    else ShowALetter(textBox, charI);
+                    //only care about passing in a stupid char for the event if event actually exists
+                    if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                     {
-                        curChar = textBox.textInfo.characterInfo[charI];
-                        ///Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}");
-                        if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
-                        else ShowALetter(textBox, charI );
-                        //only care about passing in a stupid char for the event if event actually exists
-                        if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu) && curChar.character != ' ')
+                        try
                         {
-                            try
-                            {
-                                //pass in the current character if applicable.
-                                stu?.Invoke((object)textBox.textInfo.characterInfo[charI]);
-                            }
-                            catch
-                            {
-                                Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
-                            }
+                            //pass in the current character if applicable.
+                            stu?.Invoke((object)textBox.textInfo.characterInfo[charI]);
                         }
-                        charI++;
-                        i++;
+                        catch
+                        {
+                            Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
+                        }
                     }
+
+                    charI++;
+                    i++;
                 }
 
                 await Awaitable.NextFrameAsync();
@@ -281,29 +281,36 @@ namespace RenCSharp
                     i++;
                     //don't need to bother excluding things if the last letter of tag is the last letter of the string?
                     //might leave a gap big enough to cause smaller text size, but might be preferrable to FURTHER index chicanery
-                    if (TagParser.Parse(tag))
+                    if (await TagParser.ParseAsync(tag))
                     {
                         excludeTagEx = new Regex(tag);
                         s = excludeTagEx.Replace(s, "", 1);
-
-                        ExcludeLetters(textBox, charI, i, s);
+                        ExcludeLetters(textBox, charI, charI + tag.Length, s, debugTextbox);
                         charI += tag.Length; //
                     }
                 }
-                else //just add the char and move on if it's a regular ah character
+                if (i >= textBox.text.Length) break;
+                if (debugTextbox) Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}, TextL: {textBox.text.Length}");
+
+                ///Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}");
+                if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
+                else ShowALetter(textBox, charI);
+                //only care about passing in a stupid char for the event if event actually exists
+                if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                 {
-                    ///Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}");
-                    //textBox.maxVisibleCharacters++;
-                    curChar = textBox.textInfo.characterInfo[charI];
-                    ShowALetter(textBox, charI);
-                    //only care about passing in a stupid char for the event if event actually exists
-                    if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu) && curChar.character != ' ')
+                    try
                     {
+                        //pass in the current character if applicable.
                         stu?.Invoke((object)textBox.textInfo.characterInfo[charI]);
                     }
-                    i++;
-                    charI++;
+                    catch
+                    {
+                        Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
+                    }
                 }
+
+                i++;
+                charI++;
             }
         }
         #region MeshManipulationStuff

@@ -200,6 +200,39 @@ namespace RenCSharp.EXPERIMENTAL
             
         }
         /// <summary>
+        /// Background thread version of BezPos.
+        /// </summary>
+        /// <param name="boundingPoints"></param>
+        /// <param name="percent"></param>
+        /// <returns></returns>
+        public static async Awaitable<Vector3> BezPosAsync(Vector3[] boundingPoints, float percent)
+        {
+            await Awaitable.BackgroundThreadAsync();
+            //do initial step based on the rawPositions array
+            Vector3[] recursiveLayer = new Vector3[boundingPoints.Length - 1];
+            for (int i = 0; i < recursiveLayer.Length; i++)
+            {
+                //store the lerped values between n1 and n2, n2 and n3, n3 and n4, etc. until finished.
+                recursiveLayer[i] = Vector3.Lerp(boundingPoints[i], boundingPoints[i + 1], percent);
+            }
+            //once the initial recursiveLayer array has been setup, make a subarray to store the next step in bezier curve.
+            //once subarray is finished, replace og recursiveLayer with the sublayer.
+            //repeat until you are left with a single value.
+            Vector3[] subLayer;
+            while (recursiveLayer.Length > 1)
+            {
+                subLayer = new Vector3[recursiveLayer.Length - 1];
+                for (int i = 0; i < subLayer.Length; i++)
+                {
+                    subLayer[i] = Vector3.Lerp(recursiveLayer[i], recursiveLayer[i + 1], percent);
+                }
+                recursiveLayer = subLayer;
+            }
+            //return the single value found after (potentially) many lerps.
+            return recursiveLayer[0];
+            
+        }
+        /// <summary>
         /// Takes a 0-1 range float (a percent) and converts it to a byte. (0f = 0, 1f = 255)
         /// </summary>
         /// <param name="perc">Given float percentage (ranges from 0 to 1)</param>

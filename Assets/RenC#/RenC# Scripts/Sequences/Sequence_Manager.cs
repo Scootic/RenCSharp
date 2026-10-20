@@ -20,6 +20,7 @@ namespace RenCSharp
     /// </summary>
     public sealed class Sequence_Manager : MonoBehaviour
     {
+        [SerializeField,Tooltip("Decides whether the Sequence Manager relies on Coroutines or Awaitables.")] private bool async = false;
         [SerializeField] private Sequence currentSequence; //set before runtime for first sequence of unity scene
         private int curScreenIndex = 0;
 
@@ -60,7 +61,8 @@ namespace RenCSharp
         [SerializeField, Tooltip("How long the SM will linger on a specific screen while on auto.")] private float lingerTime = 0.5f;
         [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero.")] private byte historyLength = 10;
 
-        [Header("Debug - Please Don't Touch! May cause errors! Only visibile to help you!")]
+        [Header("Debug - Please Don't Touch! May cause errors! Only visible to help you!")]
+        [SerializeField] private bool debugTextbox = false;
         [SerializeField] private bool paused = false;
         [SerializeField] private bool auto = false;
         [SerializeField] private bool saving = false;
@@ -368,7 +370,7 @@ namespace RenCSharp
             else UpdateHistory(curActor != null ? Textbox_String.ReplaceableText(curActor.ActorName) : "Internal Narration", 
                 Textbox_String.ReplaceableText(TagParser.CleanOutTags(screen.Dialog, false)));
             //start adding text to the box, character by character
-            yield return Textbox_String.RunThroughText(dialogField, screen.Dialog);
+            yield return Textbox_String.RunThroughText(dialogField, screen.Dialog, debugTextbox);
 
             //safety measure once all chars have been put in their place
             StartCoroutine(FlashButton(curScreenIndex));

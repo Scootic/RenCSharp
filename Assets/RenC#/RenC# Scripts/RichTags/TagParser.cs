@@ -61,6 +61,16 @@ namespace RenCSharp.Tags
 
             return false;
         }
+        /// <summary>
+        /// Background thread version of Parse.
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns>True if we found a valid (non-built-in, like italicize) tag, false otherwise.</returns>
+        public static async Awaitable<bool> ParseAsync(string tag, bool fire = true)
+        {
+            await Awaitable.BackgroundThreadAsync();
+            return Parse(tag, fire);
+        }
 
         /// <summary>
         /// Removes any tag parser tags from a string. Ideally also fires those tag's affects, so that any expected behavior still occurs.
@@ -95,6 +105,45 @@ namespace RenCSharp.Tags
                     possibleTag += chars[i];
                     
                     if(!Parse(possibleTag, fire) && includeBuiltInTagsInReturnedString) sToReturn += possibleTag; 
+                }
+            }
+
+            return sToReturn;
+        }
+        /// <summary>
+        /// Background thread version of CleanOutTags
+        /// </summary>
+        /// <param name="sToClean">String you want scrubbed.</param>
+        /// <param name="fire">Decides whether or not to fire the effects of any found valid tagparser tag.</param>
+        /// <param name="includeBuiltInTagsInReturnedString">Decides whether or not to include any non-tagparser tags in the returned string. Ie. italics tag, etc. </param>>
+        /// <returns>The string minus any TagParser valid tags.</returns>
+        public static async Awaitable<string> CleanOutTagsAsync(string sToClean, bool fire = true, bool includeBuiltInTagsInReturnedString = true)
+        {
+            await Awaitable.BackgroundThreadAsync();
+            string sToReturn = "";
+            string possibleTag;
+            char[] chars = sToClean.ToCharArray();
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (chars[i] != '<') sToReturn += chars[i];
+                else
+                {
+                    possibleTag = "";
+                    while (chars[i] != '>') //probably dangerous if you just include a random ass '<'. careful!
+                    {
+                        if (i >= chars.Length)
+                        {
+                            Debug.LogWarning("The tag parser found a random '<' symbol, that never closes! " +
+                                "Very scary. You're going to be getting an empty string for this!");
+                            return "";
+                        }
+                        possibleTag += chars[i];
+                        i++;
+                    }
+
+                    possibleTag += chars[i];
+
+                    if (!await ParseAsync(possibleTag, fire) && includeBuiltInTagsInReturnedString) sToReturn += possibleTag;
                 }
             }
 
@@ -137,82 +186,53 @@ namespace RenCSharp.Tags
 
             return sToReturn;
         }
+        /// <summary>
+        /// Background thread version of CleanOutBuiltInTags
+        /// </summary>
+        /// <param name="sToClean">String you want scrubbed.</param>
+        /// <param name="fireRichTags">Decides whether or not to fire the behavior of found custom rich tags.</param>
+        /// <returns>Given string excluding built-in/non-functioning tags.</returns>
+        public static async Awaitable<string> CleanOutBuiltInTagsAsync(string sToClean, bool fireRichTags = false)
+        {
+            await Awaitable.BackgroundThreadAsync();
+            string sToReturn = "";
+            char[] chars = sToClean.ToCharArray();
+            string possibleTag;
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (chars[i] != '<') sToReturn += chars[i];
+                else
+                {
+                    possibleTag = "";
+                    while (chars[i] != '>')
+                    {
+                        if (i >= chars.Length)
+                        {
+                            Debug.LogWarning("The tag parser found a random '<' symbol, that never closes! " +
+                               "Very scary. You're going to be getting an empty string for this!");
+                            return "";
+                        }
+                        possibleTag += chars[i];
+                        i++;
+                    }
+                    possibleTag += chars[i];
+
+                    if (await ParseAsync(possibleTag, fireRichTags)) sToReturn += possibleTag;
+                }
+            }
+
+            return sToReturn;
+        }
 
         public static int CleanedOutBuiltInTagsLength(string sToClean, bool fireRichTags = false)
         {
             return CleanOutBuiltInTags(sToClean, fireRichTags).Length;
         }
 
-        /*
-        /// <summary>
-        /// Only exists so that the stupid hidden tags don't interfere with tagparser chicanery!
-        /// </summary>
-        /// <param name="s">The string whose length we want trimmed.</param>
-        /// <returns>The length of the string, minus any character associated with a built-in tag.</returns>
-        public static int StringLengthExcludeBuiltinTags(string s)
+        public static async Awaitable<int> CleanedOutBuiltInTagsLengthAsync(string sToClean, bool fireRichTags = false)
         {
-            string lengthToReturn = "";
-            char[] chars = s.ToCharArray();
-
-            for (int i = 0; i < chars.Length; i++)
-            {
-                if (chars[i] != '<') lengthToReturn += chars[i];
-                else
-                {
-                    string possibleTag = "";
-                    while (chars[i] != '>')
-                    {
-                        if (i >= chars.Length)
-                        {
-                            Debug.LogWarning("The tag parser's string length check found a tag that never closes. Scary AF! You're getting a -1 for this.");
-                            return -1;
-                        }
-                        possibleTag += chars[i];
-                        i++;
-                    }
-                    possibleTag += chars[i];
-                    if (Parse(possibleTag, false)) lengthToReturn += possibleTag;
-                }
-            }
-
-            return lengthToReturn.Length;
-        }*/
-        /*
-        public static int StringIndexExcludeBuiltinTags(string s, int index, bool returnAtFirstValidTag = false)
-        {
-            int indexToReturn = index;
-            char[] chars = s.ToCharArray();
-
-            for (int i = 0; i < chars.Length; i++)
-            {
-                if (chars[i] == '<')
-                {
-                    string possibleTag = "";
-                    while (chars[i] != '>')
-                    {
-                        if (i >= chars.Length)
-                        {
-                            Debug.LogWarning("The tag parser's string index check found a tag that never closes. Scary AF! You're getting the og index for this.");
-                            return index;
-                        }
-                        possibleTag += chars[i];
-                        i++;
-                    }
-                    possibleTag += chars[i];
-                    if (!Parse(possibleTag, false)) indexToReturn -= possibleTag.Length;
-                    else if (returnAtFirstValidTag) return indexToReturn;
-                }
-            }
-
-            if (indexToReturn < s.Length)
-            {
-                return indexToReturn;
-            }
-
-            Debug.LogWarning("Your new index would be smaller than 0 if passed through! Returning og index.");
-            return index;
-        }*/
-
-        
+            string s = await CleanOutBuiltInTagsAsync(sToClean, fireRichTags);
+            return s.Length;
+        }
     }
 }
