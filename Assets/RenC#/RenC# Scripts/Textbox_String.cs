@@ -69,7 +69,7 @@ namespace RenCSharp
             amended = Flag_Manager.CleanOutFlags(amended);
 
             textBox.text = amended; //set the text that will be show over time/mangled horrifically by tags
-            textBox.fontSize = PredictFontSize(TagParser.CleanOutTags(amended, false, false), textBox);
+            textBox.fontSize = PredictFontSize(TagParser.CleanOutTags(amended, false), textBox);
             textBox.ForceMeshUpdate();
             HideLetters(textBox);
 
@@ -108,9 +108,10 @@ namespace RenCSharp
                     }
                     if (i >= textBox.text.Length) break;
                     curChar = textBox.textInfo.characterInfo[charI];
-                        if(debugTextbox)Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}, Text L: {textBox.text.Length}");
+                    if (curChar.character != ' ' && curChar.character != '<')
+                    {
                         if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
-                        else ShowALetter(textBox, charI);
+                        else ShowALetter(textBox, charI, debugTextbox);
                         //only care about passing in a stupid char for the event if event actually exists
                         if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                         {
@@ -124,7 +125,7 @@ namespace RenCSharp
                                 Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
                             }
                         }
-                    
+                    }
                     charI++;
                     i++;
                 }
@@ -156,11 +157,11 @@ namespace RenCSharp
                     }
                 }
                 if (i >= textBox.text.Length) break;
-                if(debugTextbox) Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}, TextL: {textBox.text.Length}");
-
-                ///Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}");
-                if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
-                    else ShowALetter(textBox, charI);
+                curChar = textBox.textInfo.characterInfo[charI];
+                if (curChar.character != ' ' && curChar.character != '<')
+                {
+                    if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
+                    else ShowALetter(textBox, charI, debugTextbox);
                     //only care about passing in a stupid char for the event if event actually exists
                     if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                     {
@@ -174,9 +175,9 @@ namespace RenCSharp
                             Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
                         }
                     }
-                
-                i++;
+                }
                 charI++;
+                i++;
             }
         }
         /// <summary>
@@ -390,6 +391,7 @@ namespace RenCSharp
             { 
                 Debug.Log("Found tag is end of string. Not truncating.");
                 goose.vertices = verts;
+                text.mesh.vertices = verts;
                 text.canvasRenderer.SetMesh(goose);
                 return; 
             } 
@@ -429,6 +431,7 @@ namespace RenCSharp
             }
             //mesh setting because meshInfo[] is really dumb and bad and I hate it! (overlays are overrated anyway... probably.)
             goose.vertices = verts;
+            text.mesh.vertices = verts;
             text.canvasRenderer.SetMesh(goose);
         }
         /// <summary>
@@ -500,7 +503,7 @@ namespace RenCSharp
                 textInfo.meshInfo[charToShow.materialReferenceIndex].colors32 = vertiColors;
                 text.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
                 if (!debug) return;
-                Vector3[] verts = textInfo.meshInfo[charToShow.materialReferenceIndex].vertices;
+                Vector3[] verts = text.mesh.vertices;
                 Debug.Log("Char to show: " + charToShow.character + $" Vertices: {verts[charToShow.vertexIndex]}," +
                     $"{verts[charToShow.vertexIndex + 1]},{verts[charToShow.vertexIndex + 2]},{verts[charToShow.vertexIndex+3]}");
             }

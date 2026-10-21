@@ -75,11 +75,13 @@ namespace RenCSharp.Tags
             TMP_CharacterInfo c;
             int div4;
             yield return null; //wait a single frame to let character-truncating vertex adjustment happen first
+
             Mesh mesh = text.mesh;
-            
-            Vector3[] originalVertices = text.canvasRenderer.GetMesh().vertices;
+            Vector3[] originalVertices = mesh.vertices;
             while (true) //go forever until stopped. ProgressScreen and LoadSave events called by SM will do it!
             {
+                yield return null;
+                mesh = text.mesh;
                 vertices = mesh.vertices;
                 for (int i = 0; i < affectedSineChars[charList].Count; i++)
                 {
@@ -95,8 +97,8 @@ namespace RenCSharp.Tags
                 }
 
                 mesh.vertices = vertices;
+                text.mesh.vertices = vertices;
                 text.canvasRenderer.SetMesh(mesh);
-                yield return null;
             }
         }
 

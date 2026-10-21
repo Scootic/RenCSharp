@@ -73,9 +73,10 @@ namespace RenCSharp.Tags
             yield return null; //wait a single frame to let character-truncating vertex adjustment happen first
             Mesh mesh = text.mesh;
 
-            Vector3[] originalVertices = text.canvasRenderer.GetMesh().vertices;
+            Vector3[] originalVertices = mesh.vertices;
             while (true) //go forever until stopped. ProgressScreen and LoadSave events called by SM will do it!
             {
+                yield return null;
                 vertices = mesh.vertices;
                 for (int i = 0; i < affectedNoiseChars[charList].Count; i++)
                 {
@@ -91,7 +92,7 @@ namespace RenCSharp.Tags
 
                 mesh.vertices = vertices;
                 text.canvasRenderer.SetMesh(mesh);
-                yield return null;
+                //yield return null;
             }
         }
         private static Vector3 EvilNoise(float maximumer, float deviation = 0.25f)
