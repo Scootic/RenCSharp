@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UObject = UnityEngine.Object;
 namespace RenCSharp
 {
@@ -15,6 +14,7 @@ namespace RenCSharp
     /// </summary>
     public static class Textbox_String
     {
+        private const string WSPBreak = "\u200B";
         public static Dictionary<string, string> GetReplacerTexts => replacerTexts;
         /// <summary>
         /// Stupid dumb dictionary that contains key strings that we want replaced by value strings. Ie. replacing any instance of {mc} with the
@@ -29,7 +29,7 @@ namespace RenCSharp
         /// <summary>
         /// For character fading in animation.
         /// </summary>
-        private static float ShowCharSpeed => Mathf.Max(0.2f, TextSpeed);
+        private static float FadeCharSpeed => Mathf.Max(0.2f, TextSpeed);
         /// <summary>
         /// Makes the coroutine skip past the filling in char by char and just displays final text
         /// </summary>
@@ -101,8 +101,11 @@ namespace RenCSharp
                         if (TagParser.Parse(tag))
                         {
                             ///Debug.Log("Touched rich tag!");
-                            excludeTagEx = new Regex(tag);
+                            //Because {s} has invisible chars before and after tags for line-spacing concerns, we have to
+                            //take that into account when Regex-ing them away.
+                            excludeTagEx = new Regex(WSPBreak + tag + WSPBreak);
                             s = excludeTagEx.Replace(s, "", 1);
+                            ///if(debugTextbox)Debug.Log($"PredictVerts string: {s}, stringL: {s.Length}");
                             ExcludeLetters(textBox, charI, charI + tag.Length, s, debugTextbox);
                             charI += tag.Length;//?
                         }
@@ -385,7 +388,7 @@ namespace RenCSharp
                     verts[j] = Vector3.zero;
                 }
             }
-            if(debug) Debug.Log("Excluding chars: " + s);
+            if(debug) Debug.Log("Excluding chars: " + s + $", stringL: {s.Length}");
             //vertices for a textbox that excludes the stinkin' letters
             //don't bother spending cpu adjusting further letters if endI is last letter.
             if (endI == text.text.Length) 
@@ -399,7 +402,7 @@ namespace RenCSharp
             Vector3[] expectedVerts = PredictVertices(expectedText, text, false, debug);
             string s2 = "";
             string s3 = "";
-            int vertexGap = (text.textInfo.characterCount - TagParser.CleanedOutBuiltInTagsLength(expectedText)) * 4;
+            int vertexGap = (text.textInfo.characterCount - TagParser.CleanedOutBuiltInTagsLength(Regex.Replace(expectedText,WSPBreak,""))) * 4;
 
             for(int i = endI; i < text.textInfo.characterCount; i++)
             {
@@ -461,16 +464,20 @@ namespace RenCSharp
             ttmp.CopyTMPSettings(settings);
             ttmp.text = toPredict;
             ttmp.ForceMeshUpdate(); //guh...
+            Vector3[] curMeshVerts = ttmp.mesh.vertices;
             if (debug)
             {
-                Debug.LogWarning("Text: '" + ttmp.text + "', textinfo chr count: " + ttmp.textInfo.characterCount + ", textLength " + ttmp.text.Length + ", textinfo chrArrayLength " + ttmp.textInfo.characterInfo.Length);
+                Debug.LogWarning("Text: '" + ttmp.text + "', textinfo chr count: " + ttmp.textInfo.characterCount + 
+                    ", textLength " + ttmp.text.Length + ", textinfo chrArrayLength " + ttmp.textInfo.characterInfo.Length + 
+                    $", curMeshVertsL: {curMeshVerts.Length}");
                 ttmp.fontStyle = FontStyles.Underline;
                 ttmp.color = CoolColors.slightTransYellowGUI;
             }
-            Vector3[] expectedVerts;
-            expectedVerts = ttmp.mesh.vertices;
-            if(!debug)UObject.Destroy(ttmp);
-            return expectedVerts;
+            //this line used to be Destroy(ttmp). for some ungodly reason, even though the verts have already been gotten,
+            //it doesn't work whenever it happens all in one frame? (player sets jumpToEnd true before coroutine does.)
+            //now, just make it invisible.
+            if (!debug) ttmp.color = CoolColors.transparent;
+            return curMeshVerts;
         }
 
         private static float PredictFontSize(string toPredict, TMP_Text settings, bool TMPType = false)
@@ -531,11 +538,11 @@ namespace RenCSharp
                 Debug.Log("Char to show: " + charToShow.character + $" Vertices: {verts[charToShow.vertexIndex]}," +
                     $"{verts[charToShow.vertexIndex + 1]},{verts[charToShow.vertexIndex + 2]},{verts[charToShow.vertexIndex + 3]}");
             }
-            while (t < ShowCharSpeed && vertiColors[charToShow.vertexIndex].a != 255)
+            while (t < FadeCharSpeed && vertiColors[charToShow.vertexIndex].a != 255)
             {
                 vertiColors = text.textInfo.meshInfo[charToShow.materialReferenceIndex].colors32;
 
-                c = TrigHelper.PercentToByte(characterFadeInCurve.Evaluate(t / ShowCharSpeed));
+                c = TrigHelper.PercentToByte(characterFadeInCurve.Evaluate(t / FadeCharSpeed));
                 for (int j = charToShow.vertexIndex; j < charToShow.vertexIndex + 4; j++)
                 {
                     vertiColors[j].a = c;
@@ -556,24 +563,24 @@ namespace RenCSharp
         public static string PlaceInvisibleCharsBetweenTags(string sInput, bool debug)
         {
             int i = 0;
-            char[] chars = sInput.ToCharArray();
             string toReturn = sInput;
-            while (i < sInput.Length)
+            while (i < toReturn.Length)
             {
-                if (chars[i] == '<') 
+                if (toReturn[i] == '<') 
                 {
-                    if (debug) Debug.Log("Found tag char, inserting: \u200B");
-                    toReturn.Insert(i, "\u200B"); i++; 
+                    if (debug) Debug.Log($"Found tag char (<) at {i}, inserting: \u200B before it");
+                    toReturn = toReturn.Insert(i, "\u200B"); i++; 
                 } //do another i++ to move past the newly added char?
-                else if (chars[i] == '>')
+                else if (toReturn[i] == '>')
                 {
+                    
+                    if (debug) Debug.Log($"Found end tag char (>) at {i}, inserting: \u200B after it");
                     i++;
-                    if (debug) Debug.Log("Found end tag char, inserting: \u200B");
-                    toReturn.Insert(i, "\u200B");
+                    toReturn = toReturn.Insert(i, "\u200B");
                 }
                 i++;
             }
-            if (debug) Debug.LogWarning($"InvisChars: '{toReturn}'");
+            if (debug) Debug.LogWarning($"InvisChars: '{toReturn}', string length: {toReturn.Length}, original length: {sInput.Length}");
             return toReturn;
         }
         /// <summary>
