@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UObject = UnityEngine.Object;
 namespace RenCSharp
 {
@@ -75,7 +76,7 @@ namespace RenCSharp
 
             JumpToEndOfTextbox = false;
 
-            string s = amended;
+            string s = PlaceInvisibleCharsBetweenTags(amended, debugTextbox);
 
             while (charI < textBox.textInfo.characterCount && !JumpToEndOfTextbox && i < textBox.text.Length) //while running through a textbox (player hasn't done nothing)
             {
@@ -391,7 +392,7 @@ namespace RenCSharp
             { 
                 Debug.Log("Found tag is end of string. Not truncating.");
                 goose.vertices = verts;
-                text.mesh.vertices = verts;
+                ///text.mesh.vertices = verts;
                 text.canvasRenderer.SetMesh(goose);
                 return; 
             } 
@@ -431,7 +432,7 @@ namespace RenCSharp
             }
             //mesh setting because meshInfo[] is really dumb and bad and I hate it! (overlays are overrated anyway... probably.)
             goose.vertices = verts;
-            text.mesh.vertices = verts;
+            ///text.mesh.vertices = verts;
             text.canvasRenderer.SetMesh(goose);
         }
         /// <summary>
@@ -460,11 +461,15 @@ namespace RenCSharp
             ttmp.CopyTMPSettings(settings);
             ttmp.text = toPredict;
             ttmp.ForceMeshUpdate(); //guh...
-            if(debug) Debug.LogWarning("Text: '" + ttmp.text + "', textinfo chr count: " + ttmp.textInfo.characterCount + ", textLength " + ttmp.text.Length + ", textinfo chrArrayLength " + ttmp.textInfo.characterInfo.Length);
-            
+            if (debug)
+            {
+                Debug.LogWarning("Text: '" + ttmp.text + "', textinfo chr count: " + ttmp.textInfo.characterCount + ", textLength " + ttmp.text.Length + ", textinfo chrArrayLength " + ttmp.textInfo.characterInfo.Length);
+                ttmp.fontStyle = FontStyles.Underline;
+                ttmp.color = CoolColors.slightTransYellowGUI;
+            }
             Vector3[] expectedVerts;
             expectedVerts = ttmp.mesh.vertices;
-            UObject.Destroy(ttmp);
+            if(!debug)UObject.Destroy(ttmp);
             return expectedVerts;
         }
 
@@ -548,6 +553,29 @@ namespace RenCSharp
             text.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
         }
         #endregion
+        public static string PlaceInvisibleCharsBetweenTags(string sInput, bool debug)
+        {
+            int i = 0;
+            char[] chars = sInput.ToCharArray();
+            string toReturn = sInput;
+            while (i < sInput.Length)
+            {
+                if (chars[i] == '<') 
+                {
+                    if (debug) Debug.Log("Found tag char, inserting: \u200B");
+                    toReturn.Insert(i, "\u200B"); i++; 
+                } //do another i++ to move past the newly added char?
+                else if (chars[i] == '>')
+                {
+                    i++;
+                    if (debug) Debug.Log("Found end tag char, inserting: \u200B");
+                    toReturn.Insert(i, "\u200B");
+                }
+                i++;
+            }
+            if (debug) Debug.LogWarning($"InvisChars: '{toReturn}'");
+            return toReturn;
+        }
         /// <summary>
         /// Goes through a string, and replaces all instances of keys in the replaceabletexts dictionary with their values.
         /// Ie. Replace {mc} with the name stored in savedata, etc.

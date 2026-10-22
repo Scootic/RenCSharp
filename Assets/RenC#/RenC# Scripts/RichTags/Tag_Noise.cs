@@ -60,9 +60,9 @@ namespace RenCSharp.Tags
         private static void AddCharToNoiseList(object chara)
         {
             TMP_CharacterInfo c = (TMP_CharacterInfo)chara;
-            if (affectedNoiseChars[^affectedNoiseChars.Count].Contains(c) || c.character == ' ') return;
+            if (affectedNoiseChars[^1].Contains(c) || c.character == ' ') return;
             //Debug.Log("Inputting char to list: " + c.character);
-            affectedNoiseChars[^affectedNoiseChars.Count].Add(c);
+            affectedNoiseChars[^1].Add(c);
         }
 
         private static IEnumerator NoiseTextRoutine(TextMeshProUGUI text, float maxDist, float acceptableDeviation, int charList)

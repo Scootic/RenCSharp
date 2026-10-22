@@ -38,9 +38,9 @@ namespace RenCSharp.Tags
         { 
             TMP_CharacterInfo c = (TMP_CharacterInfo)chara;
             //Debug.Log("Adding char to sine list: " + c.character);
-            if (affectedSineChars[^affectedSineChars.Count].Contains(c) || c.character == ' ') return;
-            //char 0 = 0,1,2,3; char 1 = 4,5,6,7
-            affectedSineChars[^affectedSineChars.Count].Add(c); //we only need to add this boy to the latest coroutine.
+            if (affectedSineChars[^1].Contains(c) || c.character == ' ') return;
+            //char 0 = verts0,1,2,3; char 1 = verts4,5,6,7
+            affectedSineChars[^1].Add(c); //we only need to add this boy to the latest coroutine.
         }
 
         private static void PanicStop()
@@ -67,19 +67,21 @@ namespace RenCSharp.Tags
         {
             Event_Bus.TryRemoveSingleObjEvent("TextboxNewChar");
         }
-
+        //doesn't take into account truncation?!?!?
         private static IEnumerator SineTextRoutine(TextMeshProUGUI text, float speed, float yAmp, int charList)
         {
             Vector3 offset;
             Vector3[] vertices;
             TMP_CharacterInfo c;
             int div4;
+            ///string s;
             yield return null; //wait a single frame to let character-truncating vertex adjustment happen first
 
             Mesh mesh = text.mesh;
             Vector3[] originalVertices = mesh.vertices;
             while (true) //go forever until stopped. ProgressScreen and LoadSave events called by SM will do it!
             {
+                ///s = "";
                 yield return null;
                 mesh = text.mesh;
                 vertices = mesh.vertices;
@@ -93,12 +95,15 @@ namespace RenCSharp.Tags
                     {
                         vertices[j] = originalVertices[j] + offset;
                         //originalVertices[j] = vertices[j] - offset;
+                        ///s += $"Routine: {charList}, Char: {c.character}, VertexInd: {c.vertexIndex}, curVert: {vertices[j]}, ogVert: {originalVertices[j]} \n";
                     }
+                   
                 }
 
                 mesh.vertices = vertices;
-                text.mesh.vertices = vertices;
+                ///text.mesh.vertices = vertices;
                 text.canvasRenderer.SetMesh(mesh);
+                ///Debug.Log(s);
             }
         }
 
