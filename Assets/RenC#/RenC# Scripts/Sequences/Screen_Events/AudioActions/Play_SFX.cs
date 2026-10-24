@@ -34,7 +34,7 @@ namespace RenCSharp.Sequences
 
         public override void DoEvent()
         {
-            if (!is3D) Audio_Manager.AM.Play2DSFX(sfxToPlay, 1f, 1f, baseVolume, environmental, loop);
+            if (!is3D) Audio_Manager.AM.Play2DSFX(sfxToPlay, 1f, 1f, baseVolume, environmental, false, loop);
             else Audio_Manager.AM.Play3DSFX(sfxToPlay, position, environmental, loop, baseVolume);
 
             if (loop && loopDuration > 0)
@@ -66,18 +66,18 @@ namespace RenCSharp.Sequences
 
         public Screen_Event Replacement()
         {
-            Play_SFXAsset newVentPS = new Play_SFXAsset();
-
-            newVentPS.SetBaseVolume = baseVolume;
-            newVentPS.SetLoop = loop;
-            newVentPS.SetStopOnScreenProgress = stopOnScreenProgress;
-            newVentPS.SetPosition = position;
-            newVentPS.SetLoopDuration = loopDuration;
-
             string johnsonPS = AssetDatabase.GetAssetPath(sfxToPlay);
             string guidPS = AssetDatabase.AssetPathToGUID(johnsonPS);
-            AssetReference stinky = new AssetReference(guidPS);
-            newVentPS.SetAssetReference = stinky;
+            AssetReference stinky = new(guidPS);
+            Play_SFXAsset newVentPS = new()
+            {
+                SetBaseVolume = baseVolume,
+                SetLoop = loop,
+                SetStopOnScreenProgress = stopOnScreenProgress,
+                SetPosition = position,
+                SetLoopDuration = loopDuration,
+                SetAssetReference = stinky
+            };
 
             return newVentPS;
         }

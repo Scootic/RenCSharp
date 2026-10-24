@@ -46,6 +46,9 @@ namespace RenCSharp
         /// Determines the curve by which characters fade in over time when shown.
         /// </summary>
         private static AnimationCurve characterFadeInCurve = Animation_Helper.EaseOut;
+        /// <summary>
+        /// Sets the curve that determines how characters fade in over time when shown by FadeInALetterAsync()
+        /// </summary>
         public static AnimationCurve SetCharacterFadeInCurve { set { characterFadeInCurve = value; } }
         /// <summary>
         /// Does animated text for a textbox, one character at a time. can be forced to fill in every other character by setting
@@ -56,6 +59,8 @@ namespace RenCSharp
         /// <returns>Peace in our time.</returns>
         public static IEnumerator RunThroughText(TMP_Text textBox, string endText, bool debugTextbox = false)
         {
+            textBox.text = "";
+            textBox.ForceMeshUpdate();
             while (pausedTextbox) yield return null; //No friggin' idea why this is necessary for first runtime screen?????????
 
             float t = 0;
@@ -95,6 +100,11 @@ namespace RenCSharp
                         while (textBox.text[i] != '>')
                         {
                             i++;
+                            if(i >= textBox.text.Length)
+                            {
+                                Debug.LogError("Tag found that has no closer. Stopping RunThroughText!");
+                                yield break;
+                            }
                             tag += textBox.text[i];
                         }
                         i++;
@@ -185,6 +195,152 @@ namespace RenCSharp
             }
         }
         /// <summary>
+        /// Does animated text for a textbox, one character at a time. can be forced to fill in every other character by setting
+        /// JumpToEndOfTextbox to true. Idles on a character if pausedTextbox is true.
+        /// </summary>
+        /// <param name="textBox">The text area being populated by the text.</param>
+        /// <param name="endText">The stupid dumb string that the textbox will be filled with</param>
+        /// <returns>Peace in our time.</returns>
+        public static IEnumerator RunThroughText(TMP_Text textBox, string endText, AudioClip dialogSound, float basePitch, float pitchVariance = 0.1f, bool debugTextbox = false)
+        {
+            textBox.text = "";
+            textBox.ForceMeshUpdate();
+            while (pausedTextbox) yield return null; //No friggin' idea why this is necessary for first runtime screen?????????
+
+            float t = 0;
+            int i = 0; //"real" string char index
+            int charI = 0; //tmp_charInfo index (excludes built-in rich tags already... nightmare nightmare parsing!)
+            string amended = endText;
+            TMP_CharacterInfo curChar;
+
+            TagParser.SetCurrentTextMesh = textBox;
+
+            amended = ReplaceableText(amended);
+            amended = Flag_Manager.CleanOutFlags(amended);
+
+            textBox.text = amended; //set the text that will be show over time/mangled horrifically by tags
+            textBox.fontSize = PredictFontSize(TagParser.CleanOutTags(amended, false), textBox);
+            textBox.ForceMeshUpdate();
+            HideLetters(textBox);
+
+            JumpToEndOfTextbox = false;
+
+            string s = PlaceInvisibleCharsBetweenTags(amended, debugTextbox);
+
+            while (charI < textBox.textInfo.characterCount && !JumpToEndOfTextbox && i < textBox.text.Length) //while running through a textbox (player hasn't done nothing)
+            {
+                //only run through text if unpaused
+                while (pausedTextbox) yield return null;
+
+                t += Time.deltaTime;
+                //add one character at a time, depending on text speed
+                if (t >= TextSpeed)
+                {
+                    
+                    t = 0;
+                    if (textBox.text[i] == '<') //we've found a rich text tag
+                    {
+                        //Debug.Log("Touched rich tag?");
+                        string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
+                        while (textBox.text[i] != '>')
+                        {
+                            i++;
+                            if (i >= textBox.text.Length)
+                            {
+                                Debug.LogError("Tag found that has no closer. Stopping RunThroughText!");
+                                yield break;
+                            }
+                            tag += textBox.text[i];
+                        }
+                        i++;
+                        if (TagParser.Parse(tag))
+                        {
+                            ///Debug.Log("Touched rich tag!");
+                            //Because {s} has invisible chars before and after tags for line-spacing concerns, we have to
+                            //take that into account when Regex-ing them away.
+                            excludeTagEx = new Regex(WSPBreak + tag + WSPBreak);
+                            s = excludeTagEx.Replace(s, "", 1);
+                            ///if(debugTextbox)Debug.Log($"PredictVerts string: {s}, stringL: {s.Length}");
+                            ExcludeLetters(textBox, charI, charI + tag.Length, s, debugTextbox);
+                            charI += tag.Length;//?
+                        }
+                    }
+                    if (i >= textBox.text.Length) break;
+                    curChar = textBox.textInfo.characterInfo[charI];
+                    if (curChar.character != ' ' && curChar.character != '<')
+                    {
+                        Audio_Manager.AM.Play2DSFX(dialogSound, basePitch - pitchVariance, basePitch + pitchVariance, 1, true, true);
+                        if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
+                        else ShowALetter(textBox, charI, debugTextbox);
+                        //only care about passing in a stupid char for the event if event actually exists
+                        if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
+                        {
+                            try
+                            {
+                                //pass in the current character if applicable.
+                                stu?.Invoke((object)textBox.textInfo.characterInfo[charI]);
+                            }
+                            catch
+                            {
+                                Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
+                            }
+                        }
+                    }
+                    charI++;
+                    i++;
+                }
+
+                yield return null;
+            }
+
+            JumpToEndOfTextbox = true;
+
+            while (charI < textBox.textInfo.characterCount && i < textBox.text.Length) //just run through everything in a single frame if player skipped ahead.
+            {
+                if (textBox.text[i] == '<') //we've found a rich text tag
+                {
+                    string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
+                    while (textBox.text[i] != '>')
+                    {
+                        i++;
+                        tag += textBox.text[i];
+                    }
+                    i++;
+                    //don't need to bother excluding things if the last letter of tag is the last letter of the string?
+                    //might leave a gap big enough to cause smaller text size, but might be preferrable to FURTHER index chicanery
+                    if (TagParser.Parse(tag))
+                    {
+                        excludeTagEx = new Regex(tag);
+                        s = excludeTagEx.Replace(s, "", 1);
+                        ExcludeLetters(textBox, charI, charI + tag.Length, s, debugTextbox);
+                        charI += tag.Length; //
+                    }
+                }
+                if (i >= textBox.text.Length) break;
+                curChar = textBox.textInfo.characterInfo[charI];
+                if (curChar.character != ' ' && curChar.character != '<')
+                {
+                    if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
+                    else ShowALetter(textBox, charI, debugTextbox);
+                    //only care about passing in a stupid char for the event if event actually exists
+                    if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
+                    {
+                        try
+                        {
+                            //pass in the current character if applicable.
+                            stu?.Invoke((object)textBox.textInfo.characterInfo[charI]);
+                        }
+                        catch
+                        {
+                            Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
+                        }
+                    }
+                }
+                charI++;
+                i++;
+            }
+        }
+        /// <summary>
         /// Async version of the RunThroughText coroutine. Basically all of the same logic, but instead of being
         /// handled as a coroutine, it relies on the Awaitable functions (ie. 'await Awaitable.NextFrameAsync' instead of 'yield
         /// return null').
@@ -194,6 +350,8 @@ namespace RenCSharp
         /// <returns>War in our time?!?</returns>
         public static async Awaitable RunThroughTextAsync(TMP_Text textBox, string endText, bool debugTextbox = false)
         {
+            textBox.text = "";
+            textBox.ForceMeshUpdate();
             while (pausedTextbox) await Awaitable.NextFrameAsync(); //No friggin' idea why this is necessary for first runtime screen?????????
 
             float t = 0;
@@ -208,13 +366,13 @@ namespace RenCSharp
             amended = Flag_Manager.CleanOutFlags(amended);
 
             textBox.text = amended; //set the text that will be show over time/mangled horrifically by tags
-            textBox.fontSize = PredictFontSize(TagParser.CleanOutTags(amended, false, false), textBox);
+            textBox.fontSize = PredictFontSize(TagParser.CleanOutTags(amended, false), textBox);
             textBox.ForceMeshUpdate();
             HideLetters(textBox);
 
             JumpToEndOfTextbox = false;
 
-            string s = amended;
+            string s = PlaceInvisibleCharsBetweenTags(amended, debugTextbox);
 
             while (charI < textBox.textInfo.characterCount && !JumpToEndOfTextbox && i < textBox.text.Length) //while running through a textbox (player hasn't done nothing)
             {
@@ -233,37 +391,46 @@ namespace RenCSharp
                         while (textBox.text[i] != '>')
                         {
                             i++;
+                            if (i >= textBox.text.Length)
+                            {
+                                Debug.LogError("Tag found that has no closer. Stopping RunThroughTextAsync!");
+                                return;
+                            }
                             tag += textBox.text[i];
                         }
                         i++;
-                        if (await TagParser.ParseAsync(tag))
+                        if (TagParser.Parse(tag))
                         {
                             ///Debug.Log("Touched rich tag!");
-                            excludeTagEx = new Regex(tag);
+                            //Because {s} has invisible chars before and after tags for line-spacing concerns, we have to
+                            //take that into account when Regex-ing them away.
+                            excludeTagEx = new Regex(WSPBreak + tag + WSPBreak);
                             s = excludeTagEx.Replace(s, "", 1);
+                            ///if(debugTextbox)Debug.Log($"PredictVerts string: {s}, stringL: {s.Length}");
                             ExcludeLetters(textBox, charI, charI + tag.Length, s, debugTextbox);
                             charI += tag.Length;//?
                         }
                     }
                     if (i >= textBox.text.Length) break;
                     curChar = textBox.textInfo.characterInfo[charI];
-                    if (debugTextbox) Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}, Text L: {textBox.text.Length}");
-                    if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
-                    else ShowALetter(textBox, charI);
-                    //only care about passing in a stupid char for the event if event actually exists
-                    if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
+                    if (curChar.character != ' ' && curChar.character != '<')
                     {
-                        try
+                        if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
+                        else ShowALetter(textBox, charI, debugTextbox);
+                        //only care about passing in a stupid char for the event if event actually exists
+                        if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                         {
-                            //pass in the current character if applicable.
-                            stu?.Invoke((object)textBox.textInfo.characterInfo[charI]);
-                        }
-                        catch
-                        {
-                            Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
+                            try
+                            {
+                                //pass in the current character if applicable.
+                                stu?.Invoke((object)textBox.textInfo.characterInfo[charI]);
+                            }
+                            catch
+                            {
+                                Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
+                            }
                         }
                     }
-
                     charI++;
                     i++;
                 }
@@ -286,7 +453,7 @@ namespace RenCSharp
                     i++;
                     //don't need to bother excluding things if the last letter of tag is the last letter of the string?
                     //might leave a gap big enough to cause smaller text size, but might be preferrable to FURTHER index chicanery
-                    if (await TagParser.ParseAsync(tag))
+                    if (TagParser.Parse(tag))
                     {
                         excludeTagEx = new Regex(tag);
                         s = excludeTagEx.Replace(s, "", 1);
@@ -295,27 +462,174 @@ namespace RenCSharp
                     }
                 }
                 if (i >= textBox.text.Length) break;
-                if (debugTextbox) Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}, TextL: {textBox.text.Length}");
-
-                ///Debug.Log($"Showing letter, I: {i}, CharI: {charI}. Expected char: {textBox.textInfo.characterInfo[charI].character}");
-                if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
-                else ShowALetter(textBox, charI);
-                //only care about passing in a stupid char for the event if event actually exists
-                if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
+                curChar = textBox.textInfo.characterInfo[charI];
+                if (curChar.character != ' ' && curChar.character != '<')
                 {
-                    try
+                    if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
+                    else ShowALetter(textBox, charI, debugTextbox);
+                    //only care about passing in a stupid char for the event if event actually exists
+                    if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                     {
-                        //pass in the current character if applicable.
-                        stu?.Invoke((object)textBox.textInfo.characterInfo[charI]);
-                    }
-                    catch
-                    {
-                        Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
+                        try
+                        {
+                            //pass in the current character if applicable.
+                            stu?.Invoke((object)textBox.textInfo.characterInfo[charI]);
+                        }
+                        catch
+                        {
+                            Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
+                        }
                     }
                 }
-
-                i++;
                 charI++;
+                i++;
+            }
+        }
+        /// <summary>
+        /// Async version of the RunThroughText coroutine. Basically all of the same logic, but instead of being
+        /// handled as a coroutine, it relies on the Awaitable functions (ie. 'await Awaitable.NextFrameAsync' instead of 'yield
+        /// return null').
+        /// </summary>
+        /// <param name="textBox">The text area being populated by text.</param>
+        /// <param name="endText">How the final text display will look (tags not withstanding).</param>
+        /// <returns>War in our time?!?</returns>
+        public static async Awaitable RunThroughTextAsync(TMP_Text textBox, string endText, AudioClip dialogSound, float basePitch, float pitchVariance, bool debugTextbox = false)
+        {
+            textBox.text = "";
+            textBox.ForceMeshUpdate();
+            while (pausedTextbox) await Awaitable.NextFrameAsync(); //No friggin' idea why this is necessary for first runtime screen?????????
+
+            float t = 0;
+            int i = 0; //"real" string char index
+            int charI = 0; //tmp_charInfo index (excludes built-in rich tags already... nightmare nightmare parsing!)
+            string amended = endText;
+            TMP_CharacterInfo curChar;
+
+            TagParser.SetCurrentTextMesh = textBox;
+
+            amended = ReplaceableText(amended);
+            amended = Flag_Manager.CleanOutFlags(amended);
+
+            textBox.text = amended; //set the text that will be show over time/mangled horrifically by tags
+            textBox.fontSize = PredictFontSize(TagParser.CleanOutTags(amended, false), textBox);
+            textBox.ForceMeshUpdate();
+            HideLetters(textBox);
+
+            JumpToEndOfTextbox = false;
+
+            string s = PlaceInvisibleCharsBetweenTags(amended, debugTextbox);
+
+            while (charI < textBox.textInfo.characterCount && !JumpToEndOfTextbox && i < textBox.text.Length) //while running through a textbox (player hasn't done nothing)
+            {
+                //only run through text if unpaused
+                while (pausedTextbox) await Awaitable.NextFrameAsync();
+
+                t += Time.deltaTime;
+                //add one character at a time, depending on text speed
+                if (t >= TextSpeed)
+                {
+                    t = 0;
+                    
+                    if (textBox.text[i] == '<') //we've found a rich text tag
+                    {
+                        //Debug.Log("Touched rich tag?");
+                        string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
+                        while (textBox.text[i] != '>')
+                        {
+                            i++;
+                            if (i >= textBox.text.Length)
+                            {
+                                Debug.LogError("Tag found that has no closer. Stopping RunThroughTextAsync!");
+                                return;
+                            }
+                            tag += textBox.text[i];
+                        }
+                        i++;
+                        if (TagParser.Parse(tag))
+                        {
+                            ///Debug.Log("Touched rich tag!");
+                            //Because {s} has invisible chars before and after tags for line-spacing concerns, we have to
+                            //take that into account when Regex-ing them away.
+                            excludeTagEx = new Regex(WSPBreak + tag + WSPBreak);
+                            s = excludeTagEx.Replace(s, "", 1);
+                            ///if(debugTextbox)Debug.Log($"PredictVerts string: {s}, stringL: {s.Length}");
+                            ExcludeLetters(textBox, charI, charI + tag.Length, s, debugTextbox);
+                            charI += tag.Length;//?
+                        }
+                    }
+                    if (i >= textBox.text.Length) break;
+                    curChar = textBox.textInfo.characterInfo[charI];
+                    if (curChar.character != ' ' && curChar.character != '<')
+                    {
+                        Audio_Manager.AM.Play2DSFX(dialogSound, basePitch - pitchVariance, basePitch + pitchVariance, 1, true, true);
+                        if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
+                        else ShowALetter(textBox, charI, debugTextbox);
+                        //only care about passing in a stupid char for the event if event actually exists
+                        if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
+                        {
+                            try
+                            {
+                                //pass in the current character if applicable.
+                                stu?.Invoke((object)textBox.textInfo.characterInfo[charI]);
+                            }
+                            catch
+                            {
+                                Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
+                            }
+                        }
+                    }
+                    charI++;
+                    i++;
+                }
+
+                await Awaitable.NextFrameAsync();
+            }
+
+            JumpToEndOfTextbox = true;
+
+            while (charI < textBox.textInfo.characterCount && i < textBox.text.Length) //just run through everything in a single frame if player skipped ahead.
+            {
+                if (textBox.text[i] == '<') //we've found a rich text tag
+                {
+                    string tag = "" + textBox.text[i]; //collect all the chars that make up our tag
+                    while (textBox.text[i] != '>')
+                    {
+                        i++;
+                        tag += textBox.text[i];
+                    }
+                    i++;
+                    //don't need to bother excluding things if the last letter of tag is the last letter of the string?
+                    //might leave a gap big enough to cause smaller text size, but might be preferrable to FURTHER index chicanery
+                    if (TagParser.Parse(tag))
+                    {
+                        excludeTagEx = new Regex(tag);
+                        s = excludeTagEx.Replace(s, "", 1);
+                        ExcludeLetters(textBox, charI, charI + tag.Length, s, debugTextbox);
+                        charI += tag.Length; //
+                    }
+                }
+                if (i >= textBox.text.Length) break;
+                curChar = textBox.textInfo.characterInfo[charI];
+                if (curChar.character != ' ' && curChar.character != '<')
+                {
+                    if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
+                    else ShowALetter(textBox, charI, debugTextbox);
+                    //only care about passing in a stupid char for the event if event actually exists
+                    if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
+                    {
+                        try
+                        {
+                            //pass in the current character if applicable.
+                            stu?.Invoke((object)textBox.textInfo.characterInfo[charI]);
+                        }
+                        catch
+                        {
+                            Debug.LogWarning("For some stupid reason, Textbox_String is trying to fire the spawn new character event on an invalid indexed character?!? Wild.");
+                        }
+                    }
+                }
+                charI++;
+                i++;
             }
         }
         #region MeshManipulationStuff
@@ -363,9 +677,18 @@ namespace RenCSharp
                 chars[i] = charsToBeHiding[i].character;
             }
             Debug.Log("Chars that we are hiding: " + chars.ArrayToString());
-            
         }
-
+        /// <summary>
+        /// Truncates vertices of characters, making all chars between startI and endI have their vertices set to Vec3.zero,
+        ///  while every character after endI (including endI) having their vertices set to a copy mesh that has the excluded
+        ///   characters removed.
+        /// </summary>
+        /// <param name="text">The textbox you want affected.</param>
+        /// <param name="startI">The (inclusive) starting index of characters you want hidden entirely.</param>
+        /// <param name="endI">The (exclusive) ending index of characters you want hidden. Is the start of the truncation.</param>
+        /// <param name="expectedText">The text you expect the textbox to look like when done (the textbox if it's tmp.text didn't
+        ///  have the characters between startI and endI.)</param>
+        /// <param name="debug">lol</param>
         private static void ExcludeLetters(TMP_Text text, int startI, int endI, string expectedText, bool debug = false)
         {
             //works when first char of string is rich tag. but not second?
@@ -400,8 +723,7 @@ namespace RenCSharp
                 return; 
             } 
             Vector3[] expectedVerts = PredictVertices(expectedText, text, false, debug);
-            string s2 = "";
-            string s3 = "";
+            //we need our vertex gap math to ignore the god forsaken \u200b hogwash, even if we need to include it in the predict verts mesh.
             int vertexGap = (text.textInfo.characterCount - TagParser.CleanedOutBuiltInTagsLength(Regex.Replace(expectedText,WSPBreak,""))) * 4;
 
             for(int i = endI; i < text.textInfo.characterCount; i++)
@@ -412,13 +734,11 @@ namespace RenCSharp
                     //fairly certain this is because how vertices are assigned in memory for spaces involves BS chicanery that
                     //links them to other characters (because spaces don't need to be rendered at all, even if we need to keep track
                     //of them)
-                    s2 += chars[i].character;
                     if (chars[i].character == ' ') continue; 
-                    vertInd = chars[i].vertexIndex; //the vertInd isn't fully linear...????????????
+                    vertInd = chars[i].vertexIndex; //characterVertex index is not equivalent to i + n. Byte-Batching-BS istg
                     
                     for (int j = vertInd; j < vertInd + 4; j++)
                     {
-                        s3 += ($"Char: {chars[i].character}, VertexInd: " + vertInd + $", (ind{j} - vertexGap{vertexGap}): " + (j - vertexGap) + $", currentVert: {verts[j]}, expectedVert: {expectedVerts[j - vertexGap]}, expectedVertsL: " + expectedVerts.Length + ", vertsL: " + verts.Length + "\n");
                         verts[j] = expectedVerts[j - vertexGap];
                     }
                 }
@@ -427,11 +747,6 @@ namespace RenCSharp
                     Debug.LogWarning("Problem in Textbox_String.cs ExcludeLetters()'s downline vertex adjustment. Continuing.");
                     continue;
                 }
-            }
-            if (debug)
-            {
-                Debug.Log(s3);
-                Debug.Log("Characters being truncated: " + s2);
             }
             //mesh setting because meshInfo[] is really dumb and bad and I hate it! (overlays are overrated anyway... probably.)
             goose.vertices = verts;
@@ -479,7 +794,13 @@ namespace RenCSharp
             if (!debug) ttmp.color = CoolColors.transparent;
             return curMeshVerts;
         }
-
+        /// <summary>
+        /// Based on a given string and TMP_Text settings, predict the automatic font size of the text mesh.
+        /// </summary>
+        /// <param name="toPredict">The text whose font size you wish to predict.</param>
+        /// <param name="settings">The TMP_Text whose settings you want taken into account.</param>
+        /// <param name="TMPType">False for TextMeshProUGUI, True for TextMeshPro</param>
+        /// <returns>The predicted string's TMP auto font size.</returns>
         private static float PredictFontSize(string toPredict, TMP_Text settings, bool TMPType = false)
         {
             if(!Object_Factory.TryGetObject("EMPTY", out GameObject temp))
@@ -500,7 +821,12 @@ namespace RenCSharp
             UObject.Destroy(ttmp);
             return foundFontSize;
         }
-
+        /// <summary>
+        /// Sets a single letter to have full alpha vertex colors.
+        /// </summary>
+        /// <param name="text">The textbox you want to affect.</param>
+        /// <param name="i">The index of the character (textInfo.characterInfo, not raw text string) you want to show.</param>
+        /// <param name="debug"></param>
         private static void ShowALetter(TMP_Text text, int i, bool debug = false)
         {
             try
@@ -524,7 +850,13 @@ namespace RenCSharp
                 Debug.LogWarning($"Bad Char Given, no showing :(");
             }
         }
-
+        /// <summary>
+        /// Sets a single letter to have full alpha vertex colors over time.
+        /// </summary>
+        /// <param name="text">The textbox you want to affect.</param>
+        /// <param name="i">The index of the character (textInfo.characterInfo, not raw text string) you want to show.</param>
+        /// <param name="debug"></param>
+        /// <returns>A visible character.</returns>
         private static async Awaitable FadeInALetterAsync(TMP_Text text, int i, bool debug = false)
         {
             float t = 0;
@@ -538,7 +870,7 @@ namespace RenCSharp
                 Debug.Log("Char to show: " + charToShow.character + $" Vertices: {verts[charToShow.vertexIndex]}," +
                     $"{verts[charToShow.vertexIndex + 1]},{verts[charToShow.vertexIndex + 2]},{verts[charToShow.vertexIndex + 3]}");
             }
-            while (t < FadeCharSpeed && vertiColors[charToShow.vertexIndex].a != 255)
+            while (t < FadeCharSpeed && vertiColors[charToShow.vertexIndex].a != 255 && !JumpToEndOfTextbox)
             {
                 vertiColors = text.textInfo.meshInfo[charToShow.materialReferenceIndex].colors32;
 
@@ -560,23 +892,29 @@ namespace RenCSharp
             text.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
         }
         #endregion
+        /// <summary>
+        /// Places invisible characters (\u200B) before every instance of "greater-than" and after every instance of "less-than."
+        /// Useful for predicting vertices whenever line-break spacing gets annoying. (TMP will interpret a rich tag surrounding
+        ///  a single word as all one big word, which is unideal and can cause vertices to appear on the wrong line of text.)
+        /// </summary>
+        /// <param name="sInput">The text you want to put invisible characters into.</param>
+        /// <param name="debug"></param>
+        /// <returns>The given string with invisible characters (\u200B) before and after tags.</returns>
         public static string PlaceInvisibleCharsBetweenTags(string sInput, bool debug)
         {
             int i = 0;
             string toReturn = sInput;
             while (i < toReturn.Length)
             {
-                if (toReturn[i] == '<') 
+                if (toReturn[i] == '<') //insert whitespace before <
                 {
-                    if (debug) Debug.Log($"Found tag char (<) at {i}, inserting: \u200B before it");
-                    toReturn = toReturn.Insert(i, "\u200B"); i++; 
-                } //do another i++ to move past the newly added char?
-                else if (toReturn[i] == '>')
+                    toReturn = toReturn.Insert(i, WSPBreak);
+                    i++; 
+                } 
+                else if (toReturn[i] == '>') //insert whitespace after >
                 {
-                    
-                    if (debug) Debug.Log($"Found end tag char (>) at {i}, inserting: \u200B after it");
                     i++;
-                    toReturn = toReturn.Insert(i, "\u200B");
+                    toReturn = toReturn.Insert(i, WSPBreak);
                 }
                 i++;
             }
@@ -591,16 +929,15 @@ namespace RenCSharp
         /// <returns>The input with all replaceable texts replaced.</returns>
         public static string ReplaceableText(string sInput)
         {
-            string sOutput = sInput;
             foreach (KeyValuePair<string, string> kvp in replacerTexts) //by the end of this, replace generic guys like {mc} with the actual player's name
             {
                 //Debug.Log("Doing a stupid replacering!");
-                if (sOutput.Contains(kvp.Key))
+                if (sInput.Contains(kvp.Key))
                 {
-                    sOutput = Regex.Replace(sOutput, kvp.Key, kvp.Value);
+                    sInput = Regex.Replace(sInput, kvp.Key, kvp.Value);
                 }
             }
-            return sOutput;
+            return sInput;
         }
 
         /// <summary>

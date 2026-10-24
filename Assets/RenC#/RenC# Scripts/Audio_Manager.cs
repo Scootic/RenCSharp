@@ -149,10 +149,11 @@ namespace RenCSharp
         /// <param name="minRand">the lowest pitch it can randomly be</param>
         /// <param name="maxRand">the highest pitch it can randomly be</param>
         /// <param name="volume">volume multiplier based on settings</param>
+        /// <param name="onlyOne">decides if there should only be one instance of the given sfx at once.</param>
         /// <param name="environmental">whether or not to use environmental or regular sound settings</param>
-        public void Play2DSFX(AudioClip clipToPlay, float minRand = 1, float maxRand = 1, float volume = 1, bool environmental = false, bool loop = false)
+        public void Play2DSFX(AudioClip clipToPlay, float minRand = 1, float maxRand = 1, float volume = 1, bool environmental = false, bool onlyOne = false, bool loop = false)
         {
-            if (environmental && loop && AlreadyPlaying2DSFX(clipToPlay)) return; //no duped esfx 
+            if (((environmental && loop) || onlyOne) && AlreadyPlaying2DSFX(clipToPlay)) return; //no duped esfx 
 
             if (!environmental)
             {
@@ -197,12 +198,14 @@ namespace RenCSharp
 
                 if (environmental && loop)
                 {
-                    SFXToken toAdd = new SFXToken();
-                    toAdd.SFXAddress = sfxToPlay.AssetGUID;
-                    toAdd.yPos = 0;
-                    toAdd.zPos = 0;
-                    toAdd.xPos = 0;
-                    toAdd.localVolume = volume;
+                    SFXToken toAdd = new()
+                    {
+                        SFXAddress = sfxToPlay.AssetGUID,
+                        yPos = 0,
+                        xPos = 0,
+                        zPos = 0,
+                        localVolume = volume
+                    };
                     loopingSFXAddresses.Add(toAdd);
                 }
 
@@ -225,13 +228,15 @@ namespace RenCSharp
 
             if (environmental && loop)
             {
-                SFXToken toAdd = new SFXToken();
-                toAdd.SFXAddress = sfxToPlay.AssetGUID;
-                toAdd.yPos = 0;
-                toAdd.zPos = 0;
-                toAdd.xPos = 0;
-                toAdd.SFXName = sfx.name;
-                toAdd.localVolume = volume;
+                SFXToken toAdd = new()
+                {
+                    SFXAddress = sfxToPlay.AssetGUID,
+                    yPos = 0,
+                    xPos = 0,
+                    zPos = 0,
+                    SFXName = sfx.name,
+                    localVolume = volume
+                };
                 loopingSFXAddresses.Add(toAdd);
             }
 
@@ -253,13 +258,15 @@ namespace RenCSharp
             AudioClip man = stinker.Result as AudioClip;
             if (AlreadyPlaying2DSFX(man)) return;
 
-            SFXToken toAdd = new();
-            toAdd.xPos = 0;
-            toAdd.yPos = 0;
-            toAdd.zPos = 0;
-            toAdd.SFXName = man.name;
-            toAdd.SFXAddress = sfxGUID;
-            toAdd.localVolume = volume;
+            SFXToken toAdd = new()
+            {
+                xPos = 0,
+                yPos = 0,
+                zPos = 0,
+                SFXName = man.name,
+                SFXAddress = sfxGUID,
+                localVolume = volume
+            };
             loopingSFXAddresses.Add(toAdd);
 
             Play2DSFX(man, minRand, maxRand, volume, environmental, loop);
@@ -876,6 +883,7 @@ namespace RenCSharp
             if (f == esfxVolMult) return;
             foreach (AudioSource sauce in esfxSources)
             {
+                if (sauce == null) continue;
                 if (sauce.volume > 0)
                 {
                     sauce.volume /= esfxVolMult;
@@ -884,6 +892,7 @@ namespace RenCSharp
             }
             foreach(AudioSource sauce in esfxList)
             {
+                if (sauce == null) continue;
                 if (sauce.volume > 0)
                 {
                     sauce.volume /= esfxVolMult;

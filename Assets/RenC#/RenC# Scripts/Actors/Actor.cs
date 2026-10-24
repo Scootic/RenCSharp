@@ -22,6 +22,9 @@ namespace RenCSharp.Actors
         [SerializeField] private TMP_FontAsset actorFont;
         [SerializeField] private Color textboxColor = Color.white;
         [SerializeField] private Material textboxMaterial;
+        [Header("Audio Attributes")]
+        [SerializeField] private AudioClip textSound;
+        [SerializeField, Range(0f,3f)] private float defaultPitch = 1f;
 
         public string ActorName => actorName;
         public AssetReference Myself => myself;
@@ -30,5 +33,7 @@ namespace RenCSharp.Actors
         public Color TextboxColor => textboxColor;
         public TMP_FontAsset ActorFont => actorFont;
         public Material TextboxMaterial => textboxMaterial;
+        public AudioClip TextSound => textSound;
+        public float DefaultPitch => defaultPitch;
     }
 }

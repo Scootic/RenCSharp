@@ -368,7 +368,7 @@ MonoBehaviour:
     - rid: 4972360430703869976
     - rid: 4972360430703870075
   - speaker: {fileID: 0}
-    dialog: <Speed=1><i>I know what I must do.</Speed></i>
+    dialog: <Speed=1><i>I know what I must do.</i></Speed>
     ScreenActions:
     - rid: 9142197581518209180
     - rid: 9142197581518209181
@@ -737,8 +737,8 @@ MonoBehaviour:
   myself:
     m_AssetGUID: 661b6ea2e436fa44eababa16270b2104
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   references:
     version: 2
@@ -828,9 +828,9 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: c71db348a6937494eae8b123a8fdf539
           m_SubObjectName: whitevignet
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         overlayText: 
         fadeTime: 4
@@ -842,9 +842,9 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
           m_SubObjectName: emptypng
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         overlayText: 
         fadeTime: 4
@@ -858,6 +858,8 @@ MonoBehaviour:
         newHueDegree: 0
         newSaturation: 1
         newContrast: 1
+        newTemperature: 0
+        newTint: 0
         lerpDuration: 1
         lerpCurve:
           serializedVersion: 2
@@ -891,6 +893,8 @@ MonoBehaviour:
         newHueDegree: 0
         newSaturation: 0.8
         newContrast: 1.1
+        newTemperature: 0
+        newTint: 0
         lerpDuration: 1
         lerpCurve:
           serializedVersion: 2
@@ -922,8 +926,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 0b2a280c54db4fa4486944e6cfb59f1a
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -936,8 +940,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 14c567bb77414a54282e6b348590e016
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -950,8 +954,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 14c567bb77414a54282e6b348590e016
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -964,8 +968,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 4f09cc94363340d459ef2681fc443d19
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -978,8 +982,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: ba13accb8b1fe3b47bb3401b0a6229b8
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -989,8 +993,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -1000,8 +1004,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 1cbae0632d755c64a9dd5c624aed23d0
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -1011,8 +1015,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -1022,8 +1026,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 02b65c7a4c6282f43b3187ca944f4658
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -1033,8 +1037,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
@@ -1044,8 +1048,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: ba13accb8b1fe3b47bb3401b0a6229b8
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -1055,8 +1059,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 9d18ee034d9bea149886efe3a7a02057
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -1066,8 +1070,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: ba13accb8b1fe3b47bb3401b0a6229b8
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -1077,8 +1081,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: b520dd2a984ff1445b8e8874f212ecfa
           m_SubObjectName: Classroom_05_day
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -1089,8 +1093,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 67dd5da0ba57ebc48906bc83e29c54c8
           m_SubObjectName: classroom_afternoon
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 1
@@ -1101,8 +1105,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: b520dd2a984ff1445b8e8874f212ecfa
           m_SubObjectName: Classroom_05_day
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 1
@@ -1113,8 +1117,8 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 7ae89b6f8c3126d4fa85dd1e398805c6
           m_SubObjectName: vignet
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 0.5
@@ -1126,8 +1130,8 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
           m_SubObjectName: emptypng
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 1
@@ -1139,23 +1143,23 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
           m_SubObjectName: glitchanim_0
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
           m_SubObjectName: glitchanim_1
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
           m_SubObjectName: glitchanim_2
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         - m_AssetGUID: 62b8c34cd16ce974fae58f33d1bb73c8
           m_SubObjectName: glitchanim_3
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 0.5
@@ -1167,8 +1171,8 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
           m_SubObjectName: emptypng
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         overlayText: 
         fadeTime: 0.5

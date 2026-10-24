@@ -82,7 +82,7 @@ namespace RenCSharp.Tags
                 {
                     //if (originalVertices.Length == 0) originalVertices = vertices; 
                     c = affectedNoiseChars[charList][i];
-                    offset = EvilNoise(maxDist, acceptableDeviation); //offset guys by partial rotations of unit circle
+                    offset = EvilNoise(maxDist, acceptableDeviation); //offset guys by rolled noise
                     for (int j = c.vertexIndex; j < c.vertexIndex + 4; j++)
                     {
                         vertices[j] = originalVertices[j] + offset;

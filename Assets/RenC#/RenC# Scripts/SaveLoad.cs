@@ -37,7 +37,7 @@ namespace RenCSharp
         /// based on the player's name</param>
         public static void Save(string fileName, SaveData sd, string subFolder = "")
         {
-            Regex.Replace(subFolder, "[ <>?*]", "_");
+            subFolder = Regex.Replace(subFolder, "[ <>?*]", "_");
             string filePath = Application.persistentDataPath + "/" + (subFolder != "" ? subFolder + "/" : "") + fileName + ".sav";
             sd.FileName = fileName;
             Debug.Log("Saving data to: " + filePath);
@@ -179,7 +179,7 @@ namespace RenCSharp
             }
             else 
             {
-                Regex.Replace(subDirectory, "[ <>?*]", "_");
+                subDirectory = Regex.Replace(subDirectory, "[ <>?*]", "_");
                 allFilePaths = Directory.GetFiles(Application.persistentDataPath + "/" + subDirectory, "*.sav", SearchOption.AllDirectories);
             }
             return allFilePaths;
@@ -192,7 +192,7 @@ namespace RenCSharp
         /// <param name="subFolder">Subfolder namee :)</param>
         public static bool DeleteSaveFile(string fileName, string subFolder = "")
         {
-            Regex.Replace(subFolder, "[ <>?*]", "_");
+            subFolder = Regex.Replace(subFolder, "[ <>?*]", "_");
             string directoryPath = Application.persistentDataPath + "/" + (subFolder != "" ? subFolder + "/": "");
             string filePath = directoryPath + fileName + ".sav";
             if (!File.Exists(filePath)) { Debug.LogWarning("Trying to delete a save that doesn't exist at: " + filePath); return false; }

@@ -120,6 +120,7 @@ MonoBehaviour:
     - rid: 9142197673170043076
     - rid: 9142197673170043077
     - rid: 9079475089592287416
+    - rid: 6136301268585152560
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Oh shi-!
     ScreenActions: []
@@ -131,6 +132,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9142197673170043078
     - rid: 9079475089592287417
+    - rid: 6136301268585152561
   - speaker: {fileID: 0}
     dialog: From the looks of what happened, it seems that when Sayori tried to grab
       the crayons...
@@ -353,7 +355,8 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Hey, {mc}, we should head back.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 6136301268585152562
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Natsuki's waiting for you, right?
     ScreenActions:
@@ -472,8 +475,8 @@ MonoBehaviour:
   myself:
     m_AssetGUID: b7d8abbd42123b145b7fa46c22d96941
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   references:
     version: 2
@@ -484,22 +487,200 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 0b2a280c54db4fa4486944e6cfb59f1a
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+    - rid: 6136301268585152560
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 5, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: f7dd5f9fe26a3994192a16cae0aafee6
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+    - rid: 6136301268585152561
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 0, y: 25, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        loopOnScreen: 0
+    - rid: 6136301268585152562
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: 0, y: 50, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        loopOnScreen: 0
     - rid: 9079475089592287415
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         songAsset:
           m_AssetGUID: 07169a44e565b2e46a97c1e0d18c4997
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -509,8 +690,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -520,8 +701,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 98d498920c2e94e458c4296d7dd4bca4
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -531,8 +712,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
@@ -542,8 +723,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 242eec1aaa8c1fd41832783905b45d54
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
@@ -553,8 +734,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 07169a44e565b2e46a97c1e0d18c4997
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -564,8 +745,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 51f2b1be4fb05b142acbbe506e86b1d2
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -575,8 +756,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 67dd5da0ba57ebc48906bc83e29c54c8
           m_SubObjectName: classroom_afternoon
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -587,8 +768,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: dd6c8e5b87af36a418069980751df3b4
           m_SubObjectName: school_corridor_background
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -599,8 +780,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 67dd5da0ba57ebc48906bc83e29c54c8
           m_SubObjectName: classroom_afternoon
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -611,8 +792,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: b520dd2a984ff1445b8e8874f212ecfa
           m_SubObjectName: Classroom_05_day
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -623,8 +804,8 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: b520dd2a984ff1445b8e8874f212ecfa
           m_SubObjectName: Classroom_05_day
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -696,11 +877,29 @@ MonoBehaviour:
     - rid: 9142197673170043076
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        localMotionOffset: {x: 0, y: -50, z: 0}
+        localMotionOffset: {x: 10, y: -75, z: 0}
         motionDuration: 0.4
         motionPathX:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0.0041656494
+            value: 0.0023498535
+            inSlope: 5.775083
+            outSlope: 5.775083
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.02145919
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -1.3502456
+            outSlope: -1.3502456
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.09012877
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -717,17 +916,8 @@ MonoBehaviour:
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
-            time: 0.49109042
-            value: 0.99646753
-            inSlope: -0.04322848
-            outSlope: -0.04322848
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.3891145
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 0.9958353
-            value: 0
+            time: 1
+            value: 1
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -753,6 +943,7 @@ MonoBehaviour:
         - uniDown
         - uniUp
         - '><Shock'
+        - 
     - rid: 9142197673170043078
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -761,6 +952,7 @@ MonoBehaviour:
         - uniUp
         - uniUp
         - crySad
+        - 
     - rid: 9142197673170043079
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -777,6 +969,7 @@ MonoBehaviour:
         - uniDown
         - uniDown
         - lookAwayGrin
+        - 
     - rid: 9142197673170043081
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -795,7 +988,7 @@ MonoBehaviour:
       data:
         actorToSpawn: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
         fadeInTime: 0.5
-        spawnOffset: {x: 0, y: 0, z: 0}
+        spawnOffset: {x: 0, y: -50, z: 0}
         visualSpriteIndexes:
         - uniDown
         - uniUp
@@ -809,6 +1002,7 @@ MonoBehaviour:
         - uniDown
         - uniUp
         - crySmile
+        - 
     - rid: 9142197673170043088
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
