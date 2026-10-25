@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8266305171280315681}
   - component: {fileID: 1534405015989188444}
   - component: {fileID: 1362190058676983102}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: BigBlueFireProj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,12 +140,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementType:
     rid: 268099750562628556
+  onHitEffects: []
   despawnType:
     rid: 268099750562628592
+  updateTypes: []
+  customUpdateWhileInactive: 1
+  customUpdateWhileActive: 1
+  movementWhileInactive: 1
+  movementWhileActive: 1
   damageOverTime: 0
   destroyOnHit: 1
   baseDamage: 3
-  moveSpeed: 500
   lifetime: 5
   spawnSoundVol: 0.4
   colliderEnableTime: 0.2
@@ -159,6 +164,7 @@ MonoBehaviour:
       type: {class: StraightLine_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
         speed: 500
+        movementSetsRotation: 1
     - rid: 268099750562628592
       type: {class: Explode_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:

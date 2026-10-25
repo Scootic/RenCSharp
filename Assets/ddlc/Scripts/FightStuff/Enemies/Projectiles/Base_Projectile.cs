@@ -40,6 +40,8 @@ namespace RenCSharp.Combat.Enemies
         protected Collider myCol;
         protected Coroutine spawnInRoutine;
         protected Rigidbody receiverRB, myRB;
+        protected bool validToMove;
+        #region Getters
         public float Lifetime => lifetime;
         public float ColliderEnableTime => colliderEnableTime;
         public float SpawnSoundVol => spawnSoundVol;
@@ -47,6 +49,9 @@ namespace RenCSharp.Combat.Enemies
         public Vector3 GetMoveDir => movementType.GetMoveDir;
         public Projectile_MovementType GetMovementType => movementType;
         public Vector2 SizeDelta => gameObject.GetComponent<RectTransform>().sizeDelta;
+        /// <summary>
+        /// Used for Editor mostly
+        /// </summary>
         public Texture DisplayTexture {
             get
             {
@@ -54,6 +59,9 @@ namespace RenCSharp.Combat.Enemies
                 else return null;
             }
         }
+        /// <summary>
+        /// Used for Editor mostly
+        /// </summary>
         public Rect DisplayTextureRect
         {
             get
@@ -64,16 +72,16 @@ namespace RenCSharp.Combat.Enemies
                 //try to get the unscaled rect of the borders, since that's how projectiles are rendered.
                 unscaledRect = new Rect(unscaledRect.x + spriteBorder.x, unscaledRect.y + spriteBorder.w,
                     unscaledRect.width - spriteBorder.x - spriteBorder.z, unscaledRect.height - spriteBorder.y - spriteBorder.w);
-                Vector2 textureSize = new Vector2(DisplayTexture.width, DisplayTexture.height);
+                Vector2 textureSize = new(DisplayTexture.width, DisplayTexture.height);
                 //normalize the unscaled rect by the size of the texture.
-                Rect scaledRect = new Rect(unscaledRect.x / textureSize.x, unscaledRect.y / textureSize.y,
+                Rect scaledRect = new(unscaledRect.x / textureSize.x, unscaledRect.y / textureSize.y,
                     unscaledRect.width / textureSize.x, unscaledRect.height / textureSize.y);
                 return scaledRect;
             }
         }
 
         public ProjectileHitType GetHitType => hitType;
-
+        #endregion
         /// <summary>
         /// Sets the move direction that's used in update to change the projectile's position.
         /// </summary>
@@ -92,6 +100,8 @@ namespace RenCSharp.Combat.Enemies
             if (sprite == null) sprite = GetComponentInChildren<Image>();
             despawnType ??= new Empty_Projectile_DespawnType();
             spawnInRoutine = StartCoroutine(EnableTriggerOverTime());
+            //we don't need to constantly check this in Update.
+            validToMove = (movementWhileActive && myCol.enabled) || (movementWhileInactive && !myCol.enabled);
             if (updateTypes.Count <= 0) return;
             foreach(Projectile_CustomUpdate pcu in updateTypes)
             {
@@ -121,7 +131,7 @@ namespace RenCSharp.Combat.Enemies
         //Handle movements and custom update behaviors
         protected virtual void Update()
         {
-            if((movementWhileActive && myCol.enabled) || (movementWhileInactive && !myCol.enabled)) movementType.MovementBehavior();
+            if(validToMove) movementType.MovementBehavior();
             if (updateTypes.Count <= 0) return;
             if ((customUpdateWhileActive && myCol.enabled) || (customUpdateWhileInactive && !myCol.enabled))
             {
@@ -216,6 +226,13 @@ namespace RenCSharp.Combat.Enemies
                 foreach(Projectile_CustomUpdate pcu in updateTypes)
                 {
                     pcu.OnRemove(playerTurn);
+                }
+            }
+            if(onHitEffects.Count > 0)
+            {
+                foreach(Projectile_OnHitEffect pohe in onHitEffects)
+                {
+                    pohe.OnRemove(playerTurn);
                 }
             }
             despawnType.OnDespawn(playerTurn, transform);

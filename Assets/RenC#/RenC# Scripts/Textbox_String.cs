@@ -10,7 +10,7 @@ using UObject = UnityEngine.Object;
 namespace RenCSharp
 {
     /// <summary>
-    /// This is a static class to handle textboxes in a better way. Anyone can reference this, but you'll need some TMP juices.
+    /// This is a static class to handle textboxes in a cooler way. Anyone can reference this, but you'll need some TMP juices.
     /// </summary>
     public static class Textbox_String
     {
@@ -269,7 +269,7 @@ namespace RenCSharp
                     curChar = textBox.textInfo.characterInfo[charI];
                     if (curChar.character != ' ' && curChar.character != '<')
                     {
-                        Audio_Manager.AM.Play2DSFX(dialogSound, basePitch - pitchVariance, basePitch + pitchVariance, 1, true, true);
+                        if(PlayerPrefs.GetInt("AudioChars",1)==1)Audio_Manager.AM.Play2DSFX(dialogSound, basePitch - pitchVariance, basePitch + pitchVariance, 1, true, true);
                         if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
                         else ShowALetter(textBox, charI, debugTextbox);
                         //only care about passing in a stupid char for the event if event actually exists
@@ -411,7 +411,7 @@ namespace RenCSharp
                             charI += tag.Length;//?
                         }
                     }
-                    if (i >= textBox.text.Length) break;
+                    if (i >= textBox.text.Length) return;
                     curChar = textBox.textInfo.characterInfo[charI];
                     if (curChar.character != ' ' && curChar.character != '<')
                     {
@@ -461,7 +461,7 @@ namespace RenCSharp
                         charI += tag.Length; //
                     }
                 }
-                if (i >= textBox.text.Length) break;
+                if (i >= textBox.text.Length) return;
                 curChar = textBox.textInfo.characterInfo[charI];
                 if (curChar.character != ' ' && curChar.character != '<')
                 {
@@ -557,11 +557,11 @@ namespace RenCSharp
                             charI += tag.Length;//?
                         }
                     }
-                    if (i >= textBox.text.Length) break;
+                    if (i >= textBox.text.Length) return;
                     curChar = textBox.textInfo.characterInfo[charI];
                     if (curChar.character != ' ' && curChar.character != '<')
                     {
-                        Audio_Manager.AM.Play2DSFX(dialogSound, basePitch - pitchVariance, basePitch + pitchVariance, 1, true, true);
+                        if (PlayerPrefs.GetInt("AudioChars", 1) == 1) Audio_Manager.AM.Play2DSFX(dialogSound, basePitch - pitchVariance, basePitch + pitchVariance, 1, true, true);
                         if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
                         else ShowALetter(textBox, charI, debugTextbox);
                         //only care about passing in a stupid char for the event if event actually exists
@@ -608,7 +608,7 @@ namespace RenCSharp
                         charI += tag.Length; //
                     }
                 }
-                if (i >= textBox.text.Length) break;
+                if (i >= textBox.text.Length) return;
                 curChar = textBox.textInfo.characterInfo[charI];
                 if (curChar.character != ' ' && curChar.character != '<')
                 {

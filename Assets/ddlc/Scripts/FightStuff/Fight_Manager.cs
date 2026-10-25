@@ -496,7 +496,7 @@ namespace RenCSharp.Combat
             rb.AddForce(lauchDir * enemyDamageNumberForce, ForceMode.VelocityChange);
         }
 
-        private bool WithinScriptedAttacks() //evil bool
+        private bool WithinScriptedAttacks() //super evil bool
         {
             if (curAttackIndex < curEnemy.MySO.ScriptedAttacks.Length && !passedScript) return true;
             return false;

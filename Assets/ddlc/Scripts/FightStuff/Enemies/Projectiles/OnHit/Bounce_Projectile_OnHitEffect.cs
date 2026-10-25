@@ -10,7 +10,6 @@ namespace RenCSharp.Combat.Enemies
     {
         [SerializeField] private Transform projectileTransform;
         [SerializeField, Tooltip("Leave as null if the movement type isn't physics.")] private Rigidbody projectileRigidbody;
-        [SerializeField] private Base_Projectile projectile;
         [SerializeField] private float maxSpeed = 700f;
         [SerializeField, Min(0)] private float reboundStrength = 2;
 

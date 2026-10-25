@@ -6,8 +6,9 @@ using System.Collections;
 namespace RenCSharp.Combat.Enemies
 {
     [Serializable]
-    public abstract class Projectile_OnHitEffect : IEditorValidate
+    public abstract class Projectile_OnHitEffect : IEditorValidate, IRemovableObject
     {
+        [SerializeField] protected Base_Projectile projectile;
         public abstract void OnEditorValidate();
         public abstract void OnHit(Collider other);
 
@@ -16,6 +17,12 @@ namespace RenCSharp.Combat.Enemies
         protected IEnumerator HandleCooldown()
         {
             yield return new WaitForSeconds(hitcooldown);
+            validOnHit = true;
+        }
+
+        public virtual void OnRemove(bool playerTurn)
+        {
+            projectile.StopCoroutine(HandleCooldown());
             validOnHit = true;
         }
     }
