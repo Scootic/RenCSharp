@@ -110,11 +110,10 @@ namespace RenCSharp
             Object_Factory.SpawnObject(overlayPrefab, "Overlay", overlayHolder); //profoundly sad
             Object_Factory.SpawnObject(bgPrefab, "Background", bgHolder);//horrid
             Object_Factory.SpawnObject(actorHolderFab, "Actor Holder", actorCanvas);
-            Object_Factory.SpawnObject(actorHolderFab, "EMPTY", dialogBox.transform);
-            FlagToken ft = new();
-            Flag_Manager.ReceiveFlagToken(ft.FlagTokenToDictionary(SaveLoad.LoadPersistentFlags()), true); //safety thing, make sure we have persistent flags
+            Object_Factory.SpawnObject(actorHolderFab, "EMPTY", dialogBox.transform); //there's gotta be a better way...
+            Flag_Manager.ReceiveFlagToken(SaveLoad.LoadPersistentFlags(), true); //safety thing, make sure we have persistent flags
 
-            curHist = new History(historyLength);
+            curHist = new(historyLength);
             textSpeed = PlayerPrefs.GetFloat("TextSpeed");
             lingerTime = PlayerPrefs.GetFloat("LingerTime");
             Textbox_String.TextSpeed = textSpeed;
@@ -156,16 +155,19 @@ namespace RenCSharp
                 Debug.Log("Saved PFlag: " + ft.FlagIDs[i] + ", Value: " + ft.FlagValues[i]);
             }
             SaveLoad.SavePersistentFlags(ft);
-            RandomHelper.ClearPrevRolls(); //wipe previous rng, cause screw it
+            RandomHelper.ClearPrevRolls(); //wipe previous rng, 'cause screw it
             SequencePausedEvent -= ToggleDialogUI;
+
             Event_Bus.TryRemoveStringEvent("PlayerName");
             Event_Bus.TryRemoveVoidEvent("PauseSequence");
             Event_Bus.TryRemoveVoidEvent("UnpauseSequence");
             Event_Bus.TryRemoveFloatEvent("TextSpeed");
+
             Event_Bus.TryRemoveDoubleObjEvent("SMSpeed");
             Event_Bus.TryRemoveDoubleObjEvent("SpawnPlayerButtons");
             Event_Bus.TryRemoveDoubleObjEvent("AddParticleToList");
             Event_Bus.TryRemoveDoubleObjEvent("RemoveParticleFromList");
+
             Event_Bus.TryRemoveSingleObjEvent("OverrideScreen");
             Event_Bus.TryRemoveSingleObjEvent("AssignPlayerButtonBehavior");
             Event_Bus.TryRemoveSingleObjEvent("SaveTheGame");
@@ -357,9 +359,8 @@ namespace RenCSharp
         {
             Textbox_String.JumpToEndOfTextbox = false; //set up to make sure we can skip properly and not just constantly move on before reaching end of text
             bool prevActorIscurSpeaker = curActor == screen.Speaker;
-            //should be fine with starting discard asyncs, because they dispose of themselves whenever screen progresses.
-            if (curActor != null && !prevActorIscurSpeaker && currentSequence.AutoFocusSpeaker) _ = ScaleActorAsync(false, autoFocusScaleDuration, curScreenIndex);
             //scale down in case our previous actor was scaled up, if we don't have the same actor
+            if (curActor != null && !prevActorIscurSpeaker && currentSequence.AutoFocusSpeaker) _ = ScaleActorAsync(false, autoFocusScaleDuration, curScreenIndex);
 
             curActor = screen.Speaker != null ? screen.Speaker : null; //set the current actor for reasons. why is this an if?
 
@@ -401,10 +402,9 @@ namespace RenCSharp
                 Textbox_String.ReplaceableText(TagParser.CleanOutTags(screen.Dialog, false)));
             //start adding text to the box, character by character
             yield return Textbox_String.RunThroughText(dialogField, screen.Dialog, curSpeakSound, curBasePitch, defaultPitchVariance, debugTextbox);
-
-            //safety measure once all chars have been put in their place
+            //make the next button flash to attract attention to fact that textbox is now done.
             StartCoroutine(FlashButton(curScreenIndex));
-
+            //auto progress if... auto.
             if (auto) yield return AutoProgress(curScreenIndex);
         }
         private async Awaitable RunThroughScreenAsync(Screen screen)
@@ -589,7 +589,7 @@ namespace RenCSharp
 
             //grab flags
             FlagToken ft = sd.CurrentFlags;
-            Flag_Manager.ReceiveFlagToken(ft.FlagTokenToDictionary(ft), false);
+            Flag_Manager.ReceiveFlagToken(ft, false);
 
             //grab history
             curHist = sd.CurrentHistory;

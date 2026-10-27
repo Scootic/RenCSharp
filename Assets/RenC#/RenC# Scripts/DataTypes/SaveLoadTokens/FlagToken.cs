@@ -20,11 +20,14 @@ namespace RenCSharp
                 FlagValues.Add(kvp.Value);
             }
         }
-
-        public Dictionary<string, int> FlagTokenToDictionary(FlagToken ft)
+        /// <summary>
+        /// FlagToken struct do be just a way to save a dictionary as a pair of lists instead.
+        /// </summary>
+        /// <param name="ft"></param>
+        public static implicit operator Dictionary<string, int>(FlagToken ft)
         {
             Dictionary<string, int> dictReturn = new();
-            for(int i = 0; i < ft.FlagValues.Count; i++)
+            for (int i = 0; i < ft.FlagValues.Count; i++)
             {
                 dictReturn.Add(ft.FlagIDs[i], ft.FlagValues[i]);
             }
