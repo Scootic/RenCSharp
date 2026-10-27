@@ -59,8 +59,6 @@ namespace RenCSharp
         /// <returns>Peace in our time.</returns>
         public static IEnumerator RunThroughText(TMP_Text textBox, string endText, bool debugTextbox = false)
         {
-            textBox.text = "";
-            textBox.ForceMeshUpdate();
             while (pausedTextbox) yield return null; //No friggin' idea why this is necessary for first runtime screen?????????
 
             float t = 0;
@@ -164,7 +162,7 @@ namespace RenCSharp
                     //might leave a gap big enough to cause smaller text size, but might be preferrable to FURTHER index chicanery
                     if (TagParser.Parse(tag))
                     {
-                        excludeTagEx = new Regex(tag);
+                        excludeTagEx = new Regex(WSPBreak+tag+WSPBreak);
                         s = excludeTagEx.Replace(s, "", 1);
                         ExcludeLetters(textBox, charI, charI + tag.Length, s, debugTextbox);
                         charI += tag.Length; //
@@ -174,8 +172,7 @@ namespace RenCSharp
                 curChar = textBox.textInfo.characterInfo[charI];
                 if (curChar.character != ' ' && curChar.character != '<')
                 {
-                    if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
-                    else ShowALetter(textBox, charI, debugTextbox);
+                    ShowALetter(textBox, charI, debugTextbox);
                     //only care about passing in a stupid char for the event if event actually exists
                     if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                     {
@@ -203,8 +200,6 @@ namespace RenCSharp
         /// <returns>Peace in our time.</returns>
         public static IEnumerator RunThroughText(TMP_Text textBox, string endText, AudioClip dialogSound, float basePitch, float pitchVariance = 0.1f, bool debugTextbox = false)
         {
-            textBox.text = "";
-            textBox.ForceMeshUpdate();
             while (pausedTextbox) yield return null; //No friggin' idea why this is necessary for first runtime screen?????????
 
             float t = 0;
@@ -219,7 +214,7 @@ namespace RenCSharp
             amended = Flag_Manager.CleanOutFlags(amended);
 
             textBox.text = amended; //set the text that will be show over time/mangled horrifically by tags
-            textBox.fontSize = PredictFontSize(TagParser.CleanOutTags(amended, false), textBox);
+            textBox.fontSize = PredictFontSize(TagParser.CleanOutTags(amended, false), textBox, false, debugTextbox);
             textBox.ForceMeshUpdate();
             HideLetters(textBox);
 
@@ -310,7 +305,7 @@ namespace RenCSharp
                     //might leave a gap big enough to cause smaller text size, but might be preferrable to FURTHER index chicanery
                     if (TagParser.Parse(tag))
                     {
-                        excludeTagEx = new Regex(tag);
+                        excludeTagEx = new Regex(WSPBreak + tag + WSPBreak);
                         s = excludeTagEx.Replace(s, "", 1);
                         ExcludeLetters(textBox, charI, charI + tag.Length, s, debugTextbox);
                         charI += tag.Length; //
@@ -320,8 +315,7 @@ namespace RenCSharp
                 curChar = textBox.textInfo.characterInfo[charI];
                 if (curChar.character != ' ' && curChar.character != '<')
                 {
-                    if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
-                    else ShowALetter(textBox, charI, debugTextbox);
+                    ShowALetter(textBox, charI, debugTextbox);
                     //only care about passing in a stupid char for the event if event actually exists
                     if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                     {
@@ -455,7 +449,7 @@ namespace RenCSharp
                     //might leave a gap big enough to cause smaller text size, but might be preferrable to FURTHER index chicanery
                     if (TagParser.Parse(tag))
                     {
-                        excludeTagEx = new Regex(tag);
+                        excludeTagEx = new Regex(WSPBreak+tag+WSPBreak);
                         s = excludeTagEx.Replace(s, "", 1);
                         ExcludeLetters(textBox, charI, charI + tag.Length, s, debugTextbox);
                         charI += tag.Length; //
@@ -465,8 +459,7 @@ namespace RenCSharp
                 curChar = textBox.textInfo.characterInfo[charI];
                 if (curChar.character != ' ' && curChar.character != '<')
                 {
-                    if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
-                    else ShowALetter(textBox, charI, debugTextbox);
+                    ShowALetter(textBox, charI, debugTextbox);
                     //only care about passing in a stupid char for the event if event actually exists
                     if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                     {
@@ -602,7 +595,7 @@ namespace RenCSharp
                     //might leave a gap big enough to cause smaller text size, but might be preferrable to FURTHER index chicanery
                     if (TagParser.Parse(tag))
                     {
-                        excludeTagEx = new Regex(tag);
+                        excludeTagEx = new Regex(WSPBreak+tag+WSPBreak);
                         s = excludeTagEx.Replace(s, "", 1);
                         ExcludeLetters(textBox, charI, charI + tag.Length, s, debugTextbox);
                         charI += tag.Length; //
@@ -612,8 +605,7 @@ namespace RenCSharp
                 curChar = textBox.textInfo.characterInfo[charI];
                 if (curChar.character != ' ' && curChar.character != '<')
                 {
-                    if (PlayerPrefs.GetInt("AnimateChars", 1) == 1) _ = FadeInALetterAsync(textBox, charI);
-                    else ShowALetter(textBox, charI, debugTextbox);
+                    ShowALetter(textBox, charI, debugTextbox);
                     //only care about passing in a stupid char for the event if event actually exists
                     if (Event_Bus.TryGetSingleObjEvent("TextboxNewChar", out Action<object> stu))
                     {
@@ -791,7 +783,7 @@ namespace RenCSharp
             //this line used to be Destroy(ttmp). for some ungodly reason, even though the verts have already been gotten,
             //it doesn't work whenever it happens all in one frame? (player sets jumpToEnd true before coroutine does.)
             //now, just make it invisible.
-            if (!debug) ttmp.color = CoolColors.transparent;
+            if(!debug) ttmp.color = CoolColors.transparent;
             return curMeshVerts;
         }
         /// <summary>
@@ -801,7 +793,7 @@ namespace RenCSharp
         /// <param name="settings">The TMP_Text whose settings you want taken into account.</param>
         /// <param name="TMPType">False for TextMeshProUGUI, True for TextMeshPro</param>
         /// <returns>The predicted string's TMP auto font size.</returns>
-        private static float PredictFontSize(string toPredict, TMP_Text settings, bool TMPType = false)
+        private static float PredictFontSize(string toPredict, TMP_Text settings, bool TMPType = false, bool debug = false)
         {
             if(!Object_Factory.TryGetObject("EMPTY", out GameObject temp))
             {
@@ -818,7 +810,13 @@ namespace RenCSharp
             ttmp.enableAutoSizing = true;
             ttmp.ForceMeshUpdate();
             float foundFontSize = ttmp.GetCurrentFontSize();
-            UObject.Destroy(ttmp);
+            if (debug)
+            {
+                Debug.Log("Fontsize text: " + ttmp.text + ", found size: " + foundFontSize);
+                ttmp.color = CoolColors.slightTransYellowGUI;
+                ttmp.fontStyle = FontStyles.Underline;
+            }
+            if (!debug) ttmp.color = CoolColors.transparent;
             return foundFontSize;
         }
         /// <summary>

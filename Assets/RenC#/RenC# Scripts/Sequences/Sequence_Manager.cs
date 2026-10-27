@@ -1,5 +1,5 @@
-using RenCSharp.EXPERIMENTAL;
 using RenCSharp.Actors;
+using RenCSharp.EXPERIMENTAL;
 using RenCSharp.Sequences;
 using RenCSharp.Tags;
 using System;
@@ -10,8 +10,8 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
-using UScreen = UnityEngine.Screen;
 using Screen = RenCSharp.Sequences.Screen;
+using UScreen = UnityEngine.Screen;
 namespace RenCSharp
 {
     /// <summary>
@@ -72,12 +72,22 @@ namespace RenCSharp
         [SerializeField] private bool loaded = false;
         private History curHist;
         private Screen curScreen;
+        /// <summary>
+        /// Current actor's dialog sound, if applicable.
+        /// </summary>
+        private AudioClip curSpeakSound;
+        /// <summary>
+        /// Current actor's base pitch for their dialog sound, if applicable.
+        /// </summary>
+        private float curBasePitch;
         private List<Button> curButtons;
         /// <summary>
         /// Decides if player pausing can interrupt the current fade transition, or what not
         /// </summary>
         private bool interruptable = true;
         private List<ParticleToken> activeParticles = new();
+        private Coroutine textRoutine;
+        private Awaitable textAwaitable;
 
         private readonly Vector3Int textJump = new(0, 10000, 0);
 
@@ -172,8 +182,9 @@ namespace RenCSharp
                 {
                     se.DoEvent();
                 }
-                if (!async) StartCoroutine(RunThroughScreen(screen));
-                else _ = RunThroughScreenAsync(screen);
+                SetUpScreen(screen);
+                if (!async) textRoutine = StartCoroutine(RunThroughScreen(screen));
+                else textAwaitable = RunThroughScreenAsync(screen);
             }
             catch
             {
@@ -229,7 +240,9 @@ namespace RenCSharp
             if (!Textbox_String.JumpToEndOfTextbox) Textbox_String.JumpToEndOfTextbox = true; //make the text box jump to the end if it's still rendering text
             else
             {
-                if(debugTextbox)Debug.Log("Moving to next screen!");
+                if (textRoutine != null) StopCoroutine(textRoutine);
+                textAwaitable?.Cancel();
+                if (debugTextbox)Debug.Log("Moving to next screen!");
                 ProgressScreenEvent?.Invoke(); //exists to make any in-progress things (like a screen event) complete before moving on
                 Event_Bus.TryFireVoidEvent("ProgressScreen");
                 ProgressScreenEvent = null; //wipe all delegates from the action before continuing
@@ -243,8 +256,9 @@ namespace RenCSharp
                     {
                         se.DoEvent();
                     }
-                    if (!async) StartCoroutine(RunThroughScreen(curScreen));
-                    else _ = RunThroughScreenAsync(curScreen);
+                    SetUpScreen(curScreen);
+                    if (!async) textRoutine = StartCoroutine(RunThroughScreen(curScreen));
+                    else textAwaitable = RunThroughScreenAsync(curScreen);
                 }
                 else if (curScreenIndex > currentSequence.Screens.Length - 1)//final screen of the sequence
                 {
@@ -339,37 +353,40 @@ namespace RenCSharp
             UnpauseSequence();
         }
 
-        private IEnumerator RunThroughScreen(Screen screen)
+        private void SetUpScreen(Screen screen)
         {
-            bool prevActorIscurSpeaker = curActor == screen.Speaker;
-            if (curActor != null && !prevActorIscurSpeaker && currentSequence.AutoFocusSpeaker) yield return ScaleActor(false, autoFocusScaleDuration);
-            //scale down in case our previous actor was scaled up, if we don't have the same actor
-         
-            curActor = screen.Speaker != null ? screen.Speaker : null; //set the current actor for reasons. why is this an if?
-            AudioClip speakSound;
-            float basePitch;
             Textbox_String.JumpToEndOfTextbox = false; //set up to make sure we can skip properly and not just constantly move on before reaching end of text
+            bool prevActorIscurSpeaker = curActor == screen.Speaker;
+            //should be fine with starting discard asyncs, because they dispose of themselves whenever screen progresses.
+            if (curActor != null && !prevActorIscurSpeaker && currentSequence.AutoFocusSpeaker) _ = ScaleActorAsync(false, autoFocusScaleDuration, curScreenIndex);
+            //scale down in case our previous actor was scaled up, if we don't have the same actor
+
+            curActor = screen.Speaker != null ? screen.Speaker : null; //set the current actor for reasons. why is this an if?
 
             SetTextboxColors();
             if (curActor != null) //if we have an actor, we can put a name to our dialog box, and set the appropriate colors
             {
                 speakerNameBox.gameObject.SetActive(curActor.ActorName != "");
-                string s = TagParser.CleanOutTags(curActor.ActorName,false);
+                string s = TagParser.CleanOutTags(curActor.ActorName, false);
                 speakerNameField.text = Textbox_String.ReplaceableText(s);
                 speakerNameBoxScaler.ScaleTextHolder();
-                speakSound = curActor.TextSound;
-                basePitch = curActor.DefaultPitch;
-                if (currentSequence.AutoFocusSpeaker && !prevActorIscurSpeaker) StartCoroutine(ScaleActor(true, autoFocusScaleDuration)); //zoom in on speaker if the bool says so
+                curSpeakSound = curActor.TextSound;
+                curBasePitch = curActor.DefaultPitch;
+                if (currentSequence.AutoFocusSpeaker && !prevActorIscurSpeaker) _ = ScaleActorAsync(true, autoFocusScaleDuration, curScreenIndex); //zoom in on speaker if the bool says so
             }
             else
             {
-                speakSound = defaultTextSound;
-                basePitch = 1;
+                curSpeakSound = defaultTextSound;
+                curBasePitch = 1;
             }
+            dialogField.text = "";
+            dialogField.ForceMeshUpdate();
+        }
 
+        private IEnumerator RunThroughScreen(Screen screen)
+        {
             if (screen.Dialog.Length == 0) //hover on empty screens until the transition or whatever is finished
             {
-                dialogField.text = "";
                 while (paused)
                 {
                     yield return null;
@@ -383,7 +400,7 @@ namespace RenCSharp
             else UpdateHistory(curActor != null ? Textbox_String.ReplaceableText(curActor.ActorName) : "Internal Narration",
                 Textbox_String.ReplaceableText(TagParser.CleanOutTags(screen.Dialog, false)));
             //start adding text to the box, character by character
-            yield return Textbox_String.RunThroughText(dialogField, screen.Dialog, speakSound, basePitch, defaultPitchVariance, debugTextbox);
+            yield return Textbox_String.RunThroughText(dialogField, screen.Dialog, curSpeakSound, curBasePitch, defaultPitchVariance, debugTextbox);
 
             //safety measure once all chars have been put in their place
             StartCoroutine(FlashButton(curScreenIndex));
@@ -392,8 +409,8 @@ namespace RenCSharp
         }
         private async Awaitable RunThroughScreenAsync(Screen screen)
         {
-            bool prevActorIscurSpeaker = curActor == screen.Speaker;
-            if (curActor != null && !prevActorIscurSpeaker && currentSequence.AutoFocusSpeaker) await ScaleActorAsync(false, autoFocusScaleDuration);
+            /*bool prevActorIscurSpeaker = curActor == screen.Speaker;
+            if (curActor != null && !prevActorIscurSpeaker && currentSequence.AutoFocusSpeaker) await ScaleActorAsync(false, autoFocusScaleDuration, curScreenIndex);
             //scale down in case our previous actor was scaled up, if we don't have the same actor
          
             curActor = screen.Speaker != null ? screen.Speaker : null; //set the current actor for reasons. why is this an if?
@@ -410,13 +427,13 @@ namespace RenCSharp
                 speakerNameBoxScaler.ScaleTextHolder();
                 speakSound = curActor.TextSound;
                 basePitch = curActor.DefaultPitch;
-                if (currentSequence.AutoFocusSpeaker && !prevActorIscurSpeaker) _ = ScaleActorAsync(true, autoFocusScaleDuration); //zoom in on speaker if the bool says so
+                if (currentSequence.AutoFocusSpeaker && !prevActorIscurSpeaker) _ = ScaleActorAsync(true, autoFocusScaleDuration, curScreenIndex); //zoom in on speaker if the bool says so
             }
             else
             {
                 speakSound = defaultTextSound;
                 basePitch = 1;
-            }
+            }*/
 
             if (screen.Dialog.Length == 0) //hover on empty screens until the transition or whatever is finished
             {
@@ -434,7 +451,7 @@ namespace RenCSharp
             else UpdateHistory(curActor != null ? Textbox_String.ReplaceableText(curActor.ActorName) : "Internal Narration", 
                 Textbox_String.ReplaceableText(TagParser.CleanOutTags(screen.Dialog, false)));
             //start adding text to the box, character by character
-            await Textbox_String.RunThroughTextAsync(dialogField, screen.Dialog, speakSound, basePitch, defaultPitchVariance, debugTextbox);
+            await Textbox_String.RunThroughTextAsync(dialogField, screen.Dialog, curSpeakSound, curBasePitch, defaultPitchVariance, debugTextbox);
 
             //safety measure once all chars have been put in their place
             _ = FlashButtonAsync(curScreenIndex);
@@ -984,7 +1001,7 @@ namespace RenCSharp
 
         #endregion
         #region JuiceStuff
-        private IEnumerator ScaleActor(bool up, float scaleTime) //used if autoSpeakerFocus is true in a sequence
+        private IEnumerator ScaleActor(bool up, float scaleTime, int scrindex) //used if autoSpeakerFocus is true in a sequence
         {
             float t;
             float eval;
@@ -1000,9 +1017,15 @@ namespace RenCSharp
                 while (t < scaleTime)
                 {
                     if (fella == null) yield break;
+                    if(scrindex != curScreenIndex)
+                    {
+                        eval = actorScalingKurve.Evaluate(1);
+                        fella.transform.localScale = new(eval, eval, eval);
+                        yield break;
+                    }
                     t += Time.deltaTime;
                     eval = actorScalingKurve.Evaluate(t / scaleTime);
-                    fella.transform.localScale = new Vector3(eval, eval, eval);
+                    fella.transform.localScale = new(eval, eval, eval);
                     yield return null;
                 }
             }
@@ -1013,6 +1036,12 @@ namespace RenCSharp
                 while (t > 0)
                 {
                     if (fella == null) yield break;
+                    if (scrindex != curScreenIndex)
+                    {
+                        eval = actorScalingKurve.Evaluate(0);
+                        fella.transform.localScale = new(eval, eval, eval);
+                        yield break;
+                    }
                     t -= Time.deltaTime;
                     eval = actorScalingKurve.Evaluate(t / scaleTime);
                     fella.transform.localScale = new Vector3(eval, eval, eval);
@@ -1021,7 +1050,7 @@ namespace RenCSharp
             }
         }
 
-        private async Awaitable ScaleActorAsync(bool up, float scaleTime)
+        private async Awaitable ScaleActorAsync(bool up, float scaleTime, int scrindex)
         {
             float t;
             float eval;
@@ -1036,7 +1065,13 @@ namespace RenCSharp
                 t = 0;
                 while (t < scaleTime)
                 {
-                    if (fella == null) break;
+                    if (fella == null) return;
+                    if (scrindex != curScreenIndex)
+                    {
+                        eval = actorScalingKurve.Evaluate(1);
+                        fella.transform.localScale = new(eval, eval, eval);
+                        return;
+                    }
                     t += Time.deltaTime;
                     eval = actorScalingKurve.Evaluate(t / scaleTime);
                     fella.transform.localScale = new Vector3(eval, eval, eval);
@@ -1049,7 +1084,13 @@ namespace RenCSharp
                 t = scaleTime;
                 while (t > 0)
                 {
-                    if (fella == null) break;
+                    if (fella == null) return;
+                    if (scrindex != curScreenIndex)
+                    {
+                        eval = actorScalingKurve.Evaluate(0);
+                        fella.transform.localScale = new(eval, eval, eval);
+                        return;
+                    }
                     t -= Time.deltaTime;
                     eval = actorScalingKurve.Evaluate(t / scaleTime);
                     fella.transform.localScale = new Vector3(eval, eval, eval);
