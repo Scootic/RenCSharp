@@ -199,6 +199,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             projectiles.Add(timeAndOffset, toPlace);
             GrabAKnob(projectiles[timeAndOffset], timeAndOffset);
             savedPreviously = false;
+            Repaint();
         }
 
         public void RemoveAKnob(Vector2 timeAndOffset)
@@ -206,12 +207,19 @@ namespace RenCSharp.Combat.Enemies.Editor
             projectiles.Remove(timeAndOffset);
             GrabAKnob(null, Vector2.zero);
             savedPreviously = false;
+            Repaint();
         }
 
         private void GrabAKnob(ProjectileKnob newcur, Vector2 timeAndOffset) //?
         {
             curKnob = newcur;
         }
+
+        private void MoveAKnob(ProjectileKnob knobToMove, Vector2 newTimeAndOffset)
+        {
+
+        }
+
         private void ClearMarkers()
         {
             //get rid of all existing markers from previous enemy attack
@@ -309,9 +317,11 @@ namespace RenCSharp.Combat.Enemies.Editor
             GUILayout.BeginArea(_rectTimeAreaTotal, string.Empty);
             foreach(KeyValuePair<Vector2, ProjectileKnob> knob in projectiles)
             {
+                
                 knob.Value.DisplayKnob(this, knob.Key, knob.Value == curKnob);
             }
             GUILayout.EndArea();
+            
         }
         /// <summary>
         /// Saves the current timeline to an EnemyAttackTimelineData asset.
@@ -430,7 +440,10 @@ namespace RenCSharp.Combat.Enemies.Editor
             VisualPreviewHolderRect = GUI.Window(10, VisualPreviewHolderRect, DisplayAttackAreaWindow, "Preview Arena Display");
             GUI.BringWindowToFront(10);
         }
-        //SO MUCH GARBAGE! GUI.MATRIX! ROTATE THE KNUB! DISPLAY IT ALL! GOD!
+        /// <summary>
+        /// Does the projectiles preview for the attack area window
+        /// </summary>
+        /// <param name="windowID"></param>
         private void DisplayAttackAreaWindow(int windowID)
         {
             Color cToDraw = CoolColors.slightTransWhiteGUI;
@@ -704,6 +717,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             activeTimeline = new SerializedObject(this);
             targetToEditProperty = activeTimeline.FindProperty("targetToEdit");
             ProjectileKnob.SelectKnob += GrabAKnob;
+            ProjectileKnob.MoveKnob += MoveAKnob;
 
             savedPreviously = true;
 
@@ -733,6 +747,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             EditorApplication.update = (EditorApplication.CallbackFunction)Delegate.Remove(EditorApplication.update, new EditorApplication.CallbackFunction(OnEditorUpdate));
             activeTimeline = null;
             ProjectileKnob.SelectKnob = null;
+            ProjectileKnob.MoveKnob = null;
         }
 
         private void OnEditorUpdate()
@@ -781,6 +796,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             DrawLeftContent();
             // Draw your left tool bar
             DrawLeftTopToolBar();
+            //draw projectile knobs
             if (projectiles.Count > 0) DrawMarkers();
             BeginWindows();
             DisplayAttackAreaPreview();
@@ -825,11 +841,11 @@ namespace RenCSharp.Combat.Enemies.Editor
             else if(cur.button == 0 && curKnob != null)
             {
                 GrabAKnob(null, Vector2.zero);
-            }
+            }/*
             if(cur.type == EventType.MouseMove)
             {
                 Repaint();
-            }
+            }*/
         }
 
         protected override void DrawVerticalTickLine()
@@ -1045,6 +1061,7 @@ namespace RenCSharp.Combat.Enemies.Editor
         [SerializeField] public Vector3 InitialDirection = Vector3.zero;
         [SerializeField] public Base_Projectile ProjectileToSpawn = null;
         public static Action<ProjectileKnob, Vector2> SelectKnob;
+        public static Action<ProjectileKnob, Vector2> MoveKnob;
         private readonly float knobSize = 30;
         
         private static Texture knobImage;
@@ -1064,11 +1081,33 @@ namespace RenCSharp.Combat.Enemies.Editor
             Rect drawRect = new(pos.x - (knobSize * 0.5f) - timeArea._rectTimeAreaRuler.x, pos.y - knobSize * 0.5f, knobSize, knobSize);
             GUI.DrawTexture(drawRect, knobImage, ScaleMode.ScaleToFit, true, 0, selected ? CoolColors.selectedOliveColor : Color.white, 0, 0);
             Event cur = Event.current;
+
+            //if knob is current, display knob adjusting handles
+            if (selected)
+            {
+                Rect lDragRect = new(pos.x - 30f - timeArea._rectTimeAreaRuler.x, pos.y - 10, 20f, 20f);
+                Rect rDragRect = new(pos.x + 10f - timeArea._rectTimeAreaRuler.x, pos.y - 10, 20f, 20f);
+                Color t = GUI.color;
+                GUI.color = CoolColors.selectedForestColor;
+                //Rect drawRect = new(pos.x - (knobSize * 0.5f) - timeArea._rectTimeAreaRuler.x, pos.y - knobSize * 0.5f, knobSize, knobSize);
+                GUI.DrawTexture(lDragRect, ResManager.prevKeyContent.image);
+                GUI.DrawTexture(rDragRect, ResManager.nextKeyContent.image);
+                GUI.color = t;
+                if ((lDragRect.Contains(cur.mousePosition) || rDragRect.Contains(cur.mousePosition)) && cur.button == 0)
+                {
+                    MoveKnob?.Invoke(this, new Vector2(timeAndOffset.x + cur.delta.x, timeAndOffset.y));
+                }
+                cur.Use();
+            }
+
             if (!drawRect.Contains(cur.mousePosition) || cur.type != EventType.MouseUp) return; //bail if it's a bad event type
 
-            if(cur.button == 0) SelectKnob?.Invoke(this, timeAndOffset);
-            else if(cur.button == 1)
-            { 
+            if (cur.button == 0) 
+            {
+                SelectKnob?.Invoke(this, timeAndOffset); 
+            }
+            else if (cur.button == 1)
+            {
                 DestroyMeMenu = new GenericMenu();
                 DestroyMeMenu.AddItem(new GUIContent($"Delete Knob at {timeAndOffset.x} seconds."), false, delegate
                 {

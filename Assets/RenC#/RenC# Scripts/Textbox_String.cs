@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
-using UObject = UnityEngine.Object;
+//using UObject = UnityEngine.Object;
 namespace RenCSharp
 {
     /// <summary>

@@ -29,7 +29,7 @@ namespace RenCSharp.Sequences
         public override void DoEvent()
         {
             if (!Object_Factory.TryGetObject("Overlay", out GameObject go)) return;
-
+            
             spriteGUIDs = new string[imagesToSet.Count];
             subObjectGUIDS = new string[imagesToSet.Count];
 
@@ -40,6 +40,12 @@ namespace RenCSharp.Sequences
             }
 
             overlay = go.GetComponent<Animated_Image_Handler>();
+            if (fadeTime == 0)
+            {
+                overlay.ReceiveAnimationInformation(spriteGUIDs, subObjectGUIDS, secondsPerFrame);
+                overlay.GetComponent<UI_Element>().Texts[0].text = overlayText;
+                return;
+            }
             fadeImage = Sequence_Manager.SM.StartCoroutine(FadeIn(overlay.Image, spriteGUIDs));
             if (endWithScreen) Sequence_Manager.ProgressScreenEvent += PanicStop;
         }

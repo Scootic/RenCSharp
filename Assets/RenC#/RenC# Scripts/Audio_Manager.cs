@@ -784,6 +784,14 @@ namespace RenCSharp
             {
                 if (setSameTime || leMusic.clip.name == musicToPlay.name) newBGM.time = leMusic.time;
             }
+            if(fadeTime == 0)
+            {
+                Destroy(leMusic);
+                newBGM.volume = bgmVolMult;
+                leMusic = newBGM;
+                enteringBGM = false;
+                yield break;
+            }
             float t = 0; //shorthand for time, starting at 0
             float leMusicStartVol = Mathf.Min(bgmVolMult, leMusic.volume); //so we don't randomly jump back to full vol if we try
             //to fade before another fade is done.
@@ -819,6 +827,14 @@ namespace RenCSharp
             if (leMusic.clip != null)
             {
                 if (setSameTime || leMusic.clip.name == musicToPlay.name) newBGM.time = leMusic.time;
+            }
+            if (fadeTime == 0)
+            {
+                Destroy(leMusic);
+                newBGM.volume = bgmVolMult;
+                leMusic = newBGM;
+                enteringBGM = false;
+                yield break;
             }
             float t = 0; //shorthand for time, starting at 0
             float leMusicStartVol = Mathf.Min(bgmVolMult, leMusic.volume); //so we don't randomly jump back to full vol if we try

@@ -20,6 +20,11 @@ namespace RenCSharp.Sequences
 
         public override void DoEvent()
         {
+            if(fadeDuration == 0)
+            {
+                SwapBG();
+                return;
+            }
             if (GameObject.FindGameObjectWithTag("Fader").TryGetComponent(out Animator fader)) //find the fader
             {
                 assetRefGUIDs = new string[newBG.Count];
@@ -53,8 +58,8 @@ namespace RenCSharp.Sequences
         //?
         private void SwapBG()
         {
-            if (!Object_Factory.TryGetObject("Background", out GameObject go)) return;
-            go.GetComponent<Animated_Image_Handler>().ReceiveAnimationInformation(assetRefGUIDs, subObjectGUIDS, secondsPerFrame);
+            if (!Object_Factory.TryGetComponent("Background", out Animated_Image_Handler aih)) return;
+            aih.ReceiveAnimationInformation(assetRefGUIDs, subObjectGUIDS, secondsPerFrame);
         }
 
         private void UnpauseSM()
