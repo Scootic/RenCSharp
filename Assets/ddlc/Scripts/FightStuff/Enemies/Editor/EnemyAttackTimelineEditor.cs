@@ -24,7 +24,8 @@ namespace RenCSharp.Combat.Enemies.Editor
             projectileIndexMethodProperty, loopsProperty;
 
         private ProjectileKnob curKnob;
-        private bool savedPreviously;
+        private Vector2 curTimeAndOffset;
+        private bool savedPreviously, dirtyProjectilesDict;
 
         private Rect rectTotalArea, rectContent, rectTimeRuler, rectTopBar, rectLeft;
         public Rect rectLeftTopToolBar;
@@ -213,11 +214,15 @@ namespace RenCSharp.Combat.Enemies.Editor
         private void GrabAKnob(ProjectileKnob newcur, Vector2 timeAndOffset) //?
         {
             curKnob = newcur;
+            curTimeAndOffset = timeAndOffset;
         }
 
         private void MoveAKnob(ProjectileKnob knobToMove, Vector2 newTimeAndOffset)
         {
-
+            dirtyProjectilesDict = true;
+            projectiles.Remove(curTimeAndOffset);
+            projectiles.Add(newTimeAndOffset, knobToMove);
+            GrabAKnob(knobToMove, newTimeAndOffset);
         }
 
         private void ClearMarkers()
@@ -317,7 +322,11 @@ namespace RenCSharp.Combat.Enemies.Editor
             GUILayout.BeginArea(_rectTimeAreaTotal, string.Empty);
             foreach(KeyValuePair<Vector2, ProjectileKnob> knob in projectiles)
             {
-                
+                if (dirtyProjectilesDict)
+                {
+                    dirtyProjectilesDict = false;
+                    break;
+                }
                 knob.Value.DisplayKnob(this, knob.Key, knob.Value == curKnob);
             }
             GUILayout.EndArea();
@@ -703,6 +712,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             _lastUpdateTime = (float)EditorApplication.timeSinceStartup;
             _frameRate = 60f; //default to 60fps always to remain consistent with math
             runningTime = 0;
+            dirtyProjectilesDict = false;
             //load textures used in GUI
             saveIcon = EditorGUIUtility.Load(assetPathToEditorIcons + "saveicon.png") as Texture;
             SaveContent = new GUIContent(saveIcon, "Save the contents of the current timeline to an Enemy Attack Timeline Data asset.");
@@ -1093,11 +1103,11 @@ namespace RenCSharp.Combat.Enemies.Editor
                 GUI.DrawTexture(lDragRect, ResManager.prevKeyContent.image);
                 GUI.DrawTexture(rDragRect, ResManager.nextKeyContent.image);
                 GUI.color = t;
-                if ((lDragRect.Contains(cur.mousePosition) || rDragRect.Contains(cur.mousePosition)) && cur.button == 0)
+                if ((lDragRect.Contains(cur.mousePosition) || rDragRect.Contains(cur.mousePosition)) && (cur.type != EventType.MouseUp && cur.button == 0))
                 {
                     MoveKnob?.Invoke(this, new Vector2(timeAndOffset.x + cur.delta.x, timeAndOffset.y));
+                    //cur.Use();
                 }
-                cur.Use();
             }
 
             if (!drawRect.Contains(cur.mousePosition) || cur.type != EventType.MouseUp) return; //bail if it's a bad event type
