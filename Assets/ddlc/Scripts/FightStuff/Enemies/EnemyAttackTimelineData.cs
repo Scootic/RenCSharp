@@ -43,7 +43,7 @@ namespace RenCSharp.Combat.Enemies
                 frameData = new();
                 Dictionary<int, ProjectileFrameData> toBeSorted = value;
                 //ideally, the biggest integer key will be the last value in the dict
-                SortedDictionary<int, ProjectileFrameData> sorted = new SortedDictionary<int, ProjectileFrameData>(toBeSorted);
+                SortedDictionary<int, ProjectileFrameData> sorted = new(toBeSorted);
                 foreach (KeyValuePair<int, ProjectileFrameData> data in sorted)
                 {
                     keyframes.Add(data.Key);
@@ -79,9 +79,33 @@ namespace RenCSharp.Combat.Enemies
     {
         public Vector3 SpawnPosition, InitialDirection;
         public int ProjectileIndex;
+        /// <summary>
+        /// Only exists to differentiate "same" projectile knobs that are technically not unique. (Because of how structs are
+        /// compared by List.Contains())
+        /// </summary>
+        [HideInInspector]public int TimelineIndex;
         public override readonly string ToString()
         {
             return $"Spawn Position: {SpawnPosition}, InitialDirection: {InitialDirection}, ProjectileIndex: {ProjectileIndex}";
+        }
+    }
+
+    public static class EnemyAttackEditorExtensions
+    {
+        public static ProjectileFrameData Append(this ProjectileFrameData pfd, ProjectileSnub[] toAppend)
+        {
+            //Length of 2, length of 1, should be new length of 3?
+            ProjectileSnub[] old = pfd.ProjectilesSpawnedAtFrame;
+            ProjectileSnub[] New = new ProjectileSnub[old.Length + toAppend.Length];
+            for(int i = 0; i < old.Length; i++)
+            {
+                New[i] = old[i];
+            }for(int i = old.Length; i < New.Length; i++)
+            {
+                New[i] = toAppend[i - old.Length];
+            }
+            pfd.ProjectilesSpawnedAtFrame = New;
+            return pfd;
         }
     }
 }

@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Jobs;
 namespace RenCSharp.EXPERIMENTAL
 {
+    /// <summary>
+    /// Trigonometric functions and other helpful math tools.
+    /// </summary>
     public struct TrigHelper
     {
         public const float TAU = Mathf.PI * 2;
