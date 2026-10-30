@@ -393,7 +393,7 @@ namespace RenCSharp.Combat.Enemies.Editor
             }
 
             timelineData.SetProjectilesThatSpawn = projectilesToSave.ToArray();
-            Debug.Log("How many frame datas we have: " + frameDatasToSave.Count + $", how many projectile knobs there are: {projectiles.Count}");
+            //Debug.Log("How many frame datas we have: " + frameDatasToSave.Count + $", how many projectile knobs there are: {projectiles.Count}");
             timelineData.SetTimelineInformation = frameDatasToSave;
             timelineData.SetControlType = controlTypeProperty.managedReferenceValue as ControlType;
             timelineData.SetArenaDimensions = arenaDimensionsProperty.vector2Value;

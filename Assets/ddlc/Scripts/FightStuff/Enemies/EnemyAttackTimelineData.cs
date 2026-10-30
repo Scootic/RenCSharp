@@ -94,7 +94,6 @@ namespace RenCSharp.Combat.Enemies
     {
         public static ProjectileFrameData Append(this ProjectileFrameData pfd, ProjectileSnub[] toAppend)
         {
-            //Length of 2, length of 1, should be new length of 3?
             ProjectileSnub[] old = pfd.ProjectilesSpawnedAtFrame;
             ProjectileSnub[] New = new ProjectileSnub[old.Length + toAppend.Length];
             for(int i = 0; i < old.Length; i++)
