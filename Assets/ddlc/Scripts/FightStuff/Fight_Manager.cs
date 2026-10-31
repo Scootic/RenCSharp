@@ -488,7 +488,7 @@ namespace RenCSharp.Combat
             UI_Element fella = Object_Pooling.Spawn(enemyDamageNumber.gameObject, curEnemy.transform.position, Quaternion.identity).GetComponent<UI_Element>();
             fella.transform.SetParent(curEnemy.transform); //'cause canvas chicanery mostly
             StartCoroutine(Object_Pooling.DespawnOverTime(fella.gameObject, 2f)); //despawn damage number over time
-            fella.Texts[0].text = "-" + damageTaken.ToString("n1");
+            fella.Texts[0].text = "-" + ((damageTaken % 1 == 0) ? damageTaken.ToString() : damageTaken.ToString("n1"));
             Vector3 lauchDir = Noise_Helper.SineNoiseVector(Mathf.Deg2Rad * minDeg, Mathf.Deg2Rad * maxDeg); //get a random dir to throw the number
             lauchDir.Set(lauchDir.x, lauchDir.y, 0); //don't move along z-axis, because canvas be 2D, dummy!
             Rigidbody rb = fella.GetComponent<Rigidbody>();

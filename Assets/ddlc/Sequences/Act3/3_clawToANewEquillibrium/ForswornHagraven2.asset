@@ -26,7 +26,9 @@ MonoBehaviour:
   - 0
   - it's not
   - is it?
-  maxHealth: 60
+  maxHealth: 190
+  startingHealth: 60
+  endFightHealth: 0
   visualInformation:
   - {fileID: 21300000, guid: 6a8c176029b044a42b60109255076a0e, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: b61898ebc6803144ba33a27f2f4b8fd5, type: 3}
@@ -42,6 +44,12 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   hitParticleObjFab:
     m_AssetGUID: 4e8d446bad613f14e96dd0eab5db680e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  deathParticleObjFab:
+    m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 

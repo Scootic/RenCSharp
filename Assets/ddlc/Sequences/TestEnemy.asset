@@ -50,7 +50,9 @@ MonoBehaviour:
   - fireba
   - lightneinr
   - meteor shower
-  maxHealth: 30
+  maxHealth: 40
+  startingHealth: 40
+  endFightHealth: 0
   visualInformation:
   - {fileID: -5789129640331636987, guid: 018ed1d3427df7e498ae80a1954de289, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
@@ -66,6 +68,12 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   hitParticleObjFab:
     m_AssetGUID: a828b8e1bcbcd14489dacfe2cbcebd46
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  deathParticleObjFab:
+    m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 

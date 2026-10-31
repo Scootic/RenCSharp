@@ -69,6 +69,9 @@ namespace RenCSharp.Combat.Enemies
         public List<ProjectileFrameData> FrameData => frameData;
 
     }
+    /// <summary>
+    /// p sure this struct only exists for drawer purposes :(
+    /// </summary>
     [Serializable]
     public struct ProjectileFrameData
     {

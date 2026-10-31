@@ -39,6 +39,8 @@ MonoBehaviour:
   - The spectral archer fires two bursts of arrows. Again.
   - The spectral archer rains down arrows from above. Again.
   maxHealth: 70
+  startingHealth: 70
+  endFightHealth: 0
   visualInformation:
   - {fileID: 21300000, guid: bc9952f2575d4b84fbfa0d2ba9824f13, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
@@ -49,12 +51,18 @@ MonoBehaviour:
   uiParticleObjFab:
     m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   hitParticleObjFab:
     m_AssetGUID: 586645bc207e93043a89cea085902e03
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  deathParticleObjFab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0

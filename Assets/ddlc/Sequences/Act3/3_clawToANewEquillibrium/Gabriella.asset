@@ -17,6 +17,8 @@ MonoBehaviour:
   randomAttacks: []
   randomFlavorTexts: []
   maxHealth: 120
+  startingHealth: 120
+  endFightHealth: 0
   visualInformation:
   - {fileID: 21300000, guid: 72c546b1cd1565e4ea3b0047b48c93f2, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: 3474d1de875dc0a408fabd5060391b0e, type: 3}
@@ -28,12 +30,18 @@ MonoBehaviour:
   uiParticleObjFab:
     m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   hitParticleObjFab:
     m_AssetGUID: 5c1c468a2868c7d4fb619d948854ab27
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  deathParticleObjFab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0

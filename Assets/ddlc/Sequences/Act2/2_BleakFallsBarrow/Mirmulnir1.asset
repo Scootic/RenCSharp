@@ -30,7 +30,9 @@ MonoBehaviour:
   - The dragon unleashes focused blasts at Natsuki.
   - The dragon flies around Monika, spraying fire at her.
   - The dragon flies back and forth, releasing spurts of fire breath.
-  maxHealth: 100
+  maxHealth: 200
+  startingHealth: 200
+  endFightHealth: 100
   visualInformation:
   - {fileID: 21300000, guid: 16d21b3d2eebd6b44858bdad6eb1116d, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: 8297a0d78344aeb4fadd8d391be3fffe, type: 3}
@@ -41,12 +43,18 @@ MonoBehaviour:
   uiParticleObjFab:
     m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   hitParticleObjFab:
     m_AssetGUID: 5c1c468a2868c7d4fb619d948854ab27
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  deathParticleObjFab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0

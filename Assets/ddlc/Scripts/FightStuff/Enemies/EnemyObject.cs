@@ -10,7 +10,7 @@ namespace RenCSharp.Combat.Enemies
     public class EnemyObject : MonoBehaviour, IDamage
     {
         private UI_Element uie;
-        private float curHealth;
+        private float maxHealth, curHealth, endHealth;
         private List<Color> ogColors;
         [SerializeField] private AudioSource hurtedSound;
         [SerializeField, Range(0,1)] private float resistance = 0;
@@ -40,7 +40,7 @@ namespace RenCSharp.Combat.Enemies
             Vector3 newPos = ogPos + new Vector3(rollPos.x * xDist, rollPos.y * yDist, 0);
 
             Vector3 particleSpawnPos = transform.localPosition + Noise_Helper.SineNoiseVector(0, Noise_Helper.TAU) * 5f; //hard code for now?
-            Object_Factory.SpawnParticleObject(true, "enemyhurtparticles" + curHealth, transform.parent, particleSpawnPos, meSo.UIParticleGUID, meSo.HitParticlePrefabGUID);
+            _ = Object_Factory.SpawnParticleObject(true, "enemyhurtparticles" + curHealth, transform.parent, particleSpawnPos, meSo.UIParticleGUID, meSo.HitParticlePrefabGUID);
 
             foreach (Image i in uie.Images)
             {
@@ -74,24 +74,28 @@ namespace RenCSharp.Combat.Enemies
 
         public void TakeDamage(object floatarg, object boolarg)
         {
-            bool b = (bool)boolarg;
+            //bool b = (bool)boolarg;
             float f = (float)floatarg;
             float damageToTake = f - (f * resistance);
             curHealth -= damageToTake;
             curHealth = Mathf.Max(curHealth, 0);
 
-            Event_Bus.TryFireFloatEvent("EnemyHealthPerc", (curHealth / meSo.MaxHealth));
+            Event_Bus.TryFireFloatEvent("EnemyHealthPerc", (curHealth / maxHealth));
+            Audio_Manager.AM.Play2DSFX(hurtedSound.clip, 0.99f, 1.01f);
 
-            if (curHealth == 0)
+            if (curHealth <= endHealth)
             {
                 //become killed af!
                 //tell somebody about what happened.
+                if (curHealth == 0)
+                {
+                    _ = Object_Factory.SpawnParticleObject(true, "deathparty", transform.parent, transform.localPosition, meSo.UIParticleGUID, meSo.DeathParticlePrefabGUID);
+                }
                 Event_Bus.TryFireVoidEvent("EnemyDied");
                 Event_Bus.TryFireBoolEvent("EndAFight", false);
             }
             else
             {
-                Audio_Manager.AM.Play2DSFX(hurtedSound.clip , 0.99f, 1.01f);
                 Event_Bus.TryFireFloatEvent("EnemyDamageNumber", damageToTake);
                 StartCoroutine(TakeDamageVisual());
             }
@@ -114,8 +118,11 @@ namespace RenCSharp.Combat.Enemies
                 ogColors.Add(uie.Images[i].color);
             }
             hurtedSound.clip = meSo.HurtedSound;
-            curHealth = so.MaxHealth;
+            curHealth = so.StartingHealth;
+            maxHealth = so.MaxHealth;
+            endHealth = so.EndFightHealth;
             Event_Bus.TryFireStringEvent("GrabEnemyString", $"{meSo.NameText} - Health Remaining: {curHealth}\n{meSo.BlurbText}");
+            Event_Bus.TryFireFloatEvent("EnemyHealthPerc", (curHealth / maxHealth));
         }
     }
 }

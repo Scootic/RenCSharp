@@ -43,6 +43,8 @@ MonoBehaviour:
   - The skeletal dragon unleashes frost from all around the three of them.
   - The skeletal dragon flings snow from the side. Again.
   maxHealth: 200
+  startingHealth: 200
+  endFightHealth: 0
   visualInformation:
   - {fileID: 21300000, guid: d4f94134e212de341a5d6789f17cec3a, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: 8297a0d78344aeb4fadd8d391be3fffe, type: 3}
@@ -54,12 +56,18 @@ MonoBehaviour:
   uiParticleObjFab:
     m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   hitParticleObjFab:
     m_AssetGUID: 873125613c87be34cb00b7c1efaac29c
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  deathParticleObjFab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0

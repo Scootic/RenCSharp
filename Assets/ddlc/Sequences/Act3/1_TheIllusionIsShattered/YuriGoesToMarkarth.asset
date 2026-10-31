@@ -135,14 +135,13 @@ MonoBehaviour:
     - rid: 1790118876029648897
     - rid: 1790118876029648906
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: (I was able to fight Ancano who had the power of an ancient artifact
-      of seemingly immeasurable strength!)
+    dialog: (If we are to come to blows, I should still be able to come out of this
+      alive...)
     ScreenActions:
     - rid: 1790118876029648898
     - rid: 1790118876029648907
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: (Didn't {mc} say something about the people here having a poor sense
-      of self-preservation?)
+    dialog: (... what an unfortunate life these people live.)
     ScreenActions:
     - rid: 1790118876029648899
   - speaker: {fileID: 11400000, guid: 4ad5dd808ad82574db508b579bfc59b8, type: 2}
@@ -302,7 +301,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 1790118876029648949
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: (I suppose I'm lucky I never encountered a Forsworn... maybe Mr. gro-Shub
+    dialog: (I suppose I'm lucky I never encountered the Forsworn... maybe Mr. gro-Shub
       was operating on outdated information?)
     ScreenActions:
     - rid: 1790118876029648951
@@ -694,8 +693,8 @@ MonoBehaviour:
   myself:
     m_AssetGUID: 34d59dded10f83d41876026e4bef2c81
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   references:
     version: 2
@@ -706,9 +705,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: f7c1f6d42243309489f6cac3f1caf2fb
           m_SubObjectName: tomarkarth1
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -719,8 +718,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 05a05d43ce3caf54bb66fa61b71eb60d
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
@@ -759,9 +758,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 7aba60206c08b574ca1ba030159dc401
           m_SubObjectName: tomarkarth2
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -878,8 +877,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -936,9 +935,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 3075eeedd65e1b84f85c0a5822ad3355
           m_SubObjectName: tomarkarth3
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1083,9 +1082,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 4c585e46d94478d40808872682ed78c0
           m_SubObjectName: tomarkarth4
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1148,8 +1147,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -1230,7 +1229,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - yanSmile
+        - pondering
         - 
     - rid: 1790118876029648899
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
@@ -1239,7 +1238,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - lookAwayPity
+        - eyesClosedSigh
         - 
     - rid: 1790118876029648900
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
@@ -1263,14 +1262,15 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: 95bf1b5a74314f348afa2221dafe8efd, type: 2}
+        autoSaveName: '!AutoSave_Fight'
     - rid: 1790118876029648905
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         songAsset:
           m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -1280,8 +1280,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -1291,8 +1291,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 791116a661dfe9549b471ecdd1a1ed28
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -1307,8 +1307,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -1343,8 +1343,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 05a05d43ce3caf54bb66fa61b71eb60d
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -1363,9 +1363,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 22d2e4f9d4ed9dc4487da42f83b8d73e
           m_SubObjectName: tomarkarth5
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1430,9 +1430,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 4aa52c4d037aa1144b4b1ae87e38065f
           m_SubObjectName: tomarkarth6
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1650,9 +1650,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 4389f2e4de9366a46a10d555f8db3f46
           m_SubObjectName: tomarkarth7
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1690,9 +1690,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 8320679ae61221141af57df471e403c8
           m_SubObjectName: tomarkarth8
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1748,9 +1748,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: eb664fa4571588e4688c450d23738ec2
           m_SubObjectName: markarthoutskirts
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1878,8 +1878,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 63856e1ac10661c41a9339bc19594687
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
@@ -1889,9 +1889,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 27887da712840504ba99ef53ab8c5bc5
           m_SubObjectName: markarth1
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2071,8 +2071,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -2095,8 +2095,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2121,6 +2121,7 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: be6e33bbe53acb24489f47e1c05be7ce, type: 2}
+        autoSaveName: '!AutoSave_Fight'
     - rid: 1790118876029648990
       type: {class: Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2283,9 +2284,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 0965bcb5d976fed459004787e352586d
           m_SubObjectName: markarth2
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2305,8 +2306,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
@@ -2316,8 +2317,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 63856e1ac10661c41a9339bc19594687
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -2627,9 +2628,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 32149470661db7945a58d0e250cbdd7f
           m_SubObjectName: markarth_jarl1
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2649,8 +2650,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: f8519e3a69adce64c895baee5f5fda99
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2799,9 +2800,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 55de1ff4750a31546aadcdfeb6ef49c9
           m_SubObjectName: markarth_jarl_calcelmo
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -3096,8 +3097,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 99f7a8dde4a22ed4997ef1f651a8ced2
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 0.33

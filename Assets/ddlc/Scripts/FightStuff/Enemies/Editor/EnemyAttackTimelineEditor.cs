@@ -343,7 +343,8 @@ namespace RenCSharp.Combat.Enemies.Editor
             List<Base_Projectile> projectilesToSave = new();
             Dictionary<int, ProjectileFrameData> frameDatasToSave = new();
             int i = 0;
-            Vector2 prevPos = projectiles.First().Key;
+            int prevKeyframe = (int)(projectiles.First().Key.x * _frameRate);
+            //Debug.Log("First keyframe");
             ProjectileFrameData pfd = new();
             List<ProjectileSnub> snubs = new(); 
             //int is frame?
@@ -363,17 +364,23 @@ namespace RenCSharp.Combat.Enemies.Editor
                     InitialDirection = pk.InitialDirection,
                     TimelineIndex = i
                 };
-
-                if (prevPos.x == knob.Key.x && !knob.Equals(projectiles.Last())) 
-                { 
-                    snubs.Add(newSnub); prevPos = knob.Key; continue; 
-                }
-
-                if (prevPos.x != knob.Key.x)
+                int keyframe = (int)(knob.Key.x * _frameRate);
+                //keyframes have same x
+                if (prevKeyframe == keyframe && !knob.Equals(projectiles.Last())) 
                 {
+                    //Debug.Log($"Same keyframe, continuing (index: {i})");
+                    snubs.Add(newSnub); 
+                    prevKeyframe = keyframe; 
+                    continue; 
+                }
+                //keyframes have different x
+                if (prevKeyframe != keyframe)
+                {
+                    //Debug.Log($"Different keyframe. Putting snub list into frame datas. Index: {i}");
                     pfd.ProjectilesSpawnedAtFrame = snubs.ToArray();
 
-                    frameDatasToSave.Add((int)(prevPos.x * _frameRate), pfd); //?
+                    if (!frameDatasToSave.ContainsKey(prevKeyframe)) frameDatasToSave.Add(prevKeyframe, pfd);
+                    else frameDatasToSave[prevKeyframe] = frameDatasToSave[prevKeyframe].Append(snubs.ToArray());
                     snubs.Clear();
                     snubs.Add(newSnub);
                     pfd = new();
@@ -381,15 +388,16 @@ namespace RenCSharp.Combat.Enemies.Editor
                 //seems to not include the true last knob if there's multiple on a single frame???
                 if (knob.Equals(projectiles.Last()))
                 {
+                    //Debug.Log($"Last projectile. Index: {i}");
                     if(!snubs.Contains(newSnub)) snubs.Add(newSnub);
                     pfd.ProjectilesSpawnedAtFrame = snubs.ToArray();
                     //add collected projectile frame data (including all snubs that share the same frame.)
-                    int keyframe = (int)(knob.Key.x * _frameRate);
+                    
                     if (!frameDatasToSave.ContainsKey(keyframe)) frameDatasToSave.Add(keyframe, pfd);
                     else frameDatasToSave[keyframe] = frameDatasToSave[keyframe].Append(snubs.ToArray());
                 }
 
-                prevPos = knob.Key;
+                prevKeyframe = keyframe;
             }
 
             timelineData.SetProjectilesThatSpawn = projectilesToSave.ToArray();
@@ -840,7 +848,7 @@ namespace RenCSharp.Combat.Enemies.Editor
                     });
                 }
                 timeAreaCTXMenu.AddSeparator("");
-                timeAreaCTXMenu.AddItem(new GUIContent($"Place Knob At Frame: {Mathf.Floor(timeX * _frameRate)}"), false, delegate
+                timeAreaCTXMenu.AddItem(new GUIContent($"Place Empty Knob At Frame: {Mathf.Floor(timeX * _frameRate)}"), false, delegate
                 {
                     runningTime = timeX;
                     PlaceANewKnob();

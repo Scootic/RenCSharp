@@ -89,7 +89,7 @@ namespace RenCSharp
         private Coroutine textRoutine;
         private Awaitable textAwaitable;
 
-        private readonly Vector3Int textJump = new(0, 10000, 0);
+        private readonly Vector3 textJump = new(0, 400, 0);
 
         public static Sequence_Manager SM;
         public static Action ProgressScreenEvent, EndOfAllSequencesEvent;

@@ -33,6 +33,8 @@ MonoBehaviour:
   - The ghost flings his axe at Natsuki, which rebounds off of the walls. Again.
   - The ghost throws his axe at a cornered Natsuki. Again.
   maxHealth: 100
+  startingHealth: 100
+  endFightHealth: 0
   visualInformation:
   - {fileID: 21300000, guid: 76ee361eee9ae3a4e856a249887a0271, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
@@ -44,12 +46,18 @@ MonoBehaviour:
   uiParticleObjFab:
     m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   hitParticleObjFab:
     m_AssetGUID: 586645bc207e93043a89cea085902e03
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  deathParticleObjFab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0

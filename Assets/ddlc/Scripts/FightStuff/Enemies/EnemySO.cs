@@ -11,14 +11,18 @@ namespace RenCSharp.Combat.Enemies
         [Header("Random Attacks")]
         [SerializeField] private EnemyAttack[] randomAttacks;
         [SerializeField, TextArea(1,3)] private string[] randomFlavorTexts;
-        [Header("Enemy Information")]
-        [SerializeField, Min(1)] private int maxHealth = 10;
+        [Header("Enemy Information/Stats")]
+        [SerializeField, Min(1), Tooltip("The maximum amount of enemy health.")] private int maxHealth = 10;
+        [SerializeField, Min(1), Tooltip("The health the enemy will start a fight with.")] private int startingHealth = 10;
+        [SerializeField, Min(0), Tooltip("The health the fight will end with, default is zero (enemy is 'killed' not just defeated).")] private int endFightHealth = 0;
+        [Header("Enemy Information/Cosmetics")]
         [SerializeField] private Sprite[] visualInformation;
         [SerializeField] private EnemyObject enemyPrefab;
         [SerializeField, TextArea(3, 5)] private string defeatText, nameText, blurbText;
         [SerializeField] private AudioClip hurtedSound;
         [SerializeField] private AssetReference uiParticleObjFab;
         [SerializeField] private AssetReference hitParticleObjFab;
+        [SerializeField] private AssetReference deathParticleObjFab;
 
         private void OnValidate()
         {
@@ -41,12 +45,15 @@ namespace RenCSharp.Combat.Enemies
         public EnemyAttack[] RandomAttacks => randomAttacks;
         public string[] RandomFlavorTexts => randomFlavorTexts;
         public int MaxHealth => maxHealth;
+        public int StartingHealth => startingHealth;
+        public int EndFightHealth => endFightHealth;
         public Sprite[] VisualInformation => visualInformation;
         public string NameText => nameText;
         public string DefeatText => defeatText;
         public string BlurbText => blurbText;
         public string UIParticleGUID => uiParticleObjFab.AssetGUID;
         public string HitParticlePrefabGUID => hitParticleObjFab.AssetGUID;
+        public string DeathParticlePrefabGUID => deathParticleObjFab.AssetGUID;
         public AudioClip HurtedSound => hurtedSound;
         public EnemyObject EnemyPrefab => enemyPrefab;
     }

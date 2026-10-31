@@ -35,6 +35,8 @@ MonoBehaviour:
   - The spectral draugr slashes from above and below, then from the sides. Again.
   - The spectral druagr stabs down from above. Again.
   maxHealth: 70
+  startingHealth: 70
+  endFightHealth: 0
   visualInformation:
   - {fileID: 21300000, guid: ce9bdfbdbcffb0348bc942f3c142df3f, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
@@ -45,12 +47,18 @@ MonoBehaviour:
   uiParticleObjFab:
     m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   hitParticleObjFab:
     m_AssetGUID: 586645bc207e93043a89cea085902e03
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  deathParticleObjFab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0

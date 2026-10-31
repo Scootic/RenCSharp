@@ -23,6 +23,8 @@ MonoBehaviour:
   randomFlavorTexts:
   - The Imperial captain comes to his fellow's aid; swinging his axe at {mc}.
   maxHealth: 20
+  startingHealth: 20
+  endFightHealth: 0
   visualInformation:
   - {fileID: 21300000, guid: da78657d99a3a374587e4edd0480f3bf, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: b9adf4b23e35c664ab5cb52d08b95459, type: 3}
@@ -33,12 +35,18 @@ MonoBehaviour:
   uiParticleObjFab:
     m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   hitParticleObjFab:
     m_AssetGUID: 5c1c468a2868c7d4fb619d948854ab27
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  deathParticleObjFab:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   arenaDimensions: {x: 450, y: 450}
   controlType:
     rid: 6136301356379799683
-  attackDuration: 5
+  attackDuration: 4.5
   secondsPerProjectileSpawn: 0.5
   projectilesPerSpawn: 1
   projectilesThatSpawn:
@@ -25,25 +25,43 @@ MonoBehaviour:
   indexes: 
   projectileSpawnPositionMethod: 2
   projectileIndexMethod: 2
-  keyframes: 00000000
+  keyframes: 000000005a000000b4000000
   frameData:
   - ProjectilesSpawnedAtFrame:
-    - SpawnPosition: {x: -12, y: 116, z: 0}
-      InitialDirection: {x: 0.98639387, y: 0.16439898, z: 0}
+    - SpawnPosition: {x: -376, y: -260, z: 0}
+      InitialDirection: {x: 0, y: 1, z: 0}
       ProjectileIndex: 0
       TimelineIndex: 1
-    - SpawnPosition: {x: 0, y: 0, z: 0}
-      InitialDirection: {x: -0.977521, y: 0.21083787, z: 0}
+    - SpawnPosition: {x: 408, y: 260, z: 0}
+      InitialDirection: {x: 0, y: -1, z: 0}
       ProjectileIndex: 0
       TimelineIndex: 2
-    - SpawnPosition: {x: 336, y: -424, z: 0}
-      InitialDirection: {x: -0.99991786, y: -0.01281946, z: 0}
+    - SpawnPosition: {x: -268, y: 412, z: 0}
+      InitialDirection: {x: 0.99990356, y: -0.01388755, z: 0}
       ProjectileIndex: 0
       TimelineIndex: 3
-    - SpawnPosition: {x: -2.04, y: 1.39, z: 0}
-      InitialDirection: {x: -0.79004765, y: -0.61304533, z: 0}
+    - SpawnPosition: {x: 252, y: -404, z: 0}
+      InitialDirection: {x: -0.99991786, y: -0.01281946, z: 0}
       ProjectileIndex: 0
       TimelineIndex: 4
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 448, y: -52, z: 0}
+      InitialDirection: {x: -0.99811184, y: -0.061422266, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 5
+    - SpawnPosition: {x: 273.96, y: 361.39, z: 0}
+      InitialDirection: {x: 0.023460027, y: -0.99972475, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 6
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -280, y: -392, z: 0}
+      InitialDirection: {x: -0.03633962, y: 0.9993395, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 7
+    - SpawnPosition: {x: -420, y: 304, z: 0}
+      InitialDirection: {x: 0.9982744, y: 0.058722023, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 8
   loops: 2
   debug: 0
   references:
