@@ -35,6 +35,18 @@ namespace UITK_SimpleTimeline
             activeTimeline = debug ? Timeline.RunThroughTimelineDebug(myCTS.Token, initTime) : Timeline.RunThroughTimeline(myCTS.Token, initTime);
             await activeTimeline;
         }
+        /// <summary>
+        /// If you want to integrate the timeline with another async method, ie. only do functionality after animation is done.
+        /// </summary>
+        /// <param name="debug">Debug lol</param>
+        /// <param name="initTime">Time the animation will start at.</param>
+        /// <returns></returns>
+        public async Awaitable PlayTimelineAsync(bool debug = false, float initTime = 0)
+        {
+            myCTS ??= new();
+            activeTimeline = debug ? Timeline.RunThroughTimelineDebug(myCTS.Token, initTime) : Timeline.RunThroughTimeline(myCTS.Token, initTime);
+            await activeTimeline;
+        }
 
         public void StopTimeline()
         {

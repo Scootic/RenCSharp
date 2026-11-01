@@ -103,7 +103,7 @@ namespace RenCSharp.EXPERIMENTAL
                         possibleFlag += chars[i];
                         i++;
                     }
-                    string flagString = Flag_Manager.GetFlag(possibleFlag).ToString();
+                    string flagString = GetFlag(possibleFlag).ToString();
                     sToReturn += flagString;
                 }
             }

@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp.Menus
 {
     public sealed class Menu_Manager : MonoBehaviour
@@ -28,7 +28,8 @@ namespace RenCSharp.Menus
             int menuIndex = superIndex % 10;
             int containerIndex = (superIndex - menuIndex) / 10;
             menucontainers[containerIndex].MenuParent.SetActive(true);
-            if(Sequence_Manager.SM != null) Sequence_Manager.SM.PauseSequence();
+            //if(Sequence_Manager.SM != null) Sequence_Manager.SM.PauseSequence();
+            Event_Bus.TryFireBoolEvent("PauseSequence", false);
             if (curMenu != null) curMenu.OnMenuClose();
             curMenu = menucontainers[containerIndex].AllMenus[menuIndex];
             curMenu.OnMenuOpen();
@@ -36,7 +37,8 @@ namespace RenCSharp.Menus
 
         public void CloseMenus()
         {
-            if(Sequence_Manager.SM != null) Sequence_Manager.SM.UnpauseSequence();
+            //if(Sequence_Manager.SM != null) Sequence_Manager.SM.UnpauseSequence();
+            Event_Bus.TryFireVoidEvent("UnpauseSequence");
             foreach(MenusContainer mc in menucontainers)
             {
                 mc.MenuParent.SetActive(false);

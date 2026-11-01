@@ -8,6 +8,10 @@ using RenCSharp.Combat.Interfaces;
 using RenCSharp.Combat.Player;
 using UnityEngine.UI;
 using System.Linq;
+using UITK_SimpleTimeline;
+using System;
+using Random = UnityEngine.Random;
+using RenCSharp.Menus;
 namespace RenCSharp.Combat
 {
     public sealed class Fight_Manager : MonoBehaviour
@@ -20,6 +24,7 @@ namespace RenCSharp.Combat
         [Header("Holders")]
         [SerializeField] private Transform enemyHolder;
         [SerializeField] private Transform playerHolder;
+        [SerializeField] private Transform gameOverButtonHolder;
         [SerializeField] private GameObject abilityHolder;
         [SerializeField] private TextMeshProUGUI combatTextbox;
         [Header("Arena/Enemy cosmetics")]
@@ -29,6 +34,7 @@ namespace RenCSharp.Combat
         [SerializeField, Tooltip("For handling direction text is launched in."), Range(-360,360)] private float minDeg = 0;
         [SerializeField, Tooltip("For handling direction text is launched in."), Range(-360,360)] private float maxDeg = 180;
         [SerializeField] private UI_Element enemyDamageNumber;
+    
         [Header("Player Action cosmetics")] //without a doubt, the stupidest shit
         [SerializeField] private AnimationCurve buttonRevealCurve;
         [SerializeField] private float buttonRevealTime = 0.5f;
@@ -38,6 +44,11 @@ namespace RenCSharp.Combat
         [SerializeField] private float buttonHiddenYPos;
         [SerializeField] private Transform playerHealthBarHolder;
         [SerializeField] private Image[] playerActionButtonsToReveal;
+        [Header("Game Over")]
+        [SerializeField] private SimpleTimelineAsset gameOverAnimation;
+        [SerializeField] private GameObject gameOverButtonFab;
+        private readonly string[] gameOverOptions = { "Retry Fight", "Load a Save", "Return to Main Menu" };
+        private readonly Action[] gameOverActions = new Action[3];
 
         private int curAttackIndex, prevAttackPosRoll, dir;
         private EnemyObject curEnemy;
@@ -60,6 +71,9 @@ namespace RenCSharp.Combat
         {
             Event_Bus.AddFloatEvent("EnemyDamageNumber", SpawnEnemyDamageNumber);
             Event_Bus.AddFloatEvent("UpdateFMButtonRevealTime", UpdateButtonRevealTime);
+            gameOverActions[2] = () => { ssl.LoadAnScene(1); }; //Return to Main Menu
+            gameOverActions[1] = () => { Menu_Manager.MM }; //Load a Save (open up unclosable/unchangeable save menu)
+            gameOverActions[0] = () => { }; //Retry Fight
         }
 
         private void OnDisable()
@@ -214,6 +228,7 @@ namespace RenCSharp.Combat
             if(!singleAttack) yield return PlayerTurnRoutine();
             else if(!lostFight)
             {
+                fighting = false;
                 Event_Bus.TryFireVoidEvent("WonFight");
                 Flag_Manager.SetFlag("PlayerCurHealth", Mathf.CeilToInt(curPlayer.CurrentHealth));
                 Event_Bus.TryFireVoidEvent("UnpauseSequence");
@@ -222,6 +237,7 @@ namespace RenCSharp.Combat
             }
             else
             {
+                fighting = false;
                 yield return LostTheFight();
             }
         }
@@ -244,6 +260,13 @@ namespace RenCSharp.Combat
             Object_Factory.RemoveObject("PlayerObject");
             ssl.LoadAnScene(1);
         }
+
+        private async Awaitable LostTheFightAsync()
+        {
+            Textbox_String.PauseTextbox(false);
+            await gameOverAnimation.PlayTimelineAsync();
+            await Prompt_Inputs.ListButtonInputPrompt(gameOverButtonFab, gameOverButtonHolder, gameOverOptions, gameOverActions);
+        } 
 
         private IEnumerator OldEnemyAttackRoutine(EnemyAttack ea)
         {
