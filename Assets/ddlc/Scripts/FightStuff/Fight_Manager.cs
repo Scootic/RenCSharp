@@ -11,7 +11,7 @@ using System.Linq;
 using UITK_SimpleTimeline;
 using System;
 using Random = UnityEngine.Random;
-using RenCSharp.Menus;
+//using RenCSharp.Menus;
 namespace RenCSharp.Combat
 {
     public sealed class Fight_Manager : MonoBehaviour
@@ -72,7 +72,7 @@ namespace RenCSharp.Combat
             Event_Bus.AddFloatEvent("EnemyDamageNumber", SpawnEnemyDamageNumber);
             Event_Bus.AddFloatEvent("UpdateFMButtonRevealTime", UpdateButtonRevealTime);
             gameOverActions[2] = () => { ssl.LoadAnScene(1); }; //Return to Main Menu
-            gameOverActions[1] = () => { Menu_Manager.MM }; //Load a Save (open up unclosable/unchangeable save menu)
+            //gameOverActions[1] = () => { Menu_Manager.MM }; //Load a Save (open up unclosable/unchangeable save menu)
             gameOverActions[0] = () => { }; //Retry Fight
         }
 
