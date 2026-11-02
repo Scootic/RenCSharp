@@ -61,8 +61,8 @@ namespace RenCSharp
         [SerializeField, Tooltip("In seconds; 0 for showing a character every frame."), Min(0)] private float textSpeed = 0;
         [SerializeField, Tooltip("In seconds. How long it takes for the actor auto-focus to scale the current actor up."), Min(0)] private float autoFocusScaleDuration = 0.25f;
         [SerializeField, Tooltip("This will be string that is replaced by inputted player name. Purely for testing purposes, as TextboxString.ReplaceableText dict can replace it.")] private string playerTag = "{MC}";
-        [SerializeField, Tooltip("How long the SM will linger on a specific screen while on auto.")] private float lingerTime = 0.5f;
-        [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero.")] private byte historyLength = 10;
+        [SerializeField, Tooltip("How long, in seconds, the SM will linger on a specific screen while on auto.")] private float lingerTime = 0.5f;
+        [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero!")] private byte historyLength = 10;
 
         [Header("Debug - Please Don't Touch! May cause errors! Only visible to help you!")]
         [SerializeField] private bool debugTextbox = false;
@@ -136,6 +136,7 @@ namespace RenCSharp
             
             EndOfAllSequencesEvent += Application.Quit; //TEMPORARY THING
             SequencePausedEvent += ToggleDialogUI;
+
             curButtons = new();
         }
         private void Start()
@@ -411,32 +412,6 @@ namespace RenCSharp
         }
         private async Awaitable RunThroughScreenAsync(Screen screen)
         {
-            /*bool prevActorIscurSpeaker = curActor == screen.Speaker;
-            if (curActor != null && !prevActorIscurSpeaker && currentSequence.AutoFocusSpeaker) await ScaleActorAsync(false, autoFocusScaleDuration, curScreenIndex);
-            //scale down in case our previous actor was scaled up, if we don't have the same actor
-         
-            curActor = screen.Speaker != null ? screen.Speaker : null; //set the current actor for reasons. why is this an if?
-            AudioClip speakSound;
-            float basePitch;
-            Textbox_String.JumpToEndOfTextbox = false; //set up to make sure we can skip properly and not just constantly move on before reaching end of text
-
-            SetTextboxColors();
-            if (curActor != null) //if we have an actor, we can put a name to our dialog box, and set the appropriate colors
-            {
-                speakerNameBox.gameObject.SetActive(curActor.ActorName != "");
-                string s = TagParser.CleanOutTags(curActor.ActorName,false);
-                speakerNameField.text = Textbox_String.ReplaceableText(s);
-                speakerNameBoxScaler.ScaleTextHolder();
-                speakSound = curActor.TextSound;
-                basePitch = curActor.DefaultPitch;
-                if (currentSequence.AutoFocusSpeaker && !prevActorIscurSpeaker) _ = ScaleActorAsync(true, autoFocusScaleDuration, curScreenIndex); //zoom in on speaker if the bool says so
-            }
-            else
-            {
-                speakSound = defaultTextSound;
-                basePitch = 1;
-            }*/
-
             if (screen.Dialog.Length == 0) //hover on empty screens until the transition or whatever is finished
             {
                 dialogField.text = "";
@@ -519,6 +494,7 @@ namespace RenCSharp
                 {
                     curHist.SpeakerNames[i] = speaker;
                     curHist.DialogBoxes[i] = text;
+                    Event_Bus.TryFireSingleObjEvent("HistoryUpdated", curHist);
                     return;
                 }
             }
@@ -1155,6 +1131,32 @@ namespace RenCSharp
                 dialogBox.transform.localPosition += textJump;
             }
         }
+
+        private async Awaitable ToggleDialogUIAsync(bool b)
+        {   
+            Vector3 ogPos = dialogBox.transform.localPosition; //get local pos at start of function
+            Vector3 endPos = Vector3.zero;
+
+            if (!b)
+            {
+                endPos = ogPos + textJump;
+            }
+            else if (dialogBox.rectTransform.localPosition.y >= -(dialogBox.canvas.renderingDisplaySize.y * 0.5f))
+            {
+                endPos = ogPos - textJump;
+            }
+            else return;
+            float t = 0;
+            float eval;
+            while (t < autoFocusScaleDuration)
+            {
+                t += Time.deltaTime;
+                eval = actorScalingKurve.Evaluate(t / autoFocusScaleDuration);
+                dialogBox.transform.localPosition = Vector3.Lerp(ogPos, endPos, eval);
+                await Awaitable.NextFrameAsync();
+            }
+        }
+
         /// <summary>
         /// Flips whether or not the textbox should progress without player input.
         /// </summary>

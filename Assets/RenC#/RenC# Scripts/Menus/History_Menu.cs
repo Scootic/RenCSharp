@@ -8,22 +8,17 @@ namespace RenCSharp.Menus
         [SerializeField] private Transform historyHolder;
         [SerializeField] private GameObject historyPrefab;
         [SerializeField] private GameObject historyMenu;
-        [SerializeField] private float expectedHistoryObjectHeight = 200;
+        [SerializeField, Tooltip("Expected Y size of history prefab. Not necessarily equal to prefab.rectTransform.height")] private float expectedHistoryObjectHeight = 200;
         int activeHistories = 0;
         private Awaitable spawner;
-        private History curHistory;
-
-        private void OnEnable()
+        private static History curHistory;
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void GetHistoryBus()
         {
+            //don't need to worry about removing this, Application.quitting removes ALL Event_Bus events.
             Event_Bus.AddSingleObjEvent("HistoryUpdated", ReceiveHistory);
         }
 
-        private void OnDisable()
-        {
-            Event_Bus.TryRemoveSingleObjEvent("HistoryUpdated");
-        }
-
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override async Awaitable OnMenuOpen()
         {
             historyMenu.SetActive(true);
@@ -39,7 +34,7 @@ namespace RenCSharp.Menus
             }
         }
 
-        private void ReceiveHistory(object HISTORY)
+        private static void ReceiveHistory(object HISTORY)
         {
             curHistory = (History)HISTORY;
         }
@@ -53,7 +48,6 @@ namespace RenCSharp.Menus
             activeHistories++;
         }
 
-        // Update is called once per frame
         public override void OnMenuClose()
         {
             //if (!spawner.IsCompleted) spawner.Cancel();
