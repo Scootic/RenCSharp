@@ -70,13 +70,12 @@ namespace RenCSharp
             }
 
             GameObject[] activeButtons = new GameObject[buttonLabels.Length];
-            Button b;
 
             for(int i = 0; i < activeButtons.Length; i++)
             {
                 int oldI = i;
                 activeButtons[oldI] = Object_Factory.SpawnObject(buttonPrefab, $"buttoninput{oldI}", parent);
-                if (!activeButtons[oldI].TryGetComponent(out b))
+                if (!activeButtons[oldI].TryGetComponent(out Button b))
                 {
                     Debug.LogError("ListButtonInputPrompt prefab doesn't have a button component.");
                     return;

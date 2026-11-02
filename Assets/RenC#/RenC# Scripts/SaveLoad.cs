@@ -102,9 +102,6 @@ namespace RenCSharp
                 sd = (SaveData?)bf.Deserialize(fs);
                 //Debug.Log($"File exists? :{sd != null}");
             }
-
-            await Awaitable.MainThreadAsync();
-
             return sd;
         }
 

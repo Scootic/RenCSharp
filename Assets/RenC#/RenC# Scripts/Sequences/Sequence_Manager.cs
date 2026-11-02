@@ -128,6 +128,7 @@ namespace RenCSharp
             Event_Bus.AddSingleObjEvent("AddParticleToList", AddUIParticleToList);
             Event_Bus.AddSingleObjEvent("RemoveParticleFromList", RemoveUIParticleFromList);
             Event_Bus.AddSingleObjEvent("AssignPlayerButtonBehavior", AssignButtonBehavior);
+            Event_Bus.AddSingleObjEvent("LoadTheGame", LoadGame);
 
             Event_Bus.AddDoubleObjEvent("SMSpeed", SetSpeed);
             Event_Bus.AddDoubleObjEvent("SpawnPlayerButtons", SpawnPlayerButtons);
@@ -167,10 +168,11 @@ namespace RenCSharp
             Event_Bus.TryRemoveDoubleObjEvent("SpawnPlayerButtons");
             Event_Bus.TryRemoveDoubleObjEvent("AddParticleToList");
             Event_Bus.TryRemoveDoubleObjEvent("RemoveParticleFromList");
+            Event_Bus.TryRemoveDoubleObjEvent("SaveTheGame");
 
             Event_Bus.TryRemoveSingleObjEvent("OverrideScreen");
             Event_Bus.TryRemoveSingleObjEvent("AssignPlayerButtonBehavior");
-            Event_Bus.TryRemoveSingleObjEvent("SaveTheGame");
+            Event_Bus.TryRemoveSingleObjEvent("LoadTheGame");
         }
         #region SequenceHandling
         public void StartSequence()
@@ -532,6 +534,8 @@ namespace RenCSharp
                 speaker = tSpeaker;
                 text = tDialog;
             }
+
+            Event_Bus.TryFireSingleObjEvent("HistoryUpdated", curHist);
         }
         /// <summary>
         /// Please don't use this willy-nilly.
@@ -575,9 +579,10 @@ namespace RenCSharp
             saving = false;
         }
 
-        public void LoadGame(SaveData sd)
+        public void LoadGame(object SAVEDATA_sd)
         {
             //stop all deranged nonsense on the SM!
+            SaveData sd = (SaveData)SAVEDATA_sd;
             StopAllCoroutines();
             //go through every single GO spawned by Object_Factory, and banish them.
             Object_Factory.ScrubDictionary();

@@ -1,3 +1,4 @@
+using RenCSharp.EXPERIMENTAL;
 using UnityEngine;
 
 namespace RenCSharp.Menus
@@ -10,21 +11,37 @@ namespace RenCSharp.Menus
         [SerializeField] private float expectedHistoryObjectHeight = 200;
         int activeHistories = 0;
         private Awaitable spawner;
+        private History curHistory;
+
+        private void OnEnable()
+        {
+            Event_Bus.AddSingleObjEvent("HistoryUpdated", ReceiveHistory);
+        }
+
+        private void OnDisable()
+        {
+            Event_Bus.TryRemoveSingleObjEvent("HistoryUpdated");
+        }
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public override async Awaitable OnMenuOpen()
         {
             historyMenu.SetActive(true);
-            History t = Sequence_Manager.SM.CurrentHistory;
             RectTransform rt = historyHolder.GetComponent<RectTransform>();
-            Debug.Log("History lengther: " + t.DialogBoxes.Length);
-            for (int i = 0; i < t.HistoryLength; i++)
+            Debug.Log("History lengther: " + curHistory.DialogBoxes.Length);
+            for (int i = 0; i < curHistory.HistoryLength; i++)
             {
-                if (t.SpeakerNames[i] == null) continue;
-                spawner = SpawnHistory(i, t.SpeakerNames[i], t.DialogBoxes[i]);
+                if (curHistory.SpeakerNames[i] == null) continue;
+                spawner = SpawnHistory(i, curHistory.SpeakerNames[i], curHistory.DialogBoxes[i]);
                 await spawner;
                 rt.sizeDelta = new Vector2(rt.sizeDelta.x, activeHistories * expectedHistoryObjectHeight);
                 await Awaitable.NextFrameAsync();
             }
+        }
+
+        private void ReceiveHistory(object HISTORY)
+        {
+            curHistory = (History)HISTORY;
         }
 
         private async Awaitable SpawnHistory(int i, string speaker, string dialoge)

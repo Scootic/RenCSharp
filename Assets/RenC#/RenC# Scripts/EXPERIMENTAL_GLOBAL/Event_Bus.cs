@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using System;
+using UnityEngine;
 namespace RenCSharp.EXPERIMENTAL
 {
     /// <summary>
@@ -10,15 +11,16 @@ namespace RenCSharp.EXPERIMENTAL
     /// </summary>
     public static class Event_Bus 
     {
-        private static Dictionary<string, Action> voidEvents = new();
-        private static Dictionary<string, Action<bool>> boolEvents = new();
-        private static Dictionary<string, Action<int>> intEvents = new();
-        private static Dictionary<string, Action<float>> floatEvents = new();
-        private static Dictionary<string, Action<string>> stringEvents = new();
-        private static Dictionary<string, Action<object>> singleObjEvents = new();
-        private static Dictionary<string, Action<object, object>> doubleObjEvents = new();
+        private static readonly Dictionary<string, Action> voidEvents = new();
+        private static readonly Dictionary<string, Action<bool>> boolEvents = new();
+        private static readonly Dictionary<string, Action<int>> intEvents = new();
+        private static readonly Dictionary<string, Action<float>> floatEvents = new();
+        private static readonly Dictionary<string, Action<string>> stringEvents = new();
+        private static readonly Dictionary<string, Action<object>> singleObjEvents = new();
+        private static readonly Dictionary<string, Action<object, object>> doubleObjEvents = new();
         /// <summary>
         /// Dangerous as stuff. Removes ALL actions from ALL dictionaries. Important because these guys are static. Gc moment.
+        /// Occurs on Application.quit
         /// </summary>
         public static void PurgeEvents()
         {
@@ -30,6 +32,14 @@ namespace RenCSharp.EXPERIMENTAL
             singleObjEvents.Clear();
             doubleObjEvents.Clear();
         }
+
+        [RuntimeInitializeOnLoadMethod]
+        private static void PurgeOnQuit()
+        {
+            //make sure no mem leaks by purging events on App quit.
+            Application.quitting += PurgeEvents;
+        }
+
         //every region basically has the same contents: a method for adding, firing, removing, and getting actions.
         #region VoidEvents
         public static void AddVoidEvent(string name, Action Event)

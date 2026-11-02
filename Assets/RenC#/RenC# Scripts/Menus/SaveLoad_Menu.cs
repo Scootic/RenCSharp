@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Text.RegularExpressions;
-using RenCSharp.Sequences;
+using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp.Menus
 {
     public class SaveLoad_Menu : Menu_Base
@@ -84,26 +84,38 @@ namespace RenCSharp.Menus
                 rt2 = autoSaveLoadGameHolder.GetComponent<RectTransform>();
                 rt2.anchoredPosition = new Vector2(-0.5f * rt2.sizeDelta.x - 50, 0);
             }
-            
+            SaveData[] sd = new SaveData[paths.Length];
+            for (int i = 0; i < sd.Length; i++)
+            {
+                if (!saveMenu.activeSelf)
+                {
+                    Debug.LogWarning("SaveMenu is no longer active, stopping the save grabbing process.");
+                    break;
+                } 
+                //grabbing from file is all on a background thread, gather files first then spawn buttons.
+                sd[i] = (SaveData)await SaveLoad.TryLoadFromPathAsync(paths[i]);
+            }
+            await Awaitable.MainThreadAsync();
             for (int i = 0; i < paths.Length; i++)
             {
-                if (!saveMenu.activeSelf) 
-                { 
-                    Debug.LogWarning("SaveMenu is no longer active, stopping the save grabbing process."); 
-                    break; 
-                } //just stop ts if we aren't even in the save menu no more
-                SaveData sd = (SaveData)await SaveLoad.TryLoadFromPathAsync(paths[i]);
+                if (!saveMenu.activeSelf)
+                {
+                    Debug.LogWarning("SaveMenu is no longer active, stopping the save spawning process.");
+                    break;
+                }
                 bool auto = paths[i].Contains(autoSavePattern); //potential bug, doesn't care if it starts with autosave pattern, player can just do ts themselves
                 if (mainMenu)
                 {
                     try
                     {
-                        subDirectory = "Saves_" + sd.ReplacingTexts[0];
-                    } catch {subDirectory = ""; } 
+                        subDirectory = "Saves_" + sd[i].ReplacingTexts[0];
+                    }
+                    catch { subDirectory = ""; }
                 }
-                await SpawnLoadButton(sd, i, auto, subDirectory);
+                await SpawnLoadButton(sd[i], i, auto, subDirectory);
                 await Awaitable.NextFrameAsync();
             }
+            
         }
 
         private async Awaitable SpawnLoadButton(SaveData sd, int i, bool auto, string subFolder)
@@ -130,7 +142,7 @@ namespace RenCSharp.Menus
             await Awaitable.NextFrameAsync();
             if (sd.SaveScreenshot != null)
             {
-                Texture2D screenShotTexture = new Texture2D(2, 2);
+                Texture2D screenShotTexture = new(2, 2);
                 await Awaitable.NextFrameAsync();
                 screenShotTexture.LoadImage(sd.SaveScreenshot);
                 await Awaitable.NextFrameAsync();
@@ -169,11 +181,13 @@ namespace RenCSharp.Menus
         private void Load(SaveData sd)
         {
             //if (!openMenu.IsCompleted) openMenu.Cancel();
-            if (Sequence_Manager.SM != null)
-            {
-                Sequence_Manager.SM.LoadGame(sd);
+            //this event should only exist if there's a sequence manager present
+            if(Event_Bus.TryFireSingleObjEvent("LoadTheGame", sd)) 
+            { 
+                //Sequence_Manager.SM.LoadGame(sd);
                 Menu_Manager.MM.CloseMenus(); //close after a save being loaded is probably the most sensible.
             }
+            
             else
             {
                 if (ssl == null)
@@ -183,9 +197,10 @@ namespace RenCSharp.Menus
                 }
                 Debug.Log("Loading from Menu");
                 //we're on main menu doin' stuff
-                SaveData_From_Main_Menu sdfmm = Object_Factory.SpawnObject(saveDataCarrierPrefab, "SL").GetComponent<SaveData_From_Main_Menu>();
-                sdfmm.SD = sd;
-                DontDestroyOnLoad(sdfmm.gameObject);
+                //SaveData_From_Main_Menu sdfmm = Object_Factory.SpawnObject(saveDataCarrierPrefab, "SL").GetComponent<SaveData_From_Main_Menu>();
+                //sdfmm.SD = sd;
+                //DontDestroyOnLoad(sdfmm.gameObject);
+                Event_Bus.TryFireSingleObjEvent("SaveDataFromMainMenu", sd);
                 ssl.LoadAnScene(sceneToLoadIndex);
             }
         }
@@ -205,7 +220,8 @@ namespace RenCSharp.Menus
 
         public void Save()
         {
-            Sequence_Manager.SM.SaveGameData(fileName, false);
+            Event_Bus.TryFireDoubleObjEvent("SaveTheGame", fileName, false);
+            //Sequence_Manager.SM.SaveGameData(fileName, false);
             OnMenuClose();
             _ = OnMenuOpen();
         }

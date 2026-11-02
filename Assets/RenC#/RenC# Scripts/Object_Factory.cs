@@ -69,6 +69,22 @@ namespace RenCSharp
             return t;
         }
         /// <summary>
+        /// Spawns an empty gameobject, adds a component of type T to it, and returns the added component.
+        /// </summary>
+        /// <typeparam name="T">Component type</typeparam>
+        /// <param name="name">the name of the gameobject</param>
+        /// <param name="parent"></param>
+        /// <returns>Newly spawned component</returns>
+        public static T SpawnComponent<T>(string name, Transform parent = null) where T : Component
+        {
+            GameObject newG = new(name);
+            newG.transform.parent = parent;
+            if (activeGameObjects.ContainsKey(name)) RemoveObject(name);
+            activeGameObjects.Add(name, newG);
+            return newG.AddComponent<T>();
+        }
+
+        /// <summary>
         /// Specific method for spawning particle objects, because they have more derangement going on.
         /// </summary>
         /// <param name="overrideParticles">Decides whether or not to bother with the subParticleAsset</param>
