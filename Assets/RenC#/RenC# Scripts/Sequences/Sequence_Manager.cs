@@ -47,6 +47,7 @@ namespace RenCSharp
         [SerializeField] private Transform actorCanvas;
         [SerializeField] private AnimationCurve actorScalingKurve;
         [SerializeField] private GameObject actorHolderFab;
+        [SerializeField, Tooltip("In seconds. How long it takes for the actor auto-focus to scale the current actor up."), Min(0)] private float autoFocusScaleDuration = 0.25f;
         private Actor curActor;
         [HideInInspector] public List<Actor> activeActors = new(); //nasty! there has to be a better way!
 
@@ -59,10 +60,11 @@ namespace RenCSharp
 
         [Header("Settings")]
         [SerializeField, Tooltip("In seconds; 0 for showing a character every frame."), Min(0)] private float textSpeed = 0;
-        [SerializeField, Tooltip("In seconds. How long it takes for the actor auto-focus to scale the current actor up."), Min(0)] private float autoFocusScaleDuration = 0.25f;
         [SerializeField, Tooltip("This will be string that is replaced by inputted player name. Purely for testing purposes, as TextboxString.ReplaceableText dict can replace it.")] private string playerTag = "{MC}";
         [SerializeField, Tooltip("How long, in seconds, the SM will linger on a specific screen while on auto.")] private float lingerTime = 0.5f;
         [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero!")] private byte historyLength = 10;
+        [SerializeField] private float dialogBoxHideTime = 0.33f;
+        [SerializeField] private AnimationCurve dialogBoxHideCurve = Animation_Helper.EaseOut;
 
         [Header("Debug - Please Don't Touch! May cause errors! Only visible to help you!")]
         [SerializeField] private bool debugTextbox = false;
@@ -1119,42 +1121,58 @@ namespace RenCSharp
         #endregion
         private void ToggleDialogUI(bool b)
         {
-            //if paused. the "and position.y >= -half of canvas height" prevents repeatedly setting pause to true by menus.
-            //doesn't just set the object to be inactive because TMP will force mesh to update when re-enabling,
-            //even when (ESPECIALLY WHEN) we don't want it to.
-            if (b && dialogBox.rectTransform.localPosition.y >= -(dialogBox.canvas.renderingDisplaySize.y * 0.5f))
+            if (async) 
             {
-                dialogBox.transform.localPosition -= textJump;
+                Debug.Log("Async toggle dialog ui");
+                _ = ToggleDialogUIAsync(b, curScreenIndex);
             }
-            else if(!b)
+            else
             {
-                dialogBox.transform.localPosition += textJump;
+                //if paused. the "and position.y >= -half of canvas height" prevents repeatedly setting pause to true by menus.
+                //doesn't just set the object to be inactive because TMP will force mesh to update when re-enabling,
+                //even when (ESPECIALLY WHEN) we don't want it to.
+                if (b && dialogBox.rectTransform.localPosition.y >= -(dialogBox.canvas.renderingDisplaySize.y * 0.5f))
+                {
+                    dialogBox.transform.localPosition -= textJump;
+                }
+                else if (!b)
+                {
+                    dialogBox.transform.localPosition += textJump;
+                }
             }
         }
 
-        private async Awaitable ToggleDialogUIAsync(bool b)
-        {   
+        private async Awaitable ToggleDialogUIAsync(bool b, int scrindex)
+        {
+            await Awaitable.MainThreadAsync();
             Vector3 ogPos = dialogBox.transform.localPosition; //get local pos at start of function
-            Vector3 endPos = Vector3.zero;
+            Vector3 endPos;
 
-            if (!b)
-            {
-                endPos = ogPos + textJump;
-            }
-            else if (dialogBox.rectTransform.localPosition.y >= -(dialogBox.canvas.renderingDisplaySize.y * 0.5f))
+            if (b && dialogBox.rectTransform.localPosition.y >= -(dialogBox.canvas.renderingDisplaySize.y * 0.5f))
             {
                 endPos = ogPos - textJump;
             }
-            else return;
+            else if (!b)
+            {
+                endPos = ogPos + textJump;
+            }
+            else { Debug.Log("Super else, bailing"); return; }
             float t = 0;
             float eval;
-            while (t < autoFocusScaleDuration)
+            while (t < dialogBoxHideTime)
             {
+                if(scrindex != curScreenIndex)
+                {
+                    Debug.Log("Scrindex different! Bailing!");
+                    dialogBox.transform.localPosition = endPos;
+                    return;
+                }
                 t += Time.deltaTime;
-                eval = actorScalingKurve.Evaluate(t / autoFocusScaleDuration);
+                eval = dialogBoxHideCurve.Evaluate(t / dialogBoxHideTime);
                 dialogBox.transform.localPosition = Vector3.Lerp(ogPos, endPos, eval);
                 await Awaitable.NextFrameAsync();
             }
+            dialogBox.transform.localPosition = endPos;
         }
 
         /// <summary>

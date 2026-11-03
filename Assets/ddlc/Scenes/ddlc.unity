@@ -6783,7 +6783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3ead738273afb49bc19294783a6d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  async: 0
+  async: 1
   currentSequence: {fileID: 11400000, guid: 431bd350262bb974682efa653042f25d, type: 2}
   speakerNameField: {fileID: 1159330257}
   dialogField: {fileID: 1087768674}
@@ -6825,6 +6825,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   actorHolderFab: {fileID: 5236450459068519206, guid: ab4df2e1c7acd2e499d468d5b1b24257, type: 3}
+  autoFocusScaleDuration: 0.25
   activeActors: []
   overlayPrefab: {fileID: 5236450459068519206, guid: 7d74c57af7795ba489f52755a17f931e, type: 3}
   bgPrefab: {fileID: 6748494954228117509, guid: c11e3127cf5064e44bfc6a21c8b85044, type: 3}
@@ -6832,10 +6833,34 @@ MonoBehaviour:
   overlayHolder: {fileID: 1824803559}
   menuBase: {fileID: 87849293}
   textSpeed: 0.01
-  autoFocusScaleDuration: 0.25
   playerTag: '{mc}'
   lingerTime: 0.75
   historyLength: 10
+  dialogBoxHideTime: 0.25
+  dialogBoxHideCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   debugTextbox: 0
   paused: 0
   auto: 0
