@@ -24,10 +24,13 @@ MonoBehaviour:
     PlaybackSpeed: 1
     Curves:
     - rid: 7022832647334789120
-    - rid: 7022832647334789171
     - rid: 7022832647334789172
     - rid: 7022832647334789175
     - rid: 7022832647334789181
+    - rid: 7022832662495100976
+    - rid: 7022832662495100983
+    - rid: 7022832662495100984
+    - rid: 7022832662495100985
   references:
     version: 2
     RefIds:
@@ -55,7 +58,7 @@ MonoBehaviour:
         - KeyframeIndex: 0
           CurveIndex: 0
           ArrayIndex: 0
-          Time: 0
+          Time: 3
           InSlope: 0
           OutSlope: 0
           TangentMode: 1
@@ -67,26 +70,26 @@ MonoBehaviour:
           ExcludedTangentModes: 15
           DefaultTangentMode: 1
           Value:
-            Name: 
-            ParentName: 
+            Name: particle
+            ParentName: PlayerObject
             LocalPosition: {x: 0, y: 0, z: 0}
             UIParticleFab:
-              m_AssetGUID: 
+              m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
               m_SubObjectName: 
               m_SubObjectType: 
               m_SubObjectGUID: 
               m_EditorAssetChanged: 0
             SubParticleFab:
-              m_AssetGUID: 
+              m_AssetGUID: 4ae82f2d9a46a4f48a3851c87131cd79
               m_SubObjectName: 
               m_SubObjectType: 
               m_SubObjectGUID: 
               m_EditorAssetChanged: 0
-    - rid: 7022832647334789171
-      type: {class: OFRemoveObjectCurve, ns: RenCSharp.Sequences, asm: Sequences}
+    - rid: 7022832647334789172
+      type: {class: OFJostlePositionCurve, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        WrappingMode: 1
-        TemporaryRep: 
+        WrappingMode: 2
+        TemporaryRep: 0
         keyframes:
         - KeyframeIndex: 0
           CurveIndex: 1
@@ -96,23 +99,32 @@ MonoBehaviour:
           OutSlope: 0
           TangentMode: 1
           InTangent: 0
+          OutTangent: 2.1304266
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 0
+          DefaultTangentMode: 1
+          Value: 0
+        - KeyframeIndex: 1
+          CurveIndex: 1
+          ArrayIndex: 0
+          Time: 2.9
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 1
+          InTangent: 0
           OutTangent: 0
           WeightedMode: 0
           InWeight: 0
           OutWeight: 0
-          ExcludedTangentModes: 15
+          ExcludedTangentModes: 0
           DefaultTangentMode: 1
-          Value: 
-    - rid: 7022832647334789172
-      type: {class: OFJostlePositionCurve, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        WrappingMode: 1
-        TemporaryRep: 0
-        keyframes:
-        - KeyframeIndex: 0
-          CurveIndex: 2
+          Value: 30
+        - KeyframeIndex: 2
+          CurveIndex: 1
           ArrayIndex: 0
-          Time: 0
+          Time: 3
           InSlope: 0
           OutSlope: 0
           TangentMode: 1
@@ -129,23 +141,44 @@ MonoBehaviour:
       type: {class: OFPositionCurve, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         WrappingMode: 1
-        TemporaryRep: {x: 0, y: 0, z: 0}
+        TemporaryRep:
+        - 0
+        - 150
+        - 0
         keyframes:
-        - KeyframeIndex: 0
-          CurveIndex: 3
-          ArrayIndex: 0
-          Time: 0
-          InSlope: 0
-          OutSlope: 0
-          TangentMode: 1
-          InTangent: 0
-          OutTangent: 0
-          WeightedMode: 0
-          InWeight: 0
-          OutWeight: 0
-          ExcludedTangentModes: 0
-          DefaultTangentMode: 1
-          Value: {x: 0, y: 0, z: 0}
+        - List: []
+        - List:
+          - KeyframeIndex: 0
+            CurveIndex: 2
+            ArrayIndex: 1
+            Time: 0
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 2
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 150
+          - KeyframeIndex: 1
+            CurveIndex: 2
+            ArrayIndex: 1
+            Time: 1.5
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 880
+        - List: []
         ToAffect: EnemyHolder
     - rid: 7022832647334789181
       type: {class: PlaySFXCurve, ns: RenCSharp.Sequences, asm: Sequences}
@@ -153,23 +186,51 @@ MonoBehaviour:
         WrappingMode: 1
         TemporaryRep:
           AudioAsset:
-            m_AssetGUID: 
+            m_AssetGUID: a67f3af0a88dfef4194e419ab633887d
             m_SubObjectName: 
             m_SubObjectType: 
             m_SubObjectGUID: 
-            m_EditorAssetChanged: 0
-          Position: {x: 0, y: 0, z: 0}
-          Volume: 0
-          MinPitch: 0
-          MaxPitch: 0
+            m_EditorAssetChanged: 1
+          Position: {x: -0.25, y: 0, z: 0}
+          Volume: 1
+          MinPitch: 0.99
+          MaxPitch: 1.01
           Loop: 0
           OnlyOne: 0
           Environmental: 0
         keyframes:
         - KeyframeIndex: 0
-          CurveIndex: 4
+          CurveIndex: 3
           ArrayIndex: 0
-          Time: 0
+          Time: -0
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 16
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 1
+          Value:
+            AudioAsset:
+              m_AssetGUID: a67f3af0a88dfef4194e419ab633887d
+              m_SubObjectName: 
+              m_SubObjectType: 
+              m_SubObjectGUID: 
+              m_EditorAssetChanged: 1
+            Position: {x: -0.25, y: 0, z: 0}
+            Volume: 1
+            MinPitch: 0.99
+            MaxPitch: 1.01
+            Loop: 0
+            OnlyOne: 0
+            Environmental: 0
+        - KeyframeIndex: 1
+          CurveIndex: 3
+          ArrayIndex: 0
+          Time: 1
           InSlope: 0
           OutSlope: 0
           TangentMode: 1
@@ -182,7 +243,91 @@ MonoBehaviour:
           DefaultTangentMode: 1
           Value:
             AudioAsset:
-              m_AssetGUID: 
+              m_AssetGUID: a67f3af0a88dfef4194e419ab633887d
+              m_SubObjectName: 
+              m_SubObjectType: 
+              m_SubObjectGUID: 
+              m_EditorAssetChanged: 1
+            Position: {x: 0.25, y: 0, z: 0}
+            Volume: 1
+            MinPitch: 0.95
+            MaxPitch: 1.05
+            Loop: 0
+            OnlyOne: 0
+            Environmental: 0
+        - KeyframeIndex: 2
+          CurveIndex: 3
+          ArrayIndex: 0
+          Time: 1.9
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 1
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 1
+          Value:
+            AudioAsset:
+              m_AssetGUID: a67f3af0a88dfef4194e419ab633887d
+              m_SubObjectName: 
+              m_SubObjectType: 
+              m_SubObjectGUID: 
+              m_EditorAssetChanged: 1
+            Position: {x: -0.1, y: 0, z: 0}
+            Volume: 1
+            MinPitch: 0.94
+            MaxPitch: 1.06
+            Loop: 0
+            OnlyOne: 0
+            Environmental: 0
+        - KeyframeIndex: 3
+          CurveIndex: 3
+          ArrayIndex: 0
+          Time: 2.4
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 1
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 1
+          Value:
+            AudioAsset:
+              m_AssetGUID: a67f3af0a88dfef4194e419ab633887d
+              m_SubObjectName: 
+              m_SubObjectType: 
+              m_SubObjectGUID: 
+              m_EditorAssetChanged: 1
+            Position: {x: 0.1, y: 0, z: 0}
+            Volume: 1
+            MinPitch: 0.9
+            MaxPitch: 1.1
+            Loop: 0
+            OnlyOne: 0
+            Environmental: 0
+        - KeyframeIndex: 4
+          CurveIndex: 3
+          ArrayIndex: 0
+          Time: 3
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 1
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 1
+          Value:
+            AudioAsset:
+              m_AssetGUID: 6771faf664a431841b8c64559065d5b4
               m_SubObjectName: 
               m_SubObjectType: 
               m_SubObjectGUID: 
@@ -194,3 +339,187 @@ MonoBehaviour:
             Loop: 0
             OnlyOne: 0
             Environmental: 0
+    - rid: 7022832662495100976
+      type: {class: OFPositionCurve, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        WrappingMode: 1
+        TemporaryRep:
+        - 0
+        - -351
+        - 0
+        keyframes:
+        - List: []
+        - List:
+          - KeyframeIndex: 0
+            CurveIndex: 4
+            ArrayIndex: 1
+            Time: 0
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 2
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: -351
+          - KeyframeIndex: 1
+            CurveIndex: 4
+            ArrayIndex: 1
+            Time: 1.5
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: -740
+        - List: []
+        ToAffect: FightTextBox
+    - rid: 7022832662495100983
+      type: {class: OFRemoveObjectCurve, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        WrappingMode: 1
+        TemporaryRep: 
+        keyframes:
+        - KeyframeIndex: 0
+          CurveIndex: 5
+          ArrayIndex: 0
+          Time: 5
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 1
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 1
+          Value: PlayerObject
+    - rid: 7022832662495100984
+      type: {class: OFImageColorCurve, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        WrappingMode: 1
+        TemporaryRep:
+        - 0
+        - 0
+        - 0
+        - 1
+        keyframes:
+        - List: []
+        - List: []
+        - List: []
+        - List:
+          - KeyframeIndex: 0
+            CurveIndex: 6
+            ArrayIndex: 3
+            Time: 0
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1
+          - KeyframeIndex: 1
+            CurveIndex: 6
+            ArrayIndex: 3
+            Time: 2.9
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1
+          - KeyframeIndex: 2
+            CurveIndex: 6
+            ArrayIndex: 3
+            Time: 3
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 0
+        ToAffect: PlayerObject
+    - rid: 7022832662495100985
+      type: {class: OFImageColorCurve, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        WrappingMode: 1
+        TemporaryRep:
+        - 0
+        - 0
+        - 0
+        - 0
+        keyframes:
+        - List: []
+        - List: []
+        - List: []
+        - List:
+          - KeyframeIndex: 0
+            CurveIndex: 7
+            ArrayIndex: 3
+            Time: 0
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 0
+          - KeyframeIndex: 1
+            CurveIndex: 7
+            ArrayIndex: 3
+            Time: 3
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 0
+          - KeyframeIndex: 2
+            CurveIndex: 7
+            ArrayIndex: 3
+            Time: 5
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 2.5
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1
+        ToAffect: throwhandsbuttonholder

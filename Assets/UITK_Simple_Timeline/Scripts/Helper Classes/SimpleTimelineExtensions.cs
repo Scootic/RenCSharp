@@ -88,10 +88,22 @@ namespace UITK_SimpleTimeline
         }
         #endregion
 
-        #region Transform Extensions
+        #region Float[] Extensions
         public static float[] ToArray(this Vector3 v3)
         {
             return new float[] { v3.x, v3.y, v3.z };
+        }
+
+        public static Color ToColor(this float[] colorArray)
+        {
+            return colorArray.Length switch
+            {
+                0 => Color.white,
+                1 => new Color(colorArray[0],0,0),
+                2 => new Color(colorArray[0], colorArray[1],0),
+                3 => new Color(colorArray[0], colorArray[1], colorArray[2]),
+                _ => new Color(colorArray[0], colorArray[1], colorArray[2], colorArray[3])
+            };
         }
 
         public static Vector3 ToVector3(this float[] floatArray)

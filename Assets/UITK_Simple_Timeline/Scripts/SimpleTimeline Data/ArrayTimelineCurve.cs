@@ -319,7 +319,7 @@ namespace UITK_SimpleTimeline
         /// <summary>
         /// Only exists for ArrayTimelineCurves.
         /// </summary>
-        /// <returns>string[0] by default.</returns>
+        /// <returns></returns>
         public abstract string[] SpawnKeyframeNames();
 
         public override string ToString()

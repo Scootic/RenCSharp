@@ -3998,7 +3998,7 @@ MonoBehaviour:
   gameOverButtonFab: {fileID: 1373857447437295792, guid: 88b0e8afeb0f09045a49b0af2fbaa3a5, type: 3}
   autoSaveName: '!AutoSave_Fight'
   gameOverSong:
-    m_AssetGUID: 
+    m_AssetGUID: 4a717978c2527d648be93e6fda5e3af7
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
@@ -5467,6 +5467,10 @@ PrefabInstance:
       propertyPath: m_HorizontalScrollbarVisibility
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3992884764103510655, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
+      propertyPath: loadGamePrefab
+      value: 
+      objectReference: {fileID: 7846512527372187028, guid: a0f37d24845cff445afc618330c1274d, type: 3}
     - target: {fileID: 3992884764103510655, guid: a19bf07085410624b9496cb4c8ae9af1, type: 3}
       propertyPath: autoSaveLoadGameHolder
       value: 
@@ -9490,6 +9494,7 @@ GameObject:
   - component: {fileID: 1437236104}
   - component: {fileID: 1437236103}
   - component: {fileID: 1437236102}
+  - component: {fileID: 1437236105}
   m_Layer: 5
   m_Name: throwhandsbuttonholder
   m_TagString: Untagged
@@ -9514,7 +9519,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -150}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1437236102
 MonoBehaviour:
@@ -9549,21 +9554,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437236100}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -9580,6 +9585,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437236100}
   m_CullTransparentMesh: 1
+--- !u!114 &1437236105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437236100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2df782b844c854aab9191acb213c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1444237010
 GameObject:
   m_ObjectHideFlags: 0

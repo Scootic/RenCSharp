@@ -14,7 +14,6 @@ namespace RenCSharp.Sequences
 
         public override void Evaluate(float time)
         {
-            if (!ValidCurve) return;
             try
             {
                 PlaySFX b = AtTime(time).Value;
@@ -48,7 +47,6 @@ namespace RenCSharp.Sequences
 
         public override string EvaluateMessage(float time)
         {
-            if (!ValidCurve) return "Play SFX Curve not yet valid.";
             try
             {
                 PlaySFX b = AtTime(time).Value;

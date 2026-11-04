@@ -1,8 +1,63 @@
 using UnityEngine;
 using UITK_SimpleTimeline;
+using UnityEngine.UI;
 namespace RenCSharp.Sequences
 {
-    
+    public class OFImageColorCurve : ArrayTimelineCurve<float,string>
+    {
+        public override string ShorthandCurveName() => "Color Image Curve";
+        public override string SpawnKeyframeName() => "";
+        public override string[] SpawnKeyframeNames() => new string[] {"R Keyframe", "G Keyframe", "B Keyframe", "Alpha Keyframe"};
+        public override string ToAffectName() => "Object Factory Key to Fade";
+        public override int DefaultArrayLength() => 4;
+        private Image img;
+        public override void OnPlay()
+        {
+            Object_Factory.TryGetComponent(ToAffect, out img);
+        }
+        public override float[] EvaluateValue(float time)
+        {
+            if (!ValidCurve) return new float[DefaultArrayLength()];
+            float[] toReturn;
+            try
+            {
+                toReturn = new float[] { img.color.r, img.color.b, img.color.g, img.color.a };
+            }
+            catch
+            {
+                toReturn = new float[4];
+            }
+            TimelineKeyframe<float>[][] toEval = ArrayClosestTwoKeyframes(time);
+            for (int i = 0; i < toEval.Length; i++)
+            {
+                if (toEval[i] == null) continue;
+                float[] tangents = CurveMath.GetTangents(toEval[i]);
+                toReturn[i] = CurveMath.CubicHermiteSpline(toEval[i][0].Value, toEval[i][1].Value,
+                    TimeToKeyframePercent(time, toEval[i][0].Time, toEval[i][1].Time), tangents[0], tangents[1], toEval[i][0].TangentMode);
+            }
+
+            return toReturn;
+        }
+
+        public override void Evaluate(float time)
+        {
+            if (!ValidCurve || img == null) return;
+            img.color = EvaluateValue(time).ToColor();
+        }
+
+        public override string EvaluateMessage(float time)
+        {
+            if (!ValidCurve) return "Color image curve not yet valid! Give it some keyframes!";
+            if (img == null) return "No image to evaluate.";
+            float[] eval = EvaluateValue(time);
+            return $"{ToAffect}.color should be: R-{eval[0]}, G-{eval[1]}, B-{eval[2]}, A-{eval[3]}";
+        }
+
+        public override string ToString()
+        {
+            return "Object Factory/Color Image Curve";
+        }
+    }
     public class OFRemoveObjectCurve : TypedTimelineCurve<string>
     {
         protected override int ExcludedKeyframeTangentModes() => 15; //exclude all but cliff
@@ -12,7 +67,6 @@ namespace RenCSharp.Sequences
 
         public override void Evaluate(float time)
         {
-            if (!ValidCurve) return;
             try
             {
                 string s = AtTime(time).Value;
@@ -39,7 +93,6 @@ namespace RenCSharp.Sequences
 
         public override string EvaluateMessage(float time)
         {
-            if (!ValidCurve) return "Remove Object Curve not yet valid.";
             try
             {
                 string b = AtTime(time).Value;
@@ -66,7 +119,6 @@ namespace RenCSharp.Sequences
 
         public override void Evaluate(float time)
         {
-            if (!ValidCurve) return;
             try
             {
                 SpawnProjectile s = AtTime(time).Value;
@@ -93,7 +145,6 @@ namespace RenCSharp.Sequences
 
         public override string EvaluateMessage(float time)
         {
-            if (!ValidCurve) return "Spawn Projectile Curve not yet valid.";
             try
             {
                 SpawnProjectile b = AtTime(time).Value;
@@ -115,41 +166,48 @@ namespace RenCSharp.Sequences
     /// <summary>
     /// object factory lol
     /// </summary>
-    public class OFPositionCurve : TypedTimelineCurve<Vector3, string>, ILerpable
+    public class OFPositionCurve : ArrayTimelineCurve<float, string>, ILerpable
     {
         public override string ShorthandCurveName() => "OF Local Position Curve";
-        public override string SpawnKeyframeName() => "Vector3 Keyframe";
+        public override string[] SpawnKeyframeNames() => new string[]{"X Keyframe", "Y Keyframe", "Z Keyframe"};
+        public override string SpawnKeyframeName()
+        {
+            return "";
+        }
         public override string ToAffectName() => "Object Factory Key to Move";
+        public override int DefaultArrayLength() => 3;
         private Transform t;
         public override void OnPlay()
         {
             Object_Factory.TryGetComponent(ToAffect, out t);
         }
-        public override Vector3 EvaluateValue(float time)
+        public override float[] EvaluateValue(float time)
         {
-            if (!ValidCurve) return Vector3.zero;
-            Vector3 toReturn;
+            if (!ValidCurve) return new float[] { 0,0,0};
+            float[] toReturn = new float[3];
             
-            TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
-
-            float[] tangents = CurveMath.GetTangents(toEval);
-            toReturn = CurveMath.CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
-                TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1], toEval[0].TangentMode);
-
+            TimelineKeyframe<float>[][] toEval = ArrayClosestTwoKeyframes(time);
+            for (int i = 0; i < toReturn.Length; i++)
+            {
+                if (toEval[i] == null) continue;
+                float[] tangents = CurveMath.GetTangents(toEval[i]);
+                toReturn[i] = CurveMath.CubicHermiteSpline(toEval[i][0].Value, toEval[i][1].Value,
+                    TimeToKeyframePercent(time, toEval[i][0].Time, toEval[i][1].Time), tangents[0], tangents[1], toEval[i][0].TangentMode);
+            }
             return toReturn;
         }
 
         public override void Evaluate(float time)
         {
             if (!ValidCurve || t == null) return;
-            Vector3 toReturn = EvaluateValue(time);
+            Vector3 toReturn = EvaluateValue(time).ToVector3();
             if (!toReturn.HasNaN()) t.localPosition = toReturn;
         }
 
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "Local position curve not yet valid! Give it some keyframes!";
-            return $"{ToAffect}.localPos should be: {EvaluateValue(time)}";
+            return $"{ToAffect}.localPos should be: {EvaluateValue(time).ToVector3()}";
         }
 
         public override string ToString()
@@ -207,33 +265,41 @@ namespace RenCSharp.Sequences
     /// <summary>
     /// object factory lol
     /// </summary>
-    public class OFScaleCurve : TypedTimelineCurve<Vector3, string>, ILerpable
+    public class OFScaleCurve : ArrayTimelineCurve<float, string>, ILerpable
     {
         public override string ShorthandCurveName() => "OF Local Scale Curve";
-        public override string SpawnKeyframeName() => "Vector3 Keyframe";
+        public override string[] SpawnKeyframeNames() => new string[] { "X Keyframe", "Y Keyframe", "Z Keyframe" };
+        public override string SpawnKeyframeName()
+        {
+            return "";
+        }
+        public override int DefaultArrayLength() => 3;
         public override string ToAffectName() => "Object Factory Key to Scale";
         private Transform t;
         public override void OnPlay()
         {
             Object_Factory.TryGetComponent(ToAffect, out t);
         }
-        public override Vector3 EvaluateValue(float time)
+        public override float[] EvaluateValue(float time)
         {
-            if (!ValidCurve) return Vector3.zero;
-            Vector3 toReturn;
+            if (!ValidCurve) return new float[] {0,0,0};
+            float[] toReturn = new float[3];
 
-            TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
-
-            float[] tangents = CurveMath.GetTangents(toEval);
-            toReturn = CurveMath.CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
-                TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1], toEval[0].TangentMode);
+            TimelineKeyframe<float>[][] toEval = ArrayClosestTwoKeyframes(time);
+            for (int i = 0; i < toEval.Length; i++)
+            {
+                if (toEval[i] == null) continue;
+                float[] tangents = CurveMath.GetTangents(toEval[i]);
+                toReturn[i] = CurveMath.CubicHermiteSpline(toEval[i][0].Value, toEval[i][1].Value,
+                    TimeToKeyframePercent(time, toEval[i][0].Time, toEval[i][1].Time), tangents[0], tangents[1], toEval[i][0].TangentMode);
+            }
             return toReturn;
         }
 
         public override void Evaluate(float time)
         {
             if (!ValidCurve || t == null) return;
-            Vector3 toReturn = EvaluateValue(time);
+            Vector3 toReturn = EvaluateValue(time).ToVector3();
             if (!toReturn.HasNaN()) t.localScale = toReturn;
         }
 
@@ -241,7 +307,7 @@ namespace RenCSharp.Sequences
         {
             if (!ValidCurve) return "Local scale curve not yet valid! Give it some keyframes!";
 
-            return $"{ToAffect}.localScale should be: {EvaluateValue(time)}";
+            return $"{ToAffect}.localScale should be: {EvaluateValue(time).ToVector3()}";
         }
 
         public override string ToString()
@@ -252,10 +318,15 @@ namespace RenCSharp.Sequences
     /// <summary>
     /// object factory lol
     /// </summary>
-    public class OFRotationCurve : TypedTimelineCurve<Vector3, string>, ILerpable
+    public class OFRotationCurve : ArrayTimelineCurve<float, string>, ILerpable
     {
         public override string ShorthandCurveName() => "OF Local Rotation Curve";
-        public override string SpawnKeyframeName() => "Euler Angle (Vec3) Keyframe";
+        public override string[] SpawnKeyframeNames() => new string[] { "X Keyframe", "Y Keyframe", "Z Keyframe" };
+        public override string SpawnKeyframeName()
+        {
+            return "";
+        }
+        public override int DefaultArrayLength() => 3;
         public override string ToAffectName() => "Object Factory Key to Rotate";
         private Transform t;
         public override void OnPlay()
@@ -263,29 +334,33 @@ namespace RenCSharp.Sequences
             Object_Factory.TryGetComponent(ToAffect, out t);
         }
 
-        public override Vector3 EvaluateValue(float time)
+        public override float[] EvaluateValue(float time)
         {
-            if (!ValidCurve) return Vector3.zero;
-            TimelineKeyframe<Vector3>[] toEval = ClosestTwoKeyframes(time);
+            if (!ValidCurve) return new float[]{ 0,0,0};
+            TimelineKeyframe<float>[][] toEval = ArrayClosestTwoKeyframes(time);
+            float[] eulerToBe = new float[3];
+            for (int i = 0; i < toEval.Length; i++)
+            {
+                if (toEval[i] == null) continue;
+                float[] tangents = CurveMath.GetTangents(toEval[i]);
 
-            float[] tangents = CurveMath.GetTangents(toEval);
-
-            Vector3 eulerToBe = CurveMath.CubicHermiteSpline(toEval[0].Value, toEval[1].Value,
-                TimeToKeyframePercent(time, toEval[0].Time, toEval[1].Time), tangents[0], tangents[1], toEval[0].TangentMode);
+                eulerToBe[i] = CurveMath.CubicHermiteSpline(toEval[i][0].Value, toEval[i][1].Value,
+                    TimeToKeyframePercent(time, toEval[i][0].Time, toEval[i][1].Time), tangents[0], tangents[1], toEval[i][0].TangentMode);
+            }
             return eulerToBe;
         }
 
         public override void Evaluate(float time)
         {
             if (!ValidCurve || t == null) return;
-            Vector3 eulerToBe = EvaluateValue(time);
+            Vector3 eulerToBe = EvaluateValue(time).ToVector3();
             t.localRotation = eulerToBe != Vector3.zero && !eulerToBe.HasNaN() ? Quaternion.Euler(eulerToBe) : Quaternion.identity;
         }
 
         public override string EvaluateMessage(float time)
         {
             if (!ValidCurve) return "Rotation curve is not yet valid! Give him some keyframes!";
-            return $"{ToAffect}.localRot should be: {EvaluateValue(time)}.";
+            return $"{ToAffect}.localRot should be: {EvaluateValue(time).ToVector3()}.";
         }
 
         public override string ToString()

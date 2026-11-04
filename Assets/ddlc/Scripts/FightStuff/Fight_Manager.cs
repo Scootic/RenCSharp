@@ -50,8 +50,10 @@ namespace RenCSharp.Combat
         [SerializeField] private GameObject gameOverButtonFab;
         [SerializeField] private string autoSaveName = "!AutoSave_Fight";
         [SerializeField] private AssetReference gameOverSong;
-        private readonly string[] gameOverOptions = { "Retry Fight", "Load a Save", "Return to Main Menu" };
-        private readonly Action[] gameOverActions = new Action[3];
+        private readonly string[] fightGameOverOptions = { "Retry Fight", "Load a Save", "Return to Main Menu" };
+        private readonly string[] singleGameOverOptions = { "Load a Save", "Return to Main Menu" };
+        private readonly Action[] fightGameOverActions = new Action[3];
+        private readonly Action[] singleGameOverActions = new Action[2];
 
         private int curAttackIndex, prevAttackPosRoll, dir;
         private EnemyObject curEnemy;
@@ -74,18 +76,21 @@ namespace RenCSharp.Combat
         {
             Event_Bus.AddFloatEvent("EnemyDamageNumber", SpawnEnemyDamageNumber);
             Event_Bus.AddFloatEvent("UpdateFMButtonRevealTime", UpdateButtonRevealTime);
-            gameOverActions[2] = () => { ssl.LoadAnScene(1); }; //Return to Main Menu
-            gameOverActions[1] = () => { Menu_Manager.MM.OpenAMenu(10); }; //Load a Save (open up unclosable/unchangeable save menu)
-            gameOverActions[0] = () => 
+            fightGameOverActions[2] = () => { ssl.LoadAnScene(1); }; //Return to Main Menu
+            fightGameOverActions[1] = () => { Menu_Manager.MM.OpenAMenu(10); }; //Load a Save (open up unclosable/unchangeable save menu)
+            fightGameOverActions[0] = () => 
             {
-                if (SaveLoad.TryLoad(autoSaveName, out SaveData sd, $"Saves_{Textbox_String.GetReplacerTexts["{MC}"]}/AutoSaves")) 
-                {
-                    gameOverAnimation.Timeline.TimelineInitial(); //undo timeline?
-                    Event_Bus.TryFireSingleObjEvent("LoadTheGame", sd); 
-                }
-                else 
-                { RenConsole.Log("BRO YOU DON'T HAVE A FIGHT AUTOSAVE!!!", LogSeverity.LogError); }
+
+                    if (SaveLoad.TryLoad(autoSaveName, out SaveData sd, $"Saves_{Textbox_String.GetReplacerTexts["{MC}"]}/AutoSaves"))
+                    {
+                        gameOverAnimation.Timeline.TimelineInitial(); //undo timeline?
+                        Event_Bus.TryFireSingleObjEvent("LoadTheGame", sd);
+                    }
+                    else
+                    { RenConsole.Log("BRO YOU DON'T HAVE A FIGHT AUTOSAVE!!!", LogSeverity.LogError); }
             }; //Retry Fight
+            singleGameOverActions[0] = () => { Menu_Manager.MM.OpenAMenu(10); };
+            singleGameOverActions[1] = () => { ssl.LoadAnScene(1); };
         }
 
         private void OnDisable()
@@ -194,7 +199,7 @@ namespace RenCSharp.Combat
             }
             else //L Bozo
             {
-                _ = LostTheFightAsync();
+                _ = LostTheFightAsync(false);
             }
         }
         private IEnumerator RunThroughAttack(EnemyAttack ea)
@@ -223,8 +228,7 @@ namespace RenCSharp.Combat
                 activeProj.RemoveAt(i);
             }
             ea.ControlType.ExitControl(); //disable player dodge object and turn off its controls
-            Player_Object.BeforeDisablePlayerAction?.Invoke();
-            playerObj.SetActive(false);
+            
             if (!singleAttack)
             {
                 curAttackIndex++;
@@ -235,7 +239,12 @@ namespace RenCSharp.Combat
                 }
             }
 
-            yield return CloseArena();
+            if (!lostFight) 
+            {
+                Player_Object.BeforeDisablePlayerAction?.Invoke();
+                playerObj.SetActive(false);
+                yield return CloseArena(); 
+            }
 
             if(!singleAttack) yield return PlayerTurnRoutine();
             else if(!lostFight)
@@ -250,7 +259,7 @@ namespace RenCSharp.Combat
             else
             {
                 fighting = false;
-                _ = LostTheFightAsync();
+                _ = LostTheFightAsync(singleAttack);
             }
         }
         /// <summary>
@@ -273,13 +282,14 @@ namespace RenCSharp.Combat
             ssl.LoadAnScene(1);
         }
 
-        private async Awaitable LostTheFightAsync()
+        private async Awaitable LostTheFightAsync(bool singleAttack)
         {
-            Textbox_String.PauseTextbox(false);
+            //Textbox_String.PauseTextbox(false);
             _ = Audio_Manager.AM.MuteBGMAsync();
             await gameOverAnimation.PlayTimelineAsync();
             _ = Audio_Manager.AM.PlayBGM(gameOverSong, 2f);
-            await Prompt_Inputs.ListButtonInputPrompt(gameOverButtonFab, gameOverButtonHolder, gameOverOptions, gameOverActions);
+            if (!singleAttack) await Prompt_Inputs.ListButtonInputPrompt(gameOverButtonFab, gameOverButtonHolder, fightGameOverOptions, fightGameOverActions);
+            else await Prompt_Inputs.ListButtonInputPrompt(gameOverButtonFab, gameOverButtonHolder, singleGameOverOptions, singleGameOverActions);
         } 
 
         private IEnumerator OldEnemyAttackRoutine(EnemyAttack ea)

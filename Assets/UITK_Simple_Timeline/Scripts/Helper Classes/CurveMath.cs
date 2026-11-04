@@ -16,6 +16,13 @@ namespace UITK_SimpleTimeline
         {
             float[] toReturn = new float[2];
             float dif = 1;
+            if (frames == null)
+            {
+                Debug.Log("Null frame, returning just the out and in tangent.");
+                toReturn[0] = 0;
+                toReturn[1] = 0;
+                return toReturn;
+            }
             switch (frames[0].Value) //scale the tangents by the difference in magnitudes.
             {
                 case float f:
