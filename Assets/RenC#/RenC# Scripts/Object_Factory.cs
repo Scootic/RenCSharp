@@ -1,10 +1,12 @@
 using Coffee.UIExtensions;
 using RenCSharp.EXPERIMENTAL;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UObject = UnityEngine.Object;
 namespace RenCSharp
 {
     /// <summary>
@@ -13,6 +15,7 @@ namespace RenCSharp
     public static class Object_Factory 
     {
         private static readonly Dictionary<string, GameObject> activeGameObjects = new();
+        public static Dictionary<string, GameObject> ActiveGameObjects => activeGameObjects;
 
         public static bool TryGetObject(string name, out GameObject GO)
         {
@@ -57,7 +60,7 @@ namespace RenCSharp
 
         public static GameObject SpawnObject(GameObject prefab, string name, Transform parent = null)
         {
-            GameObject t = GameObject.Instantiate(prefab, parent);
+            GameObject t = UObject.Instantiate(prefab, parent);
             t.name = name;
             if (activeGameObjects.ContainsKey(name))
             {
@@ -106,7 +109,7 @@ namespace RenCSharp
                 return null;
             }
 
-            GameObject uiParticleObj = GameObject.Instantiate(UIParticleObjHandle.Result as GameObject, parent);
+            GameObject uiParticleObj = UObject.Instantiate(UIParticleObjHandle.Result as GameObject, parent);
             UIParticleObjHandle.Release();
             uiParticleObj.name = name;
 
@@ -146,12 +149,72 @@ namespace RenCSharp
             activeGameObjects.Add(name, uiParticleObj);
             return uiParticleObj;
         }
+        /// <summary>
+        /// Specific method for spawning particle objects, because they have more derangement going on.
+        /// </summary>
+        /// <returns></returns>
+        public static async Awaitable<GameObject> SpawnParticleObject(SpawnProjectile data)
+        {
+            await Awaitable.MainThreadAsync();
+            AsyncOperationHandle UIParticleObjHandle = Addressables.LoadAssetAsync<GameObject>(data.UIParticleFab.AssetGUID);
+            await UIParticleObjHandle.Task;
+
+            if(UIParticleObjHandle.Status == AsyncOperationStatus.Failed) 
+            {
+                Debug.LogError("Problem loading UIParticleObject: " + data.UIParticleFab.AssetGUID);
+                UIParticleObjHandle.Release();
+                return null;
+            }
+            if(!TryGetComponent(data.ParentName, out Transform t))
+            {
+                Debug.LogError("Problem getting transform parent, setting parent as null.");
+                t = null;
+            }
+            GameObject uiParticleObj = UObject.Instantiate(UIParticleObjHandle.Result as GameObject, t);
+            UIParticleObjHandle.Release();
+            uiParticleObj.name = data.Name;
+
+            GameObject particlechild = uiParticleObj.transform.GetChild(0).gameObject;
+            ParticleSystem ogParticleSystem = particlechild.GetComponent<ParticleSystem>();
+
+
+                AsyncOperationHandle subParticleObjHandle = Addressables.LoadAssetAsync<GameObject>(data.SubParticleFab.AssetGUID);
+                await subParticleObjHandle.Task;
+                if(subParticleObjHandle.Status == AsyncOperationStatus.Failed)
+                {
+                    Debug.LogError("Problem loading subparticles: " + data.SubParticleFab.AssetGUID + ", still spawning in the UIParticleObj");
+                }
+                else
+                {
+                    GameObject subPartyFab = subParticleObjHandle.Result as GameObject;
+                    ParticleSystem ps = subPartyFab.GetComponent<ParticleSystem>();
+                    ogParticleSystem.CopyParticleSystem(ps);
+                    ParticleSystemRenderer psRender = ogParticleSystem.GetComponent<ParticleSystemRenderer>();
+                    psRender.CopyValuesThroughReflection(ps.GetComponent<ParticleSystemRenderer>());
+                    UIParticle uip = uiParticleObj.GetComponent<UIParticle>();
+                    uip.RefreshParticles();
+                }
+                subParticleObjHandle.Release();
+
+
+            if (!ogParticleSystem.main.loop) _ = RemoveObjectOverTimeAsync(data.Name, ogParticleSystem.main.duration); //don't await this, just start ts!
+            ogParticleSystem.Play();
+
+            uiParticleObj.transform.localPosition = data.LocalPosition;
+
+            ParticleToken pt = new(data.LocalPosition, data.UIParticleFab.AssetGUID, data.SubParticleFab.AssetGUID, data.Name, data.ParentName);
+            uiParticleObj.GetComponent<UIParticle_Helper>().SetMyParticleToken = pt;
+            Event_Bus.TryFireSingleObjEvent("AddParticleToList", pt);
+
+            activeGameObjects.Add(data.Name, uiParticleObj);
+            return uiParticleObj;
+        }
 
         public static async Awaitable<GameObject> SpawnObjectAsync(GameObject prefab, string name, Transform parent = null)
         {
             if (activeGameObjects.ContainsKey(name)) return null;
             await Awaitable.MainThreadAsync(); //make sure on main thread to do unity api call
-            GameObject t = GameObject.Instantiate(prefab, parent);
+            GameObject t = UObject.Instantiate(prefab, parent);
             t.name = name;
             activeGameObjects.Add(name, t);
             return t;
@@ -172,7 +235,7 @@ namespace RenCSharp
                     iroh.OnRemove();
                 }
                 activeGameObjects.Remove(name);
-                GameObject.Destroy(t);
+                UObject.Destroy(t);
                 if(debug) Debug.Log("Removed object of name: " + name);
             } else Debug.LogWarning("No active gameobject of name: " + name);
         }
@@ -195,12 +258,24 @@ namespace RenCSharp
         /// </summary>
         public static void ScrubDictionary()
         {
+            List<GameObject> boysToDestroy = new();
             foreach(KeyValuePair<string, GameObject> kvp in activeGameObjects)
             {
-                GameObject.Destroy(kvp.Value);
+                boysToDestroy.Add(kvp.Value);
+            }
+            for(int i = boysToDestroy.Count - 1; i >= 0; i--)
+            {
+                UObject.Destroy(boysToDestroy[i]);
             }
 
             activeGameObjects.Clear();
         }
+    }
+    [Serializable]
+    public struct SpawnProjectile
+    {
+        public string Name, ParentName;
+        public Vector3 LocalPosition;
+        public AssetReference UIParticleFab, SubParticleFab;
     }
 }

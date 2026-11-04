@@ -4,7 +4,7 @@ using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
-    public class TMP_FloatEvent : MonoBehaviour
+    public sealed class TMP_FloatEvent : MonoBehaviour
     {
         [SerializeField] private string prefixText, suffixText;
         [SerializeField] private string eventName;

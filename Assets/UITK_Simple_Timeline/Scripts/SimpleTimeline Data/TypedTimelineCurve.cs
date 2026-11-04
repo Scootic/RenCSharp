@@ -82,8 +82,10 @@ namespace UITK_SimpleTimeline
             //make the new keyframe its default value if it's an IDefaultableNotNull type
             else
             {
-                IDefaultableNotNull<T> idnn = toAdd.Value as IDefaultableNotNull<T>;
-                if (idnn != null) toAdd.Value = idnn.Default();
+                if (toAdd.Value is IDefaultableNotNull<T> idnn && idnn != null)
+                {
+                    toAdd.Value = idnn.Default();
+                }
             }
             //otherwise, just add a blank keyframe if it's the first of its kind.
             keyframes.Add(toAdd);

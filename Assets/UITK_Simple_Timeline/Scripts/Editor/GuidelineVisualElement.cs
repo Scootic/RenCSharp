@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 namespace UITK_SimpleTimeline.Editor
 {
     /// <summary>
-    /// Type of line/block that spans all the way from the bottom to the top. <br/><br/>
+    /// Type of line/block that spans all the way from the bottom to the top. Can be optionally constructed with a width and color. <br/><br/>
     /// Adjust the GuidelineVisualElement's style.left to move the guideline around its space.
     /// </summary>
     [UxmlElement]
@@ -16,6 +16,7 @@ namespace UITK_SimpleTimeline.Editor
             style.maxWidth = 1f;
             style.top = 0;
             style.bottom = -20;
+            style.height = new StyleLength(Length.Percent(100f));
             style.position = Position.Absolute;
             style.left = 0f;//this is the boy that gets adjusted when draggening?
             focusable = false;
@@ -28,6 +29,7 @@ namespace UITK_SimpleTimeline.Editor
             style.maxWidth = width;
             style.top = 0;
             style.bottom = -20;
+            style.height = new StyleLength(Length.Percent(100f));
             style.position = Position.Absolute;
             style.left = 0f;//this is the boy that gets adjusted when draggening?
             focusable = false;
@@ -40,6 +42,7 @@ namespace UITK_SimpleTimeline.Editor
             style.maxWidth = 1f;
             style.top = 0;
             style.bottom = -20;
+            style.height = new StyleLength(Length.Percent(100f));
             style.position = Position.Absolute;
             style.left = 0f;//this is the boy that gets adjusted when draggening?
             focusable = false;
@@ -53,6 +56,7 @@ namespace UITK_SimpleTimeline.Editor
             style.top = 0;
             style.bottom = -20;
             style.position = Position.Absolute;
+            style.height = new StyleLength(Length.Percent(100f));
             style.left = 0f;//this is the boy that gets adjusted when draggening?
             focusable = false;
             pickingMode = PickingMode.Ignore;

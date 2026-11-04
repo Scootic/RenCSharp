@@ -84,6 +84,7 @@ namespace RenCSharp.Combat.Player
                 img.color = Color.Lerp(ogC, Color.white, invincibleCurve.Evaluate(eval));
                 yield return null;
             }
+            img.color = ogC;
             invincible = false;
         }
         public void TakeDamage(object floatarg, object boolarg)

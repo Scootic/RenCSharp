@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace RenCSharp
 {
-    public class UnityEvent_Bus_String : MonoBehaviour
+    public sealed class UnityEvent_Bus_String : MonoBehaviour
     {
         [SerializeField] private UnityEvent<string> fellaToFire;
         [SerializeField] private string eventName;

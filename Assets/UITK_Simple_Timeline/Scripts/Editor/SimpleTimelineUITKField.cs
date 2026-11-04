@@ -743,12 +743,15 @@ namespace UITK_SimpleTimeline.Editor
                 TimelineScrollView.Add(rep); //adding to the timeline scrollview should place it in the content section? i hope?
                 TypedTimelineCurveFields.Add(rep);//? i at 0 should be timeline ruler
             }
+            //Adjust the stinkin' height so our guidelines actually go the distance. Weird that the bg texture doesn't care, though...
+            ScrollViewContent.style.height = TimelineRuler.style.height.value.value + (150f * Helper.CurvesProperty.arraySize);
             GrayOverlay.BringToFront();
             CurrentTimePreview.BringToFront();
             MarkDirtyRepaint();
         }
-        //sets the current TimelineKeyframe<T> to edit and current timeline knob to affect based on those values.
+
         #endregion
+        //sets the current TimelineKeyframe<T> to edit and current timeline knob to affect based on those values.
         protected void DisplayKeyframeInformation(SerializedProperty keyframeToDisplay, VisualElement ve, bool arrayKeyframe = false)
         {
             Helper.ApplyChangesToObject();

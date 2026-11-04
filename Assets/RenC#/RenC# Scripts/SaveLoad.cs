@@ -9,7 +9,7 @@ namespace RenCSharp
     /// <summary>
     /// This guy handles Save/Load. Go figure!
     /// </summary>
-    public static class SaveLoad
+    public readonly struct SaveLoad
     {
         private static readonly BinaryFormatter bf = new();
 

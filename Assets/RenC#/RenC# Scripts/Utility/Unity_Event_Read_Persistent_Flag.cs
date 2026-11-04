@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp
 {
-    public class Unity_Event_Read_Persistent_Flag : MonoBehaviour
+    public sealed class Unity_Event_Read_Persistent_Flag : MonoBehaviour
     {
         [SerializeField] private UnityEvent eventToFire;
         [SerializeField] private ConditionalOperator operation;

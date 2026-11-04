@@ -6,7 +6,7 @@ namespace RenCSharp
     /// Only exists because built-in gravity doesn't work well with canvas objects. (Problems with weird-ah world scaling?)
     /// </summary>
     [RequireComponent(typeof(Rigidbody))]
-    public class RB_ConstForce : MonoBehaviour
+    public sealed class RB_ConstForce : MonoBehaviour
     {
         [SerializeField] private Vector3 dir;
         [SerializeField, Min(0.01f)] private float strength = 9.81f;

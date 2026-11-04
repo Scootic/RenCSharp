@@ -64,6 +64,8 @@ namespace RenCSharp
         [SerializeField, Tooltip("How long, in seconds, the SM will linger on a specific screen while on auto.")] private float lingerTime = 0.5f;
         [SerializeField, Tooltip("How many text boxes are remembered by history. Don't be zero!")] private byte historyLength = 10;
         [SerializeField] private float dialogBoxHideTime = 0.33f;
+        [SerializeField] private Vector3 dialogBoxShownPos;
+        [SerializeField] private Vector3 dialogBoxHiddenPos;
         [SerializeField] private AnimationCurve dialogBoxHideCurve = Animation_Helper.EaseOut;
 
         [Header("Debug - Please Don't Touch! May cause errors! Only visible to help you!")]
@@ -90,8 +92,6 @@ namespace RenCSharp
         private List<ParticleToken> activeParticles = new();
         private Coroutine textRoutine;
         private Awaitable textAwaitable;
-
-        private readonly Vector3 textJump = new(0, 400, 0);
 
         public static Sequence_Manager SM;
         public static Action ProgressScreenEvent, EndOfAllSequencesEvent;
@@ -1119,12 +1119,12 @@ namespace RenCSharp
             pd.color = Color.white;
         }
         #endregion
-        private void ToggleDialogUI(bool b)
+        private async void ToggleDialogUI(bool b)
         {
             if (async) 
             {
-                Debug.Log("Async toggle dialog ui");
-                _ = ToggleDialogUIAsync(b, curScreenIndex);
+                //Debug.Log("Async toggle dialog ui");
+                await ToggleDialogUIAsync(b, curScreenIndex);
             }
             else
             {
@@ -1133,11 +1133,11 @@ namespace RenCSharp
                 //even when (ESPECIALLY WHEN) we don't want it to.
                 if (b && dialogBox.rectTransform.localPosition.y >= -(dialogBox.canvas.renderingDisplaySize.y * 0.5f))
                 {
-                    dialogBox.transform.localPosition -= textJump;
+                    dialogBox.transform.localPosition = dialogBoxHiddenPos;
                 }
                 else if (!b)
                 {
-                    dialogBox.transform.localPosition += textJump;
+                    dialogBox.transform.localPosition = dialogBoxShownPos;
                 }
             }
         }
@@ -1145,26 +1145,33 @@ namespace RenCSharp
         private async Awaitable ToggleDialogUIAsync(bool b, int scrindex)
         {
             await Awaitable.MainThreadAsync();
-            Vector3 ogPos = dialogBox.transform.localPosition; //get local pos at start of function
+            Vector3 ogPos; //get local pos at start of function
             Vector3 endPos;
-
-            if (b && dialogBox.rectTransform.localPosition.y >= -(dialogBox.canvas.renderingDisplaySize.y * 0.5f))
+            //Debug.Log($"localYPos: {dialogBox.transform.localPosition.y}, canvas math garbage: {-(dialogBox.canvas.renderingDisplaySize.y * 0.5f)}");
+            if (b && dialogBox.transform.localPosition.y >= -(dialogBox.canvas.renderingDisplaySize.y * 0.5f))
             {
-                endPos = ogPos - textJump;
+                ogPos = dialogBoxShownPos;
+                endPos = dialogBoxHiddenPos;
             }
             else if (!b)
             {
-                endPos = ogPos + textJump;
+                ogPos = dialogBoxHiddenPos;
+                endPos = dialogBoxShownPos;
             }
-            else { Debug.Log("Super else, bailing"); return; }
+            else { Debug.Log("Super else, bailing AsyncDialogUIToggle"); return; }
             float t = 0;
             float eval;
             while (t < dialogBoxHideTime)
             {
-                if(scrindex != curScreenIndex)
+                
+                if(scrindex + 2 < curScreenIndex)
                 {
-                    Debug.Log("Scrindex different! Bailing!");
+                    Debug.Log("Scrindex different! Bailing AsyncDialogUIToggle!");
                     dialogBox.transform.localPosition = endPos;
+                    return;
+                }else if((paused == !b) || (!paused && b))
+                {
+                    dialogBox.transform.localPosition = ogPos;
                     return;
                 }
                 t += Time.deltaTime;

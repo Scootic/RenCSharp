@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace RenCSharp
 {
     [RequireComponent(typeof(Image))]
-    public class ImageFill_FloatEvent : MonoBehaviour
+    public sealed class ImageFill_FloatEvent : MonoBehaviour
     {
         [SerializeField] private string eventName;
         private Image me;

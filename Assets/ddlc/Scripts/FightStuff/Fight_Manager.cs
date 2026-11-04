@@ -12,6 +12,7 @@ using UITK_SimpleTimeline;
 using System;
 using Random = UnityEngine.Random;
 using RenCSharp.Menus;
+using UnityEngine.AddressableAssets;
 namespace RenCSharp.Combat
 {
     public sealed class Fight_Manager : MonoBehaviour
@@ -47,6 +48,8 @@ namespace RenCSharp.Combat
         [Header("Game Over")]
         [SerializeField] private SimpleTimelineAsset gameOverAnimation;
         [SerializeField] private GameObject gameOverButtonFab;
+        [SerializeField] private string autoSaveName = "!AutoSave_Fight";
+        [SerializeField] private AssetReference gameOverSong;
         private readonly string[] gameOverOptions = { "Retry Fight", "Load a Save", "Return to Main Menu" };
         private readonly Action[] gameOverActions = new Action[3];
 
@@ -72,8 +75,17 @@ namespace RenCSharp.Combat
             Event_Bus.AddFloatEvent("EnemyDamageNumber", SpawnEnemyDamageNumber);
             Event_Bus.AddFloatEvent("UpdateFMButtonRevealTime", UpdateButtonRevealTime);
             gameOverActions[2] = () => { ssl.LoadAnScene(1); }; //Return to Main Menu
-            //gameOverActions[1] = () => { Menu_Manager.MM }; //Load a Save (open up unclosable/unchangeable save menu)
-            gameOverActions[0] = () => { }; //Retry Fight
+            gameOverActions[1] = () => { Menu_Manager.MM.OpenAMenu(10); }; //Load a Save (open up unclosable/unchangeable save menu)
+            gameOverActions[0] = () => 
+            {
+                if (SaveLoad.TryLoad(autoSaveName, out SaveData sd, $"Saves_{Textbox_String.GetReplacerTexts["{MC}"]}/AutoSaves")) 
+                {
+                    gameOverAnimation.Timeline.TimelineInitial(); //undo timeline?
+                    Event_Bus.TryFireSingleObjEvent("LoadTheGame", sd); 
+                }
+                else 
+                { RenConsole.Log("BRO YOU DON'T HAVE A FIGHT AUTOSAVE!!!", LogSeverity.LogError); }
+            }; //Retry Fight
         }
 
         private void OnDisable()
@@ -182,7 +194,7 @@ namespace RenCSharp.Combat
             }
             else //L Bozo
             {
-                yield return LostTheFight();
+                _ = LostTheFightAsync();
             }
         }
         private IEnumerator RunThroughAttack(EnemyAttack ea)
@@ -238,7 +250,7 @@ namespace RenCSharp.Combat
             else
             {
                 fighting = false;
-                yield return LostTheFight();
+                _ = LostTheFightAsync();
             }
         }
         /// <summary>
@@ -264,7 +276,9 @@ namespace RenCSharp.Combat
         private async Awaitable LostTheFightAsync()
         {
             Textbox_String.PauseTextbox(false);
+            _ = Audio_Manager.AM.MuteBGMAsync();
             await gameOverAnimation.PlayTimelineAsync();
+            _ = Audio_Manager.AM.PlayBGM(gameOverSong, 2f);
             await Prompt_Inputs.ListButtonInputPrompt(gameOverButtonFab, gameOverButtonHolder, gameOverOptions, gameOverActions);
         } 
 

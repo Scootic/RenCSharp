@@ -771,6 +771,38 @@ namespace RenCSharp
             bgmRoutine = StartCoroutine(PlayBGMPogAddressable(song, fadeTime, isLooping, setSameTime));
         }
 
+        public async Awaitable MuteBGMAsync(float muteTime = 1f)
+        {
+            await Awaitable.MainThreadAsync();
+            if (enteringBGM) return;
+            float t = muteTime;
+            float leMusicStartVol = Mathf.Min(bgmVolMult, leMusic.volume);
+            while(t >= 0)
+            {
+                if (enteringBGM) return;
+                t -= Time.deltaTime;
+                leMusic.volume = Mathf.Lerp(0f,leMusicStartVol,t / muteTime);
+                await Awaitable.NextFrameAsync();
+            }
+            leMusic.volume = 0f;
+        }
+
+        public async Awaitable UnmuteBGMAsync(float unmuteTime = 1f)
+        {
+            await Awaitable.MainThreadAsync();
+            if (enteringBGM) return;
+            float t = 0;
+            float leMusicStartVol = Mathf.Min(bgmVolMult, leMusic.volume);
+            while (t < unmuteTime)
+            {
+                if (enteringBGM) return;
+                t += Time.deltaTime;
+                leMusic.volume = Mathf.Lerp(leMusicStartVol, bgmVolMult, t / unmuteTime);
+                await Awaitable.NextFrameAsync();
+            }
+            leMusic.volume = bgmVolMult;
+        }
+
         private IEnumerator PlayBGMPog(AudioClip musicToPlay, float fadeTime = 3f, bool isLooping = true, bool setSameTime = false)
         {
             enteringBGM = true;

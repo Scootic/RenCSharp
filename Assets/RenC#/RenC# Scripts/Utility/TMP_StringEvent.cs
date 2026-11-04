@@ -4,7 +4,7 @@ using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
-    public class TMP_StringEvent : MonoBehaviour
+    public sealed class TMP_StringEvent : MonoBehaviour
     {
         [SerializeField] private string eventName, defaultText;
         private TextMeshProUGUI textbox;

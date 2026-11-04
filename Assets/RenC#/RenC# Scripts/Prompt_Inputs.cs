@@ -18,7 +18,7 @@ namespace RenCSharp
         /// <param name="parent">Transform parent that the prefab spawns in.</param>
         /// <param name="queryText">Will have flags and replaceable text replaced.</param>
         /// <param name="result">The action that will be invoked with the InputField's text.</param>
-        /// <returns></returns>
+        /// <returns>When the player enters their text.</returns>
         public static async Awaitable TextInputPrompt(GameObject promptUIEPrefab, Transform parent, string queryText, Action<string> result)
         {
             receivedInput = false;
@@ -59,7 +59,7 @@ namespace RenCSharp
         /// <param name="parent">Transform parent that the prefab will spawn in. Assumed to have some sort of layout group to automatically handle button positions.</param>
         /// <param name="buttonLabels">The string text displayed on the buttons.</param>
         /// <param name="buttonResults">The possible results of pressing one button instead of another.</param>
-        /// <returns></returns>
+        /// <returns>When the player picks a button.</returns>
         public static async Awaitable ListButtonInputPrompt(GameObject buttonPrefab, Transform parent, string[] buttonLabels, Action[] buttonResults)
         {
             receivedInput = false;

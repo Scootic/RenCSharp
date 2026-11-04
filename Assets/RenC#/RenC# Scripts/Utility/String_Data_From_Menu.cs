@@ -7,7 +7,7 @@ namespace RenCSharp
     /// Simple GO to hang around until we make sure a string has been passed through
     /// to an event. Horrific and dangerous, please use sparingly.
     /// </summary>
-    public class String_Data_From_Menu : MonoBehaviour
+    public sealed class String_Data_From_Menu : MonoBehaviour
     {
         [SerializeField] private string eventName;
         [SerializeField] private string defaultString;

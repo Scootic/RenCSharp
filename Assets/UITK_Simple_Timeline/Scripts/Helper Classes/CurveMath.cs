@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using TangentMode = UITK_SimpleTimeline.TimelineKeyframeTangentMode;
 namespace UITK_SimpleTimeline
 {
@@ -49,6 +49,15 @@ namespace UITK_SimpleTimeline
             toReturn[0] = frames[0].OutTangent;
             toReturn[1] = frames[1].InTangent;
             return toReturn;
+        }
+        /// <summary>
+        /// Gets a random point along a unit circle, based on given degree range.
+        /// </summary>
+        /// <returns></returns>
+        public static Vector3 RandomSineVector(float minDeg = 0, float maxDeg = 360f)
+        {
+            float rad = Mathf.Deg2Rad * Random.Range(minDeg, maxDeg);
+            return new Vector3(Mathf.Cos(rad), Mathf.Sin(rad));
         }
 
         #region CubicHermiteSplines

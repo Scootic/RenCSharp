@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace RenCSharp
 {
-    public class Fullscreen_Toggle : MonoBehaviour
+    public sealed class Fullscreen_Toggle : MonoBehaviour
     {
         [SerializeField] private string playerPrefName = "Fullscreen";
         [SerializeField] private Toggle theToggler;

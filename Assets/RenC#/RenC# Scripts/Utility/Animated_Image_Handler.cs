@@ -5,7 +5,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 namespace RenCSharp
 {
     [RequireComponent(typeof(Image))]
-    public class Animated_Image_Handler : MonoBehaviour
+    public sealed class Animated_Image_Handler : MonoBehaviour
     {
         private Image image;
         private Sprite[] animationFrames;

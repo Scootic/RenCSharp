@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 namespace RenCSharp
 {
-    public class TextHolder_Scaler : MonoBehaviour
+    public sealed class TextHolder_Scaler : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI textComponent;
         [SerializeField] private RectTransform me, textRect;

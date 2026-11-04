@@ -3,7 +3,7 @@ using UnityEngine;
 using RenCSharp.EXPERIMENTAL;
 namespace RenCSharp
 {
-    public class Set_Persistent_Flag : MonoBehaviour
+    public sealed class Set_Persistent_Flag : MonoBehaviour
     {
         [SerializeField] private string id;
         public void SetPersistentFlag(int value)

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 namespace RenCSharp
 {
-    public class BGM_On_Start : MonoBehaviour
+    public sealed class BGM_On_Start : MonoBehaviour
     {
         [SerializeField] private AssetReference bgm;
         [SerializeField, Min(0)] private float fadeTime = 3;
