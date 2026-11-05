@@ -149,7 +149,6 @@ GameObject:
   - component: {fileID: 682819374587817701}
   - component: {fileID: 4991792695219461469}
   - component: {fileID: 8153918950037617235}
-  - component: {fileID: 4388598797701841894}
   m_Layer: 5
   m_Name: skyrimbutton
   m_TagString: Untagged
@@ -259,27 +258,3 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4388598797701841894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373857447437295792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9dd0d75fa906d34b94dfb348148a4ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textComponent: {fileID: 9205256728222777725}
-  me: {fileID: 807913304115501900}
-  textRect: {fileID: 1574747398702551904}
-  autoSizeTextIfPartialScaling: 1
-  minCharCount: 14
-  maxCharCount: 60
-  minSizeDelta: {x: 500, y: 100}
-  maxSizeDelta: {x: 1000, y: 250}
-  localTextRectDeltaOffset: {x: -40, y: -30}
-  lerpPosition: 0
-  minPosition: {x: 0, y: 0, z: 0}
-  maxPosition: {x: 0, y: 0, z: 0}

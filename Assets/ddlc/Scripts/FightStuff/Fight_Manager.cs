@@ -284,7 +284,7 @@ namespace RenCSharp.Combat
 
         private async Awaitable LostTheFightAsync(bool singleAttack)
         {
-            //Textbox_String.PauseTextbox(false);
+            Textbox_String.PauseTextbox(true);
             _ = Audio_Manager.AM.MuteBGMAsync();
             await gameOverAnimation.PlayTimelineAsync();
             _ = Audio_Manager.AM.PlayBGM(gameOverSong, 2f);

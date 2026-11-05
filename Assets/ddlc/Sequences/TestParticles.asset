@@ -21,7 +21,7 @@ MonoBehaviour:
     - rid: 268099459762618441
     - rid: 268099459762618442
   - speaker: {fileID: 0}
-    dialog: 
+    dialog: light raib
     ScreenActions:
     - rid: 268099459762618454
     - rid: 4972360430703870061
@@ -111,6 +111,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 268099819477139577
     - rid: 268099819477139579
+    - rid: 7022832662495100987
   - speaker: {fileID: 0}
     dialog: blackhole
     ScreenActions:
@@ -122,8 +123,9 @@ MonoBehaviour:
     - rid: 6136300904519827457
     - rid: 6136300904519827513
   - speaker: {fileID: 0}
-    dialog: 
-    ScreenActions: []
+    dialog: player cdeayj
+    ScreenActions:
+    - rid: 7022832662495100986
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 0}
@@ -164,7 +166,7 @@ MonoBehaviour:
     - rid: 268099459762618442
       type: {class: AutoSave_Screen, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        fileName: '!aTest_Particles'
+        fileName: '!AutoSave_Test_Particles'
     - rid: 268099459762618443
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1131,6 +1133,37 @@ MonoBehaviour:
       data:
         actorToRemove: {fileID: 11400000, guid: 0ad912a4f92445545a2225f1d74898be, type: 2}
         fadeTime: 0.5
+    - rid: 7022832662495100986
+      type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        spawnPosition: {x: 0, y: 0, z: 0}
+        fellaToSpawnPrefab:
+          m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+        particlesName: particles
+        placeToSpawnName: Overlay
+        deleteOnScreenProgression: 1
+        overrideParticles: 1
+        overridingParticles:
+          m_AssetGUID: 4ae82f2d9a46a4f48a3851c87131cd79
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+    - rid: 7022832662495100987
+      type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        songAsset:
+          m_AssetGUID: 68afba36822471443ae210d9da4d1016
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+        fadeTime: 1
+        setToSameTime: 0
     - rid: 7856103004196307002
       type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
       data:
