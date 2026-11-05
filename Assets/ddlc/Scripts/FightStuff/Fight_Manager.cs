@@ -81,7 +81,7 @@ namespace RenCSharp.Combat
             fightGameOverActions[0] = () => 
             {
 
-                    if (SaveLoad.TryLoad(autoSaveName, out SaveData sd, $"Saves_{Textbox_String.GetReplacerTexts["{MC}"]}/AutoSaves"))
+                    if (SaveLoad.TryLoad(autoSaveName, out SaveData sd, $"Saves_{Textbox_String.GetReplacerTexts["{mc}"]}/AutoSaves"))
                     {
                         gameOverAnimation.Timeline.TimelineInitial(); //undo timeline?
                         Event_Bus.TryFireSingleObjEvent("LoadTheGame", sd);

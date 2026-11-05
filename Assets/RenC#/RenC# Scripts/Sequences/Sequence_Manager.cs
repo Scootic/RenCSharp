@@ -978,7 +978,21 @@ namespace RenCSharp
             Texture2D toReturn = new(UScreen.width, UScreen.height, TextureFormat.ARGB32, false);
             toReturn.ReadPixels(new Rect(0, 0, UScreen.width, UScreen.height), 0, 0);
             toReturn.Apply();
-            toReturn = Evil_Texture_Resizer.Scaled(toReturn, 640, 480, FilterMode.Trilinear);
+            float pref = PlayerPrefs.GetFloat("ScreenShotQuality", 2f);
+            int x = pref switch
+            {
+                0f => 160,
+                1f => 320,
+                _ => 640
+            };
+            int y = pref switch
+            {
+                0f => 120,
+                1f => 240,
+                _ => 480
+            };
+            //Point filtering seems to save the most space, probably because less colors used.?
+            toReturn = Evil_Texture_Resizer.Scaled(toReturn, x, y, FilterMode.Point);
             return toReturn.EncodeToPNG();
         }
 
