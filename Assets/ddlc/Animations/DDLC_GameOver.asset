@@ -31,6 +31,12 @@ MonoBehaviour:
     - rid: 7022832662495100983
     - rid: 7022832662495100984
     - rid: 7022832662495100985
+    - rid: 7022832687643885616
+    - rid: 7022832687643885617
+    - rid: 7022832687643885618
+    - rid: 7022832687643885619
+    - rid: 7022832687643885620
+    - rid: 7022832687643885621
   references:
     version: 2
     RefIds:
@@ -39,17 +45,17 @@ MonoBehaviour:
       data:
         WrappingMode: 1
         TemporaryRep:
-          Name: 
-          ParentName: 
+          Name: fog
+          ParentName: throwhandsbuttonholder
           LocalPosition: {x: 0, y: 0, z: 0}
           UIParticleFab:
-            m_AssetGUID: 
+            m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
             m_SubObjectName: 
             m_SubObjectType: 
             m_SubObjectGUID: 
             m_EditorAssetChanged: 0
           SubParticleFab:
-            m_AssetGUID: 
+            m_AssetGUID: 17ebe185743658340823e7383acb2441
             m_SubObjectName: 
             m_SubObjectType: 
             m_SubObjectGUID: 
@@ -81,6 +87,36 @@ MonoBehaviour:
               m_EditorAssetChanged: 0
             SubParticleFab:
               m_AssetGUID: 4ae82f2d9a46a4f48a3851c87131cd79
+              m_SubObjectName: 
+              m_SubObjectType: 
+              m_SubObjectGUID: 
+              m_EditorAssetChanged: 0
+        - KeyframeIndex: 1
+          CurveIndex: 0
+          ArrayIndex: 0
+          Time: 5
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 1
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 1
+          Value:
+            Name: fog
+            ParentName: throwhandsbuttonholder
+            LocalPosition: {x: 0, y: 0, z: 0}
+            UIParticleFab:
+              m_AssetGUID: 4b8ee4975bf03bd4e89ddc8b6eafe91c
+              m_SubObjectName: 
+              m_SubObjectType: 
+              m_SubObjectGUID: 
+              m_EditorAssetChanged: 0
+            SubParticleFab:
+              m_AssetGUID: 17ebe185743658340823e7383acb2441
               m_SubObjectName: 
               m_SubObjectType: 
               m_SubObjectGUID: 
@@ -143,7 +179,7 @@ MonoBehaviour:
         WrappingMode: 1
         TemporaryRep:
         - 0
-        - 150
+        - NaN
         - 0
         keyframes:
         - List: []
@@ -186,15 +222,15 @@ MonoBehaviour:
         WrappingMode: 1
         TemporaryRep:
           AudioAsset:
-            m_AssetGUID: a67f3af0a88dfef4194e419ab633887d
+            m_AssetGUID: 
             m_SubObjectName: 
             m_SubObjectType: 
             m_SubObjectGUID: 
-            m_EditorAssetChanged: 1
-          Position: {x: -0.25, y: 0, z: 0}
+            m_EditorAssetChanged: 0
+          Position: {x: 0, y: 0, z: 0}
           Volume: 1
-          MinPitch: 0.99
-          MaxPitch: 1.01
+          MinPitch: 1
+          MaxPitch: 1
           Loop: 0
           OnlyOne: 0
           Environmental: 0
@@ -345,7 +381,7 @@ MonoBehaviour:
         WrappingMode: 1
         TemporaryRep:
         - 0
-        - -351
+        - NaN
         - 0
         keyframes:
         - List: []
@@ -386,9 +422,24 @@ MonoBehaviour:
       type: {class: OFRemoveObjectCurve, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         WrappingMode: 1
-        TemporaryRep: 
+        TemporaryRep: PlayerObject
         keyframes:
         - KeyframeIndex: 0
+          CurveIndex: 5
+          ArrayIndex: 0
+          Time: 0
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 1
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 1
+          Value: fog
+        - KeyframeIndex: 1
           CurveIndex: 5
           ArrayIndex: 0
           Time: 5
@@ -408,10 +459,10 @@ MonoBehaviour:
       data:
         WrappingMode: 1
         TemporaryRep:
-        - 0
         - 1
         - 0
-        - 1
+        - 0
+        - NaN
         keyframes:
         - List: []
         - List: []
@@ -471,7 +522,7 @@ MonoBehaviour:
         - 0
         - 0
         - 0
-        - 0
+        - 1
         keyframes:
         - List: []
         - List: []
@@ -523,3 +574,547 @@ MonoBehaviour:
             DefaultTangentMode: 1
             Value: 1
         ToAffect: throwhandsbuttonholder
+    - rid: 7022832687643885616
+      type: {class: OFPositionCurve, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        WrappingMode: 1
+        TemporaryRep:
+        - 0
+        - NaN
+        - 0
+        keyframes:
+        - List: []
+        - List:
+          - KeyframeIndex: 0
+            CurveIndex: 8
+            ArrayIndex: 1
+            Time: 0
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 2
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 705
+          - KeyframeIndex: 1
+            CurveIndex: 8
+            ArrayIndex: 1
+            Time: 1.5
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1200
+        - List: []
+        ToAffect: AbilityBarBG
+    - rid: 7022832687643885617
+      type: {class: ActorExpressionCurve, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        WrappingMode: 1
+        TemporaryRep:
+          indexes:
+          - 
+          - 
+          - closeEyeCry
+          - 
+          ActorToSet: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        keyframes:
+        - KeyframeIndex: 0
+          CurveIndex: 9
+          ArrayIndex: 0
+          Time: 0
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 16
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
+          Value:
+            indexes:
+            - 
+            - 
+            - terror
+            - 
+            ActorToSet: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        - KeyframeIndex: 1
+          CurveIndex: 9
+          ArrayIndex: 0
+          Time: 3
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 16
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
+          Value:
+            indexes:
+            - 
+            - 
+            - closeEyeCry
+            - 
+            ActorToSet: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    - rid: 7022832687643885618
+      type: {class: ActorExpressionCurve, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        WrappingMode: 1
+        TemporaryRep:
+          indexes:
+          - 
+          - 
+          - cryWeep
+          - 
+          ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        keyframes:
+        - KeyframeIndex: 0
+          CurveIndex: 10
+          ArrayIndex: 0
+          Time: 0
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 16
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
+          Value:
+            indexes:
+            - 
+            - 
+            - shock
+            - 
+            ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        - KeyframeIndex: 1
+          CurveIndex: 10
+          ArrayIndex: 0
+          Time: 3
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 16
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
+          Value:
+            indexes:
+            - 
+            - 
+            - cryWeep
+            - 
+            ActorToSet: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+    - rid: 7022832687643885619
+      type: {class: ActorExpressionCurve, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        WrappingMode: 1
+        TemporaryRep:
+          indexes:
+          - 
+          - 
+          - lookAwaySad
+          - 
+          ActorToSet: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        keyframes:
+        - KeyframeIndex: 0
+          CurveIndex: 11
+          ArrayIndex: 0
+          Time: 0
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 16
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
+          Value:
+            indexes:
+            - 
+            - 
+            - terror
+            - 
+            ActorToSet: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+        - KeyframeIndex: 1
+          CurveIndex: 11
+          ArrayIndex: 0
+          Time: 3
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 16
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
+          Value:
+            indexes:
+            - 
+            - 
+            - lookAwaySad
+            - 
+            ActorToSet: {fileID: 11400000, guid: 9f0072f96d4dfc24f9477258c07882f5, type: 2}
+    - rid: 7022832687643885620
+      type: {class: ActorExpressionCurve, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        WrappingMode: 1
+        TemporaryRep:
+          indexes:
+          - 
+          - 
+          - sadcry
+          - 
+          ActorToSet: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        keyframes:
+        - KeyframeIndex: 0
+          CurveIndex: 12
+          ArrayIndex: 0
+          Time: 0
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 16
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
+          Value:
+            indexes:
+            - 
+            - 
+            - fear
+            - 
+            ActorToSet: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+        - KeyframeIndex: 1
+          CurveIndex: 12
+          ArrayIndex: 0
+          Time: 3
+          InSlope: 0
+          OutSlope: 0
+          TangentMode: 16
+          InTangent: 0
+          OutTangent: 0
+          WeightedMode: 0
+          InWeight: 0
+          OutWeight: 0
+          ExcludedTangentModes: 15
+          DefaultTangentMode: 16
+          Value:
+            indexes:
+            - 
+            - 
+            - sadcry
+            - 
+            ActorToSet: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
+    - rid: 7022832687643885621
+      type: {class: OFImageColorCurve, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        WrappingMode: 1
+        TemporaryRep:
+        - NaN
+        - NaN
+        - NaN
+        - 0
+        keyframes:
+        - List:
+          - KeyframeIndex: 0
+            CurveIndex: 13
+            ArrayIndex: 0
+            Time: 0
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1
+          - KeyframeIndex: 1
+            CurveIndex: 13
+            ArrayIndex: 0
+            Time: 1.2
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 0
+          - KeyframeIndex: 2
+            CurveIndex: 13
+            ArrayIndex: 0
+            Time: 1.8
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1
+          - KeyframeIndex: 3
+            CurveIndex: 13
+            ArrayIndex: 0
+            Time: 2.4
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 0.2
+          - KeyframeIndex: 4
+            CurveIndex: 13
+            ArrayIndex: 0
+            Time: 3
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1
+        - List:
+          - KeyframeIndex: 0
+            CurveIndex: 13
+            ArrayIndex: 1
+            Time: 0
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1
+          - KeyframeIndex: 1
+            CurveIndex: 13
+            ArrayIndex: 1
+            Time: 0.5
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 0
+          - KeyframeIndex: 2
+            CurveIndex: 13
+            ArrayIndex: 1
+            Time: 1.4
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1
+          - KeyframeIndex: 3
+            CurveIndex: 13
+            ArrayIndex: 1
+            Time: 2.2
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 0
+          - KeyframeIndex: 4
+            CurveIndex: 13
+            ArrayIndex: 1
+            Time: 3
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1
+        - List:
+          - KeyframeIndex: 0
+            CurveIndex: 13
+            ArrayIndex: 2
+            Time: 0
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1
+          - KeyframeIndex: 1
+            CurveIndex: 13
+            ArrayIndex: 2
+            Time: 0.8
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 0
+          - KeyframeIndex: 2
+            CurveIndex: 13
+            ArrayIndex: 2
+            Time: 1.6
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1
+          - KeyframeIndex: 3
+            CurveIndex: 13
+            ArrayIndex: 2
+            Time: 2.5
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 0
+          - KeyframeIndex: 4
+            CurveIndex: 13
+            ArrayIndex: 2
+            Time: 3
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1
+        - List:
+          - KeyframeIndex: 0
+            CurveIndex: 13
+            ArrayIndex: 3
+            Time: 0
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1
+          - KeyframeIndex: 1
+            CurveIndex: 13
+            ArrayIndex: 3
+            Time: 3
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 2
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 1
+          - KeyframeIndex: 2
+            CurveIndex: 13
+            ArrayIndex: 3
+            Time: 5
+            InSlope: 0
+            OutSlope: 0
+            TangentMode: 1
+            InTangent: 0
+            OutTangent: 0
+            WeightedMode: 0
+            InWeight: 0
+            OutWeight: 0
+            ExcludedTangentModes: 0
+            DefaultTangentMode: 1
+            Value: 0
+        ToAffect: PlayerHolder

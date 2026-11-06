@@ -8,6 +8,7 @@ using RenCSharp.Combat.Interfaces;
 using RenCSharp.Combat.Player;
 using UnityEngine.UI;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UITK_SimpleTimeline;
 using System;
 using Random = UnityEngine.Random;
@@ -77,19 +78,30 @@ namespace RenCSharp.Combat
             Event_Bus.AddFloatEvent("EnemyDamageNumber", SpawnEnemyDamageNumber);
             Event_Bus.AddFloatEvent("UpdateFMButtonRevealTime", UpdateButtonRevealTime);
             fightGameOverActions[2] = () => { ssl.LoadAnScene(1); }; //Return to Main Menu
-            fightGameOverActions[1] = () => { Menu_Manager.MM.OpenAMenu(10); }; //Load a Save (open up unclosable/unchangeable save menu)
+            fightGameOverActions[1] = () => { 
+                combatCanvas.SetActive(false); 
+                Menu_Manager.MM.OpenAMenu(10);
+                gameOverAnimation.Timeline.TimelineInitial();
+            }; //Load a Save (open up unclosable/unchangeable save menu)
             fightGameOverActions[0] = () => 
             {
 
-                    if (SaveLoad.TryLoad(autoSaveName, out SaveData sd, $"Saves_{Textbox_String.GetReplacerTexts["{mc}"]}/AutoSaves"))
+                    if (SaveLoad.TryLoad(autoSaveName, out SaveData sd, $"Saves_" +
+                        $"{Regex.Replace(Textbox_String.GetReplacerTexts["{mc}"], "[ <>?*]", "_")}/AutoSaves"))
                     {
                         gameOverAnimation.Timeline.TimelineInitial(); //undo timeline?
+                        combatCanvas.SetActive(false);
                         Event_Bus.TryFireSingleObjEvent("LoadTheGame", sd);
                     }
                     else
                     { RenConsole.Log("BRO YOU DON'T HAVE A FIGHT AUTOSAVE!!!", LogSeverity.LogError); }
             }; //Retry Fight
-            singleGameOverActions[0] = () => { Menu_Manager.MM.OpenAMenu(10); };
+            singleGameOverActions[0] = () => 
+            {
+                combatCanvas.SetActive(false);
+                gameOverAnimation.Timeline.TimelineInitial();
+                Menu_Manager.MM.OpenAMenu(10); 
+            };
             singleGameOverActions[1] = () => { ssl.LoadAnScene(1); };
         }
 
@@ -438,32 +450,35 @@ namespace RenCSharp.Combat
         #region Player
         private IEnumerator PlayerTurnRoutine()
         {
-            Event_Bus.TryFireDoubleObjEvent("SetPlayerResistance", (object)true, (object)0f); //reset player resistance to value not affected by defend
-            if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
-            if (!WithinScriptedAttacks() && curAttackIndex >= curEnemy.MySO.RandomAttacks.Length) //evil ah check that's probably because
-                                                                                                  //of a random timing problem somewhere
-            {
-                curAttackIndex = RandomHelper.NoRepeatRoll("RandomAttackID", curEnemy.MySO.RandomAttacks.Length);
-                Debug.Log("New Rolled curAttackIndex: " + curAttackIndex);
-            }
-            flavorTextRoutine = StartCoroutine(Textbox_String.RunThroughText(combatTextbox, WithinScriptedAttacks() ? 
-                curEnemy.MySO.ScriptedFlavorTexts[curAttackIndex] : curEnemy.MySO.RandomFlavorTexts[curAttackIndex]));
-
-            yield return RevealPlayerActionsAnim(true);
-
-            pah.StartPlayerTurn();
-
-            while (playerTurn && fighting)
-            {
-                if(!pah.PlayerActionLockedIn) yield return null; //idle until the player locks in an action
-                else
+            if (lostFight) yield break;
+            
+                Event_Bus.TryFireDoubleObjEvent("SetPlayerResistance", (object)true, (object)0f); //reset player resistance to value not affected by defend
+                if (flavorTextRoutine != null) StopCoroutine(flavorTextRoutine);
+                if (!WithinScriptedAttacks() && curAttackIndex >= curEnemy.MySO.RandomAttacks.Length) //evil ah check that's probably because
+                                                                                                      //of a random timing problem somewhere
                 {
-                    yield return pah.CurrentPlayerAction.ActionResult();
-                    yield return RevealPlayerActionsAnim(false);
-                    pah.EndPlayerTurn();
-                    playerTurn = false;
+                    curAttackIndex = RandomHelper.NoRepeatRoll("RandomAttackID", curEnemy.MySO.RandomAttacks.Length);
+                    Debug.Log("New Rolled curAttackIndex: " + curAttackIndex);
                 }
-            }
+                flavorTextRoutine = StartCoroutine(Textbox_String.RunThroughText(combatTextbox, WithinScriptedAttacks() ?
+                    curEnemy.MySO.ScriptedFlavorTexts[curAttackIndex] : curEnemy.MySO.RandomFlavorTexts[curAttackIndex]));
+
+                yield return RevealPlayerActionsAnim(true);
+
+                pah.StartPlayerTurn();
+
+                while (playerTurn && fighting)
+                {
+                    if (!pah.PlayerActionLockedIn) yield return null; //idle until the player locks in an action
+                    else
+                    {
+                        yield return pah.CurrentPlayerAction.ActionResult();
+                        yield return RevealPlayerActionsAnim(false);
+                        pah.EndPlayerTurn();
+                        playerTurn = false;
+                    }
+                }
+            
         }
 
         private IEnumerator RevealPlayerActionsAnim(bool reveal) 

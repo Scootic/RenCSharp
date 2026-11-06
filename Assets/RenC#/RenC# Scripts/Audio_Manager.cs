@@ -321,19 +321,25 @@ namespace RenCSharp
                 Stop2DSFX(c, onlyStopOne, fadeOut, environmental);
                 return;
             }
-
-            AsyncOperationHandle handle = sfxToStop.LoadAssetAsync<AudioClip>();
-            await handle.Task;
-
-            if(handle.Status == AsyncOperationStatus.Failed)
+            try
             {
-                Debug.LogError("Failed to stop SFX: " + sfxToStop.Asset);
-                Addressables.Release(handle);
-                return;
-            }
+                AsyncOperationHandle handle = sfxToStop.LoadAssetAsync<AudioClip>();
+                await handle.Task;
 
-            AudioClip sfx = handle.Result as AudioClip;
-            Stop2DSFX(sfx, onlyStopOne, fadeOut, environmental);
+                if (handle.Status == AsyncOperationStatus.Failed)
+                {
+                    Debug.LogError("Failed to stop SFX: " + sfxToStop.Asset);
+                    Addressables.Release(handle);
+                    return;
+                }
+
+                AudioClip sfx = handle.Result as AudioClip;
+                Stop2DSFX(sfx, onlyStopOne, fadeOut, environmental);
+            }
+            catch
+            {
+                //???
+            }
         }
 
         public bool AlreadyPlaying2DSFX(AudioClip clipToCheck)
@@ -750,6 +756,8 @@ namespace RenCSharp
         /// <returns></returns>
         public async Awaitable PlayBGM(string assetGUID, float fadeTime = 5f, bool isLooping = true, bool setSameTime = false)
         {
+            string oldGUID = songAssetGUID;
+            songAssetGUID = assetGUID;
             AsyncOperationHandle songHandle = Addressables.LoadAssetAsync<AudioClip>(assetGUID);
             await songHandle.Task;
 
@@ -757,11 +765,13 @@ namespace RenCSharp
             {
                 Debug.LogWarning("Failed to load song asset (guid): " + assetGUID);
                 Addressables.Release(songHandle);
+                songAssetGUID = oldGUID;
                 return;
             }
 
             AudioClip song = songHandle.Result as AudioClip;
-            songAssetGUID = assetGUID;
+            Debug.Log($"Successfully loaded song: {song.name} to play.");
+            
 
             if (enteringBGM)
             {

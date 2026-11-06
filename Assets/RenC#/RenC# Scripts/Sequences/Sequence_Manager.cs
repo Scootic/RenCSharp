@@ -530,13 +530,19 @@ namespace RenCSharp
         }
         #endregion
         #region SaveLoadHandling
-        public void SaveGameData(object string_saveFileName, object bool_Auto)
+        public async void SaveGameData(object string_saveFileName, object bool_Auto)
         {
             if (saving) return; //don't interrupt our save, good god!
+            if (!async)
+            {
+                SaveData manToSave = SaveData((string)string_saveFileName);
 
-            SaveData manToSave = SaveData((string)string_saveFileName);
-
-            StartCoroutine(WaitForScreenShot(manToSave, (string)string_saveFileName, (bool)bool_Auto));
+                StartCoroutine(WaitForScreenShot(manToSave, (string)string_saveFileName, (bool)bool_Auto));
+            }
+            else
+            {
+                await SaveGameAsync(string_saveFileName, bool_Auto);
+            }
         }
 
         private IEnumerator WaitForScreenShot(SaveData sd, string fileName, bool auto)
@@ -923,7 +929,7 @@ namespace RenCSharp
                 st.OverlayColor = ovcolor;
                 st.MovingTransforms[2] = new TransformToken(ov.transform);
             }
-
+            Debug.Log($"saving song: {Audio_Manager.AM.CurrentBGM.name}");
             st.MusicAssetKey = Audio_Manager.AM.SongAssetGUID;
             //save actor data
             List<ActorToken> actorTokens = new();

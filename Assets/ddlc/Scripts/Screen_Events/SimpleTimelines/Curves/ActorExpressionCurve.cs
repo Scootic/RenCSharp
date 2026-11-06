@@ -10,12 +10,11 @@ namespace RenCSharp.Sequences
         public override string SpawnKeyframeName() => "Visual Indexes Keyframe";
         public override string ToAffectName() => "";
 
-
         private UI_Element uie = null;
 
         public override void Evaluate(float time)
         {
-            if (!ValidCurve) return;
+            //if (!ValidCurve) return;
             try
             {
                 VisualIndexes toEval = AtTime(time).Value;

@@ -225,5 +225,10 @@ namespace RenCSharp.Menus
             OnMenuClose();
             _ = OnMenuOpen();
         }
+
+        public void OpenSaveFileFolder()
+        {
+            Application.OpenURL("file://" + Application.persistentDataPath);
+        }
     }
 }
