@@ -631,8 +631,8 @@ MonoBehaviour:
         spawnOffset: {x: -300, y: 0, z: 0}
         visualSpriteIndexes:
         - skyDown
-        - skySmug
-        - blank
+        - skyDown
+        - inquisitive
         - ears
     - rid: 8164893214562320605
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
@@ -642,7 +642,7 @@ MonoBehaviour:
         spawnOffset: {x: 300, y: 0, z: 0}
         visualSpriteIndexes:
         - skyDown
-        - EMPTY
+        - skyDown
     - rid: 8164893214562320606
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -650,7 +650,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - grumpySpeak
+        - inquisitiveSpeak
         - 
     - rid: 8164893214562320607
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}

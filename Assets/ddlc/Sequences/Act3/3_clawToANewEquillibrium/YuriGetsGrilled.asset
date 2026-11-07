@@ -553,8 +553,8 @@ MonoBehaviour:
   myself:
     m_AssetGUID: 694b7fc933b8a874aac861f67b81a129
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   references:
     version: 2
@@ -565,9 +565,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 55d4495d49c35a244b461696b6b26b42
           m_SubObjectName: collegeofwinterhold_bedroom2
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -579,9 +579,9 @@ MonoBehaviour:
         fadeInTime: 0.5
         spawnOffset: {x: 0, y: -200, z: 0}
         visualSpriteIndexes:
-        - skyUp
-        - skyUp
-        - drool
+        - skyDown
+        - skyDown
+        - inquisitive
         - EMPTY
     - rid: 8164893166592852047
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
@@ -668,8 +668,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 3adafcab1ef943a4bb41603e18520b69
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
@@ -678,9 +678,9 @@ MonoBehaviour:
       data:
         actorToAlter: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
         visualSpriteIndexes:
-        - skyDown
         - 
-        - eyesClosedContent
+        - 
+        - inquisitiveSpeak
         - 
     - rid: 8164893166592852050
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
@@ -831,9 +831,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: e478f2aede899454ab64c7f12f05ca5a
           m_SubObjectName: collegeofwinterhold_archmageroom
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -844,8 +844,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -1021,8 +1021,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: cdd448717f16d76429cf69b2d3551ad2
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -1355,8 +1355,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: bebe1601b1544504f87d86c2e1e106c1
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2047,8 +2047,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2076,8 +2076,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 3adafcab1ef943a4bb41603e18520b69
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -2210,9 +2210,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 2ed8321cdfdf7cb4bb2e094376932cd4
           m_SubObjectName: collegeofwinterhold_lobby
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2399,8 +2399,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0

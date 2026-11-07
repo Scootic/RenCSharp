@@ -12,10 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
   m_Name: Arnbjorn
   m_EditorClassIdentifier: 
-  scriptedAttacks: []
-  scriptedFlavorTexts: []
-  randomAttacks: []
-  randomFlavorTexts: []
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 733d1a3f317d67243b90d7d57262044f, type: 2}
+  - {fileID: 11400000, guid: 2496321c926b23c409d5a1c88077c02d, type: 2}
+  - {fileID: 11400000, guid: acccf793f16e4e345920869a0bfc8bba, type: 2}
+  - {fileID: 11400000, guid: 27f011685a0c4fc4690ea84bf97dbf88, type: 2}
+  - {fileID: 11400000, guid: 28cb66227f4e6814082006b2bf0b2558, type: 2}
+  scriptedFlavorTexts:
+  - Arnbjorn swings his greataxe at Monika.
+  - Monika finds herself trapped between Arnbjorn and the table at the center of
+    the room.
+  - Arnbjorn swings his greataxe at Monika. Again.
+  - Arnbjorn swings his greataxe at Monika. Again- (I could've rewritten the Dark
+    Brotherhood to include more attack variety...)
+  - (I mean, come on, it's not like it's easy trying to come up with five different
+    ways to tell the player to dodge an axe while being in-universe narration- IS
+    THIS THING STILL ON???)
+  randomAttacks:
+  - {fileID: 11400000, guid: 2496321c926b23c409d5a1c88077c02d, type: 2}
+  - {fileID: 11400000, guid: 733d1a3f317d67243b90d7d57262044f, type: 2}
+  - {fileID: 11400000, guid: 28cb66227f4e6814082006b2bf0b2558, type: 2}
+  - {fileID: 11400000, guid: acccf793f16e4e345920869a0bfc8bba, type: 2}
+  - {fileID: 11400000, guid: 27f011685a0c4fc4690ea84bf97dbf88, type: 2}
+  randomFlavorTexts:
+  - Man, DODGE them axes!
+  - Man, MOVE around them axes! (Good luck knowing which one!)
+  - Man, JUMP OVER them axes!
+  - Man, MOVE around them axes! (Good luck knowing which one!)
+  - Man, MOVE around them axes! (Good luck knowing which one!)
   maxHealth: 120
   startingHealth: 80
   endFightHealth: 0

@@ -317,8 +317,8 @@ MonoBehaviour:
   myself:
     m_AssetGUID: 7bfcb920d98da504880811fe169a8626
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   references:
     version: 2
@@ -329,9 +329,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: fae421a4c00cfc242859fe0b9afae5a2
           m_SubObjectName: tofalkreathroadsign
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -352,8 +352,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 32a9370533f2f4142b3357de14c0bc4f
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
@@ -376,15 +376,16 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 4351268260154179665
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
         - m_AssetGUID: f5bf63c94bba03a4e960eb06084daa26
           m_SubObjectName: tofalkreath1
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -486,8 +487,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -564,8 +565,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 9d18ee034d9bea149886efe3a7a02057
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -816,8 +817,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -827,9 +828,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 92834ddc801120f4ab70a60058c41ef1
           m_SubObjectName: falkreath1
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -840,8 +841,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 05a05d43ce3caf54bb66fa61b71eb60d
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 2
         setToSameTime: 0
@@ -926,9 +927,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 1c327810218af634da5ec0eb1967b901
           m_SubObjectName: falkreathbearden
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -939,8 +940,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
@@ -958,8 +959,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -975,6 +976,7 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: 6b3fc705c618f6b4d9c703ebdd44e43b, type: 2}
+        autoSaveName: '!AutoSave_Fight'
     - rid: 4351268260154179720
       type: {class: Set_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -1035,8 +1037,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: a67f3af0a88dfef4194e419ab633887d
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 0.5

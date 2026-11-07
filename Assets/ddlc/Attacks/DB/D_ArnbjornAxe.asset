@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f9f3aa6e6a5af4d88f6a38c71a9dbe, type: 3}
+  m_Name: D_ArnbjornAxe
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 500, y: 500}
+  controlType:
+    rid: 7022832707537731587
+  attackDuration: 5
+  secondsPerProjectileSpawn: 0.5
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 464835816294406531, guid: 3ae3676fefbcdd943a3a0a5ed99eb4b9, type: 3}
+  spawnPoints: []
+  initialDirections: []
+  indexes: 
+  projectileSpawnPositionMethod: 1
+  projectileIndexMethod: 1
+  keyframes: 1e0000008b000000d7000000
+  frameData:
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -68, y: 348, z: 0}
+      InitialDirection: {x: 0.81153435, y: -0.58430475, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 1
+    - SpawnPosition: {x: 284, y: 100, z: 0}
+      InitialDirection: {x: -0.7376729, y: -0.67515826, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 2
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 184, y: 424, z: 0}
+      InitialDirection: {x: 0.016946718, y: -0.9998564, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 3
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 464, y: -80, z: 0}
+      InitialDirection: {x: -0.999635, y: -0.027017161, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 4
+  loops: 2
+  debug: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 7022832707537731587
+      type: {class: Dodge, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        dodgeCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0.0041656494
+            value: 0.0023498535
+            inSlope: 5.775083
+            outSlope: 5.775083
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.02145919
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -1.3502456
+            outSlope: -1.3502456
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.09012877
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        distanceFromCenter: 225
+        timeToDodge: 0.5
