@@ -7,11 +7,13 @@ namespace RenCSharp
     public sealed class ImageFill_FloatEvent : MonoBehaviour
     {
         [SerializeField] private string eventName;
+        [SerializeField] private bool wholeNumbers = false;
         private Image me;
 
         void UpdateFill(float f)
         {
-            me.fillAmount = f;
+            if (!wholeNumbers) me.fillAmount = f;
+            else me.fillAmount = Mathf.Floor(f);
         }
 
         private void OnEnable()

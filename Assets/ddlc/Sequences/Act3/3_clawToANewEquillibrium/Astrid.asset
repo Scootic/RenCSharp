@@ -12,18 +12,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4aabe72a5ca0c64bb498b549478e9b1, type: 3}
   m_Name: Astrid
   m_EditorClassIdentifier: 
-  scriptedAttacks: []
-  scriptedFlavorTexts: []
-  randomAttacks: []
-  randomFlavorTexts: []
+  scriptedAttacks:
+  - {fileID: 11400000, guid: 8cfd6c5632770674f8f4e5bd97091a13, type: 2}
+  - {fileID: 11400000, guid: ade0c8468c71c8644a96060cc1fbb591, type: 2}
+  - {fileID: 11400000, guid: 4855be41c0fbb0d4c90a125b30e6f6fd, type: 2}
+  - {fileID: 11400000, guid: 042d68493f81f8543b8b5d1a2b18b804, type: 2}
+  - {fileID: 11400000, guid: 7d531b98abed002448fdf41d5f006437, type: 2}
+  - {fileID: 11400000, guid: 152615387498715409bbd0a99b5a7c26, type: 2}
+  - {fileID: 11400000, guid: 8358e1841c9b77e48ad71db19a01bf4d, type: 2}
+  scriptedFlavorTexts:
+  - Astrid slashes her Blade of Woe at Monika.
+  - Astrid morphs into a spectre of darkness, stabbing at Monika using her death
+    art.
+  - Astrid opens a portal to the void above Monika's head, dropping woe down upon
+    her.
+  - Astrid's dark spectre splits, surrounding Monika and slashing at her.
+  - Astrid's spectre merges into one again, combining her death art with the still
+    open void portal.
+  - Astrid's spectre form flattens like a shadow, stabbing at Monika's ankles.
+  - Astrid's spectre splits again, all of them slashing at Monika at once.
+  randomAttacks:
+  - {fileID: 11400000, guid: 8cfd6c5632770674f8f4e5bd97091a13, type: 2}
+  - {fileID: 11400000, guid: ade0c8468c71c8644a96060cc1fbb591, type: 2}
+  - {fileID: 11400000, guid: 4855be41c0fbb0d4c90a125b30e6f6fd, type: 2}
+  - {fileID: 11400000, guid: 042d68493f81f8543b8b5d1a2b18b804, type: 2}
+  - {fileID: 11400000, guid: 7d531b98abed002448fdf41d5f006437, type: 2}
+  - {fileID: 11400000, guid: 152615387498715409bbd0a99b5a7c26, type: 2}
+  - {fileID: 11400000, guid: 8358e1841c9b77e48ad71db19a01bf4d, type: 2}
+  randomFlavorTexts:
+  - Astrid slashes her Blade of Woe at Monika. Again.
+  - Astrid slashes at Monika using her death art. Again.
+  - Astrid opens a portal to the void. Again.
+  - Astrid splits into multiple spectres. Again.
+  - Astrid opens a portal mixed with her death art. Again.
+  - Astrid slashes at Monika's ankles. Again.
+  - Astrid splits into multiple coordinated spectres. Again.
   maxHealth: 120
   startingHealth: 120
   endFightHealth: 0
   visualInformation:
   - {fileID: 21300000, guid: 3f9c2eeaddb5c2d419b28e0b23a13043, type: 3}
   enemyPrefab: {fileID: 1745643679205403353, guid: 3474d1de875dc0a408fabd5060391b0e, type: 3}
-  defeatText: The leader of the Dark Brotherhood has been slain; the first step in
-    purifying Tamriel of the vile guild's dark influence.
+  defeatText: The leader of the Dark Brotherhood has been slain; the first (technically
+    second) step in purifying Tamriel of her vile guild's dark influence.
   nameText: Astrid
   blurbText: She's the leader of the bunch, you know her well- Thi-thi-this this
     Kong is going to <b>hell</b>!

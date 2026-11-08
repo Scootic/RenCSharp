@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using RenCSharp.EXPERIMENTAL;
-using System.Collections.Generic;
 namespace RenCSharp.Combat.Player
 {
     public class Player_Action_Ability_Select : Player_Action
@@ -133,7 +132,7 @@ namespace RenCSharp.Combat.Player
             {
                 curGOIndex += yJump;
                 if (curGOIndex < 0) curGOIndex = activeGOs - curGOIndex;
-                while (!allAbilities[curGOIndex].gameObject.activeInHierarchy) curGOIndex++;
+                while (!allAbilities[curGOIndex].gameObject.activeInHierarchy) try { curGOIndex++; } catch { curGOIndex = 0; }
             }
 
             Debug.Log("current gameobject index: " + curGOIndex);

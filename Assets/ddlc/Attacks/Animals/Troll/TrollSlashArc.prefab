@@ -137,10 +137,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementType:
     rid: 268099750562627689
+  onHitEffects: []
+  despawnType:
+    rid: 1000
+  updateTypes: []
+  customUpdateWhileInactive: 1
+  customUpdateWhileActive: 1
+  movementWhileInactive: 1
+  movementWhileActive: 1
   damageOverTime: 0
   destroyOnHit: 0
   baseDamage: 5
-  moveSpeed: 500
   lifetime: 1.5
   spawnSoundVol: 0.4
   colliderEnableTime: 0.35
@@ -150,10 +157,14 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1000
+      type: {class: Empty_Projectile_DespawnType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
+      data: 
     - rid: 268099750562627689
       type: {class: BezierKurve_Projectile_MovementType, ns: RenCSharp.Combat.Enemies, asm: Enemies}
       data:
         speed: 500
+        movementSetsRotation: 1
         distanceFromSpawn: 800
         arcHeight: 400
         travelDuration: 1.5
@@ -163,8 +174,8 @@ MonoBehaviour:
           - serializedVersion: 3
             time: 0
             value: 0
-            inSlope: 2
-            outSlope: 2
+            inSlope: 0
+            outSlope: 0
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
@@ -172,8 +183,8 @@ MonoBehaviour:
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 0
-            outSlope: 0
+            inSlope: 2
+            outSlope: 2
             tangentMode: 0
             weightedMode: 0
             inWeight: 0

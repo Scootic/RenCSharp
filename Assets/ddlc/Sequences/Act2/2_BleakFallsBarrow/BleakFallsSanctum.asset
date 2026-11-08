@@ -630,7 +630,9 @@ MonoBehaviour:
     ScreenActions: []
   - speaker: {fileID: 0}
     dialog: Sayori all but tackles me in a hug.
-    ScreenActions: []
+    ScreenActions:
+    - rid: 7022832729979879549
+    - rid: 7022832729979879550
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
     dialog: Fwah-!
     ScreenActions: []
@@ -643,6 +645,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 9079474951791575208
     - rid: 9079474951791575210
+    - rid: 7022832729979879551
   - speaker: {fileID: 0}
     dialog: ... I've got several questions...
     ScreenActions: []
@@ -1172,6 +1175,88 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 1
         loopDuration: 1
+    - rid: 7022832729979879549
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: a67f3af0a88dfef4194e419ab633887d
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 7022832729979879550
+      type: {class: Zoom_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        toZoomOn:
+          ActorToFocus: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+          xPos: 0
+          yPos: 0
+          zPos: 0
+          zoomScale: 4
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        zoomDuration: 1
+    - rid: 7022832729979879551
+      type: {class: Zoom_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        toZoomOn:
+          ActorToFocus: {fileID: 0}
+          xPos: 0
+          yPos: 0
+          zPos: 0
+          zoomScale: 1
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        zoomDuration: 1
     - rid: 7219386302268178491
       type: {class: HSC_Lerp, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2582,6 +2667,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - lookAwaySad
+        - 
     - rid: 9079474951791575210
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2590,6 +2676,7 @@ MonoBehaviour:
         - skyUp
         - skyUp
         - sighSpeak
+        - 
     - rid: 9079474951791575211
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
