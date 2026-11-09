@@ -568,15 +568,14 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: Hm.
     ScreenActions:
-    - rid: 268099682247639163
     - rid: 268099682247639164
     - rid: 268099682247639165
     - rid: 268099682247639183
     - rid: 268099682247639184
+    - rid: 7022832755668156483
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: I'm not exactly sure what he was expecting...
     ScreenActions:
-    - rid: 268099682247639166
     - rid: 268099682247639167
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
     dialog: Wait, how'd he get in here ahead of us?
@@ -2452,15 +2451,6 @@ MonoBehaviour:
         - skyDown
         - surpriseSpeak
         - 
-    - rid: 268099682247639163
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - content
-        - 
     - rid: 268099682247639164
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2481,15 +2471,6 @@ MonoBehaviour:
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
-    - rid: 268099682247639166
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
-        visualSpriteIndexes:
-        - skyDown
-        - skyDown
-        - smile
-        - 
     - rid: 268099682247639167
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -3003,6 +2984,15 @@ MonoBehaviour:
         loop: 0
         stopOnScreenProgress: 0
         loopDuration: 1
+    - rid: 7022832755668156483
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - lookAwaySad
+        - 
     - rid: 7856103139480961089
       type: {class: Spawn_UIParticle, ns: RenCSharp.Sequences, asm: Sequences}
       data:

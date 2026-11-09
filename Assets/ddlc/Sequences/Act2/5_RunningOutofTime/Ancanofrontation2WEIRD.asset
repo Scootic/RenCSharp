@@ -20,20 +20,20 @@ MonoBehaviour:
     - rid: 268099729075732564
     - rid: 4972360475574796472
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: <NoiseText=0.5,1>I get it now</NoiseText>!
+    dialog: <NoiseText=1,1>I get it now</NoiseText>!
     ScreenActions:
     - rid: 268099729075732565
     - rid: 268099729075732566
     - rid: 268099729075732567
     - rid: 268099729075732582
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: <NoiseText=0.5,1>How could I have not noticed it sooner, fufufu</NoiseText>...
+    dialog: <NoiseText=1,1>How could I have not noticed it sooner, fufufu</NoiseText>...
     ScreenActions:
     - rid: 268099729075732568
     - rid: 268099729075732569
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: <NoiseText=0.5,1>Of course trials and tribulations follow us wherever
-      we go, we are just characters in a story</NoiseText>!
+    dialog: <NoiseText=1,1>Of course trials and tribulations follow us wherever we
+      go, we are just characters in a story</NoiseText>!
     ScreenActions:
     - rid: 268099729075732572
   - speaker: {fileID: 11400000, guid: 639d4037fbc3acd41947392e6542aac6, type: 2}
@@ -94,14 +94,14 @@ MonoBehaviour:
     - rid: 268099729075732598
     - rid: 268099729075732604
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: <NoiseText=0.5,1>I wonder what's going to be the next challenge on our
+    dialog: <NoiseText=1,1>I wonder what's going to be the next challenge on our
       journey</NoiseText>!
     ScreenActions:
     - rid: 268099795830177862
     - rid: 268099795830177861
     - rid: 4972360475574796473
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: <NoiseText=0.5,1>Hopefully it's something {mc} hasn't seen before; it'd
+    dialog: <NoiseText=1,1>Hopefully it's something {mc} hasn't seen before; it'd
       be more narratively satisfying that way</NoiseText>.
     ScreenActions:
     - rid: 268099795830177860
@@ -112,12 +112,12 @@ MonoBehaviour:
     ScreenActions:
     - rid: 268099729075732619
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: <NoiseText=0.5,1>The truth of this world, Sayori</NoiseText>...
+    dialog: <NoiseText=1,1>The truth of this world, Sayori</NoiseText>...
     ScreenActions:
     - rid: 268099729075732620
     - rid: 268099729075732621
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: <NoiseText=0.5,1>We're all just in one big story!</NoiseText>
+    dialog: <NoiseText=1,1>We're all just in one big story!</NoiseText>
     ScreenActions:
     - rid: 268099729075732622
     - rid: 268099729075732623
@@ -134,8 +134,7 @@ MonoBehaviour:
     ScreenActions:
     - rid: 268099729075732627
   - speaker: {fileID: 11400000, guid: 294377bcfa9c68d468fbdb53f597dc39, type: 2}
-    dialog: <NoiseText=0.5,1>Well of course I'm sure! That's the only reasonable
-      explanation</NoiseText>-
+    dialog: <NoiseText=1,1>Well of course I'm sure! That's the only reasonable explanation</NoiseText>-
     ScreenActions:
     - rid: 268099729075732628
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
@@ -189,8 +188,8 @@ MonoBehaviour:
   myself:
     m_AssetGUID: c9245460cdad09b42833c55cfcb89407
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   references:
     version: 2
@@ -210,8 +209,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 4a717978c2527d648be93e6fda5e3af7
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
@@ -316,9 +315,9 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 7ae89b6f8c3126d4fa85dd1e398805c6
           m_SubObjectName: vignet
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         overlayText: 
         fadeTime: 1
@@ -388,6 +387,7 @@ MonoBehaviour:
       type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         enemyToLoad: {fileID: 11400000, guid: cd37268547ccc174099d416f4754c7c2, type: 2}
+        autoSaveName: '!AutoSave_Fight'
     - rid: 268099729075732596
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -413,8 +413,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 4a717978c2527d648be93e6fda5e3af7
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -424,8 +424,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 791116a661dfe9549b471ecdd1a1ed28
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -550,8 +550,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -644,8 +644,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: e82cf2abd98ac45439666764a84213a5
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 2
         setToSameTime: 0
@@ -711,9 +711,9 @@ MonoBehaviour:
         imagesToSet:
         - m_AssetGUID: 50d9b37fe3370cd49a5c63c7803e6df6
           m_SubObjectName: emptypng
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         overlayText: 
         fadeTime: 0.5
@@ -725,8 +725,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 4f09cc94363340d459ef2681fc443d19
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -739,8 +739,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 4525e98dfb3d9ed4d90ab81145c9f53e
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1

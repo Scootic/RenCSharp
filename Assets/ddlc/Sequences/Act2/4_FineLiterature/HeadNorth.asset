@@ -358,7 +358,7 @@ MonoBehaviour:
     dialog: ... yeah, whatever.
     ScreenActions: []
   - speaker: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
-    dialog: <font=dragonfont><NoiseText=3,1>Wuld</NoiseText>!</font>
+    dialog: <font=dragonfont>Wuld!</font>
     ScreenActions:
     - rid: 4972360475574796427
   - speaker: {fileID: 0}
@@ -374,8 +374,8 @@ MonoBehaviour:
   myself:
     m_AssetGUID: 26fae915e6dc06c4da6e3c18594073d5
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   references:
     version: 2
@@ -388,15 +388,16 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - smile
+        - 
     - rid: 4351268099428974824
       type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         newBG:
         - m_AssetGUID: 18642cfa7931d1c44ad15df1ad6e50d6
           m_SubObjectName: whiterun_leavingroadsign
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -409,14 +410,15 @@ MonoBehaviour:
         - skyDown
         - skyDown
         - inquisitive
+        - 
     - rid: 4351268125698686976
       type: {class: Play_BGMAsset, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         songAsset:
           m_AssetGUID: 32a9370533f2f4142b3357de14c0bc4f
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
@@ -920,8 +922,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: a67f3af0a88dfef4194e419ab633887d
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -934,8 +936,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 3fed67d36988a0943aa6e9c566e32167
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
