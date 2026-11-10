@@ -34,8 +34,14 @@ namespace RenCSharp.Combat.Player
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange); //should update linvelo before we do below...?
             }
 
-            Vector3 newV = new Vector3(dir.x * speed, rb.linearVelocity.y, 0);
+            Vector3 newV = new Vector2(dir.x * speed, rb.linearVelocity.y);
             rb.linearVelocity = newV;
+        }
+
+        public override bool Moving()
+        {
+            //only care about if the player is inputting?
+            return !Mathf.Approximately(0f, rb.linearVelocity.x);
         }
 
         public override void ExitControl()

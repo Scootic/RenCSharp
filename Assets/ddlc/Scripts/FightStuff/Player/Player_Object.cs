@@ -17,6 +17,7 @@ namespace RenCSharp.Combat.Player
         [SerializeField] private string playerResistanceFlag = "PlayerResistance";
         private bool invincible = false, hurtSoundGood = true;
         private float curHealth;
+        private ControlType curControls;
         [Range(0,1)]private float preResistance = 0, postResistance = 0;
 
         public static Action BeforeDisablePlayerAction;
@@ -27,6 +28,7 @@ namespace RenCSharp.Combat.Player
         public float CurrentHealth => curHealth;
         public float Resistance() => postResistance;
         public Vector3 GetPosition => transform.position;
+        public ControlType SetControlType { set { curControls = value; } }
 
         public void StartOfFight()
         {
@@ -41,6 +43,8 @@ namespace RenCSharp.Combat.Player
             Event_Bus.TryFireFloatEvent("PlayerHealth", curHealth);
             Event_Bus.TryFireFloatEvent("PlayerHealthPerc", (curHealth / maxHealth));
         }
+
+        public bool Moving() => curControls.Moving();
 
         public void ManualSetHealths(int newMax, float newcur)
         {

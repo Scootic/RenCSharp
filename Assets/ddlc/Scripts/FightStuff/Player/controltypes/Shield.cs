@@ -9,8 +9,15 @@ namespace RenCSharp.Combat.Player
         [SerializeField] private Sprite shieldVisual;
         [SerializeField,Min(0.01f)] private float shieldTurnSpeed = 1;
         private GameObject curShield;
+        private bool moving;
+        public override bool Moving()
+        {
+            return moving;
+        }
+
         protected override void MovementEffect(Vector2 dir)
         {
+            moving = dir != Vector2.zero;
             Quaternion delayTurn = Quaternion.Lerp(curShield.transform.localRotation, TrigHelper.GetQuaternion(dir, -90), Time.deltaTime * shieldTurnSpeed);
             curShield.transform.localRotation = delayTurn;
         }
@@ -18,6 +25,7 @@ namespace RenCSharp.Combat.Player
         public override void EnterControl()
         {
             base.EnterControl();
+            moving = false;
             curShield = Object_Factory.SpawnObject(playerShieldObj, "PlayerShield", playerObj.transform);
             curShield.GetComponent<UI_Element>().Images[0].sprite = shieldVisual;
         }

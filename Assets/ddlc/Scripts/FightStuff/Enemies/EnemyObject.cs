@@ -19,11 +19,12 @@ namespace RenCSharp.Combat.Enemies
         private float t;
         private EnemySO meSo;
         public EnemySO MySO => meSo;
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
         {
             uie = GetComponent<UI_Element>();
         }
+        //enemies don't move. lol
+        public bool Moving() => false;
 
         // Update is called once per frame
         IEnumerator TakeDamageVisual()

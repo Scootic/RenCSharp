@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using System.Collections.Generic;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.UI;
 namespace RenCSharp.Sequences
 {
     public class Fade_TransitionAsset : Screen_Event, INullAssetReferenceCheck
@@ -20,21 +22,22 @@ namespace RenCSharp.Sequences
 
         public override void DoEvent()
         {
-            if(fadeDuration == 0)
+            assetRefGUIDs = new string[newBG.Count];
+            subObjectGUIDS = new string[newBG.Count];
+            for (int i = 0; i < newBG.Count; i++)
             {
+                assetRefGUIDs[i] = newBG[i].AssetGUID;
+                subObjectGUIDS[i] = newBG[i].SubObjectName;
+            }
+            if (fadeDuration == 0)
+            {
+                
                 SwapBG();
+                
                 return;
             }
             if (GameObject.FindGameObjectWithTag("Fader").TryGetComponent(out Animator fader)) //find the fader
             {
-                assetRefGUIDs = new string[newBG.Count];
-                subObjectGUIDS = new string[newBG.Count];
-                for (int i = 0; i < newBG.Count; i++)
-                {
-                    assetRefGUIDs[i] = newBG[i].AssetGUID;
-                    subObjectGUIDS[i] = newBG[i].SubObjectName;
-                }
-
                 fader.SetInteger("FadeType", fadeTransition);
                 fader.SetTrigger("Fade");
                 fader.SetFloat("SpeedMult", 1f / fadeDuration);
@@ -58,7 +61,11 @@ namespace RenCSharp.Sequences
         //?
         private void SwapBG()
         {
-            if (!Object_Factory.TryGetComponent("Background", out Animated_Image_Handler aih)) return;
+            if (!Object_Factory.TryGetComponent("Background", out Animated_Image_Handler aih)) 
+            {
+                Debug.LogWarning("Couldn't find background object's Animated_Image_Handler component. No can do on the Swap BG.");
+                return; 
+            }
             aih.ReceiveAnimationInformation(assetRefGUIDs, subObjectGUIDS, secondsPerFrame);
         }
 

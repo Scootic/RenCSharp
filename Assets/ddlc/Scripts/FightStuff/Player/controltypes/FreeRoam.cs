@@ -8,9 +8,14 @@ namespace RenCSharp.Combat.Player
         private Rigidbody rb;
         protected override void MovementEffect(Vector2 dir)
         {
-            Vector3 newV = new Vector3(dir.x, dir.y, 0) * speed;
+            Vector3 newV = dir * speed;
             //Debug.Log("NEW V: " + newV);
             rb.linearVelocity = newV;
+        }
+
+        public override bool Moving()
+        {
+            return !Mathf.Approximately(0f, rb.linearVelocity.magnitude);
         }
 
         public override void ExitControl()

@@ -27,7 +27,7 @@ MonoBehaviour:
     dialog: '{mc}...'
     ScreenActions:
     - rid: 4972360184803622914
-    - rid: 7856103185826971714
+    - rid: 7022832773468782646
   - speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
     dialog: '{mc}...?'
     ScreenActions: []
@@ -1002,16 +1002,16 @@ MonoBehaviour:
           m_EditorAssetChanged: 0
         fadeTime: 4
         setToSameTime: 0
-    - rid: 7856103185826971714
+    - rid: 7022832773468782646
       type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
       data:
         actorToSpawn: {fileID: 11400000, guid: 905407d7a8ed6004ebfd47e9529ecf8c, type: 2}
         fadeInTime: 0.5
-        spawnOffset: {x: 0, y: -100, z: 0}
+        spawnOffset: {x: 0, y: 0, z: 0}
         visualSpriteIndexes:
         - skyDown
         - skyDown
-        - surprise
+        - sleep
         - EMPTY
     - rid: 7856103185826971716
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}

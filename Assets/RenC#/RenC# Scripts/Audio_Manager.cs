@@ -160,15 +160,23 @@ namespace RenCSharp
                 sfxSources[sfxIndex].clip = clipToPlay;
                 sfxSources[sfxIndex].volume = volume * sfxVolMult;
                 sfxSources[sfxIndex].loop = loop;
-                sfxSources[sfxIndex].pitch = UnityEngine.Random.Range(minRand, maxRand);
+                sfxSources[sfxIndex].pitch = RandomHelper.NoRepeatRoll("randiSFX", minRand, maxRand, 0.0f);
                 sfxSources[sfxIndex].Play();
             }
             else
             {
+                int counted = 0;
+                while(esfxSources[sfxIndex].isPlaying) //don't interrupt already playing esfx. hope and pray we don't loop more than we can hold.
+                {
+                    sfxIndex++;
+                    counted++;
+                    if (sfxIndex >= esfxSources.Length) sfxIndex = 0;
+                    if (counted >= esfxSources.Length) break; //panic break.
+                }
                 esfxSources[sfxIndex].clip = clipToPlay;
                 
                 esfxSources[sfxIndex].loop = loop;
-                esfxSources[sfxIndex].pitch = UnityEngine.Random.Range(minRand, maxRand);
+                esfxSources[sfxIndex].pitch = RandomHelper.NoRepeatRoll("randiSFX", minRand, maxRand, 0.0f);
                 esfxSources[sfxIndex].Play();
                 if (loop)
                 {
@@ -198,15 +206,14 @@ namespace RenCSharp
 
                 if (environmental && loop)
                 {
-                    SFXToken toAdd = new()
+                    loopingSFXAddresses.Add(new()
                     {
                         SFXAddress = sfxToPlay.AssetGUID,
                         yPos = 0,
                         xPos = 0,
                         zPos = 0,
                         localVolume = volume
-                    };
-                    loopingSFXAddresses.Add(toAdd);
+                    });
                 }
 
                 Play2DSFX(sfxer, minRand, maxRand, volume, environmental, loop);

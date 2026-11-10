@@ -161,10 +161,10 @@ namespace RenCSharp.Combat.Enemies
                 switch (hitType)
                 {
                     case ProjectileHitType.StayStill:
-                        actuallyTakeDamage = !Mathf.Approximately(receiverRB.linearVelocity.magnitude, 0f);
+                        actuallyTakeDamage = receiver.Moving();
                         break;
                     case ProjectileHitType.StayMoving:
-                        actuallyTakeDamage = Mathf.Approximately(receiverRB.linearVelocity.magnitude, 0f);
+                        actuallyTakeDamage = !receiver.Moving();
                         break;
                 }
 
@@ -193,10 +193,10 @@ namespace RenCSharp.Combat.Enemies
                 switch (hitType)
                 {
                     case ProjectileHitType.StayStill:
-                        actuallyTakeDamage = !Mathf.Approximately(receiverRB.linearVelocity.magnitude, 0f);
+                        actuallyTakeDamage = receiver.Moving();
                         break;
                     case ProjectileHitType.StayMoving:
-                        actuallyTakeDamage = Mathf.Approximately(receiverRB.linearVelocity.magnitude, 0f);
+                        actuallyTakeDamage = !receiver.Moving();
                         break;
                 }
                 

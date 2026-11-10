@@ -23,29 +23,25 @@ MonoBehaviour:
   spawnPoints: []
   initialDirections: []
   indexes: 
-  projectileSpawnPositionMethod: 1
-  projectileIndexMethod: 1
-  keyframes: 1e0000008b000000d7000000
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  keyframes: 1e00000078000000d4000000
   frameData:
   - ProjectilesSpawnedAtFrame:
-    - SpawnPosition: {x: -68, y: 348, z: 0}
-      InitialDirection: {x: 0.81153435, y: -0.58430475, z: 0}
+    - SpawnPosition: {x: -448, y: 104, z: 0}
+      InitialDirection: {x: 1, y: -0, z: 0}
       ProjectileIndex: 0
       TimelineIndex: 1
-    - SpawnPosition: {x: 284, y: 100, z: 0}
-      InitialDirection: {x: -0.7376729, y: -0.67515826, z: 0}
-      ProjectileIndex: 0
-      TimelineIndex: 2
   - ProjectilesSpawnedAtFrame:
-    - SpawnPosition: {x: 184, y: 424, z: 0}
+    - SpawnPosition: {x: 120, y: 456, z: 0}
       InitialDirection: {x: 0.016946718, y: -0.9998564, z: 0}
       ProjectileIndex: 0
-      TimelineIndex: 3
+      TimelineIndex: 2
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: 464, y: -80, z: 0}
       InitialDirection: {x: -0.999635, y: -0.027017161, z: 0}
       ProjectileIndex: 0
-      TimelineIndex: 4
+      TimelineIndex: 3
   loops: 2
   debug: 0
   references:
@@ -60,12 +56,30 @@ MonoBehaviour:
           - serializedVersion: 3
             time: 0.0041656494
             value: 0.0023498535
-            inSlope: 5.775083
-            outSlope: 5.775083
+            inSlope: 28.7177
+            outSlope: 28.7177
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
-            outWeight: 0.02145919
+            outWeight: 0.0042918078
+          - serializedVersion: 3
+            time: 0.11398773
+            value: 0.99561787
+            inSlope: 0.010484483
+            outSlope: 0.010484483
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.4124007
+          - serializedVersion: 3
+            time: 0.68702996
+            value: 0.77889293
+            inSlope: -1.0738964
+            outSlope: -1.0738964
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
           - serializedVersion: 3
             time: 1
             value: 0

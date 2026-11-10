@@ -8,6 +8,7 @@ namespace RenCSharp.Combat.Player
     {
         protected abstract Color PlayerColor();
         protected Player_Object playerObj;
+        public abstract bool Moving();
         /// <summary>
         /// What happens when the game receives player input.
         /// </summary>
@@ -20,6 +21,7 @@ namespace RenCSharp.Combat.Player
         {
             if(!Object_Factory.TryGetObject("PlayerObject", out GameObject go)) { Debug.LogWarning("No player obj!"); return; }
             playerObj = go.GetComponent<Player_Object>();
+            playerObj.SetControlType = this;
             playerObj.GetComponent<Image>().color = PlayerColor();
             playerObj.transform.localPosition = Vector3.zero;
             Player_Input.Movement += MovementEffect;

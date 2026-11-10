@@ -14,5 +14,10 @@ namespace RenCSharp.Combat.Interfaces
         /// </summary>
         /// <returns>Percentage resistance to damage</returns>
         public float Resistance();
+        /// <summary>
+        /// Moving check for those sorts of goofy damages.
+        /// </summary>
+        /// <returns>True if moving, false if staying still.</returns>
+        public bool Moving();
     }
 }

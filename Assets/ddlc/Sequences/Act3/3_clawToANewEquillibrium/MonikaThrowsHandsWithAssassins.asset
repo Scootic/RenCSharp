@@ -29,8 +29,8 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
     dialog: (<NoiseText=2,1>{Player}, help!!!</NoiseText>)
     ScreenActions:
-    - rid: 6136301356379799673
     - rid: 6136301356379799674
+    - rid: 7022832773468782648
   - speaker: {fileID: 0}
     dialog: 
     ScreenActions:
@@ -167,6 +167,29 @@ MonoBehaviour:
     dialog: (... by <i>ourselves</i>?)
     ScreenActions:
     - rid: 7022832729979879500
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 7022832773468782657
+    - rid: 7022832773468782658
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 7022832773468782659
+  - speaker: {fileID: 11400000, guid: 308d62972f3bcf945b9d9cd147348a86, type: 2}
+    dialog: Help me! The lizar-
+    ScreenActions: []
+  - speaker: {fileID: 11400000, guid: 308d62972f3bcf945b9d9cd147348a86, type: 2}
+    dialog: Grk-!
+    ScreenActions:
+    - rid: 7022832773468782661
+    - rid: 7022832773468782662
+  - speaker: {fileID: 11400000, guid: 84e4c882fd8bdcf4493f97d343789b06, type: 2}
+    dialog: Not a one of you defilers shall leave this Sanctuary alive.
+    ScreenActions:
+    - rid: 7022832773468782663
+    - rid: 7022832773468782664
+    - rid: 7022832773468782665
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 0}
@@ -299,15 +322,6 @@ MonoBehaviour:
         secondsPerFrame: 0.1
         fadeTransition: 0
         fadeDuration: 0
-    - rid: 6136301356379799673
-      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
-      data:
-        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
-        visualSpriteIndexes:
-        - 
-        - 
-        - inquisitiveSpeak
-        - 
     - rid: 6136301356379799674
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -574,7 +588,7 @@ MonoBehaviour:
     - rid: 7022832707537731594
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        localMotionOffset: {x: -900, y: 0, z: 0}
+        localMotionOffset: {x: -1100, y: 0, z: 0}
         motionDuration: 1
         motionPathX:
           serializedVersion: 2
@@ -671,7 +685,7 @@ MonoBehaviour:
     - rid: 7022832707537731597
       type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
       data:
-        localMotionOffset: {x: 900, y: 0, z: 0}
+        localMotionOffset: {x: 1100, y: 0, z: 0}
         motionDuration: 1
         motionPathX:
           serializedVersion: 2
@@ -1079,7 +1093,170 @@ MonoBehaviour:
       data:
         actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
         visualSpriteIndexes:
-        - 
+        - skyDown
         - 
         - closeEyeGrinSweat
         - 
+    - rid: 7022832773468782648
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - '><Shock'
+        - 
+    - rid: 7022832773468782657
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - stern
+        - 
+    - rid: 7022832773468782658
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 1e78d81976469c44d90bc7045d865998
+          m_SubObjectName: dbsanctuary2_astrid
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 7022832773468782659
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: de78a5f2c6d81e1459894fa68c95186b
+          m_SubObjectName: dbsanctuary4_veezara
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 7022832773468782661
+      type: {class: Play_SFXAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        sfxAsset:
+          m_AssetGUID: e3f9c8208d46092408268e8459362a27
+          m_SubObjectName: 
+          m_SubObjectType: 
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 0
+        position: {x: 0, y: 0, z: 0}
+        baseVolume: 1
+        loop: 0
+        stopOnScreenProgress: 1
+        loopDuration: 1
+    - rid: 7022832773468782662
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - pity
+        - 
+    - rid: 7022832773468782663
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - stern
+        - 
+    - rid: 7022832773468782664
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: -300, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        loopOnScreen: 0
+    - rid: 7022832773468782665
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 84e4c882fd8bdcf4493f97d343789b06, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default

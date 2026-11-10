@@ -1056,8 +1056,8 @@ MonoBehaviour:
   myself:
     m_AssetGUID: 4a8575ecd2ea4b944be83eaf27e8a05b
     m_SubObjectName: 
-    m_SubObjectGUID: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   references:
     version: 2
@@ -1073,9 +1073,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: e42ecc380b32b804fad134ff3f067383
           m_SubObjectName: riverwood2
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 0
@@ -1086,8 +1086,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: d86918f5f44a2574d8e142f7f0555040
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 3
         setToSameTime: 0
@@ -1240,9 +1240,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: a7d152b1a05e977468dcd4c2dc96a34c
           m_SubObjectName: whiterunroadsigns
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1403,9 +1403,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: ef411d57be489fd4c8329bdaf466d461
           m_SubObjectName: tosolitude1
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1743,9 +1743,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 485e3d051bb76a148918d73913fd7ebb
           m_SubObjectName: tosolitude2
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -1774,8 +1774,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 63856e1ac10661c41a9339bc19594687
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -1785,8 +1785,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: ba13accb8b1fe3b47bb3401b0a6229b8
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 2
         setToSameTime: 0
@@ -1823,8 +1823,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -1834,8 +1834,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: feeada3eec1077e46ac720749659a790
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -2261,6 +2261,18 @@ MonoBehaviour:
             dialog: (That's nice, I guess.)
             ScreenActions:
             - rid: 4972360123630747650
+        - conditions:
+          - flagToCheck: garbage
+            operation: 0
+            desiredValue: 6
+            persistent: 0
+            debugResult: 0
+            bitWise: 0
+          resultingScreen:
+            speaker: {fileID: 11400000, guid: bd43d09d02697ee489059e7390a0597d, type: 2}
+            dialog: (... Uh, thank you?)
+            ScreenActions:
+            - rid: 4972360123630747650
     - rid: 4972360072031371326
       type: {class: Player_Button_Flag, ns: RenCSharp.Sequences, asm: Sequences}
       data:
@@ -2268,11 +2280,13 @@ MonoBehaviour:
         - All of you were there for me in a tough time of my life.
         - All of you are so well-written, I think of you as people.
         - All of you remind me of real people I care about, so I care about you too.
+        - I just think you all are cute.
         flagsToAlter:
         - garbage
         - garbage
         - garbage
-        newFlagValues: 030000000400000005000000
+        - garbage
+        newFlagValues: 03000000040000000500000006000000
         increment: 0
         persistent: 0
     - rid: 4972360072031371334
@@ -2309,7 +2323,7 @@ MonoBehaviour:
         visualSpriteIndexes:
         - 
         - 
-        - smile
+        - surprise
         - 
     - rid: 4972360123630747651
       type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
@@ -2326,9 +2340,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 1ff8febce318b784f9c338cbb1dc0976
           m_SubObjectName: tosolitude3
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2375,8 +2389,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 0
         setToSameTime: 0
@@ -2395,8 +2409,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: feeada3eec1077e46ac720749659a790
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -2415,9 +2429,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 60d4538381cf9634c9da6843e40f8a31
           m_SubObjectName: tosolitude4
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2544,9 +2558,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 60d4538381cf9634c9da6843e40f8a31
           m_SubObjectName: tosolitude4
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2566,9 +2580,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 3a8d90996e0d8cb4c8eab9f33a0d0433
           m_SubObjectName: tosolitude5
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2597,8 +2611,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 6e8f3b41616a8444ba8d4984e723f1ad
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2802,8 +2816,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2813,9 +2827,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 9a171b025cb21144f8c8a7742c55f56d
           m_SubObjectName: tosolitude6
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2835,8 +2849,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: feeada3eec1077e46ac720749659a790
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -2909,9 +2923,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: c1b1c1b9a31303147a61e6d14ec2c0c6
           m_SubObjectName: dragonbridge1
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -2931,9 +2945,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: ceaff8f48e4b806438bf1a9ccbee83ae
           m_SubObjectName: dragonbridge2
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -3004,8 +3018,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: e82cf2abd98ac45439666764a84213a5
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -3065,8 +3079,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -3128,9 +3142,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 01747f95bd7166d4b8e46a53a2b42cbb
           m_SubObjectName: tomeekoshack
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -3164,9 +3178,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: d4300807c4c4a53438c7aa98a0e76f6c
           m_SubObjectName: meekoshack
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -3266,8 +3280,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 242eec1aaa8c1fd41832783905b45d54
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -3494,8 +3508,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -3505,8 +3519,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: e82cf2abd98ac45439666764a84213a5
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -3641,8 +3655,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -3748,8 +3762,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 242eec1aaa8c1fd41832783905b45d54
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -3777,8 +3791,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -3925,8 +3939,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: e82cf2abd98ac45439666764a84213a5
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -4097,9 +4111,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 95d8bd2ec22783b40a8692aee86a64fd
           m_SubObjectName: meekoshack_corpse
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -4110,9 +4124,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: d4300807c4c4a53438c7aa98a0e76f6c
           m_SubObjectName: meekoshack
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -4183,9 +4197,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 9aa42aed29c52074083afed0bc5f18cb
           m_SubObjectName: tomorthal1
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -4205,8 +4219,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: feeada3eec1077e46ac720749659a790
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -4243,9 +4257,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: d7e52bc355669e445bcd25939cf530b9
           m_SubObjectName: tomorthal2
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -4307,9 +4321,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 971792c8139c8c04583879730a2df13b
           m_SubObjectName: tomorthal3
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -4492,8 +4506,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -4503,8 +4517,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -4580,8 +4594,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -4677,8 +4691,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: feeada3eec1077e46ac720749659a790
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -4697,9 +4711,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: 89137e6984b8a0b45a5af2e1bd86d805
           m_SubObjectName: tomorthal4
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -4801,9 +4815,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: ac3fa51382829d1498c9d7b65949d2a6
           m_SubObjectName: morthaloutskirts
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -5046,8 +5060,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -5057,9 +5071,9 @@ MonoBehaviour:
         newBG:
         - m_AssetGUID: c438df5644147f744af3ee58978c2564
           m_SubObjectName: morthal1
-          m_SubObjectGUID: 
           m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         secondsPerFrame: 0.1
         fadeTransition: 3
@@ -5079,8 +5093,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 7515e5703331eed4a95064f0ba97f297
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 1
         fadeTime: 1
         setToSameTime: 0
@@ -5402,8 +5416,8 @@ MonoBehaviour:
         songAsset:
           m_AssetGUID: 627e52765a52cac45a8d7bc68d11ca78
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         fadeTime: 1
         setToSameTime: 0
@@ -5429,8 +5443,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 65cfd5222f3dcb94baeffd94c888c3b8
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: -1, y: 0, z: 0}
         baseVolume: 0.33
@@ -5443,8 +5457,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 65cfd5222f3dcb94baeffd94c888c3b8
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -5457,8 +5471,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 54734e6f01b9dee4687420900dd9a070
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -5471,8 +5485,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 4525e98dfb3d9ed4d90ab81145c9f53e
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -5485,8 +5499,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 0870b8a3e6ad3fb4e81793692c20e863
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -5499,8 +5513,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 7005aac9cf1f8074fb728afbd3cac263
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1
@@ -5513,8 +5527,8 @@ MonoBehaviour:
         sfxAsset:
           m_AssetGUID: 86a78e702bb6fbc42b126503c54b49ec
           m_SubObjectName: 
-          m_SubObjectGUID: 
           m_SubObjectType: 
+          m_SubObjectGUID: 
           m_EditorAssetChanged: 0
         position: {x: 0, y: 0, z: 0}
         baseVolume: 1

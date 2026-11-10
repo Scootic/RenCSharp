@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 namespace RenCSharp.Combat.Player
 {
     public class Dodge : ControlType
@@ -10,7 +9,7 @@ namespace RenCSharp.Combat.Player
         [SerializeField, Min(0.1f)] private float timeToDodge = 0.5f;
         private Vector3 originPosition;
         private float t = 0;
-        private Coroutine dodgeRoutine;
+        private Awaitable dodgeRoutine;
         protected override void MovementEffect(Vector2 dir)
         {
             if (midDodge) return;
@@ -26,7 +25,12 @@ namespace RenCSharp.Combat.Player
 
             Vector3 desPos = originPosition + new Vector3(x * distanceFromCenter,y * distanceFromCenter,0);
 
-            dodgeRoutine = Audio_Manager.AM.StartCoroutine(DodgeAnimation(desPos));
+            dodgeRoutine = DodgeAnimation(desPos);
+        }
+
+        public override bool Moving()
+        {
+            return midDodge;
         }
 
         public override void EnterControl()
@@ -38,22 +42,23 @@ namespace RenCSharp.Combat.Player
 
         public override void ExitControl()
         {
-            if (dodgeRoutine != null) Audio_Manager.AM.StopCoroutine(dodgeRoutine);
+            dodgeRoutine?.Cancel();
             base.ExitControl();
         }
 
-        private IEnumerator DodgeAnimation(Vector3 desPos)
+        private async Awaitable DodgeAnimation(Vector3 desPos)
         {
             t = 0;
             playerObj.transform.position = originPosition;
             while (t <= timeToDodge)
             {
+                if (!playerObj.isActiveAndEnabled) break;
                 t += Time.deltaTime;
                 float eval = t / timeToDodge;
 
                 playerObj.transform.position = Vector3.Lerp(originPosition, desPos, dodgeCurve.Evaluate(eval));
 
-                yield return null;
+                await Awaitable.NextFrameAsync();
             }
             playerObj.transform.position = originPosition;
             midDodge = false;
