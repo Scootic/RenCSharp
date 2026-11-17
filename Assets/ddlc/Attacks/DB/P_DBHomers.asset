@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f9f3aa6e6a5af4d88f6a38c71a9dbe, type: 3}
+  m_Name: P_DBHomers
+  m_EditorClassIdentifier: 
+  arenaDimensions: {x: 600, y: 350}
+  controlType:
+    rid: 7022832936801271815
+  attackDuration: 11.5
+  secondsPerProjectileSpawn: 0.5
+  projectilesPerSpawn: 1
+  projectilesThatSpawn:
+  - {fileID: 8204135625514222407, guid: fd3b437f0f4c18e478bb23b276f1709c, type: 3}
+  spawnPoints: []
+  initialDirections: []
+  indexes: 
+  projectileSpawnPositionMethod: 2
+  projectileIndexMethod: 2
+  keyframes: 000000005a000000b40000000e01000068010000c20100001c020000
+  frameData:
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -933, y: 112, z: 0}
+      InitialDirection: {x: 0.9545431, y: -0.29807293, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 1
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 825, y: 100, z: 0}
+      InitialDirection: {x: -0.93802106, y: -0.34657806, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 2
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -222, y: 900, z: 0}
+      InitialDirection: {x: 0.023339942, y: -0.99972755, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 3
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 222, y: 900, z: 0}
+      InitialDirection: {x: -0.02, y: -1, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 4
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -170, y: -900, z: 0}
+      InitialDirection: {x: 0, y: 1, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 5
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 0, y: -900, z: 0}
+      InitialDirection: {x: 0, y: 1, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 6
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 170, y: -900, z: 0}
+      InitialDirection: {x: 0, y: 1, z: 0}
+      ProjectileIndex: 0
+      TimelineIndex: 7
+  loops: 1
+  debug: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 7022832936801271815
+      type: {class: Platformer, ns: RenCSharp.Combat.Player, asm: Player}
+      data:
+        speed: 500
+        gravityForce: 600
+        jumpForce: 500
+        groundedDistance: 26
+        jumpcd: 0.2
+        jumpMask:
+          serializedVersion: 2
+          m_Bits: 8

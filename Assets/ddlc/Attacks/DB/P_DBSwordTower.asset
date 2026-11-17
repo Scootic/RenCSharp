@@ -15,18 +15,19 @@ MonoBehaviour:
   arenaDimensions: {x: 400, y: 660}
   controlType:
     rid: 7022832897745748013
-  attackDuration: 11
+  attackDuration: 10
   secondsPerProjectileSpawn: 0.5
   projectilesPerSpawn: 1
   projectilesThatSpawn:
   - {fileID: 8204135625514222407, guid: 0f3444684f274b848b653e2f7f28fc79, type: 3}
   - {fileID: 8204135625514222407, guid: 68b69437aba7fb44ca7d3573081c839e, type: 3}
+  - {fileID: 8204135625514222407, guid: 4fe4e4381a33f434a982a183eb49be69, type: 3}
   spawnPoints: []
   initialDirections: []
   indexes: 
   projectileSpawnPositionMethod: 2
   projectileIndexMethod: 2
-  keyframes: 0000000032000000
+  keyframes: 000000003000000066000000f000000068010000e0010000
   frameData:
   - ProjectilesSpawnedAtFrame:
     - SpawnPosition: {x: -208, y: 95, z: 0}
@@ -34,10 +35,54 @@ MonoBehaviour:
       ProjectileIndex: 0
       TimelineIndex: 1
   - ProjectilesSpawnedAtFrame:
-    - SpawnPosition: {x: -160, y: -116, z: 0}
-      InitialDirection: {x: 0, y: -0.2, z: 0}
+    - SpawnPosition: {x: -176, y: -140, z: 0}
+      InitialDirection: {x: 0, y: -0.1, z: 0}
       ProjectileIndex: 1
       TimelineIndex: 2
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 200, y: -12, z: 0}
+      InitialDirection: {x: 0, y: -0.1, z: 0}
+      ProjectileIndex: 1
+      TimelineIndex: 3
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: -448, y: 16, z: 0}
+      InitialDirection: {x: 0.9994801, y: -0.032241292, z: 0}
+      ProjectileIndex: 2
+      TimelineIndex: 4
+    - SpawnPosition: {x: -452, y: -76, z: 0}
+      InitialDirection: {x: 1, y: -0, z: 0}
+      ProjectileIndex: 2
+      TimelineIndex: 5
+    - SpawnPosition: {x: -452, y: -160.2, z: 0}
+      InitialDirection: {x: 1, y: 0, z: 0}
+      ProjectileIndex: 2
+      TimelineIndex: 6
+    - SpawnPosition: {x: -452, y: -242.1, z: 0}
+      InitialDirection: {x: 1, y: 0, z: 0}
+      ProjectileIndex: 2
+      TimelineIndex: 7
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 0, y: 500, z: 0}
+      InitialDirection: {x: 0, y: -1, z: 0}
+      ProjectileIndex: 2
+      TimelineIndex: 8
+    - SpawnPosition: {x: -184, y: 500, z: 0}
+      InitialDirection: {x: -0.021271782, y: -0.99977374, z: 0}
+      ProjectileIndex: 2
+      TimelineIndex: 9
+    - SpawnPosition: {x: -100, y: 500, z: 0}
+      InitialDirection: {x: 0, y: -1, z: 0}
+      ProjectileIndex: 2
+      TimelineIndex: 10
+  - ProjectilesSpawnedAtFrame:
+    - SpawnPosition: {x: 500, y: 164, z: 0}
+      InitialDirection: {x: -1, y: 0, z: 0}
+      ProjectileIndex: 2
+      TimelineIndex: 11
+    - SpawnPosition: {x: 500, y: 276, z: 0}
+      InitialDirection: {x: -0.9999257, y: 0.012194215, z: 0}
+      ProjectileIndex: 2
+      TimelineIndex: 12
   loops: 1
   debug: 0
   references:

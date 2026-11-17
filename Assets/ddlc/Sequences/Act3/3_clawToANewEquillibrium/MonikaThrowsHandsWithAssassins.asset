@@ -190,6 +190,61 @@ MonoBehaviour:
     - rid: 7022832773468782663
     - rid: 7022832773468782664
     - rid: 7022832773468782665
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 7022832936801271819
+    - rid: 7022832936801271820
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (... Alright, based on what I counted, there should only be two more
+      of them left...)
+    ScreenActions:
+    - rid: 7022832936801271822
+  - speaker: {fileID: 11400000, guid: 2376c82df69669342b30db689a8411f0, type: 2}
+    dialog: Stop! I surrend-
+    ScreenActions:
+    - rid: 7022832936801271823
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (...)
+    ScreenActions:
+    - rid: 7022832936801271824
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (At this rate, there might only be two of us by the time the fighting
+      is done.)
+    ScreenActions:
+    - rid: 7022832936801271825
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 7022832936801271826
+    - rid: 7022832936801271827
+  - speaker: {fileID: 11400000, guid: 4f30fbf4155d8cb4da0467b874674e4c, type: 2}
+    dialog: These fools send even a little girl to battle with us?
+    ScreenActions:
+    - rid: 7022832936801271828
+    - rid: 7022832936801271829
+  - speaker: {fileID: 11400000, guid: 4f30fbf4155d8cb4da0467b874674e4c, type: 2}
+    dialog: What an amusing irony that this old man must cut your life short, even
+      more so without a contract.
+    ScreenActions: []
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 7022832936801271830
+    - rid: 7022832936801271831
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (Haaahh... haaaahh... I think that guy liked fire a little <i>too</i>
+      much...)
+    ScreenActions:
+    - rid: 7022832936801271832
+  - speaker: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+    dialog: (... There's more sounds of fighting coming from that room-!)
+    ScreenActions:
+    - rid: 7022832936801271833
+  - speaker: {fileID: 0}
+    dialog: 
+    ScreenActions:
+    - rid: 7022832936801271834
   playerChoices:
   - choiceText: 
     resultingSequence: {fileID: 0}
@@ -1260,3 +1315,207 @@ MonoBehaviour:
         spawnOffset: {x: 300, y: 0, z: 0}
         visualSpriteIndexes:
         - default
+    - rid: 7022832936801271819
+      type: {class: Group_Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorsToRemove:
+        - {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        - {fileID: 11400000, guid: 84e4c882fd8bdcf4493f97d343789b06, type: 2}
+        fadeTime: 0.5
+    - rid: 7022832936801271820
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 11400000, guid: 42cfa9921cdb7604a9d5710b3eaab635, type: 2}
+        autoSaveName: '!AutoSave_Fight'
+    - rid: 7022832936801271822
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - closeEyeSpeak
+        - EMPTY
+    - rid: 7022832936801271823
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - pity
+        - 
+    - rid: 7022832936801271824
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - sternSweat
+        - 
+    - rid: 7022832936801271825
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - 
+        - smileSweat
+        - 
+    - rid: 7022832936801271826
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - skyUp
+        - stern
+        - 
+    - rid: 7022832936801271827
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: 95c4b4e59841b0342a37fe8ab54ceebb
+          m_SubObjectName: dbsanctuary5_festuskrex
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
+    - rid: 7022832936801271828
+      type: {class: Simple_Actor_Motion, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        localMotionOffset: {x: -300, y: 0, z: 0}
+        motionDuration: 1
+        motionPathX:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathY:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        motionPathZ:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        target: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        loopOnScreen: 0
+    - rid: 7022832936801271829
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: 4f30fbf4155d8cb4da0467b874674e4c, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 300, y: 0, z: 0}
+        visualSpriteIndexes:
+        - default
+    - rid: 7022832936801271830
+      type: {class: Group_Remove_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorsToRemove:
+        - {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        - {fileID: 11400000, guid: 4f30fbf4155d8cb4da0467b874674e4c, type: 2}
+        fadeTime: 0.5
+    - rid: 7022832936801271831
+      type: {class: Start_Fight, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        enemyToLoad: {fileID: 11400000, guid: fc8b238f3d187a64ba2fca672b47822b, type: 2}
+        autoSaveName: '!AutoSave_Fight'
+    - rid: 7022832936801271832
+      type: {class: Spawn_Actor, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToSpawn: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        fadeInTime: 0.5
+        spawnOffset: {x: 0, y: 0, z: 0}
+        visualSpriteIndexes:
+        - skyDown
+        - skyDown
+        - closeEyeSpeak
+        - EMPTY
+    - rid: 7022832936801271833
+      type: {class: Actor_Expression, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        actorToAlter: {fileID: 11400000, guid: bcc4aa0537be91d488c1075e0cd8d29a, type: 2}
+        visualSpriteIndexes:
+        - 
+        - skyUp
+        - stern
+        - 
+    - rid: 7022832936801271834
+      type: {class: Fade_TransitionAsset, ns: RenCSharp.Sequences, asm: Sequences}
+      data:
+        newBG:
+        - m_AssetGUID: a012426e324d6154597d511ac9ff8e0e
+          m_SubObjectName: dbsanctuary6_nazir
+          m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_SubObjectGUID: 
+          m_EditorAssetChanged: 1
+        secondsPerFrame: 0.1
+        fadeTransition: 3
+        fadeDuration: 1
